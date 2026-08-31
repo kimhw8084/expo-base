@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+
+const runtime=fs.readFileSync('packages/runtime/src/auth.tsx','utf8');
+const provider=fs.readFileSync('packages/runtime/src/PrecisionRuntimeProvider.tsx','utf8');
+const navigation=fs.readFileSync('packages/navigation-router/src/index.tsx','utf8');
+const root=fs.readFileSync('apps/reference/app/_layout.tsx','utf8');
+const signIn=fs.readFileSync('apps/reference/app/sign-in.tsx','utf8');
+assert.ok(runtime.includes('adapter.subscribe'));
+assert.ok(runtime.includes('adapter.getSession'));
+assert.ok(runtime.includes('isSessionFetchCurrent(revisionAtStart, subscriptionRevision.current)'));
+assert.ok(runtime.includes("errorCode: 'sign_in_failed'"));
+assert.ok(runtime.includes('pendingReturnIntent'));
+assert.ok(runtime.includes('returnIntentChannel'));
+assert.ok(provider.includes('returnIntentChannel?: ReturnIntentChannel'));
+assert.ok(root.includes('authReturnIntent'));
+assert.ok(fs.readFileSync('apps/reference/linking.ts','utf8').includes('authReturnIntent.capture'));
+assert.ok(provider.includes('auth?.enabled !== false'));
+assert.ok(navigation.includes('<Stack.Protected guard={access === \'booting\'}>'));
+assert.ok(navigation.includes('<Stack.Protected guard={access === \'granted\'}>'));
+assert.ok(root.includes("signedOut: ['sign-in']"));
+assert.ok(root.includes("booting: ['session-loading']"));
+assert.ok(root.includes("error: ['session-error']"));
+assert.ok(signIn.includes("router.replace(auth.consumeReturnIntent('/'))"));
+assert.equal(/error\.message|String\(error\)/.test(signIn),false);
+console.log('Auth runtime source contracts passed (subscription race, protected guards, sanitized sign-in, return intent).');

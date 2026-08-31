@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const source=fs.readFileSync('packages/runtime/src/authorization.tsx','utf8');
+const provider=fs.readFileSync('packages/runtime/src/PrecisionRuntimeProvider.tsx','utf8');
+assert.ok(source.includes("setStatus('inactive')"));
+assert.ok(source.includes("setStatus('loading')"));
+assert.ok(source.includes("setStatus('error')"));
+assert.ok(source.includes("errorCode('capabilities_unavailable')")||source.includes("setErrorCode('capabilities_unavailable')"));
+assert.ok(source.includes('adapter.getCapabilities'));
+assert.ok(source.includes('adapter.subscribe?.'));
+assert.ok(source.includes('usePrecisionAuth'));
+assert.ok(provider.includes('<PrecisionAuthorizationProvider adapter={services.authorization}'));
+console.log('Authorization runtime source contracts passed (identity binding, fail-closed loading/error, live updates, sanitized errors).');

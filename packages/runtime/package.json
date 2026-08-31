@@ -1,0 +1,21 @@
+{
+  "name": "@precision-calm/runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@precision-calm/layouts": "*",
+    "@precision-calm/motion": "*",
+    "@precision-calm/overlays": "*",
+    "@precision-calm/primitives": "*",
+    "@precision-calm/adapters": "*",
+    "@precision-calm/linking": "*",
+    "@precision-calm/auth": "*",
+    "@precision-calm/authorization": "*"
+  },
+  "peerDependencies": {
+    "react": "19.2.3"
+  }
+}

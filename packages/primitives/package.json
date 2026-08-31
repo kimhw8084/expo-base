@@ -1,0 +1,16 @@
+{
+  "name": "@precision-calm/primitives",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@precision-calm/tokens": "*"
+  },
+  "peerDependencies": {
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-unistyles": "3.3.0"
+  }
+}

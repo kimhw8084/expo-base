@@ -1,0 +1,82 @@
+import type { PrecisionColors } from './colors';
+import { darkColors, lightColors } from './colors';
+import { applyBrandAccent, brandPresets, type PrecisionBrand } from './brand';
+import { componentMetrics, contentWidths, controlHeights, feedbackMetrics, feedbackTiming, formMetrics, iconSizes, interactionFeedback, layers, motion, radii, spacing, typography, visualizationMetrics } from './foundations';
+import { actionMetrics, layoutDimensions } from './layout';
+
+export interface PrecisionCalmTheme {
+  spacing: typeof spacing;
+  radii: typeof radii;
+  controlHeights: typeof controlHeights;
+  iconSizes: typeof iconSizes;
+  contentWidths: typeof contentWidths;
+  layers: typeof layers;
+  motion: typeof motion;
+  typography: typeof typography;
+  interactionFeedback: typeof interactionFeedback;
+  formMetrics: typeof formMetrics;
+  componentMetrics: typeof componentMetrics;
+  feedbackTiming: typeof feedbackTiming;
+  feedbackMetrics: typeof feedbackMetrics;
+  visualizationMetrics: typeof visualizationMetrics;
+  layoutDimensions: typeof layoutDimensions;
+  actionMetrics: typeof actionMetrics;
+  colors: PrecisionColors;
+  elevation: {
+    none: { boxShadow: string };
+    low: { boxShadow: string };
+    medium: { boxShadow: string };
+    high: { boxShadow: string };
+  };
+}
+
+const geometry = {
+  spacing,
+  radii,
+  controlHeights,
+  iconSizes,
+  contentWidths,
+  layers,
+  motion,
+  typography,
+  interactionFeedback,
+  formMetrics,
+  componentMetrics,
+  feedbackTiming,
+  feedbackMetrics,
+  visualizationMetrics,
+  layoutDimensions,
+  actionMetrics,
+} as const;
+
+export const lightTheme = {
+  ...geometry,
+  colors: lightColors,
+  elevation: {
+    none: { boxShadow: 'none' },
+    low: { boxShadow: '0 1px 2px rgba(14,18,22,0.05)' },
+    medium: { boxShadow: '0 10px 28px rgba(14,18,22,0.08)' },
+    high: { boxShadow: '0 18px 48px rgba(14,18,22,0.13)' },
+  },
+} satisfies PrecisionCalmTheme;
+
+export const darkTheme = {
+  ...geometry,
+  colors: darkColors,
+  elevation: {
+    none: { boxShadow: 'none' },
+    low: { boxShadow: '0 1px 1px rgba(0,0,0,0.24)' },
+    medium: { boxShadow: '0 12px 30px rgba(0,0,0,0.30)' },
+    high: { boxShadow: '0 20px 52px rgba(0,0,0,0.40)' },
+  },
+} satisfies PrecisionCalmTheme;
+
+export function createPrecisionThemes(brand: PrecisionBrand) {
+  return {
+    light: { ...lightTheme, colors: applyBrandAccent(lightColors, brand.light) },
+    dark: { ...darkTheme, colors: applyBrandAccent(darkColors, brand.dark) },
+  } satisfies { light: PrecisionCalmTheme; dark: PrecisionCalmTheme };
+}
+
+export const themes = createPrecisionThemes(brandPresets.blue);
+export type ThemeName = keyof typeof themes;

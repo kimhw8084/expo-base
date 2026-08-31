@@ -1,0 +1,7 @@
+{
+  "name":"@precision-calm/patterns","version":"0.1.0","private":true,"type":"module","main":"src/index.ts","types":"src/index.ts",
+  "dependencies":{
+    "@precision-calm/components":"*","@precision-calm/data-display":"*","@precision-calm/feedback":"*","@precision-calm/forms":"*","@precision-calm/layouts":"*","@precision-calm/overlays":"*","@precision-calm/platform":"*","@precision-calm/primitives":"*","@precision-calm/visualization":"*"
+  },
+  "peerDependencies":{"react":"19.2.3","react-native":"0.86.3","react-native-unistyles":"3.3.0"}
+}

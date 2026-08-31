@@ -1,0 +1,5 @@
+import type { PropsWithChildren } from 'react';
+import Animated,{FadeIn,FadeOut,SlideInDown,SlideOutDown,ZoomIn,ZoomOut,ReduceMotion} from 'react-native-reanimated';
+import {useUnistyles} from 'react-native-unistyles';
+export type RevealKind='fade'|'slide'|'scale';
+export function Reveal({children,kind='fade'}:PropsWithChildren<{kind?:RevealKind | undefined}>){const {theme}=useUnistyles();const duration=theme.motion.duration.normal;const entering=kind==='slide'?SlideInDown.duration(duration).reduceMotion(ReduceMotion.System):kind==='scale'?ZoomIn.duration(duration).reduceMotion(ReduceMotion.System):FadeIn.duration(duration).reduceMotion(ReduceMotion.System);const exiting=kind==='slide'?SlideOutDown.duration(theme.motion.duration.fast).reduceMotion(ReduceMotion.System):kind==='scale'?ZoomOut.duration(theme.motion.duration.fast).reduceMotion(ReduceMotion.System):FadeOut.duration(theme.motion.duration.fast).reduceMotion(ReduceMotion.System);return <Animated.View entering={entering} exiting={exiting}>{children}</Animated.View>}

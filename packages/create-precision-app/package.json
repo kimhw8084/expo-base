@@ -1,0 +1,9 @@
+{
+  "name": "@precision-calm/create-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "create-precision-app": "bin/create-precision-app.mjs"
+  }
+}

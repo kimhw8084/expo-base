@@ -1,0 +1,5 @@
+{
+  "name":"@precision-calm/motion","version":"0.1.0","private":true,"type":"module","main":"src/index.ts","types":"src/index.ts",
+  "dependencies":{"@precision-calm/tokens":"*"},
+  "peerDependencies":{"expo-haptics":"~57.0.2","react":"19.2.3","react-native":"0.86.3","react-native-reanimated":"4.5.1","react-native-unistyles":"3.3.0","react-native-worklets":"0.10.1"}
+}

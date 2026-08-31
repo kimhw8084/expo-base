@@ -1,0 +1,12 @@
+{
+  "name": "@precision-calm/linking-expo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@precision-calm/linking": "*",
+    "expo-linking": "~57.0.8"
+  }
+}

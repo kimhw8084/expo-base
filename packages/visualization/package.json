@@ -1,0 +1,19 @@
+{
+  "name": "@precision-calm/visualization",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@precision-calm/platform": "*",
+    "@precision-calm/primitives": "*",
+    "@precision-calm/tokens": "*"
+  },
+  "peerDependencies": {
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-svg": "15.15.4",
+    "react-native-unistyles": "3.3.0"
+  }
+}
