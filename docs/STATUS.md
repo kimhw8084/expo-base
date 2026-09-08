@@ -1,49 +1,51 @@
-# Implementation status — 2026-08-30
+# Expo Base implementation status — 2026-09-07
 
-## Contract-complete in source
+## Current phase
 
-- Gate 00 repository/quality foundation
-- Gate 01 semantic tokens/themes
-- Gate 02 adaptive layout engine
-- Gate 03 responsive overflow intelligence
-- Gate 04 interaction primitives/icon facade
-- Gate 05 forms/keyboard ownership
-- Gate 06 adaptive navigation/router isolation
-- Gate 07 centralized overlays
-- Gate 08 list virtualization/scroll ownership
-- Gate 09 adaptive data/content
-- Gate 10 visualization
-- Gate 11 feedback/system states
-- Gate 12 motion/accessibility
-- Gate 13 golden page patterns
-- Gate 14 reference laboratory, stress matrix, certification harness, density scope
-- Gate 15 white-label brand factory and new-app generator
-- Gate 16 backend/service adapter contracts and in-memory reference implementations
-- Gate 17 stable public UI/runtime facade and compatibility manifest
-- Gate 18 existing-app migration auditor
-- Gate 19 application doctor and public API snapshot hardening
-- Gate 20 typed service injection through the runtime boundary and reference service acceptance flow
-- Gate 34 safe external/deep-link policy (restored patch line)
-- Gate 35 auth session resolution + protected-route orchestration (restored patch line)
-- Gate 36 semantic capability/entitlement authorization + nested protected-route guards (restored patch line)
+Golden and Golden Plus development is complete. The current checkout is ready to return to native validation and release governance; it is not itself a release approval and this document does not publish or tag a release.
 
-## Current contract validation
+## Development gates complete
 
-`npm run quality:gate36` is the current restored-line contract gate. Historical gates are also executed in bounded segments because the nested command can exceed this container's wall-clock limit.
+- shared tokens, platform behavior, layouts, UI primitives, forms, overlays, navigation, data composition, feedback, motion, scoped server state, runtime services, and opt-in capabilities
+- Golden Plus identity/status/code/copy, timeline, portable date/time/range, delimited export, and area/stacked visualization owners
+- Precision Calm light/dark theme and default/compact density behavior
+- keyboard and validation focus lifecycle, including the shared web keyboard-dismissal correction
+- async single-flight actions plus query/cache/invalidation/optimistic lifecycle and stale-response protection across runtime/auth/session boundaries
+- reference-app and generator architecture parity
+- generator tests plus TypeScript validation of a fresh generated application
+- Golden architecture/catalog: 75 owners, 0 feature-route violations, 24 ownership records, and 55 discovery challenges
+- Expo Base Doctor: 94 passed, 0 failed, 0 warnings
+- public API snapshot: 366 symbols across 16 UI packages
+- fresh static web export, isolated certification server, and browser certification
+- repository, configuration, package, and documentation review
 
-The certification matrix contains 252 deterministic viewport/theme/density/content combinations. Separate randomized solvers exercise overflow, overlay placement, lists, data pagination, chart geometry, feedback precedence and accessibility/motion behavior.
+## Current certification
 
-## Not yet claimed
+- `npm run runtime:verify` — PASS
+- `npm run golden:verify` — 19/19 combined visual, semantic, and interaction-performance checks
+- `npm run runtime:test:web` — 225/225 PASS
+- `npm run typecheck:runtime-ui` — PASS
+- `git diff --check` — PASS
+- no stale certification server or test process remains after the suite
 
-External npm installation is unavailable in the current container, so the following remain Level B/C certification work rather than implied passes:
+## Validation gates still outstanding
 
-- full React Native package compilation
-- Metro/Expo runtime rendering
-- static web export
-- Chromium/Firefox/WebKit execution
-- screenshot visual regression baselines
-- clean iOS/Android prebuild and compile
-- iOS/Android Maestro execution
-- physical-device accessibility/performance validation
+Native runtime acceptance has not executed. iOS acceptance was blocked by local Xcode/CoreSimulator destination resolution and remains required before final release approval. Android tooling/runtime was unavailable and is explicitly deferred/waived for `1.0.0` under PM Policy B. These are release-validation blockers, not known Expo Base source defects.
 
-See `CERTIFICATION.md` for the status taxonomy.
+Remaining validation decisions include:
+
+- iOS development-client launch and representative simulator/device flows
+- physical-device review for safe areas, keyboard behavior, secure storage, deep links, and lifecycle behavior
+- final version, tag, and publish decision
+
+## Canonical commands
+
+- `npm install` — install the pinned workspace baseline
+- `npm run runtime:verify` — run contracts, generator checks, Doctor, and runtime preflights
+- `npm run golden:verify` — run Golden structural, visual, semantic, and performance certification
+- `npm run runtime:test:web` — export and certify the reference app in Chromium, Firefox, and WebKit
+- `npm run create:app -- --name "Orbit Ledger" --slug orbit-ledger --accent violet` — generate a new product workspace
+
+## Known limitations
+
+The web export uses supported route splitting and remains within the Golden budgets (4,877,552 total JavaScript bytes; 4,721,268-byte heaviest initial route). Native assistive-technology, Dynamic Type, motion, and physical touch acceptance remain release-governance work. Generated apps also contain replaceable demo service/auth/session adapters that must not be shipped unchanged.

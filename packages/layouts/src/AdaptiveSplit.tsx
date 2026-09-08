@@ -30,8 +30,9 @@ const styles = StyleSheet.create((theme) => ({
   },
   primary: {
     minWidth: 0,
-    flexGrow: 1,
-    flexBasis: 0,
+    flexGrow: { compact: 0, expanded: 1 },
+    flexShrink: 1,
+    flexBasis: { compact: 'auto', expanded: 0 },
   },
   secondary: {
     minWidth: 0,

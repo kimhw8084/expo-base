@@ -1,6 +1,6 @@
 {
   "name": "@precision-calm/overlays",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
@@ -8,12 +8,15 @@
   "dependencies": {
     "@precision-calm/components": "*",
     "@precision-calm/icons": "*",
+    "@precision-calm/i18n": "*",
     "@precision-calm/platform": "*",
     "@precision-calm/primitives": "*",
-    "@precision-calm/tokens": "*"
+    "@precision-calm/tokens": "*",
+    "@precision-calm/motion": "*"
   },
   "peerDependencies": {
     "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-native": "0.86.3",
     "react-native-unistyles": "3.3.0"
   }

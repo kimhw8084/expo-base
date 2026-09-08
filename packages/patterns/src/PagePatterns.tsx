@@ -12,7 +12,7 @@ export interface PatternHeaderProps {
   eyebrow?: string | undefined;
   actions?: ReactNode | undefined;
 }
-const header = ({title,description,eyebrow,actions}:PatternHeaderProps) => <PageHeader title={title} description={description} eyebrow={eyebrow} actions={actions}/>;
+const header = ({ title, description, eyebrow, actions }: PatternHeaderProps) => <PageHeader title={title} {...(description !== undefined ? { description } : {})} {...(eyebrow !== undefined ? { eyebrow } : {})} {...(actions !== undefined ? { actions } : {})} />;
 
 export interface DashboardLayoutProps extends PatternHeaderProps { metrics:ReactNode; primary:ReactNode; secondary:ReactNode; activity?:ReactNode | undefined; }
 export function DashboardLayout({metrics,primary,secondary,activity,...head}:DashboardLayoutProps){return <Page width="dashboard" header={header(head)}><Section>{metrics}</Section><Section><AdaptiveSplit primary={primary} secondary={secondary}/></Section>{activity?<Section>{activity}</Section>:null}</Page>}
@@ -45,13 +45,13 @@ export interface ProfileLayoutProps extends PatternHeaderProps { summary:ReactNo
 export function ProfileLayout({summary,sections,...head}:ProfileLayoutProps){return <Page width="standard" header={header(head)}><Section>{summary}</Section>{sections.map((section,index)=><Section key={index}>{section}</Section>)}</Page>}
 
 export interface AuthenticationLayoutProps { brand?:ReactNode | undefined; title:string; description?:string | undefined; form:ReactNode; footer?:ReactNode | undefined; }
-export function AuthenticationLayout({brand,title,description,form,footer}:AuthenticationLayoutProps){return <Page width="form"><Section><VStack gap="xl" align="stretch">{brand}<PageHeader title={title} description={description}/><Card>{form}</Card>{footer}</VStack></Section></Page>}
+export function AuthenticationLayout({brand,title,description,form,footer}:AuthenticationLayoutProps){return <Page width="form"><Section><VStack gap="xl" align="stretch">{brand}<PageHeader title={title} {...(description !== undefined ? { description } : {})} /><Card variant="elevated">{form}</Card>{footer}</VStack></Section></Page>}
 
 export interface AnalyticsLayoutProps extends PatternHeaderProps { metrics:ReactNode; primaryChart:ReactNode; secondaryVisuals?:ReactNode | undefined; insights?:ReactNode | undefined; }
 export function AnalyticsLayout({metrics,primaryChart,secondaryVisuals,insights,...head}:AnalyticsLayoutProps){const visuals=<VStack gap="lg">{primaryChart}{secondaryVisuals}</VStack>;return <Page width="dashboard" header={header(head)}><Section>{metrics}</Section><Section>{insights?<AdaptiveSplit primary={visuals} secondary={insights}/>:visuals}</Section></Page>}
 
 export interface EmptyStartLayoutProps extends PatternHeaderProps { emptyTitle:string; emptyMessage:string; actionLabel:string; onAction:()=>void; secondaryLabel?:string | undefined; onSecondary?:(()=>void) | undefined; }
-export function EmptyStartLayout({emptyTitle,emptyMessage,actionLabel,onAction,secondaryLabel,onSecondary,...head}:EmptyStartLayoutProps){return <Page width="standard" header={header(head)}><Section><Card><StateView kind="empty" title={emptyTitle} message={emptyMessage} actionLabel={actionLabel} onAction={onAction} secondaryLabel={secondaryLabel} onSecondary={onSecondary}/></Card></Section></Page>}
+export function EmptyStartLayout({emptyTitle,emptyMessage,actionLabel,onAction,secondaryLabel,onSecondary,...head}:EmptyStartLayoutProps){return <Page width="standard" header={header(head)}><Section><Card variant="subtle"><StateView kind="empty" title={emptyTitle} message={emptyMessage} actionLabel={actionLabel} onAction={onAction} secondaryLabel={secondaryLabel} onSecondary={onSecondary}/></Card></Section></Page>}
 
 export interface FullScreenWorkflowLayoutProps extends PatternHeaderProps { content:ReactNode; primaryAction:ReactNode; secondaryAction?:ReactNode | undefined; status?:ReactNode | undefined; }
 export function FullScreenWorkflowLayout({content,primaryAction,secondaryAction,status,...head}:FullScreenWorkflowLayoutProps){return <Page width="standard" header={header(head)}>{status?<Section>{status}</Section>:null}<Section>{content}</Section><Section><FormActions primary={primaryAction} secondary={secondaryAction}/></Section></Page>}

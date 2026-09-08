@@ -29,9 +29,9 @@ export function ProgressRing({ value, label, size = 'md', series = 'series1' }: 
     <View accessible accessibilityRole="progressbar" accessibilityLabel={label} accessibilityValue={{ min: 0, max: 100, now: Math.round(progress * 100) }} style={{ width: diameter, height: diameter }}>
       <Svg width={diameter} height={diameter} viewBox={`0 0 ${diameter} ${diameter}`}>
         <Circle cx={diameter / 2} cy={diameter / 2} r={radius} fill="none" stroke={theme.colors.background.subtle} strokeWidth={stroke} />
-        <Circle cx={diameter / 2} cy={diameter / 2} r={radius} fill="none" stroke={theme.colors.visualization[series]} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={`${circumference} ${circumference}`} strokeDashoffset={circumference * (1 - progress)} rotation={-90} origin={`${diameter / 2}, ${diameter / 2}`} />
+        <Circle cx={diameter / 2} cy={diameter / 2} r={radius} fill="none" stroke={theme.colors.visualization[series]} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={`${circumference} ${circumference}`} strokeDashoffset={circumference * (1 - progress)} transform={`rotate(-90 ${diameter / 2} ${diameter / 2})`} />
       </Svg>
-      <View pointerEvents="none" style={styles.ringLabel}><Text variant="label" numeric>{Math.round(progress * 100)}%</Text></View>
+      <View style={[styles.ringLabel, { pointerEvents: 'none' }]}><Text variant="label" numeric>{Math.round(progress * 100)}%</Text></View>
     </View>
   );
 }
@@ -39,5 +39,5 @@ export function ProgressRing({ value, label, size = 'md', series = 'series1' }: 
 const styles = StyleSheet.create((theme) => ({
   track: { width: '100%', height: theme.visualizationMetrics.progressHeight, borderRadius: theme.radii.full, overflow: 'hidden', backgroundColor: theme.colors.background.subtle },
   fill: { height: '100%', borderRadius: theme.radii.full },
-  ringLabel: { ...RNStyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
+  ringLabel: { ...RNStyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' },
 }));

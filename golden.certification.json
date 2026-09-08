@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "environment": {
+    "browser": "chromium",
+    "locale": "en-US",
+    "timezone": "UTC",
+    "deviceScaleFactor": 1,
+    "animations": "disabled"
+  },
+  "stateMatrix": [
+    { "owner": "Button", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "disabled", "loading", "destructive", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "IconButton", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "disabled", "loading", "destructive", "compact", "dark"] },
+    { "owner": "Link", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "disabled", "dark", "rtl"] },
+    { "owner": "Chip", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "selected", "disabled", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "SegmentedControl", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "selected", "disabled", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "Disclosure", "package": "@precision-calm/ui", "states": ["collapsed", "expanded", "focus-visible", "pressed", "disabled", "compact", "dark", "rtl", "long-content", "reduced-motion"] },
+    { "owner": "TextField", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "disabled", "error", "loading", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "SelectField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "expanded", "selected", "disabled", "error", "loading", "empty", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "Checkbox", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "checked", "mixed", "disabled", "error", "compact", "dark", "rtl"] },
+    { "owner": "RadioGroup", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "selected", "disabled", "error", "compact", "dark", "rtl"] },
+    { "owner": "SwitchField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "checked", "disabled", "error", "compact", "dark", "rtl"] },
+    { "owner": "CodeField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "loading", "compact", "dark", "rtl"] },
+    { "owner": "NumberStepper", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] },
+    { "owner": "ProgressBar", "package": "@precision-calm/ui", "states": ["determinate", "indeterminate", "complete", "error", "compact", "dark", "rtl", "reduced-motion"] },
+    { "owner": "StepIndicator", "package": "@precision-calm/ui", "states": ["complete", "current", "upcoming", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "ActionMenu", "package": "@precision-calm/ui", "states": ["collapsed", "expanded", "focus-visible", "selected", "disabled", "destructive", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "Dialog", "package": "@precision-calm/ui", "states": ["open", "focus-visible", "loading", "destructive", "compact", "dark", "rtl", "long-content", "reduced-motion"] },
+    { "owner": "StateView", "package": "@precision-calm/ui", "states": ["empty", "error", "offline", "loading", "success", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "AdaptiveDataTable", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "selected", "mixed", "loading", "empty", "error", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "MediaFrame", "package": "@precision-calm/ui", "states": ["loading", "success", "error", "compact", "dark", "rtl"] },
+    { "owner": "ChartFrame", "package": "@precision-calm/ui", "states": ["loading", "success", "empty", "error", "selected", "compact", "dark", "rtl", "reduced-motion"] }
+    ,{ "owner": "Avatar", "package": "@precision-calm/ui", "states": ["image", "initials", "loading", "error", "decorative", "compact", "dark", "rtl"] }
+    ,{ "owner": "CopyableValue", "package": "@precision-calm/sharing", "states": ["available", "loading", "success", "error", "sensitive-hidden", "sensitive-revealed", "disabled", "dark", "rtl", "long-content"] }
+    ,{ "owner": "DateField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] }
+    ,{ "owner": "TimeField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] }
+    ,{ "owner": "DateRangeField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "invalid-range", "compact", "dark", "rtl", "long-content"] }
+    ,{ "owner": "StackedBarChart", "package": "@precision-calm/ui", "states": ["loading", "success", "empty", "error", "selected", "compact", "dark", "rtl", "reduced-motion"] }
+  ],
+  "visualBaselines": [
+    { "id": "actions-wide", "route": "/system", "viewport": "wide", "theme": "light", "density": "comfortable", "targetTestId": "golden-board-actions" },
+    { "id": "forms-wide", "route": "/forms", "viewport": "wide", "theme": "light", "density": "comfortable", "targetTestId": "adapter-form-sections" },
+    { "id": "forms-compact-dark", "route": "/forms", "viewport": "compact", "theme": "dark", "density": "compact", "targetTestId": "adapter-form-sections" },
+    { "id": "data-workspace-wide", "route": "/data", "viewport": "wide", "theme": "light", "density": "compact", "targetTestId": "card-data-table" },
+    { "id": "feedback-dark", "route": "/feedback", "viewport": "wide", "theme": "dark", "density": "comfortable", "capture": "viewport" },
+    { "id": "workflow-compact", "route": "/workflows", "viewport": "compact", "theme": "light", "density": "comfortable", "capture": "viewport" },
+    { "id": "stress-pseudo-rtl", "route": "/stress", "viewport": "compact", "theme": "dark", "density": "compact", "locale": "en-XB", "motion": "reduced", "capture": "viewport" },
+    { "id": "destructive-dialog", "route": "/overlays", "viewport": "wide", "theme": "dark", "density": "comfortable", "action": "open-destructive-dialog", "captureRole": "alertdialog" },
+    { "id": "visualization-wide", "route": "/visualization", "viewport": "wide", "theme": "light", "density": "comfortable", "capture": "viewport" },
+    { "id": "golden-plus-wide", "route": "/golden-plus", "viewport": "wide", "theme": "light", "density": "comfortable", "capture": "viewport" },
+    { "id": "visualization-compact-pseudo", "route": "/visualization", "viewport": "compact", "theme": "light", "density": "comfortable", "locale": "en-XA", "targetTestId": "visualization-portfolio-card" }
+  ],
+  "pseudoCoverage": {
+    "policy": "Every canonical reference surface must exercise the user-facing copy classes it actually presents through useReferenceCopy. Technical values, identifiers, URLs, raw code, and numeric values remain literal.",
+    "routes": [
+      {
+        "path": "/",
+        "launchLabel": null,
+        "classes": [
+          { "name": "heading", "source": "Universal application foundation" },
+          { "name": "description", "source": "A production-oriented Expo reference app proving adaptive composition, semantic geometry, portable services, and consistent interaction behavior across compact through wide layouts." },
+          { "name": "action", "source": "System lab" },
+          { "name": "navigation", "source": "Forms" }
+        ],
+        "intentionalLiterals": ["4", "Venture X"],
+        "copyClassification": { "pseudoOwned": ["heading", "description", "action", "navigation"], "intentionallyLiteral": ["4", "Venture X"], "developerOnly": [] }
+      },
+      {
+        "path": "/navigation",
+        "launchLabel": "Navigation",
+        "classes": [
+          { "name": "heading", "source": "Navigation acceptance surface" },
+          { "name": "description", "source": "The visual navigation system is route-library agnostic. Expo Router integration is isolated behind @precision-calm/navigation-router." },
+          { "name": "action", "source": "Home" },
+          { "name": "tab", "source": "Overview" }
+        ],
+        "intentionalLiterals": ["Venture X"],
+        "copyClassification": { "pseudoOwned": ["heading", "description", "action", "tab"], "intentionallyLiteral": ["Venture X"], "developerOnly": [] }
+      },
+      {
+        "path": "/feedback",
+        "launchLabel": "Feedback",
+        "classes": [
+          { "name": "heading", "source": "The unhappy path is part of the design system" },
+          { "name": "section", "source": "Persistent semantic feedback" },
+          { "name": "action", "source": "Review" },
+          { "name": "feedback", "source": "Connection failed" }
+        ],
+        "intentionalLiterals": ["Venture X"],
+        "copyClassification": { "pseudoOwned": ["heading", "section", "action", "feedback"], "intentionallyLiteral": ["Venture X"], "developerOnly": [] }
+      },
+      {
+        "path": "/forms",
+        "launchLabel": "Forms",
+        "classes": [
+          { "name": "heading", "source": "Form interaction acceptance surface" },
+          { "name": "field-label", "source": "Full name" },
+          { "name": "action", "source": "Validate form" },
+          { "name": "form-section", "source": "Profile information" }
+        ],
+        "intentionalLiterals": ["Alex Morgan", "alex@example.com"],
+        "copyClassification": { "pseudoOwned": ["heading", "field-label", "action", "form-section"], "intentionallyLiteral": ["Alex Morgan", "alex@example.com"], "developerOnly": [] }
+      },
+      {
+        "path": "/data",
+        "launchLabel": "Data display",
+        "classes": [
+          { "name": "heading", "source": "Adaptive data workspace" },
+          { "name": "toolbar", "source": "All issuers" },
+          { "name": "table-header", "source": "Annual fee" },
+          { "name": "workspace", "source": "Portfolio cards" }
+        ],
+        "intentionalLiterals": ["$1,215.00", "Venture X"],
+        "copyClassification": { "pseudoOwned": ["heading", "toolbar", "table-header", "workspace"], "intentionallyLiteral": ["$1,215.00", "Venture X"], "developerOnly": [] }
+      },
+      {
+        "path": "/visualization",
+        "launchLabel": "Visualization",
+        "classes": [
+          { "name": "heading", "source": "Tokenized charts with bounded geometry" },
+          { "name": "section", "source": "Portfolio value" },
+          { "name": "action", "source": "Back to data" },
+          { "name": "feedback", "source": "Category data could not be refreshed." }
+        ],
+        "intentionalLiterals": ["$8,420", "Jan"],
+        "copyClassification": { "pseudoOwned": ["heading", "section", "action", "feedback"], "intentionallyLiteral": ["$8,420", "Jan"], "developerOnly": [] }
+      },
+      {
+        "path": "/system",
+        "launchLabel": "System lab",
+        "classes": [
+          { "name": "heading", "source": "System acceptance laboratory" },
+          { "name": "section", "source": "Surface hierarchy" },
+          { "name": "action", "source": "Primary" },
+          { "name": "field-label", "source": "Account nickname" }
+        ],
+        "intentionalLiterals": ["$8,420", "Alex Kim"],
+        "copyClassification": { "pseudoOwned": ["heading", "section", "action", "field-label"], "intentionallyLiteral": ["$8,420", "Alex Kim"], "developerOnly": [] }
+      },
+      {
+        "path": "/workflows",
+        "launchLabel": "Workflow lab",
+        "classes": [
+          { "name": "heading", "source": "Activity" },
+          { "name": "section", "source": "Recent activity" },
+          { "name": "action", "source": "Refresh when online" },
+          { "name": "feedback", "source": "This retained sample content represents a stale server-state result. Explicit refresh remains a product action after reconnect." }
+        ],
+        "intentionalLiterals": [],
+        "copyClassification": { "pseudoOwned": ["heading", "section", "action", "feedback"], "intentionallyLiteral": [], "developerOnly": [] }
+      },
+      {
+        "path": "/golden",
+        "launchLabel": "Golden patterns",
+        "classes": [
+          { "name": "eyebrow", "source": "GOLDEN PATTERN / DASHBOARD" },
+          { "name": "heading", "source": "Dashboard" },
+          { "name": "action", "source": "Next pattern" },
+          { "name": "description", "source": "Primary overview pattern for consumer or operational products." }
+        ],
+        "intentionalLiterals": ["$8,420"],
+        "copyClassification": { "pseudoOwned": ["eyebrow", "heading", "action", "description"], "intentionallyLiteral": ["$8,420"], "developerOnly": [] }
+      },
+      {
+        "path": "/golden-plus",
+        "launchLabel": "Golden Plus breadth",
+        "classes": [
+          { "name": "heading", "source": "Abundant reusable depth" },
+          { "name": "section", "source": "Chronological activity" },
+          { "name": "field-label", "source": "Effective date" },
+          { "name": "chart", "source": "Adoption trend" }
+        ],
+        "intentionalLiterals": ["workspace_01J8QZ6VBH79M5X2", "2026-09-07"],
+        "copyClassification": { "pseudoOwned": ["heading", "section", "field-label", "chart"], "intentionallyLiteral": ["workspace_01J8QZ6VBH79M5X2", "2026-09-07"], "developerOnly": [] }
+      },
+      {
+        "path": "/server-state",
+        "launchLabel": "Server state",
+        "classes": [
+          { "name": "heading", "source": "Server-state lifecycle laboratory" },
+          { "name": "section", "source": "Shared query identity" },
+          { "name": "action", "source": "Refresh tasks" },
+          { "name": "mutation", "source": "Mutation bookkeeping" }
+        ],
+        "intentionalLiterals": ["Consumer A"],
+        "copyClassification": { "pseudoOwned": ["heading", "section", "action", "mutation"], "intentionallyLiteral": ["Consumer A"], "developerOnly": [] }
+      },
+      {
+        "path": "/capabilities",
+        "launchLabel": "Capability lab",
+        "classes": [
+          { "name": "heading", "source": "Optional boundaries, deterministic demo" },
+          { "name": "section", "source": "Storage and sharing" },
+          { "name": "action", "source": "Save preference" },
+          { "name": "release-section", "source": "Release boundary" }
+        ],
+        "intentionalLiterals": ["https://example.com/lab"],
+        "copyClassification": { "pseudoOwned": ["heading", "section", "action", "release-section"], "intentionallyLiteral": ["https://example.com/lab"], "developerOnly": [] }
+      },
+      {
+        "path": "/overlays",
+        "launchLabel": "Overlays",
+        "classes": [
+          { "name": "heading", "source": "Overlay Manager acceptance surface" },
+          { "name": "section", "source": "Anchored popover" },
+          { "name": "action", "source": "Open action menu" },
+          { "name": "description", "source": "Anchored surfaces measure their real window position, flip when necessary, clamp to safe viewport bounds, and share exclusive lifecycle ownership." }
+        ],
+        "intentionalLiterals": [],
+        "copyClassification": { "pseudoOwned": ["heading", "section", "action", "description"], "intentionallyLiteral": [], "developerOnly": [] }
+      }
+    ]
+  },
+  "performanceBudgets": {
+    "totalJavaScriptBytes": 5200000,
+    "largestChunkBytes": 3700000,
+    "heaviestInitialRouteBytes": 4900000,
+    "largestLazyRouteChunkBytes": 100000,
+    "minimumSplitRouteChunks": 20,
+    "largeDataDerivationMilliseconds": 500,
+    "uiInteractionMilliseconds": 1000,
+    "minimalOptionalNativeDependencies": 0
+  },
+  "nativeValidation": {
+    "iosRuntime": "required-before-release-not-executed",
+    "androidRuntime": "waived-policy-b-until-pm-change",
+    "sourceContracts": ["safe-area", "status-bar", "keyboard", "back-handling", "overlay-close", "orientation", "touch-targets", "theme-bootstrap", "optional-capabilities"]
+  }
+}

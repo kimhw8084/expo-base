@@ -107,7 +107,14 @@ function recordMeasurement(
 }
 
 const styles = StyleSheet.create((theme) => ({
-  root: { minWidth: 0, position: 'relative', minHeight: theme.controlHeights.md, overflow: 'hidden' },
+  root: {
+    minWidth: 0,
+    width: { compact: '100%', medium: theme.actionMetrics.barWidth.medium, expanded: theme.actionMetrics.barWidth.expanded, wide: theme.actionMetrics.barWidth.wide },
+    maxWidth: '100%',
+    position: 'relative',
+    minHeight: theme.controlHeights.md,
+    overflow: 'hidden',
+  },
   visibleRow: {
     minWidth: 0,
     flexDirection: 'row',

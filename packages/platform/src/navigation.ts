@@ -32,3 +32,37 @@ export function bestNavigationMatch(pathname: string, items: readonly Navigation
     .sort((a, b) => b.normalizedHref.length - a.normalizedHref.length);
   return candidates[0]?.key ?? null;
 }
+
+export type RovingFocusOrientation = 'horizontal' | 'vertical' | 'both';
+
+export interface RovingFocusOptions {
+  orientation?: RovingFocusOrientation;
+  direction?: 'ltr' | 'rtl';
+  wrap?: boolean;
+}
+
+/** Returns the enabled item targeted by a composite-widget navigation key. */
+export function resolveRovingFocusIndex(
+  key: string,
+  currentIndex: number,
+  enabled: readonly boolean[],
+  { orientation = 'horizontal', direction = 'ltr', wrap = true }: RovingFocusOptions = {},
+): number | null {
+  const enabledIndices = enabled.flatMap((value, index) => value ? [index] : []);
+  if (enabledIndices.length === 0) return null;
+  if (key === 'Home') return enabledIndices[0] ?? null;
+  if (key === 'End') return enabledIndices.at(-1) ?? null;
+
+  let delta = 0;
+  if ((orientation === 'horizontal' || orientation === 'both') && key === 'ArrowRight') delta = direction === 'rtl' ? -1 : 1;
+  else if ((orientation === 'horizontal' || orientation === 'both') && key === 'ArrowLeft') delta = direction === 'rtl' ? 1 : -1;
+  else if ((orientation === 'vertical' || orientation === 'both') && key === 'ArrowDown') delta = 1;
+  else if ((orientation === 'vertical' || orientation === 'both') && key === 'ArrowUp') delta = -1;
+  else return null;
+
+  const position = enabledIndices.indexOf(currentIndex);
+  const startingPosition = position >= 0 ? position : delta > 0 ? -1 : enabledIndices.length;
+  const nextPosition = startingPosition + delta;
+  if (wrap) return enabledIndices[(nextPosition + enabledIndices.length) % enabledIndices.length] ?? null;
+  return enabledIndices[Math.min(enabledIndices.length - 1, Math.max(0, nextPosition))] ?? null;
+}

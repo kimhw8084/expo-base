@@ -1,0 +1,14 @@
+{
+  "name": "@precision-calm/observability",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@precision-calm/capabilities": "*"
+  },
+  "peerDependencies": {
+    "react": "19.2.3"
+  }
+}

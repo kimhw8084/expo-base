@@ -11,7 +11,15 @@ try { const forms=await import(pathToFileURL(path.join(outDir,'platform/src/form
   assert.equal(forms.parseDecimalInput('not-a-number'),null);
   assert.deepEqual(forms.validateNumber('0',{min:{value:1,message:'Too low'}}),{code:'min',message:'Too low'});
   assert.equal(forms.formatCurrencyInput('1234.5'), '1234.50');
+  assert.equal(forms.validateEmail('ada@example.com'), null);
+  assert.deepEqual(forms.validateEmail('not-an-email'), {code:'pattern',message:'Enter a valid email address.'});
+  assert.equal(forms.validateUrl('https://example.com/path'), null);
+  assert.deepEqual(forms.validateUrl('mailto:ada@example.com'), {code:'pattern',message:'Enter a valid URL.'});
+  assert.equal(forms.normalizePhoneInput('+1 (312) 555-0199'), '+13125550199');
+  assert.equal(forms.validateInternationalPhone('+13125550199'), null);
+  assert.equal(forms.parsePrecisionDateValue('2024-02-29'), '2024-02-29');
+  assert.equal(forms.parsePrecisionDateValue('2023-02-29'), null);
   assert.deepEqual(forms.firstInvalidField([{name:'second',order:2,message:'Bad'},{name:'first',order:1,message:'Required'}]),{name:'first',order:1,message:'Required'});
   assert.equal(forms.firstInvalidField([{name:'ok',order:1}]),null);
-  console.log('Form contract tests passed (validation, numeric parsing, deterministic first error).');
+  console.log('Form contract tests passed (semantic validation, numeric/date parsing, deterministic first error).');
 } finally {fs.rmSync(outDir,{recursive:true,force:true});}

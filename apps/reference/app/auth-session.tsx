@@ -11,10 +11,10 @@ export default function AuthSessionAcceptanceScreen() {
           <Text variant="h2">Authentication session acceptance</Text>
           <Text tone="secondary">This route is itself protected. Signing out must remove it from navigation history and expose only signed-out routes.</Text>
           <KeyValueList items={[
-            { label: 'Resolution', value: auth.status },
-            { label: 'Access', value: access },
-            { label: 'Action', value: auth.actionStatus },
-            { label: 'User', value: auth.session?.user.email ?? 'None' },
+            { key: 'resolution', label: 'Resolution', value: auth.status },
+            { key: 'access', label: 'Access', value: access },
+            { key: 'action', label: 'Action', value: auth.actionStatus },
+            { key: 'user', label: 'User', value: auth.session?.user.email ?? 'None' },
           ]} />
           <Button label="Sign out and test guard" variant="outline" onPress={() => { void auth.signOut(); }} />
         </VStack>

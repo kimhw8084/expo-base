@@ -8,7 +8,7 @@ export interface BreadcrumbItem { key: string; label: string; onPress?: (() => v
 export interface BreadcrumbsProps { items: readonly BreadcrumbItem[]; }
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
-    <View style={styles.root} accessibilityRole="navigation" accessibilityLabel="Breadcrumbs">
+    <View style={styles.root} accessibilityLabel="Breadcrumbs">
       {items.map((item, index) => <View key={item.key} style={styles.item}>{index > 0 ? <Icon name="chevronRight" size="xs" tone="tertiary" /> : null}{item.onPress ? <Link label={item.label} onPress={item.onPress} /> : <Text variant="label">{item.label}</Text>}</View>)}
     </View>
   );

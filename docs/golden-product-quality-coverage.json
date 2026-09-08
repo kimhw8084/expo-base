@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-09-07",
+  "sourceOfTruth": "Live apps/reference/app route tree and exported reference application",
+  "atlasRoot": "test-results/golden-quality-atlas",
+  "summary": {
+    "routeEntriesDiscovered": 29,
+    "routeEntriesReviewed": 29,
+    "screenshotsRetainedAndInspected": 207,
+    "browserEngines": 3,
+    "viewportRegimes": 7,
+    "themes": 2,
+    "densities": 2,
+    "localeDirections": 2,
+    "interactionObservationRecords": 107,
+    "distinctInteractionLabels": 51,
+    "documentHorizontalOverflowCases": 0
+  },
+  "viewports": [
+    { "id": "compact320", "width": 320, "height": 740 },
+    { "id": "phone390", "width": 390, "height": 844 },
+    { "id": "shortPhone", "width": 390, "height": 568 },
+    { "id": "landscape", "width": 844, "height": 390 },
+    { "id": "tablet", "width": 768, "height": 1024 },
+    { "id": "desktop", "width": 1024, "height": 900 },
+    { "id": "wide", "width": 1440, "height": 1000 },
+    { "id": "zoomEquivalent", "width": 512, "height": 450, "note": "Equivalent constrained CSS viewport used for 200% zoom geometry review." }
+  ],
+  "runtimeMatrix": {
+    "themes": ["light", "dark"],
+    "densities": ["comfortable", "compact"],
+    "localeDirections": ["en-US/LTR", "en-XB/RTL"],
+    "motion": ["system/no-preference", "reduced"],
+    "browsers": ["Chromium", "Firefox", "WebKit"],
+    "timezone": "UTC",
+    "network": "No external content dependency; deterministic local/static fixtures"
+  },
+  "routes": [
+    {
+      "id": "home",
+      "path": "/",
+      "classification": ["dashboard", "system controls", "foundation lab"],
+      "statesAndControlsReviewed": ["theme", "density", "locale", "direction", "motion", "buttons", "surfaces", "AdaptiveSplit", "master/detail"]
+    },
+    {
+      "id": "data",
+      "path": "/data",
+      "classification": ["data workspace", "table", "list"],
+      "statesAndControlsReviewed": ["search", "filters", "filter drawer", "sort", "selection", "mixed select-all", "column visibility", "pagination", "empty", "compact transform", "row actions"]
+    },
+    {
+      "id": "lists",
+      "path": "/lists",
+      "classification": ["static list", "virtualized list", "grouped data"],
+      "statesAndControlsReviewed": ["long scrolling", "loading", "empty", "selection", "long rows", "compact"]
+    },
+    {
+      "id": "forms",
+      "path": "/forms",
+      "classification": ["form lab", "form lifecycle"],
+      "statesAndControlsReviewed": ["text", "password", "textarea", "checkbox", "radio", "select", "combobox", "multi-select", "validation", "server errors", "first-invalid focus", "dirty/discard", "field arrays", "OTP", "reset", "short-height popup"]
+    },
+    {
+      "id": "navigation",
+      "path": "/navigation",
+      "classification": ["navigation lab"],
+      "statesAndControlsReviewed": ["tabs", "breadcrumbs", "back/fallback", "sidebar", "bottom navigation", "long labels", "keyboard", "direct entry"]
+    },
+    {
+      "id": "overlays",
+      "path": "/overlays",
+      "classification": ["overlay lab"],
+      "statesAndControlsReviewed": ["action menu", "popover", "dialog", "destructive alert", "short sheet", "long sheet", "toast", "focus trap", "Escape", "backdrop", "resize", "restoration"]
+    },
+    {
+      "id": "feedback",
+      "path": "/feedback",
+      "classification": ["feedback lab"],
+      "statesAndControlsReviewed": ["loading", "skeleton", "empty", "no results", "error", "offline", "permission", "reconnect", "maintenance", "retry", "long state content"]
+    },
+    {
+      "id": "visualization",
+      "path": "/visualization",
+      "classification": ["visualization lab"],
+      "statesAndControlsReviewed": ["line", "area", "bar", "stacked bar", "donut", "sparkline", "progress", "loading", "empty", "error", "point selection", "fallback data", "RTL", "dark"]
+    },
+    {
+      "id": "system",
+      "path": "/system",
+      "classification": ["component system lab"],
+      "statesAndControlsReviewed": ["buttons", "links", "chips", "segmented control", "disclosure", "accordion", "progress", "status", "cards", "metadata", "feedback", "long actions"]
+    },
+    {
+      "id": "stress",
+      "path": "/stress",
+      "classification": ["resilience lab"],
+      "statesAndControlsReviewed": ["long titles", "long descriptions", "long identifiers", "large values", "compact", "dark", "RTL", "large text policy", "overflow"]
+    },
+    {
+      "id": "golden",
+      "path": "/golden",
+      "classification": ["canonical patterns"],
+      "statesAndControlsReviewed": ["all 20 registered patterns", "pattern traversal", "authentication", "dashboard", "workspace", "detail", "forms", "wizard", "system workflows"]
+    },
+    {
+      "id": "golden-plus",
+      "path": "/golden-plus",
+      "classification": ["Golden Plus breadth lab"],
+      "statesAndControlsReviewed": ["avatar", "avatar group", "status", "copyable value", "sensitive value", "code block", "timeline", "date/time/range", "copy success", "reveal", "RTL"]
+    },
+    {
+      "id": "workflows",
+      "path": "/workflows",
+      "classification": ["workflow lab"],
+      "statesAndControlsReviewed": ["activity", "offline/reconnect", "command launcher", "search", "no results", "keyboard open/close", "wizard", "import", "completion"]
+    },
+    {
+      "id": "server-state",
+      "path": "/server-state",
+      "classification": ["server-state lab"],
+      "statesAndControlsReviewed": ["initial load", "shared dedupe", "refresh", "stale retained content", "refresh failure", "retry", "invalidation", "optimistic success", "optimistic rollback", "rapid key switch", "session reset"]
+    },
+    {
+      "id": "capabilities",
+      "path": "/capabilities",
+      "classification": ["optional capability lab"],
+      "statesAndControlsReviewed": ["preferences", "secure storage fake", "sharing", "connectivity fake", "local authentication fake", "notifications fake", "updates fake", "result announcements", "unavailable boundary"]
+    },
+    {
+      "id": "accessibility-motion",
+      "path": "/accessibility-motion",
+      "classification": ["accessibility and motion lab"],
+      "statesAndControlsReviewed": ["landmarks", "headings", "accessible groups", "live regions", "visually hidden content", "reduced motion", "focus visibility"]
+    },
+    {
+      "id": "auth-session",
+      "path": "/auth-session",
+      "classification": ["authentication/session lab"],
+      "statesAndControlsReviewed": ["signed out", "sign in", "session loading", "session error", "sign out", "protected transition"]
+    },
+    {
+      "id": "authorization",
+      "path": "/authorization",
+      "classification": ["authorization lab"],
+      "statesAndControlsReviewed": ["allowed", "denied", "capability requirements", "role state"]
+    },
+    {
+      "id": "session-security",
+      "path": "/session-security",
+      "classification": ["session security lab"],
+      "statesAndControlsReviewed": ["lock", "unlock", "expiry", "sensitive-session state", "late-commit protection"]
+    },
+    {
+      "id": "linking",
+      "path": "/linking",
+      "classification": ["linking lab"],
+      "statesAndControlsReviewed": ["internal links", "external links", "safe linking", "fallback"]
+    },
+    {
+      "id": "services",
+      "path": "/services",
+      "classification": ["service/adapter lab"],
+      "statesAndControlsReviewed": ["loading", "success", "normalized error", "retry", "service boundary"]
+    },
+    {
+      "id": "admin-demo",
+      "path": "/admin-demo",
+      "classification": ["protected direct-entry route"],
+      "statesAndControlsReviewed": ["protection", "authorization", "direct entry", "fallback navigation"]
+    },
+    {
+      "id": "sign-in",
+      "path": "/sign-in",
+      "classification": ["authentication route"],
+      "statesAndControlsReviewed": ["credentials", "submit", "direct entry", "focus order"]
+    },
+    {
+      "id": "unlock",
+      "path": "/unlock",
+      "classification": ["session unlock route"],
+      "statesAndControlsReviewed": ["unlock action", "session state", "direct entry"]
+    },
+    {
+      "id": "session-loading",
+      "path": "/session-loading",
+      "classification": ["system state route"],
+      "statesAndControlsReviewed": ["loading semantics", "direct entry", "layout continuity"]
+    },
+    {
+      "id": "session-error",
+      "path": "/session-error",
+      "classification": ["system state route"],
+      "statesAndControlsReviewed": ["error", "retry/recovery", "direct entry"]
+    },
+    {
+      "id": "link-error",
+      "path": "/link-error",
+      "classification": ["link fallback route"],
+      "statesAndControlsReviewed": ["invalid link", "recovery", "direct entry"]
+    },
+    {
+      "id": "auth-callback",
+      "path": "/auth/callback",
+      "classification": ["authentication callback route"],
+      "statesAndControlsReviewed": ["callback loading/outcome", "direct entry", "recovery"]
+    },
+    {
+      "id": "not-found",
+      "path": "/quality-audit-not-found",
+      "classification": ["unknown direct-entry fallback"],
+      "statesAndControlsReviewed": ["static export response", "shell presence", "recovery navigation"]
+    }
+  ],
+  "interactionGroups": {
+    "actions": ["single activation", "rapid repeat", "keyboard Enter/Space", "disabled", "loading", "long labels", "copy/reveal"],
+    "forms": ["typing", "paste", "invalid submit", "first-invalid focus", "server errors", "dirty/discard", "OTP paste/backspace", "reset", "date invalid range", "combobox and multi-select"],
+    "overlays": ["menu open/close", "dialog focus trap", "destructive alert", "short/long sheet", "Escape", "backdrop", "resize", "focus restoration", "short-height collision"],
+    "navigation": ["primary destinations", "tabs", "bottom navigation", "direct entry", "rapid client route transition", "command launcher shortcuts"],
+    "data": ["search", "empty", "filter drawer", "selection", "table semantics", "pagination", "refresh failure with retained data", "optimistic rollback"],
+    "components": ["radio keyboard", "segmented keyboard", "accordion", "sensitive reveal", "copy success", "loading/empty feedback"],
+    "visualization": ["interactive point focus", "fallback tables", "loading", "empty", "error", "RTL", "dark"]
+  },
+  "crossBrowserScenarios": {
+    "allThreeEngines": [
+      "dialog semantics/focus trap/restoration",
+      "destructive alert semantics/dismissal",
+      "combobox short-height semantics/keyboard",
+      "tabs keyboard/overflow",
+      "command launcher keyboard/no-results/Escape",
+      "filter drawer short-height geometry",
+      "form invalid-submit focus/summary",
+      "popover resize/Escape/restoration",
+      "ActionMenu keyboard entry",
+      "radio keyboard navigation",
+      "segmented keyboard navigation"
+    ],
+    "focusedDarkShortHeight": ["combobox", "menu", "dialog", "command launcher", "data filter overlay"]
+  },
+  "evidenceFiles": [
+    "test-results/golden-quality-atlas/screenshots/",
+    "test-results/golden-quality-atlas/coverage-manifest.json",
+    "test-results/golden-quality-atlas/geometry.json",
+    "test-results/golden-quality-atlas/runtime-events.json",
+    "test-results/golden-quality-atlas/interaction-probe.json",
+    "test-results/golden-quality-atlas/keyboard-probe.json",
+    "test-results/golden-quality-atlas/form-plus-probe.json",
+    "test-results/golden-quality-atlas/data-viz-probe.json",
+    "test-results/golden-quality-atlas/rtl-observations.json",
+    "test-results/golden-quality-atlas/rtl-transition-probe.json",
+    "test-results/golden-quality-atlas/scroll-pattern-manifest.json",
+    "test-results/golden-quality-atlas/targeted-observations.json"
+  ],
+  "remediationPasses": {
+    "pass1": {
+      "date": "2026-09-07",
+      "status": "COMPLETE",
+      "scope": "GPQ-001 through GPQ-010",
+      "focusedCrossBrowserChecks": 39,
+      "reviewAtlasRoot": "test-results/p1-quality-review",
+      "reviewScreenshots": 14
+    },
+    "pass2": {
+      "date": "2026-09-07",
+      "status": "COMPLETE",
+      "scope": "GPQ-011 through GPQ-027",
+      "focusedCrossBrowserChecks": 48,
+      "retainedP1CrossBrowserChecks": 39,
+      "fullWebChecks": 312,
+      "reviewAtlasRoot": "test-results/p2-quality-review",
+      "reviewScreenshots": 23,
+      "reviewRoutes": ["/", "/data", "/feedback", "/forms", "/golden", "/golden-plus", "/lists", "/navigation", "/overlays", "/stress", "/system", "/visualization", "/workflows", "/capabilities", "/quality-pass2-not-found"],
+      "viewports": ["320x740", "390x700", "390x844", "1024x800", "1280x900"],
+      "themes": ["light", "dark"],
+      "densities": ["comfortable", "compact"],
+      "localeDirections": ["en-US/LTR", "en-XA/LTR", "en-XB/RTL"],
+      "browserEngines": ["Chromium", "Firefox", "WebKit"],
+      "permanentVisualBaselinesReviewed": ["workflow-compact", "stress-pseudo-rtl"],
+      "nativeRuntimeEvidence": false
+    }
+  },
+  "limitations": [
+    "This audit is web/source evidence only; no native runtime claims are made.",
+    "The 512x450 case is a deterministic CSS-viewport equivalent for 200% zoom pressure, not a claim about every browser's physical zoom implementation.",
+    "Cross-browser breadth is risk-based: all routes were reviewed in Chromium, while high-risk interaction families were repeated in Firefox and WebKit.",
+    "The atlas is ignored review evidence, not a permanent visual baseline."
+  ]
+}

@@ -4,7 +4,7 @@ import process from 'node:process';
 
 const root = process.cwd();
 const visualPackages = [
-  'accessibility','components','data-display','feedback','forms','icons','layouts','lists','motion','navigation','overlays','patterns','primitives','visualization'
+  'accessibility','components','data-display','feedback','forms','i18n','icons','layouts','lists','media-presentation','motion','navigation','overlays','patterns','primitives','visualization'
 ];
 const forbiddenFeatureImports = new Set(visualPackages.map((name) => `@precision-calm/${name}`));
 const violations = [];

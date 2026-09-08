@@ -38,9 +38,14 @@ export interface PrecisionColors {
     warning: string;
     warningSurface: string;
     negative: string;
+    negativeHover: string;
+    negativePressed: string;
     negativeSurface: string;
+    negativeSurfaceHover: string;
+    negativeSurfacePressed: string;
     info: string;
     infoSurface: string;
+    skeleton: string;
   };
   visualization: {
     series1: string;
@@ -70,8 +75,8 @@ export const lightColors = {
   },
   text: {
     primary: '#111417',
-    secondary: '#687078',
-    tertiary: '#8B939A',
+    secondary: '#5E666D',
+    tertiary: '#687078',
     inverse: '#F7F8F9',
     disabled: '#A7ADB3',
   },
@@ -96,9 +101,14 @@ export const lightColors = {
     warning: '#955A00',
     warningSurface: '#FFF3DD',
     negative: '#C23D48',
+    negativeHover: '#AC303B',
+    negativePressed: '#922732',
     negativeSurface: '#FDECEE',
+    negativeSurfaceHover: '#FBE1E4',
+    negativeSurfacePressed: '#F8D3D7',
     info: '#225FC2',
     infoSurface: '#EAF2FF',
+    skeleton: '#D7DCE0',
   },
   visualization: {
     series1: '#165DFF',
@@ -148,9 +158,14 @@ export const darkColors = {
     warning: '#EAB466',
     warningSurface: '#32240F',
     negative: '#EE8B93',
+    negativeHover: '#F39BA2',
+    negativePressed: '#F8ADB3',
     negativeSurface: '#35171B',
+    negativeSurfaceHover: '#432026',
+    negativeSurfacePressed: '#512830',
     info: '#8CB5FF',
     infoSurface: '#142541',
+    skeleton: '#30373D',
   },
   visualization: {
     series1: '#7EA6FF',

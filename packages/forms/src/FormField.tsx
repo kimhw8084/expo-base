@@ -21,11 +21,20 @@ export function FormField({ label, fieldId, required = false, description, error
       </View>
       {children}
       {error ? (
-        <View style={styles.messageRow}>
+        <View
+          id={`${fieldId}-message`}
+          accessibilityLiveRegion="polite"
+          aria-live="polite"
+          style={styles.messageRow}
+        >
           <Icon name="warning" size="xs" tone="negative" />
           <Text variant="caption" tone="negative" testID={`${fieldId}-error`}>{error}</Text>
         </View>
-      ) : description ? <Text variant="caption" tone="secondary">{description}</Text> : null}
+      ) : description ? (
+        <View id={`${fieldId}-message`}>
+          <Text variant="caption" tone="secondary">{description}</Text>
+        </View>
+      ) : null}
     </VStack>
   );
 }

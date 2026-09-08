@@ -1,5 +1,5 @@
 import { forwardRef, useState } from 'react';
-import { TextInput, type TextInputProps, View } from 'react-native';
+import { Platform, TextInput, type TextInputProps, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { Icon, type IconName } from '@precision-calm/icons';
 import { IconButton } from '@precision-calm/components';
@@ -8,7 +8,7 @@ import { FormField } from './FormField';
 type AllowedTextInputProps = Pick<TextInputProps,
   | 'autoCapitalize' | 'autoComplete' | 'autoCorrect' | 'autoFocus' | 'inputMode'
   | 'keyboardType' | 'returnKeyType' | 'submitBehavior' | 'textContentType'
-  | 'onSubmitEditing' | 'onFocus' | 'onBlur' | 'maxLength' | 'selectTextOnFocus'>;
+  | 'onSubmitEditing' | 'onFocus' | 'onBlur' | 'onKeyPress' | 'maxLength' | 'selectTextOnFocus'>;
 
 export interface TextFieldProps extends AllowedTextInputProps {
   id: string;
@@ -35,6 +35,14 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(function TextFiel
 }, ref) {
   const [focused, setFocused] = useState(false);
   const { theme } = useUnistyles();
+  const messageId = error || description ? `${id}-message` : undefined;
+  const accessibilityHint = [required ? 'Required' : null, error ? `Error: ${error}` : description].filter(Boolean).join('. ') || undefined;
+  const webAccessibilityProps = Platform.OS === 'web' ? {
+    'aria-describedby': messageId,
+    'aria-errormessage': error ? messageId : undefined,
+    'aria-invalid': Boolean(error),
+    'aria-required': required,
+  } : {};
   return (
     <FormField label={label} fieldId={id} required={required} description={description} error={error}>
       <View style={[styles.shell, focused && styles.focused, Boolean(error) && styles.error, disabled && styles.disabled]}>
@@ -42,13 +50,17 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(function TextFiel
         <TextInput
           ref={ref}
           accessibilityLabel={label}
+          accessibilityHint={accessibilityHint}
           accessibilityState={{ disabled }}
-          editable={!disabled && !readOnly}
+          {...webAccessibilityProps}
+          readOnly={Platform.OS === 'web' ? disabled || readOnly : undefined}
+          editable={Platform.OS === 'web' ? undefined : !disabled && !readOnly}
           value={value}
           placeholder={placeholder}
           placeholderTextColor={theme.colors.text.tertiary}
           onChangeText={onChangeText}
           secureTextEntry={secureTextEntry}
+          maxFontSizeMultiplier={2}
           testID={testID ?? id}
           onFocus={(event) => { setFocused(true); onFocus?.(event); }}
           onBlur={(event) => { setFocused(false); onBlur?.(event); }}
@@ -72,9 +84,9 @@ const styles = StyleSheet.create((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     gap: theme.spacing.sm,
-    paddingLeft: theme.formMetrics.inputHorizontalPadding,
-    paddingRight: theme.spacing.xs,
-    borderWidth: 1,
+    paddingStart: theme.formMetrics.inputHorizontalPadding,
+    paddingEnd: theme.spacing.xs,
+    borderWidth: theme.strokeWidths.standard,
     borderColor: theme.colors.border.default,
     borderRadius: theme.radii.sm,
     backgroundColor: theme.colors.background.surface,

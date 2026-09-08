@@ -11,7 +11,7 @@ export interface ScrollScreenProps extends PropsWithChildren, Pick<ScrollViewPro
 }
 
 export function Screen({ children, safeArea = 'all' }: ScreenProps) {
-  return <View style={[styles.screen, styles[`safe_${safeArea}`]]}>{children}</View>;
+  return <View role="main" style={[styles.screen, styles[`safe_${safeArea}`]]}>{children}</View>;
 }
 
 export function ScrollScreen({
@@ -21,7 +21,7 @@ export function ScrollScreen({
   keyboardDismissMode = 'interactive',
 }: ScrollScreenProps) {
   return (
-    <View style={[styles.screen, styles[`safe_${safeArea}`]]}>
+    <View role="main" style={[styles.screen, styles[`safe_${safeArea}`]]}>
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={styles.scrollContent}
@@ -44,6 +44,7 @@ const styles = StyleSheet.create((theme, rt) => ({
   scroll: { flex: 1, minWidth: 0 },
   scrollContent: {
     flexGrow: 1,
+    width: '100%',
     minWidth: 0,
     paddingHorizontal: { compact: theme.spacing.lg, medium: theme.spacing.xl, expanded: theme.spacing.xxl, wide: theme.spacing.xxxl },
     paddingTop: { compact: theme.spacing.xl, expanded: theme.spacing.xxl },

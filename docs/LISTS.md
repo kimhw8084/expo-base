@@ -14,3 +14,7 @@ Precision Calm separates **small in-page groups** from **scroll-owning datasets*
 4. `StaticList` is intentionally bounded. Larger datasets move to virtualization rather than silently rendering hundreds of rows inside a `ScrollView`.
 5. React Native's production `FlatList`/`SectionList` remain the baseline. Experimental `VirtualView` is excluded from the production template until it becomes stable.
 6. Pagination sizes are normalized through shared contracts rather than arbitrary per-screen values.
+
+## Production loading and empty states
+
+`ListScreen` distinguishes initial loading from a genuine empty result through `loading` and `loadingComponent`, while `refreshing` continues to represent refresh of already-loaded data. Dense activity feeds should render row primitives rather than wrapping every virtualized item in an independent card.

@@ -1,6 +1,6 @@
 {
   "name": "@precision-calm/runtime",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
@@ -11,9 +11,13 @@
     "@precision-calm/overlays": "*",
     "@precision-calm/primitives": "*",
     "@precision-calm/adapters": "*",
+    "@precision-calm/capabilities": "*",
     "@precision-calm/linking": "*",
+    "@precision-calm/i18n": "*",
     "@precision-calm/auth": "*",
-    "@precision-calm/authorization": "*"
+    "@precision-calm/authorization": "*",
+    "@precision-calm/session-security": "*",
+    "@precision-calm/server-state": "*"
   },
   "peerDependencies": {
     "react": "19.2.3"

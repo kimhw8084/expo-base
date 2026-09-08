@@ -3,3 +3,8 @@ export * from './KeyValueList';
 export * from './ListRow';
 export * from './AdaptiveDataTable';
 export * from './Pagination';
+export * from './DataToolbar';
+export * from './DataTableControls';
+export * from './SelectionBar';
+export * from './Timeline';
+export * from './DataExport';

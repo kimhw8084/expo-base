@@ -5,26 +5,56 @@ import { SidebarNavigation } from './SidebarNavigation';
 import { BottomNavigation } from './BottomNavigation';
 import type { NavigationItem } from './types';
 
+type NavigationActivationEvent = {
+  altKey?: boolean;
+  button?: number;
+  ctrlKey?: boolean;
+  metaKey?: boolean;
+  nativeEvent?: unknown;
+  preventDefault?: () => void;
+  shiftKey?: boolean;
+};
+
 export interface AdaptiveNavigationShellProps extends PropsWithChildren {
   items: readonly NavigationItem[];
   activeKey: string;
-  onNavigate: (key: string) => void;
+  onNavigate: (key: string, event?: NavigationActivationEvent) => void;
+  onNavigateIntent?: ((key: string) => void) | undefined;
   brand?: string | undefined;
   sidebarFooter?: ReactNode;
+  brandMark?: string | undefined;
+  enabled?: boolean;
 }
 
-export function AdaptiveNavigationShell({ items, activeKey, onNavigate, brand, sidebarFooter, children }: AdaptiveNavigationShellProps) {
+export function AdaptiveNavigationShell({ items, activeKey, onNavigate, onNavigateIntent, brand, sidebarFooter, brandMark, enabled = true, children }: AdaptiveNavigationShellProps) {
+  if (!enabled) return <View style={styles.root}><View style={styles.content}>{children}</View></View>;
+
   return (
     <View style={styles.root}>
-      <View style={styles.compactShell}><View style={styles.content}>{children}</View><BottomNavigation items={items} activeKey={activeKey} onNavigate={onNavigate} /></View>
-      <View style={styles.desktopShell}><SidebarNavigation items={items} activeKey={activeKey} onNavigate={onNavigate} brand={brand} footer={sidebarFooter} /><View style={styles.content}>{children}</View></View>
+      <View style={styles.sidebar}>
+        <SidebarNavigation items={items} activeKey={activeKey} onNavigate={onNavigate} onNavigateIntent={onNavigateIntent} brand={brand} brandMark={brandMark} footer={sidebarFooter} />
+      </View>
+      <View style={styles.content}>{children}</View>
+      <View style={styles.bottom}>
+        <BottomNavigation items={items} activeKey={activeKey} onNavigate={onNavigate} onNavigateIntent={onNavigateIntent} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create(() => ({
-  root: { flex: 1, minWidth: 0 },
-  compactShell: { flex: 1, minWidth: 0, display: { compact: 'flex', medium: 'flex', expanded: 'none' } },
-  desktopShell: { flex: 1, minWidth: 0, flexDirection: 'row', display: { compact: 'none', medium: 'none', expanded: 'flex' } },
-  content: { flex: 1, minWidth: 0 },
+  root: {
+    flex: 1,
+    minWidth: 0,
+    flexDirection: { compact: 'column', medium: 'column', expanded: 'row', wide: 'row' },
+  },
+  sidebar: {
+    display: { compact: 'none', medium: 'none', expanded: 'flex', wide: 'flex' },
+    flexShrink: 0,
+  },
+  content: { flex: 1, minWidth: 0, minHeight: 0 },
+  bottom: {
+    display: { compact: 'flex', medium: 'flex', expanded: 'none', wide: 'none' },
+    flexShrink: 0,
+  },
 }));

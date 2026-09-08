@@ -18,8 +18,12 @@ export function PressableSurface({ children, label, onPress, radius = 'md', sele
   return (
     <Pressable
       accessibilityRole="button"
+      role="button"
       accessibilityLabel={label}
+      aria-label={label}
       accessibilityState={{ selected, disabled }}
+      aria-pressed={selected}
+      aria-disabled={disabled}
       disabled={disabled}
       onPress={onPress}
       testID={testID}

@@ -9,6 +9,9 @@ const provider=fs.readFileSync(path.join(root,'packages/runtime/src/PrecisionRun
 const linking=fs.readFileSync(path.join(root,'apps/reference/linking.ts'),'utf8');
 if(!nav.includes('Stack.Protected'))problems.push('navigation-router must own Expo Router Stack.Protected');
 if(!nav.includes('ProtectedRouterStack'))problems.push('navigation-router must export ProtectedRouterStack');
+if(!nav.includes('lastGrantedPath'))problems.push('navigation-router must preserve the last granted private path for return intent');
+if(nav.includes('restrictiveRedirects')||nav.includes('router.replace(target as Href)'))problems.push('navigation-router must let Stack.Protected own restrictive-state destinations; manual URL replacement can diverge from navigator state');
+if(!nav.includes("guard={access === 'granted' && group.guard}"))problems.push('conditional capability routes must use a sibling guard combined with authenticated access; avoid dynamic nested Stack.Protected ownership');
 if(!runtime.includes("status: 'loading'"))problems.push('auth runtime must start in explicit loading state');
 if(!runtime.includes('subscriptionRevision'))problems.push('auth runtime must guard stale getSession/subscription races');
 if(/error\.message|String\(error\)/.test(runtime))problems.push('auth runtime must not expose raw adapter errors');
@@ -20,5 +23,6 @@ function walk(dir){if(!fs.existsSync(dir))return;for(const entry of fs.readdirSy
 for(const entry of fs.readdirSync(path.join(root,'apps'),{withFileTypes:true}))if(entry.isDirectory())walk(path.join(root,'apps',entry.name,'app'));
 const refRoot=fs.readFileSync(path.join(root,'apps/reference/app/_layout.tsx'),'utf8');
 for(const marker of ['ProtectedRouterStack','usePrecisionAuthAccess','useCaptureReturnIntent'])if(!refRoot.includes(marker))problems.push(`reference root missing ${marker}`);
+if(!refRoot.includes("auth.status === 'loading'"))problems.push('reference root must hold the protected navigator until initial auth resolution completes');
 for(const file of ['sign-in.tsx','session-loading.tsx','session-error.tsx','auth-session.tsx'])if(!fs.existsSync(path.join(root,'apps/reference/app',file)))problems.push(`reference missing ${file}`);
 if(problems.length){console.error('Auth contract violations:\n'+problems.map(x=>`- ${x}`).join('\n'));process.exit(1);}console.log('Auth contract check passed (bootstrap, protected-route ownership, safe runtime consumption).');

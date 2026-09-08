@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+
+const contracts = fs.readFileSync('packages/session-security/src/contracts.ts', 'utf8');
+const memory = fs.readFileSync('packages/session-security/src/memory.ts', 'utf8');
+const runtime = fs.readFileSync('packages/runtime/src/sessionSecurity.tsx', 'utf8');
+const auth = fs.readFileSync('packages/runtime/src/auth.tsx', 'utf8');
+const root = fs.readFileSync('apps/reference/app/_layout.tsx', 'utf8');
+const acceptance = fs.readFileSync('apps/reference/app/session-security.tsx', 'utf8');
+const unlock = fs.readFileSync('apps/reference/app/unlock.tsx', 'utf8');
+
+for (const marker of ['manual', 'background', 'inactivity', 'security-policy']) assert.ok(contracts.includes(marker), marker);
+for (const marker of ['getState()', 'lock(reason', 'requestUnlock()', 'subscribe(listener']) assert.ok(memory.includes(marker), marker);
+assert.ok(runtime.includes("useState<SessionSecurityStatus>('loading')"));
+assert.ok(runtime.includes("setState({ locked: true, reason: 'security-policy' })"));
+assert.ok(runtime.includes("errorCode: 'session_security_unavailable'"));
+assert.ok(runtime.includes('PrecisionSessionSecurityBootstrap'));
+assert.ok(runtime.includes("runtime.status !== 'loading'"));
+assert.ok(runtime.includes('if (!resolvedOnce.current) return fallback'));
+assert.ok(auth.includes("sessionSecurity?.status === 'loading'"));
+assert.ok(auth.includes("sessionSecurity.status === 'error' || sessionSecurity.locked"));
+assert.ok(auth.includes('deriveRuntimeProtectedAccess(status, sessionSecurity, options)'));
+assert.ok(auth.includes('runtimeLocked || options.locallyLocked === true'));
+assert.ok(root.includes('PrecisionSessionSecurityBootstrap'));
+assert.ok(root.includes("locked: ['unlock']"));
+assert.ok(root.includes("'/unlock'"));
+assert.ok(acceptance.includes("sessionSecurity.lock('manual')"));
+assert.ok(unlock.includes('sessionSecurity.requestUnlock()'));
+assert.ok(unlock.includes("auth.consumeReturnIntent('/')"));
+assert.ok(unlock.includes('router.replaceResolvedPath'));
+assert.ok(runtime.includes("setStatus('error')"));
+assert.ok(/const operationRevision = useRef\(0\)/.test(runtime));
+assert.ok(/const subscriptionRevision = useRef\(0\)/.test(runtime));
+assert.ok(/const lockRequest = useRef/.test(runtime));
+assert.ok(/const unlockRequest = useRef/.test(runtime));
+assert.ok(/operationAtStart === operationRevision\.current/.test(runtime));
+console.log('Session-security runtime source contracts passed (pre-navigator bootstrap, resolution, fail-closed access, manual lock/unlock acceptance flow).');

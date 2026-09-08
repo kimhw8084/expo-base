@@ -1,2 +1,5 @@
-import {useReducedMotion} from 'react-native-reanimated';
-export function usePrecisionReducedMotion(){return useReducedMotion();}
+import { usePrecisionMotion } from './MotionRootProvider';
+
+export function usePrecisionReducedMotion() {
+  return usePrecisionMotion().reducedMotion;
+}

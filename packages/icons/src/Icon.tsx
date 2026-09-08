@@ -22,12 +22,14 @@ import {
   EyeOff,
   Gift,
   Heart,
+  Image,
   House,
   Info,
   Landmark,
   Lock,
   Mail,
   Menu,
+  Minus,
   MoreHorizontal,
   Pencil,
   Phone,
@@ -54,7 +56,9 @@ import {
   X,
   type LucideIcon,
 } from 'lucide-react-native';
+import { View } from 'react-native';
 import { useUnistyles } from 'react-native-unistyles';
+import { usePrecisionDirection } from '@precision-calm/i18n';
 import { iconSizes, type IconSize } from '@precision-calm/tokens';
 
 const registry = {
@@ -81,12 +85,14 @@ const registry = {
   eyeOff: EyeOff,
   gift: Gift,
   heart: Heart,
+  image: Image,
   home: House,
   info: Info,
   bank: Landmark,
   lock: Lock,
   mail: Mail,
   menu: Menu,
+  minus: Minus,
   more: MoreHorizontal,
   edit: Pencil,
   phone: Phone,
@@ -114,7 +120,7 @@ const registry = {
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof registry;
-export type IconTone = 'primary' | 'secondary' | 'tertiary' | 'accent' | 'positive' | 'warning' | 'negative' | 'info' | 'onPrimary';
+export type IconTone = 'primary' | 'secondary' | 'tertiary' | 'accent' | 'positive' | 'warning' | 'negative' | 'info' | 'onPrimary' | 'inverse';
 
 export interface IconProps {
   name: IconName;
@@ -122,10 +128,15 @@ export interface IconProps {
   tone?: IconTone;
   strokeWidth?: 'regular' | 'strong';
   accessibilityLabel?: string;
+  /** Mirror semantic back/forward glyphs with the current writing direction. */
+  directional?: boolean;
 }
 
-export function Icon({ name, size = 'md', tone = 'primary', strokeWidth = 'regular', accessibilityLabel }: IconProps) {
+const directionalNames = new Set<IconName>(['arrowLeft', 'arrowRight', 'chevronLeft', 'chevronRight']);
+
+export function Icon({ name, size = 'md', tone = 'primary', strokeWidth = 'regular', accessibilityLabel, directional = true }: IconProps) {
   const { theme } = useUnistyles();
+  const direction = usePrecisionDirection();
   const Component = registry[name];
   const color = tone === 'primary' ? theme.colors.text.primary
     : tone === 'secondary' ? theme.colors.text.secondary
@@ -135,15 +146,27 @@ export function Icon({ name, size = 'md', tone = 'primary', strokeWidth = 'regul
     : tone === 'warning' ? theme.colors.feedback.warning
     : tone === 'negative' ? theme.colors.feedback.negative
     : tone === 'info' ? theme.colors.feedback.info
+    : tone === 'inverse' ? theme.colors.text.inverse
     : theme.colors.interactive.onPrimary;
 
-  return (
+  const glyph = (
     <Component
       size={iconSizes[size]}
       color={color}
       strokeWidth={strokeWidth === 'strong' ? 2.25 : 1.8}
-      accessibilityLabel={accessibilityLabel}
-      accessible={Boolean(accessibilityLabel)}
     />
   );
+
+  const mirrored = directional && direction === 'rtl' && directionalNames.has(name);
+  const renderedGlyph = mirrored ? <View style={styles.mirrored}>{glyph}</View> : glyph;
+
+  if (!accessibilityLabel) return renderedGlyph;
+
+  return (
+    <View accessible accessibilityRole="image" accessibilityLabel={accessibilityLabel}>
+      {renderedGlyph}
+    </View>
+  );
 }
+
+const styles = { mirrored: { transform: [{ scaleX: -1 }] } };

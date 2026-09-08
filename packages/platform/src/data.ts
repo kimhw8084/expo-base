@@ -40,3 +40,33 @@ export function formatCompactNumber(value: number, locale = 'en-US'): string {
   if (!Number.isFinite(value)) return '—';
   return new Intl.NumberFormat(locale, { notation: 'compact', maximumFractionDigits: 1 }).format(value);
 }
+
+export interface PrecisionDelimitedDataColumn<Row> {
+  key: string;
+  label: string;
+  value: (row: Row) => string | number | boolean | null | undefined;
+}
+
+export interface PrecisionDelimitedDataOptions {
+  delimiter?: ',' | '\t' | ';';
+  lineEnding?: '\n' | '\r\n';
+  includeHeader?: boolean;
+}
+
+export function serializePrecisionDelimitedData<Row>(rows: readonly Row[], columns: readonly PrecisionDelimitedDataColumn<Row>[], options: PrecisionDelimitedDataOptions = {}): string {
+  if (columns.length === 0) return '';
+  const delimiter = options.delimiter ?? ',';
+  const lineEnding = options.lineEnding ?? '\n';
+  const lines: string[] = [];
+  if (options.includeHeader !== false) lines.push(columns.map((column) => escapeDelimitedCell(column.label, delimiter)).join(delimiter));
+  for (const row of rows) lines.push(columns.map((column) => escapeDelimitedCell(normalizeDelimitedCell(column.value(row)), delimiter)).join(delimiter));
+  return lines.join(lineEnding);
+}
+
+function normalizeDelimitedCell(value: string | number | boolean | null | undefined): string {
+  return value === null || value === undefined ? '' : String(value);
+}
+
+function escapeDelimitedCell(value: string, delimiter: string): string {
+  return value.includes(delimiter) || /["\r\n]/.test(value) ? `"${value.replaceAll('"', '""')}"` : value;
+}

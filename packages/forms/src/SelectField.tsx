@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { Platform, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { Icon } from '@precision-calm/icons';
 import { MenuGroup, MenuItem, Popover } from '@precision-calm/overlays';
@@ -24,11 +24,25 @@ export function SelectField({ id, label, value, options, onChange, placeholder =
   const [open, setOpen] = useState(false);
   const selected = options.find((option) => option.value === value);
   const { hovered, focused, interactionProps } = useInteractionState();
+  const messageId = error || description ? `${id}-message` : undefined;
+  const accessibilityHint = [required ? 'Required' : null, error ? `Error: ${error}` : description].filter(Boolean).join('. ') || undefined;
+  const webAccessibilityProps = Platform.OS === 'web' ? {
+    'aria-describedby': messageId,
+    'aria-errormessage': error ? messageId : undefined,
+    'aria-invalid': Boolean(error),
+    'aria-required': required,
+  } : {};
   const anchor = (
     <Pressable
       accessibilityRole="combobox"
+      role="combobox"
       accessibilityLabel={label}
+      accessibilityHint={accessibilityHint}
+      aria-label={label}
       accessibilityState={{ disabled, expanded: open }}
+      {...webAccessibilityProps}
+      aria-expanded={open}
+      aria-disabled={disabled}
       disabled={disabled}
       onPress={() => setOpen((current) => !current)}
       {...interactionProps}
@@ -48,7 +62,7 @@ export function SelectField({ id, label, value, options, onChange, placeholder =
             <MenuItem
               key={option.value}
               label={option.label}
-              disabled={option.disabled}
+              disabled={Boolean(option.disabled)}
               selected={option.value === value}
               trailing={option.value === value ? <Icon name="check" size="sm" tone="accent" /> : null}
               onPress={() => { onChange(option.value); setOpen(false); }}
@@ -61,10 +75,10 @@ export function SelectField({ id, label, value, options, onChange, placeholder =
 }
 
 const styles = StyleSheet.create((theme) => ({
-  anchor: { minWidth: 0, minHeight: theme.controlHeights.md, flexDirection: 'row', alignItems: 'center', gap: theme.spacing.sm, paddingHorizontal: theme.formMetrics.inputHorizontalPadding, borderWidth: 1, borderColor: theme.colors.border.default, borderRadius: theme.radii.sm, backgroundColor: theme.colors.background.surface },
+  anchor: { minWidth: 0, minHeight: theme.controlHeights.md, flexDirection: 'row', alignItems: 'center', gap: theme.spacing.sm, paddingHorizontal: theme.formMetrics.inputHorizontalPadding, borderWidth: theme.strokeWidths.standard, borderColor: theme.colors.border.default, borderRadius: theme.radii.sm, backgroundColor: theme.colors.background.surface },
   spacer: { flex: 1 },
   hovered: { backgroundColor: theme.colors.background.subtle },
-  focused: { borderColor: theme.colors.border.focus, boxShadow: `0 0 0 ${theme.interactionFeedback.focusRingWidth}px ${theme.colors.interactive.subtle}` },
+  focused: { borderColor: theme.colors.border.focus, boxShadow: `0 0 0 ${theme.interactionFeedback.focusRingWidth}px ${theme.colors.border.focus}` },
   error: { borderColor: theme.colors.feedback.negative },
   pressed: { opacity: theme.interactionFeedback.pressedOpacity },
   disabled: { opacity: theme.interactionFeedback.disabledOpacity, backgroundColor: theme.colors.background.subtle },

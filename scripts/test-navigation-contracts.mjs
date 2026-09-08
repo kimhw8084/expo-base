@@ -21,5 +21,13 @@ try {
   assert.equal(nav.bestNavigationMatch('/cards', items), 'cards');
   assert.equal(nav.bestNavigationMatch('/cards/detail/123', items), 'cardDetail');
   assert.equal(nav.bestNavigationMatch('/unknown', items), null);
-  console.log('Navigation contract tests passed (destination count, duplicate detection, longest route match).');
+  const enabled = [true, false, true, true];
+  assert.equal(nav.resolveRovingFocusIndex('ArrowRight', 0, enabled), 2);
+  assert.equal(nav.resolveRovingFocusIndex('ArrowRight', 3, enabled), 0);
+  assert.equal(nav.resolveRovingFocusIndex('ArrowLeft', 0, enabled, { direction: 'rtl' }), 2);
+  assert.equal(nav.resolveRovingFocusIndex('ArrowDown', 2, enabled, { orientation: 'both' }), 3);
+  assert.equal(nav.resolveRovingFocusIndex('Home', 3, enabled), 0);
+  assert.equal(nav.resolveRovingFocusIndex('End', 0, enabled), 3);
+  assert.equal(nav.resolveRovingFocusIndex('Enter', 0, enabled), null);
+  console.log('Navigation contract tests passed (destination count, route match, disabled-aware RTL roving focus).');
 } finally { fs.rmSync(outDir, { recursive: true, force: true }); }

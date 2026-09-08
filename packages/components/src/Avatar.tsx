@@ -1,17 +1,34 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { Text } from '@precision-calm/primitives';
+import { MediaFrame, type MediaFrameSource } from '@precision-calm/media-presentation';
 
 export interface AvatarProps {
   name: string;
   size?: 'sm' | 'md' | 'lg';
+  shape?: 'circle' | 'rounded';
+  source?: MediaFrameSource;
+  decorative?: boolean;
+  accessibilityLabel?: string;
+  testID?: string;
 }
 
-export function Avatar({ name, size = 'md' }: AvatarProps) {
-  const initials = name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]?.toUpperCase() ?? '').join('') || '?';
+export function Avatar({ name, size = 'md', shape = 'circle', source, decorative = false, accessibilityLabel, testID }: AvatarProps) {
+  const normalizedName = typeof name === 'string' ? name.trim() : '';
+  const initials = normalizedName.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]?.toUpperCase() ?? '').join('') || '?';
+  const label = accessibilityLabel ?? `${normalizedName || 'User'} avatar`;
   return (
-    <View accessibilityRole="image" accessibilityLabel={`${name} avatar`} style={[styles.base, styles[size]]}>
-      <Text variant={size === 'lg' ? 'label' : 'micro'}>{initials}</Text>
+    <View
+      role="img"
+      aria-label={decorative ? undefined : label}
+      aria-hidden={decorative || undefined}
+      accessibilityLabel={decorative ? undefined : label}
+      accessibilityElementsHidden={decorative}
+      importantForAccessibility={decorative ? 'no-hide-descendants' : 'yes'}
+      style={[styles.base, styles[size], shape === 'circle' ? styles.circle : styles.rounded]}
+      testID={testID}
+    >
+      <MediaFrame source={source} alt={label} decorative aspectRatio={1} rounded={shape === 'circle' ? 'full' : 'lg'} fallback={<Text variant={size === 'lg' ? 'label' : 'micro'}>{initials}</Text>} />
     </View>
   );
 }
@@ -21,11 +38,10 @@ const styles = StyleSheet.create((theme) => ({
     flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: theme.radii.full,
-    backgroundColor: theme.colors.background.subtle,
-    borderWidth: 1,
-    borderColor: theme.colors.border.subtle,
+    overflow: 'hidden',
   },
+  circle: { borderRadius: theme.radii.full },
+  rounded: { borderRadius: theme.radii.lg },
   sm: { width: theme.controlHeights.sm, height: theme.controlHeights.sm },
   md: { width: theme.controlHeights.md, height: theme.controlHeights.md },
   lg: { width: theme.controlHeights.lg, height: theme.controlHeights.lg },

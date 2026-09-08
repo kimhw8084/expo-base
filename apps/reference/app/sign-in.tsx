@@ -9,7 +9,7 @@ export default function SignInScreen() {
   const [email, setEmail] = useState('reference@example.com');
   const [password, setPassword] = useState('demo');
   const submit = async () => {
-    if (await auth.signIn({ email, password })) router.replace(auth.consumeReturnIntent('/'));
+    if (await auth.signIn({ email, password })) router.replaceResolvedPath(auth.consumeReturnIntent('/'));
   };
   return (
     <ScrollScreen>

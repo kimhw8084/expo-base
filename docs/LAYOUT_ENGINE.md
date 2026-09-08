@@ -29,4 +29,4 @@ The initial measurement pass reserves action-bar height and keeps the visible ra
 
 ## Static enforcement
 
-All app workspaces are scanned. Feature code is rejected for raw viewport measurement, direct platform branching, raw ScrollView/FlatList/SectionList composition, direct icon-library imports, literal geometry/colors, and direct SVG icon usage.
+All app workspaces are scanned. Feature code is rejected for raw viewport measurement, direct platform branching, raw ScrollView/FlatList/SectionList composition, direct icon-library imports, literal geometry/colors, and direct SVG icon usage. Reusable UI packages are also scanned: nonzero spacing, gaps, radii, strokes, dimensions, and typography geometry must resolve through shared tokens rather than package-local numbers.

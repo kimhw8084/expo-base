@@ -4,6 +4,7 @@ import process from 'node:process';
 
 const root = process.cwd();
 const rules = {
+  'session-security': [/@precision-calm\/(?:tokens|platform|icons|primitives|layouts|components|forms|navigation|overlays|patterns|runtime|ui)/, /react-native/, /expo/, /supabase/i, /firebase/i],
   auth: [/@precision-calm\/(?:tokens|platform|icons|primitives|layouts|components|forms|navigation|overlays|patterns|runtime|ui)/, /react-native/, /expo/, /supabase/i, /firebase/i],
   authorization: [/@precision-calm\/(?:tokens|platform|icons|primitives|layouts|components|forms|navigation|overlays|patterns|runtime|ui)/, /react-native/, /expo/, /supabase/i, /firebase/i],
   tokens: [/@precision-calm\/(platform|icons|primitives|layouts|components)/, /react-native/, /expo/, /supabase/i, /firebase/i],

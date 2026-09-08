@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "catalog": "golden.catalog.json",
+  "featureRoots": ["apps/*/app"],
+  "excludePaths": [
+    "apps/*/app/_layout.tsx",
+    "apps/*/app/+html.tsx",
+    "apps/*/app/+native-intent.tsx"
+  ],
+  "ruleDocs": {
+    "design-ownership": "docs/GOLDEN_CATALOG.md#build-a-page",
+    "workflow-ownership": "docs/GOLDEN_WORKFLOWS.md#form-workspace",
+    "interaction-ownership": "docs/GOLDEN_CATALOG.md#take-an-action",
+    "form-ownership": "docs/GOLDEN_CATALOG.md#build-a-form",
+    "platform-ownership": "docs/GOLDEN_CATALOG.md#build-a-responsive-page",
+    "runtime-ownership": "docs/GOLDEN_CATALOG.md#use-runtime-or-platform-services",
+    "overlay-ownership": "docs/GOLDEN_CATALOG.md#open-an-overlay",
+    "navigation-ownership": "docs/GOLDEN_CATALOG.md#protect-or-navigate-a-route",
+    "feedback-ownership": "docs/GOLDEN_CATALOG.md#show-loading-error-retry",
+    "i18n-ownership": "docs/GOLDEN_CATALOG.md#format-or-localize-content",
+    "server-state-ownership": "docs/GOLDEN_CATALOG.md#load-server-data",
+    "capability-ownership": "docs/GOLDEN_CATALOG.md#use-an-optional-device-capability",
+    "media-ownership": "docs/GOLDEN_CATALOG.md#show-media"
+  },
+  "allowlists": []
+}

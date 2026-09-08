@@ -1,0 +1,14 @@
+{
+  "name": "@precision-calm/server-state",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@tanstack/react-query": "5.102.8"
+  },
+  "peerDependencies": {
+    "react": "19.2.3"
+  }
+}

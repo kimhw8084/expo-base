@@ -17,6 +17,11 @@ export const layoutDimensions = {
 } as const;
 
 export const actionMetrics = {
+  barWidth: {
+    medium: 320,
+    expanded: 480,
+    wide: 600,
+  },
   overflowTrigger: {
     icon: 44,
     compact: 72,

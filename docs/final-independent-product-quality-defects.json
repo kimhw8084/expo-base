@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "audit": "Expo Base Final Independent Product Quality Re-Audit",
+  "findingsLockedAt": "2026-09-07T18:45:00-05:00",
+  "independence": {
+    "historicalQualityAuditConsultedBeforeLock": false,
+    "historicalDefectLedgerConsultedBeforeLock": false,
+    "historicalReviewAtlasConsultedBeforeLock": false,
+    "gitHistoryConsultedForPriorDefects": false
+  },
+  "summary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4,
+    "P3": 2,
+    "total": 6
+  },
+  "findings": [
+    {
+      "id": "FIQ-001",
+      "severity": "P2",
+      "route": "/visualization",
+      "component": "Visualization reference composition / HStack",
+      "browser": ["Chromium"],
+      "viewport": ["320x740", "390x844"],
+      "theme": ["light"],
+      "density": ["comfortable"],
+      "localeDirection": ["en-US/LTR", "en-XA/LTR", "en-XB/RTL"],
+      "reproduction": [
+        "Open /visualization at 320px or 390px width.",
+        "Inspect the Portfolio value card header.",
+        "Repeat with pseudo LTR or pseudo RTL enabled."
+      ],
+      "observed": "The title/description stack and Interactive badge stay in a non-wrapping horizontal row. The description measures about 462px at a 320px viewport and is clipped outside the card/viewport; pseudo copy makes the loss larger.",
+      "expected": "The card header should recompose or wrap within its available width so the full explanatory copy and badge remain visible at compact widths and in locale stress modes.",
+      "evidence": [
+        "test-results/final-independent-quality-audit/screenshots/responsive-visualization--320x740--light.png",
+        "test-results/final-independent-quality-audit/screenshots/route-visualization--390x844--light.png",
+        "test-results/final-independent-quality-audit/screenshots/pseudo-ltr-visualization--390x844.png",
+        "test-results/final-independent-quality-audit/raw-focused-results.json#compact-chart-header"
+      ],
+      "likelyRootOwner": "apps/reference/app/visualization.tsx; use a responsive shared header/action composition rather than a fixed HStack",
+      "confidence": "HIGH",
+      "regressionRecommendation": "Add 320px and 390px containment assertions for the card-header description and a compact pseudo-locale visual specimen.",
+      "status": "FIXED",
+      "rootCause": "The reference specimen used a fixed horizontal HStack for copy and the Interactive badge instead of the responsive SectionHeader owner.",
+      "sharedOwner": "Visualization reference composition using @precision-calm/layouts SectionHeader",
+      "remediation": "Replaced the fixed HStack with SectionHeader, which stacks copy and accessory below the compact breakpoint while preserving desktop hierarchy.",
+      "regressionCoverage": [
+        "final-independent-quality-pass3.spec.ts: FIQ-001 containment at 320/390px in pseudo LTR and RTL across Chromium, Firefox, and WebKit",
+        "golden.certification.json visual baseline: visualization-compact-pseudo"
+      ],
+      "verificationEvidence": [
+        "test-results/pass3-quality-review/visualization-320-pseudo-ltr.png",
+        "test-results/pass3-quality-review/visualization-320-pseudo-rtl.png"
+      ]
+    },
+    {
+      "id": "FIQ-002",
+      "severity": "P2",
+      "route": "all compact routes using the primary bottom navigation",
+      "component": "BottomNavigation / NavigationItemButton",
+      "browser": ["Chromium"],
+      "viewport": ["320x740", "390x844"],
+      "theme": ["light"],
+      "density": ["comfortable", "compact"],
+      "localeDirection": ["en-XA/LTR", "en-XB/RTL"],
+      "reproduction": [
+        "Open the reference app at 320px or 390px width.",
+        "Enable Pseudo LTR or Pseudo RTL.",
+        "Inspect the five primary bottom-navigation labels."
+      ],
+      "observed": "The fixed five-column navigation forces expanded labels such as Patterns and System into ellipsized fragments. Several visible names become indistinguishable without relying on icon recognition, even though their full accessible names remain present.",
+      "expected": "Primary destinations should retain meaningful visible identification under realistic localization expansion, using a deliberate adaptive label strategy rather than ambiguous truncation.",
+      "evidence": [
+        "test-results/final-independent-quality-audit/screenshots/localization-pseudo-ltr-home--320x740.png",
+        "test-results/final-independent-quality-audit/screenshots/pseudo-ltr-home--390x844.png",
+        "test-results/final-independent-quality-audit/screenshots/pseudo-rtl-navigation--390x844.png",
+        "test-results/final-independent-quality-audit/raw-focused-results.json#pseudo-bottom-navigation"
+      ],
+      "likelyRootOwner": "packages/navigation/src/NavigationItemButton.tsx and BottomNavigation.tsx",
+      "confidence": "HIGH",
+      "regressionRecommendation": "Add a pseudo-localized 320px bottom-navigation visual/geometry contract that verifies each visible destination label remains meaningfully identifiable.",
+      "status": "FIXED",
+      "rootCause": "BottomNavigation constrained every route label to one line inside five equal compact columns, so pseudo-expanded names became ellipsized fragments.",
+      "sharedOwner": "@precision-calm/navigation BottomNavigation and NavigationItemButton",
+      "remediation": "Primary route labels now own a bounded three-line compact policy, retaining complete visible labels, safe targets, and current-route styling without icon-only fallback.",
+      "regressionCoverage": [
+        "final-independent-quality-pass3.spec.ts: FIQ-002 visible-label geometry at 320/390px in pseudo LTR and RTL across Chromium, Firefox, and WebKit",
+        "golden.certification.json visual baseline: stress-pseudo-rtl"
+      ],
+      "verificationEvidence": [
+        "test-results/pass3-quality-review/bottom-navigation-320-pseudo-ltr-compact.png",
+        "test-results/pass3-quality-review/bottom-navigation-320-pseudo-rtl-dark.png",
+        "test-results/pass3-quality-review/bottom-navigation-390-pseudo-rtl-compact.png"
+      ]
+    },
+    {
+      "id": "FIQ-003",
+      "severity": "P2",
+      "route": ["/", "/navigation", "/feedback", "/forms", "/data", "/system", "/visualization", "/golden-plus"],
+      "component": "ReferenceCopy adoption / reference route composition",
+      "browser": ["Chromium"],
+      "viewport": ["390x844"],
+      "theme": ["light"],
+      "density": ["comfortable"],
+      "localeDirection": ["en-XA/LTR"],
+      "reproduction": [
+        "Enable Pseudo LTR on the home route.",
+        "Navigate client-side through each reference surface.",
+        "Compare transformed and unchanged product-visible copy."
+      ],
+      "observed": "Pseudo stress coverage is inconsistent. The Navigation and Feedback main surfaces transform none of their visible copy, Home transforms only about 6% by character share, and several large System/Data/Visualization sections remain literal. Other routes such as Overlays and Workflows transform most copy, proving the mode itself is active.",
+      "expected": "Representative user-visible headings, labels, actions, feedback, form text, and table/chart labels should consistently pass through the reference message boundary so pseudo mode meaningfully stresses every canonical family; technical literals, IDs, URLs, numeric values, and code should remain untouched.",
+      "evidence": [
+        "test-results/final-independent-quality-audit/contact-locale-coverage.png",
+        "test-results/final-independent-quality-audit/raw-locale-results.json",
+        "test-results/final-independent-quality-audit/screenshots/locale-coverage-navigation--390x844.png",
+        "test-results/final-independent-quality-audit/screenshots/locale-coverage-feedback--390x844.png"
+      ],
+      "likelyRootOwner": "apps/reference/ReferenceCopy.ts and user-visible reference route composition",
+      "confidence": "HIGH",
+      "regressionRecommendation": "Add a structural locale-stress coverage manifest for representative copy per major lab and require a meaningful transformed share without transforming technical values.",
+      "status": "FIXED",
+      "rootCause": "ReferenceCopy was available but adoption was optional and a global transformed-text threshold could pass while major route copy classes remained literal.",
+      "sharedOwner": "ReferenceCopy adoption plus golden.certification.json pseudoCoverage",
+      "remediation": "Migrated representative headings, descriptions, sections, actions, labels, table/chart copy, feedback, and navigation specimens through useReferenceCopy. Added a route-level machine-readable model of pseudo-owned, intentional-literal, and developer-only copy classes for 13 canonical surfaces.",
+      "regressionCoverage": [
+        "check-golden-certification.mjs validates classification completeness and exact class ownership",
+        "final-independent-quality-pass3.spec.ts verifies every declared visible pseudo class in Chromium and representative RTL routes in Chromium, Firefox, and WebKit"
+      ],
+      "verificationEvidence": [
+        "test-results/pass3-quality-review/pseudo-ltr-navigation.png",
+        "test-results/pass3-quality-review/pseudo-ltr-feedback.png",
+        "test-results/pass3-quality-review/pseudo-ltr-data.png",
+        "test-results/pass3-quality-review/pseudo-ltr-capabilities.png"
+      ]
+    },
+    {
+      "id": "FIQ-004",
+      "severity": "P2",
+      "route": "all expanded/wide routes using the primary sidebar",
+      "component": "RouterNavigationShell / SidebarNavigation / NavigationItemButton",
+      "browser": ["Chromium", "Firefox", "WebKit"],
+      "viewport": ["1024x800", "1440x900"],
+      "theme": ["light", "dark"],
+      "density": ["comfortable", "compact"],
+      "localeDirection": ["en-US/LTR"],
+      "reproduction": [
+        "Open any route at expanded desktop width.",
+        "Inspect the Primary navigation landmark with accessibility tools or the DOM.",
+        "Attempt standard browser link operations such as opening a destination in a new tab."
+      ],
+      "observed": "All five route destinations are exposed as buttons; the navigation landmark contains zero links or hrefs. Navigation works through scripted pushes, but assistive technology receives action semantics and users lose standard web link behaviors such as destination announcement, context-menu open-in-new-tab, and modifier-click navigation.",
+      "expected": "Actual route destinations should expose link semantics and browser-native destination behavior on web while preserving the shared cross-platform navigation owner and active-state model.",
+      "evidence": [
+        "test-results/final-independent-quality-audit/raw-deep-results.json#navigation-semantics",
+        "test-results/final-independent-quality-audit/screenshots/responsive-home--1024x800--light.png"
+      ],
+      "likelyRootOwner": "packages/navigation-router/src/index.tsx and packages/navigation/src/SidebarNavigation.tsx",
+      "confidence": "HIGH",
+      "regressionRecommendation": "Add a web semantic contract requiring route-backed sidebar destinations to be links with hrefs, plus keyboard/current-route assertions; retain an action-only API for non-route navigation owners if needed.",
+      "status": "FIXED",
+      "rootCause": "RouterNavigationShell discarded route hrefs before rendering the adaptive navigation primitives, leaving Pressable action semantics as the only desktop destination model.",
+      "sharedOwner": "@precision-calm/navigation-router RouterNavigationShell with @precision-calm/navigation NavigationItemButton",
+      "remediation": "Router-backed items now carry resolved hrefs to the shared navigation owner. Web route destinations render as anchors with link/current-page semantics and preserve normal browser modifier behavior; native retains pressable navigation without feature-level platform branching.",
+      "regressionCoverage": [
+        "final-independent-quality-pass3.spec.ts: FIQ-004 href, link/current state, keyboard client navigation, and non-intercepted Ctrl/Meta activation across Chromium, Firefox, and WebKit",
+        "runtime stabilization and accessibility structural contracts distinguish route links from generic in-place tab controls"
+      ],
+      "verificationEvidence": [
+        "test-results/pass3-quality-review/sidebar-1024-light.png",
+        "test-results/pass3-quality-review/sidebar-1440-dark.png"
+      ]
+    },
+    {
+      "id": "FIQ-005",
+      "severity": "P3",
+      "route": "/visualization",
+      "component": "ChartFrame state specimens / Visualization reference composition",
+      "browser": ["Chromium"],
+      "viewport": ["390x844", "1024x800"],
+      "theme": ["light", "dark"],
+      "density": ["comfortable"],
+      "localeDirection": ["en-US/LTR"],
+      "reproduction": [
+        "Open /visualization and scroll to Async chart states.",
+        "Inspect the loading and error specimens at compact and desktop widths."
+      ],
+      "observed": "Two short status messages each reserve a full standard chart frame, creating a large nearly empty card on compact screens and an overly sparse state row on desktop.",
+      "expected": "State specimens should preserve representative chart geometry without allowing loading/error examples to dominate the route with dead space; the reference composition can use a compact state size or tighter grouping.",
+      "evidence": [
+        "test-results/final-independent-quality-audit/screenshots/scroll-visualization--390x844--bottom.png",
+        "test-results/final-independent-quality-audit/screenshots/scroll-visualization--1024x800--bottom.png"
+      ],
+      "likelyRootOwner": "apps/reference/app/visualization.tsx, potentially via an explicit compact ChartFrame specimen size",
+      "confidence": "HIGH",
+      "regressionRecommendation": "Keep a reviewed compact visualization-state specimen in the visual atlas; no broad geometry rule is needed.",
+      "status": "OPEN"
+    },
+    {
+      "id": "FIQ-006",
+      "severity": "P3",
+      "route": "all routes in Firefox",
+      "component": "generated Expo Router web bundle",
+      "browser": ["Firefox"],
+      "viewport": ["390x520", "1024x800"],
+      "theme": ["light"],
+      "density": ["comfortable"],
+      "localeDirection": ["en-US/LTR"],
+      "reproduction": [
+        "Export the current reference app for web and serve it statically.",
+        "Open any route in Firefox with console collection enabled."
+      ],
+      "observed": "Firefox emits a repeatable 'unreachable code after return statement' warning from the generated index bundle. No matching exception or behavior failure occurs in Chromium or WebKit; bundle inspection places the warning in generated/router dependency code rather than Expo Base product source.",
+      "expected": "A production export should have a clean console, or a precisely documented upstream warning disposition should exist if the installed toolchain cannot remove it safely.",
+      "evidence": [
+        "test-results/final-independent-quality-audit/raw-audit-results.json#consoleEvents",
+        "test-results/final-independent-quality-audit/raw-follow-up-results.json#events",
+        "test-results/final-independent-quality-audit/raw-deep-results.json#consoleEvents"
+      ],
+      "likelyRootOwner": "upstream Expo Router/Metro-generated web code; confirm against installed dependency versions before changing Expo Base",
+      "confidence": "HIGH for reproducibility; MEDIUM for exact upstream module attribution",
+      "regressionRecommendation": "Keep Firefox console collection and a narrow documented allowlist only if upstream reproduction is confirmed; do not globally suppress warnings.",
+      "status": "OPEN"
+    }
+  ]
+}

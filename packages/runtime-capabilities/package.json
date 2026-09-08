@@ -1,0 +1,17 @@
+{
+  "name": "@precision-calm/runtime-capabilities",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@precision-calm/capabilities": "*",
+    "@precision-calm/server-state": "*",
+    "expo-network": "~57.0.1"
+  },
+  "peerDependencies": {
+    "react": "19.2.3",
+    "react-native": "0.86.3"
+  }
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "customer-workspace",
+    "request": "Create a protected searchable customer workspace with server data, filter, refresh, empty/error behavior and detail navigation.",
+    "pattern": "data-workspace",
+    "name": "customers",
+    "requiredFiles": ["app/customers.tsx", "app/customers/[id].tsx"],
+    "requiredOwners": ["DataWorkspaceLayout", "ServerStateContent", "usePrecisionQuery", "DataToolbar"]
+  },
+  {
+    "id": "account-settings",
+    "request": "Create an account settings form with local preferences, server mutation, unsaved-change guard and destructive account action.",
+    "pattern": "settings-form",
+    "name": "account-settings",
+    "capabilities": ["preferences"],
+    "requiredFiles": ["app/account-settings.tsx"],
+    "requiredOwners": ["FormWorkspaceLayout", "usePrecisionMutation", "FormDiscardDialog", "usePrecisionPreferences"]
+  },
+  {
+    "id": "document-import",
+    "request": "Create an import workflow using document selection and async upload.",
+    "pattern": "import-workflow",
+    "name": "imports",
+    "capabilities": ["media"],
+    "requiredFiles": ["app/imports.tsx"],
+    "requiredOwners": ["ImportWorkflowLayout", "usePrecisionDocumentPicker", "usePrecisionMutation"]
+  },
+  {
+    "id": "offline-activity",
+    "request": "Create an offline-aware activity feed with stale data and reconnect.",
+    "pattern": "offline-workspace",
+    "name": "activity",
+    "capabilities": ["runtime-signals"],
+    "requiredFiles": ["app/activity.tsx"],
+    "requiredOwners": ["OfflineWorkspaceLayout", "ServerStateContent", "usePrecisionQuery"]
+  }
+]

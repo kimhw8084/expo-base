@@ -7,8 +7,8 @@ export function PrecisionServicesProvider({ services, children }: PropsWithChild
   return <PrecisionServicesContext.Provider value={services}>{children}</PrecisionServicesContext.Provider>;
 }
 
-export function usePrecisionServices(): AppServices {
+export function usePrecisionServices<TServices extends AppServices = AppServices>(): TServices {
   const services = useContext(PrecisionServicesContext);
   if (!services) throw new Error('usePrecisionServices requires PrecisionServicesProvider or PrecisionRuntimeProvider with a services prop.');
-  return services;
+  return services as TServices;
 }

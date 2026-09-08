@@ -9,5 +9,7 @@ assert.ok(source.includes("errorCode('capabilities_unavailable')")||source.inclu
 assert.ok(source.includes('adapter.getCapabilities'));
 assert.ok(source.includes('adapter.subscribe?.'));
 assert.ok(source.includes('usePrecisionAuth'));
+assert.ok(/const started = \+\+revision\.current/.test(source));
+assert.ok(/return \(\) => \{ revision\.current \+= 1;/.test(source));
 assert.ok(provider.includes('<PrecisionAuthorizationProvider adapter={services.authorization}'));
 console.log('Authorization runtime source contracts passed (identity binding, fail-closed loading/error, live updates, sanitized errors).');

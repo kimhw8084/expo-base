@@ -84,6 +84,32 @@ export function barRects(data: readonly ChartDatum[], width: number, height: num
   });
 }
 
+export interface StackedBarCategory { label: string; values: readonly number[]; }
+export interface StackedBarRect { categoryIndex: number; seriesIndex: number; x: number; y: number; width: number; height: number; value: number; }
+
+/** Deterministic geometry for non-negative stacked categories. Negative/invalid segments are omitted. */
+export function stackedBarRects(data: readonly StackedBarCategory[], width: number, height: number, gap = 6): StackedBarRect[] {
+  const clean = data.filter((category) => category.label.trim().length > 0);
+  if (clean.length === 0 || width <= 0 || height <= 0) return [];
+  const totals = clean.map((category) => category.values.reduce((total, value) => total + (Number.isFinite(value) && value > 0 ? value : 0), 0));
+  const maximum = Math.max(...totals, 0);
+  if (maximum <= 0) return [];
+  const slot = width / clean.length;
+  const safeGap = Math.max(0, Math.min(slot * 0.75, gap));
+  const barWidth = Math.max(1, slot - safeGap);
+  const output: StackedBarRect[] = [];
+  clean.forEach((category, categoryIndex) => {
+    let consumed = 0;
+    category.values.forEach((value, seriesIndex) => {
+      if (!Number.isFinite(value) || value <= 0) return;
+      const segmentHeight = (value / maximum) * height;
+      consumed += segmentHeight;
+      output.push({ categoryIndex, seriesIndex, x: categoryIndex * slot + safeGap / 2, y: height - consumed, width: barWidth, height: Math.max(1, segmentHeight), value });
+    });
+  });
+  return output;
+}
+
 export function clampProgress(value: number): number {
   if (!Number.isFinite(value)) return 0;
   return Math.max(0, Math.min(1, value));
@@ -100,6 +126,26 @@ export function chartSummary(data: readonly ChartDatum[], name = 'Chart'): strin
   const change = last.value - first.value;
   const direction = change > 0 ? 'increased' : change < 0 ? 'decreased' : 'was unchanged';
   return `${name}. ${clean.length} points. Minimum ${min.value} at ${min.label}. Maximum ${max.value} at ${max.label}. From ${first.value} at ${first.label} to ${last.value} at ${last.label}, ${direction}.`;
+}
+
+export interface DonutSegment {
+  datumIndex: number;
+  startAngle: number;
+  endAngle: number;
+  value: number;
+}
+
+/** Positive finite values normalized into deterministic donut segments. */
+export function donutSegments(data: readonly ChartDatum[]): DonutSegment[] {
+  const clean = finiteChartData(data).map((datum, datumIndex) => ({ datum, datumIndex })).filter(({ datum }) => datum.value > 0);
+  const total = clean.reduce((sum, { datum }) => sum + datum.value, 0);
+  if (!Number.isFinite(total) || total <= 0) return [];
+  let angle = 0;
+  return clean.map(({ datum, datumIndex }) => {
+    const startAngle = angle;
+    angle += (datum.value / total) * Math.PI * 2;
+    return { datumIndex, startAngle, endAngle: angle, value: datum.value };
+  });
 }
 
 function round(value: number): number {

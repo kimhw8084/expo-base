@@ -1,63 +1,53 @@
-# Certification model
+# Golden certification
 
-Precision Calm separates **contract-tested**, **runtime-tested**, and **production-certified** status so a green pure-logic test is never mistaken for a successful native/web build.
+Expo Base separates structural, browser, and native evidence. A source contract or web test is never reported as native runtime acceptance.
 
-## Level A — contract-tested
+## Commands
 
-Runs without external runtime dependencies and must pass before every merge:
+- `npm run golden:structural` validates the certification registry, Golden Catalog/patterns, architecture fixtures, repository/manifests, public API, boundaries, and generator.
+- `npm run golden:visual` performs a fresh deterministic export and verifies reviewed Chromium baselines.
+- `npm run golden:performance` performs a fresh export, enforces bundle/data budgets, and exercises representative runtime interactions.
+- `npm run golden:verify` runs all Golden-specific structural, visual, semantic, accessibility-stress, and performance gates. Full cross-browser behavior remains `npm run runtime:test:web`.
 
-- repository integrity
-- architecture boundaries
-- feature style/layout restrictions
-- token/platform strict TypeScript
-- responsive/overflow solvers
-- forms/navigation/overlay/list/data/visualization/feedback/accessibility contracts
-- golden-pattern identity checks
-- certification matrix and geometry invariants
-- generator scaffold tests
-- public facade/API snapshot stability
-- workspace version compatibility enforcement
-- migration auditor regression tests
-- 64-check generated/reference app doctor
-- root service injection and backend-neutral service acceptance flow
+`golden.certification.json` owns the public interaction-state matrix, visual scenarios, deterministic environment, route-level pseudo-copy coverage, performance budgets, and native validation policy.
 
-Current restored-checkpoint command: `npm run quality:gate36`. Gate 34 certifies centralized external/deep-link policy; Gate 35 certifies authentication resolution/protected routing; Gate 36 certifies semantic capability authorization, fail-closed entitlement decisions, nested capability route guards, generator/Doctor wiring, and migration enforcement.
+## Visual policy
 
-## Level B — runtime-tested
+Eleven high-information baselines cover component/form/data/feedback/overlay/visualization and workflow surfaces. Risk-selected scenarios combine light/dark, comfortable/compact, compact/wide, pseudo LTR/RTL, and reduced motion without multiplying every board across every dimension. The compact pseudo Visualization board protects local child containment, while the pseudo RTL stress board protects legible compact navigation. Chromium, UTC, `en-US`, CSS-pixel scale, disabled animation, deterministic local data, and static assets are the canonical pixel environment. Firefox and WebKit remain behavioral—not pixel—targets.
 
-Requires installed dependencies and the reference application:
+Snapshot failure artifacts contain expected, actual, diff, trace, route, and scenario names. Review a failure as a design change first. Baselines may change only after inspecting those artifacts and deliberately running:
 
-- full workspace TypeScript
-- Expo Router/Metro startup
-- static web export
-- Chromium, Firefox, WebKit E2E
-- screenshot/visual regression
-- clean Expo prebuild
-- iOS simulator critical flows
-- Android emulator critical flows
-- reduced-motion, keyboard, focus, safe-area and overlay interaction checks
+```sh
+GOLDEN_VISUAL_APPROVAL=reviewed npm run golden:visual:update
+```
 
-## Level C — production-certified
+Never update snapshots merely to make a failure green.
 
-Adds release-device and performance validation:
+## Pseudo-localization adoption policy
 
-- representative physical iOS and Android devices
-- cold/warm startup measurements
-- list and chart stress performance
-- memory regression review
-- accessibility manual spot checks with VoiceOver/TalkBack
-- upgrade compatibility report
-- production build and deployment smoke test
+Pseudo-localization is certified as route adoption, not merely as a working formatter. Each canonical
+reference route declares at least four visible copy classes in `pseudoCoverage.routes`: the
+`pseudoOwned` classes exercised by `useReferenceCopy`, explicit `intentionallyLiteral` technical or
+product data, and any `developerOnly` strings. The structural check requires the classifications to
+match the browser probes; the browser suite verifies transformed visible text for all canonical
+routes in Chromium and representative pseudo-RTL routes in Chromium, Firefox, and WebKit. This
+prevents a few transformed headings from falsely certifying an otherwise untranslated lab.
 
-A component or release must never be described as production-certified while only Level A has passed.
+## Semantic and resilience policy
 
-## Scenario matrix
+Selective ARIA snapshots protect page headings/landmarks, validation summaries, dialog/menu anatomy, data selection, and feedback state. Keyboard-only flows cover the command launcher, dialog/menu focus restoration, combobox operation, form validation, and data actions. Additional checks cover 200%-equivalent zoom, pseudo RTL, reduced motion, forced colors, long content, and compact geometry. `PrecisionWebAccessibilityStyles` installs shared focus-visible and forced-colors behavior in generated web document roots.
 
-The shared `@precision-calm/testing` package defines 252 deterministic combinations across:
+## Performance policy
 
-- 9 representative viewports
-- light/dark themes
-- comfortable/compact density
-- normal, long-text, large-number, empty, loading, error and offline content states
+Budgets detect regressions rather than impose speculative optimization. The static export uses Expo Router's installed production web async-routes support. Total JavaScript, largest chunk, heaviest initial route, largest lazy route chunk, split-route count, 10,000-record derivation, UI-settle time, and minimal-profile optional-dependency leakage are bounded in `golden.certification.json`. Cache persistence and optional native capability inclusion remain off for minimal generated apps.
 
-The same scenario definitions are intended to feed browser/native runtime runners once dependencies are installed.
+## Native validation matrix
+
+| Evidence | Current policy |
+| --- | --- |
+| Automated native source contracts | Required now: safe area, status bar, keyboard, back/close handling, orientation ownership, touch targets, theme bootstrap, optional capabilities |
+| Web behavioral equivalence | Required now through Chromium, Firefox, and WebKit |
+| iOS runtime acceptance | Required before release; not executed during the Golden program because the local destination is unavailable |
+| Android runtime acceptance | Deferred/waived for 1.0 under PM Policy B unless PM changes policy |
+
+Native runtime validation must later cover cold start, navigation, theme/density, Dynamic Type, safe area/orientation, keyboard/forms, overlays, VoiceOver/TalkBack, optional capabilities, and runtime logs. No current Golden result claims those scenarios ran.

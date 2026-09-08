@@ -12,6 +12,11 @@ export const spacing = {
   massive: 64,
 } as const;
 
+export const strokeWidths = {
+  standard: 1,
+  emphasis: 1.5,
+} as const;
+
 export const radii = {
   none: 0,
   xs: 6,
@@ -88,7 +93,9 @@ export const componentMetrics = {
   sheetHandleWidth: 40,
   sheetHandleHeight: 4,
   sheetMaxHeight: '88%' as const,
+  sheetMaxWidth: 640,
   dataListRowMinHeight: 62,
+  metricMinWidth: 220,
 } as const;
 
 export const interactionFeedback = {
@@ -117,11 +124,14 @@ export const visualizationMetrics = {
 } as const;
 
 export const feedbackTiming = {
-  toastVisible: 2200,
+  toastVisible: 4000,
 } as const;
 
 export const feedbackMetrics = {
+  toastMaxWidth: 440,
+  toastProgressHeight: 3,
   stateIconBox: 56,
+  stateMinHeight: 240,
   skeletonLineHeight: 12,
   skeletonTitleHeight: 18,
   skeletonAvatar: 40,
@@ -141,6 +151,14 @@ export const formMetrics = {
   switchThumb: 20,
 } as const;
 
+export const typographyMetrics = {
+  compact: {
+    display: { fontSize: 36, lineHeight: 40 },
+    h1: { fontSize: 28, lineHeight: 34 },
+    h2: { fontSize: 22, lineHeight: 28 },
+  },
+} as const;
+
 export const typography = {
   display: { fontSize: 40, lineHeight: 44, fontWeight: '700', letterSpacing: -1.2 },
   h1: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.7 },
@@ -151,6 +169,7 @@ export const typography = {
   label: { fontSize: 13, lineHeight: 18, fontWeight: '600', letterSpacing: 0 },
   caption: { fontSize: 12, lineHeight: 17, fontWeight: '400', letterSpacing: 0.1 },
   micro: { fontSize: 11, lineHeight: 15, fontWeight: '600', letterSpacing: 0.2 },
+  code: { fontSize: 13, lineHeight: 20, fontWeight: '400', letterSpacing: 0, fontFamily: 'monospace' },
 } as const;
 
 export type SpacingToken = keyof typeof spacing;

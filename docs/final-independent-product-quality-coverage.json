@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "audit": "Expo Base Final Independent Product Quality Re-Audit",
+  "findingsLockedAt": "2026-09-07T18:45:00-05:00",
+  "environment": {
+    "source": "fresh Expo static export from the live checkout",
+    "baseURL": "http://127.0.0.1:55651",
+    "timezone": "UTC",
+    "deviceScaleFactor": 1,
+    "nativeRuntimeExecuted": false
+  },
+  "routeSummary": {
+    "discovered": 29,
+    "routeDefinitionsReviewed": 29,
+    "intendedSurfacesRenderedInteractively": 27,
+    "conditionallyUnreachable": 2
+  },
+  "routes": [
+    { "path": "/", "review": "direct-interactive" },
+    { "path": "/accessibility-motion", "review": "direct-interactive" },
+    { "path": "/admin-demo", "review": "conditional-interactive", "entry": "authorization capability action" },
+    { "path": "/auth-session", "review": "direct-interactive" },
+    { "path": "/auth/callback", "review": "direct-interactive" },
+    { "path": "/authorization", "review": "direct-interactive" },
+    { "path": "/capabilities", "review": "direct-interactive" },
+    { "path": "/data", "review": "direct-interactive" },
+    { "path": "/feedback", "review": "direct-interactive" },
+    { "path": "/forms", "review": "direct-interactive" },
+    { "path": "/golden", "review": "direct-interactive", "states": 15 },
+    { "path": "/golden-plus", "review": "direct-interactive" },
+    { "path": "/link-error", "review": "direct-interactive" },
+    { "path": "/linking", "review": "direct-interactive" },
+    { "path": "/lists", "review": "direct-interactive" },
+    { "path": "/navigation", "review": "direct-interactive" },
+    { "path": "/overlays", "review": "direct-interactive" },
+    { "path": "/server-state", "review": "direct-interactive" },
+    { "path": "/services", "review": "direct-interactive" },
+    { "path": "/session-error", "review": "source-and-static-bootstrap", "limitation": "The deterministic memory auth adapter resolves healthy state immediately, so the protected error route redirects before its intended state can be held. The route source and no-JS bootstrap output were inspected." },
+    { "path": "/session-loading", "review": "source-and-static-bootstrap", "limitation": "The deterministic memory auth adapter resolves immediately, so the protected booting route cannot be held interactively. The route source and no-JS bootstrap output were inspected." },
+    { "path": "/session-security", "review": "direct-interactive" },
+    { "path": "/sign-in", "review": "conditional-interactive", "entry": "sign out from auth-session" },
+    { "path": "/stress", "review": "direct-interactive" },
+    { "path": "/system", "review": "direct-interactive" },
+    { "path": "/unlock", "review": "conditional-interactive", "entry": "lock from session-security" },
+    { "path": "/visualization", "review": "direct-interactive" },
+    { "path": "/workflows", "review": "direct-interactive" },
+    { "path": "/independent-audit-missing", "review": "direct-404-recovery" }
+  ],
+  "visualCoverage": {
+    "screenshotFiles": 293,
+    "contactSheets": 12,
+    "screenshotsInspected": 293,
+    "viewports": [
+      { "width": 320, "height": 740, "regime": "compact-phone" },
+      { "width": 390, "height": 844, "regime": "phone" },
+      { "width": 390, "height": 520, "regime": "short-height-phone" },
+      { "width": 844, "height": 390, "regime": "landscape-phone" },
+      { "width": 768, "height": 1024, "regime": "tablet-medium" },
+      { "width": 1024, "height": 800, "regime": "transitional-desktop" },
+      { "width": 1024, "height": 844, "regime": "transitional-desktop-dark" },
+      { "width": 1440, "height": 900, "regime": "wide-desktop" }
+    ],
+    "themes": ["light", "dark"],
+    "densities": ["comfortable", "compact"],
+    "localization": ["en-US LTR", "en-XA pseudo LTR", "en-XB pseudo RTL"],
+    "stress": ["long copy", "large values", "loading", "empty", "error", "offline", "permission", "reconnect", "maintenance", "dense data", "large lists", "constrained overlays", "reduced motion"]
+  },
+  "interactionCoverage": {
+    "highRiskFamiliesRepeatedAcrossAllBrowsers": 11,
+    "browsers": ["Chromium", "Firefox", "WebKit"],
+    "families": [
+      "buttons and async actions",
+      "tabs and bottom navigation roving focus",
+      "radio, checkbox, switch, and segmented selection",
+      "text, numeric, currency, OTP, date, time, and range input",
+      "select, combobox, and multiselect",
+      "disclosure",
+      "action menu and command launcher",
+      "dialog, alertdialog, sheet, and filter drawer",
+      "form validation, server errors, dirty/discard, and reset",
+      "table sorting, selection, filtering, pagination, and responsive transformation",
+      "server-state refresh, stale retention, mutation, and rollback",
+      "copy, reveal, media, timeline, and status",
+      "chart keyboard selection and accessible fallback",
+      "protected auth, authorization, lock, unlock, sign-out, callback, and recovery",
+      "unknown route recovery",
+      "route transitions and overlay cleanup on navigation",
+      "resize with combobox/sheet/drawer open"
+    ],
+    "keys": ["Tab", "Shift+Tab", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Enter", "Space", "Escape", "Home", "End"],
+    "adversarialCombinations": [
+      "navigate while action menu is open",
+      "resize an open combobox from desktop to short phone",
+      "open and close long sheet at constrained height",
+      "open filter drawer and reach actions at constrained height",
+      "validate, apply server error, edit, and invoke dirty discard",
+      "sort and select data before responsive transformation",
+      "select chart data by keyboard",
+      "copy and reveal technical values",
+      "sample route content at intermediate navigation frames",
+      "rapid composite navigation via arrow/Home/End",
+      "switch auth and session-security route sets"
+    ]
+  },
+  "browserCoverage": {
+    "Chromium": "full route, visual, responsive, theme, density, locale, state, interaction, and console audit",
+    "Firefox": "high-risk overlays, forms, composite navigation, data, command launcher, direct recovery, capability/server-state, resize, focus, and console audit",
+    "WebKit": "high-risk overlays, forms, composite navigation, data, command launcher, direct recovery, capability/server-state, resize, focus, and console audit"
+  },
+  "evidenceRoot": "test-results/final-independent-quality-audit/"
+}

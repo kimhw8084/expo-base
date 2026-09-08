@@ -1,18 +1,20 @@
 import type { PrecisionColors } from './colors';
 import { darkColors, lightColors } from './colors';
 import { applyBrandAccent, brandPresets, type PrecisionBrand } from './brand';
-import { componentMetrics, contentWidths, controlHeights, feedbackMetrics, feedbackTiming, formMetrics, iconSizes, interactionFeedback, layers, motion, radii, spacing, typography, visualizationMetrics } from './foundations';
+import { componentMetrics, contentWidths, controlHeights, feedbackMetrics, feedbackTiming, formMetrics, iconSizes, interactionFeedback, layers, motion, radii, spacing, strokeWidths, typography, typographyMetrics, visualizationMetrics } from './foundations';
 import { actionMetrics, layoutDimensions } from './layout';
 
 export interface PrecisionCalmTheme {
   spacing: typeof spacing;
   radii: typeof radii;
+  strokeWidths: typeof strokeWidths;
   controlHeights: typeof controlHeights;
   iconSizes: typeof iconSizes;
   contentWidths: typeof contentWidths;
   layers: typeof layers;
   motion: typeof motion;
   typography: typeof typography;
+  typographyMetrics: typeof typographyMetrics;
   interactionFeedback: typeof interactionFeedback;
   formMetrics: typeof formMetrics;
   componentMetrics: typeof componentMetrics;
@@ -33,12 +35,14 @@ export interface PrecisionCalmTheme {
 const geometry = {
   spacing,
   radii,
+  strokeWidths,
   controlHeights,
   iconSizes,
   contentWidths,
   layers,
   motion,
   typography,
+  typographyMetrics,
   interactionFeedback,
   formMetrics,
   componentMetrics,

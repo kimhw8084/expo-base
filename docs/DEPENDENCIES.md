@@ -1,4 +1,4 @@
-# Dependency baseline — 2026-08-30
+# Dependency baseline — 2026-09-06
 
 Externally verified for the current scaffold:
 
@@ -15,3 +15,5 @@ Externally verified for the current scaffold:
 Unistyles requires the New Architecture and Nitro Modules. Expo SDK 54+ already enables the edge-to-edge behavior that Unistyles recommends. The reference app sets `nativeBreakpointsMode: 'points'` so native responsiveness is based on logical screen points rather than raw pixels.
 
 Before the first production native build, install dependencies and run a clean Expo prebuild in a networked development environment, then execute the full reference-app visual and native acceptance matrix. Dependency changes must remain exact/pinned until deliberately reviewed.
+
+The versions above are the workspace compatibility source of truth and are currently deduplicated in the installed tree. Lockfile-based CI installs should use `npm ci`; native platform support and runtime validation remain separate release gates.

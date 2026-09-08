@@ -4,11 +4,13 @@ import { Page, PageHeader, ScrollScreen, Section, AdaptiveGrid, AdaptiveGridItem
 import { HStack, Text, VStack } from '@precision-calm/ui';
 import { Button, Card } from '@precision-calm/ui';
 import { AccessibleGroup, LiveRegion, VisuallyHidden } from '@precision-calm/ui';
-import { Reveal, haptic, usePrecisionReducedMotion } from '@precision-calm/ui';
+import { Reveal, usePrecisionReducedMotion } from '@precision-calm/ui';
+import { usePrecisionHaptics } from '@precision-calm/haptics';
 
 export default function AccessibilityMotionReferenceScreen() {
   const router = usePrecisionRouter();
   const reduceMotion = usePrecisionReducedMotion();
+  const haptics = usePrecisionHaptics();
   const [visible, setVisible] = useState(true);
   const [announcement, setAnnouncement] = useState('Ready');
   return (
@@ -23,7 +25,7 @@ export default function AccessibilityMotionReferenceScreen() {
               <Card><VStack gap="lg"><Text variant="h2">Reduced motion</Text><Text tone="secondary">System preference detected: {reduceMotion ? 'Reduced motion enabled' : 'Standard motion enabled'}.</Text><Button label={visible ? 'Hide reveal' : 'Show reveal'} onPress={() => setVisible((value) => !value)} />{visible ? <Reveal kind="slide"><Card><VStack gap="sm"><Text variant="h3">Purposeful transition</Text><Text tone="secondary">With reduced motion enabled, Reanimated reaches the same final state without requiring the movement.</Text></VStack></Card></Reveal> : null}</VStack></Card>
             </AdaptiveGridItem>
             <AdaptiveGridItem>
-              <Card><VStack gap="lg"><Text variant="h2">Haptic intent</Text><Text tone="secondary">Haptics are invoked through semantic intents and silently degrade when hardware/browser support is unavailable.</Text><HStack gap="sm"><Button label="Selection" variant="secondary" onPress={() => void haptic('selection')} /><Button label="Confirm" onPress={() => void haptic('confirm')} /><Button label="Warning" variant="outline" onPress={() => void haptic('warning')} /></HStack></VStack></Card>
+              <Card><VStack gap="lg"><Text variant="h2">Haptic intent</Text><Text tone="secondary">This lab uses a deterministic fake adapter. Production haptics are optional and silently degrade when hardware/browser support is unavailable.</Text><HStack gap="sm"><Button label="Selection" variant="secondary" onPress={() => void haptics.perform('selection')} /><Button label="Confirm" onPress={() => void haptics.perform('confirm')} /><Button label="Warning" variant="outline" onPress={() => void haptics.perform('warning')} /></HStack></VStack></Card>
             </AdaptiveGridItem>
           </AdaptiveGrid>
         </Section>

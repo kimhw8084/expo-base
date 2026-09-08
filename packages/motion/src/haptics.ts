@@ -1,3 +1,0 @@
-import * as Haptics from 'expo-haptics';
-export type HapticIntent='selection'|'confirm'|'warning'|'error'|'impact';
-export async function haptic(intent:HapticIntent):Promise<void>{try{if(intent==='selection'){await Haptics.selectionAsync();return;}if(intent==='confirm'){await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);return;}if(intent==='warning'){await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);return;}if(intent==='error'){await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);return;}await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);}catch{/* Haptics are progressive enhancement, never a workflow dependency. */}}

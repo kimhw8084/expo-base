@@ -12,18 +12,112 @@ export interface ListRowProps {
   onPress?: (() => void) | undefined;
   selected?: boolean;
   disabled?: boolean;
+  disclosure?: boolean;
+  divider?: boolean;
+  contentPolicy?: 'truncate' | 'wrap';
+  accessibilityLabel?: string;
+  testID?: string;
 }
-export function ListRow({ title, subtitle, leadingIcon, trailing, onPress, selected = false, disabled = false }: ListRowProps) {
+
+export function ListRow({
+  title,
+  subtitle,
+  leadingIcon,
+  trailing,
+  onPress,
+  selected = false,
+  disabled = false,
+  disclosure = true,
+  divider = true,
+  contentPolicy = 'truncate',
+  accessibilityLabel,
+  testID,
+}: ListRowProps) {
   const density = useDensity();
   const { hovered, focused, interactionProps } = useInteractionState();
-  const content = <>{leadingIcon ? <View style={styles.icon}><Icon name={leadingIcon} size="sm" tone="secondary" /></View> : null}<VStack gap="xs"><Text variant="label" numberOfLines={1}>{title}</Text>{subtitle ? <Text variant="caption" tone="secondary" numberOfLines={2}>{subtitle}</Text> : null}</VStack><View style={styles.spacer} />{trailing}</>;
-  if (!onPress) return <View style={[styles.row, density === 'compact' && styles.compact]}>{content}</View>;
-  return <Pressable accessibilityRole="button" accessibilityLabel={title} accessibilityState={{ selected, disabled }} disabled={disabled} onPress={onPress} {...interactionProps} style={({ pressed }) => [styles.row, density === 'compact' && styles.compact, styles.pressable, selected && styles.selected, hovered && !disabled && styles.hovered, focused && styles.focused, pressed && !disabled && styles.pressed, disabled && styles.disabled]}>{content}</Pressable>;
+  const resolvedTrailing = trailing ?? (onPress && disclosure ? <Icon name="chevronRight" size="sm" tone="tertiary" /> : null);
+  const content = (
+    <>
+      {leadingIcon ? <View style={styles.icon}><Icon name={leadingIcon} size="sm" tone={selected ? 'accent' : 'secondary'} /></View> : null}
+      <View style={styles.copy}>
+        <VStack gap="xs">
+          <Text variant="label" numberOfLines={contentPolicy === 'truncate' ? 2 : undefined}>{title}</Text>
+          {subtitle ? <Text variant="caption" tone="secondary" numberOfLines={contentPolicy === 'truncate' ? 2 : undefined}>{subtitle}</Text> : null}
+        </VStack>
+      </View>
+      <View style={styles.spacer} />
+      {resolvedTrailing ? <View style={styles.trailing}>{resolvedTrailing}</View> : null}
+    </>
+  );
+
+  if (!onPress) return <View testID={testID} style={[styles.row, !divider && styles.noDivider, density === 'compact' && styles.compact]}>{content}</View>;
+
+  return (
+    <Pressable
+      accessibilityRole="button"
+      role="button"
+      accessibilityLabel={accessibilityLabel ?? [title, subtitle].filter(Boolean).join('. ')}
+      aria-label={accessibilityLabel ?? [title, subtitle].filter(Boolean).join('. ')}
+      accessibilityState={{ selected, disabled }}
+      aria-pressed={selected}
+      aria-disabled={disabled}
+      disabled={disabled}
+      onPress={onPress}
+      testID={testID}
+      {...interactionProps}
+      style={({ pressed }) => [
+        styles.row,
+        !divider && styles.noDivider,
+        density === 'compact' && styles.compact,
+        styles.pressable,
+        selected && styles.selected,
+        hovered && !disabled && styles.hovered,
+        selected && hovered && !disabled && styles.selectedHovered,
+        focused && styles.focused,
+        pressed && !disabled && styles.pressed,
+        disabled && styles.disabled,
+      ]}
+    >
+      {content}
+    </Pressable>
+  );
 }
+
 const styles = StyleSheet.create((theme) => ({
-  row: { minWidth: 0, minHeight: theme.componentMetrics.dataListRowMinHeight, flexDirection: 'row', alignItems: 'center', gap: theme.spacing.md, paddingVertical: theme.spacing.sm, borderBottomWidth: 1, borderBottomColor: theme.colors.border.subtle },
+  row: {
+    minWidth: 0,
+    minHeight: theme.componentMetrics.dataListRowMinHeight,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.md,
+    paddingVertical: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.sm,
+    borderBottomWidth: theme.strokeWidths.standard,
+    borderBottomColor: theme.colors.border.subtle,
+  },
   compact: { minHeight: theme.controlHeights.md, paddingVertical: theme.spacing.xs },
-  pressable: { borderRadius: theme.radii.sm, borderWidth: 1, borderColor: theme.colors.transparent, paddingHorizontal: theme.spacing.sm },
-  icon: { width: theme.controlHeights.sm, height: theme.controlHeights.sm, borderRadius: theme.radii.sm, alignItems: 'center', justifyContent: 'center', backgroundColor: theme.colors.background.subtle },
-  spacer: { flex: 1 }, selected: { backgroundColor: theme.colors.interactive.subtle }, hovered: { backgroundColor: theme.colors.interactive.subtleHover }, focused: { borderColor: theme.colors.border.focus }, pressed: { opacity: theme.interactionFeedback.pressedOpacity }, disabled: { opacity: theme.interactionFeedback.disabledOpacity },
+  noDivider: { borderBottomWidth: 0 },
+  pressable: {
+    borderRadius: theme.radii.sm,
+    borderWidth: theme.strokeWidths.standard,
+    borderColor: theme.colors.transparent,
+  },
+  icon: {
+    width: theme.controlHeights.sm,
+    height: theme.controlHeights.sm,
+    flexShrink: 0,
+    borderRadius: theme.radii.sm,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.colors.background.subtle,
+  },
+  copy: { minWidth: 0, flexShrink: 1 },
+  spacer: { flex: 1 },
+  trailing: { flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
+  selected: { backgroundColor: theme.colors.interactive.subtle, borderColor: theme.colors.interactive.primary },
+  hovered: { backgroundColor: theme.colors.interactive.subtleHover },
+  selectedHovered: { backgroundColor: theme.colors.interactive.subtleHover, borderColor: theme.colors.interactive.primary },
+  focused: { borderColor: theme.colors.border.focus, boxShadow: `0 0 0 ${theme.interactionFeedback.focusRingWidth}px ${theme.colors.border.focus}` },
+  pressed: { opacity: theme.interactionFeedback.pressedOpacity },
+  disabled: { opacity: theme.interactionFeedback.disabledOpacity },
 }));

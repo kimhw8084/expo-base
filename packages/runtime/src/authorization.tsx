@@ -27,6 +27,7 @@ export function PrecisionAuthorizationProvider({ adapter, children }: PropsWithC
   const [capabilities, setCapabilities] = useState<readonly string[]>([]);
   const [errorCode, setErrorCode] = useState<'capabilities_unavailable' | null>(null);
   const revision = useRef(0);
+  const refreshRequest = useRef<Promise<void> | null>(null);
   const mounted = useRef(true);
 
   const apply = useCallback((values: readonly string[]) => {
@@ -35,7 +36,7 @@ export function PrecisionAuthorizationProvider({ adapter, children }: PropsWithC
   }, []);
 
   const fetchFor = useCallback(async (targetUserId: string) => {
-    const started = revision.current;
+    const started = ++revision.current;
     if (mounted.current) { setStatus('loading'); setErrorCode(null); }
     try {
       const values = await adapter.getCapabilities(targetUserId);
@@ -46,17 +47,25 @@ export function PrecisionAuthorizationProvider({ adapter, children }: PropsWithC
     }
   }, [adapter, apply]);
 
+  const startRefresh = useCallback((targetUserId: string) => {
+    if (refreshRequest.current) return refreshRequest.current;
+    const promise = fetchFor(targetUserId);
+    refreshRequest.current = promise;
+    void promise.finally(() => { if (refreshRequest.current === promise) refreshRequest.current = null; });
+    return promise;
+  }, [fetchFor]);
+
   useEffect(() => {
     mounted.current = true;
-    if (!userId) { setCapabilities([]); setStatus('inactive'); setErrorCode(null); return; }
+    if (!userId) { revision.current += 1; setCapabilities([]); setStatus('inactive'); setErrorCode(null); return; }
     const unsubscribe = adapter.subscribe?.(userId, (values) => { revision.current += 1; apply(values); });
-    void fetchFor(userId);
-    return () => { unsubscribe?.(); };
-  }, [adapter, apply, fetchFor, userId]);
+    void startRefresh(userId);
+    return () => { revision.current += 1; refreshRequest.current = null; unsubscribe?.(); };
+  }, [adapter, apply, startRefresh, userId]);
 
   useEffect(() => () => { mounted.current = false; }, []);
 
-  const refresh = useCallback(async () => { if (userId) await fetchFor(userId); }, [fetchFor, userId]);
+  const refresh = useCallback(() => userId ? startRefresh(userId) : Promise.resolve(), [startRefresh, userId]);
   const evaluate = useCallback((requirement: CapabilityRequirement) => evaluateCapabilityRequirement({ status, capabilities }, requirement), [status, capabilities]);
   const value = useMemo<PrecisionAuthorizationRuntime>(() => ({ status, capabilities, errorCode, refresh, evaluate }), [status, capabilities, errorCode, refresh, evaluate]);
   return <PrecisionAuthorizationContext.Provider value={value}>{children}</PrecisionAuthorizationContext.Provider>;

@@ -1,9 +1,10 @@
 {
   "name": "@precision-calm/create-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "bin": {
-    "create-precision-app": "bin/create-precision-app.mjs"
+    "create-precision-app": "bin/create-precision-app.mjs",
+    "scaffold-precision-screen": "bin/scaffold-precision-screen.mjs"
   }
 }

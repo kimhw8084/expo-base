@@ -28,8 +28,8 @@ const styles = StyleSheet.create((theme) => ({
   body: { flex: 1, minWidth: 0, flexDirection: 'row' },
   sidebar: {
     flexShrink: 0,
-    borderRightWidth: 1,
-    borderRightColor: theme.colors.border.subtle,
+    borderEndWidth: theme.strokeWidths.standard,
+    borderEndColor: theme.colors.border.subtle,
     backgroundColor: theme.colors.background.surface,
   },
   sidebar_compact: { width: theme.layoutDimensions.sidebar.compact },

@@ -1,3 +1,4 @@
+import { Appearance, Platform } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { breakpoints, createPrecisionThemes } from '@precision-calm/tokens';
 import { referenceBrand } from './brand';
@@ -15,7 +16,7 @@ StyleSheet.configure({
   themes,
   breakpoints,
   settings: {
-    adaptiveThemes: true,
+    initialTheme: Platform.OS === 'web' ? 'light' : Appearance.getColorScheme() === 'dark' ? 'dark' : 'light',
     nativeBreakpointsMode: 'points',
   },
 });

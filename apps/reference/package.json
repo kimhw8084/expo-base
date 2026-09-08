@@ -1,6 +1,6 @@
 {
   "name": "@precision-calm/reference",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "main": "index.ts",
   "scripts": {
@@ -14,6 +14,7 @@
     "@precision-calm/navigation-router": "*",
     "@precision-calm/platform": "*",
     "@precision-calm/runtime": "*",
+    "@precision-calm/server-state": "*",
     "@precision-calm/tokens": "*",
     "@precision-calm/ui": "*",
     "expo": "57.0.18",
@@ -40,7 +41,20 @@
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.26.0",
     "expo-constants": "~57.0.16",
-    "expo-status-bar": "~57.0.1"
+    "expo-status-bar": "~57.0.1",
+    "@precision-calm/session-security": "*",
+    "@precision-calm/capabilities": "*",
+    "@precision-calm/device": "*",
+    "@precision-calm/haptics": "*",
+    "@precision-calm/local-auth": "*",
+    "@precision-calm/media": "*",
+    "@precision-calm/notifications": "*",
+    "@precision-calm/observability": "*",
+    "@precision-calm/preferences": "*",
+    "@precision-calm/runtime-capabilities": "*",
+    "@precision-calm/secure-storage": "*",
+    "@precision-calm/sharing": "*",
+    "@precision-calm/updates": "*"
   },
   "devDependencies": {
     "babel-preset-expo": "~57.0.0",

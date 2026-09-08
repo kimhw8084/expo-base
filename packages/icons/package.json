@@ -1,11 +1,12 @@
 {
   "name": "@precision-calm/icons",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
+    "@precision-calm/i18n": "*",
     "@precision-calm/tokens": "*"
   },
   "peerDependencies": {

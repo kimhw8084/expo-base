@@ -1,19 +1,19 @@
-appId: com.precisioncalm.reference
+appId: com.expobase.reference
 ---
 - launchApp
-- assertVisible: "Adaptive layout acceptance surface"
-- tapOn: "Open golden patterns"
+- assertVisible: "Universal application foundation"
+- tapOn: "Golden patterns"
 - assertVisible: "Dashboard"
 - tapOn: "Next pattern"
 - tapOn: "Home"
-- tapOn: "Open forms gate"
+- tapOn: "Forms"
 - tapOn: "Back"
-- tapOn: "Open authorization gate"
+- tapOn: "Authorization"
 - assertVisible: "Authorization capability acceptance"
 - tapOn: "Open capability-protected route"
 - assertVisible: "Capability-protected route"
 - tapOn: "Back"
-- tapOn: "Open services gate"
+- tapOn: "Services"
 - assertVisible: "Service + auth runtime acceptance surface"
 - tapOn: "Verify storage adapter"
 - assertVisible: "Storage returned reference-user"

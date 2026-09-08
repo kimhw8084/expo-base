@@ -31,6 +31,8 @@ These remain intentionally separate because they represent configuration or inte
 - `@precision-calm/navigation-router` — Expo Router adapter
 - `@precision-calm/form-rhf` — React Hook Form adapter
 - `@precision-calm/adapters` — backend/service contracts
+- `@precision-calm/server-state` — scoped query keys, cache lifecycle, mutations, and feedback mapping
+- optional capability packages — root registration uses headless/runtime entry points; capability-backed UI such as copy presentation uses the documented UI subpath
 
 ## Compatibility manifest
 

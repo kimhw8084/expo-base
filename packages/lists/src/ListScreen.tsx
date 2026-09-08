@@ -10,6 +10,8 @@ export interface ListScreenProps<T> {
   header?: ReactNode;
   footer?: ReactNode;
   empty?: ReactNode;
+  loading?: boolean;
+  loadingComponent?: ReactNode;
   gap?: Exclude<SpacingToken, 'none' | 'xxs'>;
   refreshing?: boolean;
   onRefresh?: (() => void) | undefined;
@@ -18,17 +20,18 @@ export interface ListScreenProps<T> {
   testID?: string;
 }
 
-export function ListScreen<T>({ items, keyExtractor, renderItem, header, footer, empty, gap = 'sm', refreshing = false, onRefresh, onEndReached, onEndReachedThreshold = 0.5, testID }: ListScreenProps<T>) {
+export function ListScreen<T>({ items, keyExtractor, renderItem, header, footer, empty, loading = false, loadingComponent, gap = 'sm', refreshing = false, onRefresh, onEndReached, onEndReachedThreshold = 0.5, testID }: ListScreenProps<T>) {
   const Separator = () => <View style={styles[`separator_${gap}`]} />;
+  const resolvedEmpty = loading ? loadingComponent : empty;
   return (
-    <View style={styles.screen}>
+    <View style={styles.screen} accessibilityState={{ busy: loading || refreshing }}>
       <FlatList
         data={items as T[]}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         ListHeaderComponent={header ? <View style={styles.header}>{header}</View> : null}
         ListFooterComponent={footer ? <View style={styles.footer}>{footer}</View> : null}
-        ListEmptyComponent={empty ? <View style={styles.empty}>{empty}</View> : null}
+        ListEmptyComponent={resolvedEmpty ? <View style={styles.empty}>{resolvedEmpty}</View> : null}
         ItemSeparatorComponent={Separator}
         refreshing={refreshing}
         onRefresh={onRefresh}
@@ -50,5 +53,13 @@ const styles = StyleSheet.create((theme, rt) => ({
   header: { minWidth: 0, paddingBottom: theme.spacing.xl },
   footer: { minWidth: 0, paddingTop: theme.spacing.xl },
   empty: { flexGrow: 1, minWidth: 0, justifyContent: 'center' },
-  separator_xs: { height: theme.spacing.xs }, separator_sm: { height: theme.spacing.sm }, separator_md: { height: theme.spacing.md }, separator_lg: { height: theme.spacing.lg }, separator_xl: { height: theme.spacing.xl }, separator_xxl: { height: theme.spacing.xxl }, separator_xxxl: { height: theme.spacing.xxxl }, separator_huge: { height: theme.spacing.huge }, separator_massive: { height: theme.spacing.massive },
+  separator_xs: { height: theme.spacing.xs },
+  separator_sm: { height: theme.spacing.sm },
+  separator_md: { height: theme.spacing.md },
+  separator_lg: { height: theme.spacing.lg },
+  separator_xl: { height: theme.spacing.xl },
+  separator_xxl: { height: theme.spacing.xxl },
+  separator_xxxl: { height: theme.spacing.xxxl },
+  separator_huge: { height: theme.spacing.huge },
+  separator_massive: { height: theme.spacing.massive },
 }));
