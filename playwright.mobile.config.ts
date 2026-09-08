@@ -23,7 +23,8 @@ export default defineConfig({
       maxDiffPixelRatio: 0.002,
     },
   },
-  snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}{ext}',
+  // System-font metrics differ between macOS development and Linux CI. Keep explicit reviewed baselines per host OS instead of weakening visual assertions.
+  snapshotPathTemplate: `{testDir}/{testFilePath}-snapshots/${process.platform}/{arg}{ext}`,
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,

@@ -18,7 +18,7 @@ Runtime controls add light/dark, comfortable/compact, pseudo LTR/RTL, and reduce
 
 ## Honest boundaries
 
-The browser Unistyles runtime reports zero hardware safe-area insets. This lane does not inject CSS values and call them iPhone safe areas. Non-zero inset geometry remains protected by the shared layout and overlay solver contracts, including the existing property tests. The mobile browser lane therefore certifies composition under real device contexts and solver-level synthetic inset behavior, but not actual notch or home-indicator values.
+The browser Unistyles runtime reports zero hardware safe-area insets. This lane does not inject CSS values and call them iPhone safe areas. Non-zero inset geometry remains protected by the shared layout and overlay solver contracts, including the existing property tests. The mobile browser lane therefore certifies composition under real device contexts and solver-level synthetic inset behavior, but not actual notch or home-indicator values. Mobile visual snapshots use explicit `darwin` and `linux` directories because system-font metrics differ across development and CI hosts; both reviewed baseline sets retain the same strict pixel-diff policy.
 
 The keyboard tests reduce the browser viewport to a keyboard-sized usable region. They certify reachability, scrolling, sticky actions, and overlay containment only. They do not certify native keyboard-controller behavior.
 

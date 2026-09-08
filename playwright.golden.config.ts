@@ -19,6 +19,7 @@ export default defineConfig({
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}{ext}',
+  // System-font metrics differ between macOS development and Linux CI. Keep explicit reviewed baselines per host OS instead of weakening visual assertions.
+  snapshotPathTemplate: `{testDir}/__screenshots__/{testFilePath}/${process.platform}/{arg}{ext}`,
   projects: [{ name: 'golden-chromium', use: { browserName: 'chromium' } }],
 });
