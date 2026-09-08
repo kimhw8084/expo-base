@@ -28,7 +28,7 @@ The live route tree, package implementations, permanent tests, and current stati
 - Whole-page horizontal-overflow cases: **0**
 - Native runtime execution: **none**
 
-The complete machine-readable coverage record is in `docs/golden-product-quality-coverage.json`. Raw measurements and the screenshot atlas are under `test-results/golden-quality-atlas/`.
+The complete machine-readable coverage record is in `docs/golden-product-quality-coverage.json`. Raw measurements and the screenshot atlas were generated under `test-results/golden-quality-atlas/` during the audit; those ignored outputs are not tracked.
 
 ## Authoritative route/state matrix
 
@@ -270,7 +270,7 @@ The audit also confirmed important behavior that should be preserved during any 
 
 - Defect ledger: `docs/golden-product-quality-defects.json` — **29 open items**
 - Coverage manifest: `docs/golden-product-quality-coverage.json`
-- Temporary review atlas: `test-results/golden-quality-atlas/` — **207 retained screenshots** plus geometry, interaction, semantic, RTL, transition, and console evidence
+- Temporary review atlas: `test-results/golden-quality-atlas/` — **207 screenshots generated during the audit** plus geometry, interaction, semantic, RTL, transition, and console evidence
 
 The atlas is ignored evidence, not a permanent regression baseline. No Golden visual snapshot was updated.
 
@@ -309,7 +309,7 @@ No P2 finding was marked fixed as collateral; Pass 1 did not broaden into P2 wor
 
 `tests/e2e/web/product-quality-p1.spec.ts` adds permanent geometry, semantic-root, keyboard-roving, focus-lifecycle, viewport-containment, and data-hierarchy assertions. It runs the interaction and semantic paths in Chromium, Firefox, and WebKit. Existing semantic certification now includes the corrected alert-dialog and table structures, and existing reference behavior checks use the corrected option roles. Source contracts also protect the overlay and accessibility ownership changes.
 
-The original P1 reproduction matrix now passes **39/39** across the three browser engines. The final temporary review atlas at `test-results/p1-quality-review/` contains **14** settled-state screenshots spanning light/dark, comfortable/compact, compact/desktop/short-height, and RTL conditions. Review confirmed stacked split geometry, anchored bounded combobox presentation, reachable drawer actions, coherent dialog/alert hierarchy, data-table presentation, and composite-control layouts.
+The original P1 reproduction matrix now passes **39/39** across the three browser engines. The final temporary review atlas at `test-results/p1-quality-review/` was generated with **14** settled-state screenshots spanning light/dark, comfortable/compact, compact/desktop/short-height, and RTL conditions. Review confirmed stacked split geometry, anchored bounded combobox presentation, reachable drawer actions, coherent dialog/alert hierarchy, data-table presentation, and composite-control layouts.
 
 ### Permanent visual baselines
 
@@ -341,7 +341,7 @@ Golden visual verification passes **10/10**.
 - performance budgets: **PASS** (4,887,537-byte total JS; 3,404,056-byte largest chunk; 4,731,187-byte heaviest initial route; 59,923-byte largest lazy route; 27 split routes; 0.39ms representative data derivation)
 - `git diff --check`: **PASS**
 
-No native runtime acceptance was performed or claimed. The ignored review atlas is retained for owner inspection; temporary collector code and local static servers were removed.
+No native runtime acceptance was performed or claimed. The ignored review atlas was generated for owner inspection during the pass and is not tracked; temporary collector code and local static servers were removed.
 
 ---
 
@@ -376,7 +376,7 @@ The old source-format-only long-content checks were updated to recognize the sem
 
 ### Visual review
 
-The final ignored Pass 2 review atlas at `test-results/p2-quality-review/` contains **23 screenshots** covering changed and sampled unaffected surfaces at 320, 390, 1024, and 1280 widths; short-height conditions; light/dark; comfortable/compact; pseudo LTR/RTL; and the unknown-route recovery state. Review confirmed complete table headings, visible dark/subtle skeletons, one visible capability result, coherent long-action anatomy, preserved technical bidi, expanded pseudo copy, static chart fallback tables, and styled recovery.
+The final ignored Pass 2 review atlas at `test-results/p2-quality-review/` was generated with **23 screenshots** covering changed and sampled unaffected surfaces at 320, 390, 1024, and 1280 widths; short-height conditions; light/dark; comfortable/compact; pseudo LTR/RTL; and the unknown-route recovery state. Review confirmed complete table headings, visible dark/subtle skeletons, one visible capability result, coherent long-action anatomy, preserved technical bidi, expanded pseudo copy, static chart fallback tables, and styled recovery.
 
 Two permanent images changed through the reviewed approval path:
 

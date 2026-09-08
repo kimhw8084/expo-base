@@ -178,7 +178,7 @@ documents did not change the independent findings.
 - Independent report: `docs/FINAL_INDEPENDENT_PRODUCT_QUALITY_AUDIT.md`
 - Fresh ledger: `docs/final-independent-product-quality-defects.json` (6 findings)
 - Coverage: `docs/final-independent-product-quality-coverage.json`
-- Ignored atlas: `test-results/final-independent-quality-audit/` (293 screenshots, 12 contact sheets)
+- Ignored atlas generated during the audit: `test-results/final-independent-quality-audit/` (293 screenshots, 12 contact sheets); the output is not tracked.
 
 Product/source changes: **NONE — audit only**.
 
