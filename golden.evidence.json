@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "policy": "Evidence IDs resolve to checked-in fixture registries, contract/browser test files, semantic stress tests, or approved visual certification baselines.",
+  "fixtures": [
+    { "id": "owner-workbench-fixtures", "file": "apps/reference/workbenchFixtures.ts", "marker": "ownerFixtures" }
+  ],
+  "contracts": [
+    { "id": "owner-certification-contract", "file": "scripts/test-owner-certification.mjs", "marker": "owner-certification-contract" }
+  ],
+  "browser": [
+    { "id": "owner-workbench-browser", "file": "tests/e2e/web/ultimate-workbench.spec.ts", "marker": "owner state workbench renders" },
+    { "id": "advanced-visualization-browser", "file": "tests/e2e/web/ultimate-visualization.spec.ts", "marker": "advanced visualization module" }
+  ],
+  "mobile": [
+    { "id": "mobile-owner-parity", "file": "tests/e2e/mobile/mobile-parity.spec.ts", "marker": "touch form controls update state" }
+  ],
+  "semantic": [
+    { "id": "golden-semantic-certification", "file": "tests/e2e/golden/golden.semantic.spec.ts", "marker": "@semantic" }
+  ],
+  "forcedColors": [
+    { "id": "forced-colors-certification", "file": "tests/e2e/golden/golden.semantic.spec.ts", "marker": "advanced chart fallbacks remain understandable" }
+  ],
+  "largeText": [
+    { "id": "large-text-certification", "file": "tests/e2e/golden/golden.semantic.spec.ts", "marker": "zoom, RTL, and reduced motion" }
+  ],
+  "visual": [
+    { "id": "actions-wide", "baselineId": "actions-wide" },
+    { "id": "forms-wide", "baselineId": "forms-wide" },
+    { "id": "data-workspace-wide", "baselineId": "data-workspace-wide" },
+    { "id": "golden-plus-advanced-wide", "baselineId": "golden-plus-advanced-wide" },
+    { "id": "visualization-wide", "baselineId": "visualization-wide" }
+  ]
+}

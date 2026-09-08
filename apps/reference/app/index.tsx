@@ -51,6 +51,14 @@ const routeGroups = [
       { title: 'Authorization', subtitle: 'Capability and entitlement gating', icon: 'shieldCheck', path: '/authorization' },
     ],
   },
+  {
+    title: 'Flagship compositions',
+    routes: [
+      { title: 'Analytics showcase', subtitle: 'A coherent trend, comparison, distribution and detail narrative', icon: 'sparkles', path: '/analytics-showcase' },
+      { title: 'Finance showcase', subtitle: 'Neutral value, contribution and target mechanics', icon: 'arrowUpDown', path: '/finance-showcase' },
+      { title: 'Monitoring showcase', subtitle: 'Health, thresholds, events and operational detail', icon: 'refresh', path: '/monitoring-showcase' },
+    ],
+  },
 ] as const;
 
 export default function FoundationReferenceScreen() {

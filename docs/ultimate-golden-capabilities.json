@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "generatedBy": "scripts/generate-ultimate-golden-audit.mjs",
   "source": "live checkout",
   "metrics": {
@@ -7,11 +7,20 @@
     "catalogOwners": 76,
     "ownershipRecords": 24,
     "discoveryChallenges": 56,
-    "publicApiSymbols": 366,
+    "publicApiSymbols": 379,
     "stateOwners": 28,
-    "visualBaselines": 12,
-    "pseudoRoutes": 13,
-    "ownerCertificationRecords": 14
+    "visualBaselines": 15,
+    "pseudoRoutes": 16,
+    "ownerCertificationRecords": 21,
+    "declaredOwnerStates": 140,
+    "mappedOwnerStates": 140,
+    "unmappedOwnerStates": 0,
+    "fixtureFamilies": 21,
+    "keyboardEvidenceOwners": 21,
+    "touchEvidenceOwners": 18,
+    "forcedColorEvidenceOwners": 21,
+    "largeTextEvidenceOwners": 21,
+    "visualEvidenceOwners": 21
   },
   "inventories": {
     "workspaces": [
@@ -1038,6 +1047,8 @@
       "data-display": [
         "AdaptiveDataTable",
         "AdaptiveDataTableProps",
+        "BreakdownPanel",
+        "ChartPanel",
         "CursorPagination",
         "CursorPaginationProps",
         "DataColumn",
@@ -1058,9 +1069,11 @@
         "ListRow",
         "ListRowProps",
         "Metric",
+        "MetricDelta",
         "MetricGroup",
         "MetricGroupProps",
         "MetricProps",
+        "MetricTrendCard",
         "Pagination",
         "PaginationProps",
         "SelectionBar",
@@ -1359,19 +1372,26 @@
         "AreaChartProps",
         "BarChart",
         "BarChartProps",
+        "ChartAxes",
+        "ChartAxesProps",
         "ChartDataTable",
         "ChartEmptyState",
         "ChartErrorState",
         "ChartFrame",
         "ChartFrameProps",
+        "ChartInspector",
+        "ChartInspectorValue",
         "ChartLegend",
         "ChartLegendItem",
         "ChartLoadingState",
+        "ChartRefreshingState",
         "ChartSeriesDataTable",
         "ChartSeriesTableColumn",
         "ChartSeriesTableRow",
         "ChartSize",
+        "ChartStaleState",
         "ChartState",
+        "ChartValueFormatter",
         "DonutChart",
         "DonutChartProps",
         "LineChart",
@@ -1383,7 +1403,9 @@
         "StackedBarChartProps",
         "StackedBarDatum",
         "StackedBarSeries",
-        "VisualizationSeries"
+        "VisualizationSeries",
+        "XYChartDataTable",
+        "XYChartTableRow"
       ]
     },
     "sourceInventory": {
@@ -1436,6 +1458,7 @@
       ],
       "dataDisplay": [
         "AdaptiveDataTable.tsx",
+        "AnalyticsPanels.tsx",
         "DataExport.ts",
         "DataTableControls.tsx",
         "DataToolbar.tsx",
@@ -1451,7 +1474,9 @@
         "AreaChart.tsx",
         "BarChart.tsx",
         "ChartAnatomy.tsx",
+        "ChartAxes.tsx",
         "ChartFrame.tsx",
+        "ChartInspector.tsx",
         "DonutChart.tsx",
         "LineChart.tsx",
         "Progress.tsx",
@@ -1462,6 +1487,10 @@
       ],
       "advancedVisualization": [
         "AdvancedCharts.tsx",
+        "Heatmap.tsx",
+        "Histogram.tsx",
+        "ScatterPlot.tsx",
+        "SeriesCharts.tsx",
         "index.ts"
       ],
       "referenceRoutes": [
@@ -1469,12 +1498,14 @@
         "/+not-found",
         "/accessibility-motion",
         "/admin-demo",
+        "/analytics-showcase",
         "/auth-session",
         "/auth/callback",
         "/authorization",
         "/capabilities",
         "/data",
         "/feedback",
+        "/finance-showcase",
         "/forms",
         "/golden",
         "/golden-plus",
@@ -1483,6 +1514,7 @@
         "/link-error",
         "/linking",
         "/lists",
+        "/monitoring-showcase",
         "/navigation",
         "/overlays",
         "/server-state",
@@ -1558,7 +1590,7 @@
       "candidate": "advanced visualization",
       "disposition": "BUILD_GOLDEN_MODULE",
       "owner": "@precision-calm/visualization-advanced",
-      "rationale": "Scatter, histogram, and heatmap mechanics are reusable but should not enter the minimal facade."
+      "rationale": "Scatter, histogram, heatmap, grouped/diverging/normalized bars, multi-line, waterfall, range, bullet, and shared inspector mechanics are reusable but remain outside the minimal facade."
     },
     {
       "candidate": "tooltip",
@@ -1628,9 +1660,9 @@
     },
     {
       "candidate": "analytics panels and dashboard compositions",
-      "disposition": "RECIPE_ONLY",
-      "owner": "Golden patterns + ChartFrame + Metric + AdaptiveDataTable",
-      "rationale": "The current product-neutral primitives compose these narratives while product meaning remains outside the kernel."
+      "disposition": "BUILD_GOLDEN_MODULE",
+      "owner": "@precision-calm/data-display AnalyticsPanels + Golden patterns",
+      "rationale": "ChartPanel, MetricTrendCard, BreakdownPanel, and flagship compositions repeat stable presentation anatomy while product meaning remains caller-owned."
     },
     {
       "candidate": "chart axes/formatters/data fallback",
@@ -1640,15 +1672,15 @@
     },
     {
       "candidate": "specialist statistical/financial chart families",
-      "disposition": "OPTIONAL_ADAPTER",
+      "disposition": "DEFER",
       "owner": "@precision-calm/visualization-advanced boundary",
-      "rationale": "Candlestick, box plot, funnel, cohort, and high-density composites should not inflate every app until real demand justifies them."
+      "rationale": "Candlestick/OHLC, box plot, funnel, cohort, and combo composites remain intentionally deferred until concrete product demand supplies fixtures and interaction semantics; no vendor dependency is justified by the current reference app."
     },
     {
       "candidate": "chart inspector/legend interaction",
-      "disposition": "RECIPE_ONLY",
-      "owner": "ChartFrame + existing overlay/pressable contracts",
-      "rationale": "The core contract protects keyboard/touch selection and fallback; a universal inspector remains a deliberate future module boundary."
+      "disposition": "BUILD_GOLDEN_MODULE",
+      "owner": "@precision-calm/visualization ChartInspector + ChartLegend",
+      "rationale": "Selection, touch persistence, formatted multi-series context, stable IDs, and keyboard-safe fallback are shared mechanics used by advanced charts."
     },
     {
       "candidate": "specialist media/editor/maps",

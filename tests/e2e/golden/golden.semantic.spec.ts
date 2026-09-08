@@ -177,3 +177,13 @@ test('@semantic optional advanced charts retain named surfaces and data fallback
   await expect(page.getByRole('table', { name: 'Observed distribution data' })).toBeVisible();
   await expect(page.getByRole('table', { name: 'Cohort retention data' })).toBeVisible();
 });
+
+test('@semantic advanced chart fallbacks remain understandable in forced colors and large text', async ({ page }) => {
+  await page.emulateMedia({ forcedColors: 'active' });
+  await page.goto('/golden-plus');
+  await expect(page.getByTestId('advanced-scatter-axes')).toBeVisible();
+  await expect(page.getByRole('table', { name: 'Regional relationship data' })).toBeVisible();
+  await page.evaluate(() => { document.documentElement.style.zoom = '2'; });
+  await expect(page.getByTestId('advanced-histogram')).toBeVisible();
+  await expect(page.getByRole('table', { name: 'Observed distribution data' })).toBeVisible();
+});

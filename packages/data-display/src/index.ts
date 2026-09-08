@@ -8,3 +8,4 @@ export * from './DataTableControls';
 export * from './SelectionBar';
 export * from './Timeline';
 export * from './DataExport';
+export * from './AnalyticsPanels';

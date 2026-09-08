@@ -24,7 +24,7 @@ const referenceNavigationItems = [
 
 const protectedScreens = [
   'index', 'accessibility-motion', 'auth-session', 'data', 'feedback', 'forms', 'golden', 'linking',
-  'lists', 'navigation', 'overlays', 'services', 'server-state', 'stress', 'system', 'golden-plus', 'visualization', 'authorization', 'session-security', 'capabilities', 'workflows',
+  'lists', 'navigation', 'overlays', 'services', 'server-state', 'stress', 'system', 'golden-plus', 'visualization', 'authorization', 'session-security', 'capabilities', 'workflows', 'analytics-showcase', 'finance-showcase', 'monitoring-showcase',
 ] as const;
 
 function RootNavigation() {

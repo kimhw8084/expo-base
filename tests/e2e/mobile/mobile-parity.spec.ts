@@ -251,6 +251,25 @@ test('mobile pseudo RTL and reduced motion preserve landmarks and touch actions'
   assertRuntime();
 });
 
+test('advanced visualization surfaces remain touch-usable on phone contexts', async ({ page }) => {
+  const assertRuntime = watchRuntime(page);
+  await page.goto('/golden-plus');
+  await expect(page.getByTestId('advanced-scatter-plot')).toBeVisible();
+  await expect(page.getByTestId('advanced-histogram')).toBeVisible();
+  await expect(page.getByTestId('advanced-heatmap')).toBeVisible();
+  const point = page.getByRole('button', { name: 'North: 18' });
+  await expect(point).toBeVisible();
+  const pointBox = await point.boundingBox();
+  expect(pointBox).not.toBeNull();
+  expect(pointBox!.width).toBeGreaterThanOrEqual(44);
+  expect(pointBox!.height).toBeGreaterThanOrEqual(44);
+  await point.tap();
+  await expect(page.getByTestId('advanced-chart-inspector')).toBeVisible();
+  await expect(page.getByRole('table', { name: 'Regional relationship data' })).toBeVisible();
+  await assertNoHorizontalOverflow(page);
+  assertRuntime();
+});
+
 test('touch scrolling restores the page after a modal closes', async ({ page }) => {
   const assertRuntime = watchRuntime(page);
   await openRoute(page, '/overlays');

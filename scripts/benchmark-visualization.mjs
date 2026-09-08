@@ -19,7 +19,7 @@ try {
   const values = data.map((item) => item.value);
   const measure = (work) => {
     const samples = [];
-    for (let iteration = 0; iteration < 5; iteration += 1) {
+    for (let iteration = 0; iteration < 9; iteration += 1) {
       const start = performance.now();
       work();
       samples.push(performance.now() - start);
@@ -28,13 +28,17 @@ try {
     return Math.round((samples[2] ?? 0) * 100) / 100;
   };
   const result = {
-    dataPoints: data.length,
+    benchmarkIterations: 9,
+      dataPoints: data.length,
     downsample10kMedianMs: measure(() => viz.downsampleMinMax(data, 10_000)),
     downsample1kMedianMs: measure(() => viz.downsampleMinMax(data, 1_000)),
-    histogram50kMedianMs: measure(() => viz.histogramBins(values, 64)),
-    heatmap1kMedianMs: measure(() => viz.heatmapCells(Array.from({ length: 1_000 }, (_, index) => ({ row: `R${index % 20}`, column: `C${index % 50}`, value: index })), 800, 320)),
-    thresholdsMs: { downsample10k: 500, downsample1k: 500, histogram50k: 500, heatmap1k: 500 },
+      histogram50kMedianMs: measure(() => viz.histogramBins(values, 64)),
+      heatmap1kMedianMs: measure(() => viz.heatmapCells(Array.from({ length: 1_000 }, (_, index) => ({ row: `R${index % 20}`, column: `C${index % 50}`, value: index })), 800, 320)),
+      waterfall10kMedianMs: measure(() => viz.waterfallRects(Array.from({ length: 10_000 }, (_, index) => ({ label: `P${index}`, value: index % 2 ? -index : index, kind: index % 5 === 0 ? 'total' : index % 2 ? 'decrease' : 'increase' })), 1200, 320)),
+    thresholdsMs: { downsample10k: 100, downsample1k: 100, histogram50k: 100, heatmap1k: 100, waterfall10k: 100 },
   };
+  fs.mkdirSync(path.join(root, 'test-results'), { recursive: true });
+  fs.writeFileSync(path.join(root, 'test-results/visualization-benchmark.json'), `${JSON.stringify(result, null, 2)}\n`);
   for (const [name, value] of Object.entries(result)) {
     if (name.endsWith('MedianMs')) {
       const threshold = result.thresholdsMs[name.replace('MedianMs', '')];

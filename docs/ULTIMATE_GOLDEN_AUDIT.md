@@ -10,11 +10,15 @@ This document is generated from the live checkout by `scripts/generate-ultimate-
 | Golden Catalog owners | 76 |
 | Ownership records | 24 |
 | Discovery challenges | 56 |
-| Public facade symbols | 366 |
+| Public facade symbols | 379 |
 | Existing state owners | 28 |
-| Existing visual baselines | 12 |
-| Existing pseudo-covered routes | 13 |
-| Owner-certification records | 14 |
+| Existing visual baselines | 15 |
+| Existing pseudo-covered routes | 16 |
+| Owner-certification records | 21 |
+| Executable fixture families | 21 |
+| Declared owner states | 140 |
+| States mapped to evidence | 140 |
+| States missing evidence | 0 |
 
 ## Layer decision
 
@@ -26,7 +30,7 @@ This document is generated from the live checkout by `scripts/generate-ultimate-
 
 - **owner certification — BUILD_KERNEL:** Stable owners need a machine-readable contract for state, responsive, semantic, theme, and touch coverage.
 - **dependency graph — BUILD_KERNEL:** Acyclic package ownership and core/advanced separation are architectural invariants.
-- **advanced visualization — BUILD_GOLDEN_MODULE:** Scatter, histogram, and heatmap mechanics are reusable but should not enter the minimal facade.
+- **advanced visualization — BUILD_GOLDEN_MODULE:** Scatter, histogram, heatmap, grouped/diverging/normalized bars, multi-line, waterfall, range, bullet, and shared inspector mechanics are reusable but remain outside the minimal facade.
 - **tooltip — RECIPE_ONLY:** Critical information cannot depend on hover; a universal touch-safe tooltip needs a separate interaction contract.
 - **slider/range — RECIPE_ONLY:** No current cross-platform owner meets the complete keyboard/touch/native contract without a specialist adapter.
 - **enterprise grid — OPTIONAL_ADAPTER:** Virtualization, pinned columns, formulas, and cell editing are specialist infrastructure.
@@ -38,10 +42,10 @@ This document is generated from the live checkout by `scripts/generate-ultimate-
 - **attachment/file/media tiles — RECIPE_ONLY:** Presentation can be composed without owning upload transport, file permissions, or a new media hierarchy.
 - **token input — RECIPE_ONLY:** The existing choice and multiselect contracts own the generic selection lifecycle.
 - **file-picker field — OPTIONAL_ADAPTER:** The input needs platform capability selection and must not pull acquisition dependencies into the kernel.
-- **analytics panels and dashboard compositions — RECIPE_ONLY:** The current product-neutral primitives compose these narratives while product meaning remains outside the kernel.
+- **analytics panels and dashboard compositions — BUILD_GOLDEN_MODULE:** ChartPanel, MetricTrendCard, BreakdownPanel, and flagship compositions repeat stable presentation anatomy while product meaning remains caller-owned.
 - **chart axes/formatters/data fallback — BUILD_KERNEL:** Scales, finite data, deterministic ticks, shared state anatomy, and accessible table fallback are common mechanics.
-- **specialist statistical/financial chart families — OPTIONAL_ADAPTER:** Candlestick, box plot, funnel, cohort, and high-density composites should not inflate every app until real demand justifies them.
-- **chart inspector/legend interaction — RECIPE_ONLY:** The core contract protects keyboard/touch selection and fallback; a universal inspector remains a deliberate future module boundary.
+- **specialist statistical/financial chart families — DEFER:** Candlestick/OHLC, box plot, funnel, cohort, and combo composites remain intentionally deferred until concrete product demand supplies fixtures and interaction semantics; no vendor dependency is justified by the current reference app.
+- **chart inspector/legend interaction — BUILD_GOLDEN_MODULE:** Selection, touch persistence, formatted multi-series context, stable IDs, and keyboard-safe fallback are shared mechanics used by advanced charts.
 - **specialist media/editor/maps — PRODUCT_SPECIFIC:** These require domain, platform, or heavy rendering infrastructure that Golden Base should not own.
 
 ## Certification model

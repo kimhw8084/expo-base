@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { View } from 'react-native';
 import {
   AdaptiveGrid,
   AdaptiveGridItem,
@@ -21,6 +22,7 @@ import {
   VStack,
 } from '@precision-calm/ui';
 import { useReferenceCopy } from '../ReferenceCopy';
+import { ownerFixtures } from '../workbenchFixtures';
 
 const trend = [
   { label: 'Jan', value: 42 },
@@ -48,9 +50,34 @@ export default function StateWorkbenchScreen() {
         </Section>
 
         <Section>
+          <Card testID="owner-workbench-fixture-registry">
+            <VStack gap="sm">
+              <Text variant="h3">{copy('Registered owner fixture families')}</Text>
+              {ownerFixtures.map((fixture) => <View key={fixture.ownerId} testID={`${fixture.testID}-registry`} accessibilityLabel={`${fixture.ownerId} fixture; ${fixture.states.length} declared states`}><Text variant="caption">{fixture.ownerId}</Text><Text testID={`${fixture.testID}-states`} variant="micro" tone="secondary">{fixture.states.join(' · ')}</Text></View>)}
+            </VStack>
+          </Card>
+        </Section>
+
+        <Section>
+          <AdaptiveGrid>
+            {ownerFixtures.map((fixture) => (
+              <AdaptiveGridItem key={fixture.ownerId}>
+                <Card testID={fixture.testID}>
+                  <VStack gap="sm">
+                    <Text variant="h3">{fixture.ownerId}</Text>
+                    <Text variant="caption" tone="secondary">{copy('Certified state family')}</Text>
+                    <Text variant="micro" tone="secondary">{fixture.states.join(' · ')}</Text>
+                  </VStack>
+                </Card>
+              </AdaptiveGridItem>
+            ))}
+          </AdaptiveGrid>
+        </Section>
+
+        <Section>
           <AdaptiveGrid>
             <AdaptiveGridItem>
-              <Card testID="owner-workbench-components.actions">
+              <Card testID="owner-workbench-components.actions-detail">
                 <VStack gap="lg">
                   <Text variant="h3">{copy('Actions')}</Text>
                   <HStack gap="sm"><Button label={copy('Enabled action')} onPress={() => setFeedback('error')} /><Button label={copy('Disabled action')} disabled onPress={() => setFeedback('empty')} /></HStack>
@@ -60,7 +87,7 @@ export default function StateWorkbenchScreen() {
             </AdaptiveGridItem>
 
             <AdaptiveGridItem>
-              <Card testID="owner-workbench-forms.fields">
+              <Card testID="owner-workbench-forms.text-entry-detail">
                 <VStack gap="lg">
                   <Text variant="h3">{copy('Form fields')}</Text>
                   <TextField id="owner-workbench-field" label={copy('Fixture label')} value={fieldValue} onChangeText={setFieldValue} description={copy('Controlled state remains visible during certification.')} />
@@ -71,7 +98,7 @@ export default function StateWorkbenchScreen() {
             </AdaptiveGridItem>
 
             <AdaptiveGridItem>
-              <Card testID="owner-workbench-feedback.async">
+              <Card testID="owner-workbench-feedback.async-detail">
                 <VStack gap="lg">
                   <Text variant="h3">{copy('Async feedback')}</Text>
                   {feedback === 'empty' ? <StateView kind="empty" title={copy('No fixture results')} message={copy('Choose a deterministic state to render the shared empty anatomy.')} actionLabel={copy('Show error')} onAction={() => setFeedback('error')} /> : <StateView kind="error" title={copy('Fixture error')} message={copy('The shared error anatomy keeps recovery visible.')} actionLabel={copy('Restore empty')} onAction={() => setFeedback('empty')} />}
@@ -81,7 +108,7 @@ export default function StateWorkbenchScreen() {
             </AdaptiveGridItem>
 
             <AdaptiveGridItem>
-              <Card testID="owner-workbench-data.table">
+              <Card testID="owner-workbench-data.table-detail">
                 <VStack gap="lg">
                   <Text variant="h3">{copy('Data summary')}</Text>
                   <Metric label={copy('Selected state')} value={choice === 'ready' ? copy('Ready') : copy('Review')} trend={checked ? copy('Optional state on') : copy('Optional state off')} />

@@ -18,4 +18,8 @@ assert.equal(audit.metrics.publicApiSymbols, api.symbolCount, 'Ultimate audit AP
 assert.equal(audit.metrics.stateOwners, cert.stateMatrix.length, 'Ultimate audit state count is stale.');
 assert.equal(audit.metrics.ownerCertificationRecords, ownerCert.owners.length, 'Ultimate audit owner-certification count is stale.');
 assert.equal(coverage.metrics.catalogOwners, catalog.items.length, 'Ultimate coverage catalog count is stale.');
+assert.equal(audit.metrics.declaredOwnerStates, coverage.metrics.declaredStates, 'Ultimate owner-state count is stale.');
+assert.equal(audit.metrics.mappedOwnerStates, coverage.metrics.mappedStates, 'Ultimate mapped-state count is stale.');
+assert.equal(coverage.metrics.unmappedStates, 0, 'Ultimate owner certification has unmapped declared states.');
+assert.equal(coverage.metrics.fixtureFamilies, ownerCert.owners.length, 'Every owner certification must have a typed fixture family.');
 console.log(`Ultimate audit passed (${workspaceCount} workspaces / ${catalog.items.length} owners / ${api.symbolCount} API symbols / ${ownerCert.owners.length} owner records).`);

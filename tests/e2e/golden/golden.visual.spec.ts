@@ -6,6 +6,7 @@ const routeLabels: Record<string, string> = {
   '/system': 'System lab', '/forms': 'Forms', '/data': 'Data display', '/feedback': 'Feedback',
   '/workflows': 'Workflow lab', '/stress': 'Stress matrix', '/overlays': 'Overlays', '/visualization': 'Visualization',
   '/golden-plus': 'Golden Plus breadth',
+  '/analytics-showcase': 'Analytics showcase', '/finance-showcase': 'Finance showcase', '/monitoring-showcase': 'Monitoring showcase',
 };
 const escapePattern = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const pseudoCopy = (value: string, direction: 'ltr' | 'rtl') => {
@@ -21,6 +22,12 @@ async function openScenario(page: Page, scenario: any) {
   if (scenario.locale === 'en-XA') await page.getByRole('button', { name: 'Locale: Pseudo LTR' }).click();
   if (scenario.locale === 'en-XB') await page.getByRole('button', { name: 'Locale: Pseudo RTL' }).click();
   if (scenario.motion === 'reduced') await page.getByRole('button', { name: 'Motion: Reduced' }).click();
+  if (scenario.route.endsWith('-showcase')) {
+    await page.goto(scenario.route);
+    await page.waitForLoadState('networkidle');
+    await expect(page.getByRole('main')).toBeVisible();
+    return;
+  }
   const routeLabel = scenario.locale
     ? pseudoCopy(routeLabels[scenario.route], scenario.locale === 'en-XB' ? 'rtl' : 'ltr')
     : routeLabels[scenario.route];

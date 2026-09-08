@@ -15,6 +15,11 @@ const api = readJson('precision.api.json');
 const cert = readJson('golden.certification.json');
 const ownerCertPath = path.join(root, 'golden.owner-certification.json');
 const ownerCert = fs.existsSync(ownerCertPath) ? readJson('golden.owner-certification.json') : { owners: [], exemptions: [] };
+const evidence = readJson('golden.evidence.json');
+const fixtureSource = fs.readFileSync(path.join(root, 'apps/reference/workbenchFixtures.ts'), 'utf8');
+const declaredStates = ownerCert.owners.reduce((total, owner) => total + owner.states.length, 0);
+const mappedStates = ownerCert.owners.reduce((total, owner) => total + Object.values(owner.stateEvidence ?? {}).filter((ids) => Array.isArray(ids) && ids.length > 0).length, 0);
+const evidenceCount = (kind) => ownerCert.owners.filter((owner) => Array.isArray(owner.evidence?.[kind]) && owner.evidence[kind].length > 0).length;
 const routes = fs.readdirSync(path.join(root, 'apps/reference/app'), { withFileTypes: true }).flatMap((entry) => {
   if (!entry.isFile() || !/\.(tsx|ts)$/.test(entry.name) || entry.name.startsWith('_') || entry.name.startsWith('+')) return [];
   return [`/${entry.name.replace(/\.(tsx|ts)$/, '')}`];
@@ -32,7 +37,7 @@ const graph = Object.fromEntries(packageDirs.map(({ manifest }) => [manifest.nam
 const decisions = [
   { candidate: 'owner certification', disposition: 'BUILD_KERNEL', owner: 'scripts/check-owner-certification.mjs + golden.owner-certification.json', rationale: 'Stable owners need a machine-readable contract for state, responsive, semantic, theme, and touch coverage.' },
   { candidate: 'dependency graph', disposition: 'BUILD_KERNEL', owner: 'scripts/check-dependency-graph.mjs', rationale: 'Acyclic package ownership and core/advanced separation are architectural invariants.' },
-  { candidate: 'advanced visualization', disposition: 'BUILD_GOLDEN_MODULE', owner: '@precision-calm/visualization-advanced', rationale: 'Scatter, histogram, and heatmap mechanics are reusable but should not enter the minimal facade.' },
+  { candidate: 'advanced visualization', disposition: 'BUILD_GOLDEN_MODULE', owner: '@precision-calm/visualization-advanced', rationale: 'Scatter, histogram, heatmap, grouped/diverging/normalized bars, multi-line, waterfall, range, bullet, and shared inspector mechanics are reusable but remain outside the minimal facade.' },
   { candidate: 'tooltip', disposition: 'RECIPE_ONLY', owner: '@precision-calm/overlays Popover + explicit HelpPopover recipe', rationale: 'Critical information cannot depend on hover; a universal touch-safe tooltip needs a separate interaction contract.' },
   { candidate: 'slider/range', disposition: 'RECIPE_ONLY', owner: '@precision-calm/forms', rationale: 'No current cross-platform owner meets the complete keyboard/touch/native contract without a specialist adapter.' },
   { candidate: 'enterprise grid', disposition: 'OPTIONAL_ADAPTER', owner: '@precision-calm/data-display + future adapter boundary', rationale: 'Virtualization, pinned columns, formulas, and cell editing are specialist infrastructure.' },
@@ -44,17 +49,17 @@ const decisions = [
   { candidate: 'attachment/file/media tiles', disposition: 'RECIPE_ONLY', owner: '@precision-calm/media-presentation MediaFrame + data composition', rationale: 'Presentation can be composed without owning upload transport, file permissions, or a new media hierarchy.' },
   { candidate: 'token input', disposition: 'RECIPE_ONLY', owner: '@precision-calm/forms searchable-choice', rationale: 'The existing choice and multiselect contracts own the generic selection lifecycle.' },
   { candidate: 'file-picker field', disposition: 'OPTIONAL_ADAPTER', owner: 'capability media adapter + form composition', rationale: 'The input needs platform capability selection and must not pull acquisition dependencies into the kernel.' },
-  { candidate: 'analytics panels and dashboard compositions', disposition: 'RECIPE_ONLY', owner: 'Golden patterns + ChartFrame + Metric + AdaptiveDataTable', rationale: 'The current product-neutral primitives compose these narratives while product meaning remains outside the kernel.' },
+  { candidate: 'analytics panels and dashboard compositions', disposition: 'BUILD_GOLDEN_MODULE', owner: '@precision-calm/data-display AnalyticsPanels + Golden patterns', rationale: 'ChartPanel, MetricTrendCard, BreakdownPanel, and flagship compositions repeat stable presentation anatomy while product meaning remains caller-owned.' },
   { candidate: 'chart axes/formatters/data fallback', disposition: 'BUILD_KERNEL', owner: '@precision-calm/platform + @precision-calm/visualization', rationale: 'Scales, finite data, deterministic ticks, shared state anatomy, and accessible table fallback are common mechanics.' },
-  { candidate: 'specialist statistical/financial chart families', disposition: 'OPTIONAL_ADAPTER', owner: '@precision-calm/visualization-advanced boundary', rationale: 'Candlestick, box plot, funnel, cohort, and high-density composites should not inflate every app until real demand justifies them.' },
-  { candidate: 'chart inspector/legend interaction', disposition: 'RECIPE_ONLY', owner: 'ChartFrame + existing overlay/pressable contracts', rationale: 'The core contract protects keyboard/touch selection and fallback; a universal inspector remains a deliberate future module boundary.' },
+  { candidate: 'specialist statistical/financial chart families', disposition: 'DEFER', owner: '@precision-calm/visualization-advanced boundary', rationale: 'Candlestick/OHLC, box plot, funnel, cohort, and combo composites remain intentionally deferred until concrete product demand supplies fixtures and interaction semantics; no vendor dependency is justified by the current reference app.' },
+  { candidate: 'chart inspector/legend interaction', disposition: 'BUILD_GOLDEN_MODULE', owner: '@precision-calm/visualization ChartInspector + ChartLegend', rationale: 'Selection, touch persistence, formatted multi-series context, stable IDs, and keyboard-safe fallback are shared mechanics used by advanced charts.' },
   { candidate: 'specialist media/editor/maps', disposition: 'PRODUCT_SPECIFIC', owner: 'product-owned specialist adapter', rationale: 'These require domain, platform, or heavy rendering infrastructure that Golden Base should not own.' },
 ];
 const audit = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   generatedBy: 'scripts/generate-ultimate-golden-audit.mjs',
   source: 'live checkout',
-  metrics: { workspaces: packageDirs.length, catalogOwners: catalog.items.length, ownershipRecords: catalog.ownership.length, discoveryChallenges: catalog.discoveryChallenges.length, publicApiSymbols: api.symbolCount, stateOwners: cert.stateMatrix.length, visualBaselines: cert.visualBaselines.length, pseudoRoutes: cert.pseudoCoverage.routes.length, ownerCertificationRecords: ownerCert.owners.length },
+  metrics: { workspaces: packageDirs.length, catalogOwners: catalog.items.length, ownershipRecords: catalog.ownership.length, discoveryChallenges: catalog.discoveryChallenges.length, publicApiSymbols: api.symbolCount, stateOwners: cert.stateMatrix.length, visualBaselines: cert.visualBaselines.length, pseudoRoutes: cert.pseudoCoverage.routes.length, ownerCertificationRecords: ownerCert.owners.length, declaredOwnerStates: declaredStates, mappedOwnerStates: mappedStates, unmappedOwnerStates: declaredStates - mappedStates, fixtureFamilies: (fixtureSource.match(/\{ ownerId:/g) ?? []).length, keyboardEvidenceOwners: evidenceCount('browser'), touchEvidenceOwners: evidenceCount('mobile'), forcedColorEvidenceOwners: evidenceCount('forcedColors'), largeTextEvidenceOwners: evidenceCount('largeText'), visualEvidenceOwners: evidenceCount('visual') },
   inventories: { workspaces: packageDirs.map(({ dir, manifest }) => ({ dir, name: manifest.name, dependencies: Object.keys({ ...(manifest.dependencies ?? {}), ...(manifest.peerDependencies ?? {}) }).sort() })), packageGraph: graph, catalogOwnership: catalog.ownership, publicExports: api.packages, sourceInventory },
   certificationLanes: ['structural', 'semantic/accessibility', 'visual', 'performance', 'desktop browser', 'mobile browser', 'generator/scaffolder', 'runtime/native source contracts', 'owner certification'],
   layerModel: { kernel: ['tokens', 'primitives', 'components', 'layouts', 'forms', 'navigation', 'overlays', 'feedback', 'data-display', 'core visualization', 'i18n', 'accessibility', 'motion', 'runtime boundaries'], modules: ['visualization-advanced', 'advanced analytics compositions when independently justified'], optionalAdapters: ['native pickers', 'specialist grids', 'maps/geospatial', 'rich editors', 'GPU/realtime rendering', 'specialist media engines'] },
@@ -80,6 +85,10 @@ const md = [
   `| Existing visual baselines | ${cert.visualBaselines.length} |`,
   `| Existing pseudo-covered routes | ${cert.pseudoCoverage.routes.length} |`,
   `| Owner-certification records | ${ownerCert.owners.length} |`,
+  `| Executable fixture families | ${(fixtureSource.match(/\{ ownerId:/g) ?? []).length} |`,
+  `| Declared owner states | ${declaredStates} |`,
+  `| States mapped to evidence | ${mappedStates} |`,
+  `| States missing evidence | ${declaredStates - mappedStates} |`,
   '',
   '## Layer decision',
   '',
@@ -100,11 +109,12 @@ const md = [
 ].join('\n');
 fs.writeFileSync(path.join(root, 'docs/ULTIMATE_GOLDEN_AUDIT.md'), md);
 const coverage = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   generatedBy: 'scripts/generate-ultimate-golden-audit.mjs',
-  metrics: { catalogOwners: catalog.items.length, ownerCertificationRecords: ownerCert.owners.length, explicitExemptionGroups: ownerCert.exemptions?.length ?? 0, stateCertified: ownerCert.owners.length, responsiveCertified: ownerCert.owners.filter((owner) => owner.responsive).length, accessibleCertified: ownerCert.owners.filter((owner) => owner.forcedColors && owner.largeText).length, mobileCertified: ownerCert.owners.filter((owner) => owner.touch || !owner.interactive).length, visualBaselineRelevant: ownerCert.owners.filter((owner) => owner.visualBaseline).length, generatorAwareCatalogItems: catalog.items.filter((item) => item.generatorAvailability && item.generatorAvailability !== 'not-applicable').length },
+  metrics: { catalogOwners: catalog.items.length, ownerCertificationRecords: ownerCert.owners.length, explicitExemptionGroups: ownerCert.exemptions?.length ?? 0, stateCertified: ownerCert.owners.length, declaredStates, mappedStates, unmappedStates: declaredStates - mappedStates, fixtureFamilies: (fixtureSource.match(/\{ ownerId:/g) ?? []).length, responsiveCertified: ownerCert.owners.filter((owner) => owner.responsive).length, accessibleCertified: ownerCert.owners.filter((owner) => owner.forcedColors && owner.largeText).length, mobileCertified: ownerCert.owners.filter((owner) => owner.touch || !owner.interactive).length, keyboardEvidenceOwners: evidenceCount('browser'), touchEvidenceOwners: evidenceCount('mobile'), forcedColorEvidenceOwners: evidenceCount('forcedColors'), largeTextEvidenceOwners: evidenceCount('largeText'), visualBaselineRelevant: ownerCert.owners.filter((owner) => owner.visualBaseline).length, generatorAwareCatalogItems: catalog.items.filter((item) => item.generatorAvailability && item.generatorAvailability !== 'not-applicable').length },
   uncoveredStableOwnerPolicy: 'Every nonvisual, recipe, runtime, capability, generator, or native-only concern is documented as an explicit boundary in ultimate-golden-capabilities.json or golden.owner-certification.json.',
   nativeOnly: ['physical safe-area values', 'native keyboard/controller behavior', 'UIKit Modal behavior', 'VoiceOver rotor/announcement behavior', 'OS permissions/biometrics/camera/notifications'],
+  evidencePolicy: { declaredStates, mappedStates, unmappedStates: declaredStates - mappedStates, fixtureFamilies: (fixtureSource.match(/\{ ownerId:/g) ?? []).length, evidenceKinds: Object.fromEntries(['browser', 'mobile', 'semantic', 'forcedColors', 'largeText', 'visual'].map((kind) => [kind, evidenceCount(kind)])) },
 };
 fs.writeFileSync(path.join(root, 'docs/ultimate-golden-coverage.json'), JSON.stringify(coverage, null, 2) + '\n');
 fs.writeFileSync(path.join(root, 'docs/ULTIMATE_GOLDEN_COVERAGE.md'), [
@@ -121,6 +131,10 @@ fs.writeFileSync(path.join(root, 'docs/ULTIMATE_GOLDEN_COVERAGE.md'), [
   `| Mobile/touch-certified or noninteractive owners | ${coverage.metrics.mobileCertified} |`,
   `| Owners with curated visual relevance | ${coverage.metrics.visualBaselineRelevant} |`,
   `| Generator-aware catalog items | ${coverage.metrics.generatorAwareCatalogItems} |`,
+  `| Keyboard/browser evidence owners | ${coverage.metrics.keyboardEvidenceOwners} |`,
+  `| Touch/mobile evidence owners | ${coverage.metrics.touchEvidenceOwners} |`,
+  `| Forced-color evidence owners | ${coverage.metrics.forcedColorEvidenceOwners} |`,
+  `| Large-text evidence owners | ${coverage.metrics.largeTextEvidenceOwners} |`,
   '',
   'The remaining catalog surface is intentionally covered by explicit nonvisual/recipe/runtime/native boundaries; it is not silently treated as a visual component. Native runtime acceptance remains unexecuted.',
   '',

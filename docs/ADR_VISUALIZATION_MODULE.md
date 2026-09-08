@@ -11,7 +11,10 @@ places specialized, still product-neutral chart families in the optional
 The core owns the stable frame, state anatomy, semantic data fallback, shared
 tokens, and the platform-neutral math needed by common line, area, bar, donut,
 progress, and sparkline presentations. The advanced module reuses those
-contracts and currently provides scatter, histogram, and heatmap presentations.
+contracts and provides scatter, histogram, heatmap, grouped/diverging/normalized
+bars, horizontal bars, multi-line, waterfall, range/interval, and bullet
+presentations. Core visualization owns the reusable axis/tick renderer, formatter
+contract, chart inspector, stable legend IDs, and retained-data chart states.
 
 Neither layer imports a DOM charting framework or exposes vendor-specific
 configuration. Features consume named owners and data contracts, not raw SVG
@@ -28,16 +31,19 @@ maps or very large GPU-backed plots without making them kernel dependencies.
 The math layer is deterministic and platform-neutral. It sanitizes invalid
 values, produces finite domains/ticks/bins/cells, supports bounded min/max
 downsampling, and is benchmarked independently of rendering. Rendering uses
-the existing chart frame, feedback states, theme tokens, and accessible data
-table fallback.
+the existing chart frame, feedback states, theme tokens, shared axes, chart
+inspector, and dimension-faithful accessible data-table fallback. Dense marks
+use chart-level nearest-selection policy rather than thousands of overlapping
+touch controls.
 
 ## Certification contract
 
 Every advanced owner must provide:
 
-- deterministic normal, empty, loading, and error states;
+- deterministic normal, empty, loading, refreshing, stale, and error states;
 - a named accessible summary and structured data fallback;
-- touch/keyboard-safe selection when interaction is enabled;
+- touch/keyboard-safe selection when interaction is enabled, with 44px minimum
+  targets for sparse marks and chart-level interaction for dense marks;
 - light/dark, compact/wide, RTL, pseudo-content, and reduced-motion review;
 - finite-data and adversarial geometry tests;
 - a performance threshold and bundle-isolation check.

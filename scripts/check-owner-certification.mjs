@@ -5,9 +5,24 @@ import path from 'node:path';
 const root = process.cwd();
 const certification = JSON.parse(fs.readFileSync(path.join(root, 'golden.owner-certification.json'), 'utf8'));
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'golden.catalog.json'), 'utf8'));
-assert.equal(certification.schemaVersion, 1);
+const evidence = JSON.parse(fs.readFileSync(path.join(root, 'golden.evidence.json'), 'utf8'));
+assert.ok(certification.schemaVersion >= 2);
 assert.ok(Array.isArray(certification.owners) && certification.owners.length >= 12);
 const catalogIds = new Set(catalog.items.map((item) => item.id));
+const evidenceKinds = ['fixtures', 'contracts', 'browser', 'mobile', 'semantic', 'visual', 'forcedColors', 'largeText'];
+const evidenceByKind = new Map(evidenceKinds.map((kind) => [kind, new Set((evidence[kind] ?? []).map((entry) => entry.id))]));
+const evidenceEntries = new Map(evidenceKinds.flatMap((kind) => (evidence[kind] ?? []).map((entry) => [entry.id, entry])));
+const baselineIds = new Set(JSON.parse(fs.readFileSync(path.join(root, 'golden.certification.json'), 'utf8')).visualBaselines.map((baseline) => baseline.id));
+const fixtureSource = fs.readFileSync(path.join(root, 'apps/reference/workbenchFixtures.ts'), 'utf8');
+for (const kind of evidenceKinds) {
+  for (const entry of evidence[kind] ?? []) {
+    if (!entry.file) continue;
+    const file = path.join(root, entry.file);
+    assert.ok(fs.existsSync(file), `Evidence ${entry.id} points to missing file ${entry.file}.`);
+    const source = fs.readFileSync(file, 'utf8');
+    assert.ok(!entry.marker || source.includes(entry.marker), `Evidence ${entry.id} marker is not present in ${entry.file}.`);
+  }
+}
 const covered = new Set();
 const ownerIds = new Set();
 for (const owner of certification.owners) {
@@ -21,6 +36,25 @@ for (const owner of certification.owners) {
     covered.add(itemId);
   }
   for (const key of ['states', 'themes', 'densities', 'viewports']) assert.ok(Array.isArray(owner[key]) && owner[key].length > 0, `${owner.id} needs ${key}.`);
+  assert.ok(owner.evidence && owner.stateEvidence, `${owner.id} needs executable evidence links.`);
+  assert.ok(fixtureSource.includes(owner.id), `${owner.id} has no typed workbench fixture.`);
+  for (const state of owner.states) {
+    const stateEvidence = owner.stateEvidence[state];
+    assert.ok(Array.isArray(stateEvidence) && stateEvidence.length > 0, `${owner.id} state ${state} has no evidence.`);
+    for (const evidenceId of stateEvidence) assert.ok(evidenceByKind.get('fixtures')?.has(evidenceId), `${owner.id} state ${state} references missing fixture evidence ${evidenceId}.`);
+  }
+  for (const kind of evidenceKinds) {
+    if (kind === 'mobile' && !owner.interactive) continue;
+    if (kind === 'visual' && !owner.visualBaseline) continue;
+    if (kind === 'forcedColors' && !owner.forcedColors) continue;
+    if (kind === 'largeText' && !owner.largeText) continue;
+    const ids = owner.evidence[kind];
+    assert.ok(Array.isArray(ids) && ids.length > 0, `${owner.id} needs ${kind} evidence.`);
+    for (const evidenceId of ids) {
+      assert.ok(evidenceByKind.get(kind)?.has(evidenceId), `${owner.id} references missing ${kind} evidence ${evidenceId}.`);
+      if (kind === 'visual') assert.ok(baselineIds.has(evidenceEntries.get(evidenceId)?.baselineId), `${owner.id} visual evidence ${evidenceId} has no approved baseline.`);
+    }
+  }
   if (owner.interactive) {
     for (const key of ['keyboard', 'touch', 'forcedColors', 'largeText']) assert.equal(typeof owner[key], 'boolean', `${owner.id} needs ${key} coverage.`);
   }

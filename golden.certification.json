@@ -49,7 +49,10 @@
     { "id": "visualization-wide", "route": "/visualization", "viewport": "wide", "theme": "light", "density": "comfortable", "capture": "viewport" },
     { "id": "golden-plus-wide", "route": "/golden-plus", "viewport": "wide", "theme": "light", "density": "comfortable", "capture": "viewport" },
     { "id": "visualization-compact-pseudo", "route": "/visualization", "viewport": "compact", "theme": "light", "density": "comfortable", "locale": "en-XA", "targetTestId": "visualization-portfolio-card" },
-    { "id": "golden-plus-advanced-wide", "route": "/golden-plus", "viewport": "wide", "theme": "light", "density": "comfortable", "targetTestId": "golden-plus-advanced-visualization" }
+    { "id": "golden-plus-advanced-wide", "route": "/golden-plus", "viewport": "wide", "theme": "light", "density": "comfortable", "targetTestId": "golden-plus-advanced-visualization" },
+    { "id": "analytics-showcase-wide", "route": "/analytics-showcase", "viewport": "wide", "theme": "light", "density": "comfortable", "capture": "viewport" },
+    { "id": "finance-showcase-wide", "route": "/finance-showcase", "viewport": "wide", "theme": "light", "density": "comfortable", "capture": "viewport" },
+    { "id": "monitoring-showcase-wide", "route": "/monitoring-showcase", "viewport": "wide", "theme": "light", "density": "comfortable", "capture": "viewport" }
   ],
   "pseudoCoverage": {
     "policy": "Every canonical reference surface must exercise the user-facing copy classes it actually presents through useReferenceCopy. Technical values, identifiers, URLs, raw code, and numeric values remain literal.",
@@ -209,6 +212,42 @@
         ],
         "intentionalLiterals": [],
         "copyClassification": { "pseudoOwned": ["heading", "section", "action", "description"], "intentionallyLiteral": [], "developerOnly": [] }
+      },
+      {
+        "path": "/analytics-showcase",
+      "launchLabel": "Analytics showcase",
+        "classes": [
+          { "name": "eyebrow", "source": "ANALYTICS / OVERVIEW" },
+          { "name": "heading", "source": "A calm view of growth" },
+          { "name": "action", "source": "Current period against the previous period and operating target." },
+          { "name": "table-header", "source": "Recent account movement" }
+        ],
+        "intentionalLiterals": ["18,420", "$104.3k", "Jan"],
+        "copyClassification": { "pseudoOwned": ["eyebrow", "heading", "action", "table-header"], "intentionallyLiteral": ["18,420", "$104.3k", "Jan"], "developerOnly": [] }
+      },
+      {
+        "path": "/finance-showcase",
+      "launchLabel": "Finance showcase",
+        "classes": [
+          { "name": "eyebrow", "source": "FINANCE / OPERATIONS" },
+          { "name": "heading", "source": "Value, contribution, and control" },
+          { "name": "section", "source": "Contribution bridge" },
+          { "name": "table-header", "source": "Account detail" }
+        ],
+        "intentionalLiterals": ["$1.04m", "+$203k", "82%"],
+        "copyClassification": { "pseudoOwned": ["eyebrow", "heading", "section", "table-header"], "intentionallyLiteral": ["$1.04m", "+$203k", "82%"], "developerOnly": [] }
+      },
+      {
+        "path": "/monitoring-showcase",
+      "launchLabel": "Monitoring showcase",
+        "classes": [
+          { "name": "eyebrow", "source": "MONITORING / OPERATIONS" },
+          { "name": "heading", "source": "Know what needs attention" },
+          { "name": "status", "source": "All systems operational" },
+          { "name": "timeline", "source": "Recent events" }
+        ],
+        "intentionalLiterals": ["99.98%", "182ms", "2"],
+        "copyClassification": { "pseudoOwned": ["eyebrow", "heading", "status", "timeline"], "intentionallyLiteral": ["99.98%", "182ms", "2"], "developerOnly": [] }
       }
     ]
   },

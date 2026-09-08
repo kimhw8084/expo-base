@@ -38,6 +38,7 @@ jobs:
             docs/ultimate-golden-coverage.json
             docs/ultimate-dependency-graph.json
             golden.owner-certification.json
+            test-results/visualization-benchmark.json
           if-no-files-found: ignore
           retention-days: 14
 
@@ -69,7 +70,42 @@ jobs:
         with:
           name: golden-mobile-artifacts
           path: |
-            test-results/mobile-parity
+            test-results/mobile
+            test-results/mobile-report
+            apps/reference/dist
+          if-no-files-found: ignore
+          retention-days: 14
+
+  golden:
+    needs: structural
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+
+      - name: Install workspace
+        run: npm ci
+
+      - name: Install Golden browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Golden semantic, visual, and performance certification
+        run: npm run golden:verify
+
+      - name: Upload Golden certification artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-certification-artifacts
+          path: |
+            test-results
             playwright-report
+            apps/reference/dist
           if-no-files-found: ignore
           retention-days: 14

@@ -1,12 +1,21 @@
 import { expect, test } from '@playwright/test';
+import fs from 'node:fs';
+
+const ownerCertification = JSON.parse(fs.readFileSync('golden.owner-certification.json', 'utf8'));
 
 test('owner state workbench renders queryable deterministic fixtures and controlled interactions', async ({ page }) => {
   await page.goto('/state-workbench');
   await expect(page.getByRole('heading', { name: 'Owner state workbench' })).toBeVisible();
-  await expect(page.getByTestId('owner-workbench-components.actions')).toBeVisible();
-  await expect(page.getByTestId('owner-workbench-forms.fields')).toBeVisible();
-  await expect(page.getByTestId('owner-workbench-feedback.async')).toBeVisible();
-  await expect(page.getByTestId('owner-workbench-data.table')).toBeVisible();
+  await expect(page.getByTestId('owner-workbench-components.actions-detail')).toBeVisible();
+  await expect(page.getByTestId('owner-workbench-forms.text-entry-detail')).toBeVisible();
+  await expect(page.getByTestId('owner-workbench-feedback.async-detail')).toBeVisible();
+  await expect(page.getByTestId('owner-workbench-data.table-detail')).toBeVisible();
+
+  for (const owner of ownerCertification.owners) {
+    const fixture = page.getByTestId(`owner-workbench-${owner.id}`);
+    await expect(fixture).toBeVisible();
+    await expect(page.getByTestId(`owner-workbench-${owner.id}-states`)).toContainText(owner.states[0]);
+  }
 
   const field = page.getByRole('textbox', { name: 'Fixture label' });
   await field.fill('Updated fixture');

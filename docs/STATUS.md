@@ -2,7 +2,7 @@
 
 ## Current phase
 
-Golden and Golden Plus development is complete. The current checkout is ready to return to native validation and release governance; it is not itself a release approval and this document does not publish or tag a release.
+Ultimate Golden convergence pass 2 is implemented in this checkout. The web/reference foundation remains separate from native validation and release governance; this document does not publish or tag a release.
 
 ## Development gates complete
 
@@ -15,9 +15,9 @@ Golden and Golden Plus development is complete. The current checkout is ready to
 - generator tests plus TypeScript validation of a fresh generated application
 - Golden architecture/catalog: 76 owners, 0 feature-route violations, 24 ownership records, and 56 discovery challenges
 - Expo Base Doctor: 94 passed, 0 failed, 0 warnings
-- public API snapshot: 366 symbols across 16 UI packages
-- optional visualization module: `@precision-calm/visualization-advanced` (ScatterPlot, Histogram, Heatmap); absent from the facade and minimal generator
-- owner certification: 14 stable visual records, 53 explicit recipe/runtime/native boundaries, and 0 unaccounted-for catalog owners
+- public API snapshot: 379 symbols across 16 UI packages
+- optional visualization module: `@precision-calm/visualization-advanced` (ScatterPlot, Histogram, Heatmap, grouped/diverging/normalized/horizontal bars, multi-line, waterfall, range, and bullet charts); absent from the facade and minimal generator
+- owner certification: 21 executable stable visual records, 140 declared states with 0 unmapped states, 53 explicit recipe/runtime/native boundaries, and 0 unaccounted-for catalog owners
 - dependency graph: 47 workspaces, 147 internal edges, 0 cycles, 0 violations
 - fresh static web export, isolated certification server, and browser certification
 - repository, configuration, package, and documentation review
@@ -25,9 +25,9 @@ Golden and Golden Plus development is complete. The current checkout is ready to
 ## Current certification
 
 - `npm run runtime:verify` — PASS
-- `npm run golden:verify` — 22/22 combined visual, semantic, and interaction-performance checks
-- `npm run runtime:test:web` — 358 passed / 2 intentional skips
-- `npm run mobile:verify` — 53 passed / 17 intentional visual-profile skips across Chromium and WebKit mobile contexts
+- `npm run golden:verify` — 26 combined visual, semantic, and interaction-performance checks
+- `npm run runtime:test:web` — 385 passed / 2 intentional skips across Chromium, Firefox, and WebKit
+- `npm run mobile:verify` — 58 passed / 17 intentional visual-profile skips across Chromium and WebKit mobile contexts
 - `npm run typecheck:runtime-ui` — PASS
 - `git diff --check` — PASS
 - no stale certification server or test process remains after the suite
@@ -52,4 +52,4 @@ Remaining validation decisions include:
 
 ## Known limitations
 
-The web export uses supported route splitting and remains within the Golden budgets (4,909,315 total JavaScript bytes; 4,679,427-byte heaviest initial route; 18,666-byte advanced visualization route chunk). Native assistive-technology, Dynamic Type, motion, and physical touch acceptance remain release-governance work. Generated apps also contain replaceable demo service/auth/session adapters that must not be shipped unchanged.
+The web export uses supported route splitting and remains within the Golden budgets (4,951,877 total JavaScript bytes; 4,710,360-byte heaviest initial route; advanced visualization remains lazy and is absent from the minimal generator profile). Native assistive-technology, Dynamic Type, motion, and physical touch acceptance remain release-governance work. Generated apps also contain replaceable demo service/auth/session adapters that must not be shipped unchanged.

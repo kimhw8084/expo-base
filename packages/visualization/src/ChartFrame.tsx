@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native-unistyles';
 import { Text, VStack } from '@precision-calm/primitives';
 
 export type ChartSize = 'sparkline' | 'compact' | 'standard' | 'large';
-export type ChartState = 'ready' | 'loading' | 'error' | 'empty';
+export type ChartState = 'ready' | 'loading' | 'refreshing' | 'stale' | 'error' | 'empty';
 
 export interface ChartFrameProps {
   size?: ChartSize;
@@ -28,8 +28,10 @@ export function ChartFrame({ size = 'standard', summary, state = 'ready', errorM
         onLayout={(event) => setWidth(Math.max(0, Math.round(event.nativeEvent.layout.width)))}
         style={[styles.frame, styles[`size_${size}`]]}
       >
-        {state === 'ready' && width > 0 ? children(width) : null}
+        {(state === 'ready' || state === 'refreshing' || state === 'stale') && width > 0 ? children(width) : null}
         {state === 'loading' ? <ChartLoadingState /> : null}
+        {state === 'refreshing' ? <ChartRefreshingState /> : null}
+        {state === 'stale' ? <ChartStaleState /> : null}
         {state === 'error' ? <ChartErrorState message={errorMessage} /> : null}
         {state === 'empty' ? empty ?? <ChartEmptyState /> : null}
       </View>
@@ -46,6 +48,14 @@ export function ChartLoadingState({ message = 'Loading chart data.' }: { message
   return <View accessibilityLiveRegion="polite" aria-live="polite" accessibilityLabel={message} style={styles.state}><VStack gap="sm" justify="center"><View style={styles.loadingPlot} accessibilityElementsHidden><View style={[styles.loadingBar, styles.loadingBarShort]} /><View style={[styles.loadingBar, styles.loadingBarTall]} /><View style={[styles.loadingBar, styles.loadingBarMedium]} /><View style={[styles.loadingBar, styles.loadingBarTall]} /><View style={[styles.loadingBar, styles.loadingBarShort]} /></View><Text variant="caption" tone="secondary" align="center">{message}</Text></VStack></View>;
 }
 
+export function ChartRefreshingState({ message = 'Refreshing chart data.' }: { message?: string }) {
+  return <View accessibilityLiveRegion="polite" aria-live="polite" accessibilityLabel={message} style={styles.refreshing}><View style={styles.refreshingBar} /><Text variant="micro" tone="secondary">{message}</Text></View>;
+}
+
+export function ChartStaleState({ message = 'Showing previously loaded chart data.' }: { message?: string }) {
+  return <View accessibilityLiveRegion="polite" aria-live="polite" accessibilityLabel={message} style={styles.stale}><Text variant="micro" tone="secondary">{message}</Text></View>;
+}
+
 export function ChartErrorState({ message = 'Unable to load chart data.' }: { message?: string }) {
   return <View accessibilityLiveRegion="polite" aria-live="polite" accessibilityRole="alert" style={styles.state}><VStack gap="sm" align="center" justify="center"><View style={styles.errorMark} accessibilityElementsHidden><Text variant="label" tone="negative">!</Text></View><Text variant="caption" tone="negative" align="center">{message}</Text></VStack></View>;
 }
@@ -58,6 +68,9 @@ const styles = StyleSheet.create((theme) => ({
   size_standard: { height: theme.visualizationMetrics.standardHeight },
   size_large: { height: theme.visualizationMetrics.largeHeight },
   state: { flex: 1, alignItems: 'stretch', justifyContent: 'center', padding: theme.spacing.md },
+  refreshing: { position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'flex-start', gap: theme.spacing.xs, paddingTop: theme.spacing.xs, pointerEvents: 'none' },
+  refreshingBar: { width: '30%', height: theme.strokeWidths.emphasis, borderRadius: theme.radii.full, backgroundColor: theme.colors.interactive.primary },
+  stale: { position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'flex-end', padding: theme.spacing.xs, pointerEvents: 'none' },
   loadingPlot: { height: theme.spacing.xxxl, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', gap: theme.spacing.xs, paddingHorizontal: theme.spacing.xl },
   loadingBar: { width: theme.spacing.sm, minHeight: theme.spacing.xs, borderRadius: theme.radii.xs, backgroundColor: theme.colors.background.subtle },
   loadingBarShort: { height: '36%' },

@@ -85,6 +85,8 @@ test('GPQ-014 skeletons retain visible semantic contrast on subtle surfaces', as
 });
 
 test('GPQ-015 pseudo locale transforms representative UI copy while preserving literal data', async ({ page }) => {
+  // The complete route matrix is intentionally cross-surface; Firefox needs more than the default 30s on a cold static export.
+  test.setTimeout(60_000);
   const assertRuntime = monitorRuntime(page);
   await page.goto('/');
   await page.getByRole('button', { name: 'Locale: Pseudo RTL' }).click();

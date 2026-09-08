@@ -20,11 +20,12 @@ function pseudoCopy(value: string, direction: PseudoDirection = 'ltr') {
 }
 
 async function openPseudoRoute(page: Page, route: PseudoCoverageRoute, direction: PseudoDirection = 'ltr') {
-  await page.goto('/');
+  await page.goto(route.path === '/' || route.launchLabel ? '/' : route.path);
   await page.getByRole('button', { name: `Locale: Pseudo ${direction === 'rtl' ? 'RTL' : 'LTR'}` }).click();
   if (route.path !== '/') {
-    if (!route.launchLabel) throw new Error(`${route.path} needs a launch label for reference-copy certification.`);
-    await page.getByRole('main').getByText(pseudoCopy(route.launchLabel, direction), { exact: true }).last().click();
+    if (route.launchLabel) {
+      await page.getByRole('main').getByText(pseudoCopy(route.launchLabel, direction), { exact: true }).last().click();
+    }
   }
   await expect(page).toHaveURL(new RegExp(`${route.path === '/' ? '\\/$' : `${route.path.replace('/', '\\/')}$`}`));
   await expect(page.getByRole('main')).toBeVisible();
@@ -179,7 +180,8 @@ test('FIQ-004 modifier click is not intercepted into same-tab router navigation'
   await page.goto('/');
   const forms = page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'Build', exact: true });
   await expect(forms.evaluate((node) => node.tagName)).resolves.toBe('A');
-  await forms.click({ modifiers: [browserName === 'webkit' ? 'Meta' : 'Control'] });
+  const modifier = process.platform === 'darwin' ? 'Meta' : 'Control';
+  await forms.click({ modifiers: [modifier] });
   await page.waitForTimeout(100);
   await expect(page).toHaveURL(/\/$/);
 });

@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const routes = ['/', '/forms', '/navigation', '/overlays', '/lists', '/data', '/visualization', '/feedback', '/server-state', '/accessibility-motion', '/golden', '/workflows', '/system', '/golden-plus', '/stress', '/services', '/auth-session', '/authorization', '/admin-demo', '/linking'];
+const routes = ['/', '/forms', '/navigation', '/overlays', '/lists', '/data', '/visualization', '/feedback', '/server-state', '/accessibility-motion', '/golden', '/workflows', '/system', '/golden-plus', '/stress', '/services', '/auth-session', '/authorization', '/admin-demo', '/linking', '/analytics-showcase', '/finance-showcase', '/monitoring-showcase'];
 const viewports = [
   { width: 320, height: 568 },
   { width: 390, height: 844 },
@@ -905,7 +905,7 @@ test('data scale owners retain table identity while filter drawer and page contr
   await expect(page.getByTestId('card-data-table-expanded').getByText('Annual fee', { exact: true })).toHaveCount(0);
   await expect(page.getByRole('toolbar', { name: 'Pagination' })).toBeVisible();
   await page.getByRole('button', { name: 'Load next sample page' }).click();
-  await expect(page.getByRole('button', { name: 'Previous page' }).last()).toBeEnabled();
+  await expect(page.getByRole('toolbar', { name: 'Pagination' }).getByRole('button', { name: 'Previous page' })).toBeEnabled();
 });
 
 test('chart state and data fallback remain usable without hover-only interaction', async ({ page }) => {
