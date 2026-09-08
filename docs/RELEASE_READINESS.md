@@ -2,7 +2,7 @@
 
 This checklist separates development completion from runtime validation and release decisions. It prepares the repository for review; it does not publish or tag Expo Base 1.0.
 
-The current repository is a private source/template workspace, not a configured multi-package npm publication. All 31 workspace packages are private; any future package publication would require a separate package-release plan.
+The current repository is a private source/template workspace, not a configured multi-package npm publication. All 47 workspace packages are private; any future package publication would require a separate package-release plan.
 
 ## Development gates — complete
 
@@ -12,9 +12,10 @@ The current repository is a private source/template workspace, not a configured 
 - [x] Auth, authorization, session security, linking, and service boundaries have stale-response and failure-path protection.
 - [x] Reference-app showcase and generated-app foundation remain aligned.
 - [x] Generator tests pass and a fresh generated application type-checks.
-- [x] Expo Base Doctor passes with 86 checks, 0 failures, and 0 warnings.
+- [x] Expo Base Doctor passes with 94 checks, 0 failures, and 0 warnings.
 - [x] Runtime UI typecheck and repository/package/API contracts pass.
-- [x] Fresh static web export and Chromium/Firefox/WebKit certification pass: 180/180.
+- [x] Fresh static web export and Chromium/Firefox/WebKit certification pass: 358 passed / 2 intentional skips.
+- [x] Mobile-browser parity certification passes: 53 passed / 17 intentional visual-profile skips across touch Chromium and mobile WebKit contexts.
 - [x] Certification server uses an OS-assigned port and deterministic cleanup.
 - [x] Documentation, configuration, dependency, and repository-hygiene review is complete.
 - [x] Release-candidate metadata is aligned to the coordinated `1.0.0` version plan.

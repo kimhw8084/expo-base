@@ -1380,6 +1380,24 @@
       "recipeReference": "docs/VISUALIZATION.md",
       "maturity": "stable-with-specialized-chart-limit",
       "generatorAvailability": "available"
+    },
+    {
+      "id": "visualization.advanced",
+      "category": "show-advanced-visualization",
+      "canonicalName": "ScatterPlot, Histogram, Heatmap",
+      "package": "@precision-calm/visualization-advanced",
+      "apiPackage": null,
+      "apiSymbols": ["ScatterPlot", "Histogram", "Heatmap"],
+      "purpose": "Provide optional, dependency-free advanced analytical chart families with shared framing, bounded geometry, touch selection, and visible data fallback.",
+      "useWhen": "A product needs exploratory relationship, distribution, or matrix presentation without adopting a heavyweight chart engine.",
+      "doNotUseWhen": "The product needs maps, millions of marks, a spreadsheet grid, or domain-specific financial chart behavior.",
+      "supportedStates": ["ready", "loading", "empty", "error", "selected", "data table", "dark", "RTL", "long content"],
+      "responsiveBehavior": "Consumes the core ChartFrame width and semantic heights; labels and fallback data remain available below the plot.",
+      "accessibility": "Each chart has a summary and a visible table fallback; touch marks are named controls when selection is enabled.",
+      "platformNotes": "Optional workspace with no new production dependency; it is not re-exported through @precision-calm/ui or included by the minimal generator.",
+      "recipeReference": "docs/VISUALIZATION.md",
+      "maturity": "stable-with-specialized-chart-limit",
+      "generatorAvailability": "manual-module"
     }
   ],
   "discoveryChallenges": [
@@ -1438,5 +1456,6 @@
     ,{ "intent": "collect a date or time", "requiredItems": ["forms.date-time", "i18n.locale"] }
     ,{ "intent": "show a compact trend", "requiredItems": ["visualization.plus"] }
     ,{ "intent": "show stacked series", "requiredItems": ["visualization.plus"] }
+    ,{ "intent": "show an exploratory chart", "requiredItems": ["visualization.advanced"] }
   ]
 }

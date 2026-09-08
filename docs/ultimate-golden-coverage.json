@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/generate-ultimate-golden-audit.mjs",
+  "metrics": {
+    "catalogOwners": 76,
+    "ownerCertificationRecords": 14,
+    "explicitExemptionGroups": 4,
+    "stateCertified": 14,
+    "responsiveCertified": 14,
+    "accessibleCertified": 14,
+    "mobileCertified": 14,
+    "visualBaselineRelevant": 14,
+    "generatorAwareCatalogItems": 76
+  },
+  "uncoveredStableOwnerPolicy": "Every nonvisual, recipe, runtime, capability, generator, or native-only concern is documented as an explicit boundary in ultimate-golden-capabilities.json or golden.owner-certification.json.",
+  "nativeOnly": [
+    "physical safe-area values",
+    "native keyboard/controller behavior",
+    "UIKit Modal behavior",
+    "VoiceOver rotor/announcement behavior",
+    "OS permissions/biometrics/camera/notifications"
+  ]
+}

@@ -11,9 +11,13 @@ Expo Base separates structural, browser, and native evidence. A source contract 
 
 `golden.certification.json` owns the public interaction-state matrix, visual scenarios, deterministic environment, route-level pseudo-copy coverage, performance budgets, and native validation policy.
 
+`golden.owner-certification.json` is the owner-level state contract. It links stable visual catalog items to required states, themes, densities, responsive regimes, pseudo/RTL behavior, keyboard/touch behavior, forced-colors, large-text, and visual-baseline relevance. Nonvisual runtime, generator, recipe, capability, and native-only concerns remain explicit boundaries rather than untracked visual owners. `npm run check:owner-certification` and `npm run check:dependency-graph` are part of Golden structural certification.
+
+The direct `/state-workbench` reference route renders deterministic fixtures for representative certified owners. It is a review and test surface, not a generated-app dependency or a Storybook replacement. The optional advanced visualization module has a separate ADR and CI lane; its route-scoped bundle is absent from the minimal generator profile.
+
 ## Visual policy
 
-Eleven high-information baselines cover component/form/data/feedback/overlay/visualization and workflow surfaces. Risk-selected scenarios combine light/dark, comfortable/compact, compact/wide, pseudo LTR/RTL, and reduced motion without multiplying every board across every dimension. The compact pseudo Visualization board protects local child containment, while the pseudo RTL stress board protects legible compact navigation. Chromium, UTC, `en-US`, CSS-pixel scale, disabled animation, deterministic local data, and static assets are the canonical pixel environment. Firefox and WebKit remain behavioral—not pixel—targets.
+Twelve high-information baselines cover component/form/data/feedback/overlay/core-visualization, advanced visualization, and workflow surfaces. Risk-selected scenarios combine light/dark, comfortable/compact, compact/wide, pseudo LTR/RTL, and reduced motion without multiplying every board across every dimension. The compact pseudo Visualization board protects local child containment, the advanced Golden Plus card protects optional analytical composition, and the pseudo RTL stress board protects legible compact navigation. Chromium, UTC, `en-US`, CSS-pixel scale, disabled animation, deterministic local data, and static assets are the canonical pixel environment. Firefox and WebKit remain behavioral—not pixel—targets.
 
 Snapshot failure artifacts contain expected, actual, diff, trace, route, and scenario names. Review a failure as a design change first. Baselines may change only after inspecting those artifacts and deliberately running:
 

@@ -65,6 +65,7 @@ detailed API behavior remains in the linked package documents.
 | collect a date or time | `DateField, TimeField, DateRangeField` | `PrecisionRuntimeProvider i18n, usePrecisionI18n, usePrecisionDirection` |
 | show a compact trend | `AreaChart, StackedBarChart, Sparkline, ChartSeriesDataTable` | — |
 | show stacked series | `AreaChart, StackedBarChart, Sparkline, ChartSeriesDataTable` | — |
+| show an exploratory chart | `ScatterPlot, Histogram, Heatmap` | — |
 
 ## Available current owners
 
@@ -453,6 +454,12 @@ detailed API behavior remains in the linked package documents.
 | --- | --- | --- | --- |
 | AreaChart, StackedBarChart, Sparkline, ChartSeriesDataTable | A dashboard or report needs an ordinary trend, compact sparkline, or small non-negative stacked composition. | A product needs thousands of marks, specialized financial/geographic charts, arbitrary composites, or a general chart engine. | `@precision-calm/ui` |
 
+### Show Advanced Visualization
+
+| Owner | Use when | Do not use when | Package |
+| --- | --- | --- | --- |
+| ScatterPlot, Histogram, Heatmap | A product needs exploratory relationship, distribution, or matrix presentation without adopting a heavyweight chart engine. | The product needs maps, millions of marks, a spreadsheet grid, or domain-specific financial chart behavior. | `@precision-calm/visualization-advanced` |
+
 ## Current limits
 
 - **usePrecisionForm, controlled field adapters, keyboard flow, error focus** — Focuses the first invalid supported field. Optional integration; drafts, autosave, arrays, and dependent fields remain later work. (stable-with-draft-limit).
@@ -480,6 +487,7 @@ detailed API behavior remains in the linked package documents.
 - **CopyButton, CopyableValue, CopyableCode** — Actions have changing names and polite result feedback; hidden sensitive values are announced as hidden. Use @precision-calm/sharing/ui after selecting the clipboard capability and @precision-calm/sharing/runtime during root registration; there is no direct browser clipboard fallback. (optional-capability).
 - **DateField, TimeField, DateRangeField** — Every value has a visible label, format/locale help, and shared error relationship. Calendar dates and wall-clock values are timezone-free. Native picker UI is an optional documented adapter, not a kernel dependency. (stable-portable-input).
 - **AreaChart, StackedBarChart, Sparkline, ChartSeriesDataTable** — Charts announce a summary and support a visible data table; stacked categories can expose named touch/keyboard targets. Dependency-free beyond the existing react-native-svg chart boundary; stacked values are finite and non-negative. (stable-with-specialized-chart-limit).
+- **ScatterPlot, Histogram, Heatmap** — Each chart has a summary and a visible table fallback; touch marks are named controls when selection is enabled. Optional workspace with no new production dependency; it is not re-exported through @precision-calm/ui or included by the minimal generator. (stable-with-specialized-chart-limit).
 
 For planned capabilities, consult the [Golden Template audit](./GOLDEN_TEMPLATE_AUDIT.md);
 planned items are not sanctioned APIs.

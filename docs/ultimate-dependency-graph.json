@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "policy": "Production workspace dependencies are acyclic; kernel math remains below presentation; advanced visualization is opt-in.",
+  "graph": {
+    "@precision-calm/accessibility": [
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/adapters": [],
+    "@precision-calm/auth": [],
+    "@precision-calm/authorization": [],
+    "@precision-calm/capabilities": [],
+    "@precision-calm/components": [
+      "@precision-calm/i18n",
+      "@precision-calm/icons",
+      "@precision-calm/media-presentation",
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/create-app": [],
+    "@precision-calm/data-display": [
+      "@precision-calm/components",
+      "@precision-calm/icons",
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/device": [
+      "@precision-calm/capabilities"
+    ],
+    "@precision-calm/doctor": [],
+    "@precision-calm/feedback": [
+      "@precision-calm/components",
+      "@precision-calm/icons",
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/form-rhf": [
+      "@precision-calm/forms"
+    ],
+    "@precision-calm/forms": [
+      "@precision-calm/components",
+      "@precision-calm/i18n",
+      "@precision-calm/icons",
+      "@precision-calm/overlays",
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/haptics": [
+      "@precision-calm/capabilities"
+    ],
+    "@precision-calm/i18n": [],
+    "@precision-calm/icons": [
+      "@precision-calm/i18n",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/layouts": [
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/linking": [],
+    "@precision-calm/linking-expo": [
+      "@precision-calm/linking"
+    ],
+    "@precision-calm/lists": [
+      "@precision-calm/platform",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/local-auth": [
+      "@precision-calm/capabilities",
+      "@precision-calm/session-security"
+    ],
+    "@precision-calm/media": [
+      "@precision-calm/capabilities"
+    ],
+    "@precision-calm/media-presentation": [
+      "@precision-calm/icons",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/migrate-app": [],
+    "@precision-calm/motion": [
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/navigation": [
+      "@precision-calm/components",
+      "@precision-calm/i18n",
+      "@precision-calm/icons",
+      "@precision-calm/layouts",
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/navigation-router": [
+      "@precision-calm/auth",
+      "@precision-calm/navigation",
+      "@precision-calm/platform"
+    ],
+    "@precision-calm/notifications": [
+      "@precision-calm/capabilities"
+    ],
+    "@precision-calm/observability": [
+      "@precision-calm/capabilities"
+    ],
+    "@precision-calm/overlays": [
+      "@precision-calm/components",
+      "@precision-calm/i18n",
+      "@precision-calm/icons",
+      "@precision-calm/motion",
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/patterns": [
+      "@precision-calm/components",
+      "@precision-calm/data-display",
+      "@precision-calm/feedback",
+      "@precision-calm/forms",
+      "@precision-calm/layouts",
+      "@precision-calm/overlays",
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/server-state",
+      "@precision-calm/visualization"
+    ],
+    "@precision-calm/platform": [
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/preferences": [
+      "@precision-calm/capabilities"
+    ],
+    "@precision-calm/primitives": [
+      "@precision-calm/i18n",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/reference": [
+      "@precision-calm/adapters",
+      "@precision-calm/auth",
+      "@precision-calm/authorization",
+      "@precision-calm/capabilities",
+      "@precision-calm/device",
+      "@precision-calm/form-rhf",
+      "@precision-calm/haptics",
+      "@precision-calm/linking",
+      "@precision-calm/linking-expo",
+      "@precision-calm/local-auth",
+      "@precision-calm/media",
+      "@precision-calm/navigation-router",
+      "@precision-calm/notifications",
+      "@precision-calm/observability",
+      "@precision-calm/platform",
+      "@precision-calm/preferences",
+      "@precision-calm/runtime",
+      "@precision-calm/runtime-capabilities",
+      "@precision-calm/secure-storage",
+      "@precision-calm/server-state",
+      "@precision-calm/session-security",
+      "@precision-calm/sharing",
+      "@precision-calm/tokens",
+      "@precision-calm/ui",
+      "@precision-calm/updates",
+      "@precision-calm/visualization-advanced"
+    ],
+    "@precision-calm/runtime": [
+      "@precision-calm/adapters",
+      "@precision-calm/auth",
+      "@precision-calm/authorization",
+      "@precision-calm/capabilities",
+      "@precision-calm/i18n",
+      "@precision-calm/layouts",
+      "@precision-calm/linking",
+      "@precision-calm/motion",
+      "@precision-calm/overlays",
+      "@precision-calm/primitives",
+      "@precision-calm/server-state",
+      "@precision-calm/session-security"
+    ],
+    "@precision-calm/runtime-capabilities": [
+      "@precision-calm/capabilities",
+      "@precision-calm/server-state"
+    ],
+    "@precision-calm/secure-storage": [
+      "@precision-calm/adapters",
+      "@precision-calm/capabilities"
+    ],
+    "@precision-calm/server-state": [],
+    "@precision-calm/session-security": [],
+    "@precision-calm/sharing": [
+      "@precision-calm/capabilities",
+      "@precision-calm/components",
+      "@precision-calm/primitives"
+    ],
+    "@precision-calm/testing": [
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/tokens": [],
+    "@precision-calm/ui": [
+      "@precision-calm/accessibility",
+      "@precision-calm/components",
+      "@precision-calm/data-display",
+      "@precision-calm/feedback",
+      "@precision-calm/forms",
+      "@precision-calm/i18n",
+      "@precision-calm/icons",
+      "@precision-calm/layouts",
+      "@precision-calm/lists",
+      "@precision-calm/media-presentation",
+      "@precision-calm/motion",
+      "@precision-calm/navigation",
+      "@precision-calm/overlays",
+      "@precision-calm/patterns",
+      "@precision-calm/primitives",
+      "@precision-calm/visualization"
+    ],
+    "@precision-calm/updates": [
+      "@precision-calm/capabilities"
+    ],
+    "@precision-calm/visualization": [
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens"
+    ],
+    "@precision-calm/visualization-advanced": [
+      "@precision-calm/platform",
+      "@precision-calm/primitives",
+      "@precision-calm/tokens",
+      "@precision-calm/visualization"
+    ]
+  }
+}

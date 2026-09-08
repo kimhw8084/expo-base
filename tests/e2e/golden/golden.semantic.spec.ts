@@ -166,3 +166,14 @@ test('@semantic Golden Plus utilities, timeline, date fields, and chart fallback
   await expect(page.getByRole('button', { name: 'Reveal Sensitive reference' })).toHaveCount(1);
   await expect(page.getByRole('button', { name: 'Copy Sensitive reference' })).toHaveCount(1);
 });
+
+test('@semantic optional advanced charts retain named surfaces and data fallbacks', async ({ page }) => {
+  await page.goto('/golden-plus');
+  await expect(page.getByTestId('golden-plus-advanced-visualization')).toBeVisible();
+  await expect(page.getByTestId('advanced-scatter-plot')).toBeVisible();
+  await expect(page.getByTestId('advanced-histogram')).toBeVisible();
+  await expect(page.getByTestId('advanced-heatmap')).toBeVisible();
+  await expect(page.getByRole('table', { name: 'Regional relationship data' })).toBeVisible();
+  await expect(page.getByRole('table', { name: 'Observed distribution data' })).toBeVisible();
+  await expect(page.getByRole('table', { name: 'Cohort retention data' })).toBeVisible();
+});

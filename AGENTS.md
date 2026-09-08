@@ -26,7 +26,7 @@ package documentation remains the detailed API reference.
 | Rows, metrics, tables, timeline, selection, pagination, export serialization | `@precision-calm/data-display` | Use controlled data presentation owners. |
 | Static, virtualized, and sectioned lists | `@precision-calm/lists` | Let the list own scrolling, refresh, and list states. |
 | Image/media display | `@precision-calm/media-presentation` | Use `MediaFrame`; acquisition remains the selected optional media capability. |
-| Charts and progress | `@precision-calm/visualization` | Use current chart owners; keep unique visualizations product-specific. |
+| Charts and progress | `@precision-calm/visualization`; optional `@precision-calm/visualization-advanced` | Use core owners for ordinary plots; select the advanced module for scatter, histogram, or heatmap mechanics. Keep specialist visualizations product-specific or adapter-owned. |
 | Runtime providers and async actions | `@precision-calm/runtime` | Consume services and `usePrecisionAsyncAction`; do not create global clients. |
 | Server queries, cache, invalidation, and mutations | `@precision-calm/server-state` | Use deterministic keys and the shared scoped lifecycle; keep transport in services/adapters. |
 | Backend-neutral service contracts | `@precision-calm/adapters` | Compose adapters outside feature routes. |
@@ -89,6 +89,8 @@ disables or broad global bypasses.
 
 For shared visual, semantic, accessibility, or performance changes, run `npm run golden:verify`. Treat a visual diff as a defect until reviewed. Never update baselines as an automatic failure fix; the deliberate update policy lives in `docs/CERTIFICATION.md`.
 
+For new reusable owners, update `golden.owner-certification.json` and link the owner to one Golden Catalog item. Use `npm run check:owner-certification`, `npm run check:dependency-graph`, and `npm run check:ultimate-audit`; advanced visualization belongs in `@precision-calm/visualization-advanced` and must not be pulled into the minimal generated app or reimplemented in a feature route. Run `npm run golden:verify` and `npm run mobile:verify` for shared visual or responsive changes.
+
 Do not create a new page architecture when an existing Golden pattern matches the requested intent. Scaffolding is preferred for standard workflows; manual Golden composition remains valid for genuinely unique product work.
 
 ## Examples
@@ -150,7 +152,9 @@ Shared interactive controls and media display are specified by `COMPONENTS.md` a
 `MEDIA_PRESENTATION.md`.
 Server queries and cache lifecycle are specified by `SERVER_STATE.md` and `ADR_SERVER_STATE.md`.
 Optional native/browser boundaries, availability, permissions, privacy, and generator profiles are
-specified by `RUNTIME_CAPABILITIES.md`.
+specified by `RUNTIME_CAPABILITIES.md`. The visualization module boundary and current convergence
+inventory are recorded in `ADR_VISUALIZATION_MODULE.md`, `ULTIMATE_GOLDEN_AUDIT.md`, and
+`ULTIMATE_GOLDEN_COVERAGE.md`.
 
 The audit remains historical and planning evidence in
 [`docs/GOLDEN_TEMPLATE_AUDIT.md`](./docs/GOLDEN_TEMPLATE_AUDIT.md). Do not treat planned audit

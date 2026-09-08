@@ -1,0 +1,1668 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/generate-ultimate-golden-audit.mjs",
+  "source": "live checkout",
+  "metrics": {
+    "workspaces": 47,
+    "catalogOwners": 76,
+    "ownershipRecords": 24,
+    "discoveryChallenges": 56,
+    "publicApiSymbols": 366,
+    "stateOwners": 28,
+    "visualBaselines": 12,
+    "pseudoRoutes": 13,
+    "ownerCertificationRecords": 14
+  },
+  "inventories": {
+    "workspaces": [
+      {
+        "dir": "packages/accessibility",
+        "name": "@precision-calm/accessibility",
+        "dependencies": [
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/adapters",
+        "name": "@precision-calm/adapters",
+        "dependencies": []
+      },
+      {
+        "dir": "packages/auth",
+        "name": "@precision-calm/auth",
+        "dependencies": []
+      },
+      {
+        "dir": "packages/authorization",
+        "name": "@precision-calm/authorization",
+        "dependencies": []
+      },
+      {
+        "dir": "packages/capabilities",
+        "name": "@precision-calm/capabilities",
+        "dependencies": [
+          "react"
+        ]
+      },
+      {
+        "dir": "packages/components",
+        "name": "@precision-calm/components",
+        "dependencies": [
+          "@precision-calm/i18n",
+          "@precision-calm/icons",
+          "@precision-calm/media-presentation",
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/create-precision-app",
+        "name": "@precision-calm/create-app",
+        "dependencies": []
+      },
+      {
+        "dir": "packages/data-display",
+        "name": "@precision-calm/data-display",
+        "dependencies": [
+          "@precision-calm/components",
+          "@precision-calm/icons",
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/device",
+        "name": "@precision-calm/device",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "expo-application",
+          "expo-device",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/feedback",
+        "name": "@precision-calm/feedback",
+        "dependencies": [
+          "@precision-calm/components",
+          "@precision-calm/icons",
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/form-rhf",
+        "name": "@precision-calm/form-rhf",
+        "dependencies": [
+          "@precision-calm/forms",
+          "react",
+          "react-hook-form",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/forms",
+        "name": "@precision-calm/forms",
+        "dependencies": [
+          "@precision-calm/components",
+          "@precision-calm/i18n",
+          "@precision-calm/icons",
+          "@precision-calm/overlays",
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/haptics",
+        "name": "@precision-calm/haptics",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "expo-haptics",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/i18n",
+        "name": "@precision-calm/i18n",
+        "dependencies": [
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/icons",
+        "name": "@precision-calm/icons",
+        "dependencies": [
+          "@precision-calm/i18n",
+          "@precision-calm/tokens",
+          "lucide-react-native",
+          "react",
+          "react-native",
+          "react-native-svg",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/layouts",
+        "name": "@precision-calm/layouts",
+        "dependencies": [
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-keyboard-controller",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/linking",
+        "name": "@precision-calm/linking",
+        "dependencies": []
+      },
+      {
+        "dir": "packages/linking-expo",
+        "name": "@precision-calm/linking-expo",
+        "dependencies": [
+          "@precision-calm/linking",
+          "expo-linking"
+        ]
+      },
+      {
+        "dir": "packages/lists",
+        "name": "@precision-calm/lists",
+        "dependencies": [
+          "@precision-calm/platform",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/local-auth",
+        "name": "@precision-calm/local-auth",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "@precision-calm/session-security",
+          "expo-local-authentication",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/media",
+        "name": "@precision-calm/media",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "expo-camera",
+          "expo-document-picker",
+          "expo-image-picker",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/media-presentation",
+        "name": "@precision-calm/media-presentation",
+        "dependencies": [
+          "@precision-calm/icons",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/migrate-precision-app",
+        "name": "@precision-calm/migrate-app",
+        "dependencies": []
+      },
+      {
+        "dir": "packages/motion",
+        "name": "@precision-calm/motion",
+        "dependencies": [
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-reanimated",
+          "react-native-unistyles",
+          "react-native-worklets"
+        ]
+      },
+      {
+        "dir": "packages/navigation",
+        "name": "@precision-calm/navigation",
+        "dependencies": [
+          "@precision-calm/components",
+          "@precision-calm/i18n",
+          "@precision-calm/icons",
+          "@precision-calm/layouts",
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/navigation-router",
+        "name": "@precision-calm/navigation-router",
+        "dependencies": [
+          "@precision-calm/auth",
+          "@precision-calm/navigation",
+          "@precision-calm/platform",
+          "expo-router",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/notifications",
+        "name": "@precision-calm/notifications",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "expo-notifications",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/observability",
+        "name": "@precision-calm/observability",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "react"
+        ]
+      },
+      {
+        "dir": "packages/overlays",
+        "name": "@precision-calm/overlays",
+        "dependencies": [
+          "@precision-calm/components",
+          "@precision-calm/i18n",
+          "@precision-calm/icons",
+          "@precision-calm/motion",
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-dom",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/patterns",
+        "name": "@precision-calm/patterns",
+        "dependencies": [
+          "@precision-calm/components",
+          "@precision-calm/data-display",
+          "@precision-calm/feedback",
+          "@precision-calm/forms",
+          "@precision-calm/layouts",
+          "@precision-calm/overlays",
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/server-state",
+          "@precision-calm/visualization",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/platform",
+        "name": "@precision-calm/platform",
+        "dependencies": [
+          "@precision-calm/tokens"
+        ]
+      },
+      {
+        "dir": "packages/precision-doctor",
+        "name": "@precision-calm/doctor",
+        "dependencies": []
+      },
+      {
+        "dir": "packages/preferences",
+        "name": "@precision-calm/preferences",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "@react-native-async-storage/async-storage",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/primitives",
+        "name": "@precision-calm/primitives",
+        "dependencies": [
+          "@precision-calm/i18n",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/runtime",
+        "name": "@precision-calm/runtime",
+        "dependencies": [
+          "@precision-calm/adapters",
+          "@precision-calm/auth",
+          "@precision-calm/authorization",
+          "@precision-calm/capabilities",
+          "@precision-calm/i18n",
+          "@precision-calm/layouts",
+          "@precision-calm/linking",
+          "@precision-calm/motion",
+          "@precision-calm/overlays",
+          "@precision-calm/primitives",
+          "@precision-calm/server-state",
+          "@precision-calm/session-security",
+          "react"
+        ]
+      },
+      {
+        "dir": "packages/runtime-capabilities",
+        "name": "@precision-calm/runtime-capabilities",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "@precision-calm/server-state",
+          "expo-network",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/secure-storage",
+        "name": "@precision-calm/secure-storage",
+        "dependencies": [
+          "@precision-calm/adapters",
+          "@precision-calm/capabilities",
+          "expo-secure-store",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/server-state",
+        "name": "@precision-calm/server-state",
+        "dependencies": [
+          "@tanstack/react-query",
+          "react"
+        ]
+      },
+      {
+        "dir": "packages/session-security",
+        "name": "@precision-calm/session-security",
+        "dependencies": []
+      },
+      {
+        "dir": "packages/sharing",
+        "name": "@precision-calm/sharing",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "@precision-calm/components",
+          "@precision-calm/primitives",
+          "expo-clipboard",
+          "expo-sharing",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/testing",
+        "name": "@precision-calm/testing",
+        "dependencies": [
+          "@precision-calm/tokens"
+        ]
+      },
+      {
+        "dir": "packages/tokens",
+        "name": "@precision-calm/tokens",
+        "dependencies": []
+      },
+      {
+        "dir": "packages/ui",
+        "name": "@precision-calm/ui",
+        "dependencies": [
+          "@precision-calm/accessibility",
+          "@precision-calm/components",
+          "@precision-calm/data-display",
+          "@precision-calm/feedback",
+          "@precision-calm/forms",
+          "@precision-calm/i18n",
+          "@precision-calm/icons",
+          "@precision-calm/layouts",
+          "@precision-calm/lists",
+          "@precision-calm/media-presentation",
+          "@precision-calm/motion",
+          "@precision-calm/navigation",
+          "@precision-calm/overlays",
+          "@precision-calm/patterns",
+          "@precision-calm/primitives",
+          "@precision-calm/visualization"
+        ]
+      },
+      {
+        "dir": "packages/updates",
+        "name": "@precision-calm/updates",
+        "dependencies": [
+          "@precision-calm/capabilities",
+          "expo-updates",
+          "react",
+          "react-native"
+        ]
+      },
+      {
+        "dir": "packages/visualization",
+        "name": "@precision-calm/visualization",
+        "dependencies": [
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "react",
+          "react-native",
+          "react-native-svg",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "packages/visualization-advanced",
+        "name": "@precision-calm/visualization-advanced",
+        "dependencies": [
+          "@precision-calm/platform",
+          "@precision-calm/primitives",
+          "@precision-calm/tokens",
+          "@precision-calm/visualization",
+          "react",
+          "react-native",
+          "react-native-svg",
+          "react-native-unistyles"
+        ]
+      },
+      {
+        "dir": "apps/reference",
+        "name": "@precision-calm/reference",
+        "dependencies": [
+          "@precision-calm/adapters",
+          "@precision-calm/auth",
+          "@precision-calm/authorization",
+          "@precision-calm/capabilities",
+          "@precision-calm/device",
+          "@precision-calm/form-rhf",
+          "@precision-calm/haptics",
+          "@precision-calm/linking",
+          "@precision-calm/linking-expo",
+          "@precision-calm/local-auth",
+          "@precision-calm/media",
+          "@precision-calm/navigation-router",
+          "@precision-calm/notifications",
+          "@precision-calm/observability",
+          "@precision-calm/platform",
+          "@precision-calm/preferences",
+          "@precision-calm/runtime",
+          "@precision-calm/runtime-capabilities",
+          "@precision-calm/secure-storage",
+          "@precision-calm/server-state",
+          "@precision-calm/session-security",
+          "@precision-calm/sharing",
+          "@precision-calm/tokens",
+          "@precision-calm/ui",
+          "@precision-calm/updates",
+          "@precision-calm/visualization-advanced",
+          "expo",
+          "expo-constants",
+          "expo-dev-client",
+          "expo-haptics",
+          "expo-linking",
+          "expo-router",
+          "expo-status-bar",
+          "lucide-react-native",
+          "react",
+          "react-dom",
+          "react-hook-form",
+          "react-native",
+          "react-native-keyboard-controller",
+          "react-native-nitro-modules",
+          "react-native-reanimated",
+          "react-native-safe-area-context",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-unistyles",
+          "react-native-web",
+          "react-native-worklets"
+        ]
+      }
+    ],
+    "packageGraph": {
+      "@precision-calm/accessibility": [
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/adapters": [],
+      "@precision-calm/auth": [],
+      "@precision-calm/authorization": [],
+      "@precision-calm/capabilities": [],
+      "@precision-calm/components": [
+        "@precision-calm/i18n",
+        "@precision-calm/icons",
+        "@precision-calm/media-presentation",
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/create-app": [],
+      "@precision-calm/data-display": [
+        "@precision-calm/components",
+        "@precision-calm/icons",
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/device": [
+        "@precision-calm/capabilities"
+      ],
+      "@precision-calm/feedback": [
+        "@precision-calm/components",
+        "@precision-calm/icons",
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/form-rhf": [
+        "@precision-calm/forms"
+      ],
+      "@precision-calm/forms": [
+        "@precision-calm/components",
+        "@precision-calm/i18n",
+        "@precision-calm/icons",
+        "@precision-calm/overlays",
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/haptics": [
+        "@precision-calm/capabilities"
+      ],
+      "@precision-calm/i18n": [],
+      "@precision-calm/icons": [
+        "@precision-calm/i18n",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/layouts": [
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/linking": [],
+      "@precision-calm/linking-expo": [
+        "@precision-calm/linking"
+      ],
+      "@precision-calm/lists": [
+        "@precision-calm/platform",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/local-auth": [
+        "@precision-calm/capabilities",
+        "@precision-calm/session-security"
+      ],
+      "@precision-calm/media": [
+        "@precision-calm/capabilities"
+      ],
+      "@precision-calm/media-presentation": [
+        "@precision-calm/icons",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/migrate-app": [],
+      "@precision-calm/motion": [
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/navigation": [
+        "@precision-calm/components",
+        "@precision-calm/i18n",
+        "@precision-calm/icons",
+        "@precision-calm/layouts",
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/navigation-router": [
+        "@precision-calm/auth",
+        "@precision-calm/navigation",
+        "@precision-calm/platform"
+      ],
+      "@precision-calm/notifications": [
+        "@precision-calm/capabilities"
+      ],
+      "@precision-calm/observability": [
+        "@precision-calm/capabilities"
+      ],
+      "@precision-calm/overlays": [
+        "@precision-calm/components",
+        "@precision-calm/i18n",
+        "@precision-calm/icons",
+        "@precision-calm/motion",
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/patterns": [
+        "@precision-calm/components",
+        "@precision-calm/data-display",
+        "@precision-calm/feedback",
+        "@precision-calm/forms",
+        "@precision-calm/layouts",
+        "@precision-calm/overlays",
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/server-state",
+        "@precision-calm/visualization"
+      ],
+      "@precision-calm/platform": [
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/doctor": [],
+      "@precision-calm/preferences": [
+        "@precision-calm/capabilities"
+      ],
+      "@precision-calm/primitives": [
+        "@precision-calm/i18n",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/runtime": [
+        "@precision-calm/adapters",
+        "@precision-calm/auth",
+        "@precision-calm/authorization",
+        "@precision-calm/capabilities",
+        "@precision-calm/i18n",
+        "@precision-calm/layouts",
+        "@precision-calm/linking",
+        "@precision-calm/motion",
+        "@precision-calm/overlays",
+        "@precision-calm/primitives",
+        "@precision-calm/server-state",
+        "@precision-calm/session-security"
+      ],
+      "@precision-calm/runtime-capabilities": [
+        "@precision-calm/capabilities",
+        "@precision-calm/server-state"
+      ],
+      "@precision-calm/secure-storage": [
+        "@precision-calm/adapters",
+        "@precision-calm/capabilities"
+      ],
+      "@precision-calm/server-state": [],
+      "@precision-calm/session-security": [],
+      "@precision-calm/sharing": [
+        "@precision-calm/capabilities",
+        "@precision-calm/components",
+        "@precision-calm/primitives"
+      ],
+      "@precision-calm/testing": [
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/tokens": [],
+      "@precision-calm/ui": [
+        "@precision-calm/accessibility",
+        "@precision-calm/components",
+        "@precision-calm/data-display",
+        "@precision-calm/feedback",
+        "@precision-calm/forms",
+        "@precision-calm/i18n",
+        "@precision-calm/icons",
+        "@precision-calm/layouts",
+        "@precision-calm/lists",
+        "@precision-calm/media-presentation",
+        "@precision-calm/motion",
+        "@precision-calm/navigation",
+        "@precision-calm/overlays",
+        "@precision-calm/patterns",
+        "@precision-calm/primitives",
+        "@precision-calm/visualization"
+      ],
+      "@precision-calm/updates": [
+        "@precision-calm/capabilities"
+      ],
+      "@precision-calm/visualization": [
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens"
+      ],
+      "@precision-calm/visualization-advanced": [
+        "@precision-calm/platform",
+        "@precision-calm/primitives",
+        "@precision-calm/tokens",
+        "@precision-calm/visualization"
+      ],
+      "@precision-calm/reference": [
+        "@precision-calm/adapters",
+        "@precision-calm/auth",
+        "@precision-calm/authorization",
+        "@precision-calm/capabilities",
+        "@precision-calm/device",
+        "@precision-calm/form-rhf",
+        "@precision-calm/haptics",
+        "@precision-calm/linking",
+        "@precision-calm/linking-expo",
+        "@precision-calm/local-auth",
+        "@precision-calm/media",
+        "@precision-calm/navigation-router",
+        "@precision-calm/notifications",
+        "@precision-calm/observability",
+        "@precision-calm/platform",
+        "@precision-calm/preferences",
+        "@precision-calm/runtime",
+        "@precision-calm/runtime-capabilities",
+        "@precision-calm/secure-storage",
+        "@precision-calm/server-state",
+        "@precision-calm/session-security",
+        "@precision-calm/sharing",
+        "@precision-calm/tokens",
+        "@precision-calm/ui",
+        "@precision-calm/updates",
+        "@precision-calm/visualization-advanced"
+      ]
+    },
+    "catalogOwnership": [
+      {
+        "id": "tokens",
+        "concern": "tokens, theme, density, responsive regimes, layers",
+        "package": "@precision-calm/tokens",
+        "classification": "kernel",
+        "featureRouteAccess": "indirect",
+        "docs": "docs/LAYOUT_ENGINE.md"
+      },
+      {
+        "id": "primitives",
+        "concern": "basic structure, text, shared pressable semantics",
+        "package": "@precision-calm/primitives",
+        "classification": "kernel",
+        "featureRouteAccess": "limited-compose",
+        "docs": "docs/LAYOUT_ENGINE.md"
+      },
+      {
+        "id": "components",
+        "concern": "actions, surfaces, identity, status, icons",
+        "package": "@precision-calm/components",
+        "classification": "kernel",
+        "featureRouteAccess": "compose",
+        "docs": "docs/PUBLIC_API.md"
+      },
+      {
+        "id": "layouts",
+        "concern": "page geometry, safe areas, adaptive composition",
+        "package": "@precision-calm/layouts",
+        "classification": "kernel",
+        "featureRouteAccess": "compose",
+        "docs": "docs/LAYOUT_ENGINE.md"
+      },
+      {
+        "id": "navigation",
+        "concern": "navigation surfaces and Expo Router boundary",
+        "package": "@precision-calm/navigation, @precision-calm/navigation-router",
+        "classification": "kernel",
+        "featureRouteAccess": "compose-and-root-configure",
+        "docs": "docs/NAVIGATION.md"
+      },
+      {
+        "id": "forms",
+        "concern": "fields, sections, validation presentation, keyboard shell",
+        "package": "@precision-calm/forms",
+        "classification": "kernel",
+        "featureRouteAccess": "compose",
+        "docs": "docs/FORMS.md"
+      },
+      {
+        "id": "form-rhf",
+        "concern": "optional React Hook Form adapters",
+        "package": "@precision-calm/form-rhf",
+        "classification": "optional-integration",
+        "featureRouteAccess": "compose",
+        "docs": "docs/FORMS.md"
+      },
+      {
+        "id": "i18n",
+        "concern": "locale, messages, fallback, formatting, direction, pseudo-localization",
+        "package": "@precision-calm/i18n",
+        "classification": "kernel",
+        "featureRouteAccess": "consume",
+        "docs": "docs/INTERNATIONALIZATION.md"
+      },
+      {
+        "id": "overlays",
+        "concern": "dialogs, sheets, popovers, menus, toasts",
+        "package": "@precision-calm/overlays",
+        "classification": "kernel",
+        "featureRouteAccess": "compose",
+        "docs": "docs/OVERLAYS.md"
+      },
+      {
+        "id": "feedback",
+        "concern": "loading, empty, error, offline, retry, stale feedback",
+        "package": "@precision-calm/feedback",
+        "classification": "kernel",
+        "featureRouteAccess": "compose",
+        "docs": "docs/FEEDBACK.md"
+      },
+      {
+        "id": "data-display",
+        "concern": "metrics, rows, tables, selection, pagination",
+        "package": "@precision-calm/data-display",
+        "classification": "kernel",
+        "featureRouteAccess": "compose",
+        "docs": "docs/DATA_DISPLAY.md"
+      },
+      {
+        "id": "lists",
+        "concern": "static, virtualized, sectioned list behavior",
+        "package": "@precision-calm/lists",
+        "classification": "kernel",
+        "featureRouteAccess": "compose",
+        "docs": "docs/LISTS.md"
+      },
+      {
+        "id": "visualization",
+        "concern": "current charts and progress",
+        "package": "@precision-calm/visualization",
+        "classification": "kernel",
+        "featureRouteAccess": "compose",
+        "docs": "docs/VISUALIZATION.md"
+      },
+      {
+        "id": "media-presentation",
+        "concern": "responsive image/media presentation and fallback",
+        "package": "@precision-calm/media-presentation",
+        "classification": "kernel",
+        "featureRouteAccess": "compose",
+        "docs": "docs/MEDIA_PRESENTATION.md"
+      },
+      {
+        "id": "runtime",
+        "concern": "runtime providers, services, isolated async actions",
+        "package": "@precision-calm/runtime",
+        "classification": "kernel",
+        "featureRouteAccess": "consume",
+        "docs": "docs/ASYNC_INTERACTIONS.md"
+      },
+      {
+        "id": "server-state",
+        "concern": "query identity, scoped cache, stale refresh, invalidation, and mutation lifecycle",
+        "package": "@precision-calm/server-state",
+        "classification": "kernel-integration",
+        "featureRouteAccess": "consume",
+        "docs": "docs/SERVER_STATE.md"
+      },
+      {
+        "id": "adapters",
+        "concern": "backend-neutral service contracts",
+        "package": "@precision-calm/adapters",
+        "classification": "integration-boundary",
+        "featureRouteAccess": "root-configure",
+        "docs": "docs/ADAPTERS.md"
+      },
+      {
+        "id": "auth",
+        "concern": "authentication and protected-route state",
+        "package": "@precision-calm/auth, @precision-calm/runtime",
+        "classification": "kernel-boundary",
+        "featureRouteAccess": "consume",
+        "docs": "docs/AUTH_PROTECTED_ROUTES.md"
+      },
+      {
+        "id": "authorization",
+        "concern": "capability authorization",
+        "package": "@precision-calm/authorization, @precision-calm/runtime",
+        "classification": "kernel-boundary",
+        "featureRouteAccess": "consume",
+        "docs": "docs/AUTHORIZATION_CAPABILITIES.md"
+      },
+      {
+        "id": "session-security",
+        "concern": "local session locking",
+        "package": "@precision-calm/session-security, @precision-calm/runtime",
+        "classification": "kernel-boundary",
+        "featureRouteAccess": "root-configure-and-consume",
+        "docs": "docs/SESSION_SECURITY.md"
+      },
+      {
+        "id": "platform-capabilities",
+        "concern": "selected native/browser capability adapters and availability",
+        "package": "@precision-calm/capabilities plus optional capability packages",
+        "classification": "optional-capability-architecture",
+        "featureRouteAccess": "root-configure-and-consume",
+        "docs": "docs/RUNTIME_CAPABILITIES.md"
+      },
+      {
+        "id": "observability",
+        "concern": "provider-neutral logging, error reporting, analytics timing",
+        "package": "@precision-calm/observability",
+        "classification": "optional-integration-boundary",
+        "featureRouteAccess": "consume",
+        "docs": "docs/RUNTIME_CAPABILITIES.md"
+      },
+      {
+        "id": "reference",
+        "concern": "living specification",
+        "package": "apps/reference",
+        "classification": "reference",
+        "featureRouteAccess": "reference-only",
+        "docs": "docs/REFERENCE.md"
+      },
+      {
+        "id": "generator",
+        "concern": "fresh application parity",
+        "package": "@precision-calm/create-app",
+        "classification": "generator",
+        "featureRouteAccess": "generator-only",
+        "docs": "docs/GENERATOR.md"
+      }
+    ],
+    "publicExports": {
+      "accessibility": [
+        "AccessibleGroup",
+        "AccessibleGroupProps",
+        "LivePoliteness",
+        "LiveRegion",
+        "PrecisionWebAccessibilityStyles",
+        "VisuallyHidden"
+      ],
+      "components": [
+        "Accordion",
+        "AccordionItem",
+        "AccordionProps",
+        "Avatar",
+        "AvatarGroup",
+        "AvatarGroupItem",
+        "AvatarGroupProps",
+        "AvatarProps",
+        "Badge",
+        "BadgeProps",
+        "Button",
+        "ButtonProps",
+        "Card",
+        "CardPadding",
+        "CardProps",
+        "CardVariant",
+        "Chip",
+        "ChipProps",
+        "CodeBlock",
+        "CodeBlockProps",
+        "Disclosure",
+        "DisclosureProps",
+        "IconButton",
+        "IconButtonProps",
+        "Link",
+        "LinkProps",
+        "SegmentedControl",
+        "SegmentedControlOption",
+        "SegmentedControlProps",
+        "StatusIndicator",
+        "StatusIndicatorProps",
+        "StatusIndicatorTone",
+        "StepIndicator",
+        "StepIndicatorProps",
+        "StepIndicatorStep",
+        "Tag",
+        "TagProps",
+        "TagTone"
+      ],
+      "data-display": [
+        "AdaptiveDataTable",
+        "AdaptiveDataTableProps",
+        "CursorPagination",
+        "CursorPaginationProps",
+        "DataColumn",
+        "DataColumnVisibility",
+        "DataExportColumn",
+        "DataSelection",
+        "DataSort",
+        "DataSortDirection",
+        "DataToolbar",
+        "DataToolbarFilter",
+        "DataToolbarProps",
+        "DelimitedDataOptions",
+        "InfinitePagination",
+        "InfinitePaginationProps",
+        "KeyValueItem",
+        "KeyValueList",
+        "KeyValueListProps",
+        "ListRow",
+        "ListRowProps",
+        "Metric",
+        "MetricGroup",
+        "MetricGroupProps",
+        "MetricProps",
+        "Pagination",
+        "PaginationProps",
+        "SelectionBar",
+        "SelectionBarAction",
+        "SelectionBarProps",
+        "Timeline",
+        "TimelineItem",
+        "TimelineProps",
+        "TimelineTone",
+        "serializeDelimitedData",
+        "sortDataRows",
+        "useDataColumnVisibility"
+      ],
+      "feedback": [
+        "AlertBanner",
+        "AlertBannerProps",
+        "AlertTone",
+        "AsyncStateView",
+        "AsyncStateViewProps",
+        "InlineMessage",
+        "LoadingState",
+        "SkeletonLine",
+        "SkeletonList",
+        "SkeletonWidth",
+        "StateKind",
+        "StateView",
+        "StateViewProps"
+      ],
+      "forms": [
+        "Checkbox",
+        "CheckboxGroup",
+        "CheckboxGroupProps",
+        "CheckboxProps",
+        "CodeField",
+        "CodeFieldProps",
+        "ComboboxField",
+        "ComboboxFieldProps",
+        "CurrencyField",
+        "CurrencyFieldProps",
+        "DateField",
+        "DateFieldProps",
+        "DateRangeField",
+        "DateRangeFieldProps",
+        "EmailField",
+        "FormActions",
+        "FormActionsProps",
+        "FormDiscardDialog",
+        "FormDiscardDialogProps",
+        "FormErrorSummary",
+        "FormErrorSummaryItem",
+        "FormErrorSummaryProps",
+        "FormField",
+        "FormFieldProps",
+        "FormLeaveGuard",
+        "FormRow",
+        "FormRowProps",
+        "FormSection",
+        "FormSectionGroup",
+        "FormSectionGroupProps",
+        "FormSectionProps",
+        "MultiSelectField",
+        "MultiSelectFieldProps",
+        "NumberField",
+        "NumberFieldProps",
+        "NumberStepper",
+        "NumberStepperProps",
+        "PasswordField",
+        "PhoneField",
+        "RadioGroup",
+        "RadioGroupProps",
+        "RadioOption",
+        "SearchField",
+        "SegmentedField",
+        "SegmentedFieldProps",
+        "SelectField",
+        "SelectFieldProps",
+        "SelectOption",
+        "SwitchField",
+        "SwitchFieldProps",
+        "TextArea",
+        "TextAreaProps",
+        "TextField",
+        "TextFieldProps",
+        "TimeField",
+        "TimeFieldProps",
+        "UrlField",
+        "useFormLeaveGuard"
+      ],
+      "i18n": [
+        "PrecisionDirection",
+        "PrecisionDirectionPreference",
+        "PrecisionI18nOptions",
+        "PrecisionI18nProvider",
+        "PrecisionI18nValue",
+        "PrecisionMessage",
+        "PrecisionMessageCatalog",
+        "PrecisionMessageValues",
+        "PrecisionPluralMessage",
+        "comparePrecisionLocale",
+        "detectPrecisionLocale",
+        "detectPrecisionTimeZone",
+        "formatPrecisionCurrency",
+        "formatPrecisionDate",
+        "formatPrecisionEditableNumber",
+        "formatPrecisionMessage",
+        "formatPrecisionNumber",
+        "formatPrecisionPercent",
+        "isPrecisionPseudoLocale",
+        "normalizePrecisionLocale",
+        "parsePrecisionDecimalInput",
+        "precisionLocaleDirection",
+        "precisionNumberSymbols",
+        "pseudoLocalize",
+        "resolvePrecisionMessage",
+        "usePrecisionDirection",
+        "usePrecisionI18n"
+      ],
+      "icons": [
+        "Icon",
+        "IconName",
+        "IconProps",
+        "IconTone"
+      ],
+      "layouts": [
+        "AdaptiveGrid",
+        "AdaptiveGridItem",
+        "AdaptiveGridSpan",
+        "AdaptiveSplit",
+        "AdaptiveSplitProps",
+        "Container",
+        "FormScreen",
+        "FormScreenProps",
+        "KeyboardRootProvider",
+        "MasterDetail",
+        "MasterDetailProps",
+        "Page",
+        "PageHeader",
+        "PageHeaderProps",
+        "PageProps",
+        "PriorityAction",
+        "PriorityActionBar",
+        "PriorityActionBarProps",
+        "PriorityActionProps",
+        "ResponsiveSlot",
+        "ResponsiveSlotProps",
+        "SafeAreaEdges",
+        "SafeAreaRegion",
+        "Screen",
+        "ScreenProps",
+        "ScrollScreen",
+        "ScrollScreenProps",
+        "Section",
+        "SectionHeader",
+        "SectionHeaderProps",
+        "SidebarLayout",
+        "SidebarLayoutProps",
+        "StickyActionBar",
+        "StickyActionBarProps",
+        "Toolbar"
+      ],
+      "lists": [
+        "ListScreen",
+        "ListScreenProps",
+        "PrecisionSection",
+        "SectionListScreen",
+        "SectionListScreenProps",
+        "StaticList",
+        "StaticListProps"
+      ],
+      "media-presentation": [
+        "MediaFrame",
+        "MediaFrameProps",
+        "MediaFrameSource",
+        "MediaFrameState"
+      ],
+      "motion": [
+        "MotionRootProvider",
+        "PrecisionMotionValue",
+        "Reveal",
+        "RevealKind",
+        "usePrecisionMotion",
+        "usePrecisionReducedMotion"
+      ],
+      "navigation": [
+        "AdaptiveNavigationShell",
+        "AdaptiveNavigationShellProps",
+        "BottomNavigation",
+        "BottomNavigationProps",
+        "BreadcrumbItem",
+        "Breadcrumbs",
+        "BreadcrumbsProps",
+        "NavigationItem",
+        "NavigationItemButton",
+        "SidebarNavigation",
+        "SidebarNavigationProps",
+        "TabItem",
+        "Tabs",
+        "TabsProps"
+      ],
+      "overlays": [
+        "ActionMenu",
+        "ActionMenuItem",
+        "ActionMenuProps",
+        "ActionMenuSection",
+        "BottomSheet",
+        "BottomSheetProps",
+        "Dialog",
+        "DialogProps",
+        "MenuGroup",
+        "MenuGroupProps",
+        "MenuItem",
+        "MenuItemProps",
+        "OverlayFocusTarget",
+        "OverlayLifecycleOptions",
+        "OverlayRootProvider",
+        "Popover",
+        "PopoverProps",
+        "useOverlayLifecycle",
+        "useOverlayManager"
+      ],
+      "patterns": [
+        "AnalyticsLayout",
+        "AnalyticsLayoutProps",
+        "AuthenticationLayout",
+        "AuthenticationLayoutProps",
+        "CommandLauncher",
+        "CommandLauncherProps",
+        "CompletionLayout",
+        "CompletionLayoutProps",
+        "CreateEditFormLayout",
+        "CreateEditFormLayoutProps",
+        "DashboardLayout",
+        "DashboardLayoutProps",
+        "DataWorkspaceLayout",
+        "DataWorkspaceLayoutProps",
+        "DetailLayout",
+        "DetailLayoutProps",
+        "EmptyStartLayout",
+        "EmptyStartLayoutProps",
+        "FeedListLayout",
+        "FeedListLayoutProps",
+        "FilterDrawer",
+        "FilterDrawerProps",
+        "FormWorkspaceLayout",
+        "FormWorkspaceLayoutProps",
+        "FullScreenWorkflowLayout",
+        "FullScreenWorkflowLayoutProps",
+        "ImportWorkflowLayout",
+        "ImportWorkflowLayoutProps",
+        "MasterDetailPageLayout",
+        "MasterDetailPageLayoutProps",
+        "OfflineWorkspaceLayout",
+        "OfflineWorkspaceLayoutProps",
+        "OverlayWorkflowLayout",
+        "OverlayWorkflowLayoutProps",
+        "PatternHeaderProps",
+        "PermissionRationaleLayout",
+        "PermissionRationaleLayoutProps",
+        "PrecisionCommand",
+        "ProfileLayout",
+        "ProfileLayoutProps",
+        "ReviewWorkflowLayout",
+        "ReviewWorkflowLayoutProps",
+        "SearchResultsLayout",
+        "SearchResultsLayoutProps",
+        "ServerStateContent",
+        "ServerStateContentProps",
+        "SettingsLayout",
+        "SettingsLayoutProps",
+        "WizardLayout",
+        "WizardLayoutProps"
+      ],
+      "primitives": [
+        "Box",
+        "BoxProps",
+        "DensityProvider",
+        "Divider",
+        "DividerProps",
+        "HStack",
+        "PrecisionDensity",
+        "PressableSurface",
+        "PressableSurfaceProps",
+        "StackProps",
+        "Text",
+        "TextProps",
+        "TextTone",
+        "TextVariant",
+        "ThemeScope",
+        "VStack",
+        "densitySpacingToken",
+        "useDensity",
+        "useInteractionState"
+      ],
+      "visualization": [
+        "AreaChart",
+        "AreaChartProps",
+        "BarChart",
+        "BarChartProps",
+        "ChartDataTable",
+        "ChartEmptyState",
+        "ChartErrorState",
+        "ChartFrame",
+        "ChartFrameProps",
+        "ChartLegend",
+        "ChartLegendItem",
+        "ChartLoadingState",
+        "ChartSeriesDataTable",
+        "ChartSeriesTableColumn",
+        "ChartSeriesTableRow",
+        "ChartSize",
+        "ChartState",
+        "DonutChart",
+        "DonutChartProps",
+        "LineChart",
+        "LineChartProps",
+        "ProgressBar",
+        "ProgressRing",
+        "Sparkline",
+        "StackedBarChart",
+        "StackedBarChartProps",
+        "StackedBarDatum",
+        "StackedBarSeries",
+        "VisualizationSeries"
+      ]
+    },
+    "sourceInventory": {
+      "layouts": [
+        "AdaptiveGrid.tsx",
+        "AdaptiveSplit.tsx",
+        "Container.tsx",
+        "FormScreen.tsx",
+        "KeyboardRootProvider.tsx",
+        "MasterDetail.tsx",
+        "Page.tsx",
+        "PageHeader.tsx",
+        "PriorityActionBar.tsx",
+        "Responsive.tsx",
+        "SafeAreaRegion.tsx",
+        "Screen.tsx",
+        "SectionHeader.tsx",
+        "SidebarLayout.tsx",
+        "StickyActionBar.tsx",
+        "Toolbar.tsx",
+        "index.ts"
+      ],
+      "forms": [
+        "ChoiceFields.tsx",
+        "CodeField.tsx",
+        "DateTimeFields.tsx",
+        "FormField.tsx",
+        "FormLayout.tsx",
+        "FormLifecycle.tsx",
+        "NumberStepper.tsx",
+        "OptionList.tsx",
+        "SelectField.tsx",
+        "Selection.tsx",
+        "SpecializedFields.tsx",
+        "TextArea.tsx",
+        "TextField.tsx",
+        "index.ts"
+      ],
+      "overlays": [
+        "ActionMenu.tsx",
+        "BottomSheet.tsx",
+        "Dialog.tsx",
+        "Menu.tsx",
+        "ModalSurface.tsx",
+        "ModalSurface.web.tsx",
+        "OverlayRootProvider.tsx",
+        "Popover.tsx",
+        "index.ts",
+        "useOverlayLifecycle.ts"
+      ],
+      "dataDisplay": [
+        "AdaptiveDataTable.tsx",
+        "DataExport.ts",
+        "DataTableControls.tsx",
+        "DataToolbar.tsx",
+        "KeyValueList.tsx",
+        "ListRow.tsx",
+        "Metric.tsx",
+        "Pagination.tsx",
+        "SelectionBar.tsx",
+        "Timeline.tsx",
+        "index.ts"
+      ],
+      "visualization": [
+        "AreaChart.tsx",
+        "BarChart.tsx",
+        "ChartAnatomy.tsx",
+        "ChartFrame.tsx",
+        "DonutChart.tsx",
+        "LineChart.tsx",
+        "Progress.tsx",
+        "Sparkline.tsx",
+        "StackedBarChart.tsx",
+        "index.ts",
+        "types.ts"
+      ],
+      "advancedVisualization": [
+        "AdvancedCharts.tsx",
+        "index.ts"
+      ],
+      "referenceRoutes": [
+        "/",
+        "/+not-found",
+        "/accessibility-motion",
+        "/admin-demo",
+        "/auth-session",
+        "/auth/callback",
+        "/authorization",
+        "/capabilities",
+        "/data",
+        "/feedback",
+        "/forms",
+        "/golden",
+        "/golden-plus",
+        "/index",
+        "/link-error",
+        "/link-error",
+        "/linking",
+        "/lists",
+        "/navigation",
+        "/overlays",
+        "/server-state",
+        "/services",
+        "/session-error",
+        "/session-loading",
+        "/session-security",
+        "/sign-in",
+        "/state-workbench",
+        "/stress",
+        "/system",
+        "/unlock",
+        "/visualization",
+        "/workflows"
+      ]
+    }
+  },
+  "certificationLanes": [
+    "structural",
+    "semantic/accessibility",
+    "visual",
+    "performance",
+    "desktop browser",
+    "mobile browser",
+    "generator/scaffolder",
+    "runtime/native source contracts",
+    "owner certification"
+  ],
+  "layerModel": {
+    "kernel": [
+      "tokens",
+      "primitives",
+      "components",
+      "layouts",
+      "forms",
+      "navigation",
+      "overlays",
+      "feedback",
+      "data-display",
+      "core visualization",
+      "i18n",
+      "accessibility",
+      "motion",
+      "runtime boundaries"
+    ],
+    "modules": [
+      "visualization-advanced",
+      "advanced analytics compositions when independently justified"
+    ],
+    "optionalAdapters": [
+      "native pickers",
+      "specialist grids",
+      "maps/geospatial",
+      "rich editors",
+      "GPU/realtime rendering",
+      "specialist media engines"
+    ]
+  },
+  "candidateDecisions": [
+    {
+      "candidate": "owner certification",
+      "disposition": "BUILD_KERNEL",
+      "owner": "scripts/check-owner-certification.mjs + golden.owner-certification.json",
+      "rationale": "Stable owners need a machine-readable contract for state, responsive, semantic, theme, and touch coverage."
+    },
+    {
+      "candidate": "dependency graph",
+      "disposition": "BUILD_KERNEL",
+      "owner": "scripts/check-dependency-graph.mjs",
+      "rationale": "Acyclic package ownership and core/advanced separation are architectural invariants."
+    },
+    {
+      "candidate": "advanced visualization",
+      "disposition": "BUILD_GOLDEN_MODULE",
+      "owner": "@precision-calm/visualization-advanced",
+      "rationale": "Scatter, histogram, and heatmap mechanics are reusable but should not enter the minimal facade."
+    },
+    {
+      "candidate": "tooltip",
+      "disposition": "RECIPE_ONLY",
+      "owner": "@precision-calm/overlays Popover + explicit HelpPopover recipe",
+      "rationale": "Critical information cannot depend on hover; a universal touch-safe tooltip needs a separate interaction contract."
+    },
+    {
+      "candidate": "slider/range",
+      "disposition": "RECIPE_ONLY",
+      "owner": "@precision-calm/forms",
+      "rationale": "No current cross-platform owner meets the complete keyboard/touch/native contract without a specialist adapter."
+    },
+    {
+      "candidate": "enterprise grid",
+      "disposition": "OPTIONAL_ADAPTER",
+      "owner": "@precision-calm/data-display + future adapter boundary",
+      "rationale": "Virtualization, pinned columns, formulas, and cell editing are specialist infrastructure."
+    },
+    {
+      "candidate": "maps/editor/realtime GPU",
+      "disposition": "PRODUCT_SPECIFIC",
+      "owner": "product-owned specialist adapter",
+      "rationale": "Low universal leverage and high dependency/platform cost."
+    },
+    {
+      "candidate": "native picker/safe area/VoiceOver",
+      "disposition": "NATIVE_VALIDATION_REQUIRED",
+      "owner": "runtime/platform contracts",
+      "rationale": "Web and source contracts cannot prove physical device behavior."
+    },
+    {
+      "candidate": "help popover",
+      "disposition": "RECIPE_ONLY",
+      "owner": "@precision-calm/overlays Popover + disclosure",
+      "rationale": "Explicit help is already supported by the overlay contract without introducing a second positioning system."
+    },
+    {
+      "candidate": "split/button group/shortcut hint",
+      "disposition": "RECIPE_ONLY",
+      "owner": "@precision-calm/components + existing action/menu owners",
+      "rationale": "Existing Button, ActionMenu, and shortcut composition cover the generic mechanics without a new public family."
+    },
+    {
+      "candidate": "tree/hierarchy view",
+      "disposition": "OPTIONAL_ADAPTER",
+      "owner": "data-display adapter boundary",
+      "rationale": "Keyboard tree navigation and virtualization are valuable but materially more specialized than the core list/table contract."
+    },
+    {
+      "candidate": "attachment/file/media tiles",
+      "disposition": "RECIPE_ONLY",
+      "owner": "@precision-calm/media-presentation MediaFrame + data composition",
+      "rationale": "Presentation can be composed without owning upload transport, file permissions, or a new media hierarchy."
+    },
+    {
+      "candidate": "token input",
+      "disposition": "RECIPE_ONLY",
+      "owner": "@precision-calm/forms searchable-choice",
+      "rationale": "The existing choice and multiselect contracts own the generic selection lifecycle."
+    },
+    {
+      "candidate": "file-picker field",
+      "disposition": "OPTIONAL_ADAPTER",
+      "owner": "capability media adapter + form composition",
+      "rationale": "The input needs platform capability selection and must not pull acquisition dependencies into the kernel."
+    },
+    {
+      "candidate": "analytics panels and dashboard compositions",
+      "disposition": "RECIPE_ONLY",
+      "owner": "Golden patterns + ChartFrame + Metric + AdaptiveDataTable",
+      "rationale": "The current product-neutral primitives compose these narratives while product meaning remains outside the kernel."
+    },
+    {
+      "candidate": "chart axes/formatters/data fallback",
+      "disposition": "BUILD_KERNEL",
+      "owner": "@precision-calm/platform + @precision-calm/visualization",
+      "rationale": "Scales, finite data, deterministic ticks, shared state anatomy, and accessible table fallback are common mechanics."
+    },
+    {
+      "candidate": "specialist statistical/financial chart families",
+      "disposition": "OPTIONAL_ADAPTER",
+      "owner": "@precision-calm/visualization-advanced boundary",
+      "rationale": "Candlestick, box plot, funnel, cohort, and high-density composites should not inflate every app until real demand justifies them."
+    },
+    {
+      "candidate": "chart inspector/legend interaction",
+      "disposition": "RECIPE_ONLY",
+      "owner": "ChartFrame + existing overlay/pressable contracts",
+      "rationale": "The core contract protects keyboard/touch selection and fallback; a universal inspector remains a deliberate future module boundary."
+    },
+    {
+      "candidate": "specialist media/editor/maps",
+      "disposition": "PRODUCT_SPECIFIC",
+      "owner": "product-owned specialist adapter",
+      "rationale": "These require domain, platform, or heavy rendering infrastructure that Golden Base should not own."
+    }
+  ],
+  "deliberateBoundaries": [
+    "product authorization/security decisions",
+    "offline conflict resolution",
+    "business calendars/scheduling rules",
+    "backend integrations",
+    "domain-specific financial/ecommerce components",
+    "actual native runtime acceptance"
+  ]
+}

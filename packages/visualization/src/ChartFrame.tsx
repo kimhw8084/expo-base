@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useState } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { Text, VStack } from '@precision-calm/primitives';
 
@@ -43,11 +43,11 @@ export function ChartEmptyState({ message = 'No chart data available.' }: { mess
 }
 
 export function ChartLoadingState({ message = 'Loading chart data.' }: { message?: string }) {
-  return <View accessibilityLiveRegion="polite" aria-live="polite" style={styles.state}><VStack gap="sm" align="center" justify="center"><ActivityIndicator /><Text variant="caption" tone="secondary">{message}</Text></VStack></View>;
+  return <View accessibilityLiveRegion="polite" aria-live="polite" accessibilityLabel={message} style={styles.state}><VStack gap="sm" justify="center"><View style={styles.loadingPlot} accessibilityElementsHidden><View style={[styles.loadingBar, styles.loadingBarShort]} /><View style={[styles.loadingBar, styles.loadingBarTall]} /><View style={[styles.loadingBar, styles.loadingBarMedium]} /><View style={[styles.loadingBar, styles.loadingBarTall]} /><View style={[styles.loadingBar, styles.loadingBarShort]} /></View><Text variant="caption" tone="secondary" align="center">{message}</Text></VStack></View>;
 }
 
 export function ChartErrorState({ message = 'Unable to load chart data.' }: { message?: string }) {
-  return <View accessibilityLiveRegion="polite" aria-live="polite" style={styles.state}><VStack gap="sm" align="center" justify="center"><Text variant="caption" tone="negative">{message}</Text></VStack></View>;
+  return <View accessibilityLiveRegion="polite" aria-live="polite" accessibilityRole="alert" style={styles.state}><VStack gap="sm" align="center" justify="center"><View style={styles.errorMark} accessibilityElementsHidden><Text variant="label" tone="negative">!</Text></View><Text variant="caption" tone="negative" align="center">{message}</Text></VStack></View>;
 }
 
 const styles = StyleSheet.create((theme) => ({
@@ -57,5 +57,11 @@ const styles = StyleSheet.create((theme) => ({
   size_compact: { height: theme.visualizationMetrics.compactHeight },
   size_standard: { height: theme.visualizationMetrics.standardHeight },
   size_large: { height: theme.visualizationMetrics.largeHeight },
-  state: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: theme.spacing.md },
+  state: { flex: 1, alignItems: 'stretch', justifyContent: 'center', padding: theme.spacing.md },
+  loadingPlot: { height: theme.spacing.xxxl, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', gap: theme.spacing.xs, paddingHorizontal: theme.spacing.xl },
+  loadingBar: { width: theme.spacing.sm, minHeight: theme.spacing.xs, borderRadius: theme.radii.xs, backgroundColor: theme.colors.background.subtle },
+  loadingBarShort: { height: '36%' },
+  loadingBarMedium: { height: '58%' },
+  loadingBarTall: { height: '82%' },
+  errorMark: { alignSelf: 'center', width: theme.spacing.xl, height: theme.spacing.xl, alignItems: 'center', justifyContent: 'center', borderRadius: theme.radii.full, borderWidth: theme.strokeWidths.standard, borderColor: theme.colors.feedback.negative },
 }));

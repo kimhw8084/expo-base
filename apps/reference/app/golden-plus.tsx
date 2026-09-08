@@ -26,6 +26,7 @@ import {
   serializeDelimitedData,
 } from '@precision-calm/ui';
 import { CopyableCode, CopyableValue } from '@precision-calm/sharing/ui';
+import { Heatmap, Histogram, ScatterPlot } from '@precision-calm/visualization-advanced';
 import { usePrecisionRouter } from '@precision-calm/navigation-router';
 import { useReferenceCopy } from '../ReferenceCopy';
 
@@ -45,6 +46,23 @@ const composition = [
   { label: 'Q2', values: { active: 45, pending: 9, blocked: 3 } },
   { label: 'Q3', values: { active: 51, pending: 10, blocked: 3 } },
 ];
+
+const relationship = [
+  { id: 'north', x: 12, y: 18, label: 'North' },
+  { id: 'south', x: 24, y: 31, label: 'South' },
+  { id: 'east', x: 36, y: 28, label: 'East' },
+  { id: 'west', x: 48, y: 46, label: 'West' },
+  { id: 'central', x: 62, y: 58, label: 'Central' },
+  { id: 'coastal', x: 78, y: 69, label: 'Coastal' },
+] as const;
+
+const distribution = [18, 22, 24, 27, 31, 32, 35, 36, 39, 42, 44, 48, 51, 55, 62, 68, 73, 81];
+
+const cohortCells = [
+  { row: 'New', column: 'Week 1', value: 0.92 }, { row: 'New', column: 'Week 2', value: 0.68 }, { row: 'New', column: 'Week 3', value: 0.54 }, { row: 'New', column: 'Week 4', value: 0.42 },
+  { row: 'Returning', column: 'Week 1', value: 0.96 }, { row: 'Returning', column: 'Week 2', value: 0.81 }, { row: 'Returning', column: 'Week 3', value: 0.72 }, { row: 'Returning', column: 'Week 4', value: 0.61 },
+  { row: 'Team', column: 'Week 1', value: 0.88 }, { row: 'Team', column: 'Week 2', value: 0.77 }, { row: 'Team', column: 'Week 3', value: 0.67 }, { row: 'Team', column: 'Week 4', value: 0.58 },
+] as const;
 
 export default function GoldenPlusReferenceScreen() {
   const router = usePrecisionRouter();
@@ -94,6 +112,15 @@ export default function GoldenPlusReferenceScreen() {
           <AdaptiveGrid>
             <AdaptiveGridItem><Card><VStack gap="lg"><Text variant="h3">{copy('Adoption trend')}</Text><AreaChart data={trend} name={copy('Workspace adoption')} showDataTable /><Sparkline data={trend} name={copy('Compact adoption trend')} /></VStack></Card></AdaptiveGridItem>
             <AdaptiveGridItem><Card><VStack gap="lg"><Text variant="h3">{copy('Quarterly composition')}</Text><StackedBarChart data={composition} series={[{ key: 'active', label: copy('Active'), series: 'series1' }, { key: 'pending', label: copy('Pending'), series: 'series4' }, { key: 'blocked', label: copy('Blocked'), series: 'series5' }]} name={copy('Quarterly workspace status')} /></VStack></Card></AdaptiveGridItem>
+          </AdaptiveGrid>
+        </Section>
+
+        <Section>
+          <SectionHeader title={copy('Advanced analytical module')} description={copy('Exploratory relationship, distribution, and matrix views stay in an opt-in module while reusing the core frame and accessible data fallback.')} />
+          <AdaptiveGrid>
+            <AdaptiveGridItem><Card testID="golden-plus-advanced-visualization"><VStack gap="lg"><Text variant="h3">{copy('Relationship view')}</Text><ScatterPlot data={relationship} name={copy('Regional relationship')} onSelect={() => {}} /><Text variant="caption" tone="secondary">{copy('Tap or focus a mark to inspect a named observation.')}</Text></VStack></Card></AdaptiveGridItem>
+            <AdaptiveGridItem><Card><VStack gap="lg"><Text variant="h3">{copy('Distribution')}</Text><Histogram data={distribution} name={copy('Observed distribution')} bins={6} /><Text variant="caption" tone="secondary">{copy('Bins preserve the shape of the sample without introducing a heavyweight chart engine.')}</Text></VStack></Card></AdaptiveGridItem>
+            <AdaptiveGridItem span="wide"><Card><VStack gap="lg"><Text variant="h3">{copy('Retention matrix')}</Text><Heatmap data={cohortCells.map((cell) => ({ ...cell, row: copy(cell.row), column: copy(cell.column) }))} name={copy('Cohort retention')} onSelect={() => {}} /><Text variant="caption" tone="secondary">{copy('A bounded matrix keeps labels and a readable data fallback together on compact layouts.')}</Text></VStack></Card></AdaptiveGridItem>
           </AdaptiveGrid>
         </Section>
 

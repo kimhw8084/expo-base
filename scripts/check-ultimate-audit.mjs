@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const audit = JSON.parse(fs.readFileSync(path.join(root, 'docs/ultimate-golden-capabilities.json'), 'utf8'));
+const coverage = JSON.parse(fs.readFileSync(path.join(root, 'docs/ultimate-golden-coverage.json'), 'utf8'));
+const catalog = JSON.parse(fs.readFileSync(path.join(root, 'golden.catalog.json'), 'utf8'));
+const api = JSON.parse(fs.readFileSync(path.join(root, 'precision.api.json'), 'utf8'));
+const cert = JSON.parse(fs.readFileSync(path.join(root, 'golden.certification.json'), 'utf8'));
+const ownerCert = JSON.parse(fs.readFileSync(path.join(root, 'golden.owner-certification.json'), 'utf8'));
+const workspaceCount = ['packages', 'apps'].flatMap((scope) => fs.readdirSync(path.join(root, scope), { withFileTypes: true }).filter((entry) => entry.isDirectory() && fs.existsSync(path.join(root, scope, entry.name, 'package.json')))).length;
+assert.equal(audit.metrics.workspaces, workspaceCount, 'Ultimate audit workspace count is stale; run npm run ultimate:audit.');
+assert.equal(audit.metrics.catalogOwners, catalog.items.length, 'Ultimate audit catalog count is stale.');
+assert.equal(audit.metrics.ownershipRecords, catalog.ownership.length, 'Ultimate audit ownership count is stale.');
+assert.equal(audit.metrics.discoveryChallenges, catalog.discoveryChallenges.length, 'Ultimate audit challenge count is stale.');
+assert.equal(audit.metrics.publicApiSymbols, api.symbolCount, 'Ultimate audit API count is stale.');
+assert.equal(audit.metrics.stateOwners, cert.stateMatrix.length, 'Ultimate audit state count is stale.');
+assert.equal(audit.metrics.ownerCertificationRecords, ownerCert.owners.length, 'Ultimate audit owner-certification count is stale.');
+assert.equal(coverage.metrics.catalogOwners, catalog.items.length, 'Ultimate coverage catalog count is stale.');
+console.log(`Ultimate audit passed (${workspaceCount} workspaces / ${catalog.items.length} owners / ${api.symbolCount} API symbols / ${ownerCert.owners.length} owner records).`);

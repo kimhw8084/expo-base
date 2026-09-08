@@ -41,7 +41,7 @@ try {
   assert.equal(generatedPackage.dependencies['@precision-calm/capabilities'], '*');
   assert.equal(generatedPackage.scripts['scaffold:screen'], 'node ../../packages/create-precision-app/bin/scaffold-precision-screen.mjs --app .');
   assert.equal(generatedPackage.dependencies['expo-haptics'], undefined, 'minimal apps must not install optional haptics');
-  for (const dependency of ['expo-secure-store', 'expo-network', 'expo-clipboard', 'expo-sharing', 'expo-document-picker', 'expo-image-picker', 'expo-camera', 'expo-local-authentication', 'expo-notifications', 'expo-updates', 'expo-device']) assert.equal(generatedPackage.dependencies[dependency], undefined, `minimal app must not install ${dependency}`);
+  for (const dependency of ['@precision-calm/visualization-advanced', 'expo-secure-store', 'expo-network', 'expo-clipboard', 'expo-sharing', 'expo-document-picker', 'expo-image-picker', 'expo-camera', 'expo-local-authentication', 'expo-notifications', 'expo-updates', 'expo-device']) assert.equal(generatedPackage.dependencies[dependency], undefined, `minimal app must not install ${dependency}`);
   assert.equal(generatedPackage.scripts['check:golden-architecture'], 'node ../../scripts/check-golden-architecture.mjs --config golden-architecture.config.json');
   const generatedAgentContract = fs.readFileSync(path.join(destination, 'AGENTS.md'), 'utf8');
   assert.ok(generatedAgentContract.includes('../../AGENTS.md'));

@@ -35,6 +35,7 @@
     ,{ "owner": "TimeField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] }
     ,{ "owner": "DateRangeField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "invalid-range", "compact", "dark", "rtl", "long-content"] }
     ,{ "owner": "StackedBarChart", "package": "@precision-calm/ui", "states": ["loading", "success", "empty", "error", "selected", "compact", "dark", "rtl", "reduced-motion"] }
+    ,{ "owner": "AdvancedVisualizationModule", "package": "@precision-calm/visualization-advanced", "states": ["ready", "loading", "empty", "error", "selected", "compact", "dark", "rtl", "long-content", "reduced-motion"] }
   ],
   "visualBaselines": [
     { "id": "actions-wide", "route": "/system", "viewport": "wide", "theme": "light", "density": "comfortable", "targetTestId": "golden-board-actions" },
@@ -47,7 +48,8 @@
     { "id": "destructive-dialog", "route": "/overlays", "viewport": "wide", "theme": "dark", "density": "comfortable", "action": "open-destructive-dialog", "captureRole": "alertdialog" },
     { "id": "visualization-wide", "route": "/visualization", "viewport": "wide", "theme": "light", "density": "comfortable", "capture": "viewport" },
     { "id": "golden-plus-wide", "route": "/golden-plus", "viewport": "wide", "theme": "light", "density": "comfortable", "capture": "viewport" },
-    { "id": "visualization-compact-pseudo", "route": "/visualization", "viewport": "compact", "theme": "light", "density": "comfortable", "locale": "en-XA", "targetTestId": "visualization-portfolio-card" }
+    { "id": "visualization-compact-pseudo", "route": "/visualization", "viewport": "compact", "theme": "light", "density": "comfortable", "locale": "en-XA", "targetTestId": "visualization-portfolio-card" },
+    { "id": "golden-plus-advanced-wide", "route": "/golden-plus", "viewport": "wide", "theme": "light", "density": "comfortable", "targetTestId": "golden-plus-advanced-visualization" }
   ],
   "pseudoCoverage": {
     "policy": "Every canonical reference surface must exercise the user-facing copy classes it actually presents through useReferenceCopy. Technical values, identifiers, URLs, raw code, and numeric values remain literal.",
