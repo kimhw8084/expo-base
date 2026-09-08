@@ -1,10 +1,16 @@
 node_modules/
 .expo/
+.expo-shared/
 dist/
 build/
 coverage/
 test-results/
 playwright-report/
+.cache/
+.turbo/
+.eslintcache
+*.tsbuildinfo
+expo-env.d.ts
 *.log
 .env
 .env.*
