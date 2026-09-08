@@ -66,7 +66,8 @@ export function CommandLauncher({ open, onOpenChange, commands, title = 'Command
           value={query}
           onChangeText={setQuery}
           onKeyPress={(event) => {
-            if (event.nativeEvent.key !== 'Escape') return;
+            const key = event.nativeEvent.key ?? (event as unknown as { key?: string }).key;
+            if (key !== 'Escape' && key !== 'Esc') return;
             event.preventDefault();
             event.stopPropagation();
             onOpenChange(false);

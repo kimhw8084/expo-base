@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "profiles": [
+    {
+      "id": "small-phone-chromium",
+      "device": "iPhone SE",
+      "browser": "chromium",
+      "viewport": { "width": 320, "height": 568 },
+      "deviceScaleFactor": 2,
+      "orientation": "portrait",
+      "reason": "Smallest supported compact-width touch context; catches phone-width wrapping and target crowding."
+    },
+    {
+      "id": "standard-phone-chromium",
+      "device": "iPhone 13",
+      "browser": "chromium",
+      "viewport": { "width": 390, "height": 844 },
+      "deviceScaleFactor": 3,
+      "orientation": "portrait",
+      "reason": "Representative modern phone context for the primary mobile browser certification lane."
+    },
+    {
+      "id": "large-phone-chromium",
+      "device": "iPhone 14 Pro Max",
+      "browser": "chromium",
+      "viewport": { "width": 430, "height": 932 },
+      "deviceScaleFactor": 3,
+      "orientation": "portrait",
+      "reason": "Large phone context; catches responsive slack, persistent navigation and content-width drift."
+    },
+    {
+      "id": "standard-phone-webkit",
+      "device": "iPhone 13",
+      "browser": "webkit",
+      "viewport": { "width": 390, "height": 844 },
+      "deviceScaleFactor": 3,
+      "orientation": "portrait",
+      "reason": "Mobile WebKit simulation for touch, scrolling, focus and overlay parity."
+    },
+    {
+      "id": "landscape-short-webkit",
+      "device": "iPhone 13 landscape",
+      "browser": "webkit",
+      "viewport": { "width": 844, "height": 390 },
+      "deviceScaleFactor": 3,
+      "orientation": "landscape",
+      "reason": "Short-height landscape mobile WebKit context for sheets, forms, popovers and persistent actions."
+    }
+  ],
+  "coverage": {
+    "themes": ["light", "dark"],
+    "densities": ["comfortable", "compact"],
+    "locales": ["en-US", "en-XA", "en-XB"],
+    "motion": ["system", "reduced"],
+    "safeArea": {
+      "mode": "source-contract-and-solver",
+      "webInsets": "zero-by-platform-runtime",
+      "syntheticInsetEvidence": "packages/layouts and overlay placement contracts exercise non-zero inset geometry; browser CSS env injection is not treated as native safe-area evidence"
+    },
+    "keyboardViewport": "test-only viewport reduction; not native keyboard execution"
+  }
+}
