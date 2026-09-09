@@ -77,7 +77,11 @@
     "check:golden-patterns": "node scripts/check-golden-patterns.mjs",
     "test:screen-scaffolder": "node scripts/test-screen-scaffolder.mjs",
     "quality:gate15": "npm run quality:gate14 && npm run test:generator",
-    "readiness": "node scripts/release-readiness.mjs",
+    "readiness": "node scripts/release-readiness.mjs --check",
+    "release:verify": "node scripts/release-readiness.mjs --check",
+    "check:cng-freshness": "node scripts/check-cng-freshness.mjs",
+    "test:ios-simulator-resolution": "node scripts/test-ios-simulator-resolution.mjs",
+    "record:certification": "node scripts/write-release-certification-record.mjs",
     "typecheck:adapters": "tsc -p packages/adapters/tsconfig.json --noEmit",
     "test:adapter-contracts": "node scripts/test-adapter-contracts.mjs",
     "quality:gate16": "npm run quality:gate15 && npm run typecheck:adapters && npm run test:adapter-contracts",
@@ -160,7 +164,8 @@
   "type": "module",
   "devDependencies": {
     "@playwright/test": "1.62.1",
-    "@types/react-dom": "19.2.3"
+    "@types/react-dom": "19.2.3",
+    "xcode": "3.0.1"
   },
   "dependencies": {
     "expo": "~57.0.18",

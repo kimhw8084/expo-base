@@ -30,6 +30,7 @@ try {
   const compatibility = JSON.parse(fs.readFileSync(path.join(root, 'precision.compatibility.json'), 'utf8'));
   const generatedPackage = JSON.parse(fs.readFileSync(path.join(destination, 'package.json'), 'utf8'));
   assert.equal(generatedPackage.version, '1.0.0');
+  assert.equal(generatedPackage.devDependencies.xcode, undefined, 'native certification tooling must not leak into generated apps');
   for (const dep of ['expo','expo-router','react','react-dom','react-native','react-native-unistyles','react-native-reanimated','react-native-svg','react-native-web','expo-linking']) assert.equal(generatedPackage.dependencies[dep], compatibility[dep], dep);
   assert.equal(generatedPackage.devDependencies.typescript, compatibility.typescript);
   assert.equal(generatedPackage.dependencies['@precision-calm/ui'], '*');

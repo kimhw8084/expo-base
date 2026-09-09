@@ -1,5 +1,13 @@
 # iOS Native Product Acceptance
 
+## Current authoritative certification result
+
+The current release-candidate native certification supersedes the earlier environment-limited run documented below: Release XCUITest completed 17/17 scenarios and native visual comparison completed 9/9 baselines on the semantic iPhone 17 Pro / iOS 26.5 profile. The runner resolves an available simulator from the profile and accepts `IOS_SIMULATOR_UDID` only as an explicit override; the historical UDID below is evidence of that earlier run, not a permanent device identity.
+
+Full Release certification regenerates the ignored CNG native project with `expo prebuild --clean` before injecting the XCUITest target. Focused development runs may reuse generated output, but they are not release certification.
+
+The remaining boundaries are deliberate: human VoiceOver usability traversal, exact Dynamic Type settings behavior, physical-device hardware/safe-area behavior, and Android native runtime acceptance (Policy B waiver).
+
 ## Status
 
 This run reached native build, install, and development-client launch, but it did not complete the required interactive acceptance matrix because the current shell environment exposes no deterministic simulator input channel. `simctl` provides lifecycle, URL, screenshot, and log operations but no touch/keyboard injection; the Simulator process exposes no accessible window to the available AppleScript path; and no approved UI automation bridge (such as IDB, Maestro, or Appium) is installed.

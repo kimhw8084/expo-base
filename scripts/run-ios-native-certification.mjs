@@ -1,19 +1,21 @@
 import { closeSync, copyFileSync, existsSync, mkdirSync, openSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { basename, join, resolve } from 'node:path';
+import { loadCertificationProfile, parseAvailableDevices, resolveSimulatorProfile } from './resolve-ios-simulator.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const project = join(root, 'apps', 'reference');
 const workspace = join(project, 'ios', 'ExpoBaseReference.xcworkspace');
+const { profile } = loadCertificationProfile(root);
 const resultsRoot = join(root, 'test-results', 'ios-native-certification');
-const deviceId = process.env.IOS_SIMULATOR_UDID ?? 'E97BB776-234F-41F5-8544-5E3924121C1F';
 const mode = process.argv.includes('--mode=debug') ? 'debug' : 'release';
 const resultBundle = join(resultsRoot, `ExpoBaseNativeCertification-${mode}.xcresult`);
 const summaryFile = join(resultsRoot, `summary-${mode}.json`);
 const derivedData = join(resultsRoot, `derived-data-${mode}`);
 const visualOutput = join(resultsRoot, `visual-${mode}`);
-const visualBaselines = join(root, 'tests', 'native', 'ios', 'baselines', 'iphone-17-pro-ios-26.5');
+const visualBaselines = join(root, 'tests', 'native', 'ios', 'baselines', profile.id);
 const onlyTesting = process.env.IOS_ONLY_TESTING;
+const requiresFreshCng = mode === 'release' && !onlyTesting;
 
 function run(command, args, label, options = {}) {
   console.log(`\n=== ${label} ===`);
@@ -49,17 +51,32 @@ if (existsSync(resultBundle)) rmSync(resultBundle, { recursive: true, force: tru
 if (existsSync(visualOutput)) rmSync(visualOutput, { recursive: true, force: true });
 mkdirSync(visualOutput, { recursive: true });
 
-const simctl = run('/usr/bin/xcrun', ['simctl', 'list', 'devices', 'available'], 'VALIDATE SIMULATOR', { stdio: 'pipe' });
-if (simctl !== 0) process.exit(simctl);
+const simulatorList = spawnSync('/usr/bin/xcrun', ['simctl', 'list', 'devices', 'available'], { cwd: root, encoding: 'utf8' });
+if (simulatorList.error) throw simulatorList.error;
+if (simulatorList.status !== 0) {
+  process.stderr.write(simulatorList.stdout ?? '');
+  process.stderr.write(simulatorList.stderr ?? '');
+  process.exit(simulatorList.status ?? 1);
+}
+let selectedSimulator;
+try {
+  selectedSimulator = resolveSimulatorProfile(profile, parseAvailableDevices(simulatorList.stdout), process.env.IOS_SIMULATOR_UDID);
+} catch (error) {
+  console.error(`Simulator profile resolution failed: ${error.message}`);
+  process.exit(1);
+}
+console.log(`Selected ${selectedSimulator.selection}: ${selectedSimulator.name} · ${selectedSimulator.runtime} · ${selectedSimulator.udid} · ${selectedSimulator.state}`);
 
-if (!existsSync(workspace)) {
+if (requiresFreshCng || !existsSync(workspace)) {
   const npmCommand = process.env.npm_execpath ? process.execPath : 'npm';
   const npmArgs = process.env.npm_execpath
-    ? [process.env.npm_execpath, 'exec', '-w', '@precision-calm/reference', '--', 'expo', 'prebuild']
-    : ['exec', '-w', '@precision-calm/reference', '--', 'expo', 'prebuild'];
+    ? [process.env.npm_execpath, 'exec', '-w', '@precision-calm/reference', '--', 'expo', 'prebuild', ...(requiresFreshCng ? ['--clean'] : [])]
+    : ['exec', '-w', '@precision-calm/reference', '--', 'expo', 'prebuild', ...(requiresFreshCng ? ['--clean'] : [])];
+  if (requiresFreshCng) console.log('Release CNG freshness: regenerating ignored apps/reference/ios with expo prebuild --clean.');
   const prebuild = run(npmCommand, npmArgs, 'GENERATE IOS PROJECT');
   if (prebuild !== 0) process.exit(prebuild);
 }
+if (!existsSync(workspace)) throw new Error(`Generated iOS workspace not found at ${workspace}.`);
 
 const generated = run(process.execPath, ['scripts/generate-ios-ui-test-project.mjs'], 'GENERATE XCUITEST TARGET');
 if (generated !== 0) process.exit(generated);
@@ -70,7 +87,7 @@ const args = [
   '-workspace', workspace,
   '-scheme', 'ExpoBaseReferenceUITests',
   '-configuration', configuration,
-  '-destination', `platform=iOS Simulator,id=${deviceId}`,
+  '-destination', `platform=iOS Simulator,id=${selectedSimulator.udid}`,
   '-derivedDataPath', derivedData,
   '-resultBundlePath', resultBundle,
   '-parallel-testing-enabled', 'NO',

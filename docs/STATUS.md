@@ -32,15 +32,11 @@ Ultimate Golden convergence pass 2 is implemented in this checkout. The web/refe
 - `git diff --check` — PASS
 - no stale certification server or test process remains after the suite
 
-## Validation gates still outstanding
+## Current release-candidate certification
 
-Native runtime acceptance has not executed. iOS acceptance was blocked by local Xcode/CoreSimulator destination resolution and remains required before final release approval. Android tooling/runtime was unavailable and is explicitly deferred/waived for `1.0.0` under PM Policy B. These are release-validation blockers, not known Expo Base source defects.
+The current release-candidate baseline has completed the local iOS Simulator Release certification: 17/17 native tests and 9/9 native visual baselines on the semantic iPhone 17 Pro / iOS 26.5 profile. Full Release certification regenerates the ignored native project from current Expo configuration before testing. The durable certification record is `release-candidate.certification.json`; its source-tree hash excludes only that record so a metadata-only commit cannot invalidate the executable source identity.
 
-Remaining validation decisions include:
-
-- iOS development-client launch and representative simulator/device flows
-- physical-device review for safe areas, keyboard behavior, secure storage, deep links, and lifecycle behavior
-- final version, tag, and publish decision
+Remaining release boundaries are deliberate: Android native acceptance is deferred/waived under Policy B; human VoiceOver usability traversal, exact Dynamic Type settings behavior, and physical-device hardware/safe-area behavior are not certified. The next release phase is governance execution and then an explicitly reviewed tag/release decision; this repository does not tag or publish from the certification lane.
 
 ## Canonical commands
 
@@ -48,8 +44,10 @@ Remaining validation decisions include:
 - `npm run runtime:verify` — run contracts, generator checks, Doctor, and runtime preflights
 - `npm run golden:verify` — run Golden structural, visual, semantic, and performance certification
 - `npm run runtime:test:web` — export and certify the reference app in Chromium, Firefox, and WebKit
+- `npm run ios:verify` — regenerate the CNG native project and run Release XCUITest plus native visual comparison
+- `npm run release:verify` — validate the release-candidate record, governance contracts, and clean-source invariants
 - `npm run create:app -- --name "Orbit Ledger" --slug orbit-ledger --accent violet` — generate a new product workspace
 
 ## Known limitations
 
-The web export uses supported route splitting and remains within the Golden budgets (4,951,877 total JavaScript bytes; 4,710,360-byte heaviest initial route; advanced visualization remains lazy and is absent from the minimal generator profile). Native assistive-technology, Dynamic Type, motion, and physical touch acceptance remain release-governance work. Generated apps also contain replaceable demo service/auth/session adapters that must not be shipped unchanged.
+The web export uses supported route splitting and remains within the Golden budgets (4,951,877 total JavaScript bytes; 4,710,360-byte heaviest initial route; advanced visualization remains lazy and is absent from the minimal generator profile). Human VoiceOver, exact Dynamic Type settings, and physical-device-only behavior remain explicit release boundaries. Generated apps also contain replaceable demo service/auth/session adapters that must not be shipped unchanged.
