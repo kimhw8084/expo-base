@@ -81,6 +81,7 @@ export function CommandLauncher({ open, onOpenChange, commands, title = 'Command
               key={command.id}
               title={command.label}
               subtitle={command.description}
+              testID={`command-result-${command.id}`}
               disclosure={false}
               disabled={Boolean(command.disabled)}
               trailing={command.shortcut ? <Text variant="caption" tone={command.destructive ? 'negative' : 'tertiary'}>{command.shortcut}</Text> : undefined}

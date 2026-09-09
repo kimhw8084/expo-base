@@ -170,6 +170,7 @@ export default function FoundationReferenceScreen() {
                           title={copy(route.title)}
                           subtitle={copy(route.subtitle)}
                           leadingIcon={route.icon}
+                          testID={`home-route-${route.path.replace(/^\//, '').replace(/\//g, '-') || 'home'}`}
                           onPress={() => router.push(route.path as never)}
                         />
                       ))}

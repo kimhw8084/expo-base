@@ -226,10 +226,10 @@ function CompactRecord<T>({
   }
 
   return (
-    <View testID={testID} style={[styles.compactRecord, density === 'compact' && styles.compactRecordDense, selected && styles.selected]}>
+    <View testID={testID ? `${testID}-container` : undefined} style={[styles.compactRecord, density === 'compact' && styles.compactRecordDense, selected && styles.selected]}>
       <View style={styles.compactSelectionLayout}>
         <SelectionControl checked={selection.checked} label={selection.label} onPress={selection.onToggle} />
-        {onPress ? <RowContentPressable onPress={onPress} selected={selected} compact>{body}</RowContentPressable> : <View style={styles.rowContent}>{body}</View>}
+        {onPress ? <RowContentPressable {...(testID ? { testID } : {})} onPress={onPress} selected={selected} compact>{body}</RowContentPressable> : <View style={styles.rowContent}>{body}</View>}
       </View>
     </View>
   );
@@ -315,7 +315,7 @@ function SelectionControl({ checked, label, onPress, testID }: { checked: boolea
   );
 }
 
-function RowContentPressable({ children, onPress, selected, compact = false }: { children: ReactNode; onPress: () => void; selected: boolean; compact?: boolean }) {
+function RowContentPressable({ children, onPress, selected, compact = false, testID }: { children: ReactNode; onPress: () => void; selected: boolean; compact?: boolean; testID?: string }) {
   const { hovered, focused, interactionProps } = useInteractionState();
   return (
     <Pressable
@@ -324,6 +324,7 @@ function RowContentPressable({ children, onPress, selected, compact = false }: {
       accessibilityState={{ selected }}
       aria-pressed={selected}
       onPress={onPress}
+      testID={testID}
       {...interactionProps}
       style={({ pressed }) => [
         compact ? styles.rowContent : styles.desktopContent,

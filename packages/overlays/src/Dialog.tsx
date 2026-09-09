@@ -31,7 +31,7 @@ export function Dialog({ open, onOpenChange, title, description, children, actio
         <Pressable accessibilityLabel={dismissOnBackdrop ? 'Dismiss dialog' : undefined} disabled={!dismissOnBackdrop} tabIndex={-1} style={styles.backdrop} onPress={close} />
         <View
           ref={panelRef}
-          accessible
+          accessible={Platform.OS === 'web'}
           accessibilityLabel={title}
           accessibilityViewIsModal
           aria-modal

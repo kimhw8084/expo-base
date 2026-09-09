@@ -34,6 +34,7 @@ export const NavigationItemButton = forwardRef<ComponentRef<typeof Pressable>, P
   return (
     <Pressable
       ref={ref}
+      testID={`navigation-item-${item.key}`}
       accessibilityRole={role}
       role={role}
       accessibilityLabel={item.label}

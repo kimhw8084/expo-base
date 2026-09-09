@@ -16,5 +16,7 @@ expo-env.d.ts
 .env.*
 !.env.example
 ios/
+!tests/native/ios/
+!tests/native/ios/*.swift
 android/
 .DS_Store

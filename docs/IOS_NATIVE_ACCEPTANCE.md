@@ -177,3 +177,117 @@ Android native acceptance remains deferred/waived under Policy B.
 `IOS NATIVE ACCEPTANCE PASSED`
 
 Recommendation: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**.
+
+## Automated XCUITest certification implementation
+
+The manual-assisted completion above is preserved as historical evidence. The repository now also contains a first-party Apple XCTest/XCUITest lane so native interaction coverage does not depend on repeated user-assisted tapping.
+
+### Architecture
+
+- XCTest sources live outside generated native output in `tests/native/ios/`.
+- `scripts/generate-ios-ui-test-project.mjs` deterministically creates the ignored `ExpoBaseReferenceUITests` target and scheme after CNG/prebuild.
+- Generated `apps/reference/ios/` remains ignored and is never the source of truth for the test target.
+- The product lane builds Release with bundled JavaScript and runs against bundle ID `com.expobase.reference`.
+- The smoke lane uses the same target in Debug; the established `runtime:ios` workflow remains the development-client/Metro smoke path protecting `IOS-DEF-001`.
+- `testID` ownership stays on meaningful shared or reference controls; the source contract check prevents the required navigation, form, geometry, and hittability selectors from disappearing.
+- Failure handling attaches an XCTest screenshot and accessibility hierarchy; `.xcresult` and the bounded xcodebuild log remain under `test-results/ios-native-certification/`.
+
+### Commands
+
+```text
+npm run check:ios-certification
+npm run check:native-ui-contracts
+npm run ios:test:ui
+npm run ios:test:smoke
+npm run ios:verify
+```
+
+`ios:verify` requires Node 22, validates the simulator profile, generates the test target, builds the Release product lane, runs XCUITest serially, and writes `summary.json` from `xcresulttool`. `IOS_ONLY_TESTING` supports focused scenario execution without changing the permanent suite.
+
+### Proof-of-capability mapping
+
+The ten proof requirements are represented in `ios.certification.json`: launch, native selector lookup, tap, text input, scroll, orientation round-trip, XCTest screenshot, geometry/hittability, and the XCTest accessibility audit. POC-07 through POC-10 intentionally map to already-executed focused tests where the same executable proof covers the requirement; they are not claimed as unexecuted aliases.
+
+### Product and smoke lanes
+
+The Release lane is the product acceptance lane and does not require Metro. The Debug lane is a bounded native smoke lane; development-client transport is separately protected by `npm run runtime:ios` and the native shell/linking contracts. This prevents development-client routing behavior from contaminating the product acceptance matrix.
+
+## Automated native acceptance result
+
+### Run metadata
+
+- Source before certification changes: `2209f9a1a35be7e2f2f61fe00c0d616e13bd11f7`.
+- Device: iPhone 17 Pro Simulator (`E97BB776-234F-41F5-8544-5E3924121C1F`).
+- Runtime: iOS 26.5; host macOS 26.6.2 arm64; Xcode 26.6; Node 22.23.2; CocoaPods 1.17.0.
+- Product build: Release bundled JavaScript.
+- Latest complete Release execution: 16/16 XCUITest tests passed, 0 failures, approximately 407 seconds.
+- Manifest: 24 classified scenarios; 20 executable XCUITest dispositions, 1 executable source-contract disposition, and 3 explicit boundaries.
+- Full result evidence: `test-results/ios-native-certification/ExpoBaseNativeCertification.xcresult`, `summary.json`, and `xcodebuild-release.log`.
+
+### Automated scenario coverage
+
+The executable suite covers:
+
+- cold launch, relaunch, primary navigation targets, route landmarks, and native target geometry;
+- text entry, secure password entry, native software keyboard appearance, keyboard Next/Done progression, form validation reachability, and error summary rendering;
+- action menu, native Dialog, BottomSheet, command launcher filtering/selection/dismissal, and overlay action reachability;
+- adaptive data workspace row selection and details, server-state refresh/relaunch, and advanced visualization route rendering;
+- analytics, finance, and monitoring flagship route rendering and scrolling;
+- runtime dark theme, compact density, pseudo LTR/RTL controls, reduced motion, and orientation state preservation;
+- XCTest screenshot attachments, failure screenshots/hierarchy attachments, element frames, hittability, and a native `.hitRegion` accessibility audit.
+
+### Native defect found and fixed
+
+#### IOS-DEF-002 — native overlay content was collapsed into an inaccessible panel
+
+- Severity: P1 native interaction/accessibility defect during certification.
+- Root cause: the shared Dialog and BottomSheet panel set `accessible` on the native container, causing iOS to expose the panel as one accessibility element and hide descendant titles/actions from XCUITest/native assistive semantics.
+- Owner: shared `packages/overlays` Dialog and BottomSheet owners.
+- Fix: retain the panel-level accessibility grouping only on web; native panels expose their actionable descendants while preserving modal semantics.
+- Regression: `testOverlayMenuDialogAndSheetLifecycle`, native accessibility-tree queries, and the full 16-test Release lane.
+- Result: action-menu selection, Dialog Cancel, BottomSheet title, and BottomSheet Close all pass natively.
+
+The compact data table also received a selector-owner correction: when row selection is enabled, the stable row identifier is placed on the actionable content Pressable rather than only on its non-hittable layout container. This is certification infrastructure/owner semantics, not a visual redesign.
+
+### Accessibility and boundaries
+
+- The XCUITest `.hitRegion` audit executes on the home surface.
+- Element lookup, labels, states, frames, and hittability are asserted on representative controls.
+- Dynamic Type audit remains `SIMULATOR_LIMITED` because Xcode 26.6 reports that category unsupported by the installed iOS 26.5 simulator.
+- `VOICEOVER EXECUTION NOT COMPLETED`; automated accessibility-tree/audit evidence does not claim human VoiceOver usability.
+- Physical hardware remains required for tactile haptics, camera fidelity, biometric fidelity, physical-device safe-area variation, and other hardware-specific behavior.
+- No GitHub native job was added because the repository cannot guarantee the exact Xcode 26.6/iOS 26.5 simulator image on a hosted runner. The lane is deterministic and executable locally with the pinned environment above; CI integration should be added only when that macOS image is available as a controlled runner.
+
+### Diagnostics
+
+The run produced no Expo Base crash, redbox, missing-native-module exception, navigation exception, or unhandled product error. The following remain classified as framework/simulator diagnostics: Xcode debugger-version-store messages, duplicate simulator WebKit accessibility-bundle messages, Hermes build-phase output-dependency warnings, and the simulator's UIKit focus/cache diagnostics.
+
+### Automated disposition
+
+- P0 open: 0
+- P1 open: 0
+- P2 open: 0
+- P3 open: 0 from this lane; the remaining VoiceOver, Dynamic Type, physical-device, and framework-diagnostic items are explicit boundaries rather than product defects.
+
+The automated lane now provides repeatable Simulator acceptance for every classified Simulator-testable scenario in the manifest. Native runtime acceptance still does not equal physical-device acceptance or human VoiceOver certification.
+
+Android native acceptance remains deferred/waived under Policy B.
+
+### Final verification and stability closure
+
+- `npm run ios:test:smoke`: 16/16 Debug XCUITest tests passed, 0 failures.
+- Final unfiltered `npm run ios:verify`: 16/16 Release XCUITest tests passed, 0 failures.
+- Final high-risk stability set: three consecutive `npm run ios:verify` executions with the focused 8-test matrix; each run passed 8/8 with 0 failures and no retries.
+- The focused matrix covered launch, navigation/geometry, text input, native keyboard/form validation, overlays, command filtering/selection, data-row selection, and orientation state preservation.
+- One earlier focused run exposed a test-harness input-ordering issue (`offline` could be synthesized as `offlnei`); the command and form robots now type and verify controlled fields character-by-character. The final focused and full runs pass with that correction.
+- `npm run runtime:verify`: PASS, including typecheck, architecture, generator, and Doctor (`94 passed / 0 failed / 0 warnings`).
+- `npm run golden:verify`: PASS; Golden structural checks passed, 26 semantic/visual/performance browser checks passed.
+- `npm run runtime:test:web`: PASS; 385 tests passed and 2 intentional skips across Chromium, Firefox, and WebKit.
+
+The XCUITest lane is now considered stable on the pinned local Xcode 26.6/iOS 26.5 environment. A hosted native CI job was not added because the repository cannot guarantee that exact simulator image on GitHub-hosted macOS runners.
+
+## Automated certification verdict
+
+`IOS AUTOMATED NATIVE CERTIFICATION PASSED — SIMULATOR ACCEPTANCE COMPLETE`
+
+Recommendation: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**.

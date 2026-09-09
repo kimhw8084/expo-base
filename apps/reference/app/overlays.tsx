@@ -27,7 +27,7 @@ export default function OverlayReferenceScreen() {
                 <ActionMenu
                   open={menuOpen}
                   onOpenChange={setMenuOpen}
-                  anchor={<Button label={copy('Open action menu')} variant="secondary" iconEnd="chevronDown" onPress={() => setMenuOpen(true)} />}
+                  anchor={<Button testID="overlay-action-menu-trigger" label={copy('Open action menu')} variant="secondary" iconEnd="chevronDown" onPress={() => setMenuOpen(true)} />}
                   accessibilityLabel="Card actions"
                   testID="card-action-menu"
                   sections={[

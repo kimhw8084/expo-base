@@ -84,7 +84,7 @@ export function BottomSheet({ open, onOpenChange, title, children, footer, dismi
         />
         <Animated.View
           ref={panelRef}
-          accessible
+          accessible={Platform.OS === 'web'}
           accessibilityLabel={title ?? 'Bottom sheet'}
           accessibilityViewIsModal
           aria-modal
