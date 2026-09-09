@@ -58,8 +58,8 @@ const record = {
   openSeverityCounts: { P0: 0, P1: 0, P2: 0, P3: 0 },
   android: { policy: 'B', status: 'deferred/waived', reason: 'Android native acceptance is not required by the 1.0 Policy B decision.' },
   boundaries: {
-    voiceOver: 'subjective human review not executed',
-    dynamicType: 'SIMULATOR_LIMITED on the installed iOS 26.5 runtime',
+    voiceOver: 'VoiceOver subjective human review not executed',
+    dynamicType: 'Dynamic Type SIMULATOR_LIMITED on the installed iOS 26.5 runtime',
     physicalDevice: 'not certified; hardware, haptics, camera, biometrics, and device safe-area behavior remain bounded',
   },
   evidence: {

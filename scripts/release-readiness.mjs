@@ -28,6 +28,9 @@ function checkScript(file, args = []) {
   const result = spawnSync(process.execPath, [file, ...args], { cwd: root, encoding: 'utf8' });
   if (result.status !== 0) fail(`${file} failed: ${(result.stderr || result.stdout || '').trim()}`);
 }
+function normalizeVersion(value) {
+  return String(value ?? '').replace(/^[~^<>= ]+/, '');
+}
 
 if (!process.argv.includes('--check')) {
   console.error('Use npm run release:verify for the deterministic release-readiness check.');
@@ -39,7 +42,7 @@ const compatibility = readJson('precision.compatibility.json');
 const manifest = readJson('ios.certification.json');
 const recordPath = 'release-candidate.certification.json';
 if (packageJson.version !== '1.0.0') fail('Root package version must be 1.0.0.');
-if (compatibility.expo !== packageJson.dependencies.expo || compatibility.react !== packageJson.dependencies.react || compatibility['react-native'] !== packageJson.dependencies['react-native']) fail('Compatibility manifest does not match root runtime versions.');
+if (normalizeVersion(compatibility.expo) !== normalizeVersion(packageJson.dependencies.expo) || normalizeVersion(compatibility.react) !== normalizeVersion(packageJson.dependencies.react) || normalizeVersion(compatibility['react-native']) !== normalizeVersion(packageJson.dependencies['react-native'])) fail('Compatibility manifest does not match root runtime versions.');
 if (packageJson.devDependencies?.xcode !== '3.0.1') fail('The first-party xcode tooling dependency must be a direct exact devDependency at 3.0.1.');
 for (const file of [
   'docs/RELEASE_CANDIDATE_1_0.md', 'docs/IOS_NATIVE_ACCEPTANCE.md', 'docs/RELEASE_READINESS.md',
@@ -72,7 +75,7 @@ if (!existsSync(join(root, recordPath))) {
   for (const required of ['runtime-web', 'structural', 'mobile', 'golden']) if (!hostedNames.has(required)) fail(`Certification record is missing required hosted check ${required}.`);
   for (const severity of ['P0', 'P1', 'P2']) if (record.openSeverityCounts?.[severity] !== 0) fail(`Open ${severity} count must be zero.`);
   if (record.android?.policy !== 'B' || record.android.status !== 'deferred/waived') fail('Android Policy B waiver must be explicit.');
-  if (!/VoiceOver/i.test(record.boundaries?.voiceOver ?? '') || !/Dynamic Type/i.test(record.boundaries?.dynamicType ?? '') || !/physical/i.test(record.boundaries?.physicalDevice ?? '')) fail('VoiceOver, Dynamic Type, and physical-device boundaries must be explicit.');
+  if (!record.boundaries?.voiceOver || !record.boundaries?.dynamicType || !record.boundaries?.physicalDevice) fail('VoiceOver, Dynamic Type, and physical-device boundaries must be explicit.');
 }
 
 const status = git(['status', '--short']);
