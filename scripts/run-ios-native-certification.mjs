@@ -1,6 +1,6 @@
-import { closeSync, existsSync, mkdirSync, openSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { closeSync, copyFileSync, existsSync, mkdirSync, openSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
-import { join, resolve } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const project = join(root, 'apps', 'reference');
@@ -11,6 +11,8 @@ const mode = process.argv.includes('--mode=debug') ? 'debug' : 'release';
 const resultBundle = join(resultsRoot, `ExpoBaseNativeCertification-${mode}.xcresult`);
 const summaryFile = join(resultsRoot, `summary-${mode}.json`);
 const derivedData = join(resultsRoot, `derived-data-${mode}`);
+const visualOutput = join(resultsRoot, `visual-${mode}`);
+const visualBaselines = join(root, 'tests', 'native', 'ios', 'baselines', 'iphone-17-pro-ios-26.5');
 const onlyTesting = process.env.IOS_ONLY_TESTING;
 
 function run(command, args, label, options = {}) {
@@ -44,6 +46,8 @@ if (Number(process.versions.node.split('.')[0]) < 22) {
 
 mkdirSync(resultsRoot, { recursive: true });
 if (existsSync(resultBundle)) rmSync(resultBundle, { recursive: true, force: true });
+if (existsSync(visualOutput)) rmSync(visualOutput, { recursive: true, force: true });
+mkdirSync(visualOutput, { recursive: true });
 
 const simctl = run('/usr/bin/xcrun', ['simctl', 'list', 'devices', 'available'], 'VALIDATE SIMULATOR', { stdio: 'pipe' });
 if (simctl !== 0) process.exit(simctl);
@@ -81,6 +85,28 @@ if (onlyTesting) {
 
 const xcodeLog = join(resultsRoot, `xcodebuild-${mode}.log`);
 const status = run('/usr/bin/xcodebuild', args, `RUN IOS ${mode.toUpperCase()} XCUITEST CERTIFICATION`, { logFile: xcodeLog });
+if (status === 0 && mode === 'release' && !onlyTesting) {
+  const exportedVisuals = join(resultsRoot, `visual-export-${mode}`);
+  if (existsSync(exportedVisuals)) rmSync(exportedVisuals, { recursive: true, force: true });
+  const exportStatus = run('/usr/bin/xcrun', ['xcresulttool', 'export', 'attachments', '--path', resultBundle, '--output-path', exportedVisuals], 'EXPORT IOS RELEASE VISUAL EVIDENCE', { stdio: 'pipe' });
+  if (exportStatus !== 0) process.exit(exportStatus);
+
+  const manifest = JSON.parse(readFileSync(join(exportedVisuals, 'manifest.json'), 'utf8'));
+  const attachments = manifest.flatMap((test) => test.attachments ?? []);
+  for (const baselineFile of readdirSync(visualBaselines).filter((file) => file.endsWith('.png'))) {
+    const prefix = `${basename(baselineFile, '.png')}_0_`;
+    const attachment = attachments.find((candidate) => candidate.suggestedHumanReadableName?.startsWith(prefix));
+    if (!attachment) {
+      console.error(`Missing native screenshot attachment for baseline ${baselineFile}.`);
+      process.exit(1);
+    }
+    copyFileSync(join(exportedVisuals, attachment.exportedFileName), join(visualOutput, baselineFile));
+  }
+  rmSync(exportedVisuals, { recursive: true, force: true });
+
+  const visualStatus = run('/usr/bin/swift', [join(root, 'scripts', 'compare-ios-native-visuals.swift'), visualBaselines, visualOutput], 'COMPARE IOS RELEASE VISUAL BASELINES');
+  if (visualStatus !== 0) process.exit(visualStatus);
+}
 if (existsSync(resultBundle)) {
   const summaryResult = spawnSync('/usr/bin/xcrun', ['xcresulttool', 'get', 'test-results', 'summary', '--path', resultBundle, '--format', 'json'], { cwd: root, encoding: 'utf8' });
   if (summaryResult.status === 0) {

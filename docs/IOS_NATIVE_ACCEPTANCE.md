@@ -191,6 +191,7 @@ The manual-assisted completion above is preserved as historical evidence. The re
 - The smoke lane uses the same target in Debug; the established `runtime:ios` workflow remains the development-client/Metro smoke path protecting `IOS-DEF-001`.
 - `testID` ownership stays on meaningful shared or reference controls; the source contract check prevents the required navigation, form, geometry, and hittability selectors from disappearing.
 - Failure handling attaches an XCTest screenshot and accessibility hierarchy; `.xcresult` and the bounded xcodebuild log remain under `test-results/ios-native-certification/`.
+- Release runs also write nine named screenshots and compare them against the curated iPhone 17 Pro/iOS 26.5 baseline set in `tests/native/ios/baselines/`; comparison uses a 3-channel tolerance and a 0.2% differing-pixel ceiling, and baseline updates are never automatic.
 
 ### Commands
 
@@ -214,9 +215,11 @@ The Release lane is the product acceptance lane and does not require Metro. The 
 
 ## Automated native acceptance result
 
+> Historical note: the automated result below records the initial XCUITest implementation run. The convergence addendum at the end of this document is the authoritative result after the keyboard-aware popover correction and deterministic visual evidence closure.
+
 ### Run metadata
 
-- Source before certification changes: `2209f9a1a35be7e2f2f61fe00c0d616e13bd11f7`.
+- Source before the initial XCUITest certification implementation: `2209f9a1a35be7e2f2f61fe00c0d616e13bd11f7`.
 - Device: iPhone 17 Pro Simulator (`E97BB776-234F-41F5-8544-5E3924121C1F`).
 - Runtime: iOS 26.5; host macOS 26.6.2 arm64; Xcode 26.6; Node 22.23.2; CocoaPods 1.17.0.
 - Product build: Release bundled JavaScript.
@@ -224,6 +227,7 @@ The Release lane is the product acceptance lane and does not require Metro. The 
 - Manifest: 25 classified scenarios; 21 executable XCUITest dispositions, 1 executable source-contract disposition, and 3 explicit boundaries.
 - Full Release evidence: `test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult`, `summary-release.json`, and `xcodebuild-release.log`.
 - Full Debug evidence: `test-results/ios-native-certification/ExpoBaseNativeCertification-debug.xcresult`, `summary-debug.json`, and `xcodebuild-debug.log`.
+- Release visual evidence: `test-results/ios-native-certification/visual-release/` and the nine tracked baselines under `tests/native/ios/baselines/iphone-17-pro-ios-26.5/`.
 
 ### Automated scenario coverage
 
@@ -293,3 +297,60 @@ The XCUITest lane is now considered stable on the pinned local Xcode 26.6/iOS 26
 `IOS AUTOMATED NATIVE CERTIFICATION PASSED — SIMULATOR ACCEPTANCE COMPLETE`
 
 Recommendation: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**.
+
+## Automated native certification convergence addendum
+
+This addendum is the authoritative final result for the current certification work. It preserves the earlier blocked/manual/XCUITest history above and records the shared-owner defect found during the final full native run.
+
+### Final source and lane
+
+- Source under final verification: `bb82e1151c7d034ce8f81ab92af0c734e396a851` before this certification commit; the final pushed commit is reported with this run.
+- Product lane: Release build with bundled JavaScript, no Metro dependency.
+- Smoke lane: Debug XCUITest plus the existing development-client smoke workflow.
+- Device: iPhone 17 Pro Simulator (`E97BB776-234F-41F5-8544-5E3924121C1F`), iOS 26.5, Xcode 26.6.
+
+### Native defect found and fixed
+
+#### IOS-DEF-003 — searchable popover options were hidden behind the native keyboard
+
+- Severity: P1 native interaction/layout defect.
+- Reproduction: focus a searchable native choice field, type `ame`, and attempt to select the visible `American Express` result. The result existed below the keyboard frame and was not hittable.
+- Root cause: the shared `@precision-calm/overlays` Popover placement path reserved safe-area and persistent-navigation insets, but did not reserve the native keyboard frame when solving anchored overlay placement.
+- Owner: `packages/overlays/src/Popover.tsx` and the shared platform anchored-overlay solver boundary.
+- Fix: Popover now observes native keyboard frame/show/hide events and contributes the measured keyboard height to the shared bottom inset before solving placement. The overlay flips above the keyboard instead of becoming inaccessible.
+- Regression: `testFormSpecimenFamiliesRespond` exercises the actual native searchable form flow; the full 17-test Release lane and 17-test Debug lane also cover the resulting overlay behavior.
+- Result: focused reproduction passes; no hidden result remains behind the keyboard and no Expo Base error or unhandled rejection was produced.
+
+### Final automated evidence
+
+- Manifest: 25 classified native scenarios; 21 `AUTOMATED_XCUITEST`, 1 `AUTOMATED_CONTRACT`, and 3 explicit boundaries; 0 unclassified.
+- POC-01 through POC-10: PASS through the mapped launch, selector, navigation, input, scroll, orientation, screenshot, geometry, and accessibility-audit tests.
+- Full Release run 1: 17/17 XCUITest tests passed; 9/9 native visual comparisons passed.
+- Full Debug run: 17/17 XCUITest tests passed in 832.997 seconds.
+- Full Release run 2: 17/17 XCUITest tests passed in 1192.393 seconds; 9/9 native visual comparisons passed.
+- Stability closure: three consecutive full executions (Release, Debug, Release), 0 retries and 0 failures. The final Release result bundle, summary, logs, and visual evidence are retained under `test-results/ios-native-certification/`.
+- Curated native visual baselines: 9, all reviewed; baseline updates remain explicit and are never automatic. The final Release comparison used a 3-channel tolerance and a 0.2% differing-pixel ceiling.
+- Native accessibility: element labels, states, frames, hittability, and the home `.hitRegion` audit passed. `VOICEOVER EXECUTION NOT COMPLETED`; automated XCTest audits do not claim human VoiceOver usability.
+
+### Protected regression gates
+
+- `npm run runtime:verify`: PASS; Doctor `94 passed / 0 failed / 0 warnings`.
+- `npm run golden:verify`: PASS; Golden structural plus 26 semantic/visual/performance checks passed.
+- `npm run runtime:test:web`: PASS; 385 tests passed and 2 intentional skips across Chromium, Firefox, and WebKit.
+- Typecheck, native selector/manifest contracts, architecture, and diff checks: PASS.
+- No dependency or public API change was introduced by IOS-DEF-003; the keyboard-aware behavior is a shared owner correction.
+
+### Final boundaries
+
+- Dynamic Type’s exact simulator accessibility-audit category remains `SIMULATOR_LIMITED` on the installed Xcode/iOS runtime.
+- Human VoiceOver traversal remains a separate review boundary and was not executed.
+- Physical haptic feel, camera/biometric fidelity, physical-device safe-area variation, and other hardware-specific behavior remain physical-device boundaries.
+- No hosted native CI job was added because the exact Xcode 26.6/iOS 26.5 simulator image is not guaranteed by the available GitHub-hosted runners; the local first-party lane is deterministic on the pinned environment.
+
+### Final convergence verdict
+
+`IOS AUTOMATED NATIVE CERTIFICATION PASSED — SIMULATOR ACCEPTANCE COMPLETE`
+
+Recommendation: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**.
+
+Android native acceptance remains deferred/waived under Policy B.

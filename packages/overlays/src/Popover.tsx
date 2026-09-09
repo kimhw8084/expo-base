@@ -1,6 +1,6 @@
 import type { ComponentRef, ReactNode } from 'react';
 import { useCallback, useId, useLayoutEffect, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet as RNStyleSheet, useWindowDimensions, View } from 'react-native';
+import { Keyboard, Platform, Pressable, ScrollView, StyleSheet as RNStyleSheet, useWindowDimensions, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { solveAnchoredOverlay, type AnchoredOverlayPlacement, type Rect } from '@precision-calm/platform';
 import { usePrecisionDirection } from '@precision-calm/i18n';
@@ -24,11 +24,27 @@ export function Popover({ open, onOpenChange, anchor, children, placement = 'bot
   const [anchorRect, setAnchorRect] = useState<Rect | null>(null);
   const [overlaySize, setOverlaySize] = useState({ width: 0, height: 0 });
   const [persistentBottomInset, setPersistentBottomInset] = useState(0);
+  const [keyboardBottomInset, setKeyboardBottomInset] = useState(0);
   const viewport = useWindowDimensions();
   const { theme, rt } = useUnistyles();
   const direction = usePrecisionDirection();
   const close = useCallback(() => onOpenChange(false), [onOpenChange]);
   useOverlayLifecycle(open, close, { restoreFocusRef: anchorRef, restoreFocusId: restoreFocusId ?? anchorId });
+
+  useLayoutEffect(() => {
+    if (Platform.OS === 'web') return undefined;
+    const updateKeyboardInset = (event: { endCoordinates: { height: number } }) => {
+      setKeyboardBottomInset(Math.max(0, event.endCoordinates.height));
+    };
+    const clearKeyboardInset = () => setKeyboardBottomInset(0);
+    const subscriptions = [
+      Keyboard.addListener('keyboardWillChangeFrame', updateKeyboardInset),
+      Keyboard.addListener('keyboardDidShow', updateKeyboardInset),
+      Keyboard.addListener('keyboardWillHide', clearKeyboardInset),
+      Keyboard.addListener('keyboardDidHide', clearKeyboardInset),
+    ];
+    return () => subscriptions.forEach((subscription) => subscription.remove());
+  }, []);
 
   const measureAnchor = useCallback(() => {
     if (!open) return;
@@ -46,7 +62,7 @@ export function Popover({ open, onOpenChange, anchor, children, placement = 'bot
   }, [measureAnchor, open, viewport.height, viewport.width]);
 
   const measuredOverlay = anchorRect && matchAnchorWidth ? { ...overlaySize, width: anchorRect.width } : overlaySize;
-  const insets = { ...rt.insets, bottom: Math.max(rt.insets.bottom, persistentBottomInset) };
+  const insets = { ...rt.insets, bottom: Math.max(rt.insets.bottom, persistentBottomInset, keyboardBottomInset) };
   const result = anchorRect && measuredOverlay.width > 0 && measuredOverlay.height > 0
     ? solveAnchoredOverlay({ anchor: anchorRect, overlay: measuredOverlay, viewport, insets, preferred: placement, gap: theme.spacing.sm, margin: theme.spacing.sm, direction })
     : null;

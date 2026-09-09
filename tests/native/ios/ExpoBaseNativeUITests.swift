@@ -113,6 +113,7 @@ final class ExpoBaseNativeUITests: XCTestCase {
         XCTAssertTrue(appRobot.scrollUntilVisible(validate), "The form validation action was not reachable after native keyboard entry.")
         validate.tap()
         XCTAssertTrue(app.otherElements["adapter-form-error-summary"].waitForExistence(timeout: 10))
+        appRobot.scrollToTop(maxSwipes: 20)
         appRobot.screenshot("forms-validation")
     }
 
@@ -298,7 +299,7 @@ final class ExpoBaseNativeUITests: XCTestCase {
         ] {
             appRobot.tapHomeRoute(card)
             XCTAssertTrue(app.staticTexts[landmark].waitForExistence(timeout: 20), "Showcase \(card) did not render.")
-            app.scrollViews.firstMatch.swipeUp()
+            appRobot.scrollToTop(maxSwipes: 20)
             appRobot.screenshot("showcase-\(card.replacingOccurrences(of: " ", with: "-"))")
             navigation.tap("home", expectedLandmark: "Universal application foundation")
         }
@@ -347,6 +348,7 @@ final class ExpoBaseNativeUITests: XCTestCase {
         let localeStatus = app.staticTexts["runtime-locale-status"]
         XCTAssertTrue(localeStatus.waitForExistence(timeout: 10))
         XCTAssertTrue(localeStatus.label.contains("RTL"))
+        appRobot.scrollToTop(maxSwipes: 20)
         appRobot.screenshot("runtime-pseudo-rtl-reduced")
     }
 

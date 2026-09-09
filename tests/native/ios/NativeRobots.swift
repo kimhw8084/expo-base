@@ -15,7 +15,8 @@ final class AppRobot {
     }
 
     func screenshot(_ name: String) {
-        let attachment = XCTAttachment(screenshot: app.screenshot())
+        let screenshot = app.screenshot()
+        let attachment = XCTAttachment(screenshot: screenshot)
         attachment.name = name
         attachment.lifetime = .keepAlways
         XCTContext.runActivity(named: "Screenshot: \(name)") { activity in
