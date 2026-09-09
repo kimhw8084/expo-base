@@ -54,6 +54,8 @@ checkScript('scripts/check-ios-certification-manifest.mjs');
 checkScript('scripts/check-native-ui-selector-contracts.mjs');
 checkScript('scripts/check-cng-freshness.mjs');
 checkScript('scripts/test-ios-simulator-resolution.mjs');
+checkScript('scripts/test-node-version-policy.mjs');
+checkScript('scripts/check-node-version.mjs', ['--certification']);
 checkScript('scripts/check-package-manifests.mjs');
 checkScript('scripts/check-public-api.mjs');
 checkScript('scripts/check-dependency-graph.mjs');
@@ -63,14 +65,15 @@ if (!existsSync(join(root, recordPath))) {
 } else {
   const record = readJson(recordPath);
   if (record.schemaVersion !== 1 || record.project !== 'expo-base' || record.version !== packageJson.version) fail('Certification record schema/project/version is invalid.');
-  if (!/^[0-9a-f]{40}$/.test(record.certifiedCommit ?? '')) fail('Certification record must contain a full certified commit SHA.');
-  else if (spawnSync('git', ['cat-file', '-e', `${record.certifiedCommit}^{commit}`], { cwd: root }).status !== 0) fail('Certification record certifiedCommit is not a repository commit.');
+  if (!/^[0-9a-f]{40}$/.test(record.certifiedCommit ?? '')) fail('Certification record must contain a full provenance commit SHA.');
+  if (record.certifiedBranch !== 'main' || record.certifiedCommitRole !== 'protected-main-provenance') fail('Certification record must identify protected main provenance; sourceTreeHash is the executable identity.');
   if (record.sourceTreeHash !== sourceTreeHash()) fail('Certification record sourceTreeHash does not match the current executable source tree.');
   if (record.native?.profileId !== manifest.profiles?.[0]?.id || record.native?.device !== manifest.profiles?.[0]?.device || record.native?.runtime !== manifest.profiles?.[0]?.runtime) fail('Certification record native profile does not match ios.certification.json.');
   const baselineDir = join(root, 'tests', 'native', 'ios', 'baselines', manifest.profiles?.[0]?.id ?? '');
   const baselineCount = existsSync(baselineDir) ? readdirSync(baselineDir).filter((file) => file.endsWith('.png')).length : 0;
   if (record.native?.releaseTestsPassed !== 17 || record.native?.visualBaselinesPassed !== baselineCount || baselineCount !== 9) fail('Certification record native test or baseline counts are invalid.');
   if (!record.native?.resultBundle || record.native.resultBundle.includes('/Users/')) fail('Certification record must use repository-relative evidence paths.');
+  if (!/^v22\.(?:1[3-9]|[2-9]\d)\.\d+$/.test(record.native?.node ?? '')) fail('Certification record native Node must be pinned to Node 22.13.0 or newer within Node 22.x.');
   const hostedNames = new Set((record.hostedChecks ?? []).filter((check) => check.required).map((check) => check.name));
   for (const required of ['runtime-web', 'structural', 'mobile', 'golden']) if (!hostedNames.has(required)) fail(`Certification record is missing required hosted check ${required}.`);
   for (const severity of ['P0', 'P1', 'P2']) if (record.openSeverityCounts?.[severity] !== 0) fail(`Open ${severity} count must be zero.`);
