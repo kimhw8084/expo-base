@@ -15,6 +15,9 @@ const schemePath = join(schemeDir, `${testTargetName}.xcscheme`);
 if (!existsSync(projectPath)) {
   throw new Error(`Generated iOS project not found at ${projectPath}. Run the repository prebuild first.`);
 }
+// Full Release certification recreates the ignored native project, so the generated
+// UI-test target directory must exist before source files are copied into it.
+mkdirSync(generatedTestDir, { recursive: true });
 
 const require = createRequire(import.meta.url);
 const xcode = require('xcode');
@@ -109,7 +112,6 @@ for (const [listUuid, list] of Object.entries(configurationLists)) {
   }
 }
 
-mkdirSync(generatedTestDir, { recursive: true });
 mkdirSync(schemeDir, { recursive: true });
 writeFileSync(schemePath, renderScheme({ appTargetUuid, testTargetUuid }));
 writeFileSync(projectPath, project.writeSync());
