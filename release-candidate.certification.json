@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "project": "expo-base",
   "version": "1.0.0",
-  "certifiedCommit": "59e444aab718e1a0cbae34013d34203ecb8572d1",
-  "certifiedAt": "2026-09-09T17:26:28.712Z",
-  "sourceTreeHash": "74590b1cad752cc87e6bb84d2a7695cdab61a1114e5400240b49405b21b3a537",
+  "certifiedCommit": "d76a0d77fe704fa7e72b4ba474ee6daa412e84b8",
+  "certifiedAt": "2026-09-09T18:19:19.678Z",
+  "sourceTreeHash": "7b913634758aae7a2d635c42b3962d246f480f75aedcab64dd10f1050fad3051",
   "sourceTreeHashPolicy": "SHA-256 of tracked repository files excluding this metadata record; metadata-only commits preserve the certified executable source identity.",
   "hostedChecks": [
     {
