@@ -9,6 +9,7 @@ if (!runner.includes("const requiresFreshCng = mode === 'release' && !onlyTestin
 if (!runner.includes("'expo', 'prebuild', ...(requiresFreshCng ? ['--clean'] : [])")) failures.push('Full Release must regenerate CNG output with expo prebuild --clean.');
 if (!runner.includes('if (requiresFreshCng || !existsSync(workspace))')) failures.push('CNG generation must run for every full Release lane.');
 if (!runner.includes('if (!existsSync(workspace)) throw new Error')) failures.push('Release must fail when CNG does not produce the workspace.');
+if (!runner.includes("EXPO_USE_PRECOMPILED_MODULES: '0'") || !runner.includes("RCT_USE_PREBUILT_RNCORE: '0'")) failures.push('Full Release must use source-backed native module builds when prebuilt artifacts are unavailable.');
 if (runner.includes('golden:visual:update') || runner.includes('update-snapshots')) failures.push('Native certification must not contain an automatic baseline update path.');
 if (generator.indexOf('mkdirSync(generatedTestDir') > generator.indexOf('copyFileSync(join(sourceDir')) failures.push('Generated UI-test target directory must exist before source copying on a fresh CNG project.');
 if (failures.length) {

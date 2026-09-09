@@ -16,10 +16,13 @@ const visualOutput = join(resultsRoot, `visual-${mode}`);
 const visualBaselines = join(root, 'tests', 'native', 'ios', 'baselines', profile.id);
 const onlyTesting = process.env.IOS_ONLY_TESTING;
 const requiresFreshCng = mode === 'release' && !onlyTesting;
+const certificationEnvironment = requiresFreshCng
+  ? { EXPO_USE_PRECOMPILED_MODULES: '0', RCT_USE_PREBUILT_RNCORE: '0' }
+  : {};
 
 function run(command, args, label, options = {}) {
   console.log(`\n=== ${label} ===`);
-  const { logFile, ...spawnOptions } = options;
+  const { logFile, env: extraEnvironment, ...spawnOptions } = options;
   let logDescriptor;
   if (logFile) {
     mkdirSync(resolve(logFile, '..'), { recursive: true });
@@ -28,7 +31,7 @@ function run(command, args, label, options = {}) {
   }
   const result = spawnSync(command, args, {
     cwd: root,
-    env: { ...process.env, CI: process.env.CI ?? '1' },
+    env: { ...process.env, CI: process.env.CI ?? '1', ...certificationEnvironment, ...extraEnvironment },
     stdio: 'inherit',
     ...spawnOptions,
   });
