@@ -20,16 +20,18 @@ The current repository is a private source/template workspace, not a configured 
 - [x] Documentation, configuration, dependency, and repository-hygiene review is complete.
 - [x] Release-candidate metadata is aligned to the coordinated `1.0.0` version plan.
 
-## Pending before public `1.0.0`
+## Release-candidate baseline
 
 - [ ] Obtain owner-approved licensing and add the approved `LICENSE`/manifest metadata.
-- [ ] Execute the short iOS development-client acceptance matrix on a usable simulator or device.
+- [x] iOS Simulator Release XCUITest acceptance: 17/17, with 9/9 reviewed native visual comparisons.
+- [x] Three consecutive full native executions completed with zero retries and zero failures.
+- [x] Semantic simulator selection and full Release CNG freshness are enforced by the repository tooling.
 - [ ] Obtain final PM authorization for the release commit, tag, and publication/distribution steps.
 
 ## Explicitly deferred or waived for `1.0.0`
 
 - Android runtime execution is deferred/waived for `1.0.0` under PM Policy B because the local Android runtime is unavailable.
-- Physical-device smoke validation and backend-integrated smoke validation remain product-adoption responsibilities, not claims made by this repository candidate.
+- Human VoiceOver usability, exact Dynamic Type settings, physical-device hardware/safe-area behavior, and backend-integrated smoke validation remain explicit boundaries, not claims made by this repository candidate.
 
 ## Release decision gates — pending approval
 
@@ -37,7 +39,8 @@ The current repository is a private source/template workspace, not a configured 
 - [x] PM-approved coordinated `1.0.0` metadata and Expo/EAS semantic app version are applied.
 - [x] PM-approved native build-number policy keeps native numbers owner-managed, monotonic, and independent of semantic version.
 - [ ] Approve the license and repository metadata required for distribution.
-- [ ] Complete iOS runtime acceptance and final release review.
+- [x] Complete iOS Simulator runtime acceptance and native release review.
+- [ ] Complete final release-candidate governance review.
 - [ ] Create the final tag and publish the repository release artifacts.
 - [ ] Complete the final 1.0 release review.
 
@@ -47,6 +50,8 @@ The current repository is a private source/template workspace, not a configured 
 npm install
 npm run runtime:verify
 npm run runtime:test:web
+npm run ios:verify
+npm run release:verify
 npm run create:app -- --name "Orbit Ledger" --slug orbit-ledger --accent violet
 ```
 

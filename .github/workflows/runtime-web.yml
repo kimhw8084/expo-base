@@ -28,6 +28,9 @@ jobs:
       - name: Runtime verification
         run: npm run runtime:verify
 
+      - name: Remove unrelated Chrome APT source
+        run: sudo rm -f /etc/apt/sources.list.d/google-chrome.list /etc/apt/sources.list.d/google-chrome.sources
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium firefox webkit
 

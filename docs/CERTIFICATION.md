@@ -51,7 +51,7 @@ Budgets detect regressions rather than impose speculative optimization. The stat
 | --- | --- |
 | Automated native source contracts | Required now: safe area, status bar, keyboard, back/close handling, orientation ownership, touch targets, theme bootstrap, optional capabilities |
 | Web behavioral equivalence | Required now through Chromium, Firefox, and WebKit |
-| iOS runtime acceptance | Required before release; not executed during the Golden program because the local destination is unavailable |
+| iOS runtime acceptance | Certified locally by the Release XCUITest lane: 17/17 tests and 9/9 native visual baselines on the semantic iPhone 17 Pro / iOS 26.5 profile |
 | Android runtime acceptance | Deferred/waived for 1.0 under PM Policy B unless PM changes policy |
 
-Native runtime validation must later cover cold start, navigation, theme/density, Dynamic Type, safe area/orientation, keyboard/forms, overlays, VoiceOver/TalkBack, optional capabilities, and runtime logs. No current Golden result claims those scenarios ran.
+Native evidence remains bounded: human VoiceOver usability, exact Dynamic Type user-settings behavior, physical haptics/camera/biometrics/safe-area variance, and Android native runtime are not claimed by this repository candidate. The iOS lane owns simulator cold start, navigation, theme/density, keyboard/forms, overlays, orientation, native accessibility-tree assertions, and reviewed visual baselines.

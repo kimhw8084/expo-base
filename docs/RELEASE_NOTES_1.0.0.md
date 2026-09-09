@@ -1,4 +1,4 @@
-# Expo Base 1.0.0 — proposed release notes
+# Expo Base 1.0.0 — release-candidate summary
 
 _Draft for PM approval. These notes are not published and do not authorize a tag or release._
 
@@ -23,6 +23,9 @@ Expo Base is a universal Expo foundation for teams building production-oriented 
 - Expo Base Doctor reports 86 passed, 0 failed, and 0 warnings.
 - Fresh static web export certification passes Chromium, Firefox, and WebKit: 180/180 tests.
 - Web certification uses a fresh export, an OS-assigned loopback port, and deterministic server cleanup.
+- Golden structural, semantic, visual, performance, and mobile-browser parity certification are green on the protected source baseline.
+- iOS Simulator Release XCUITest certification passes 17/17 tests and 9/9 native visual baselines on the semantic iPhone 17 Pro / iOS 26.5 profile. Native test-target generation is first-party and CNG-fresh for every full Release run.
+- The generator preserves Golden ownership and keeps native certification-only tooling out of generated runtime applications.
 
 ## Adoption notes
 
@@ -31,9 +34,10 @@ Expo Base is a universal Expo foundation for teams building production-oriented 
 - Generated service, authentication, session-security, and linking adapters are replaceable demonstrations. They must be connected to product implementations before production use.
 - Client-side authentication and authorization improve navigation and UX; product backends must independently enforce authorization and data access.
 
-## Known limitations and outstanding validation
+## Deliberate boundaries before the official tag
 
-- Native runtime acceptance has not executed in the current environment. iOS simulator destination resolution was unavailable and iOS acceptance remains required before final release approval. Android runtime acceptance is explicitly deferred/waived for `1.0.0` under PM Policy B because the local Android runtime was unavailable.
-- Physical-device review for safe areas, keyboard behavior, secure storage, deep links, and lifecycle behavior remains outstanding.
+- Human VoiceOver usability traversal and exact Dynamic Type user-settings behavior are not claimed by automated simulator evidence.
+- Physical-device haptics, camera fidelity, biometrics, hardware permission nuances, and real-device safe-area variants remain outside this simulator candidate.
+- Android native runtime acceptance is explicitly deferred/waived for `1.0.0` under PM Policy B.
 - The current static web export is approximately one 4.4 MB bundle. Route-level splitting remains an application-scale follow-up.
 - Final license approval, release commit/tag, and publication decisions require owner approval.

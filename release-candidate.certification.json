@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "project": "expo-base",
+  "version": "1.0.0",
+  "certifiedCommit": "d76a0d77fe704fa7e72b4ba474ee6daa412e84b8",
+  "certifiedAt": "2026-09-09T18:19:19.678Z",
+  "sourceTreeHash": "7b913634758aae7a2d635c42b3962d246f480f75aedcab64dd10f1050fad3051",
+  "sourceTreeHashPolicy": "SHA-256 of tracked repository files excluding this metadata record; metadata-only commits preserve the certified executable source identity.",
+  "hostedChecks": [
+    {
+      "name": "runtime-web",
+      "workflow": "Expo Base Runtime Web",
+      "required": true
+    },
+    {
+      "name": "structural",
+      "workflow": "Expo Base Golden Certification",
+      "required": true
+    },
+    {
+      "name": "mobile",
+      "workflow": "Expo Base Golden Certification",
+      "required": true
+    },
+    {
+      "name": "golden",
+      "workflow": "Expo Base Golden Certification",
+      "required": true
+    }
+  ],
+  "native": {
+    "node": "v26.0.0",
+    "profileId": "iphone-17-pro-ios-26.5",
+    "platform": "iOS Simulator",
+    "device": "iPhone 17 Pro",
+    "runtime": "iOS 26.5",
+    "xcode": "Xcode 26.6",
+    "releaseTestsPassed": 17,
+    "visualBaselinesPassed": 9,
+    "visualBaselineDirectory": "tests/native/ios/baselines/iphone-17-pro-ios-26.5",
+    "resultBundle": "test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult"
+  },
+  "openSeverityCounts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "android": {
+    "policy": "B",
+    "status": "deferred/waived",
+    "reason": "Android native acceptance is not required by the 1.0 Policy B decision."
+  },
+  "boundaries": {
+    "voiceOver": "VoiceOver subjective human review not executed",
+    "dynamicType": "Dynamic Type SIMULATOR_LIMITED on the installed iOS 26.5 runtime",
+    "physicalDevice": "not certified; hardware, haptics, camera, biometrics, and device safe-area behavior remain bounded"
+  },
+  "evidence": {
+    "manifest": "ios.certification.json",
+    "nativeAcceptance": "docs/IOS_NATIVE_ACCEPTANCE.md",
+    "governance": "docs/RELEASE_CANDIDATE_1_0.md"
+  }
+}

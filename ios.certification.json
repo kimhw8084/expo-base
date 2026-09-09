@@ -10,9 +10,9 @@
   "profiles": [
     {
       "id": "iphone-17-pro-ios-26.5",
+      "platform": "iOS Simulator",
       "device": "iPhone 17 Pro",
       "runtime": "iOS 26.5",
-      "udid": "E97BB776-234F-41F5-8544-5E3924121C1F",
       "orientation": ["portrait", "landscape"],
       "appearance": ["light", "dark"]
     }
