@@ -14,6 +14,8 @@ const dialog = read('packages/overlays/src/Dialog.tsx');
 const bottomSheet = read('packages/overlays/src/BottomSheet.tsx');
 const overlayRoot = read('packages/overlays/src/OverlayRootProvider.tsx');
 const generator = read('packages/create-precision-app/bin/create-precision-app.mjs');
+const nativeIntent = read('apps/reference/app/+native-intent.tsx');
+const referenceLinking = read('apps/reference/linking.ts');
 
 const nativeInitialTheme = "Platform.OS === 'web' ? 'light' : Appearance.getColorScheme() === 'dark' ? 'dark' : 'light'";
 if (!unistyles.includes(nativeInitialTheme)) failures.push('Reference bootstrap must use system appearance for the native initial theme while keeping deterministic light SSR on web.');
@@ -26,6 +28,8 @@ if (!dialog.includes('paddingTop: rt.insets.top + theme.spacing.lg') || !dialog.
 if (!bottomSheet.includes('paddingLeft: rt.insets.left + theme.spacing.lg') || !bottomSheet.includes('paddingRight: rt.insets.right + theme.spacing.lg')) failures.push('Bottom sheets must protect horizontal safe-area edges.');
 if (!overlayRoot.includes('paddingLeft: rt.insets.left + theme.spacing.lg') || !overlayRoot.includes('paddingRight: rt.insets.right + theme.spacing.lg')) failures.push('Toast surfaces must protect horizontal safe-area edges.');
 if (!generator.includes(nativeInitialTheme) || !generator.includes('StatusBar animated barStyle=')) failures.push('Generated apps must inherit native initial-theme and status-bar parity.');
+if (!nativeIntent.includes("parsed.protocol.toLowerCase().startsWith('exp+')") || !nativeIntent.includes("parsed.hostname === 'expo-development-client'")) failures.push('Native intent must allow the Expo development-client launch URL to reach the app root.');
+if (!referenceLinking.includes("appSchemes: ['precision-calm', 'expo-base']")) failures.push('Reference linking must recognize its configured expo-base native scheme.');
 
 if (failures.length) {
   console.error('Native shell contract violations:');

@@ -15,7 +15,7 @@ export const linking = createPrecisionLinkingRuntime({
   },
   onIncomingRoute: (route) => { authReturnIntent.capture(route); },
   incomingPolicy: {
-    appSchemes: ['precision-calm'],
+    appSchemes: ['precision-calm', 'expo-base'],
     universalLinkHosts: [],
     callbackRules: [{ path: '/auth/callback', allowedQueryKeys: ['code', 'state', 'error', 'error_description'], requiredQueryKeys: ['state'] }],
     rejectedRoute: '/link-error',
