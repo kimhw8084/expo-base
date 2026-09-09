@@ -18,7 +18,7 @@
     }
   ],
   "evidenceRegistry": {
-    "xcresult-release": { "kind": "xcresult", "path": "test-results/ios-native-certification/ExpoBaseNativeCertification.xcresult" },
+    "xcresult-release": { "kind": "xcresult", "path": "test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult" },
     "poc-01-home": { "kind": "xctest-screenshot", "test": "testPOC01LaunchesAndFindsHomeLandmark", "attachment": "poc-01-home" },
     "poc-02-navigation-geometry": { "kind": "xctest-screenshot-and-geometry", "test": "testPOC02TapsPrimaryNavigationAndReadsGeometry", "attachment": "poc-02-build" },
     "poc-03-native-input": { "kind": "xctest-screenshot-and-state", "test": "testPOC03FindsAndTypesIntoTextInput", "attachment": "poc-03-text-input" },
@@ -28,6 +28,7 @@
     "lifecycle-relaunch": { "kind": "xctest-lifecycle-and-screenshot", "test": "testLifecycleRelaunchesCleanly", "attachment": "lifecycle-relaunch" },
     "navigation-destinations": { "kind": "xctest-navigation-and-landmarks", "test": "testNavigationDestinationsHaveNativeTargetsAndLandmarks" },
     "forms-validation": { "kind": "xctest-keyboard-and-validation", "test": "testFormsKeyboardAndValidationReachability", "attachment": "forms-validation" },
+    "form-specimen-families": { "kind": "xctest-form-family-interactions", "test": "testFormSpecimenFamiliesRespond" },
     "overlay-lifecycle": { "kind": "xctest-overlay-lifecycle", "test": "testOverlayMenuDialogAndSheetLifecycle" },
     "command-lifecycle": { "kind": "xctest-command-workflow", "test": "testCommandLauncherOpenFilterSelectAndDismiss" },
     "data-workspace": { "kind": "xctest-data-selection", "test": "testDataWorkspaceSelectionAndVisualizationLandmark" },
@@ -51,6 +52,7 @@
     { "id": "IOS-LIFE-01", "category": "relaunch", "route": "/", "automation": "AUTOMATED_XCUITEST", "test": "testLifecycleRelaunchesCleanly", "evidence": ["lifecycle-relaunch"] },
     { "id": "IOS-NAV-01", "category": "primary-navigation", "route": "all-primary-destinations", "automation": "AUTOMATED_XCUITEST", "test": "testNavigationDestinationsHaveNativeTargetsAndLandmarks", "evidence": ["navigation-destinations"] },
     { "id": "IOS-FORM-01", "category": "form-keyboard-validation", "route": "/forms", "automation": "AUTOMATED_XCUITEST", "test": "testFormsKeyboardAndValidationReachability", "evidence": ["forms-validation"] },
+    { "id": "IOS-FORM-02", "category": "form-specimen-families", "route": "/forms and /golden-plus", "automation": "AUTOMATED_XCUITEST", "test": "testFormSpecimenFamiliesRespond", "evidence": ["form-specimen-families"] },
     { "id": "IOS-OVERLAY-01", "category": "menu-dialog-sheet", "route": "/overlays", "automation": "AUTOMATED_XCUITEST", "test": "testOverlayMenuDialogAndSheetLifecycle", "evidence": ["overlay-lifecycle"] },
     { "id": "IOS-WORKFLOW-01", "category": "command-launcher", "route": "/workflows", "automation": "AUTOMATED_XCUITEST", "test": "testCommandLauncherOpenFilterSelectAndDismiss", "evidence": ["command-lifecycle"] },
     { "id": "IOS-DATA-01", "category": "data-workspace", "route": "/data", "automation": "AUTOMATED_XCUITEST", "test": "testDataWorkspaceSelectionAndVisualizationLandmark", "evidence": ["data-workspace"] },

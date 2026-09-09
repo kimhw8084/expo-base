@@ -116,6 +116,109 @@ final class ExpoBaseNativeUITests: XCTestCase {
         appRobot.screenshot("forms-validation")
     }
 
+    func testFormSpecimenFamiliesRespond() throws {
+        appRobot.waitForHome()
+        navigation.tap("build", expectedLandmark: "Form interaction acceptance surface")
+        let form = FormRobot(app: app)
+
+        appRobot.scrollToTop()
+        for id in ["plain", "search", "password-static", "email-static", "url-static", "phone-static", "number-static", "currency", "notes"] {
+            let field = form.textField(id)
+            XCTAssertTrue(field.isHittable, "Form specimen \(id) is not hittable on iOS.")
+        }
+        appRobot.scrollToTop()
+        form.type("card", into: "search")
+        app.terminate()
+        app.launch()
+        appRobot.waitForHome()
+        navigation.tap("build", expectedLandmark: "Form interaction acceptance surface")
+
+        let includeFees = app.descendants(matching: .any)["static-include-fees"]
+        XCTAssertTrue(appRobot.scrollUntilVisible(includeFees))
+        let includeFeesBefore = String(describing: includeFees.value)
+        includeFees.tap()
+        XCTAssertTrue(waitForValueChange(includeFees, from: includeFeesBefore), "Checkbox did not expose a changed native state.")
+
+        let dining = app.descendants(matching: .any)["benefits-dining"]
+        appRobot.scrollToTop()
+        XCTAssertTrue(appRobot.scrollUntilVisible(dining, maxSwipes: 20))
+        dining.tap()
+        XCTAssertTrue(dining.isHittable, "Checkbox group option became unreachable after selection.")
+
+        let highestValue = app.descendants(matching: .any)["static-sort-value"]
+        XCTAssertTrue(appRobot.scrollUntilVisible(highestValue, maxSwipes: 20))
+        let highestValueBefore = String(describing: highestValue.value)
+        highestValue.tap()
+        XCTAssertTrue(waitForValueChange(highestValue, from: highestValueBefore) || highestValue.isSelected || String(describing: highestValue.value).contains("1"), "Radio option did not expose selected state.")
+
+        let compact = app.descendants(matching: .any)["static-density-compact"]
+        XCTAssertTrue(appRobot.scrollUntilVisible(compact, maxSwipes: 20))
+        let compactBefore = String(describing: compact.value)
+        compact.tap()
+        XCTAssertTrue(waitForValueChange(compact, from: compactBefore) || compact.isSelected || String(describing: compact.value).contains("1"), "Segmented option did not expose selected state.")
+
+        let notifications = app.switches["Bonus notifications"]
+        XCTAssertTrue(notifications.waitForExistence(timeout: 10))
+        let notificationsBefore = String(describing: notifications.value)
+        notifications.tap()
+        XCTAssertTrue(waitForValueChange(notifications, from: notificationsBefore), "Switch did not expose a changed native state.")
+
+        let priority = app.descendants(matching: .any)["static-priority"]
+        XCTAssertTrue(appRobot.scrollUntilVisible(priority))
+        let increasePriority = app.buttons["Increase Review priority"]
+        XCTAssertTrue(increasePriority.waitForExistence(timeout: 10))
+        increasePriority.tap()
+        XCTAssertTrue(String(describing: priority.value).contains("3"), "Number stepper did not advance its value.")
+
+        let codeDigit = app.textFields["static-verification-code-1"]
+        XCTAssertTrue(appRobot.scrollUntilVisible(codeDigit))
+        codeDigit.tap()
+        codeDigit.typeText("1")
+        XCTAssertTrue(String(describing: codeDigit.value).contains("1"), "Verification code input did not accept a digit.")
+
+        app.terminate()
+        app.launch()
+        appRobot.waitForHome()
+        navigation.tap("build", expectedLandmark: "Form interaction acceptance surface")
+        let issuer = app.descendants(matching: .any)["static-issuer"]
+        XCTAssertTrue(appRobot.scrollUntilVisible(issuer, maxSwipes: 20))
+        issuer.tap()
+        let issuerOption = hittableElement(label: "American Express")
+        issuerOption.tap()
+        XCTAssertTrue(appRobot.scrollUntilVisible(issuer), "SelectField did not remain reachable after selection.")
+
+        let combobox = app.descendants(matching: .any)["static-combobox"]
+        XCTAssertTrue(appRobot.scrollUntilVisible(combobox))
+        combobox.tap()
+        let comboSearch = app.textFields["Search Primary issuer"]
+        XCTAssertTrue(comboSearch.waitForExistence(timeout: 10))
+        typeSlowly("ame", into: comboSearch)
+        hittableElement(label: "American Express").tap()
+
+        app.terminate()
+        app.launch()
+        appRobot.waitForHome()
+        navigation.tap("build", expectedLandmark: "Form interaction acceptance surface")
+        let networks = app.descendants(matching: .any)["static-networks"]
+        XCTAssertTrue(appRobot.scrollUntilVisible(networks))
+        networks.tap()
+        let mastercard = hittableElement(label: "Mastercard")
+        let mastercardBefore = String(describing: mastercard.value)
+        mastercard.tap()
+        XCTAssertTrue(waitForValueChange(mastercard, from: mastercardBefore) || mastercard.isSelected || String(describing: mastercard.value).contains("1"), "MultiSelectField did not expose its changed selection.")
+
+        app.terminate()
+        app.launch()
+        appRobot.waitForHome()
+        appRobot.tapHomeRoute("golden-plus")
+        for id in ["plus-date", "plus-time", "plus-range-start", "plus-range-end"] {
+            let field = app.descendants(matching: .any)[id]
+            XCTAssertTrue(field.waitForExistence(timeout: 15), "Date/time specimen \(id) was not discoverable.")
+            XCTAssertTrue(appRobot.scrollUntilVisible(field), "Date/time specimen \(id) is not reachable.")
+            XCTAssertTrue(field.isHittable, "Date/time specimen \(id) is not hittable.")
+        }
+    }
+
     func testOverlayMenuDialogAndSheetLifecycle() throws {
         appRobot.waitForHome()
         appRobot.tapHomeRoute("overlays")
@@ -255,5 +358,35 @@ final class ExpoBaseNativeUITests: XCTestCase {
         XCUIDevice.shared.orientation = .portrait
         XCTAssertTrue(app.staticTexts["Universal application foundation"].waitForExistence(timeout: 15))
         XCTAssertTrue(navigation.destination("home").isHittable)
+    }
+
+    private func typeSlowly(_ value: String, into field: XCUIElement) {
+        var expected = ""
+        for character in value {
+            expected.append(character)
+            field.typeText(String(character))
+            let expectation = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "value == %@", expected),
+                object: field
+            )
+            XCTAssertEqual(XCTWaiter.wait(for: [expectation], timeout: 2), .completed, "Native field did not retain typed value \(expected).")
+        }
+    }
+
+    private func waitForValueChange(_ element: XCUIElement, from previous: String, timeout: TimeInterval = 5) -> Bool {
+        let expectation = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "value != %@", previous),
+            object: element
+        )
+        return XCTWaiter.wait(for: [expectation], timeout: timeout) == .completed
+    }
+
+    private func hittableElement(label: String) -> XCUIElement {
+        let matches = app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", label)).allElementsBoundByIndex
+        if let element = matches.first(where: { $0.isHittable }) { return element }
+        let fallback = app.descendants(matching: .any)[label]
+        XCTAssertTrue(fallback.waitForExistence(timeout: 10), "Native element \(label) was not found.")
+        XCTAssertTrue(fallback.isHittable, "Native element \(label) is not hittable.")
+        return fallback
     }
 }

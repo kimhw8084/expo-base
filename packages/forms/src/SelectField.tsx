@@ -18,9 +18,10 @@ export interface SelectFieldProps {
   error?: string | undefined;
   required?: boolean;
   disabled?: boolean;
+  testID?: string | undefined;
 }
 
-export function SelectField({ id, label, value, options, onChange, placeholder = 'Select an option', description, error, required = false, disabled = false }: SelectFieldProps) {
+export function SelectField({ id, label, value, options, onChange, placeholder = 'Select an option', description, error, required = false, disabled = false, testID }: SelectFieldProps) {
   const [open, setOpen] = useState(false);
   const selected = options.find((option) => option.value === value);
   const { hovered, focused, interactionProps } = useInteractionState();
@@ -44,6 +45,7 @@ export function SelectField({ id, label, value, options, onChange, placeholder =
       aria-expanded={open}
       aria-disabled={disabled}
       disabled={disabled}
+      testID={testID}
       onPress={() => setOpen((current) => !current)}
       {...interactionProps}
       style={({ pressed }) => [styles.anchor, hovered && !disabled && styles.hovered, focused && styles.focused, Boolean(error) && styles.error, pressed && !disabled && styles.pressed, disabled && styles.disabled]}

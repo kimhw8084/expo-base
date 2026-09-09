@@ -75,13 +75,13 @@ export function RadioGroup({ id, label, value, options, onChange, description, e
     <FormField label={label} fieldId={fieldId} required={required} description={description} error={error}>
       <View accessibilityRole="radiogroup" role="radiogroup" accessibilityLabel={label} accessibilityState={{ disabled }} aria-label={label} aria-required={required} aria-invalid={Boolean(error)} testID={testID}>
         <VStack gap="sm">
-          {options.map((option, index) => <RadioItem ref={(node) => { itemRefs.current[index] = node; }} key={option.value} option={option} selected={option.value === value} disabled={disabled || Boolean(option.disabled)} tabIndex={index === tabStopIndex ? 0 as const : -1 as const} onKeyDown={(event) => navigate(index, event)} onPress={() => onChange(option.value)} onBlur={onBlur} />)}
+          {options.map((option, index) => <RadioItem ref={(node) => { itemRefs.current[index] = node; }} key={option.value} option={option} testID={testID ? `${testID}-${option.value}` : `${fieldId}-${option.value}`} selected={option.value === value} disabled={disabled || Boolean(option.disabled)} tabIndex={index === tabStopIndex ? 0 as const : -1 as const} onKeyDown={(event) => navigate(index, event)} onPress={() => onChange(option.value)} onBlur={onBlur} />)}
         </VStack>
       </View>
     </FormField>
   );
 }
-const RadioItem = forwardRef<ComponentRef<typeof Pressable>, { option: RadioOption; selected: boolean; disabled: boolean; tabIndex: 0 | -1; onKeyDown: (event: { key: string; preventDefault: () => void }) => void; onPress: () => void; onBlur?: (() => void) | undefined }>(function RadioItem({ option, selected, disabled, tabIndex, onKeyDown, onPress, onBlur }, ref) {
+const RadioItem = forwardRef<ComponentRef<typeof Pressable>, { option: RadioOption; testID?: string; selected: boolean; disabled: boolean; tabIndex: 0 | -1; onKeyDown: (event: { key: string; preventDefault: () => void }) => void; onPress: () => void; onBlur?: (() => void) | undefined }>(function RadioItem({ option, testID, selected, disabled, tabIndex, onKeyDown, onPress, onBlur }, ref) {
   const { hovered, focused, interactionProps } = useInteractionState();
   const keyboardProps = Platform.OS === 'web' ? { onKeyDown } : {};
   return (
@@ -95,6 +95,7 @@ const RadioItem = forwardRef<ComponentRef<typeof Pressable>, { option: RadioOpti
       aria-checked={selected}
       aria-disabled={disabled}
       disabled={disabled}
+      testID={testID}
       tabIndex={tabIndex}
       onPress={onPress}
       {...keyboardProps}
@@ -140,7 +141,7 @@ export function CheckboxGroup({ id, label, values, options, onChange, descriptio
     <FormField label={label} fieldId={id} required={required} description={description} error={error}>
       <View role="group" accessibilityLabel={label} aria-label={label} aria-required={required} aria-invalid={Boolean(error)} testID={testID}>
         <VStack gap="sm">
-          {options.map((option) => <Checkbox key={option.value} id={`${id}-${option.value}`} label={option.label} checked={selected.has(option.value)} onChange={(checked) => toggle(option, checked)} description={option.description} disabled={disabled || Boolean(option.disabled)} />)}
+          {options.map((option) => <Checkbox key={option.value} id={`${id}-${option.value}`} testID={`${id}-${option.value}`} label={option.label} checked={selected.has(option.value)} onChange={(checked) => toggle(option, checked)} description={option.description} disabled={disabled || Boolean(option.disabled)} />)}
         </VStack>
       </View>
     </FormField>

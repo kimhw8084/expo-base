@@ -6,10 +6,11 @@ const root = resolve(import.meta.dirname, '..');
 const project = join(root, 'apps', 'reference');
 const workspace = join(project, 'ios', 'ExpoBaseReference.xcworkspace');
 const resultsRoot = join(root, 'test-results', 'ios-native-certification');
-const resultBundle = join(resultsRoot, 'ExpoBaseNativeCertification.xcresult');
-const derivedData = join(resultsRoot, 'derived-data');
 const deviceId = process.env.IOS_SIMULATOR_UDID ?? 'E97BB776-234F-41F5-8544-5E3924121C1F';
 const mode = process.argv.includes('--mode=debug') ? 'debug' : 'release';
+const resultBundle = join(resultsRoot, `ExpoBaseNativeCertification-${mode}.xcresult`);
+const summaryFile = join(resultsRoot, `summary-${mode}.json`);
+const derivedData = join(resultsRoot, `derived-data-${mode}`);
 const onlyTesting = process.env.IOS_ONLY_TESTING;
 
 function run(command, args, label, options = {}) {
@@ -83,8 +84,8 @@ const status = run('/usr/bin/xcodebuild', args, `RUN IOS ${mode.toUpperCase()} X
 if (existsSync(resultBundle)) {
   const summaryResult = spawnSync('/usr/bin/xcrun', ['xcresulttool', 'get', 'test-results', 'summary', '--path', resultBundle, '--format', 'json'], { cwd: root, encoding: 'utf8' });
   if (summaryResult.status === 0) {
-    writeFileSync(join(resultsRoot, 'summary.json'), `${summaryResult.stdout.trim()}\n`);
-    console.log(`\nSaved native certification summary to ${join(resultsRoot, 'summary.json')}`);
+    writeFileSync(summaryFile, `${summaryResult.stdout.trim()}\n`);
+    console.log(`\nSaved native certification summary to ${summaryFile}`);
   } else {
     console.warn('The XCUITest result bundle was created, but xcresulttool summary extraction failed. The bundle remains available for inspection.');
   }

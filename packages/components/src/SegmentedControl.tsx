@@ -39,7 +39,7 @@ export function SegmentedControl({ label, value, options, onChange, disabled = f
   return (
     <View accessibilityRole="radiogroup" role="radiogroup" accessibilityLabel={label} aria-label={label} aria-invalid={invalid} style={[styles.root, invalid && styles.invalid]} testID={testID}>
       {options.map((option, index) => (
-        <Segment ref={(node) => { itemRefs.current[index] = node; }} key={option.value} option={option} selected={option.value === value} disabled={disabled || Boolean(option.disabled)} tabIndex={index === tabStopIndex ? 0 as const : -1 as const} onKeyDown={(event) => navigate(index, event)} onPress={() => onChange(option.value)} />
+        <Segment ref={(node) => { itemRefs.current[index] = node; }} key={option.value} testID={testID ? `${testID}-${option.value}` : `${label}-${option.value}`} option={option} selected={option.value === value} disabled={disabled || Boolean(option.disabled)} tabIndex={index === tabStopIndex ? 0 as const : -1 as const} onKeyDown={(event) => navigate(index, event)} onPress={() => onChange(option.value)} />
       ))}
     </View>
   );
@@ -47,7 +47,7 @@ export function SegmentedControl({ label, value, options, onChange, disabled = f
 
 type WebKeyboardEvent = { key: string; preventDefault: () => void };
 
-const Segment = forwardRef<ComponentRef<typeof Pressable>, { option: SegmentedControlOption; selected: boolean; disabled: boolean; tabIndex: 0 | -1; onKeyDown: (event: WebKeyboardEvent) => void; onPress: () => void }>(function Segment({ option, selected, disabled, tabIndex, onKeyDown, onPress }, ref) {
+const Segment = forwardRef<ComponentRef<typeof Pressable>, { option: SegmentedControlOption; testID?: string; selected: boolean; disabled: boolean; tabIndex: 0 | -1; onKeyDown: (event: WebKeyboardEvent) => void; onPress: () => void }>(function Segment({ option, testID, selected, disabled, tabIndex, onKeyDown, onPress }, ref) {
   const { hovered, focused, interactionProps } = useInteractionState();
   const keyboardProps = Platform.OS === 'web' ? { onKeyDown } : {};
   return (
@@ -60,6 +60,7 @@ const Segment = forwardRef<ComponentRef<typeof Pressable>, { option: SegmentedCo
       aria-checked={selected}
       aria-disabled={disabled}
       disabled={disabled}
+      testID={testID}
       tabIndex={tabIndex}
       onPress={onPress}
       {...keyboardProps}

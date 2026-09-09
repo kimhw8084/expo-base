@@ -202,7 +202,7 @@ npm run ios:test:smoke
 npm run ios:verify
 ```
 
-`ios:verify` requires Node 22, validates the simulator profile, generates the test target, builds the Release product lane, runs XCUITest serially, and writes `summary.json` from `xcresulttool`. `IOS_ONLY_TESTING` supports focused scenario execution without changing the permanent suite.
+`ios:verify` requires Node 22, validates the simulator profile, generates the test target, builds the Release product lane, runs XCUITest serially, and writes a mode-specific summary from `xcresulttool`. Release and Debug use isolated result bundles so focused and full runs cannot overwrite one another's evidence. `IOS_ONLY_TESTING` supports focused scenario execution without changing the permanent suite.
 
 ### Proof-of-capability mapping
 
@@ -220,9 +220,10 @@ The Release lane is the product acceptance lane and does not require Metro. The 
 - Device: iPhone 17 Pro Simulator (`E97BB776-234F-41F5-8544-5E3924121C1F`).
 - Runtime: iOS 26.5; host macOS 26.6.2 arm64; Xcode 26.6; Node 22.23.2; CocoaPods 1.17.0.
 - Product build: Release bundled JavaScript.
-- Latest complete Release execution: 16/16 XCUITest tests passed, 0 failures, approximately 407 seconds.
-- Manifest: 24 classified scenarios; 20 executable XCUITest dispositions, 1 executable source-contract disposition, and 3 explicit boundaries.
-- Full result evidence: `test-results/ios-native-certification/ExpoBaseNativeCertification.xcresult`, `summary.json`, and `xcodebuild-release.log`.
+- Latest focused form-family execution: 1/1 XCUITest test passed, 0 failures, 220.534 seconds; the isolated Release result bundle and summary are retained.
+- Manifest: 25 classified scenarios; 21 executable XCUITest dispositions, 1 executable source-contract disposition, and 3 explicit boundaries.
+- Full Release evidence: `test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult`, `summary-release.json`, and `xcodebuild-release.log`.
+- Full Debug evidence: `test-results/ios-native-certification/ExpoBaseNativeCertification-debug.xcresult`, `summary-debug.json`, and `xcodebuild-debug.log`.
 
 ### Automated scenario coverage
 
@@ -230,6 +231,7 @@ The executable suite covers:
 
 - cold launch, relaunch, primary navigation targets, route landmarks, and native target geometry;
 - text entry, secure password entry, native software keyboard appearance, keyboard Next/Done progression, form validation reachability, and error summary rendering;
+- representative native form-family interaction across text/search/password/contact/number/currency/textarea, checkbox/radio/segmented/switch, stepper/code, select/combobox/multiselect, and date/time/range specimens;
 - action menu, native Dialog, BottomSheet, command launcher filtering/selection/dismissal, and overlay action reachability;
 - adaptive data workspace row selection and details, server-state refresh/relaunch, and advanced visualization route rendering;
 - analytics, finance, and monitoring flagship route rendering and scrolling;
@@ -244,10 +246,10 @@ The executable suite covers:
 - Root cause: the shared Dialog and BottomSheet panel set `accessible` on the native container, causing iOS to expose the panel as one accessibility element and hide descendant titles/actions from XCUITest/native assistive semantics.
 - Owner: shared `packages/overlays` Dialog and BottomSheet owners.
 - Fix: retain the panel-level accessibility grouping only on web; native panels expose their actionable descendants while preserving modal semantics.
-- Regression: `testOverlayMenuDialogAndSheetLifecycle`, native accessibility-tree queries, and the full 16-test Release lane.
+- Regression: `testOverlayMenuDialogAndSheetLifecycle`, native accessibility-tree queries, and the full 17-test Release lane.
 - Result: action-menu selection, Dialog Cancel, BottomSheet title, and BottomSheet Close all pass natively.
 
-The compact data table also received a selector-owner correction: when row selection is enabled, the stable row identifier is placed on the actionable content Pressable rather than only on its non-hittable layout container. This is certification infrastructure/owner semantics, not a visual redesign.
+The compact data table also received a selector-owner correction: when row selection is enabled, the stable row identifier is placed on the actionable content Pressable rather than only on its non-hittable layout container. Form choice owners now expose stable option identifiers, and SelectField forwards its certification identifier to the native trigger. These are certification infrastructure/owner semantics, not visual redesigns.
 
 ### Accessibility and boundaries
 
@@ -275,8 +277,8 @@ Android native acceptance remains deferred/waived under Policy B.
 
 ### Final verification and stability closure
 
-- `npm run ios:test:smoke`: 16/16 Debug XCUITest tests passed, 0 failures.
-- Final unfiltered `npm run ios:verify`: 16/16 Release XCUITest tests passed, 0 failures.
+- `npm run ios:test:smoke`: 17/17 Debug XCUITest tests passed, 0 failures in 665.395 seconds; `summary-debug.json` reports the same result.
+- Final unfiltered `npm run ios:verify`: 17/17 Release XCUITest tests passed, 0 failures in 635.709 seconds; `summary-release.json` reports the same result.
 - Final high-risk stability set: three consecutive `npm run ios:verify` executions with the focused 8-test matrix; each run passed 8/8 with 0 failures and no retries.
 - The focused matrix covered launch, navigation/geometry, text input, native keyboard/form validation, overlays, command filtering/selection, data-row selection, and orientation state preservation.
 - One earlier focused run exposed a test-harness input-ordering issue (`offline` could be synthesized as `offlnei`); the command and form robots now type and verify controlled fields character-by-character. The final focused and full runs pass with that correction.

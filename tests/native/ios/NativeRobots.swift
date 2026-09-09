@@ -27,11 +27,21 @@ final class AppRobot {
     func scrollUntilVisible(_ element: XCUIElement, maxSwipes: Int = 10) -> Bool {
         for _ in 0..<maxSwipes {
             if element.exists && element.isHittable { return true }
-            let scrollView = app.scrollViews.firstMatch
-            guard scrollView.exists else { return element.exists && element.isHittable }
+            guard let scrollView = hittableScrollView() else { return element.exists && element.isHittable }
             scrollView.swipeUp()
         }
         return element.exists && element.isHittable
+    }
+
+    func scrollToTop(maxSwipes: Int = 6) {
+        for _ in 0..<maxSwipes {
+            guard let scrollView = hittableScrollView() else { return }
+            scrollView.swipeDown()
+        }
+    }
+
+    private func hittableScrollView() -> XCUIElement? {
+        app.scrollViews.allElementsBoundByIndex.first(where: { $0.exists && $0.isHittable })
     }
 
     func text(_ value: String) -> XCUIElement {
@@ -105,6 +115,21 @@ final class FormRobot {
             )
             XCTAssertEqual(XCTWaiter.wait(for: [valueExpectation], timeout: 2), .completed, "Field \(id) did not retain typed character \(character).")
         }
+    }
+
+    func dismissKeyboard() {
+        let keyboard = app.keyboards.firstMatch
+        guard keyboard.exists else { return }
+        for label in ["Done", "Search", "Return"] {
+            let button = keyboard.buttons[label]
+            if button.exists && button.isHittable {
+                button.tap()
+                XCTAssertFalse(keyboard.waitForExistence(timeout: 5), "The native keyboard did not dismiss after the \(label) action.")
+                return
+            }
+        }
+        keyboard.swipeDown()
+        XCTAssertFalse(keyboard.waitForExistence(timeout: 5), "The native keyboard did not dismiss through a supported gesture.")
     }
 }
 
