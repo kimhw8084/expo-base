@@ -2,9 +2,11 @@
   "schemaVersion": 1,
   "project": "expo-base",
   "version": "1.0.0",
-  "certifiedCommit": "d76a0d77fe704fa7e72b4ba474ee6daa412e84b8",
-  "certifiedAt": "2026-09-09T18:19:19.678Z",
-  "sourceTreeHash": "7b913634758aae7a2d635c42b3962d246f480f75aedcab64dd10f1050fad3051",
+  "certifiedCommit": "fc04bb6fc7fa1eca38b76f4426b406a24be2863a",
+  "certifiedBranch": "main",
+  "certifiedCommitRole": "protected-main-provenance",
+  "certifiedAt": "2026-09-10T00:49:02.333Z",
+  "sourceTreeHash": "bc01477633396d51492076730889e753c26d27a03a7af3ad963d14a2554843b0",
   "sourceTreeHashPolicy": "SHA-256 of tracked repository files excluding this metadata record; metadata-only commits preserve the certified executable source identity.",
   "hostedChecks": [
     {
@@ -29,7 +31,7 @@
     }
   ],
   "native": {
-    "node": "v26.0.0",
+    "node": "v22.23.2",
     "profileId": "iphone-17-pro-ios-26.5",
     "platform": "iOS Simulator",
     "device": "iPhone 17 Pro",

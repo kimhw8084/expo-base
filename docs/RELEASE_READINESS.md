@@ -26,6 +26,7 @@ The current repository is a private source/template workspace, not a configured 
 - [x] iOS Simulator Release XCUITest acceptance: 17/17, with 9/9 reviewed native visual comparisons.
 - [x] Three consecutive full native executions completed with zero retries and zero failures.
 - [x] Semantic simulator selection and full Release CNG freshness are enforced by the repository tooling.
+- [x] Native release certification is pinned to Node 22.x (minimum 22.13.0) and records protected-main provenance without requiring historical PR objects.
 - [ ] Obtain final PM authorization for the release commit, tag, and publication/distribution steps.
 
 ## Explicitly deferred or waived for `1.0.0`

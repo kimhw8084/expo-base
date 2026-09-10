@@ -6,7 +6,7 @@ This document defines the durable release-candidate boundary. It does not create
 
 - Version: `1.0.0`
 - Branch: `main`
-- Source identity: the commit and tracked-source hash recorded in `release-candidate.certification.json`
+- Source identity: the tracked-source hash recorded in `release-candidate.certification.json`; its `certifiedCommit` is protected-main provenance only and is not a local-object requirement.
 - Native profile: semantic iPhone 17 Pro / iOS 26.5 / iOS Simulator
 - Required hosted checks: `runtime-web`, `structural`, `mobile`, and `golden`
 
@@ -41,11 +41,11 @@ npm run ios:verify
 npm run release:verify
 ```
 
-`ios:verify` is the expensive native certification entrypoint. `release:verify` checks the recorded certification, version/package contracts, source-tree identity, manifest, public API, dependency graph, generator boundaries, and repository cleanliness; it does not silently substitute a contract check for a native run.
+`ios:verify` is the expensive native certification entrypoint and requires Node 22.x >= 22.13.0. `release:verify` checks the recorded certification, pinned Node policy, version/package contracts, source-tree identity, manifest, public API, dependency graph, generator boundaries, and repository cleanliness; it does not silently substitute a contract check for a native run. A fresh main-only checkout does not need to retain the historical PR commit named as provenance.
 
 ## Release governance
 
-`main` is protected by the active repository ruleset. Force pushes and branch deletion are blocked, pull requests are required, and the exact hosted checks above are required before merge. The native source SHA must be the SHA whose source tree passed `ios:verify`; metadata-only evidence commits are allowed only when the record's source-tree hash remains identical.
+`main` is protected by the active repository ruleset. Force pushes and branch deletion are blocked, pull requests are required, and the exact hosted checks above are required before merge. The executable source-tree hash must be the identity whose source tree passed `ios:verify`; metadata-only evidence commits are allowed only when the record's source-tree hash remains identical. Native certification records protected-main provenance separately so squash-merge history cannot make release verification depend on an unreachable PR object.
 
 ## Next phase
 

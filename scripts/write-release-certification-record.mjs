@@ -8,6 +8,11 @@ const output = join(root, 'release-candidate.certification.json');
 const manifest = JSON.parse(readFileSync(join(root, 'ios.certification.json'), 'utf8'));
 const packageJson = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const profile = manifest.profiles[0];
+const certifiedCommit = process.env.EXPO_BASE_CERTIFIED_COMMIT;
+
+if (!/^[0-9a-f]{40}$/.test(certifiedCommit ?? '')) {
+  throw new Error('Set EXPO_BASE_CERTIFIED_COMMIT to the protected-main provenance SHA before writing certification metadata.');
+}
 
 function git(args) {
   const result = spawnSync('git', args, { cwd: root, encoding: 'utf8' });
@@ -33,7 +38,9 @@ const record = {
   schemaVersion: 1,
   project: 'expo-base',
   version: packageJson.version,
-  certifiedCommit: process.env.EXPO_BASE_CERTIFIED_COMMIT || git(['rev-parse', 'HEAD']),
+  certifiedCommit,
+  certifiedBranch: 'main',
+  certifiedCommitRole: 'protected-main-provenance',
   certifiedAt: certificationDate,
   sourceTreeHash: sourceTreeHash(),
   sourceTreeHashPolicy: 'SHA-256 of tracked repository files excluding this metadata record; metadata-only commits preserve the certified executable source identity.',
