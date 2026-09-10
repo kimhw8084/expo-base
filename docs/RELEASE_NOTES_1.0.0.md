@@ -1,6 +1,4 @@
-# Expo Base 1.0.0 — release-candidate summary
-
-_Draft for PM approval. These notes are not published and do not authorize a tag or release._
+# Expo Base 1.0.0
 
 Expo Base is a universal Expo foundation for teams building production-oriented iOS, Android, tablet, and web applications. The release keeps product code semantic while shared Precision Calm packages own layout, responsiveness, themes, density, interaction, forms, overlays, navigation, feedback, data composition, motion, and runtime boundaries.
 
@@ -20,8 +18,8 @@ Expo Base is a universal Expo foundation for teams building production-oriented 
 ## Certification included
 
 - Runtime verification passes on the pinned Node 22 / Expo SDK 57 compatibility baseline.
-- Expo Base Doctor reports 86 passed, 0 failed, and 0 warnings.
-- Fresh static web export certification passes Chromium, Firefox, and WebKit: 180/180 tests.
+- Expo Base Doctor reports 94 passed, 0 failed, and 0 warnings.
+- Fresh static web export certification passes Chromium, Firefox, and WebKit: 385 passed / 2 intentional skips.
 - Web certification uses a fresh export, an OS-assigned loopback port, and deterministic server cleanup.
 - Golden structural, semantic, visual, performance, and mobile-browser parity certification are green on the protected source baseline.
 - iOS Simulator Release XCUITest certification passes 17/17 tests and 9/9 native visual baselines on the semantic iPhone 17 Pro / iOS 26.5 profile. Native test-target generation is first-party and CNG-fresh for every full Release run.
@@ -40,4 +38,5 @@ Expo Base is a universal Expo foundation for teams building production-oriented 
 - Physical-device haptics, camera fidelity, biometrics, hardware permission nuances, and real-device safe-area variants remain outside this simulator candidate.
 - Android native runtime acceptance is explicitly deferred/waived for `1.0.0` under PM Policy B.
 - The current static web export is approximately one 4.4 MB bundle. Route-level splitting remains an application-scale follow-up.
-- Final license approval, release commit/tag, and publication decisions require owner approval.
+- Licensed under the MIT License, Copyright (c) 2026 Haewon Kim.
+- This release does not publish npm packages, deploy Expo/EAS applications, or begin Ternavo migration.

@@ -47,6 +47,10 @@ The platform also includes backend-neutral linking, service, authorization, migr
 
 See [docs/CERTIFICATION.md](docs/CERTIFICATION.md), [docs/GENERATOR.md](docs/GENERATOR.md), [docs/PUBLIC_API.md](docs/PUBLIC_API.md), [docs/SERVER_STATE.md](docs/SERVER_STATE.md), [docs/MIGRATION.md](docs/MIGRATION.md), [docs/PORTABILITY.md](docs/PORTABILITY.md), and [docs/BRANDING.md](docs/BRANDING.md) for the ownership and adoption details.
 
+## License
+
+Expo Base is licensed under the [MIT License](LICENSE).
+
 Native development uses an Expo development client through the native scripts; native runtime acceptance is a separate validation gate and is not implied by web certification. The current release-candidate baseline includes iOS Simulator Release XCUITest acceptance and native visual comparison on the semantic iPhone 17 Pro / iOS 26.5 profile. Android native acceptance is deferred/waived under Policy B. Human VoiceOver, exact Dynamic Type settings, and physical-device behavior remain explicit boundaries.
 
-The current static web export remains one approximately 4.5 MB bundle. Route-level splitting is an application-scale follow-up. Use `npm run ios:verify` for the expensive fresh-CNG native lane and `npm run release:verify` for final governance invariants. See [docs/RELEASE_CANDIDATE_1_0.md](docs/RELEASE_CANDIDATE_1_0.md) for the exact next-step release procedure; this phase does not tag or publish.
+The current static web export remains one approximately 4.5 MB bundle. Route-level splitting is an application-scale follow-up. Use `npm run ios:verify` for the expensive fresh-CNG native lane and `npm run release:verify` for final governance invariants. See [docs/RELEASE_CANDIDATE_1_0.md](docs/RELEASE_CANDIDATE_1_0.md) for the release identity and governance procedure.
