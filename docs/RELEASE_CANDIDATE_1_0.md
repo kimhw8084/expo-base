@@ -1,11 +1,12 @@
 # Expo Base 1.0 release-candidate governance
 
-This document defines the durable release-candidate boundary. It does not create a tag, publish a package, deploy an app, or migrate Ternavo.
+This document records the durable Expo Base 1.0 release-candidate boundary. It does not authorize npm publication, app deployment, or Ternavo migration.
 
 ## Identity
 
 - Version: `1.0.0`
 - Branch: `main`
+- License: MIT, `Copyright (c) 2026 Haewon Kim`
 - Source identity: the tracked-source hash recorded in `release-candidate.certification.json`; its `certifiedCommit` is protected-main provenance only and is not a local-object requirement.
 - Native profile: semantic iPhone 17 Pro / iOS 26.5 / iOS Simulator
 - Required hosted checks: `runtime-web`, `structural`, `mobile`, and `golden`
@@ -47,14 +48,14 @@ npm run release:verify
 
 `main` is protected by the active repository ruleset. Force pushes and branch deletion are blocked, pull requests are required, and the exact hosted checks above are required before merge. The executable source-tree hash must be the identity whose source tree passed `ios:verify`; metadata-only evidence commits are allowed only when the record's source-tree hash remains identical. Native certification records protected-main provenance separately so squash-merge history cannot make release verification depend on an unreachable PR object.
 
-## Next phase
+## Release process
 
-After governance passes, an operator may, as a separate deliberate action:
+For the 1.0.0 release, the operator must:
 
-1. verify the exact release-candidate SHA and hosted checks;
+1. verify the exact protected-main SHA and hosted checks;
 2. preserve the native and web evidence summary;
-3. create and push the project-approved signed/annotated `v1.0.0` tag;
-4. create the GitHub Release;
-5. begin downstream deployment or migration work only after the release artifact is approved.
+3. create and push the approved annotated `v1.0.0` tag;
+4. create the stable GitHub Release from that tag;
+5. keep npm publication, app deployment, Android native validation, and Ternavo migration outside this release operation.
 
-Those actions are intentionally outside this phase.
+Npm publication, app deployment, Android native validation, and Ternavo migration remain outside this release operation.
