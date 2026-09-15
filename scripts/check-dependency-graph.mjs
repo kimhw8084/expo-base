@@ -14,10 +14,13 @@ for (const scope of ['packages', 'apps']) {
     records.set(manifest.name, { dir: path.dirname(manifestPath), manifest });
   }
 }
-const workspaceNames = new Set(records.keys());
-const graph = Object.fromEntries([...records].sort(([a], [b]) => a.localeCompare(b)).map(([name, record]) => {
+// Compatibility-only forwarding workspaces are validated by the migration contract, not
+// treated as Golden production owners or implementation dependencies.
+const productionRecords = [...records].filter(([, record]) => !record.manifest.expoBaseCompatibility);
+const productionWorkspaceNames = new Set(productionRecords.map(([name]) => name));
+const graph = Object.fromEntries(productionRecords.sort(([a], [b]) => a.localeCompare(b)).map(([name, record]) => {
   const declared = { ...(record.manifest.dependencies ?? {}), ...(record.manifest.peerDependencies ?? {}) };
-  return [name, Object.keys(declared).filter((dep) => workspaceNames.has(dep)).sort()];
+  return [name, Object.keys(declared).filter((dep) => productionWorkspaceNames.has(dep)).sort()];
 }));
 const visiting = new Set();
 const visited = new Set();
@@ -34,7 +37,7 @@ assert.equal(cycles.length, 0, `Workspace dependency cycles:\n${cycles.join('\n'
 const violations = [];
 const edges = (from, forbidden, message) => { for (const target of graph[from] ?? []) if (forbidden.has(target)) violations.push(`${from} -> ${target}: ${message}`); };
 const visual = new Set(['@expo-base/accessibility', '@expo-base/components', '@expo-base/data-display', '@expo-base/feedback', '@expo-base/forms', '@expo-base/i18n', '@expo-base/icons', '@expo-base/layouts', '@expo-base/lists', '@expo-base/media-presentation', '@expo-base/motion', '@expo-base/navigation', '@expo-base/overlays', '@expo-base/patterns', '@expo-base/primitives', '@expo-base/visualization', '@expo-base/visualization-advanced']);
-edges('@expo-base/tokens', new Set([...workspaceNames].filter((name) => name !== '@expo-base/tokens')), 'tokens are the dependency root');
+edges('@expo-base/tokens', new Set([...productionWorkspaceNames].filter((name) => name !== '@expo-base/tokens')), 'tokens are the dependency root');
 edges('@expo-base/platform', new Set([...visual, '@expo-base/ui']), 'platform math/contracts must not depend on presentation');
 edges('@expo-base/visualization', new Set(['@expo-base/visualization-advanced', '@expo-base/ui']), 'core visualization must not depend on advanced/facade layers');
 edges('@expo-base/capabilities', new Set(['@expo-base/notifications', '@expo-base/media', '@expo-base/device', '@expo-base/local-auth', '@expo-base/updates']), 'capability facade must not eagerly depend on optional implementations');

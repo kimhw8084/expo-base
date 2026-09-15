@@ -6,7 +6,9 @@ CHG-24 identity migration: current workspaces use the private `@expo-base/*` sco
 symbols, and `expo-base` tool/config stems. The former `Precision*` root facade symbols are
 deprecated aliases only; update imports and names to Expo Base in migrated code. The aliases are
 isolated from the generator and current examples so a migration cannot accidentally establish a
-second supported namespace.
+second supported namespace. Exact v1.0 application-facing package specifiers remain available as
+private migration-only forwarding shims during 1.x; see [PUBLIC_API.md](./PUBLIC_API.md) for the
+allowlisted paths and their canonical replacements. They are planned for removal in 2.0.0.
 
 ## Audit
 

@@ -7,7 +7,10 @@ const packageDirs = [];
 for (const scope of ['packages', 'apps']) {
   for (const entry of fs.readdirSync(path.join(root, scope), { withFileTypes: true })) {
     const manifestPath = path.join(root, scope, entry.name, 'package.json');
-    if (entry.isDirectory() && fs.existsSync(manifestPath)) packageDirs.push({ scope, dir: path.join(scope, entry.name), manifest: readJson(path.join(scope, entry.name, 'package.json')) });
+    if (entry.isDirectory() && fs.existsSync(manifestPath)) {
+      const manifest = readJson(path.join(scope, entry.name, 'package.json'));
+      if (!manifest.expoBaseCompatibility) packageDirs.push({ scope, dir: path.join(scope, entry.name), manifest });
+    }
   }
 }
 const catalog = readJson('golden.catalog.json');

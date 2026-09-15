@@ -55,6 +55,10 @@ for (const [pkg, denied] of Object.entries(rules)) {
 
 // The public facade/runtime sit above implementation packages. Internal packages
 // must never import them or the dependency graph would invert/cycle.
+const approvedMigrationForwarders = new Map([
+  ['legacy-compat-ui', '@expo-base/ui'],
+  ['legacy-compat-runtime', '@expo-base/runtime'],
+]);
 for (const pkg of fs.readdirSync(path.join(root, 'packages'), { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => entry.name)) {
   const src = path.join(root, 'packages', pkg, 'src');
   if (!fs.existsSync(src)) continue;
@@ -62,6 +66,7 @@ for (const pkg of fs.readdirSync(path.join(root, 'packages'), { withFileTypes: t
     const text = fs.readFileSync(file, 'utf8');
     const imports = [...text.matchAll(/(?:from\s+|import\s*\(?\s*)['"]([^'"]+)['"]/g)].map((m) => m[1]);
     for (const source of imports) {
+      if (approvedMigrationForwarders.get(pkg) === source) continue;
       if (source === '@expo-base/ui' && pkg !== 'ui') violations.push(`${path.relative(root, file)} -> ${source} (facade inversion)`);
       if (source === '@expo-base/runtime' && pkg !== 'runtime') violations.push(`${path.relative(root, file)} -> ${source} (runtime inversion)`);
     }

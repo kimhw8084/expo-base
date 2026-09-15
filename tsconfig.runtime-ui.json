@@ -8,6 +8,7 @@
     "apps/reference/**/*.ts",
     "apps/reference/**/*.tsx",
     "apps/reference/expo-env.d.ts",
+    "scripts/fixtures/migration-compatibility-imports.ts",
     "apps/reference/.expo/types/**/*.ts",
     "packages/*/src/**/*.ts",
     "packages/*/src/**/*.tsx"

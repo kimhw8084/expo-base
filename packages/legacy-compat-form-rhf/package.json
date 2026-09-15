@@ -1,0 +1,14 @@
+{
+  "name": "@precision-calm/form-rhf",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.tsx",
+  "types": "src/index.tsx",
+  "description": "Deprecated v1 migration-only forwarding shim; use @expo-base/form-rhf.",
+  "expoBaseCompatibility": {
+    "canonical": "@expo-base/form-rhf",
+    "removeAfter": "2.0.0"
+  },
+  "dependencies": { "@expo-base/form-rhf": "*" }
+}

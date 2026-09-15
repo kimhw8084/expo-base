@@ -1,0 +1,14 @@
+{
+  "name": "@precision-calm/navigation-router",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.tsx",
+  "types": "src/index.tsx",
+  "description": "Deprecated v1 migration-only forwarding shim; use @expo-base/navigation-router.",
+  "expoBaseCompatibility": {
+    "canonical": "@expo-base/navigation-router",
+    "removeAfter": "2.0.0"
+  },
+  "dependencies": { "@expo-base/navigation-router": "*" }
+}
