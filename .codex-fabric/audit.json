@@ -1,0 +1,3840 @@
+{
+  "accepted_at": "2026-09-15T13:03:42Z",
+  "changed_files": [
+    {
+      "additions": 40,
+      "deletions": 40,
+      "path": "AGENTS.md",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "README.md",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "apps/reference/ReferenceBackAction.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/ReferenceCopy.ts",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/ReferenceRuntimeControls.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "apps/reference/ReferenceRuntimeSettings.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/app/+html.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "apps/reference/app/+not-found.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 10,
+      "path": "apps/reference/app/_layout.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 10,
+      "path": "apps/reference/app/accessibility-motion.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "apps/reference/app/admin-demo.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/app/analytics-showcase.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "apps/reference/app/auth-session.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/auth/callback.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "apps/reference/app/authorization.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 18,
+      "deletions": 18,
+      "path": "apps/reference/app/capabilities.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "apps/reference/app/data.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "apps/reference/app/feedback.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/app/finance-showcase.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 12,
+      "deletions": 12,
+      "path": "apps/reference/app/forms.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "apps/reference/app/golden-plus.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 12,
+      "deletions": 12,
+      "path": "apps/reference/app/golden.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "apps/reference/app/index.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "apps/reference/app/link-error.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "apps/reference/app/linking.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "apps/reference/app/lists.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/app/monitoring-showcase.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "apps/reference/app/navigation.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "apps/reference/app/overlays.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 19,
+      "deletions": 19,
+      "path": "apps/reference/app/server-state.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "apps/reference/app/services.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "apps/reference/app/session-error.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/session-loading.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "apps/reference/app/session-security.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "apps/reference/app/sign-in.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/state-workbench.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "apps/reference/app/stress.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "apps/reference/app/system.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "apps/reference/app/unlock.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "apps/reference/app/visualization.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "apps/reference/app/workflows.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/auth.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/babel.config.js",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/brand.ts",
+      "status": "M"
+    },
+    {
+      "additions": 13,
+      "deletions": 13,
+      "path": "apps/reference/capabilities.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "apps/reference/linking.ts",
+      "status": "M"
+    },
+    {
+      "additions": 27,
+      "deletions": 27,
+      "path": "apps/reference/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "apps/reference/serverState.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/services.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/sessionSecurity.ts",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/showcaseData.ts",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/unistyles.ts",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "docs/ACCESSIBILITY_MOTION.md",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "docs/ADAPTERS.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "docs/ADR_SERVER_STATE.md",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "docs/ADR_VISUALIZATION_MODULE.md",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "docs/ASYNC_INTERACTIONS.md",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "docs/AUTHORIZATION_CAPABILITIES.md",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "docs/AUTH_PROTECTED_ROUTES.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/BRANDING.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/CERTIFICATION.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/COMPONENTS.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/DATA_DISPLAY.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/DEPENDENCIES.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/FEEDBACK.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 0,
+      "path": "docs/FINAL_INDEPENDENT_PRODUCT_QUALITY_AUDIT.md",
+      "status": "M"
+    },
+    {
+      "additions": 14,
+      "deletions": 14,
+      "path": "docs/FORMS.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "docs/GATES_21_33_RECONCILIATION.md",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "docs/GENERATOR.md",
+      "status": "M"
+    },
+    {
+      "additions": 127,
+      "deletions": 127,
+      "path": "docs/GOLDEN_CATALOG.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/GOLDEN_PATTERNS.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 0,
+      "path": "docs/GOLDEN_PRODUCT_QUALITY_AUDIT.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 0,
+      "path": "docs/GOLDEN_TEMPLATE_AUDIT.md",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "docs/GOLDEN_WORKFLOWS.md",
+      "status": "M"
+    },
+    {
+      "additions": 79,
+      "deletions": 0,
+      "path": "docs/IDENTITY_CONVERGENCE_CHG24.md",
+      "status": "A"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "docs/INTERNATIONALIZATION.md",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "docs/IOS_NATIVE_ACCEPTANCE.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "docs/LINKING.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/LISTS.md",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "docs/MEDIA_PRESENTATION.md",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 2,
+      "path": "docs/MIGRATION.md",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "docs/NAVIGATION.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/PORTABILITY.md",
+      "status": "M"
+    },
+    {
+      "additions": 56,
+      "deletions": 11,
+      "path": "docs/PUBLIC_API.md",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "docs/REFERENCE.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 1,
+      "path": "docs/RELEASE_CANDIDATE_1_0.md",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "docs/RELEASE_NOTES_1.0.0.md",
+      "status": "M"
+    },
+    {
+      "additions": 12,
+      "deletions": 6,
+      "path": "docs/RELEASE_READINESS.md",
+      "status": "M"
+    },
+    {
+      "additions": 26,
+      "deletions": 26,
+      "path": "docs/RUNTIME_CAPABILITIES.md",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 0,
+      "path": "docs/RUNTIME_RC2.md",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "docs/SCREEN_SCAFFOLDING.md",
+      "status": "M"
+    },
+    {
+      "additions": 17,
+      "deletions": 17,
+      "path": "docs/SERVER_STATE.md",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "docs/SESSION_SECURITY.md",
+      "status": "M"
+    },
+    {
+      "additions": 11,
+      "deletions": 9,
+      "path": "docs/STATUS.md",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "docs/VISUALIZATION.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "docs/final-independent-product-quality-coverage.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "docs/final-independent-product-quality-defects.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "docs/golden-product-quality-defects.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "docs/golden-template-capabilities.json",
+      "status": "M"
+    },
+    {
+      "additions": 228,
+      "deletions": 228,
+      "path": "docs/ultimate-dependency-graph.json",
+      "status": "M"
+    },
+    {
+      "additions": 462,
+      "deletions": 462,
+      "path": "docs/ultimate-golden-capabilities.json",
+      "status": "M"
+    },
+    {
+      "path": "expo-base.api.json",
+      "status": "R088"
+    },
+    {
+      "path": "expo-base.compatibility.json",
+      "status": "R100"
+    },
+    {
+      "additions": 143,
+      "deletions": 143,
+      "path": "golden.catalog.json",
+      "status": "M"
+    },
+    {
+      "additions": 29,
+      "deletions": 29,
+      "path": "golden.certification.json",
+      "status": "M"
+    },
+    {
+      "additions": 21,
+      "deletions": 21,
+      "path": "golden.owner-certification.json",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "golden.patterns.json",
+      "status": "M"
+    },
+    {
+      "additions": 602,
+      "deletions": 315,
+      "path": "package-lock.json",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 8,
+      "path": "package.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/accessibility/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/accessibility/src/LiveRegion.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/accessibility/src/WebAccessibilityStyles.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/adapters/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/auth/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/auth/src/returnIntent.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/authorization/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/capabilities/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 12,
+      "deletions": 12,
+      "path": "packages/capabilities/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 10,
+      "path": "packages/capabilities/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "packages/capabilities/src/registry.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "packages/components/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/components/src/Avatar.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/components/src/AvatarGroup.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/components/src/Badge.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/components/src/Button.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/components/src/Card.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/components/src/Chip.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/components/src/CodeBlock.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/components/src/Disclosure.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/components/src/IconButton.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/components/src/Link.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/components/src/SegmentedControl.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/components/src/StatusIndicator.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/components/src/StepIndicator.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/components/src/Tag.tsx",
+      "status": "M"
+    },
+    {
+      "path": "packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      "status": "R051"
+    },
+    {
+      "path": "packages/create-expo-base-app/bin/scaffold-expo-base-screen.mjs",
+      "status": "R096"
+    },
+    {
+      "additions": 162,
+      "deletions": 0,
+      "path": "packages/create-expo-base-app/lib/screen-scaffold.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 10,
+      "deletions": 0,
+      "path": "packages/create-expo-base-app/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 0,
+      "deletions": 162,
+      "path": "packages/create-precision-app/lib/screen-scaffold.mjs",
+      "status": "D"
+    },
+    {
+      "additions": 0,
+      "deletions": 10,
+      "path": "packages/create-precision-app/package.json",
+      "status": "D"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/data-display/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/data-display/src/AdaptiveDataTable.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/data-display/src/AnalyticsPanels.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/data-display/src/DataExport.ts",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/data-display/src/DataTableControls.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/data-display/src/DataToolbar.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/data-display/src/KeyValueList.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/data-display/src/ListRow.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/data-display/src/Metric.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/data-display/src/Pagination.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/data-display/src/SelectionBar.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/data-display/src/Timeline.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/device/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 10,
+      "path": "packages/device/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "packages/device/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/device/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/device/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "path": "packages/expo-base-doctor/bin/expo-base-doctor.mjs",
+      "status": "R060"
+    },
+    {
+      "additions": 7,
+      "deletions": 0,
+      "path": "packages/expo-base-doctor/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/feedback/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/feedback/src/AlertBanner.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/feedback/src/AsyncStateView.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/feedback/src/Loading.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/feedback/src/StateView.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/form-rhf/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 35,
+      "deletions": 35,
+      "path": "packages/form-rhf/src/index.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/forms/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/forms/src/ChoiceFields.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 28,
+      "deletions": 28,
+      "path": "packages/forms/src/DateTimeFields.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/forms/src/FormField.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/forms/src/FormLayout.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/forms/src/FormLifecycle.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/forms/src/NumberStepper.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/forms/src/OptionList.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/forms/src/SelectField.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/forms/src/Selection.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "packages/forms/src/SpecializedFields.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/forms/src/TextField.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/haptics/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/haptics/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/haptics/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/haptics/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/haptics/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/i18n/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 112,
+      "deletions": 0,
+      "path": "packages/i18n/src/ExpoBaseI18nProvider.tsx",
+      "status": "A"
+    },
+    {
+      "additions": 0,
+      "deletions": 112,
+      "path": "packages/i18n/src/PrecisionI18nProvider.tsx",
+      "status": "D"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/i18n/src/index.ts",
+      "status": "M"
+    },
+    {
+      "additions": 45,
+      "deletions": 45,
+      "path": "packages/i18n/src/locale.ts",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/icons/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/icons/src/Icon.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/layouts/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/layouts/src/Container.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/layouts/src/Page.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/layouts/src/PageHeader.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/layouts/src/PriorityActionBar.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/layouts/src/Responsive.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/layouts/src/SectionHeader.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-adapters/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-adapters/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-auth/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-auth/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-authorization/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-authorization/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-capabilities/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-capabilities/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-device/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-device/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-form-rhf/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-form-rhf/src/index.tsx",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-haptics/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-haptics/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-linking-expo/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-linking-expo/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-linking/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-linking/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-local-auth/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-local-auth/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-media/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-media/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-navigation-router/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-navigation-router/src/index.tsx",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-notifications/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-notifications/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-observability/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-observability/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-platform/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-platform/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-preferences/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-preferences/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-runtime-capabilities/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-runtime-capabilities/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-runtime/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-runtime/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-secure-storage/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-secure-storage/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-server-state/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-server-state/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-session-security/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-session-security/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 19,
+      "deletions": 0,
+      "path": "packages/legacy-compat-sharing/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-sharing/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-sharing/src/runtime.ts",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-sharing/src/ui.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-tokens/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-tokens/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-ui/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-ui/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-updates/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-updates/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 14,
+      "deletions": 0,
+      "path": "packages/legacy-compat-visualization-advanced/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "packages/legacy-compat-visualization-advanced/src/index.ts",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/linking-expo/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/linking-expo/src/index.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/linking/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/linking/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/linking/src/policy.ts",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/lists/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/lists/src/ListScreen.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/lists/src/SectionListScreen.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/lists/src/StaticList.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/local-auth/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "packages/local-auth/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/local-auth/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/local-auth/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 12,
+      "deletions": 12,
+      "path": "packages/local-auth/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/local-auth/src/sessionSecurity.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/media-presentation/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/media-presentation/src/MediaFrame.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/media/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 15,
+      "deletions": 15,
+      "path": "packages/media/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 17,
+      "deletions": 17,
+      "path": "packages/media/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/media/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 14,
+      "deletions": 14,
+      "path": "packages/media/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "path": "packages/migrate-expo-base-app/bin/expo-base-migrate-audit.mjs",
+      "status": "R080"
+    },
+    {
+      "additions": 9,
+      "deletions": 0,
+      "path": "packages/migrate-expo-base-app/package.json",
+      "status": "A"
+    },
+    {
+      "additions": 0,
+      "deletions": 9,
+      "path": "packages/migrate-precision-app/package.json",
+      "status": "D"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/motion/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/motion/src/MotionRootProvider.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/motion/src/Reveal.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/motion/src/index.ts",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 0,
+      "path": "packages/motion/src/useExpoBaseReducedMotion.ts",
+      "status": "A"
+    },
+    {
+      "additions": 0,
+      "deletions": 5,
+      "path": "packages/motion/src/usePrecisionReducedMotion.ts",
+      "status": "D"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/navigation-router/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/navigation-router/src/index.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/navigation/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/navigation/src/BottomNavigation.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/navigation/src/Breadcrumbs.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/navigation/src/NavigationItemButton.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/navigation/src/SidebarNavigation.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/navigation/src/Tabs.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/navigation/src/types.ts",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/notifications/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/notifications/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 12,
+      "deletions": 12,
+      "path": "packages/notifications/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/notifications/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "packages/notifications/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/observability/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 26,
+      "deletions": 26,
+      "path": "packages/observability/src/index.ts",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/overlays/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/overlays/src/ActionMenu.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/overlays/src/BottomSheet.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/overlays/src/Dialog.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/overlays/src/Menu.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/overlays/src/ModalSurface.web.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/overlays/src/OverlayRootProvider.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/overlays/src/Popover.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/patterns/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "packages/patterns/src/CommandLauncher.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/patterns/src/FilterDrawer.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/patterns/src/PagePatterns.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/patterns/src/ServerStateContent.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/patterns/src/WorkflowLayouts.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/platform/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/platform/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/platform/src/data.ts",
+      "status": "M"
+    },
+    {
+      "additions": 15,
+      "deletions": 15,
+      "path": "packages/platform/src/forms.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/platform/src/responsive.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/platform/tsconfig.json",
+      "status": "M"
+    },
+    {
+      "additions": 0,
+      "deletions": 7,
+      "path": "packages/precision-doctor/package.json",
+      "status": "D"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/preferences/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/preferences/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/preferences/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/preferences/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "packages/preferences/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/primitives/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/primitives/src/Box.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/primitives/src/Density.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/primitives/src/PressableSurface.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/primitives/src/Stack.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/primitives/src/Text.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/primitives/src/ThemeScope.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/runtime-capabilities/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 12,
+      "deletions": 12,
+      "path": "packages/runtime-capabilities/src/ServerStateRuntimeBridge.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 16,
+      "deletions": 16,
+      "path": "packages/runtime-capabilities/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 13,
+      "deletions": 13,
+      "path": "packages/runtime-capabilities/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/runtime-capabilities/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 18,
+      "deletions": 18,
+      "path": "packages/runtime-capabilities/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "additions": 13,
+      "deletions": 13,
+      "path": "packages/runtime/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 75,
+      "deletions": 0,
+      "path": "packages/runtime/src/ExpoBaseRuntimeProvider.tsx",
+      "status": "A"
+    },
+    {
+      "additions": 0,
+      "deletions": 75,
+      "path": "packages/runtime/src/PrecisionRuntimeProvider.tsx",
+      "status": "D"
+    },
+    {
+      "additions": 19,
+      "deletions": 19,
+      "path": "packages/runtime/src/auth.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 15,
+      "deletions": 15,
+      "path": "packages/runtime/src/authorization.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 2,
+      "path": "packages/runtime/src/index.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 0,
+      "path": "packages/runtime/src/legacy-compat.ts",
+      "status": "A"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "packages/runtime/src/linking.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "packages/runtime/src/services.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 14,
+      "deletions": 14,
+      "path": "packages/runtime/src/sessionSecurity.tsx",
+      "status": "M"
+    },
+    {
+      "path": "packages/runtime/src/useExpoBaseAsyncAction.ts",
+      "status": "R077"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/secure-storage/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/secure-storage/src/adapter.ts",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/secure-storage/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "packages/secure-storage/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/secure-storage/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "packages/secure-storage/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/server-state/package.json",
+      "status": "M"
+    },
+    {
+      "path": "packages/server-state/src/ExpoBaseServerStateProvider.tsx",
+      "status": "R053"
+    },
+    {
+      "additions": 64,
+      "deletions": 64,
+      "path": "packages/server-state/src/client.ts",
+      "status": "M"
+    },
+    {
+      "additions": 11,
+      "deletions": 11,
+      "path": "packages/server-state/src/errors.ts",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "packages/server-state/src/index.ts",
+      "status": "M"
+    },
+    {
+      "additions": 33,
+      "deletions": 33,
+      "path": "packages/server-state/src/keys.ts",
+      "status": "M"
+    },
+    {
+      "additions": 52,
+      "deletions": 52,
+      "path": "packages/server-state/src/mutation.ts",
+      "status": "M"
+    },
+    {
+      "additions": 12,
+      "deletions": 12,
+      "path": "packages/server-state/src/policy.ts",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/server-state/src/presentation.ts",
+      "status": "M"
+    },
+    {
+      "additions": 91,
+      "deletions": 0,
+      "path": "packages/server-state/src/useExpoBaseQuery.ts",
+      "status": "A"
+    },
+    {
+      "additions": 0,
+      "deletions": 91,
+      "path": "packages/server-state/src/usePrecisionQuery.ts",
+      "status": "D"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/session-security/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/sharing/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/sharing/src/CopyableValue.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 11,
+      "deletions": 11,
+      "path": "packages/sharing/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "packages/sharing/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "packages/sharing/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 10,
+      "path": "packages/sharing/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/testing/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/testing/src/certification.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/testing/tsconfig.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/tokens/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/tokens/src/brand.ts",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/tokens/src/colors.ts",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "packages/tokens/src/themes.ts",
+      "status": "M"
+    },
+    {
+      "additions": 17,
+      "deletions": 17,
+      "path": "packages/ui/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 18,
+      "deletions": 17,
+      "path": "packages/ui/src/index.ts",
+      "status": "M"
+    },
+    {
+      "additions": 55,
+      "deletions": 0,
+      "path": "packages/ui/src/legacy-compat.ts",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/updates/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/updates/src/contracts.ts",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "packages/updates/src/expo.ts",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/updates/src/hooks.ts",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/updates/src/memory.ts",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/visualization-advanced/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "packages/visualization-advanced/src/AdvancedCharts.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/visualization-advanced/src/SeriesCharts.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/visualization/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/visualization/src/BarChart.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/visualization/src/ChartAnatomy.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/visualization/src/ChartAxes.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/visualization/src/ChartFrame.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/visualization/src/ChartInspector.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/visualization/src/DonutChart.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/visualization/src/LineChart.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/visualization/src/Progress.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/visualization/src/Sparkline.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "packages/visualization/src/StackedBarChart.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/visualization/src/types.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "playwright.config.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "playwright.golden.config.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "playwright.mobile.config.ts",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/api-snapshot.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "scripts/check-accessibility-motion-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/check-auth-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/check-authorization-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 26,
+      "deletions": 21,
+      "path": "scripts/check-boundaries.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/check-certification-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/check-data-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 13,
+      "deletions": 10,
+      "path": "scripts/check-dependency-graph.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/check-feature-styles.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/check-feedback-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/check-form-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "scripts/check-form-keyboard-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/check-form-lifecycle-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/check-golden-performance.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/check-list-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "scripts/check-native-shell-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/check-navigation-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/check-overlay-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/check-package-manifests.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "scripts/check-public-api.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/check-runtime-stabilization.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 17,
+      "deletions": 17,
+      "path": "scripts/check-server-state-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "scripts/check-session-security-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/check-surface-feedback-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 2,
+      "path": "scripts/check-ultimate-audit.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/check-visualization-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "scripts/fixtures/golden-architecture/approved/app/example.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "scripts/fixtures/golden-workflows/challenges.json",
+      "status": "M"
+    },
+    {
+      "additions": 93,
+      "deletions": 0,
+      "path": "scripts/fixtures/migration-compatibility-imports.ts",
+      "status": "A"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/generate-ultimate-atlas.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 18,
+      "deletions": 15,
+      "path": "scripts/generate-ultimate-golden-audit.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 36,
+      "deletions": 36,
+      "path": "scripts/golden-architecture-lib.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "scripts/golden-catalog-lib.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/release-readiness.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/run-golden-web.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/run-ios-native-certification.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/run-mobile-web.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/runtime-native.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/runtime-test-web.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/runtime-web.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/test-auth-runtime.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/test-authorization-runtime.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/test-color-contrast.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 15,
+      "deletions": 15,
+      "path": "scripts/test-doctor.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/test-form-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 32,
+      "deletions": 32,
+      "path": "scripts/test-generator.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 9,
+      "path": "scripts/test-golden-plus.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 18,
+      "deletions": 18,
+      "path": "scripts/test-i18n-kernel.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/test-linking-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/test-migration-audit.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 154,
+      "deletions": 0,
+      "path": "scripts/test-migration-compatibility.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "scripts/test-runtime-capabilities.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 10,
+      "path": "scripts/test-screen-scaffolder.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 45,
+      "deletions": 45,
+      "path": "scripts/test-server-state.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 7,
+      "path": "scripts/test-service-runtime.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/test-session-security-runtime.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "scripts/test-unistyles-bootstrap.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 11,
+      "deletions": 11,
+      "path": "scripts/validate.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "tests/e2e/mobile/mobile-parity.spec.ts",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "tests/e2e/web/product-quality-p1.spec.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "tsconfig.runtime-ui.json",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run test:migration-compatibility'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node -e \\\"const p=require('./package.json'); console.log(JSON.stringify(Object.fromEntries(Object.entries(p.scripts).filter(([k])=>k.includes('ultimate')||k.includes('audit'))), null, 2))\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run ultimate:audit; rtk git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:boundaries'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:ultimate-audit'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:dependency-graph'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run test:migration-audit'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run test:doctor'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run test:migration-compatibility'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,220p' scripts/check-dependency-graph.mjs; rtk sed -n '1,80p' scripts/check-ultimate-audit.mjs; rtk node --input-type=module -e \\\"import fs from 'node:fs'; import path from 'node:path'; const root=process.cwd(); const rows=[]; for(const scope of ['packages','apps']) for(const e of fs.readdirSync(path.join(root,scope),{withFileTypes:true})) { if(\"'!e.isDirectory()) continue; const p=path.join(root,scope,e.name,'\"'package.json'); if(fs.existsSync(p)){const m=JSON.parse(fs.readFileSync(p)); rows.push({name:m.name, dir:scope+'/'+e.name, compat:Boolean(m.expoBaseCompatibility)});}} console.log(JSON.stringify(rows.filter(x=>\"'!x.compat),null,2)); console.log('\"'total',rows.length,'compat',rows.filter(x=>x.compat).length,'production',rows.filter(x=>\"'!x.compat).length);\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:dependency-graph; rtk git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:ultimate-audit'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'xcresulttool|summary|process.exit|throw|runXcode|result bundle' scripts/run-ios-native-certification.mjs scripts | head -160; rtk sed -n '1,260p' scripts/run-ios-native-certification.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -ld test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult test-results/ios-native-certification/summary-release.json test-results/ios-native-certification/xcodebuild-release.log 2>&1 || true; rtk tail -n 40 test-results/ios-native-certification/xcodebuild-release.log 2>/dev/null || true; rtk git status --short --ignored | tail -40'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk find test-results -maxdepth 3 -print 2>/dev/null | head -80; rtk find apps/reference/ios -maxdepth 2 -print 2>/dev/null | head -40'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -axo pid=,etime=,stat=,command= | rtk rg 'ios:verify|xcodebuild|simctl|ExpoBaseNative|npm run ios|expo prebuild' | head -30\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -axo pid=,etime=,stat=,command= | rtk rg '46811|node|npm|rtk' | head -40\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run ios:verify'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -axo pid=,etime=,stat=,command= | rtk rg 'xcodebuild|ExpoBaseNative|simctl|npm run ios|expo prebuild|node .*ios' | head -40\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -axo pid=,etime=,stat=,command= | head -40'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -axo pid=,etime=,stat=,command= | rtk rg -i 'xcode|expo|node|npm|ios' | head -80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run ios:verify'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node --input-type=module -e \\\"import p from './package.json' with {type:'json'}; console.log(p.scripts['ios:verify'])\\\"; rtk git diff --check\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run runtime:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run golden:structural'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -l --hidden --glob '\"'!node_modules/**'\"' --glob '\"'!apps/reference/ios/**'\"' --glob '\"'!apps/reference/android/**'\"' --glob '\"'!apps/reference/dist/**'\"' --glob '\"'!apps/reference/.expo/**'\"' '@precision-calm/|Precision Calm|precision-calm|\\\\bPrecision[A-Z][A-Za-z0-9]*|\\\\busePrecision[A-Z]|\\\\bcreatePrecision[A-Z]|\\\\bprecision[A-Z]|create-precision|migrate-precision|precision-doctor|precision\\\\.(api|compatibility|capabilities|routes)' . | sort\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,120p' docs/MIGRATION.md; rtk rg -n '@precision-calm|Precision[A-Z]|Precision Calm|precision-calm' docs/MIGRATION.md docs/IDENTITY_CONVERGENCE_CHG24.md | head -100\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n --hidden --glob '\"'!node_modules/**'\"' --glob '\"'!apps/reference/ios/**'\"' --glob '\"'!apps/reference/android/**'\"' --glob '\"'!apps/reference/dist/**'\"' --glob '\"'!apps/reference/.expo/**'\"' 'Precision|@precision-calm|precision-calm|create-precision|migrate-precision|precision-doctor|precision\\\\.' docs packages scripts package-lock.json | head -260\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add -A && rtk git diff --cached --check && rtk git diff --cached --stat && rtk git diff --cached --name-only | sort'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git commit -m \"fix: preserve v1 package import compatibility\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git show --stat --oneline --summary HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git merge-base --is-ancestor c569aeec5a0a68393d552c0babe873b69c5595e2 HEAD; rtk git merge-base --is-ancestor 438c64fe159e52506e2652df1db92649cdcf298a HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD; rtk git branch --show-current; rtk git log --oneline --decorate -4'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short; rtk git diff --check; rtk git diff HEAD''^ HEAD --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk node scripts/test-migration-compatibility.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -axo pid=,etime=,stat=,command= | rtk rg 'test-migration-compatibility|tsc|create-expo-base-app|Compatibility Proof' | head -50\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk node scripts/test-migration-compatibility.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --porcelain=v1; rtk git rev-parse HEAD; rtk git merge-base --is-ancestor c569aeec5a0a68393d552c0babe873b69c5595e2 HEAD; rtk git merge-base --is-ancestor 438c64fe159e52506e2652df1db92649cdcf298a HEAD; rtk git show --check --oneline HEAD'",
+      "exit_code": 128,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short; rtk git diff-tree --check --no-commit-id -r HEAD; rtk git rev-parse HEAD; rtk git merge-base --is-ancestor c569aeec5a0a68393d552c0babe873b69c5595e2 HEAD; rtk git merge-base --is-ancestor 438c64fe159e52506e2652df1db92649cdcf298a HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run release:verify'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,240p' packages/ui/src/legacy-compat.ts; rtk sed -n '1,160p' packages/runtime/src/legacy-compat.ts; rtk rg -n 'Precision[A-Za-z0-9]*|usePrecision[A-Za-z0-9]*|precision[A-Za-z0-9]*' docs/MIGRATION.md docs/PUBLIC_API.md docs/IDENTITY_CONVERGENCE_CHG24.md packages/ui/src/legacy-compat.ts packages/runtime/src/legacy-compat.ts | head -220\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git cat-file -p 4d2c4bc5ac0226d2aa0a850afb6f8c13246ad60f | head -8; rtk git cat-file -p c569aeec5a0a68393d552c0babe873b69c5595e2 | head -8; rtk git log --oneline --ancestry-path c569aeec5a0a68393d552c0babe873b69c5595e2..HEAD; rtk git log --oneline --all --decorate -- c569aeec5a0a68393d552c0babe873b69c5595e2 | head -20'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rebase --onto c569aeec5a0a68393d552c0babe873b69c5595e2 4d2c4bc5ac0226d2aa0a850afb6f8c13246ad60f HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch; rtk git branch --show-current; rtk git branch -avv | head -30; rtk git log --oneline --decorate -4; rtk git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git branch -f codex/expo-base-chg24-import-compat-fix-v2 HEAD && rtk git switch codex/expo-base-chg24-import-compat-fix-v2 && rtk git status --short --branch && rtk git log --oneline --decorate -4'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD; rtk git merge-base --is-ancestor c569aeec5a0a68393d552c0babe873b69c5595e2 HEAD; rtk git merge-base --is-ancestor 438c64fe159e52506e2652df1db92649cdcf298a HEAD; rtk git diff --stat c569aeec5a0a68393d552c0babe873b69c5595e2 HEAD; rtk git status --short --branch; rtk git diff-tree --check --no-commit-id -r HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 393,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 96.97,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 17860096,
+      "fresh_input_tokens": 558878,
+      "input_tokens": 18418974,
+      "non_reasoning_output_tokens": 45330,
+      "output_tokens": 82931,
+      "reasoning_output_tokens": 37601,
+      "total_processed_tokens": 18501905
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "ac4c04f462734c8836a97aa5ab3847e43794106b",
+      "subject": "fix: preserve v1 package import compatibility"
+    },
+    {
+      "sha": "c569aeec5a0a68393d552c0babe873b69c5595e2",
+      "subject": "chore: converge expo base identity"
+    }
+  ],
+  "diff": {
+    "additions": 5304,
+    "changed_files": 467,
+    "commit_count": 2,
+    "deletions": 4104
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 136,
+    "items": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      },
+      {
+        "bytes": 3660,
+        "path": "README.md",
+        "sha256": "370188f5fd56ffaa0c3ea26e4943703aaea436d27f9e6db6c9ced25d86216c13"
+      },
+      {
+        "bytes": 1972,
+        "path": "apps/reference/package.json",
+        "sha256": "c4f66f8030853618425218b9d7b1aa0ebf5593bd78bc6f2879dd00dafa0bb396"
+      },
+      {
+        "bytes": 4087,
+        "path": "docs/ACCESSIBILITY_MOTION.md",
+        "sha256": "ef3b451d33e5c104340923121426087edf3aa4936fa52e1e17e47ef624ff6b05"
+      },
+      {
+        "bytes": 1849,
+        "path": "docs/ADAPTERS.md",
+        "sha256": "d2302078424a359bb782d57afb1468a783b740bfd4aa405bb2701fe1cb26fdfd"
+      },
+      {
+        "bytes": 3909,
+        "path": "docs/ADR_SERVER_STATE.md",
+        "sha256": "a27c6d612b0a4e4e0ff71ec48b29898475cb61a75cf4726ebb6108f4b5204963"
+      },
+      {
+        "bytes": 2922,
+        "path": "docs/ADR_VISUALIZATION_MODULE.md",
+        "sha256": "0de1516cd102d0de59ef181a6ddf1b78b5df90d2a23f3662d303032dcb32b08c"
+      },
+      {
+        "bytes": 1632,
+        "path": "docs/ASYNC_INTERACTIONS.md",
+        "sha256": "4b44d6a20bf7354e8a0e0285526afb7f29ac61800a9b3f1787c2acbff82dced5"
+      },
+      {
+        "bytes": 4720,
+        "path": "docs/AUTHORIZATION_CAPABILITIES.md",
+        "sha256": "9b6997b36d6dea809701b2c7b2c686589acfc3e0dfcb94f12d3e74da94bb938a"
+      },
+      {
+        "bytes": 3037,
+        "path": "docs/AUTH_PROTECTED_ROUTES.md",
+        "sha256": "13a062c535414f8c53dead4838cfc1b418adb9eda165062076c86574eff0c326"
+      },
+      {
+        "bytes": 670,
+        "path": "docs/BRANDING.md",
+        "sha256": "d59a6f9cf129d7488deebb21786463ffd33c5406960b42a842360111145185e4"
+      },
+      {
+        "bytes": 6252,
+        "path": "docs/CERTIFICATION.md",
+        "sha256": "9443ce9dd3ff07492c0866d741350479656ce4cd3d659e6d0d915e4d97e81e6f"
+      },
+      {
+        "bytes": 2488,
+        "path": "docs/COMPONENTS.md",
+        "sha256": "6cb2e4655994d9a2d857ee788af2a91809aa7d29b53c6c684cc52389676e2e99"
+      },
+      {
+        "bytes": 5673,
+        "path": "docs/DATA_DISPLAY.md",
+        "sha256": "b786f6edadef1753eb8b3ce2d93b21472bac30e002482435057a53312e3f51f2"
+      },
+      {
+        "bytes": 1294,
+        "path": "docs/DEPENDENCIES.md",
+        "sha256": "d67605aa8d6e2982e168d57af76974f2bdc53ad549818cc6dc27795e43346977"
+      },
+      {
+        "bytes": 2224,
+        "path": "docs/FEEDBACK.md",
+        "sha256": "81833e9cc6fb87508b6bf63e362e9d2d308345e219ed8ff72ce3cd29879105e8"
+      },
+      {
+        "bytes": 14560,
+        "path": "docs/FINAL_INDEPENDENT_PRODUCT_QUALITY_AUDIT.md",
+        "sha256": "42b387f7531f03d124a0308dfce6a617d2a609814c4ea15f9c7bebdbe4f14bb6"
+      },
+      {
+        "bytes": 6890,
+        "path": "docs/FORMS.md",
+        "sha256": "0c25592e54226dcfdf8e3f7cc2d784d274a4dd5847a5223382ca9608e42cf5ed"
+      },
+      {
+        "bytes": 2452,
+        "path": "docs/GATES_21_33_RECONCILIATION.md",
+        "sha256": "755540b5fe2da305d0075c8db156b96ec4b2a007392e1ceb1f107864c04c36bf"
+      },
+      {
+        "bytes": 3864,
+        "path": "docs/GENERATOR.md",
+        "sha256": "a310b0820ff6bc050333b6c78996f4b81c0b9412e2fb3d0a2e01eb0da1efe876"
+      },
+      {
+        "bytes": 43019,
+        "path": "docs/GOLDEN_CATALOG.md",
+        "sha256": "37b7766ef38620a21d4a263a795b1e2ec3a46a332b53197cacac6e6be913760c"
+      },
+      {
+        "bytes": 3120,
+        "path": "docs/GOLDEN_PATTERNS.md",
+        "sha256": "5de01f1957699aa08ed7eb38f81471e63e740233835052adb559f420904e37dc"
+      },
+      {
+        "bytes": 37753,
+        "path": "docs/GOLDEN_PRODUCT_QUALITY_AUDIT.md",
+        "sha256": "29d5fc4d73c9eabb56e89cc857c8b2d449766c1fe7c94cc402366d12b76f6145"
+      },
+      {
+        "bytes": 62709,
+        "path": "docs/GOLDEN_TEMPLATE_AUDIT.md",
+        "sha256": "65b2ce7c2d00d4f11f508ecd35547a70740f34c28d8cbfbbec8a77fc0956d795"
+      },
+      {
+        "bytes": 6197,
+        "path": "docs/GOLDEN_WORKFLOWS.md",
+        "sha256": "5d462904115605c6e69994b20db8a368579504af8e00780d394211fa03b7679c"
+      },
+      {
+        "bytes": 5048,
+        "path": "docs/IDENTITY_CONVERGENCE_CHG24.md",
+        "sha256": "c51adce474575866ac6551084aeac8b28574cd77ac174e38270f7fc2e4d20d94"
+      },
+      {
+        "bytes": 2161,
+        "path": "docs/INTERNATIONALIZATION.md",
+        "sha256": "d3b1cb378a50f5d51fae11ca7ae13461a88f5a39f28d1a22783b9f8409d7665a"
+      },
+      {
+        "bytes": 27082,
+        "path": "docs/IOS_NATIVE_ACCEPTANCE.md",
+        "sha256": "57d9f776b1f0b044b8a24225f69ab1e89036458f8ccc8ad67be8b76bddb071c6"
+      },
+      {
+        "bytes": 1707,
+        "path": "docs/LINKING.md",
+        "sha256": "c660ee51135d5e201e9957e2ac54452d64f44561fa16b176b59ab85e1ab04c5f"
+      },
+      {
+        "bytes": 1630,
+        "path": "docs/LISTS.md",
+        "sha256": "0306f7c26248e3b8b137b661d1b6911c04b3145e940f24f4395ca74a40ffd23c"
+      },
+      {
+        "bytes": 1407,
+        "path": "docs/MEDIA_PRESENTATION.md",
+        "sha256": "828d132ae184ebeddeeb4e9864e52e4bce126fb09e1f2ef0800bbdad8993f72d"
+      },
+      {
+        "bytes": 2193,
+        "path": "docs/MIGRATION.md",
+        "sha256": "ec4e02e27322a30daec32f90e1dbda74654d8f4e66f559cb232c8769cb556723"
+      },
+      {
+        "bytes": 2054,
+        "path": "docs/NAVIGATION.md",
+        "sha256": "e7ae115f8f274c62d063fa5975a80641b0ef98a2e4a561a1cc47cf7ff7ff207b"
+      },
+      {
+        "bytes": 1172,
+        "path": "docs/PORTABILITY.md",
+        "sha256": "6d7ba063a12ab0700f96efe6410389013d0be2c879883e3b3e3c987d29f66f24"
+      },
+      {
+        "bytes": 5846,
+        "path": "docs/PUBLIC_API.md",
+        "sha256": "12244463ac2888aaf7af23810f29ac5aaf67a981d6332b751d2d969f3115e292"
+      },
+      {
+        "bytes": 2008,
+        "path": "docs/REFERENCE.md",
+        "sha256": "78e5238f967f3282d332058b23d830457360cf273b41824fbfb9243809913952"
+      },
+      {
+        "bytes": 4029,
+        "path": "docs/RELEASE_CANDIDATE_1_0.md",
+        "sha256": "6dcb1e229858e594ecf785abf759a5c37821ccad7599a8489e0febfa2af82f13"
+      },
+      {
+        "bytes": 3895,
+        "path": "docs/RELEASE_NOTES_1.0.0.md",
+        "sha256": "8e4cce0fcf075bec5e3ea74b2fe8f8f64b45b16ba316c11697cbf8073c6230da"
+      },
+      {
+        "bytes": 4481,
+        "path": "docs/RELEASE_READINESS.md",
+        "sha256": "8b1679a35ecb4c50ce09e705c4b3158010c5cea96f5ec3d3a02bfe96d97bfbea"
+      },
+      {
+        "bytes": 6999,
+        "path": "docs/RUNTIME_CAPABILITIES.md",
+        "sha256": "41ddf57665bb061fcc647d92522ef983bfe6b247d14e635095289c8b69a8e9be"
+      },
+      {
+        "bytes": 974,
+        "path": "docs/RUNTIME_RC2.md",
+        "sha256": "f46fff800e20b260bc3dff2a29197f743db0b4b0334293b6c6e97fdaca64ea0a"
+      },
+      {
+        "bytes": 2186,
+        "path": "docs/SCREEN_SCAFFOLDING.md",
+        "sha256": "bb8304eca46ccbff0a9d6913ec7ce279500ea12f037cc7648ae0a66f8358194c"
+      },
+      {
+        "bytes": 5659,
+        "path": "docs/SERVER_STATE.md",
+        "sha256": "33af3e4ee3932324948d68162b9ebdfe1c1474dae0102eb04ee3b502877de4ba"
+      },
+      {
+        "bytes": 2514,
+        "path": "docs/SESSION_SECURITY.md",
+        "sha256": "d15688db4e3eb438a6ba9ce56b2c553954043173626da8728288229fc4a447be"
+      },
+      {
+        "bytes": 4789,
+        "path": "docs/STATUS.md",
+        "sha256": "ed7012368f9e19c9b751bd61a486c0fc042e10d3c81ca41afebe121d3754e58c"
+      },
+      {
+        "bytes": 4002,
+        "path": "docs/VISUALIZATION.md",
+        "sha256": "1198ea2ca9657d8447c5e969170bd444362abc5907f9dc0edb5ca92ed0109ab6"
+      },
+      {
+        "bytes": 6551,
+        "path": "docs/final-independent-product-quality-coverage.json",
+        "sha256": "50c5a896e475bf08a3e0f5150dcf17efd24a2745cea6bedc639199f871bcdff6"
+      },
+      {
+        "bytes": 15863,
+        "path": "docs/final-independent-product-quality-defects.json",
+        "sha256": "218c2ce9484b3255dc43216b3169f4786d6a6b0a00e813473e8a6c91303e3274"
+      },
+      {
+        "bytes": 64850,
+        "path": "docs/golden-product-quality-defects.json",
+        "sha256": "5d0b89ecb09326dbdaa9688c4e5c2b11063bb19a9bdc0d2d150765b5a29e4246"
+      },
+      {
+        "bytes": 90003,
+        "path": "docs/golden-template-capabilities.json",
+        "sha256": "17b48dfc2b6087d8597fc0a415e2d1e3cf678643134a347e789cd022451da5f2"
+      },
+      {
+        "bytes": 6230,
+        "path": "docs/ultimate-dependency-graph.json",
+        "sha256": "83383f70ceffdc31fbb8eda7d5bd8416dc7974e291cfa4e55a1e9ae250867aec"
+      },
+      {
+        "bytes": 49119,
+        "path": "docs/ultimate-golden-capabilities.json",
+        "sha256": "ae3635e1edad0e19c96852d509726df635bee187bf4789c08d33884a0a8021d7"
+      },
+      {
+        "bytes": 18649,
+        "path": "expo-base.api.json",
+        "sha256": "22b47f6547248e093af9be6782e5e68e1b71eef1c991c23e62d98d159833165f"
+      },
+      {
+        "bytes": 1297,
+        "path": "expo-base.compatibility.json",
+        "sha256": "eddaa6d3ce2625f26310024898f83ced1e288d3d5f5df28dcdeaf21db17e40aa"
+      },
+      {
+        "bytes": 100878,
+        "path": "golden.catalog.json",
+        "sha256": "07e37050a043571ca2fedbafd87546d078d9ba63869d5a244090fd8ad093fed6"
+      },
+      {
+        "bytes": 18761,
+        "path": "golden.certification.json",
+        "sha256": "52361c8dd99b299a7851ae308d660d50ea37f9ba0724eb327864aecfc26f3a86"
+      },
+      {
+        "bytes": 45227,
+        "path": "golden.owner-certification.json",
+        "sha256": "30c29c7dec1a5709d31a30e2e0443d57b8ff3da7b00917a6b1c084e40fc148b5"
+      },
+      {
+        "bytes": 6502,
+        "path": "golden.patterns.json",
+        "sha256": "c85db2e1a079a8b7b25ca70fcdd9f54a5b4820e69c8dc81e8ad3de1e01d547ef"
+      },
+      {
+        "bytes": 345774,
+        "path": "package-lock.json",
+        "sha256": "ab209c52eff1f9e0a5c1ccf1d560f8930885e09e0c2aa2d9984bfa72a1d5ee45"
+      },
+      {
+        "bytes": 16096,
+        "path": "package.json",
+        "sha256": "42f8f0540a5eee78e4bc425cd2b4afbd2de025e65aa5caa17860c1eb4240f2d3"
+      },
+      {
+        "bytes": 330,
+        "path": "packages/accessibility/package.json",
+        "sha256": "f072293b6fde586b1cce5ef41712724f806e3c78f1dfe685f129aa5d699dec30"
+      },
+      {
+        "bytes": 150,
+        "path": "packages/adapters/package.json",
+        "sha256": "46e940d9329ae678214190e7d809be4235259dbeea0ccb4b195c5d839ed50566"
+      },
+      {
+        "bytes": 146,
+        "path": "packages/auth/package.json",
+        "sha256": "50be1579e985994a2a0c8af505454ac991cd1abebe97029bcb60aa7af52ac763"
+      },
+      {
+        "bytes": 155,
+        "path": "packages/authorization/package.json",
+        "sha256": "6f864f81da23462863f0062b6949152f3a9d25465261b54c67a68717211411aa"
+      },
+      {
+        "bytes": 205,
+        "path": "packages/capabilities/package.json",
+        "sha256": "e054f65d43a507d7646ad2783e517762ca17529c637d37117d954834703cceb2"
+      },
+      {
+        "bytes": 491,
+        "path": "packages/components/package.json",
+        "sha256": "026481c6218fc3d37b450759c0882acbeafe551e0d033b3dc300b45f9b7733d7"
+      },
+      {
+        "bytes": 244,
+        "path": "packages/create-expo-base-app/package.json",
+        "sha256": "92f64f4118f2aefdc3a490c922b57e42ef90a09875e6d1a696289cd0d82340aa"
+      },
+      {
+        "bytes": 457,
+        "path": "packages/data-display/package.json",
+        "sha256": "b4f5eef6630c9a5d3f9a1a17acc3e8fe7529ff0bf22431ad97034a5c4a0f9534"
+      },
+      {
+        "bytes": 354,
+        "path": "packages/device/package.json",
+        "sha256": "dcf90c5ece3797551d30c9612f0554d74de90bbd79678635e6528401e02ea765"
+      },
+      {
+        "bytes": 148,
+        "path": "packages/expo-base-doctor/package.json",
+        "sha256": "f40d1c3ad6293f92c629d8a258307bdf6e2eab39d72d786c8f42ff3ea95c005a"
+      },
+      {
+        "bytes": 453,
+        "path": "packages/feedback/package.json",
+        "sha256": "be449a3204f46a6e878d91fc27ff30dc9a0389b9681fc2994e53df2bfed124da"
+      },
+      {
+        "bytes": 319,
+        "path": "packages/form-rhf/package.json",
+        "sha256": "b73136f74376efcbcf9d0cd0dfed88059696a1510d259fd00bd71a8a5cff1e0f"
+      },
+      {
+        "bytes": 510,
+        "path": "packages/forms/package.json",
+        "sha256": "ff0cdfaee1fad4bb26278cc25acf798e7ba75cbdd7fb3f8bffe7665de9db498d"
+      },
+      {
+        "bytes": 321,
+        "path": "packages/haptics/package.json",
+        "sha256": "5d91a1f649f79231f6ece73ee47caa4013783224668f8bd0acde3904d4a8c071"
+      },
+      {
+        "bytes": 227,
+        "path": "packages/i18n/package.json",
+        "sha256": "4a66ff894ca576669cb6e9120b5e28d2d9b5d1bfaddfe2d0851b96fb58e6b320"
+      },
+      {
+        "bytes": 421,
+        "path": "packages/icons/package.json",
+        "sha256": "d5ed85bcfc712972fa03d32a8624af5e2c1486113e9617a47fd74f237103b72e"
+      },
+      {
+        "bytes": 439,
+        "path": "packages/layouts/package.json",
+        "sha256": "c9fc3d27fbf0f9ed6d23a46f7aad7ef999dee455168b73edc4ef730598d6736f"
+      },
+      {
+        "bytes": 397,
+        "path": "packages/legacy-compat-adapters/package.json",
+        "sha256": "abedf3356fa4f8b8ef3a567bc2c97676eeed89c8cb6ddd7de86d23cb50acc602"
+      },
+      {
+        "bytes": 381,
+        "path": "packages/legacy-compat-auth/package.json",
+        "sha256": "fd65921078e7b3e4bea52e8893ee6aa28dd155024e8cd56ddacae1c1c9c1663a"
+      },
+      {
+        "bytes": 417,
+        "path": "packages/legacy-compat-authorization/package.json",
+        "sha256": "e60aa488aa24abc5c1ff132d7c771619f98da7dd8484153705545ccf8ca42cff"
+      },
+      {
+        "bytes": 413,
+        "path": "packages/legacy-compat-capabilities/package.json",
+        "sha256": "2c08ce137c276cfc14211f4ec3ec591f9dc3d58afb438acd01608e6ad3e0a23c"
+      },
+      {
+        "bytes": 389,
+        "path": "packages/legacy-compat-device/package.json",
+        "sha256": "4ce5ca9fc7513056f79f4836eca9aed1fd3a4036ef95e07700bbf614709220d1"
+      },
+      {
+        "bytes": 399,
+        "path": "packages/legacy-compat-form-rhf/package.json",
+        "sha256": "235a036f53f6be1e181a65c0349b37b5d394bec1de78bc1110cff36d70ababa1"
+      },
+      {
+        "bytes": 393,
+        "path": "packages/legacy-compat-haptics/package.json",
+        "sha256": "74e1341fb7cc087054f26daab008b6ba5b2a1de405510a24002b109320162d95"
+      },
+      {
+        "bytes": 413,
+        "path": "packages/legacy-compat-linking-expo/package.json",
+        "sha256": "0960bbc4c5e589ae3bb830fcb8a948f70047e837e545ba3479a0de72e0137003"
+      },
+      {
+        "bytes": 393,
+        "path": "packages/legacy-compat-linking/package.json",
+        "sha256": "2720dd7340f049a64447f6a646b3b905b0dadc6f43b4e6caaa7c24ca71415b08"
+      },
+      {
+        "bytes": 405,
+        "path": "packages/legacy-compat-local-auth/package.json",
+        "sha256": "47cef800a2b3251700b7fccd78bb5db51fcf5f5382fc8306e50ed2e3a67f2fb4"
+      },
+      {
+        "bytes": 385,
+        "path": "packages/legacy-compat-media/package.json",
+        "sha256": "61dcb23288cbc2e9bc2b43b8a102ef20abdaec0327c06dabda59f3d1f97d08ed"
+      },
+      {
+        "bytes": 435,
+        "path": "packages/legacy-compat-navigation-router/package.json",
+        "sha256": "7f7513cdd85c9b4ade46436dbb7c153c79439c27b6eab6cdfc92bc6d312c1880"
+      },
+      {
+        "bytes": 417,
+        "path": "packages/legacy-compat-notifications/package.json",
+        "sha256": "7e1cbf81d540c0eaa6fbec6ec410ff833ef29f85d5070e0b1bbebec9f848c988"
+      },
+      {
+        "bytes": 417,
+        "path": "packages/legacy-compat-observability/package.json",
+        "sha256": "079325b480c4c60237a52d6a7f1c61dc89c37c033876fc01d7cc58bc94787c80"
+      },
+      {
+        "bytes": 397,
+        "path": "packages/legacy-compat-platform/package.json",
+        "sha256": "876aaf7d734ccb42d3badb639b1563af01996a8ddd0e3576ad7477972527fa19"
+      },
+      {
+        "bytes": 409,
+        "path": "packages/legacy-compat-preferences/package.json",
+        "sha256": "bf7496413860a18fc3dedba38c7a708b4a108e77e8513026fa3ddda75cc85679"
+      },
+      {
+        "bytes": 445,
+        "path": "packages/legacy-compat-runtime-capabilities/package.json",
+        "sha256": "90d2345963e73a146519a885a9592922215f5346fd6c6aa6198d573b92a562c3"
+      },
+      {
+        "bytes": 393,
+        "path": "packages/legacy-compat-runtime/package.json",
+        "sha256": "8b60470ea1da927bea1f081cbea6c68c1009617bd32df4c770f87aa31a1e9cf8"
+      },
+      {
+        "bytes": 421,
+        "path": "packages/legacy-compat-secure-storage/package.json",
+        "sha256": "6250a9ffa3f6e69c83b2141310affcdfe580d8a6edbdea76a1df1cbeafb108b0"
+      },
+      {
+        "bytes": 413,
+        "path": "packages/legacy-compat-server-state/package.json",
+        "sha256": "b68c1b21be71f010b8209c43e3e527807fadd2207fd04b09c459ffeebe8c8092"
+      },
+      {
+        "bytes": 429,
+        "path": "packages/legacy-compat-session-security/package.json",
+        "sha256": "ce193256c200e79aedc0931c3808797821b1aa95a44110194c3c536290d165fa"
+      },
+      {
+        "bytes": 503,
+        "path": "packages/legacy-compat-sharing/package.json",
+        "sha256": "4493cdb6c53977eefd1b860ec9cbc5044681ba94fde57f2b506fbe23c7c13ec8"
+      },
+      {
+        "bytes": 389,
+        "path": "packages/legacy-compat-tokens/package.json",
+        "sha256": "8cad6b782d93ca4751e8374222a1d7781a9a5b21be1ad7dd754a6cd3129eaf0d"
+      },
+      {
+        "bytes": 373,
+        "path": "packages/legacy-compat-ui/package.json",
+        "sha256": "2b7220601fe7d2b3f9eedfa08eb118b80fe5fe21147700a9bbb2f2b79a876cd2"
+      },
+      {
+        "bytes": 393,
+        "path": "packages/legacy-compat-updates/package.json",
+        "sha256": "63b8804085638bf0b0f430427812918968c05f826d2938621490747759ac5394"
+      },
+      {
+        "bytes": 453,
+        "path": "packages/legacy-compat-visualization-advanced/package.json",
+        "sha256": "4fb1508fef44411d3eeb186e081d5da46e5d9a64fffd9c40cfecbaf4bb16d4cc"
+      },
+      {
+        "bytes": 240,
+        "path": "packages/linking-expo/package.json",
+        "sha256": "75bf949d3af85265c87121fb9a5fc19466b5a1f6883e7a5f3e7f8e124964851d"
+      },
+      {
+        "bytes": 149,
+        "path": "packages/linking/package.json",
+        "sha256": "014530b825ecdb4b813925a75f2ba1ed74b85dfd57350cb9b501e38241dce299"
+      },
+      {
+        "bytes": 353,
+        "path": "packages/lists/package.json",
+        "sha256": "82891a94485d746c585fb36ec41bcd9f3582e5fa7847bfd2074c3217c5ef3bdb"
+      },
+      {
+        "bytes": 377,
+        "path": "packages/local-auth/package.json",
+        "sha256": "ad29cc08b65df898a02e6ce2875eb62737fa9328c29aa972190e4287040f80d7"
+      },
+      {
+        "bytes": 397,
+        "path": "packages/media-presentation/package.json",
+        "sha256": "edbacce588e685f2d91e3c7a0d13a31b5e3769697706f175638804792d5d2bdc"
+      },
+      {
+        "bytes": 394,
+        "path": "packages/media/package.json",
+        "sha256": "97c05e2f78e12eda2d87a818b4ec78863f5d31017aba6506240992c4a4a4d92c"
+      },
+      {
+        "bytes": 181,
+        "path": "packages/migrate-expo-base-app/package.json",
+        "sha256": "dfdc5d0e4c592ec52ac55d41b4f0335a8592239e0913151f0fb24ff4adcb8c93"
+      },
+      {
+        "bytes": 336,
+        "path": "packages/motion/package.json",
+        "sha256": "68e2e07eef0777e3eab7a569780af85f33200f00aab9f2b204e6f85741b8cb1d"
+      },
+      {
+        "bytes": 390,
+        "path": "packages/navigation-router/package.json",
+        "sha256": "2e4f008f31541f8b597b5d2ac0b229c49e05b55fae071c18b26d47dd0566bb3e"
+      },
+      {
+        "bytes": 514,
+        "path": "packages/navigation/package.json",
+        "sha256": "31ce8eae8b62f057bedbdff89fddac917365bbcae2535343a7296cff56b538eb"
+      },
+      {
+        "bytes": 334,
+        "path": "packages/notifications/package.json",
+        "sha256": "5d69c76e92f7e13525c6bb231ac3ad12a144d02353069934586bdb5f22080bd5"
+      },
+      {
+        "bytes": 266,
+        "path": "packages/observability/package.json",
+        "sha256": "54b3d60fd4aa80a21f9e465f6fe01ad39f09cadf28335e4834b4d95e418e59a0"
+      },
+      {
+        "bytes": 538,
+        "path": "packages/overlays/package.json",
+        "sha256": "dcf12eb1d89ac2dcab58cfb9037de5dd806702d96e3cb9d91380fca86c5b4be5"
+      },
+      {
+        "bytes": 528,
+        "path": "packages/patterns/package.json",
+        "sha256": "e7675af84c80aa4fce0c3a9653f8ca3b71926a523d946e94781313de77f9caa8"
+      },
+      {
+        "bytes": 204,
+        "path": "packages/platform/package.json",
+        "sha256": "8903924a0ea6bbf17ebef1a1906421dde650a31cdc410f982bf6660008556c21"
+      },
+      {
+        "bytes": 265,
+        "path": "packages/platform/tsconfig.json",
+        "sha256": "f2e2c32cb1b6fb031039b2d73ff0203a91ebe690511482d8c2c305470e1af1ad"
+      },
+      {
+        "bytes": 352,
+        "path": "packages/preferences/package.json",
+        "sha256": "5ef6cf240f3b185e83be75a1cc561968133a7b317495e3aaa7e87fc90b011ee0"
+      },
+      {
+        "bytes": 354,
+        "path": "packages/primitives/package.json",
+        "sha256": "d40c9792d37626e3ef6b37923afc32a75976b5af22a67ab0592805d7a6f5f91a"
+      },
+      {
+        "bytes": 370,
+        "path": "packages/runtime-capabilities/package.json",
+        "sha256": "cf43646a4d0539cc5b9a1bac2faed8de6b0c561d951ecd2f9bb32ce3a11e5266"
+      },
+      {
+        "bytes": 619,
+        "path": "packages/runtime/package.json",
+        "sha256": "096158b2121b6a15b28048dc63baceb4083cf23df3b8ad733911c60f66d58637"
+      },
+      {
+        "bytes": 365,
+        "path": "packages/secure-storage/package.json",
+        "sha256": "f52fa3089fe675f419f34380b108ea31cedd821212a5173687c24747c0802045"
+      },
+      {
+        "bytes": 269,
+        "path": "packages/server-state/package.json",
+        "sha256": "49851ed08c4b471df5bea82b4cbbd0e19c5a1eea8717c1f86611275b605cb260"
+      },
+      {
+        "bytes": 158,
+        "path": "packages/session-security/package.json",
+        "sha256": "0f4ff3d2f839c044b610aec8ff5d6e15b6d06c1417c24814463ec48093c754a1"
+      },
+      {
+        "bytes": 533,
+        "path": "packages/sharing/package.json",
+        "sha256": "1c13ea06238dc58a305e3d68a9d2f1e997984fda814c678edfadc164fdac01ec"
+      },
+      {
+        "bytes": 203,
+        "path": "packages/testing/package.json",
+        "sha256": "d918c041239f543411b2238f6299695619529b269c965d45ee1edbc229fe0c54"
+      },
+      {
+        "bytes": 265,
+        "path": "packages/testing/tsconfig.json",
+        "sha256": "f2e2c32cb1b6fb031039b2d73ff0203a91ebe690511482d8c2c305470e1af1ad"
+      },
+      {
+        "bytes": 148,
+        "path": "packages/tokens/package.json",
+        "sha256": "446419a118b15d241a95bdc7024a5ea0d2131c2825a8ea261052bc9e9f337f9c"
+      },
+      {
+        "bytes": 694,
+        "path": "packages/ui/package.json",
+        "sha256": "b2c4d0225308b64be3e3c0ddf50053a2b783391cd70fc0c2cb960a221e669c8a"
+      },
+      {
+        "bytes": 322,
+        "path": "packages/updates/package.json",
+        "sha256": "2d2eb63d6a7ae7c30f4a7df2b5e2665925a13ce0562ab9097381ebdea8e6ddf2"
+      },
+      {
+        "bytes": 476,
+        "path": "packages/visualization-advanced/package.json",
+        "sha256": "d629e7ad514ad163e0a14d53709e68b517dcb89239d298b4b9156ccec2a2171a"
+      },
+      {
+        "bytes": 430,
+        "path": "packages/visualization/package.json",
+        "sha256": "c22aa1829ea3cd135f16fde788f043c9778894d87fceb35a4091dc98125783cf"
+      },
+      {
+        "bytes": 1587,
+        "path": "scripts/fixtures/golden-workflows/challenges.json",
+        "sha256": "f491836b9d2ffd7f8fbb785856f6c93b1ce5e038195864e9f3e8e0342fc2f174"
+      },
+      {
+        "bytes": 462,
+        "path": "tsconfig.runtime-ui.json",
+        "sha256": "e256b12aadd0883b1f73ea2d9b127acdc49a61c9462e0a0f88fdd283e3d641d1"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.2",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.2",
+  "failure_class": null,
+  "finished_at": "2026-09-15T13:40:34Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "438c64fe159e52506e2652df1db92649cdcf298a",
+    "branch": "codex/expo-base-chg24-import-compat-fix-v2",
+    "head_sha": "ac4c04f462734c8836a97aa5ab3847e43794106b",
+    "remote_exact_head": true,
+    "remote_head_sha": "ac4c04f462734c8836a97aa5ab3847e43794106b",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "438c64fe159e52506e2652df1db92649cdcf298a",
+    "work_branch": "codex/expo-base-chg24-import-compat-fix-v2",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14769,
+        "path": "AGENTS.md",
+        "sha256": "ff75232af935e4a8252bc36c11fb73b1ef7204326f537b0f8f06d8f8bdcd4766"
+      }
+    ],
+    "total_bytes": 14769,
+    "warning": null
+  },
+  "job_id": "CF-ba2a397770f47b0d926f81b2",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg24-import-compat-fix-v2",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg24-import-compat-fix-v2"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.2",
+    "policy_sha256": "3778fba0755dd2f6b00268f73b7a589f93317203cc0603df2feff4e6d9c759f6",
+    "registry_sha256": "17d7db01a654a693b57af2b6fce2f676b1f883ea97564a690894b5f96df49aaa"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg24-import-compat-fix-v2",
+  "schema_version": 1,
+  "started_at": "2026-09-15T13:03:43Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 2211,
+    "queue_seconds": 1,
+    "total_seconds": 2212
+  },
+  "transport": {
+    "bytes": 11344,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 11026,
+    "prompt_sha256": "3454b2bcf6081d24da2435ada6f0560c2c08f56ec8c94b046c8bec7fd267ba34",
+    "sha256": "ba2a397770f47b0d926f81b209f09d4600c8fef8bbb01b092da340103ebb3951"
+  }
+}
