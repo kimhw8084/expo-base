@@ -1,8 +1,8 @@
 import { StyleSheet as RNStyleSheet, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { clampProgress } from '@precision-calm/platform';
-import { Text, VStack } from '@precision-calm/primitives';
+import { clampProgress } from '@expo-base/platform';
+import { Text, VStack } from '@expo-base/primitives';
 import type { VisualizationSeries } from './types';
 
 export function ProgressBar({ value, label, series = 'series1' }: { value: number; label?: string; series?: VisualizationSeries }) {

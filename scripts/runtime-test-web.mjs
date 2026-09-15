@@ -109,7 +109,7 @@ try {
   rmSync('apps/reference/dist', { recursive: true, force: true });
   run(
     npm,
-    ['exec', '-w', '@precision-calm/reference', '--', 'expo', 'export', '--platform', 'web', '--output-dir', 'dist'],
+    ['exec', '-w', '@expo-base/reference', '--', 'expo', 'export', '--platform', 'web', '--output-dir', 'dist'],
     'STATIC EXPO WEB EXPORT',
     { ...process.env, CI: '1' },
   );
@@ -118,7 +118,7 @@ try {
   server = startStaticServer();
   const baseURL = await server.startup;
   await waitForServer(baseURL);
-  run(npm, ['run', 'test:web'], 'PLAYWRIGHT WEB CERTIFICATION', { ...process.env, PRECISION_CALM_BASE_URL: baseURL });
+  run(npm, ['run', 'test:web'], 'PLAYWRIGHT WEB CERTIFICATION', { ...process.env, EXPO_BASE_BASE_URL: baseURL });
   exitCode = 0;
 } catch (error) {
   console.error(error instanceof Error ? error.stack : error);

@@ -73,8 +73,8 @@ console.log(`Selected ${selectedSimulator.selection}: ${selectedSimulator.name} 
 if (requiresFreshCng || !existsSync(workspace)) {
   const npmCommand = process.env.npm_execpath ? process.execPath : 'npm';
   const npmArgs = process.env.npm_execpath
-    ? [process.env.npm_execpath, 'exec', '-w', '@precision-calm/reference', '--', 'expo', 'prebuild', ...(requiresFreshCng ? ['--clean'] : [])]
-    : ['exec', '-w', '@precision-calm/reference', '--', 'expo', 'prebuild', ...(requiresFreshCng ? ['--clean'] : [])];
+    ? [process.env.npm_execpath, 'exec', '-w', '@expo-base/reference', '--', 'expo', 'prebuild', ...(requiresFreshCng ? ['--clean'] : [])]
+    : ['exec', '-w', '@expo-base/reference', '--', 'expo', 'prebuild', ...(requiresFreshCng ? ['--clean'] : [])];
   if (requiresFreshCng) console.log('Release CNG freshness: regenerating ignored apps/reference/ios with expo prebuild --clean.');
   const prebuild = run(npmCommand, npmArgs, 'GENERATE IOS PROJECT');
   if (prebuild !== 0) process.exit(prebuild);

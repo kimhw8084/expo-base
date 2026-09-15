@@ -6,7 +6,7 @@ const root = process.cwd();
 const audit = JSON.parse(fs.readFileSync(path.join(root, 'docs/ultimate-golden-capabilities.json'), 'utf8'));
 const coverage = JSON.parse(fs.readFileSync(path.join(root, 'docs/ultimate-golden-coverage.json'), 'utf8'));
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'golden.catalog.json'), 'utf8'));
-const api = JSON.parse(fs.readFileSync(path.join(root, 'precision.api.json'), 'utf8'));
+const api = JSON.parse(fs.readFileSync(path.join(root, 'expo-base.api.json'), 'utf8'));
 const cert = JSON.parse(fs.readFileSync(path.join(root, 'golden.certification.json'), 'utf8'));
 const ownerCert = JSON.parse(fs.readFileSync(path.join(root, 'golden.owner-certification.json'), 'utf8'));
 const workspaceCount = ['packages', 'apps'].flatMap((scope) => fs.readdirSync(path.join(root, scope), { withFileTypes: true }).filter((entry) => entry.isDirectory() && fs.existsSync(path.join(root, scope, entry.name, 'package.json')))).length;

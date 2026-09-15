@@ -149,7 +149,7 @@ test('combobox stays within the usable short-height phone viewport and scroll-lo
   await trigger.tap();
   const listbox = page.getByRole('listbox', { name: 'Primary issuer results' });
   await expect(listbox).toBeVisible();
-  const popup = page.getByTestId('precision-popover-panel');
+  const popup = page.getByTestId('expo-base-popover-panel');
   const popupBox = await popup.boundingBox();
   const navBox = await page.getByRole('navigation', { name: 'Primary navigation' }).boundingBox();
   expect(popupBox).not.toBeNull();

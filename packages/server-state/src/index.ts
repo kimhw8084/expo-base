@@ -2,15 +2,15 @@ export * from './errors';
 export * from './keys';
 export * from './policy';
 export {
-  PrecisionServerStateClient,
-  createPrecisionServerStateClient,
-  precisionServerStateScopeId,
-  type PrecisionFetchQueryOptions,
-  type PrecisionInvalidateOptions,
-  type PrecisionQueryFunctionContext,
-  type PrecisionServerStateScope,
+  ExpoBaseServerStateClient,
+  createExpoBaseServerStateClient,
+  expoBaseServerStateScopeId,
+  type ExpoBaseFetchQueryOptions,
+  type ExpoBaseInvalidateOptions,
+  type ExpoBaseQueryFunctionContext,
+  type ExpoBaseServerStateScope,
 } from './client';
-export * from './PrecisionServerStateProvider';
-export * from './usePrecisionQuery';
+export * from './ExpoBaseServerStateProvider';
+export * from './useExpoBaseQuery';
 export * from './mutation';
 export * from './presentation';

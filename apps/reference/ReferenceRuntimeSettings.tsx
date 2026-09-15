@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState, type PropsWithChildren } from 'react';
-import type { PrecisionDensity } from '@precision-calm/ui';
+import type { ExpoBaseDensity } from '@expo-base/ui';
 
 export type ReferenceThemeMode = 'system' | 'light' | 'dark';
 export type ReferenceLocale = 'en-US' | 'en-XA' | 'en-XB';
@@ -8,8 +8,8 @@ export type ReferenceMotionMode = 'system' | 'reduced';
 interface ReferenceRuntimeSettingsValue {
   themeMode: ReferenceThemeMode;
   setThemeMode: (mode: ReferenceThemeMode) => void;
-  density: PrecisionDensity;
-  setDensity: (density: PrecisionDensity) => void;
+  density: ExpoBaseDensity;
+  setDensity: (density: ExpoBaseDensity) => void;
   locale: ReferenceLocale;
   setLocale: (locale: ReferenceLocale) => void;
   motionMode: ReferenceMotionMode;
@@ -20,7 +20,7 @@ const ReferenceRuntimeSettingsContext = createContext<ReferenceRuntimeSettingsVa
 
 export function ReferenceRuntimeSettingsProvider({ children }: PropsWithChildren) {
   const [themeMode, setThemeMode] = useState<ReferenceThemeMode>('system');
-  const [density, setDensity] = useState<PrecisionDensity>('comfortable');
+  const [density, setDensity] = useState<ExpoBaseDensity>('comfortable');
   const [locale, setLocale] = useState<ReferenceLocale>('en-US');
   const [motionMode, setMotionMode] = useState<ReferenceMotionMode>('system');
   const value = useMemo(() => ({ themeMode, setThemeMode, density, setDensity, locale, setLocale, motionMode, setMotionMode }), [density, locale, motionMode, themeMode]);

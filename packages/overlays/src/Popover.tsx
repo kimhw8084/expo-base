@@ -2,8 +2,8 @@ import type { ComponentRef, ReactNode } from 'react';
 import { useCallback, useId, useLayoutEffect, useRef, useState } from 'react';
 import { Keyboard, Platform, Pressable, ScrollView, StyleSheet as RNStyleSheet, useWindowDimensions, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { solveAnchoredOverlay, type AnchoredOverlayPlacement, type Rect } from '@precision-calm/platform';
-import { usePrecisionDirection } from '@precision-calm/i18n';
+import { solveAnchoredOverlay, type AnchoredOverlayPlacement, type Rect } from '@expo-base/platform';
+import { useExpoBaseDirection } from '@expo-base/i18n';
 import { useOverlayLifecycle } from './useOverlayLifecycle';
 import { ModalSurface } from './ModalSurface';
 
@@ -20,14 +20,14 @@ export interface PopoverProps {
 
 export function Popover({ open, onOpenChange, anchor, children, placement = 'bottom-start', accessibilityLabel = 'Popover', matchAnchorWidth = false, restoreFocusId }: PopoverProps) {
   const anchorRef = useRef<ComponentRef<typeof View>>(null);
-  const anchorId = `precision-popover-anchor-${useId().replaceAll(':', '')}`;
+  const anchorId = `expo-base-popover-anchor-${useId().replaceAll(':', '')}`;
   const [anchorRect, setAnchorRect] = useState<Rect | null>(null);
   const [overlaySize, setOverlaySize] = useState({ width: 0, height: 0 });
   const [persistentBottomInset, setPersistentBottomInset] = useState(0);
   const [keyboardBottomInset, setKeyboardBottomInset] = useState(0);
   const viewport = useWindowDimensions();
   const { theme, rt } = useUnistyles();
-  const direction = usePrecisionDirection();
+  const direction = useExpoBaseDirection();
   const close = useCallback(() => onOpenChange(false), [onOpenChange]);
   useOverlayLifecycle(open, close, { restoreFocusRef: anchorRef, restoreFocusId: restoreFocusId ?? anchorId });
 
@@ -55,7 +55,7 @@ export function Popover({ open, onOpenChange, anchor, children, placement = 'bot
     if (!open) return;
     measureAnchor();
     if (typeof document !== 'undefined') {
-      const navigation = document.getElementById('precision-bottom-navigation');
+      const navigation = document.getElementById('expo-base-bottom-navigation');
       const rect = navigation?.getBoundingClientRect();
       setPersistentBottomInset(rect && rect.height > 0 && rect.top < viewport.height && rect.bottom > 0 ? Math.max(0, viewport.height - rect.top) : 0);
     }
@@ -76,7 +76,7 @@ export function Popover({ open, onOpenChange, anchor, children, placement = 'bot
           <ScrollView
             accessibilityViewIsModal
             accessibilityLabel={accessibilityLabel}
-            testID="precision-popover-panel"
+            testID="expo-base-popover-panel"
             showsVerticalScrollIndicator={false}
             onLayout={(event) => setOverlaySize({ width: event.nativeEvent.layout.width, height: event.nativeEvent.layout.height })}
             style={[

@@ -22,7 +22,7 @@ if (!problems.length) {
   const contracts = read('packages/session-security/src/contracts.ts');
   const runtime = read('packages/runtime/src/sessionSecurity.tsx');
   const auth = read('packages/runtime/src/auth.tsx');
-  const provider = read('packages/runtime/src/PrecisionRuntimeProvider.tsx');
+  const provider = read('packages/runtime/src/ExpoBaseRuntimeProvider.tsx');
   const rootLayout = read('apps/reference/app/_layout.tsx');
   const unlock = read('apps/reference/app/unlock.tsx');
 
@@ -30,18 +30,18 @@ if (!problems.length) {
   if (!runtime.includes("status: SessionSecurityStatus")) problems.push('runtime must expose explicit session-security resolution status');
   if (!runtime.includes("{ locked: true, reason: 'security-policy' }")) problems.push('runtime must fail closed before security state resolves');
   if (/error\.message|String\(error\)/.test(runtime)) problems.push('runtime must not expose raw session-security adapter errors');
-  if (!auth.includes('useOptionalPrecisionSessionSecurity')) problems.push('auth access must consume configured session-security state automatically');
+  if (!auth.includes('useOptionalExpoBaseSessionSecurity')) problems.push('auth access must consume configured session-security state automatically');
   if (!auth.includes("sessionSecurity?.status === 'loading'")) problems.push('later session-security revalidation must reuse the booting access state');
   if (!auth.includes("sessionSecurity.status === 'error' || sessionSecurity.locked")) problems.push('session-security error/lock must fail closed as locked access');
-  if (!provider.includes('sessionSecurity?: { adapter: SessionSecurityAdapter }')) problems.push('PrecisionRuntimeProvider must own the session-security adapter boundary');
-  if (!provider.includes('<PrecisionSessionSecurityProvider adapter={sessionSecurity.adapter}>')) problems.push('PrecisionRuntimeProvider must mount session-security runtime when configured');
-  if (!runtime.includes('PrecisionSessionSecurityBootstrap') || !runtime.includes("runtime.status !== 'loading'")) problems.push('runtime must expose an initial bootstrap boundary that holds navigation until session security resolves once');
+  if (!provider.includes('sessionSecurity?: { adapter: SessionSecurityAdapter }')) problems.push('ExpoBaseRuntimeProvider must own the session-security adapter boundary');
+  if (!provider.includes('<ExpoBaseSessionSecurityProvider adapter={sessionSecurity.adapter}>')) problems.push('ExpoBaseRuntimeProvider must mount session-security runtime when configured');
+  if (!runtime.includes('ExpoBaseSessionSecurityBootstrap') || !runtime.includes("runtime.status !== 'loading'")) problems.push('runtime must expose an initial bootstrap boundary that holds navigation until session security resolves once');
   if (!rootLayout.includes("locked: ['unlock']")) problems.push('reference router must provide a dedicated locked route');
   if (!rootLayout.includes("auth.status === 'loading'")) problems.push('reference root must also hold protected navigation until initial auth resolution completes');
   if (rootLayout.includes('restrictiveRedirects')) problems.push('reference router must let Stack.Protected own locked/signed-out destinations instead of replacing browser history manually');
   if (!rootLayout.includes('sessionSecurity={{ adapter: sessionSecurity }}')) problems.push('reference root must inject session security');
-  if (!rootLayout.includes('PrecisionSessionSecurityBootstrap')) problems.push('reference root must hold protected navigation behind the initial session-security bootstrap boundary');
-  if (!unlock.includes('usePrecisionSessionSecurity')) problems.push('unlock route must consume the centralized session-security runtime');
+  if (!rootLayout.includes('ExpoBaseSessionSecurityBootstrap')) problems.push('reference root must hold protected navigation behind the initial session-security bootstrap boundary');
+  if (!unlock.includes('useExpoBaseSessionSecurity')) problems.push('unlock route must consume the centralized session-security runtime');
   if (!unlock.includes('consumeReturnIntent') || !unlock.includes('replaceResolvedPath')) problems.push('successful unlock must restore the captured protected return intent');
 }
 

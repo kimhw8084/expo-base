@@ -1,11 +1,11 @@
 import { useEffect, useId, useMemo, useRef, useState, type ComponentRef } from 'react';
 import { Platform, Pressable, TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Icon } from '@precision-calm/icons';
-import { usePrecisionI18n } from '@precision-calm/i18n';
-import { Popover } from '@precision-calm/overlays';
-import { resolveRovingFocusIndex } from '@precision-calm/platform';
-import { Text, VStack, useInteractionState } from '@precision-calm/primitives';
+import { Icon } from '@expo-base/icons';
+import { useExpoBaseI18n } from '@expo-base/i18n';
+import { Popover } from '@expo-base/overlays';
+import { resolveRovingFocusIndex } from '@expo-base/platform';
+import { Text, VStack, useInteractionState } from '@expo-base/primitives';
 import { FormField } from './FormField';
 import type { SelectOption } from './SelectField';
 import { OptionItem, OptionList } from './OptionList';
@@ -74,7 +74,7 @@ function ChoiceField({
   const inputRef = useRef<ComponentRef<typeof TextInput>>(null);
   const instanceId = useId().replaceAll(':', '');
   const { theme } = useUnistyles();
-  const { locale } = usePrecisionI18n();
+  const { locale } = useExpoBaseI18n();
   const { hovered, focused, interactionProps } = useInteractionState();
   const query = controlledQuery ?? internalQuery;
   const selectedSet = useMemo(() => new Set(selectedValues), [selectedValues]);

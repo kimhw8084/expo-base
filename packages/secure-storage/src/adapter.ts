@@ -1,12 +1,12 @@
-import type { KeyValueStorageAdapter } from '@precision-calm/adapters';
-import type { PrecisionCapabilityResult } from '@precision-calm/capabilities';
-import type { PrecisionSecureStorage } from './contracts';
+import type { KeyValueStorageAdapter } from '@expo-base/adapters';
+import type { ExpoBaseCapabilityResult } from '@expo-base/capabilities';
+import type { ExpoBaseSecureStorage } from './contracts';
 
 /**
  * Explicit composition bridge for adapters that intentionally need secret
  * persistence. It never downgrades to ordinary preferences or web storage.
  */
-export function createSecureStorageKeyValueAdapter(storage: PrecisionSecureStorage): KeyValueStorageAdapter {
+export function createSecureStorageKeyValueAdapter(storage: ExpoBaseSecureStorage): KeyValueStorageAdapter {
   return {
     async get(key) { return unwrap(await storage.get(key)); },
     async set(key, value) { unwrap(await storage.set(key, value)); },
@@ -14,8 +14,8 @@ export function createSecureStorageKeyValueAdapter(storage: PrecisionSecureStora
   };
 }
 
-function unwrap<T>(result: PrecisionCapabilityResult<T>): T {
+function unwrap<T>(result: ExpoBaseCapabilityResult<T>): T {
   if (result.status === 'success') return result.value;
   const detail = result.status === 'error' ? result.code : result.status;
-  throw new Error(`Secure storage is unavailable (${detail}). Configure @precision-calm/secure-storage at the application root; secrets cannot fall back to ordinary storage.`);
+  throw new Error(`Secure storage is unavailable (${detail}). Configure @expo-base/secure-storage at the application root; secrets cannot fall back to ordinary storage.`);
 }

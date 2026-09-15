@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Button } from '@precision-calm/components';
-import type { IconName } from '@precision-calm/icons';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Button } from '@expo-base/components';
+import type { IconName } from '@expo-base/icons';
+import { Text, VStack } from '@expo-base/primitives';
 
 export interface SelectionBarAction {
   key: string;

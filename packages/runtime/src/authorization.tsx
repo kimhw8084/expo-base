@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type PropsWithChildren, type ReactNode } from 'react';
-import type { AuthorizationAdapter } from '@precision-calm/adapters';
+import type { AuthorizationAdapter } from '@expo-base/adapters';
 import {
   evaluateCapabilityRequirement,
   isCapabilityFetchCurrent,
@@ -7,10 +7,10 @@ import {
   type AuthorizationDecision,
   type AuthorizationStatus,
   type CapabilityRequirement,
-} from '@precision-calm/authorization';
-import { usePrecisionAuth } from './auth';
+} from '@expo-base/authorization';
+import { useExpoBaseAuth } from './auth';
 
-export interface PrecisionAuthorizationRuntime {
+export interface ExpoBaseAuthorizationRuntime {
   status: AuthorizationStatus;
   capabilities: readonly string[];
   errorCode: 'capabilities_unavailable' | null;
@@ -18,10 +18,10 @@ export interface PrecisionAuthorizationRuntime {
   evaluate(requirement: CapabilityRequirement): AuthorizationDecision;
 }
 
-const PrecisionAuthorizationContext = createContext<PrecisionAuthorizationRuntime | null>(null);
+const ExpoBaseAuthorizationContext = createContext<ExpoBaseAuthorizationRuntime | null>(null);
 
-export function PrecisionAuthorizationProvider({ adapter, children }: PropsWithChildren<{ adapter: AuthorizationAdapter }>) {
-  const auth = usePrecisionAuth();
+export function ExpoBaseAuthorizationProvider({ adapter, children }: PropsWithChildren<{ adapter: AuthorizationAdapter }>) {
+  const auth = useExpoBaseAuth();
   const userId = auth.status === 'signed-in' ? auth.session?.user.id ?? null : null;
   const [status, setStatus] = useState<AuthorizationStatus>(userId ? 'loading' : 'inactive');
   const [capabilities, setCapabilities] = useState<readonly string[]>([]);
@@ -67,21 +67,21 @@ export function PrecisionAuthorizationProvider({ adapter, children }: PropsWithC
 
   const refresh = useCallback(() => userId ? startRefresh(userId) : Promise.resolve(), [startRefresh, userId]);
   const evaluate = useCallback((requirement: CapabilityRequirement) => evaluateCapabilityRequirement({ status, capabilities }, requirement), [status, capabilities]);
-  const value = useMemo<PrecisionAuthorizationRuntime>(() => ({ status, capabilities, errorCode, refresh, evaluate }), [status, capabilities, errorCode, refresh, evaluate]);
-  return <PrecisionAuthorizationContext.Provider value={value}>{children}</PrecisionAuthorizationContext.Provider>;
+  const value = useMemo<ExpoBaseAuthorizationRuntime>(() => ({ status, capabilities, errorCode, refresh, evaluate }), [status, capabilities, errorCode, refresh, evaluate]);
+  return <ExpoBaseAuthorizationContext.Provider value={value}>{children}</ExpoBaseAuthorizationContext.Provider>;
 }
 
-export function usePrecisionAuthorization(): PrecisionAuthorizationRuntime {
-  const authorization = useContext(PrecisionAuthorizationContext);
-  if (!authorization) throw new Error('usePrecisionAuthorization requires PrecisionRuntimeProvider with services/authorization enabled.');
+export function useExpoBaseAuthorization(): ExpoBaseAuthorizationRuntime {
+  const authorization = useContext(ExpoBaseAuthorizationContext);
+  if (!authorization) throw new Error('useExpoBaseAuthorization requires ExpoBaseRuntimeProvider with services/authorization enabled.');
   return authorization;
 }
 
-export function usePrecisionAuthorizationRequirement(requirement: CapabilityRequirement): AuthorizationDecision {
-  return usePrecisionAuthorization().evaluate(requirement);
+export function useExpoBaseAuthorizationRequirement(requirement: CapabilityRequirement): AuthorizationDecision {
+  return useExpoBaseAuthorization().evaluate(requirement);
 }
 
 export function CapabilityGate({ requirement, fallback = null, children }: { requirement: CapabilityRequirement; fallback?: ReactNode; children: ReactNode }) {
-  const decision = usePrecisionAuthorizationRequirement(requirement);
+  const decision = useExpoBaseAuthorizationRequirement(requirement);
   return decision.allowed ? <>{children}</> : <>{fallback}</>;
 }

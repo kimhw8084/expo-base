@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
-import { Page, PageHeader, ScrollScreen, Section, AdaptiveGrid, AdaptiveGridItem } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
-import { Button, Card } from '@precision-calm/ui';
-import { AccessibleGroup, LiveRegion, VisuallyHidden } from '@precision-calm/ui';
-import { Reveal, usePrecisionReducedMotion } from '@precision-calm/ui';
-import { usePrecisionHaptics } from '@precision-calm/haptics';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
+import { Page, PageHeader, ScrollScreen, Section, AdaptiveGrid, AdaptiveGridItem } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
+import { Button, Card } from '@expo-base/ui';
+import { AccessibleGroup, LiveRegion, VisuallyHidden } from '@expo-base/ui';
+import { Reveal, useExpoBaseReducedMotion } from '@expo-base/ui';
+import { useExpoBaseHaptics } from '@expo-base/haptics';
 
 export default function AccessibilityMotionReferenceScreen() {
-  const router = usePrecisionRouter();
-  const reduceMotion = usePrecisionReducedMotion();
-  const haptics = usePrecisionHaptics();
+  const router = useExpoBaseRouter();
+  const reduceMotion = useExpoBaseReducedMotion();
+  const haptics = useExpoBaseHaptics();
   const [visible, setVisible] = useState(true);
   const [announcement, setAnnouncement] = useState('Ready');
   return (

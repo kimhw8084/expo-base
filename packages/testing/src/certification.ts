@@ -1,4 +1,4 @@
-import type { BreakpointName } from '@precision-calm/tokens';
+import type { BreakpointName } from '@expo-base/tokens';
 
 export const certificationBreakpoints = { compact: 0, medium: 600, expanded: 900, wide: 1200 } as const;
 

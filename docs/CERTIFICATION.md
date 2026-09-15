@@ -39,7 +39,7 @@ prevents a few transformed headings from falsely certifying an otherwise untrans
 
 ## Semantic and resilience policy
 
-Selective ARIA snapshots protect page headings/landmarks, validation summaries, dialog/menu anatomy, data selection, and feedback state. Keyboard-only flows cover the command launcher, dialog/menu focus restoration, combobox operation, form validation, and data actions. Additional checks cover 200%-equivalent zoom, pseudo RTL, reduced motion, forced colors, long content, and compact geometry. `PrecisionWebAccessibilityStyles` installs shared focus-visible and forced-colors behavior in generated web document roots.
+Selective ARIA snapshots protect page headings/landmarks, validation summaries, dialog/menu anatomy, data selection, and feedback state. Keyboard-only flows cover the command launcher, dialog/menu focus restoration, combobox operation, form validation, and data actions. Additional checks cover 200%-equivalent zoom, pseudo RTL, reduced motion, forced colors, long content, and compact geometry. `ExpoBaseWebAccessibilityStyles` installs shared focus-visible and forced-colors behavior in generated web document roots.
 
 ## Performance policy
 

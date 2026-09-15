@@ -1,9 +1,9 @@
 import { useState, type ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Button } from '@precision-calm/components';
-import { BottomSheet } from '@precision-calm/overlays';
-import { VStack } from '@precision-calm/primitives';
+import { Button } from '@expo-base/components';
+import { BottomSheet } from '@expo-base/overlays';
+import { VStack } from '@expo-base/primitives';
 
 export interface FilterDrawerProps {
   title?: string;

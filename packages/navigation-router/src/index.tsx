@@ -1,7 +1,7 @@
 import { useEffect, useRef, type ComponentProps, type PropsWithChildren, type ReactNode } from 'react';
 import { Link, Stack, useLocalSearchParams, usePathname, useRouter, type Href } from 'expo-router';
-import { AdaptiveNavigationShell, type NavigationItem } from '@precision-calm/navigation';
-import { bestNavigationMatch } from '@precision-calm/platform';
+import { AdaptiveNavigationShell, type NavigationItem } from '@expo-base/navigation';
+import { bestNavigationMatch } from '@expo-base/platform';
 
 export type RouterNavigationItem = Omit<NavigationItem, 'href'> & { href: Href; matchPath?: string | undefined; matchPaths?: readonly string[] | undefined; };
 
@@ -16,7 +16,7 @@ interface RouterNavigationActivationEvent {
   shiftKey?: boolean | undefined;
 }
 
-export function usePrecisionRouter() {
+export function useExpoBaseRouter() {
   const router = useRouter();
   return {
     push: (href: Href) => router.push(href),
@@ -29,7 +29,7 @@ export function usePrecisionRouter() {
 }
 
 /** Route-param access stays behind the same Expo Router boundary as navigation. */
-export function usePrecisionLocalSearchParams<TParams extends Record<string, string | string[]>>() {
+export function useExpoBaseLocalSearchParams<TParams extends Record<string, string | string[]>>() {
   return useLocalSearchParams<TParams>();
 }
 
@@ -75,7 +75,7 @@ export function RouterNavigationShell({ items, brand, sidebarFooter, brandMark, 
   return <AdaptiveNavigationShell items={navigationItems} activeKey={activeKey} onNavigate={navigate} onNavigateIntent={prefetch} brand={brand} brandMark={brandMark} sidebarFooter={sidebarFooter} enabled={enabled}>{children}</AdaptiveNavigationShell>;
 }
 
-import { validateProtectedRouteSets, type ProtectedAccessState, type ProtectedRouteSets } from '@precision-calm/auth';
+import { validateProtectedRouteSets, type ProtectedAccessState, type ProtectedRouteSets } from '@expo-base/auth';
 
 export interface ConditionalAuthenticatedRouteSet { key: string; guard: boolean; screens: readonly string[]; }
 

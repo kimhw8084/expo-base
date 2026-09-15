@@ -4,6 +4,10 @@ Date: 2026-09-07
 Repository: `/Users/haewonkim/home/development/expo-base`  
 Mode: audit only; no product defect was fixed and no permanent baseline was updated.
 
+Historical provenance note: this audit records the pre-CHG-24 implementation baseline. Legacy
+package names and implementation terms below identify the audited source and are not current
+Expo Base guidance.
+
 ## Audit verdict
 
 **MATERIAL QUALITY DEFECTS FOUND**

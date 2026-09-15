@@ -1,8 +1,8 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Link } from '@precision-calm/components';
-import { Icon } from '@precision-calm/icons';
-import { Text } from '@precision-calm/primitives';
+import { Link } from '@expo-base/components';
+import { Icon } from '@expo-base/icons';
+import { Text } from '@expo-base/primitives';
 
 export interface BreadcrumbItem { key: string; label: string; onPress?: (() => void) | undefined; }
 export interface BreadcrumbsProps { items: readonly BreadcrumbItem[]; }

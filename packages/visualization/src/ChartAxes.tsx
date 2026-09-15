@@ -1,5 +1,5 @@
 import Svg, { G, Line, Text as SvgText } from 'react-native-svg';
-import { chartTicks, formatCompactNumber, niceDomain, type NumericDomain } from '@precision-calm/platform';
+import { chartTicks, formatCompactNumber, niceDomain, type NumericDomain } from '@expo-base/platform';
 import { useUnistyles } from 'react-native-unistyles';
 import type { ChartValueFormatter } from './types';
 

@@ -1,15 +1,15 @@
 import { useEffect, type PropsWithChildren } from 'react';
-import { usePrecisionServerState } from '@precision-calm/server-state';
-import type { PrecisionAppLifecycle, PrecisionConnectivity, PrecisionServerStateRuntimePolicy } from './contracts';
+import { useExpoBaseServerState } from '@expo-base/server-state';
+import type { ExpoBaseAppLifecycle, ExpoBaseConnectivity, ExpoBaseServerStateRuntimePolicy } from './contracts';
 
-export interface PrecisionServerStateInvalidator {
+export interface ExpoBaseServerStateInvalidator {
   invalidate(key?: undefined, options?: { refetch?: 'active' | 'all' | 'none' | undefined }): Promise<void>;
 }
 
 /** Headless subscription bridge for deterministic tests and non-React root composition. */
-export function connectPrecisionServerStateRuntime(
-  client: PrecisionServerStateInvalidator,
-  options: { connectivity?: PrecisionConnectivity | undefined; lifecycle?: PrecisionAppLifecycle | undefined; policy?: PrecisionServerStateRuntimePolicy | undefined },
+export function connectExpoBaseServerStateRuntime(
+  client: ExpoBaseServerStateInvalidator,
+  options: { connectivity?: ExpoBaseConnectivity | undefined; lifecycle?: ExpoBaseAppLifecycle | undefined; policy?: ExpoBaseServerStateRuntimePolicy | undefined },
 ): () => void {
   const policy = options.policy ?? {};
   let previousConnectivity: 'online' | 'offline' | 'unknown' | null = null;
@@ -36,19 +36,19 @@ export function connectPrecisionServerStateRuntime(
  * Optional, policy-controlled connection between device signals and server
  * state. It never infers offline persistence or enables refetching by default.
  */
-export function PrecisionServerStateRuntimeBridge({
+export function ExpoBaseServerStateRuntimeBridge({
   children,
   connectivity,
   lifecycle,
   policy = {},
 }: PropsWithChildren<{
-  connectivity?: PrecisionConnectivity | undefined;
-  lifecycle?: PrecisionAppLifecycle | undefined;
-  policy?: PrecisionServerStateRuntimePolicy | undefined;
+  connectivity?: ExpoBaseConnectivity | undefined;
+  lifecycle?: ExpoBaseAppLifecycle | undefined;
+  policy?: ExpoBaseServerStateRuntimePolicy | undefined;
 }>) {
-  const client = usePrecisionServerState();
+  const client = useExpoBaseServerState();
   useEffect(() => {
-    return connectPrecisionServerStateRuntime(client, { connectivity, lifecycle, policy });
+    return connectExpoBaseServerStateRuntime(client, { connectivity, lifecycle, policy });
   }, [client, connectivity, lifecycle, policy]);
   return <>{children}</>;
 }

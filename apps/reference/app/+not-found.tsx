@@ -1,8 +1,8 @@
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
-import { Page, PageHeader, ScrollScreen, Section, StateView } from '@precision-calm/ui';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
+import { Page, PageHeader, ScrollScreen, Section, StateView } from '@expo-base/ui';
 
 export default function NotFoundScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   return (
     <ScrollScreen>
       <Page

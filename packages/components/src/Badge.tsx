@@ -1,6 +1,6 @@
 import { View, type ViewProps } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text } from '@precision-calm/primitives';
+import { Text } from '@expo-base/primitives';
 
 type Tone = 'neutral' | 'positive' | 'warning' | 'negative' | 'info';
 

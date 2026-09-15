@@ -1,8 +1,8 @@
-import { Button, Card, ScrollScreen, Text, VStack } from '@precision-calm/ui';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+import { Button, Card, ScrollScreen, Text, VStack } from '@expo-base/ui';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 
 export default function LinkErrorScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   return (
     <ScrollScreen>
       <Card>

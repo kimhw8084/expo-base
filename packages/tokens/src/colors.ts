@@ -1,4 +1,4 @@
-export interface PrecisionColors {
+export interface ExpoBaseColors {
   transparent: string;
   white: string;
   black: string;
@@ -118,7 +118,7 @@ export const lightColors = {
     series5: '#C23D48',
     series6: '#147D91',
   },
-} satisfies PrecisionColors;
+} satisfies ExpoBaseColors;
 
 export const darkColors = {
   ...shared,
@@ -175,4 +175,4 @@ export const darkColors = {
     series5: '#EE8B93',
     series6: '#61C1D0',
   },
-} satisfies PrecisionColors;
+} satisfies ExpoBaseColors;

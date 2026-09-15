@@ -1,8 +1,8 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text, VStack } from '@precision-calm/primitives';
-import { Icon } from '@precision-calm/icons';
+import { Text, VStack } from '@expo-base/primitives';
+import { Icon } from '@expo-base/icons';
 
 export interface FormFieldProps extends PropsWithChildren {
   label: string;

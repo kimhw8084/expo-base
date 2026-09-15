@@ -24,14 +24,14 @@ try {
   const visualization = await import(pathToFileURL(path.join(output, 'platform/platform/src/visualization.js')).href);
   const data = await import(pathToFileURL(path.join(output, 'platform/platform/src/data.js')).href);
 
-  assert.equal(forms.parsePrecisionTimeValue('14:30'), '14:30');
-  assert.equal(forms.parsePrecisionTimeValue('24:00'), null);
-  assert.equal(forms.parsePrecisionTimeValue('9:30'), null);
-  assert.deepEqual(forms.parsePrecisionDateRange('2026-09-07', '2026-09-14'), { start: '2026-09-07', end: '2026-09-14' });
-  assert.equal(forms.parsePrecisionDateRange('2026-09-14', '2026-09-07'), null);
-  assert.match(forms.formatPrecisionCalendarDate('2026-09-07', 'en-US'), /Sep.*7.*2026/);
-  assert.match(forms.formatPrecisionTimeValue('14:30', 'en-US'), /2:30.*PM/i);
-  assert.deepEqual(forms.validatePrecisionDateValue('2025-12-31', { min: '2026-01-01' }), { code: 'min', message: 'Choose 2026-01-01 or later.' });
+  assert.equal(forms.parseExpoBaseTimeValue('14:30'), '14:30');
+  assert.equal(forms.parseExpoBaseTimeValue('24:00'), null);
+  assert.equal(forms.parseExpoBaseTimeValue('9:30'), null);
+  assert.deepEqual(forms.parseExpoBaseDateRange('2026-09-07', '2026-09-14'), { start: '2026-09-07', end: '2026-09-14' });
+  assert.equal(forms.parseExpoBaseDateRange('2026-09-14', '2026-09-07'), null);
+  assert.match(forms.formatExpoBaseCalendarDate('2026-09-07', 'en-US'), /Sep.*7.*2026/);
+  assert.match(forms.formatExpoBaseTimeValue('14:30', 'en-US'), /2:30.*PM/i);
+  assert.deepEqual(forms.validateExpoBaseDateValue('2025-12-31', { min: '2026-01-01' }), { code: 'min', message: 'Choose 2026-01-01 or later.' });
 
   const stacked = visualization.stackedBarRects([
     { label: 'Q1', values: [38, 12, 4] },
@@ -42,7 +42,7 @@ try {
   assert.ok(stacked.every((rect) => rect.x >= 0 && rect.y >= 0 && rect.x + rect.width <= 200 && rect.y + rect.height <= 101));
   assert.equal(visualization.stackedBarRects([{ label: 'Invalid', values: [-1, Number.NaN] }], 100, 100).length, 0);
 
-  const csv = data.serializePrecisionDelimitedData([
+  const csv = data.serializeExpoBaseDelimitedData([
     { name: 'Alpha, Inc.', note: 'Ready' },
     { name: 'Beta', note: 'Line one\nLine two' },
   ], [

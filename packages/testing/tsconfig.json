@@ -5,7 +5,7 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@precision-calm/tokens": ["../tokens/src/index.ts"]
+      "@expo-base/tokens": ["../tokens/src/index.ts"]
     }
   },
   "include": ["src/**/*.ts", "../tokens/src/**/*.ts"]

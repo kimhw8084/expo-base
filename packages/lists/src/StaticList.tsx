@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { listDefaults } from '@precision-calm/platform';
-import type { SpacingToken } from '@precision-calm/tokens';
+import { listDefaults } from '@expo-base/platform';
+import type { SpacingToken } from '@expo-base/tokens';
 
 export interface StaticListProps<T> {
   items: readonly T[];

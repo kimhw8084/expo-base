@@ -1,10 +1,10 @@
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult } from '@precision-calm/capabilities';
-export const precisionPreferencesCapability = 'preferences';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult } from '@expo-base/capabilities';
+export const expoBasePreferencesCapability = 'preferences';
 /** Device-local, non-secret preferences only. Server-synced product settings stay product-owned. */
-export interface PrecisionPreferences {
-  availability(): Promise<PrecisionCapabilityAvailability>;
-  get(key: string): Promise<PrecisionCapabilityResult<string | null>>;
-  set(key: string, value: string): Promise<PrecisionCapabilityResult<undefined>>;
-  remove(key: string): Promise<PrecisionCapabilityResult<undefined>>;
+export interface ExpoBasePreferences {
+  availability(): Promise<ExpoBaseCapabilityAvailability>;
+  get(key: string): Promise<ExpoBaseCapabilityResult<string | null>>;
+  set(key: string, value: string): Promise<ExpoBaseCapabilityResult<undefined>>;
+  remove(key: string): Promise<ExpoBaseCapabilityResult<undefined>>;
 }
-export interface PrecisionPreferencesOptions { namespace: string; version?: number | undefined; }
+export interface ExpoBasePreferencesOptions { namespace: string; version?: number | undefined; }

@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Badge } from '@precision-calm/components';
-import { HStack, Text, VStack, useDensity } from '@precision-calm/primitives';
+import { Badge } from '@expo-base/components';
+import { HStack, Text, VStack, useDensity } from '@expo-base/primitives';
 
 export type TimelineTone = 'neutral' | 'info' | 'positive' | 'warning' | 'negative';
 

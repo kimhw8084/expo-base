@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { ScrollScreen, Page, PageHeader, Section, AdaptiveGrid, AdaptiveGridItem, PriorityAction, PriorityActionBar } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
-import { Badge, Button, Card } from '@precision-calm/ui';
-import { TextField } from '@precision-calm/ui';
-import { AlertBanner, AsyncStateView } from '@precision-calm/ui';
-import { KeyValueList, ListRow, Metric, MetricGroup } from '@precision-calm/ui';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+import { ScrollScreen, Page, PageHeader, Section, AdaptiveGrid, AdaptiveGridItem, PriorityAction, PriorityActionBar } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
+import { Badge, Button, Card } from '@expo-base/ui';
+import { TextField } from '@expo-base/ui';
+import { AlertBanner, AsyncStateView } from '@expo-base/ui';
+import { KeyValueList, ListRow, Metric, MetricGroup } from '@expo-base/ui';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 import { useReferenceCopy } from '../ReferenceCopy';
 
 const veryLongName = 'Alexandria Maximiliana von Example-Something-With-An-Intentionally-Long-Unbroken-Product-Context';
@@ -13,7 +13,7 @@ const longGerman = 'Jahresgebührenüberprüfungsbenachrichtigung und Überweisu
 const longJapanese = 'アカウント接続と年間特典の最適化に関する詳細設定と通知オプション';
 
 export default function StressReferenceScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   const [value, setValue] = useState(veryLongName);
   return (

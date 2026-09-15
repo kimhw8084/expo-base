@@ -2,9 +2,9 @@ import type { ComponentRef, ReactNode } from 'react';
 import { useCallback, useId, useRef } from 'react';
 import { Platform, Pressable, StyleSheet as RNStyleSheet, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Text, VStack } from '@expo-base/primitives';
 import { useOverlayLifecycle } from './useOverlayLifecycle';
-import { usePrecisionReducedMotion } from '@precision-calm/motion';
+import { useExpoBaseReducedMotion } from '@expo-base/motion';
 import { ModalSurface } from './ModalSurface';
 
 export interface DialogProps {
@@ -23,7 +23,7 @@ export function Dialog({ open, onOpenChange, title, description, children, actio
   const panelRef = useRef<ComponentRef<typeof View>>(null);
   const titleId = useId();
   const descriptionId = useId();
-  const reducedMotion = usePrecisionReducedMotion();
+  const reducedMotion = useExpoBaseReducedMotion();
   useOverlayLifecycle(open, close, { dismissOnEscape, trapFocus: true, containerRef: panelRef });
   return (
     <ModalSurface visible={open} lockBackground animationType={reducedMotion ? 'none' : 'fade'} onRequestClose={() => { if (dismissOnEscape) close(); }}>

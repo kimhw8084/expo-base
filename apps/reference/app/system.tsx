@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { ScrollScreen, Page, PageHeader, Section, AdaptiveGrid, AdaptiveGridItem } from '@precision-calm/ui';
-import { DensityProvider, HStack, Text, ThemeScope, VStack } from '@precision-calm/ui';
-import { Accordion, Avatar, Badge, Button, Card, Chip, IconButton, Link, MediaFrame, SegmentedControl, StepIndicator, Tag } from '@precision-calm/ui';
-import { Checkbox, CurrencyField, PasswordField, RadioGroup, SearchField, SelectField, SwitchField, TextArea, TextField } from '@precision-calm/ui';
-import { AlertBanner, LoadingState, StateView } from '@precision-calm/ui';
-import { KeyValueList, ListRow, Metric, MetricGroup } from '@precision-calm/ui';
-import { BarChart, DonutChart, LineChart, ProgressBar, ProgressRing, Sparkline } from '@precision-calm/ui';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+import { ScrollScreen, Page, PageHeader, Section, AdaptiveGrid, AdaptiveGridItem } from '@expo-base/ui';
+import { DensityProvider, HStack, Text, ThemeScope, VStack } from '@expo-base/ui';
+import { Accordion, Avatar, Badge, Button, Card, Chip, IconButton, Link, MediaFrame, SegmentedControl, StepIndicator, Tag } from '@expo-base/ui';
+import { Checkbox, CurrencyField, PasswordField, RadioGroup, SearchField, SelectField, SwitchField, TextArea, TextField } from '@expo-base/ui';
+import { AlertBanner, LoadingState, StateView } from '@expo-base/ui';
+import { KeyValueList, ListRow, Metric, MetricGroup } from '@expo-base/ui';
+import { BarChart, DonutChart, LineChart, ProgressBar, ProgressRing, Sparkline } from '@expo-base/ui';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 import { useReferenceCopy } from '../ReferenceCopy';
 
 const trend = [
@@ -19,7 +19,7 @@ const bars = [
 ];
 
 export default function SystemReferenceScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   const [search, setSearch] = useState('');
   const [password, setPassword] = useState('example-password');

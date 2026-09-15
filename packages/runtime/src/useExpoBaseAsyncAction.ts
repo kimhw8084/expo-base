@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-export type PrecisionAsyncActionStatus = 'idle' | 'loading' | 'success' | 'error';
+export type ExpoBaseAsyncActionStatus = 'idle' | 'loading' | 'success' | 'error';
 
-export interface PrecisionAsyncActionState {
-  status: PrecisionAsyncActionStatus;
+export interface ExpoBaseAsyncActionState {
+  status: ExpoBaseAsyncActionStatus;
   error: unknown | null;
 }
 
-export interface PrecisionAsyncAction<TResult, TArgs extends readonly unknown[]> {
-  state: PrecisionAsyncActionState;
+export interface ExpoBaseAsyncAction<TResult, TArgs extends readonly unknown[]> {
+  state: ExpoBaseAsyncActionState;
   run(...args: TArgs): Promise<TResult | undefined>;
   reset(): void;
 }
@@ -19,15 +19,15 @@ export interface PrecisionAsyncAction<TResult, TArgs extends readonly unknown[]>
  * invalidates late completions without attempting to cancel an adapter that
  * may not support cancellation.
  */
-export function usePrecisionAsyncAction<TArgs extends readonly unknown[], TResult>(
+export function useExpoBaseAsyncAction<TArgs extends readonly unknown[], TResult>(
   action: (...args: TArgs) => Promise<TResult>,
-): PrecisionAsyncAction<TResult, TArgs> {
+): ExpoBaseAsyncAction<TResult, TArgs> {
   const actionRef = useRef(action);
   actionRef.current = action;
   const mounted = useRef(true);
   const revision = useRef(0);
   const active = useRef<Promise<TResult | undefined> | null>(null);
-  const [state, setState] = useState<PrecisionAsyncActionState>({ status: 'idle', error: null });
+  const [state, setState] = useState<ExpoBaseAsyncActionState>({ status: 'idle', error: null });
 
   useEffect(() => () => {
     mounted.current = false;

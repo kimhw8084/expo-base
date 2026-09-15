@@ -1,5 +1,5 @@
-import { Page, PageHeader, ScrollScreen, Section, AdaptiveGrid, AdaptiveGridItem, ChartPanel, MetricTrendCard, BreakdownPanel, Card, Text, VStack, HStack, StatusIndicator, Timeline, Button, AdaptiveDataTable, type DataColumn } from '@precision-calm/ui';
-import { MultiLineChart, RangeBarChart } from '@precision-calm/visualization-advanced';
+import { Page, PageHeader, ScrollScreen, Section, AdaptiveGrid, AdaptiveGridItem, ChartPanel, MetricTrendCard, BreakdownPanel, Card, Text, VStack, HStack, StatusIndicator, Timeline, Button, AdaptiveDataTable, type DataColumn } from '@expo-base/ui';
+import { MultiLineChart, RangeBarChart } from '@expo-base/visualization-advanced';
 import { useReferenceCopy } from '../ReferenceCopy';
 import { showcaseRanges, showcaseSeries, showcaseTable, showcaseTrend } from '../showcaseData';
 

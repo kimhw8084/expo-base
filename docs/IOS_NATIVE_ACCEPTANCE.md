@@ -2,7 +2,7 @@
 
 ## Current authoritative certification result
 
-The current release-candidate native certification supersedes the earlier environment-limited run documented below: Release XCUITest completed 17/17 scenarios and native visual comparison completed 9/9 baselines on the semantic iPhone 17 Pro / iOS 26.5 profile. The runner resolves an available simulator from the profile and accepts `IOS_SIMULATOR_UDID` only as an explicit override; the historical UDID below is evidence of that earlier run, not a permanent device identity.
+The tagged Expo Base `1.0.0` native certification supersedes the earlier environment-limited run documented below: Release XCUITest completed 17/17 scenarios and native visual comparison completed 9/9 baselines on the semantic iPhone 17 Pro / iOS 26.5 profile. The runner resolves an available simulator from the profile and accepts `IOS_SIMULATOR_UDID` only as an explicit override; the historical UDID below is evidence of that earlier run, not a permanent device identity.
 
 Full Release certification regenerates the ignored CNG native project with `expo prebuild --clean` before injecting the XCUITest target. Focused development runs may reuse generated output, but they are not release certification.
 
@@ -184,7 +184,7 @@ Android native acceptance remains deferred/waived under Policy B.
 
 `IOS NATIVE ACCEPTANCE PASSED`
 
-Recommendation: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**.
+Recommendation recorded at the time: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**. The tagged `1.0.0` baseline now carries that governance evidence; this historical recommendation is not a current release action.
 
 ## Automated XCUITest certification implementation
 
@@ -304,7 +304,7 @@ The XCUITest lane is now considered stable on the pinned local Xcode 26.6/iOS 26
 
 `IOS AUTOMATED NATIVE CERTIFICATION PASSED — SIMULATOR ACCEPTANCE COMPLETE`
 
-Recommendation: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**.
+Recommendation recorded at the time: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**. The tagged `1.0.0` baseline now carries that governance evidence; this historical recommendation is not a current release action.
 
 ## Automated native certification convergence addendum
 
@@ -323,7 +323,7 @@ This addendum is the authoritative final result for the current certification wo
 
 - Severity: P1 native interaction/layout defect.
 - Reproduction: focus a searchable native choice field, type `ame`, and attempt to select the visible `American Express` result. The result existed below the keyboard frame and was not hittable.
-- Root cause: the shared `@precision-calm/overlays` Popover placement path reserved safe-area and persistent-navigation insets, but did not reserve the native keyboard frame when solving anchored overlay placement.
+- Root cause: the shared `@expo-base/overlays` Popover placement path reserved safe-area and persistent-navigation insets, but did not reserve the native keyboard frame when solving anchored overlay placement.
 - Owner: `packages/overlays/src/Popover.tsx` and the shared platform anchored-overlay solver boundary.
 - Fix: Popover now observes native keyboard frame/show/hide events and contributes the measured keyboard height to the shared bottom inset before solving placement. The overlay flips above the keyboard instead of becoming inaccessible.
 - Regression: `testFormSpecimenFamiliesRespond` exercises the actual native searchable form flow; the full 17-test Release lane and 17-test Debug lane also cover the resulting overlay behavior.
@@ -359,6 +359,6 @@ This addendum is the authoritative final result for the current certification wo
 
 `IOS AUTOMATED NATIVE CERTIFICATION PASSED — SIMULATOR ACCEPTANCE COMPLETE`
 
-Recommendation: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**.
+Recommendation recorded at the time: **PROCEED TO FINAL 1.0 RELEASE-CANDIDATE GOVERNANCE**. The tagged `1.0.0` baseline now carries that governance evidence; this historical recommendation is not a current release action.
 
 Android native acceptance remains deferred/waived under Policy B.

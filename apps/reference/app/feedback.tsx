@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
-import { Page, PageHeader, ScrollScreen, Section, AdaptiveGrid, AdaptiveGridItem } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
-import { Button, Card } from '@precision-calm/ui';
-import { AlertBanner, AsyncStateView, InlineMessage, SkeletonList, StateView, type StateKind } from '@precision-calm/ui';
-import { ListRow } from '@precision-calm/ui';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
+import { Page, PageHeader, ScrollScreen, Section, AdaptiveGrid, AdaptiveGridItem } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
+import { Button, Card } from '@expo-base/ui';
+import { AlertBanner, AsyncStateView, InlineMessage, SkeletonList, StateView, type StateKind } from '@expo-base/ui';
+import { ListRow } from '@expo-base/ui';
 import { useReferenceCopy } from '../ReferenceCopy';
 
 const states: StateKind[] = ['empty', 'noResults', 'error', 'offline', 'permission', 'reconnect', 'maintenance'];
@@ -19,7 +19,7 @@ const stateLabels: Record<StateKind, string> = {
 };
 
 export default function FeedbackReferenceScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   const [kind, setKind] = useState<StateKind>('empty');
   return (

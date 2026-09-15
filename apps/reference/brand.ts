@@ -1,6 +1,6 @@
-import { brandPresets, type PrecisionBrand } from '@precision-calm/tokens';
+import { brandPresets, type ExpoBaseBrand } from '@expo-base/tokens';
 
-export const referenceBrand: PrecisionBrand = {
+export const referenceBrand: ExpoBaseBrand = {
   ...brandPresets.blue,
   name: 'Expo Base Reference',
   shortName: 'E',

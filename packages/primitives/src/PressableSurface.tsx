@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { Pressable } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import type { RadiusToken } from '@precision-calm/tokens';
+import type { RadiusToken } from '@expo-base/tokens';
 import { useInteractionState } from './useInteractionState';
 
 export interface PressableSurfaceProps extends PropsWithChildren {

@@ -20,7 +20,7 @@ import {
   Text,
   TextField,
   VStack,
-} from '@precision-calm/ui';
+} from '@expo-base/ui';
 import { useReferenceCopy } from '../ReferenceCopy';
 import { ownerFixtures } from '../workbenchFixtures';
 

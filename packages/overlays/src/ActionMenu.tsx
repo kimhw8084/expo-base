@@ -1,9 +1,9 @@
 import { useEffect, useId, useMemo, useRef, useState, type ComponentRef, type ReactNode } from 'react';
 import { Platform, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import type { IconName } from '@precision-calm/icons';
-import { Text } from '@precision-calm/primitives';
-import { resolveRovingFocusIndex } from '@precision-calm/platform';
+import type { IconName } from '@expo-base/icons';
+import { Text } from '@expo-base/primitives';
+import { resolveRovingFocusIndex } from '@expo-base/platform';
 import { MenuGroup, MenuItem } from './Menu';
 import { Popover, type PopoverProps } from './Popover';
 
@@ -44,7 +44,7 @@ export function ActionMenu({
   testID,
 }: ActionMenuProps) {
   const flattenedItems = useMemo(() => sections.flatMap((section) => section.items), [sections]);
-  const menuId = `precision-action-menu-${useId().replaceAll(':', '')}`;
+  const menuId = `expo-base-action-menu-${useId().replaceAll(':', '')}`;
   const enabled = flattenedItems.map((item) => !item.disabled);
   const preferredIndex = flattenedItems.findIndex((item, index) => item.selected && enabled[index]);
   const initialIndex = preferredIndex >= 0 ? preferredIndex : enabled.findIndex(Boolean);

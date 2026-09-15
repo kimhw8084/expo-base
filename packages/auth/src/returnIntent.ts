@@ -15,9 +15,9 @@ export function validateReturnIntent(input: string, policy: ReturnIntentPolicy =
   if (CONTROL_CHARACTERS.test(value) || value.includes('\\')) return { allowed: false, reason: 'malformed' };
 
   let parsed: URL;
-  try { parsed = new URL(value, 'https://precision.invalid'); }
+  try { parsed = new URL(value, 'https://expo-base.invalid'); }
   catch { return { allowed: false, reason: 'malformed' }; }
-  if (parsed.origin !== 'https://precision.invalid') return { allowed: false, reason: 'external' };
+  if (parsed.origin !== 'https://expo-base.invalid') return { allowed: false, reason: 'external' };
 
   const normalized = `${parsed.pathname}${parsed.search}` as `/${string}`;
   const excludedPaths = new Set(policy.excludedPaths ?? []);

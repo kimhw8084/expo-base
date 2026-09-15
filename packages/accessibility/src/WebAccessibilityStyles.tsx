@@ -1,5 +1,5 @@
 /** Web-only forced-color and keyboard-focus policy. Native renderers ignore the style element. */
-export function PrecisionWebAccessibilityStyles() {
+export function ExpoBaseWebAccessibilityStyles() {
   return (
     <style dangerouslySetInnerHTML={{ __html: `
       :focus-visible { outline: 2px solid Highlight !important; outline-offset: 2px; }

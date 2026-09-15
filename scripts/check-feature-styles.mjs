@@ -14,7 +14,7 @@ const sharedForbidden = [
   [new RegExp(String.raw`\bborder(?:Top|Right|Bottom|Left)?Width\s*:\s*${nonZeroNumber}\b`), 'literal stroke width'],
   [new RegExp(String.raw`\b(?:fontSize|lineHeight|letterSpacing)\s*:\s*${nonZeroNumber}\b`), 'literal typography geometry'],
   [/#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b/, 'literal hex colors'],
-  [/from\s+['"]lucide-react-native['"]/, 'direct Lucide import; use @precision-calm/icons'],
+  [/from\s+['"]lucide-react-native['"]/, 'direct Lucide import; use @expo-base/icons'],
   [/from\s+['"]react-native-svg['"]/, 'direct SVG import; use the icon/visualization system'],
 ];
 

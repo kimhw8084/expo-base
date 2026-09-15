@@ -1,7 +1,7 @@
 import { Pressable } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Icon, type IconName } from '@precision-calm/icons';
-import { useInteractionState } from '@precision-calm/primitives';
+import { Icon, type IconName } from '@expo-base/icons';
+import { useInteractionState } from '@expo-base/primitives';
 
 type IconButtonVariant = 'default' | 'subtle' | 'ghost' | 'danger';
 type IconButtonSize = 'sm' | 'md' | 'lg';

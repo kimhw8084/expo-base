@@ -1,35 +1,35 @@
-import { normalizePrecisionServerError, type PrecisionServerError } from './errors';
+import { normalizeExpoBaseServerError, type ExpoBaseServerError } from './errors';
 
-export interface PrecisionRetryPolicy {
+export interface ExpoBaseRetryPolicy {
   /** Number of retries after the initial attempt. */
   retries: number;
-  shouldRetry?: ((error: PrecisionServerError, failureCount: number) => boolean) | undefined;
-  delayMs?: ((failureCount: number, error: PrecisionServerError) => number) | undefined;
+  shouldRetry?: ((error: ExpoBaseServerError, failureCount: number) => boolean) | undefined;
+  delayMs?: ((failureCount: number, error: ExpoBaseServerError) => number) | undefined;
 }
 
-export interface PrecisionServerStateConfig {
+export interface ExpoBaseServerStateConfig {
   staleTimeMs?: number | undefined;
   cacheRetentionMs?: number | undefined;
-  queryRetry?: PrecisionRetryPolicy | false | undefined;
+  queryRetry?: ExpoBaseRetryPolicy | false | undefined;
 }
 
-export const precisionServerStateDefaults = Object.freeze({
+export const expoBaseServerStateDefaults = Object.freeze({
   staleTimeMs: 30_000,
   cacheRetentionMs: 5 * 60_000,
   queryRetries: 2,
 });
 
-export function shouldRetryPrecisionQuery(failureCount: number, error: unknown, policy: PrecisionRetryPolicy | false = {
-  retries: precisionServerStateDefaults.queryRetries,
+export function shouldRetryExpoBaseQuery(failureCount: number, error: unknown, policy: ExpoBaseRetryPolicy | false = {
+  retries: expoBaseServerStateDefaults.queryRetries,
 }): boolean {
   if (policy === false || failureCount >= normalizeRetryCount(policy.retries)) return false;
-  const normalized = normalizePrecisionServerError(error);
+  const normalized = normalizeExpoBaseServerError(error);
   if (!normalized.retryable || normalized.kind === 'unauthorized' || normalized.kind === 'forbidden' || normalized.kind === 'validation' || normalized.kind === 'not-found' || normalized.kind === 'conflict' || normalized.kind === 'cancelled') return false;
   return policy.shouldRetry?.(normalized, failureCount) ?? true;
 }
 
-export function precisionRetryDelayMs(failureCount: number, error: unknown, policy?: PrecisionRetryPolicy | false): number {
-  if (policy && policy.delayMs) return normalizeDelay(policy.delayMs(failureCount, normalizePrecisionServerError(error)));
+export function expoBaseRetryDelayMs(failureCount: number, error: unknown, policy?: ExpoBaseRetryPolicy | false): number {
+  if (policy && policy.delayMs) return normalizeDelay(policy.delayMs(failureCount, normalizeExpoBaseServerError(error)));
   return Math.min(250 * (2 ** Math.max(0, failureCount)), 2_000);
 }
 

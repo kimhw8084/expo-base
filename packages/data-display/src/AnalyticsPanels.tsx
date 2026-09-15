@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Card } from '@precision-calm/components';
-import { HStack, Text, VStack } from '@precision-calm/primitives';
+import { Card } from '@expo-base/components';
+import { HStack, Text, VStack } from '@expo-base/primitives';
 
 export function MetricDelta({ direction, tone = 'neutral', label }: { direction: 'up' | 'down' | 'flat'; tone?: 'positive' | 'warning' | 'negative' | 'neutral'; label: string }) {
   return <Text variant="micro" tone={tone === 'neutral' ? 'secondary' : tone}>{direction === 'up' ? '↑' : direction === 'down' ? '↓' : '→'} {label}</Text>;

@@ -33,7 +33,7 @@ Popover is the wrong hover lifecycle, and noncritical help should use visible de
 
 `CodeBlock` owns selectable monospace content, bounded surfaces, and explicit wrap versus
 horizontal-scroll behavior. It has an action slot but no syntax-highlighting or editor dependency.
-Use optional `CopyableCode`, `CopyableValue`, or `CopyButton` from `@precision-calm/sharing/ui` when
+Use optional `CopyableCode`, `CopyableValue`, or `CopyButton` from `@expo-base/sharing/ui` when
 the app selects clipboard capability. Sensitive values default to explicit reveal before copy.
 
 `Divider` is the sanctioned full/inset horizontal or vertical separator. Prefer containing

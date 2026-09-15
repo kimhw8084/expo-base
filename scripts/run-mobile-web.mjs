@@ -53,11 +53,11 @@ try {
   run(npm, ['run', 'test:overlay-contracts'], 'SYNTHETIC SAFE-AREA AND OVERLAY SOLVER CONTRACTS');
   run(npm, ['run', 'check:native-shell-contracts'], 'NATIVE SOURCE CONTRACTS (NO RUNTIME CLAIM)');
   rmSync('apps/reference/dist', { recursive: true, force: true });
-  run(npm, ['exec', '-w', '@precision-calm/reference', '--', 'expo', 'export', '--platform', 'web', '--output-dir', 'dist', '--source-maps'], 'DETERMINISTIC MOBILE STATIC EXPORT', { ...process.env, CI: '1', TZ: 'UTC' });
+  run(npm, ['exec', '-w', '@expo-base/reference', '--', 'expo', 'export', '--platform', 'web', '--output-dir', 'dist', '--source-maps'], 'DETERMINISTIC MOBILE STATIC EXPORT', { ...process.env, CI: '1', TZ: 'UTC' });
   server = startServer();
   const baseURL = await server.startup;
   await waitForServer(baseURL);
-  run(npm, ['exec', '--', 'playwright', 'test', '--config', 'playwright.mobile.config.ts', ...testArgs], 'MOBILE PARITY SIMULATION', { ...process.env, PRECISION_CALM_BASE_URL: baseURL, TZ: 'UTC' });
+  run(npm, ['exec', '--', 'playwright', 'test', '--config', 'playwright.mobile.config.ts', ...testArgs], 'MOBILE PARITY SIMULATION', { ...process.env, EXPO_BASE_BASE_URL: baseURL, TZ: 'UTC' });
   succeeded = true;
 } finally {
   await stopServer(server);

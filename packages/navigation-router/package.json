@@ -1,15 +1,15 @@
 {
-  "name": "@precision-calm/navigation-router",
+  "name": "@expo-base/navigation-router",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.tsx",
   "types": "src/index.tsx",
   "dependencies": {
-    "@precision-calm/navigation": "*",
-    "@precision-calm/platform": "*",
+    "@expo-base/navigation": "*",
+    "@expo-base/platform": "*",
     "expo-router": "57.0.17",
-    "@precision-calm/auth": "*"
+    "@expo-base/auth": "*"
   },
   "peerDependencies": {
     "react": "19.2.3",

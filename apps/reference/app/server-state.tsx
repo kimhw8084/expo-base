@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react';
 import {
-  precisionOptimisticUpdate,
-  precisionQueryKey,
-  toPrecisionAsyncState,
-  usePrecisionMutation,
-  usePrecisionQuery,
-  type PrecisionQueryKey,
-} from '@precision-calm/server-state';
-import { usePrecisionServices } from '@precision-calm/runtime';
+  expoBaseOptimisticUpdate,
+  expoBaseQueryKey,
+  toExpoBaseAsyncState,
+  useExpoBaseMutation,
+  useExpoBaseQuery,
+  type ExpoBaseQueryKey,
+} from '@expo-base/server-state';
+import { useExpoBaseServices } from '@expo-base/runtime';
 import {
   AsyncStateView,
   Badge,
@@ -21,7 +21,7 @@ import {
   SectionHeader,
   Text,
   VStack,
-} from '@precision-calm/ui';
+} from '@expo-base/ui';
 import type { ReferenceServices } from '../services';
 import type { ReferenceTask } from '../serverState';
 import { ReferenceBackAction } from '../ReferenceBackAction';
@@ -30,30 +30,30 @@ import { useReferenceRuntimeSettings } from '../ReferenceRuntimeSettings';
 
 type TeamFilter = 'all' | ReferenceTask['team'];
 
-function useTaskQuery(team: TeamFilter, key: PrecisionQueryKey) {
-  const { serverStateLab } = usePrecisionServices<ReferenceServices>();
-  return usePrecisionQuery({ key, query: ({ signal }) => serverStateLab.list(team, signal) });
+function useTaskQuery(team: TeamFilter, key: ExpoBaseQueryKey) {
+  const { serverStateLab } = useExpoBaseServices<ReferenceServices>();
+  return useExpoBaseQuery({ key, query: ({ signal }) => serverStateLab.list(team, signal) });
 }
 
-function SharedQueryConsumer({ label, team, queryKey }: { label: string; team: TeamFilter; queryKey: PrecisionQueryKey }) {
+function SharedQueryConsumer({ label, team, queryKey }: { label: string; team: TeamFilter; queryKey: ExpoBaseQueryKey }) {
   const query = useTaskQuery(team, queryKey);
   const count = query.state.kind === 'content' ? query.state.data.length : 0;
   return <Badge label={`${label}: ${query.state.kind} · ${count}`} tone={query.state.kind === 'error' ? 'negative' : 'neutral'} />;
 }
 
 export default function ServerStateReferenceScreen() {
-  const { serverStateLab } = usePrecisionServices<ReferenceServices>();
+  const { serverStateLab } = useExpoBaseServices<ReferenceServices>();
   const copy = useReferenceCopy();
   const { density, setDensity } = useReferenceRuntimeSettings();
   const [team, setTeam] = useState<TeamFilter>('all');
-  const queryKey = useMemo(() => precisionQueryKey.list('reference-tasks', { team }), [team]);
+  const queryKey = useMemo(() => expoBaseQueryKey.list('reference-tasks', { team }), [team]);
   const query = useTaskQuery(team, queryKey);
   const tasks = query.state.kind === 'content' ? query.state.data : [];
-  const asyncState = toPrecisionAsyncState(query.state, tasks.length);
-  const toggle = usePrecisionMutation<{ id: string }, ReferenceTask>({
+  const asyncState = toExpoBaseAsyncState(query.state, tasks.length);
+  const toggle = useExpoBaseMutation<{ id: string }, ReferenceTask>({
     mutation: ({ variables, signal }) => serverStateLab.toggle(variables.id, signal),
-    optimistic: ({ id }) => [precisionOptimisticUpdate<readonly ReferenceTask[]>(queryKey, (current = []) => current.map((task) => task.id === id ? { ...task, done: !task.done } : task))],
-    invalidate: [precisionQueryKey.family('reference-tasks')],
+    optimistic: ({ id }) => [expoBaseOptimisticUpdate<readonly ReferenceTask[]>(queryKey, (current = []) => current.map((task) => task.id === id ? { ...task, done: !task.done } : task))],
+    invalidate: [expoBaseQueryKey.family('reference-tasks')],
   });
 
   const firstTask = tasks[0];

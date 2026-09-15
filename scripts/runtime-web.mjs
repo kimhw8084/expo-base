@@ -22,7 +22,7 @@ rmSync('apps/reference/.expo', { recursive: true, force: true });
 console.log('\n=== START EXPO BASE WEB ===');
 const result = spawnSync(
   npm,
-  ['exec', '-w', '@precision-calm/reference', '--', 'expo', 'start', '--web', '--clear'],
+  ['exec', '-w', '@expo-base/reference', '--', 'expo', 'start', '--web', '--clear'],
   { stdio: 'inherit', env: process.env },
 );
 process.exit(result.status ?? 0);

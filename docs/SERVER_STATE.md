@@ -1,20 +1,20 @@
 # Server state
 
-`@precision-calm/server-state` owns remote-data lifecycle. Product code supplies domain services,
+`@expo-base/server-state` owns remote-data lifecycle. Product code supplies domain services,
 query identity, mutation logic, and copy; it does not build caches, retry loops, race flags, or
 optimistic rollback per route.
 
 ## Query keys
 
-Use `precisionQueryKey` rather than concatenated strings:
+Use `expoBaseQueryKey` rather than concatenated strings:
 
 ```ts
 const projectKeys = {
-  all: precisionQueryKey.family('projects'),
-  entity: (id: string) => precisionQueryKey.entity('projects', id),
-  list: (filters: ProjectFilters) => precisionQueryKey.list('projects', filters),
+  all: expoBaseQueryKey.family('projects'),
+  entity: (id: string) => expoBaseQueryKey.entity('projects', id),
+  list: (filters: ProjectFilters) => expoBaseQueryKey.list('projects', filters),
   page: (page: number, filters: ProjectFilters) =>
-    precisionQueryKey.page('projects', { page, pageSize: 25, filters }),
+    expoBaseQueryKey.page('projects', { page, pageSize: 25, filters }),
 };
 ```
 
@@ -26,7 +26,7 @@ Authentication/session scope is added by the runtime; never put access tokens in
 ## Queries
 
 ```tsx
-const projects = usePrecisionQuery({
+const projects = useExpoBaseQuery({
   key: projectKeys.list(filters),
   query: ({ signal }) => services.projects.list(filters, signal),
 });
@@ -48,13 +48,13 @@ Concurrent consumers of the same scoped key share one request.
 The default is 30 seconds fresh, five minutes retained, and at most two adapter-approved transient
 retries using bounded exponential backoff. Override `staleTimeMs` or `retry` only for a domain reason.
 Automatic refocus/reconnect and persistence are disabled by default. A selected
-`@precision-calm/runtime-capabilities` profile may opt into `PrecisionServerStateRuntimeBridge`
+`@expo-base/runtime-capabilities` profile may opt into `ExpoBaseServerStateRuntimeBridge`
 for deliberate active-query invalidation after reconnect/foreground; it does not imply offline
 sync or cache persistence.
 
 ## Cache operations
 
-`usePrecisionServerState()` exposes sanctioned operations without exposing TanStack internals:
+`useExpoBaseServerState()` exposes sanctioned operations without exposing TanStack internals:
 
 - `invalidate(key, { exact, refetch })`
 - `refetch(key)` and query-local `refresh()`
@@ -66,14 +66,14 @@ cache internals or create a route-local `Map`.
 
 ## Mutations
 
-`usePrecisionAsyncAction` remains the owner for isolated actions that have no server-state cache
-effects. Use `usePrecisionMutation` when an action updates or invalidates server state.
+`useExpoBaseAsyncAction` remains the owner for isolated actions that have no server-state cache
+effects. Use `useExpoBaseMutation` when an action updates or invalidates server state.
 
 ```tsx
-const rename = usePrecisionMutation({
+const rename = useExpoBaseMutation({
   mutation: ({ variables, signal }) => services.projects.rename(variables, signal),
   optimistic: ({ id, name }) => [
-    precisionOptimisticUpdate(projectKeys.entity(id), (current) =>
+    expoBaseOptimisticUpdate(projectKeys.entity(id), (current) =>
       current ? { ...current, name } : { id, name },
     ),
   ],
@@ -96,16 +96,16 @@ Concurrency is deliberate:
 
 ## Errors and feedback
 
-Service adapters throw `PrecisionServerError` with a safe kind/code/message and explicit
+Service adapters throw `ExpoBaseServerError` with a safe kind/code/message and explicit
 retryability. Backend response bodies and unknown exception messages do not cross into product UI.
 
-Map query state into shared presentation with `toPrecisionAsyncState(state, itemCount)` and
+Map query state into shared presentation with `toExpoBaseAsyncState(state, itemCount)` and
 `AsyncStateView`:
 
 ```tsx
 const data = query.state.kind === 'content' ? query.state.data : [];
 <AsyncStateView
-  {...toPrecisionAsyncState(query.state, data.length)}
+  {...toExpoBaseAsyncState(query.state, data.length)}
   onRetry={() => { void query.refresh(); }}
 >
   <ProjectList projects={data} />
@@ -118,7 +118,7 @@ empty-state meaning.
 
 ## Scope, static export, and future offline support
 
-`PrecisionRuntimeProvider` mounts the query provider. Authenticated cache identity includes the
+`ExpoBaseRuntimeProvider` mounts the query provider. Authenticated cache identity includes the
 user ID and authoritative auth-session revision. Sign-out, user change, and session replacement
 switch immediately to a fresh cache and clear the retired cache. Local lock retains the same cache
 but protected routes are unavailable.

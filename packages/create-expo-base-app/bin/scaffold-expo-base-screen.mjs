@@ -39,5 +39,5 @@ function parseArgs(argv) {
 }
 
 function printUsage() {
-  console.log('scaffold-precision-screen --app apps/your-app --name customers --pattern data-workspace [--protected|--public] [--capabilities media,preferences]');
+  console.log('scaffold-expo-base-screen --app apps/your-app --name customers --pattern data-workspace [--protected|--public] [--capabilities media,preferences]');
 }

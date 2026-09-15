@@ -7,7 +7,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
-    baseURL: process.env.PRECISION_CALM_BASE_URL ?? 'http://127.0.0.1:8081',
+    baseURL: process.env.EXPO_BASE_BASE_URL ?? 'http://127.0.0.1:8081',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },

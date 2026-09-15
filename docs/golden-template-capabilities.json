@@ -3,6 +3,7 @@
   "artifact": "authoritative-golden-template-capabilities",
   "auditDate": "2026-09-06",
   "lastUpdated": "2026-09-07",
+  "historicalProvenance": "Pre-CHG-24 audit evidence; legacy identity names are intentionally preserved and are not current guidance.",
   "sourceOfTruth": {
     "repository": "/Users/haewonkim/home/development/expo-base",
     "branch": "main",

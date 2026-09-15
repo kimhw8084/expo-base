@@ -10,7 +10,7 @@ Externally verified for the current scaffold:
 - react-native-unistyles `3.3.0`
 - react-native-nitro-modules `0.36.5` (pinned; Unistyles 3.2+ documents a minimum of `0.35.2`)
 - react-native-svg `15.15.4` (Expo current recommended version)
-- lucide-react-native `1.37.0` (curated behind `@precision-calm/icons`)
+- lucide-react-native `1.37.0` (curated behind `@expo-base/icons`)
 
 Unistyles requires the New Architecture and Nitro Modules. Expo SDK 54+ already enables the edge-to-edge behavior that Unistyles recommends. The reference app sets `nativeBreakpointsMode: 'points'` so native responsiveness is based on logical screen points rather than raw pixels.
 

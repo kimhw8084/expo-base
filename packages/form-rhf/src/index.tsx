@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Control, FieldArray, FieldArrayPath, FieldPath, FieldValues, RegisterOptions, UseFormProps, UseFormReturn, SubmitHandler } from 'react-hook-form';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { Checkbox, CheckboxGroup, CodeField, ComboboxField, CurrencyField, MultiSelectField, NumberField, NumberStepper, PasswordField, RadioGroup, SegmentedField, SelectField, SwitchField, TextField, useFormLeaveGuard, type CheckboxGroupProps, type CheckboxProps, type CodeFieldProps, type ComboboxFieldProps, type CurrencyFieldProps, type FormErrorSummaryItem, type FormLeaveGuard, type MultiSelectFieldProps, type NumberFieldProps, type NumberStepperProps, type RadioGroupProps, type SegmentedFieldProps, type SelectFieldProps, type SwitchFieldProps, type TextFieldProps } from '@precision-calm/forms';
+import { Checkbox, CheckboxGroup, CodeField, ComboboxField, CurrencyField, MultiSelectField, NumberField, NumberStepper, PasswordField, RadioGroup, SegmentedField, SelectField, SwitchField, TextField, useFormLeaveGuard, type CheckboxGroupProps, type CheckboxProps, type CodeFieldProps, type ComboboxFieldProps, type CurrencyFieldProps, type FormErrorSummaryItem, type FormLeaveGuard, type MultiSelectFieldProps, type NumberFieldProps, type NumberStepperProps, type RadioGroupProps, type SegmentedFieldProps, type SelectFieldProps, type SwitchFieldProps, type TextFieldProps } from '@expo-base/forms';
 
-export function usePrecisionForm<TFieldValues extends FieldValues>(options?: UseFormProps<TFieldValues>) {
+export function useExpoBaseForm<TFieldValues extends FieldValues>(options?: UseFormProps<TFieldValues>) {
   return useForm<TFieldValues>({ mode: 'onBlur', reValidateMode: 'onChange', shouldFocusError: true, ...options });
 }
 
 type FormKeyboardSubmitProps = Pick<TextFieldProps, 'returnKeyType' | 'submitBehavior' | 'onSubmitEditing'>;
 
-export function createPrecisionFormKeyboardFlow<TFieldValues extends FieldValues>(form: Pick<UseFormReturn<TFieldValues>, 'setFocus'>) {
+export function createExpoBaseFormKeyboardFlow<TFieldValues extends FieldValues>(form: Pick<UseFormReturn<TFieldValues>, 'setFocus'>) {
   return {
     next(nextField: FieldPath<TFieldValues>): FormKeyboardSubmitProps {
       return {
@@ -28,7 +28,7 @@ export function createPrecisionFormKeyboardFlow<TFieldValues extends FieldValues
   } as const;
 }
 
-function hasPrecisionFormError(errors: unknown, field: string): boolean {
+function hasExpoBaseFormError(errors: unknown, field: string): boolean {
   let current: unknown = errors;
 
   for (const segment of field.split('.')) {
@@ -39,7 +39,7 @@ function hasPrecisionFormError(errors: unknown, field: string): boolean {
   return Boolean(current);
 }
 
-export function createPrecisionFormSubmit<TFieldValues extends FieldValues>(
+export function createExpoBaseFormSubmit<TFieldValues extends FieldValues>(
   form: Pick<UseFormReturn<TFieldValues>, 'handleSubmit'>,
   onValid: SubmitHandler<TFieldValues>,
 ) {
@@ -50,7 +50,7 @@ export function createPrecisionFormSubmit<TFieldValues extends FieldValues>(
   };
 }
 
-export function usePrecisionFormErrorFocus<TFieldValues extends FieldValues>(
+export function useExpoBaseFormErrorFocus<TFieldValues extends FieldValues>(
   form: Pick<UseFormReturn<TFieldValues>, 'formState' | 'setFocus'>,
   focusOrder: readonly FieldPath<TFieldValues>[],
 ) {
@@ -71,7 +71,7 @@ export function usePrecisionFormErrorFocus<TFieldValues extends FieldValues>(
     }
 
     const firstInvalid = focusOrder.find((field) =>
-      hasPrecisionFormError(errors, String(field)),
+      hasExpoBaseFormError(errors, String(field)),
     );
 
     handledSubmitCount.current = submitCount;
@@ -90,19 +90,19 @@ export function usePrecisionFormErrorFocus<TFieldValues extends FieldValues>(
   ]);
 }
 
-export interface PrecisionFormField<TFieldValues extends FieldValues> {
+export interface ExpoBaseFormField<TFieldValues extends FieldValues> {
   name: FieldPath<TFieldValues>;
   label: string;
 }
 
-export interface PrecisionFormServerErrors {
+export interface ExpoBaseFormServerErrors {
   fields?: Readonly<Record<string, string | readonly string[] | undefined>>;
   form?: string | readonly string[] | undefined;
 }
 
-export function applyPrecisionFormServerErrors<TFieldValues extends FieldValues>(
+export function applyExpoBaseFormServerErrors<TFieldValues extends FieldValues>(
   form: Pick<UseFormReturn<TFieldValues>, 'setError'>,
-  errors: PrecisionFormServerErrors,
+  errors: ExpoBaseFormServerErrors,
 ): FieldPath<TFieldValues> | undefined {
   let firstField: FieldPath<TFieldValues> | undefined;
   for (const [name, value] of Object.entries(errors.fields ?? {})) {
@@ -118,15 +118,15 @@ export function applyPrecisionFormServerErrors<TFieldValues extends FieldValues>
   return firstField;
 }
 
-export function usePrecisionFormErrorSummary<TFieldValues extends FieldValues>(
+export function useExpoBaseFormErrorSummary<TFieldValues extends FieldValues>(
   form: Pick<UseFormReturn<TFieldValues>, 'formState' | 'setFocus'>,
-  fields: readonly PrecisionFormField<TFieldValues>[],
+  fields: readonly ExpoBaseFormField<TFieldValues>[],
   showBeforeSubmit = false,
 ): readonly FormErrorSummaryItem[] {
   const { errors, submitCount } = form.formState;
   if (submitCount === 0 && !showBeforeSubmit) return [];
   const items = fields.flatMap((field) => {
-    const message = precisionFormErrorMessage(errors, String(field.name));
+    const message = expoBaseFormErrorMessage(errors, String(field.name));
     return message ? [{
       id: `form-error-${String(field.name).replace(/[^a-zA-Z0-9_-]/g, '-')}`,
       label: field.label,
@@ -134,30 +134,30 @@ export function usePrecisionFormErrorSummary<TFieldValues extends FieldValues>(
       onPress: () => form.setFocus(field.name),
     }] : [];
   });
-  const formMessage = precisionFormErrorMessage(errors, 'root.server');
+  const formMessage = expoBaseFormErrorMessage(errors, 'root.server');
   return formMessage ? [{ id: 'form-error-root-server', label: 'Form', message: formMessage }, ...items] : items;
 }
 
-export interface PrecisionFormLifecycle<TFieldValues extends FieldValues> {
+export interface ExpoBaseFormLifecycle<TFieldValues extends FieldValues> {
   errors: readonly FormErrorSummaryItem[];
   leaveGuard: FormLeaveGuard;
-  applyServerErrors: (errors: PrecisionFormServerErrors) => void;
+  applyServerErrors: (errors: ExpoBaseFormServerErrors) => void;
   reset: () => void;
 }
 
-export function usePrecisionFormLifecycle<TFieldValues extends FieldValues>(
+export function useExpoBaseFormLifecycle<TFieldValues extends FieldValues>(
   form: Pick<UseFormReturn<TFieldValues>, 'formState' | 'setFocus' | 'setError' | 'reset'>,
-  fields: readonly PrecisionFormField<TFieldValues>[],
-): PrecisionFormLifecycle<TFieldValues> {
+  fields: readonly ExpoBaseFormField<TFieldValues>[],
+): ExpoBaseFormLifecycle<TFieldValues> {
   const [serverErrorsApplied, setServerErrorsApplied] = useState(false);
-  usePrecisionFormErrorFocus(form, fields.map((field) => field.name));
-  const errors = usePrecisionFormErrorSummary(form, fields, serverErrorsApplied);
+  useExpoBaseFormErrorFocus(form, fields.map((field) => field.name));
+  const errors = useExpoBaseFormErrorSummary(form, fields, serverErrorsApplied);
   const leaveGuard = useFormLeaveGuard({ isDirty: form.formState.isDirty, onDiscard: () => form.reset() });
   return {
     errors,
     leaveGuard,
     applyServerErrors: (serverErrors) => {
-      const firstField = applyPrecisionFormServerErrors(form, serverErrors);
+      const firstField = applyExpoBaseFormServerErrors(form, serverErrors);
       setServerErrorsApplied(true);
       if (firstField) form.setFocus(firstField);
     },
@@ -168,7 +168,7 @@ export function usePrecisionFormLifecycle<TFieldValues extends FieldValues>(
   };
 }
 
-export interface PrecisionFieldArrayOptions<TFieldValues extends FieldValues, TName extends FieldArrayPath<TFieldValues>> {
+export interface ExpoBaseFieldArrayOptions<TFieldValues extends FieldValues, TName extends FieldArrayPath<TFieldValues>> {
   control: Control<TFieldValues>;
   name: TName;
   setFocus: (name: FieldPath<TFieldValues>) => void;
@@ -179,7 +179,7 @@ export interface PrecisionFieldArrayOptions<TFieldValues extends FieldValues, TN
  * focus after append/insert, and a deliberate focus target after removal.
  * Product code owns the row's domain fields and min/max validation.
  */
-export function usePrecisionFieldArray<TFieldValues extends FieldValues, TName extends FieldArrayPath<TFieldValues>>({ control, name, setFocus }: PrecisionFieldArrayOptions<TFieldValues, TName>) {
+export function useExpoBaseFieldArray<TFieldValues extends FieldValues, TName extends FieldArrayPath<TFieldValues>>({ control, name, setFocus }: ExpoBaseFieldArrayOptions<TFieldValues, TName>) {
   const fieldArray = useFieldArray<TFieldValues, TName>({ control, name });
   const pendingFocus = useRef<FieldPath<TFieldValues> | null>(null);
 
@@ -208,14 +208,14 @@ export function usePrecisionFieldArray<TFieldValues extends FieldValues, TName e
   };
 }
 
-export type PrecisionHiddenFieldPolicy = 'preserve' | 'reset';
+export type ExpoBaseHiddenFieldPolicy = 'preserve' | 'reset';
 
 /** Code-first conditional-field policy. It deliberately does not invent a rules DSL. */
-export function usePrecisionConditionalField<TFieldValues extends FieldValues>(
+export function useExpoBaseConditionalField<TFieldValues extends FieldValues>(
   form: Pick<UseFormReturn<TFieldValues>, 'resetField'>,
   name: FieldPath<TFieldValues>,
   visible: boolean,
-  policy: PrecisionHiddenFieldPolicy = 'preserve',
+  policy: ExpoBaseHiddenFieldPolicy = 'preserve',
 ) {
   const wasVisible = useRef(visible);
   useEffect(() => {
@@ -224,7 +224,7 @@ export function usePrecisionConditionalField<TFieldValues extends FieldValues>(
   }, [form, name, policy, visible]);
 }
 
-export interface PrecisionAsyncValidatorOptions<TValue> {
+export interface ExpoBaseAsyncValidatorOptions<TValue> {
   validate: (value: TValue, signal: AbortSignal) => Promise<string | true | undefined>;
   /** Only unexpected transport failures use this message; expected validation remains product-owned. */
   unexpectedErrorMessage?: string;
@@ -234,7 +234,7 @@ export interface PrecisionAsyncValidatorOptions<TValue> {
  * Revision-guards field validation and asks transports that support AbortSignal
  * to stop superseded work. It is suitable for RHF `rules.validate`.
  */
-export function createPrecisionAsyncValidator<TValue>({ validate, unexpectedErrorMessage = 'Unable to validate this value right now.' }: PrecisionAsyncValidatorOptions<TValue>) {
+export function createExpoBaseAsyncValidator<TValue>({ validate, unexpectedErrorMessage = 'Unable to validate this value right now.' }: ExpoBaseAsyncValidatorOptions<TValue>) {
   let revision = 0;
   let active: AbortController | null = null;
   return async (value: TValue): Promise<string | true> => {
@@ -253,14 +253,14 @@ export function createPrecisionAsyncValidator<TValue>({ validate, unexpectedErro
   };
 }
 
-export type PrecisionAutosaveState =
+export type ExpoBaseAutosaveState =
   | { status: 'idle' }
   | { status: 'pending' }
   | { status: 'saving' }
   | { status: 'saved' }
   | { status: 'error'; error: Error };
 
-export interface PrecisionAutosaveOptions<TValue> {
+export interface ExpoBaseAutosaveOptions<TValue> {
   value: TValue;
   dirty: boolean;
   enabled?: boolean;
@@ -270,8 +270,8 @@ export interface PrecisionAutosaveOptions<TValue> {
 }
 
 /** Product-controlled autosave with explicit cadence, cancellation, stale-save suppression, retry, and no implicit persistence. */
-export function usePrecisionAutosave<TValue>({ value, dirty, enabled = true, delayMs, save }: PrecisionAutosaveOptions<TValue>) {
-  const [state, setState] = useState<PrecisionAutosaveState>({ status: 'idle' });
+export function useExpoBaseAutosave<TValue>({ value, dirty, enabled = true, delayMs, save }: ExpoBaseAutosaveOptions<TValue>) {
+  const [state, setState] = useState<ExpoBaseAutosaveState>({ status: 'idle' });
   const [attempt, setAttempt] = useState(0);
   const latest = useRef(value);
   latest.current = value;
@@ -302,7 +302,7 @@ export function usePrecisionAutosave<TValue>({ value, dirty, enabled = true, del
   return { state, retry: () => setAttempt((current) => current + 1) } as const;
 }
 
-function precisionFormErrorMessage(errors: unknown, field: string): string | undefined {
+function expoBaseFormErrorMessage(errors: unknown, field: string): string | undefined {
   let current: unknown = errors;
   for (const segment of field.split('.')) {
     if (!current || typeof current !== 'object') return undefined;

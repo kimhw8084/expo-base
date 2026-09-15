@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { chartSummary, donutSegments, finiteChartData, type ChartDatum } from '@precision-calm/platform';
+import { chartSummary, donutSegments, finiteChartData, type ChartDatum } from '@expo-base/platform';
 import { ChartDataTable, ChartLegend } from './ChartAnatomy';
 import { ChartFrame, type ChartSize, type ChartState } from './ChartFrame';
 import type { VisualizationSeries } from './types';

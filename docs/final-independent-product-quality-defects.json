@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "historicalProvenance": "Pre-CHG-24 audit evidence; legacy identity names are intentionally preserved and are not current guidance.",
   "audit": "Expo Base Final Independent Product Quality Re-Audit",
   "findingsLockedAt": "2026-09-07T18:45:00-05:00",
   "independence": {

@@ -1,7 +1,7 @@
 import { ActivityIndicator, Pressable, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Icon, type IconName, type IconTone } from '@precision-calm/icons';
-import { Text, useInteractionState } from '@precision-calm/primitives';
+import { Icon, type IconName, type IconTone } from '@expo-base/icons';
+import { Text, useInteractionState } from '@expo-base/primitives';
 
 type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 type Size = 'sm' | 'md' | 'lg';

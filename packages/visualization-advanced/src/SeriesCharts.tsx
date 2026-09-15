@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet as RNStyleSheet, View } from 'react-native';
 import Svg, { Line, Path, Rect } from 'react-native-svg';
-import { bandScale, formatCompactNumber, linearScale, numericDomain, waterfallRects, type ChartDatum, type WaterfallDatum } from '@precision-calm/platform';
-import { ChartAxes, ChartFrame, ChartLegend, ChartSeriesDataTable, type ChartSize, type ChartState, type ChartValueFormatter, type VisualizationSeries } from '@precision-calm/visualization';
+import { bandScale, formatCompactNumber, linearScale, numericDomain, waterfallRects, type ChartDatum, type WaterfallDatum } from '@expo-base/platform';
+import { ChartAxes, ChartFrame, ChartLegend, ChartSeriesDataTable, type ChartSize, type ChartState, type ChartValueFormatter, type VisualizationSeries } from '@expo-base/visualization';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 export interface AdvancedSeriesDefinition { key: string; label: string; series: VisualizationSeries; }

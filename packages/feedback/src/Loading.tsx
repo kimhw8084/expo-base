@@ -1,6 +1,6 @@
 import { ActivityIndicator, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Text, VStack } from '@expo-base/primitives';
 
 export function LoadingState({ label = 'Loading…' }: { label?: string | undefined }) {
   const { theme } = useUnistyles();

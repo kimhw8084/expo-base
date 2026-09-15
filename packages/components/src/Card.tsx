@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { useDensity } from '@precision-calm/primitives';
+import { useDensity } from '@expo-base/primitives';
 
 export type CardVariant = 'surface' | 'subtle' | 'elevated';
 export type CardPadding = 'default' | 'compact' | 'none';

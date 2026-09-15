@@ -1,4 +1,4 @@
-import { usePrecisionCapability, useOptionalPrecisionCapability } from '@precision-calm/capabilities';
-import { precisionSecureStorageCapability, type PrecisionSecureStorage } from './contracts';
-export function usePrecisionSecureStorage(): PrecisionSecureStorage { return usePrecisionCapability<PrecisionSecureStorage>(precisionSecureStorageCapability); }
-export function useOptionalPrecisionSecureStorage(): PrecisionSecureStorage | null { return useOptionalPrecisionCapability<PrecisionSecureStorage>(precisionSecureStorageCapability); }
+import { useExpoBaseCapability, useOptionalExpoBaseCapability } from '@expo-base/capabilities';
+import { expoBaseSecureStorageCapability, type ExpoBaseSecureStorage } from './contracts';
+export function useExpoBaseSecureStorage(): ExpoBaseSecureStorage { return useExpoBaseCapability<ExpoBaseSecureStorage>(expoBaseSecureStorageCapability); }
+export function useOptionalExpoBaseSecureStorage(): ExpoBaseSecureStorage | null { return useOptionalExpoBaseCapability<ExpoBaseSecureStorage>(expoBaseSecureStorageCapability); }

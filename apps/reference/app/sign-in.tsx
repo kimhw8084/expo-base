@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Button, Card, ScrollScreen, Text, TextField, VStack } from '@precision-calm/ui';
-import { usePrecisionAuth } from '@precision-calm/runtime';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+import { Button, Card, ScrollScreen, Text, TextField, VStack } from '@expo-base/ui';
+import { useExpoBaseAuth } from '@expo-base/runtime';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 
 export default function SignInScreen() {
-  const auth = usePrecisionAuth();
-  const router = usePrecisionRouter();
+  const auth = useExpoBaseAuth();
+  const router = useExpoBaseRouter();
   const [email, setEmail] = useState('reference@example.com');
   const [password, setPassword] = useState('demo');
   const submit = async () => {

@@ -1,8 +1,8 @@
-import { createPrecisionLinkingRuntime } from '@precision-calm/linking';
-import { ExpoExternalNavigationAdapter } from '@precision-calm/linking-expo';
+import { createExpoBaseLinkingRuntime } from '@expo-base/linking';
+import { ExpoExternalNavigationAdapter } from '@expo-base/linking-expo';
 import { authReturnIntent } from './auth';
 
-export const linking = createPrecisionLinkingRuntime({
+export const linking = createExpoBaseLinkingRuntime({
   adapter: new ExpoExternalNavigationAdapter(),
   externalPolicy: {
     allowHttps: true,
@@ -15,7 +15,7 @@ export const linking = createPrecisionLinkingRuntime({
   },
   onIncomingRoute: (route) => { authReturnIntent.capture(route); },
   incomingPolicy: {
-    appSchemes: ['precision-calm', 'expo-base'],
+    appSchemes: ['expo-base', 'expo-base'],
     universalLinkHosts: [],
     callbackRules: [{ path: '/auth/callback', allowedQueryKeys: ['code', 'state', 'error', 'error_description'], requiredQueryKeys: ['state'] }],
     rejectedRoute: '/link-error',

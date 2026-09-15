@@ -1,9 +1,9 @@
-import { Button, Card, KeyValueList, ScrollScreen, Text, VStack } from '@precision-calm/ui';
-import { usePrecisionAuth, usePrecisionAuthAccess } from '@precision-calm/runtime';
+import { Button, Card, KeyValueList, ScrollScreen, Text, VStack } from '@expo-base/ui';
+import { useExpoBaseAuth, useExpoBaseAuthAccess } from '@expo-base/runtime';
 
 export default function AuthSessionAcceptanceScreen() {
-  const auth = usePrecisionAuth();
-  const access = usePrecisionAuthAccess();
+  const auth = useExpoBaseAuth();
+  const access = useExpoBaseAuthAccess();
   return (
     <ScrollScreen>
       <Card>

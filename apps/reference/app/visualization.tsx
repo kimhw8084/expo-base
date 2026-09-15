@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
-import { formatCurrency } from '@precision-calm/platform';
-import { Page, PageHeader, ScrollScreen, Section, SectionHeader, AdaptiveGrid, AdaptiveGridItem } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
-import { Badge, Button, Card } from '@precision-calm/ui';
-import { BarChart, DonutChart, LineChart, ProgressBar, ProgressRing, Sparkline, type ChartDatum } from '@precision-calm/ui';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
+import { formatCurrency } from '@expo-base/platform';
+import { Page, PageHeader, ScrollScreen, Section, SectionHeader, AdaptiveGrid, AdaptiveGridItem } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
+import { Badge, Button, Card } from '@expo-base/ui';
+import { BarChart, DonutChart, LineChart, ProgressBar, ProgressRing, Sparkline, type ChartDatum } from '@expo-base/ui';
 import { useReferenceCopy } from '../ReferenceCopy';
 
 const valueTrend: ChartDatum[] = [
@@ -16,7 +16,7 @@ const categories: ChartDatum[] = [
 ];
 
 export default function VisualizationReferenceScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   const [selected, setSelected] = useState<ChartDatum | undefined>();
   return (

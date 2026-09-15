@@ -1,7 +1,7 @@
 import { Pressable } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Icon, type IconName } from '@precision-calm/icons';
-import { Text, useInteractionState } from '@precision-calm/primitives';
+import { Icon, type IconName } from '@expo-base/icons';
+import { Text, useInteractionState } from '@expo-base/primitives';
 
 export interface ChipProps { label: string; selected?: boolean; disabled?: boolean; icon?: IconName; accessibilityLabel?: string; onPress: () => void; }
 export function Chip({ label, selected = false, disabled = false, icon, accessibilityLabel, onPress }: ChipProps) {

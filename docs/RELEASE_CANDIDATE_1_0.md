@@ -1,6 +1,9 @@
 # Expo Base 1.0 release-candidate governance
 
-This document records the durable Expo Base 1.0 release-candidate boundary. It does not authorize npm publication, app deployment, or Ternavo migration.
+This document records the durable Expo Base `1.0.0` release-candidate evidence boundary used by
+the tagged baseline. It does not authorize npm publication, app deployment, or Ternavo migration.
+CHG-24 is a follow-up identity change and does not promote a new release or inherit this
+source-tree-bound evidence without rerunning the relevant gates.
 
 ## Identity
 

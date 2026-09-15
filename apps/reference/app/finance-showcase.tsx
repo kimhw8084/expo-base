@@ -1,5 +1,5 @@
-import { Page, PageHeader, ScrollScreen, Section, AdaptiveGrid, AdaptiveGridItem, ChartPanel, MetricTrendCard, BreakdownPanel, Card, Text, VStack, HStack, Button, DonutChart, AdaptiveDataTable, type DataColumn } from '@precision-calm/ui';
-import { MultiLineChart, WaterfallChart, BulletChart } from '@precision-calm/visualization-advanced';
+import { Page, PageHeader, ScrollScreen, Section, AdaptiveGrid, AdaptiveGridItem, ChartPanel, MetricTrendCard, BreakdownPanel, Card, Text, VStack, HStack, Button, DonutChart, AdaptiveDataTable, type DataColumn } from '@expo-base/ui';
+import { MultiLineChart, WaterfallChart, BulletChart } from '@expo-base/visualization-advanced';
 import { useReferenceCopy } from '../ReferenceCopy';
 import { showcaseBreakdown, showcaseSeries, showcaseTable, showcaseTrend, showcaseWaterfall } from '../showcaseData';
 

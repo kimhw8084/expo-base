@@ -2,8 +2,8 @@ import type { ReactNode } from 'react';
 import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Icon } from '@precision-calm/icons';
-import { Text, VStack, useInteractionState } from '@precision-calm/primitives';
+import { Icon } from '@expo-base/icons';
+import { Text, VStack, useInteractionState } from '@expo-base/primitives';
 
 export interface DisclosureProps {
   id: string;

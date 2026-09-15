@@ -1,5 +1,8 @@
 # Expo Base Runtime RC2
 
+Historical release note: this RC record preserves the API names used at the time. Current Expo
+Base guidance uses the converged names in the live packages and generator.
+
 Runtime RC2 stays focused on real rendered behavior rather than new platform breadth.
 
 ## Added

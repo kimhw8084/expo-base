@@ -32,7 +32,7 @@ try {
   assert.equal(mod.resolveIncomingLink('javascript:alert(1)',incoming).route,'/link-error');
 
   class MemoryAdapter { constructor(){this.opened=[];this.available=true;} async canOpen(){return this.available;} async open(url){this.opened.push(url);} }
-  const adapter=new MemoryAdapter(); const observed=[]; const runtime=mod.createPrecisionLinkingRuntime({adapter,externalPolicy:external,incomingPolicy:incoming,onIncomingRoute:(route)=>observed.push(route)});
+  const adapter=new MemoryAdapter(); const observed=[]; const runtime=mod.createExpoBaseLinkingRuntime({adapter,externalPolicy:external,incomingPolicy:incoming,onIncomingRoute:(route)=>observed.push(route)});
   assert.equal(runtime.redirectIncoming('demo://cards/42'),'/cards/42'); assert.deepEqual(observed,['/cards/42']);
   assert.equal(runtime.redirectIncoming('javascript:alert(1)'),'/link-error'); assert.deepEqual(observed,['/cards/42']);
   assert.equal((await runtime.openExternal('https://example.com/safe')).status,'opened'); assert.equal(adapter.opened.length,1);

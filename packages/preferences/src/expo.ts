@@ -1,32 +1,32 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult } from '@precision-calm/capabilities';
-import type { PrecisionPreferences, PrecisionPreferencesOptions } from './contracts';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult } from '@expo-base/capabilities';
+import type { ExpoBasePreferences, ExpoBasePreferencesOptions } from './contracts';
 
 /** AsyncStorage on native and explicit browser localStorage for non-secret device preferences. */
-export class DevicePreferences implements PrecisionPreferences {
+export class DevicePreferences implements ExpoBasePreferences {
   readonly #prefix: string;
-  constructor(options: PrecisionPreferencesOptions) {
+  constructor(options: ExpoBasePreferencesOptions) {
     const namespace = options.namespace.trim();
     if (!/^[a-z][a-z0-9._-]{0,63}$/i.test(namespace)) throw new Error('Preference namespace must be a short safe identifier.');
     this.#prefix = `${namespace}:v${options.version ?? 1}:`;
   }
-  async availability(): Promise<PrecisionCapabilityAvailability> {
+  async availability(): Promise<ExpoBaseCapabilityAvailability> {
     if (Platform.OS !== 'web') return { status: 'available' };
     try { return this.#webStorage() ? { status: 'available' } : { status: 'unavailable', reason: 'temporarily-unavailable' }; }
     catch { return { status: 'unavailable', reason: 'temporarily-unavailable' }; }
   }
-  async get(key: string): Promise<PrecisionCapabilityResult<string | null>> {
+  async get(key: string): Promise<ExpoBaseCapabilityResult<string | null>> {
     const availability = await this.availability(); if (availability.status !== 'available') return availability;
     try { return { status: 'success', value: Platform.OS === 'web' ? this.#webStorage().getItem(this.#key(key)) : await AsyncStorage.getItem(this.#key(key)) }; }
     catch { return { status: 'error', code: 'preferences_read_failed' }; }
   }
-  async set(key: string, value: string): Promise<PrecisionCapabilityResult<undefined>> {
+  async set(key: string, value: string): Promise<ExpoBaseCapabilityResult<undefined>> {
     const availability = await this.availability(); if (availability.status !== 'available') return availability;
     try { if (Platform.OS === 'web') this.#webStorage().setItem(this.#key(key), value); else await AsyncStorage.setItem(this.#key(key), value); return { status: 'success', value: undefined }; }
     catch { return { status: 'error', code: 'preferences_write_failed' }; }
   }
-  async remove(key: string): Promise<PrecisionCapabilityResult<undefined>> {
+  async remove(key: string): Promise<ExpoBaseCapabilityResult<undefined>> {
     const availability = await this.availability(); if (availability.status !== 'available') return availability;
     try { if (Platform.OS === 'web') this.#webStorage().removeItem(this.#key(key)); else await AsyncStorage.removeItem(this.#key(key)); return { status: 'success', value: undefined }; }
     catch { return { status: 'error', code: 'preferences_remove_failed' }; }

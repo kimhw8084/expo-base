@@ -1,13 +1,13 @@
 import type { PropsWithChildren } from 'react';
 import Animated, { FadeIn, FadeOut, ReduceMotion, SlideInDown, SlideOutDown, ZoomIn, ZoomOut } from 'react-native-reanimated';
 import { useUnistyles } from 'react-native-unistyles';
-import { usePrecisionReducedMotion } from './usePrecisionReducedMotion';
+import { useExpoBaseReducedMotion } from './useExpoBaseReducedMotion';
 
 export type RevealKind = 'fade' | 'slide' | 'scale';
 
 export function Reveal({ children, kind = 'fade' }: PropsWithChildren<{ kind?: RevealKind | undefined }>) {
   const { theme } = useUnistyles();
-  const reducedMotion = usePrecisionReducedMotion();
+  const reducedMotion = useExpoBaseReducedMotion();
   const reduceMotion = reducedMotion ? ReduceMotion.Always : ReduceMotion.System;
   const entering = kind === 'slide'
     ? SlideInDown.duration(theme.motion.duration.normal).reduceMotion(reduceMotion)

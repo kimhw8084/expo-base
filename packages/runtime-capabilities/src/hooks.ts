@@ -1,7 +1,7 @@
-import { usePrecisionCapability, useOptionalPrecisionCapability } from '@precision-calm/capabilities';
-import { precisionAppLifecycleCapability, precisionConnectivityCapability, type PrecisionAppLifecycle, type PrecisionConnectivity } from './contracts';
+import { useExpoBaseCapability, useOptionalExpoBaseCapability } from '@expo-base/capabilities';
+import { expoBaseAppLifecycleCapability, expoBaseConnectivityCapability, type ExpoBaseAppLifecycle, type ExpoBaseConnectivity } from './contracts';
 
-export function usePrecisionConnectivity(): PrecisionConnectivity { return usePrecisionCapability<PrecisionConnectivity>(precisionConnectivityCapability); }
-export function useOptionalPrecisionConnectivity(): PrecisionConnectivity | null { return useOptionalPrecisionCapability<PrecisionConnectivity>(precisionConnectivityCapability); }
-export function usePrecisionAppLifecycle(): PrecisionAppLifecycle { return usePrecisionCapability<PrecisionAppLifecycle>(precisionAppLifecycleCapability); }
-export function useOptionalPrecisionAppLifecycle(): PrecisionAppLifecycle | null { return useOptionalPrecisionCapability<PrecisionAppLifecycle>(precisionAppLifecycleCapability); }
+export function useExpoBaseConnectivity(): ExpoBaseConnectivity { return useExpoBaseCapability<ExpoBaseConnectivity>(expoBaseConnectivityCapability); }
+export function useOptionalExpoBaseConnectivity(): ExpoBaseConnectivity | null { return useOptionalExpoBaseCapability<ExpoBaseConnectivity>(expoBaseConnectivityCapability); }
+export function useExpoBaseAppLifecycle(): ExpoBaseAppLifecycle { return useExpoBaseCapability<ExpoBaseAppLifecycle>(expoBaseAppLifecycleCapability); }
+export function useOptionalExpoBaseAppLifecycle(): ExpoBaseAppLifecycle | null { return useOptionalExpoBaseCapability<ExpoBaseAppLifecycle>(expoBaseAppLifecycleCapability); }

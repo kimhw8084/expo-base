@@ -8,34 +8,34 @@
     "animations": "disabled"
   },
   "stateMatrix": [
-    { "owner": "Button", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "disabled", "loading", "destructive", "compact", "dark", "rtl", "long-content"] },
-    { "owner": "IconButton", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "disabled", "loading", "destructive", "compact", "dark"] },
-    { "owner": "Link", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "disabled", "dark", "rtl"] },
-    { "owner": "Chip", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "selected", "disabled", "compact", "dark", "rtl", "long-content"] },
-    { "owner": "SegmentedControl", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "selected", "disabled", "compact", "dark", "rtl", "long-content"] },
-    { "owner": "Disclosure", "package": "@precision-calm/ui", "states": ["collapsed", "expanded", "focus-visible", "pressed", "disabled", "compact", "dark", "rtl", "long-content", "reduced-motion"] },
-    { "owner": "TextField", "package": "@precision-calm/ui", "states": ["enabled", "hover", "focus-visible", "disabled", "error", "loading", "compact", "dark", "rtl", "long-content"] },
-    { "owner": "SelectField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "expanded", "selected", "disabled", "error", "loading", "empty", "compact", "dark", "rtl", "long-content"] },
-    { "owner": "Checkbox", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "checked", "mixed", "disabled", "error", "compact", "dark", "rtl"] },
-    { "owner": "RadioGroup", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "selected", "disabled", "error", "compact", "dark", "rtl"] },
-    { "owner": "SwitchField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "checked", "disabled", "error", "compact", "dark", "rtl"] },
-    { "owner": "CodeField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "loading", "compact", "dark", "rtl"] },
-    { "owner": "NumberStepper", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "pressed", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] },
-    { "owner": "ProgressBar", "package": "@precision-calm/ui", "states": ["determinate", "indeterminate", "complete", "error", "compact", "dark", "rtl", "reduced-motion"] },
-    { "owner": "StepIndicator", "package": "@precision-calm/ui", "states": ["complete", "current", "upcoming", "compact", "dark", "rtl", "long-content"] },
-    { "owner": "ActionMenu", "package": "@precision-calm/ui", "states": ["collapsed", "expanded", "focus-visible", "selected", "disabled", "destructive", "compact", "dark", "rtl", "long-content"] },
-    { "owner": "Dialog", "package": "@precision-calm/ui", "states": ["open", "focus-visible", "loading", "destructive", "compact", "dark", "rtl", "long-content", "reduced-motion"] },
-    { "owner": "StateView", "package": "@precision-calm/ui", "states": ["empty", "error", "offline", "loading", "success", "compact", "dark", "rtl", "long-content"] },
-    { "owner": "AdaptiveDataTable", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "selected", "mixed", "loading", "empty", "error", "compact", "dark", "rtl", "long-content"] },
-    { "owner": "MediaFrame", "package": "@precision-calm/ui", "states": ["loading", "success", "error", "compact", "dark", "rtl"] },
-    { "owner": "ChartFrame", "package": "@precision-calm/ui", "states": ["loading", "success", "empty", "error", "selected", "compact", "dark", "rtl", "reduced-motion"] }
-    ,{ "owner": "Avatar", "package": "@precision-calm/ui", "states": ["image", "initials", "loading", "error", "decorative", "compact", "dark", "rtl"] }
-    ,{ "owner": "CopyableValue", "package": "@precision-calm/sharing", "states": ["available", "loading", "success", "error", "sensitive-hidden", "sensitive-revealed", "disabled", "dark", "rtl", "long-content"] }
-    ,{ "owner": "DateField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] }
-    ,{ "owner": "TimeField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] }
-    ,{ "owner": "DateRangeField", "package": "@precision-calm/ui", "states": ["enabled", "focus-visible", "disabled", "error", "invalid-range", "compact", "dark", "rtl", "long-content"] }
-    ,{ "owner": "StackedBarChart", "package": "@precision-calm/ui", "states": ["loading", "success", "empty", "error", "selected", "compact", "dark", "rtl", "reduced-motion"] }
-    ,{ "owner": "AdvancedVisualizationModule", "package": "@precision-calm/visualization-advanced", "states": ["ready", "loading", "empty", "error", "selected", "compact", "dark", "rtl", "long-content", "reduced-motion"] }
+    { "owner": "Button", "package": "@expo-base/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "disabled", "loading", "destructive", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "IconButton", "package": "@expo-base/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "disabled", "loading", "destructive", "compact", "dark"] },
+    { "owner": "Link", "package": "@expo-base/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "disabled", "dark", "rtl"] },
+    { "owner": "Chip", "package": "@expo-base/ui", "states": ["enabled", "hover", "focus-visible", "pressed", "selected", "disabled", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "SegmentedControl", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "pressed", "selected", "disabled", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "Disclosure", "package": "@expo-base/ui", "states": ["collapsed", "expanded", "focus-visible", "pressed", "disabled", "compact", "dark", "rtl", "long-content", "reduced-motion"] },
+    { "owner": "TextField", "package": "@expo-base/ui", "states": ["enabled", "hover", "focus-visible", "disabled", "error", "loading", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "SelectField", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "expanded", "selected", "disabled", "error", "loading", "empty", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "Checkbox", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "pressed", "checked", "mixed", "disabled", "error", "compact", "dark", "rtl"] },
+    { "owner": "RadioGroup", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "pressed", "selected", "disabled", "error", "compact", "dark", "rtl"] },
+    { "owner": "SwitchField", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "pressed", "checked", "disabled", "error", "compact", "dark", "rtl"] },
+    { "owner": "CodeField", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "disabled", "error", "loading", "compact", "dark", "rtl"] },
+    { "owner": "NumberStepper", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "pressed", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] },
+    { "owner": "ProgressBar", "package": "@expo-base/ui", "states": ["determinate", "indeterminate", "complete", "error", "compact", "dark", "rtl", "reduced-motion"] },
+    { "owner": "StepIndicator", "package": "@expo-base/ui", "states": ["complete", "current", "upcoming", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "ActionMenu", "package": "@expo-base/ui", "states": ["collapsed", "expanded", "focus-visible", "selected", "disabled", "destructive", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "Dialog", "package": "@expo-base/ui", "states": ["open", "focus-visible", "loading", "destructive", "compact", "dark", "rtl", "long-content", "reduced-motion"] },
+    { "owner": "StateView", "package": "@expo-base/ui", "states": ["empty", "error", "offline", "loading", "success", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "AdaptiveDataTable", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "selected", "mixed", "loading", "empty", "error", "compact", "dark", "rtl", "long-content"] },
+    { "owner": "MediaFrame", "package": "@expo-base/ui", "states": ["loading", "success", "error", "compact", "dark", "rtl"] },
+    { "owner": "ChartFrame", "package": "@expo-base/ui", "states": ["loading", "success", "empty", "error", "selected", "compact", "dark", "rtl", "reduced-motion"] }
+    ,{ "owner": "Avatar", "package": "@expo-base/ui", "states": ["image", "initials", "loading", "error", "decorative", "compact", "dark", "rtl"] }
+    ,{ "owner": "CopyableValue", "package": "@expo-base/sharing", "states": ["available", "loading", "success", "error", "sensitive-hidden", "sensitive-revealed", "disabled", "dark", "rtl", "long-content"] }
+    ,{ "owner": "DateField", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] }
+    ,{ "owner": "TimeField", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "disabled", "error", "minimum", "maximum", "compact", "dark", "rtl"] }
+    ,{ "owner": "DateRangeField", "package": "@expo-base/ui", "states": ["enabled", "focus-visible", "disabled", "error", "invalid-range", "compact", "dark", "rtl", "long-content"] }
+    ,{ "owner": "StackedBarChart", "package": "@expo-base/ui", "states": ["loading", "success", "empty", "error", "selected", "compact", "dark", "rtl", "reduced-motion"] }
+    ,{ "owner": "AdvancedVisualizationModule", "package": "@expo-base/visualization-advanced", "states": ["ready", "loading", "empty", "error", "selected", "compact", "dark", "rtl", "long-content", "reduced-motion"] }
   ],
   "visualBaselines": [
     { "id": "actions-wide", "route": "/system", "viewport": "wide", "theme": "light", "density": "comfortable", "targetTestId": "golden-board-actions" },
@@ -74,7 +74,7 @@
         "launchLabel": "Navigation",
         "classes": [
           { "name": "heading", "source": "Navigation acceptance surface" },
-          { "name": "description", "source": "The visual navigation system is route-library agnostic. Expo Router integration is isolated behind @precision-calm/navigation-router." },
+          { "name": "description", "source": "The visual navigation system is route-library agnostic. Expo Router integration is isolated behind @expo-base/navigation-router." },
           { "name": "action", "source": "Home" },
           { "name": "tab", "source": "Overview" }
         ],

@@ -1,13 +1,13 @@
 # Internationalization and direction
 
-`@precision-calm/i18n` is the always-on locale kernel. It deliberately uses the platform `Intl`
+`@expo-base/i18n` is the always-on locale kernel. It deliberately uses the platform `Intl`
 implementation and a small message contract instead of a translation vendor or a mandatory large
 dependency.
 
-Configure it once through `PrecisionRuntimeProvider`:
+Configure it once through `ExpoBaseRuntimeProvider`:
 
 ```tsx
-<PrecisionRuntimeProvider
+<ExpoBaseRuntimeProvider
   i18n={{
     locale: productLocale,
     fallbackLocale: 'en-US',
@@ -15,7 +15,7 @@ Configure it once through `PrecisionRuntimeProvider`:
   }}
 >
   <App />
-</PrecisionRuntimeProvider>
+</ExpoBaseRuntimeProvider>
 ```
 
 The kernel owns locale normalization/detection, fallback lookup, plural selection, interpolation,
@@ -23,7 +23,7 @@ number/currency/percent/date formatting, timezone-aware dates, collation, direct
 icon mirroring, and deterministic pseudo locales. Products own message IDs, translated strings,
 business copy, and any translation-management integration.
 
-Use `usePrecisionI18n()` for `t`, formatters, and locale-aware comparison. Use semantic
+Use `useExpoBaseI18n()` for `t`, formatters, and locale-aware comparison. Use semantic
 `start`/`end` text alignment and shared layout owners; do not branch feature geometry for RTL.
 `en-XA` is a deterministic expanded pseudo-LTR locale, while `en-XB` combines expanded copy with
 RTL direction. They are stress modes, not production locales.

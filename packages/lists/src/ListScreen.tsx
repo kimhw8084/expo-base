@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from 'react';
 import { FlatList, View, type ListRenderItemInfo } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import type { SpacingToken } from '@precision-calm/tokens';
+import type { SpacingToken } from '@expo-base/tokens';
 
 export interface ListScreenProps<T> {
   items: readonly T[];

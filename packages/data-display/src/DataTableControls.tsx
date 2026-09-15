@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { View } from 'react-native';
-import { Button } from '@precision-calm/components';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Button } from '@expo-base/components';
+import { Text, VStack } from '@expo-base/primitives';
 import type { DataColumn, DataColumnVisibility } from './AdaptiveDataTable';
 
 /** Controlled column visibility that protects the primary identity column. */

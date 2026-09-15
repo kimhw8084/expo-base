@@ -5,9 +5,9 @@ import type {
   SessionSecurityState,
   SessionSecurityStatus,
   SessionUnlockResult,
-} from '@precision-calm/session-security';
+} from '@expo-base/session-security';
 
-export interface PrecisionSessionSecurityRuntime extends SessionSecurityState {
+export interface ExpoBaseSessionSecurityRuntime extends SessionSecurityState {
   status: SessionSecurityStatus;
   errorCode: 'session_security_unavailable' | null;
   refresh(): Promise<void>;
@@ -15,9 +15,9 @@ export interface PrecisionSessionSecurityRuntime extends SessionSecurityState {
   requestUnlock(): Promise<SessionUnlockResult>;
 }
 
-const PrecisionSessionSecurityContext = createContext<PrecisionSessionSecurityRuntime | null>(null);
+const ExpoBaseSessionSecurityContext = createContext<ExpoBaseSessionSecurityRuntime | null>(null);
 
-export function PrecisionSessionSecurityProvider({ adapter, children }: PropsWithChildren<{ adapter: SessionSecurityAdapter }>) {
+export function ExpoBaseSessionSecurityProvider({ adapter, children }: PropsWithChildren<{ adapter: SessionSecurityAdapter }>) {
   const [status, setStatus] = useState<SessionSecurityStatus>('loading');
   const [state, setState] = useState<SessionSecurityState>({ locked: true, reason: 'security-policy' });
   const [errorCode, setErrorCode] = useState<'session_security_unavailable' | null>(null);
@@ -118,12 +118,12 @@ export function PrecisionSessionSecurityProvider({ adapter, children }: PropsWit
     return promise;
   }, [adapter, apply]);
 
-  const value = useMemo<PrecisionSessionSecurityRuntime>(() => ({ ...state, status, errorCode, refresh, lock, requestUnlock }), [state, status, errorCode, refresh, lock, requestUnlock]);
-  return <PrecisionSessionSecurityContext.Provider value={value}>{children}</PrecisionSessionSecurityContext.Provider>;
+  const value = useMemo<ExpoBaseSessionSecurityRuntime>(() => ({ ...state, status, errorCode, refresh, lock, requestUnlock }), [state, status, errorCode, refresh, lock, requestUnlock]);
+  return <ExpoBaseSessionSecurityContext.Provider value={value}>{children}</ExpoBaseSessionSecurityContext.Provider>;
 }
 
 
-export interface PrecisionSessionSecurityBootstrapProps extends PropsWithChildren {
+export interface ExpoBaseSessionSecurityBootstrapProps extends PropsWithChildren {
   /** Rendered only while the first local-security resolution is pending. */
   fallback?: ReactNode;
 }
@@ -138,20 +138,20 @@ export interface PrecisionSessionSecurityBootstrapProps extends PropsWithChildre
  * After the initial resolution this boundary stays transparent. Later lock or
  * error transitions continue through the normal protected-route state machine.
  */
-export function PrecisionSessionSecurityBootstrap({ children, fallback = null }: PrecisionSessionSecurityBootstrapProps) {
-  const runtime = useOptionalPrecisionSessionSecurity();
+export function ExpoBaseSessionSecurityBootstrap({ children, fallback = null }: ExpoBaseSessionSecurityBootstrapProps) {
+  const runtime = useOptionalExpoBaseSessionSecurity();
   const resolvedOnce = useRef(runtime ? runtime.status !== 'loading' : true);
   if (runtime && runtime.status !== 'loading') resolvedOnce.current = true;
   if (!resolvedOnce.current) return fallback;
   return children;
 }
 
-export function useOptionalPrecisionSessionSecurity(): PrecisionSessionSecurityRuntime | null {
-  return useContext(PrecisionSessionSecurityContext);
+export function useOptionalExpoBaseSessionSecurity(): ExpoBaseSessionSecurityRuntime | null {
+  return useContext(ExpoBaseSessionSecurityContext);
 }
 
-export function usePrecisionSessionSecurity(): PrecisionSessionSecurityRuntime {
-  const runtime = useOptionalPrecisionSessionSecurity();
-  if (!runtime) throw new Error('usePrecisionSessionSecurity requires PrecisionRuntimeProvider with sessionSecurity configured.');
+export function useExpoBaseSessionSecurity(): ExpoBaseSessionSecurityRuntime {
+  const runtime = useOptionalExpoBaseSessionSecurity();
+  if (!runtime) throw new Error('useExpoBaseSessionSecurity requires ExpoBaseRuntimeProvider with sessionSecurity configured.');
   return runtime;
 }

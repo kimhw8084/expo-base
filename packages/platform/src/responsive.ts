@@ -1,4 +1,4 @@
-import type { BreakpointName } from '@precision-calm/tokens';
+import type { BreakpointName } from '@expo-base/tokens';
 
 export interface CapabilityThresholds {
   compact: number;

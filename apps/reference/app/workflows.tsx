@@ -1,25 +1,25 @@
 import { useState } from 'react';
 import { Alert } from 'react-native';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 import {
   CommandLauncher,
   CompletionLayout,
   OfflineWorkspaceLayout,
   PermissionRationaleLayout,
-  type PrecisionCommand,
-} from '@precision-calm/ui';
-import { Button, Card, HStack, ScrollScreen, Text, VStack } from '@precision-calm/ui';
+  type ExpoBaseCommand,
+} from '@expo-base/ui';
+import { Button, Card, HStack, ScrollScreen, Text, VStack } from '@expo-base/ui';
 import { useReferenceCopy } from '../ReferenceCopy';
 
 type WorkflowView = 'offline' | 'completion' | 'permission';
 
 /** Living specification for the Phase 5 workflow owners. */
 export default function WorkflowLabScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   const [view, setView] = useState<WorkflowView>('offline');
   const [launcherOpen, setLauncherOpen] = useState(false);
-  const commands: readonly PrecisionCommand[] = [
+  const commands: readonly ExpoBaseCommand[] = [
     { id: 'offline', label: copy('Show offline workspace'), description: copy('Retain usable content with an honest offline status.'), shortcut: 'O', onSelect: () => setView('offline') },
     { id: 'completion', label: copy('Show completion handoff'), description: copy('End a bounded workflow with clear next actions.'), shortcut: 'C', onSelect: () => setView('completion') },
     { id: 'permission', label: copy('Show permission rationale'), description: copy('Explain an optional capability before requesting it.'), shortcut: 'P', onSelect: () => setView('permission') },

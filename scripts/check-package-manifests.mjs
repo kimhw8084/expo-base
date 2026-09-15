@@ -3,7 +3,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 const root = process.cwd();
-const compatibility = JSON.parse(fs.readFileSync(path.join(root, 'precision.compatibility.json'), 'utf8'));
+const compatibility = JSON.parse(fs.readFileSync(path.join(root, 'expo-base.compatibility.json'), 'utf8'));
 const versionKeys = new Set(Object.keys(compatibility).filter((key) => key !== 'schemaVersion'));
 const violations = [];
 const packageByName = new Map();
@@ -41,7 +41,7 @@ for (const [name, record] of packageByName) {
     if (versionKeys.has(dep) && version !== compatibility[dep]) {
       violations.push(`${path.relative(root, manifestPath)}: ${dep}=${version} but compatibility manifest requires ${compatibility[dep]}`);
     }
-    if (!dep.startsWith('@precision-calm/') && version === '*') {
+    if (!dep.startsWith('@expo-base/') && version === '*') {
       violations.push(`${path.relative(root, manifestPath)}: external dependency ${dep} must not use wildcard version`);
     }
   }
@@ -51,7 +51,7 @@ for (const [name, record] of packageByName) {
     const text = fs.readFileSync(file, 'utf8');
     const imports = [...text.matchAll(/(?:from\s+|import\s*\(?\s*)['"]([^'"]+)['"]/g)].map((match) => match[1]);
     for (const specifier of imports) {
-      if (!specifier.startsWith('@precision-calm/')) continue;
+      if (!specifier.startsWith('@expo-base/')) continue;
       const depName = specifier.split('/').slice(0, 2).join('/');
       if (depName === name) continue;
       if (!declared[depName]) violations.push(`${path.relative(root, file)} imports undeclared workspace dependency ${depName}`);

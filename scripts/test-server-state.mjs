@@ -22,23 +22,23 @@ if (compile.status !== 0) {
 try {
   fs.writeFileSync(path.join(outDir, 'package.json'), '{"type":"commonjs"}\n');
   const require = createRequire(import.meta.url);
-  const { createPrecisionServerStateClient } = require(path.join(outDir, 'client.js'));
-  const { PrecisionServerError } = require(path.join(outDir, 'errors.js'));
-  const { precisionQueryKey } = require(path.join(outDir, 'keys.js'));
-  const { PrecisionMutationController, precisionOptimisticUpdate } = require(path.join(outDir, 'mutation.js'));
-  const { toPrecisionAsyncState } = require(path.join(outDir, 'presentation.js'));
-  const { resolvePrecisionQueryState } = require(path.join(outDir, 'usePrecisionQuery.js'));
+  const { createExpoBaseServerStateClient } = require(path.join(outDir, 'client.js'));
+  const { ExpoBaseServerError } = require(path.join(outDir, 'errors.js'));
+  const { expoBaseQueryKey } = require(path.join(outDir, 'keys.js'));
+  const { ExpoBaseMutationController, expoBaseOptimisticUpdate } = require(path.join(outDir, 'mutation.js'));
+  const { toExpoBaseAsyncState } = require(path.join(outDir, 'presentation.js'));
+  const { resolveExpoBaseQueryState } = require(path.join(outDir, 'useExpoBaseQuery.js'));
 
-  const canonicalA = precisionQueryKey.list('projects', { status: 'open', page: 2 });
-  const canonicalB = precisionQueryKey.list('projects', { page: 2, status: 'open' });
+  const canonicalA = expoBaseQueryKey.list('projects', { status: 'open', page: 2 });
+  const canonicalB = expoBaseQueryKey.list('projects', { page: 2, status: 'open' });
   assert.deepEqual(canonicalA, canonicalB, 'query key objects must be canonical regardless of property order');
-  assert.deepEqual(precisionQueryKey.entity('projects', 'p1'), ['projects', 'entity', 'p1']);
-  assert.deepEqual(precisionQueryKey.page('projects', { page: 1, pageSize: 25, filters: { owner: 'me' } }), ['projects', 'page', { filters: { owner: 'me' }, page: 1, pageSize: 25 }]);
-  assert.deepEqual(precisionQueryKey.cursor('projects', { cursor: null, limit: 20 }), ['projects', 'cursor', { cursor: null, filters: {}, limit: 20 }]);
-  assert.throws(() => precisionQueryKey.list('projects', { bad: undefined }), /cannot be undefined/);
+  assert.deepEqual(expoBaseQueryKey.entity('projects', 'p1'), ['projects', 'entity', 'p1']);
+  assert.deepEqual(expoBaseQueryKey.page('projects', { page: 1, pageSize: 25, filters: { owner: 'me' } }), ['projects', 'page', { filters: { owner: 'me' }, page: 1, pageSize: 25 }]);
+  assert.deepEqual(expoBaseQueryKey.cursor('projects', { cursor: null, limit: 20 }), ['projects', 'cursor', { cursor: null, filters: {}, limit: 20 }]);
+  assert.throws(() => expoBaseQueryKey.list('projects', { bad: undefined }), /cannot be undefined/);
 
-  const key = precisionQueryKey.list('projects');
-  const client = createPrecisionServerStateClient({ kind: 'session', id: 'user-a', revision: 1 }, { staleTimeMs: 60_000 });
+  const key = expoBaseQueryKey.list('projects');
+  const client = createExpoBaseServerStateClient({ kind: 'session', id: 'user-a', revision: 1 }, { staleTimeMs: 60_000 });
   let loadCount = 0;
   const shared = deferred();
   const load = ({ signal }) => {
@@ -58,11 +58,11 @@ try {
 
   let retryAttempts = 0;
   const retryResult = await client.fetch({
-    key: precisionQueryKey.entity('projects', 'retry'),
+    key: expoBaseQueryKey.entity('projects', 'retry'),
     retry: { retries: 2, delayMs: () => 0 },
     query: async () => {
       retryAttempts += 1;
-      if (retryAttempts < 3) throw new PrecisionServerError('unavailable', 'Temporarily unavailable.');
+      if (retryAttempts < 3) throw new ExpoBaseServerError('unavailable', 'Temporarily unavailable.');
       return { id: 'retry' };
     },
   });
@@ -70,14 +70,14 @@ try {
   assert.equal(retryResult.id, 'retry');
   let permanentAttempts = 0;
   await assert.rejects(client.fetch({
-    key: precisionQueryKey.entity('projects', 'private'),
+    key: expoBaseQueryKey.entity('projects', 'private'),
     retry: { retries: 5, delayMs: () => 0 },
-    query: async () => { permanentAttempts += 1; throw new PrecisionServerError('unauthorized', 'Sign in again.'); },
+    query: async () => { permanentAttempts += 1; throw new ExpoBaseServerError('unauthorized', 'Sign in again.'); },
   }), (error) => error.kind === 'unauthorized');
   assert.equal(permanentAttempts, 1, 'authorization failures must never auto-retry');
 
   let invalidationLoads = 0;
-  const invalidationKey = precisionQueryKey.entity('projects', 'invalidate');
+  const invalidationKey = expoBaseQueryKey.entity('projects', 'invalidate');
   const invalidationLoader = async () => ({ version: ++invalidationLoads });
   assert.deepEqual(await client.fetch({ key: invalidationKey, query: invalidationLoader }), { version: 1 });
   assert.deepEqual(await client.fetch({ key: invalidationKey, query: invalidationLoader }), { version: 1 });
@@ -86,14 +86,14 @@ try {
   await client.refetch(invalidationKey, { type: 'all' });
   assert.equal(invalidationLoads, 3, 'manual refetch must intentionally reload inactive cached data');
 
-  const staleClient = createPrecisionServerStateClient({ kind: 'public' }, { staleTimeMs: 0, queryRetry: false });
-  const staleKey = precisionQueryKey.list('activity');
+  const staleClient = createExpoBaseServerStateClient({ kind: 'public' }, { staleTimeMs: 0, queryRetry: false });
+  const staleKey = expoBaseQueryKey.list('activity');
   await staleClient.fetch({ key: staleKey, query: async () => ['usable'] });
-  await assert.rejects(staleClient.fetch({ key: staleKey, query: async () => { throw new PrecisionServerError('unavailable', 'Refresh failed.'); } }));
+  await assert.rejects(staleClient.fetch({ key: staleKey, query: async () => { throw new ExpoBaseServerError('unavailable', 'Refresh failed.'); } }));
   assert.deepEqual(staleClient.getData(staleKey), ['usable'], 'refresh failure must retain usable stale data');
 
-  const raceClient = createPrecisionServerStateClient({ kind: 'session', id: 'race-user', revision: 1 }, { queryRetry: false });
-  const raceKey = precisionQueryKey.entity('projects', 'race');
+  const raceClient = createExpoBaseServerStateClient({ kind: 'session', id: 'race-user', revision: 1 }, { queryRetry: false });
+  const raceKey = expoBaseQueryKey.entity('projects', 'race');
   const oldRequest = deferred();
   const oldPromise = raceClient.fetch({ key: raceKey, query: async () => oldRequest.promise });
   const observedOld = oldPromise.catch((error) => error);
@@ -104,8 +104,8 @@ try {
   assert.deepEqual(newValue, { version: 'new' });
   assert.deepEqual(raceClient.getData(raceKey), { version: 'new' }, 'a cancelled late response must not replace newer data');
 
-  const abortClient = createPrecisionServerStateClient({ kind: 'public', id: 'abort' }, { queryRetry: false });
-  const abortKey = precisionQueryKey.entity('projects', 'abort');
+  const abortClient = createExpoBaseServerStateClient({ kind: 'public', id: 'abort' }, { queryRetry: false });
+  const abortKey = expoBaseQueryKey.entity('projects', 'abort');
   let wasAborted = false;
   const abortPromise = abortClient.fetch({
     key: abortKey,
@@ -120,20 +120,20 @@ try {
   assert.equal(wasAborted, true, 'query functions must receive physical cancellation');
   assert.equal(abortClient.getData(abortKey), undefined);
 
-  assert.deepEqual(resolvePrecisionQueryState({ enabled: false, status: 'pending', fetchStatus: 'idle', data: undefined, error: null, isStale: false }), { kind: 'disabled', data: undefined });
-  assert.deepEqual(resolvePrecisionQueryState({ enabled: true, status: 'pending', fetchStatus: 'fetching', data: undefined, error: null, isStale: true }), { kind: 'initial-loading' });
-  const retained = resolvePrecisionQueryState({ enabled: true, status: 'error', fetchStatus: 'idle', data: ['usable'], error: new PrecisionServerError('unavailable', 'Refresh failed.'), isStale: true });
+  assert.deepEqual(resolveExpoBaseQueryState({ enabled: false, status: 'pending', fetchStatus: 'idle', data: undefined, error: null, isStale: false }), { kind: 'disabled', data: undefined });
+  assert.deepEqual(resolveExpoBaseQueryState({ enabled: true, status: 'pending', fetchStatus: 'fetching', data: undefined, error: null, isStale: true }), { kind: 'initial-loading' });
+  const retained = resolveExpoBaseQueryState({ enabled: true, status: 'error', fetchStatus: 'idle', data: ['usable'], error: new ExpoBaseServerError('unavailable', 'Refresh failed.'), isStale: true });
   assert.equal(retained.kind, 'content');
   assert.equal(retained.refresh.status, 'error');
-  assert.deepEqual(toPrecisionAsyncState(retained, 1), { loading: false, error: retained.refresh.error, itemCount: 1 });
-  assert.deepEqual(toPrecisionAsyncState({ kind: 'content', data: ['usable'], freshness: 'stale', refresh: { status: 'refreshing' } }, 1), { loading: true, error: null, itemCount: 1 });
+  assert.deepEqual(toExpoBaseAsyncState(retained, 1), { loading: false, error: retained.refresh.error, itemCount: 1 });
+  assert.deepEqual(toExpoBaseAsyncState({ kind: 'content', data: ['usable'], freshness: 'stale', refresh: { status: 'refreshing' } }, 1), { loading: true, error: null, itemCount: 1 });
 
-  const mutationClient = createPrecisionServerStateClient({ kind: 'session', id: 'mutator', revision: 1 }, { staleTimeMs: 60_000 });
-  const mutationKey = precisionQueryKey.list('tasks');
+  const mutationClient = createExpoBaseServerStateClient({ kind: 'session', id: 'mutator', revision: 1 }, { staleTimeMs: 60_000 });
+  const mutationKey = expoBaseQueryKey.list('tasks');
   mutationClient.setData(mutationKey, [{ id: 'one', done: false }]);
   const mutationGate = deferred();
   let mutationCalls = 0;
-  const singleFlight = new PrecisionMutationController(mutationClient, {
+  const singleFlight = new ExpoBaseMutationController(mutationClient, {
     mutation: async () => { mutationCalls += 1; return mutationGate.promise; },
   });
   const mutationOne = singleFlight.execute({ id: 'one' });
@@ -145,21 +145,21 @@ try {
   assert.equal(singleFlight.getSnapshot().status, 'success');
 
   const optimisticGate = deferred();
-  const optimistic = new PrecisionMutationController(mutationClient, {
+  const optimistic = new ExpoBaseMutationController(mutationClient, {
     mutation: async () => optimisticGate.promise,
-    optimistic: () => [precisionOptimisticUpdate(mutationKey, (current = []) => current.map((task) => ({ ...task, done: true })))],
+    optimistic: () => [expoBaseOptimisticUpdate(mutationKey, (current = []) => current.map((task) => ({ ...task, done: true })))],
   });
   const optimisticPromise = optimistic.execute({ id: 'one' });
   await until(() => mutationClient.getData(mutationKey)?.[0]?.done === true);
-  optimisticGate.reject(new PrecisionServerError('conflict', 'The task changed elsewhere.'));
+  optimisticGate.reject(new ExpoBaseServerError('conflict', 'The task changed elsewhere.'));
   const optimisticOutcome = await optimisticPromise;
   assert.equal(optimisticOutcome.ok, false);
   assert.deepEqual(mutationClient.getData(mutationKey), [{ id: 'one', done: false }], 'failed optimistic mutation must rollback exactly');
 
   let invalidatedLoads = 0;
-  const mutationInvalidationKey = precisionQueryKey.list('tasks-invalidation');
+  const mutationInvalidationKey = expoBaseQueryKey.list('tasks-invalidation');
   await mutationClient.fetch({ key: mutationInvalidationKey, query: async () => [{ id: `load-${++invalidatedLoads}`, done: false }] });
-  const invalidating = new PrecisionMutationController(mutationClient, {
+  const invalidating = new ExpoBaseMutationController(mutationClient, {
     mutation: async () => ({ saved: true }),
     invalidate: [mutationInvalidationKey],
   });
@@ -168,8 +168,8 @@ try {
   assert.equal(invalidatedLoads, 2, 'successful mutation invalidation must make the next query reload');
 
   const replaceGate = deferred();
-  const replaceKey = precisionQueryKey.entity('tasks', 'replace');
-  const replace = new PrecisionMutationController(mutationClient, {
+  const replaceKey = expoBaseQueryKey.entity('tasks', 'replace');
+  const replace = new ExpoBaseMutationController(mutationClient, {
     concurrency: 'replace',
     mutation: async ({ variables }) => variables === 'old' ? replaceGate.promise : 'new',
     onSuccess: (value) => { mutationClient.setData(replaceKey, value); },
@@ -185,7 +185,7 @@ try {
   assert.equal(mutationClient.getData(replaceKey), 'new', 'superseded mutation completion must not commit');
 
   const queueOrder = [];
-  const queue = new PrecisionMutationController(mutationClient, {
+  const queue = new ExpoBaseMutationController(mutationClient, {
     concurrency: 'queue',
     mutation: async ({ variables }) => { queueOrder.push(variables); return variables; },
   });
@@ -193,8 +193,8 @@ try {
   assert.deepEqual(queueOrder, [1, 2, 3]);
   assert.ok(queued.every((outcome) => outcome.ok));
 
-  const scoped = createPrecisionServerStateClient({ kind: 'session', id: 'first-user', revision: 1 });
-  const privateKey = precisionQueryKey.entity('profile', 'me');
+  const scoped = createExpoBaseServerStateClient({ kind: 'session', id: 'first-user', revision: 1 });
+  const privateKey = expoBaseQueryKey.entity('profile', 'me');
   scoped.setData(privateKey, { owner: 'first-user' });
   assert.equal(scoped.resetScope({ kind: 'session', id: 'second-user', revision: 1 }), true);
   assert.equal(scoped.getData(privateKey), undefined, 'a new user scope must start with no previous-user data');

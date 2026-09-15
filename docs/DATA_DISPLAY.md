@@ -10,7 +10,7 @@ Gate 09 establishes the product-neutral primitives used for dense operational an
 - `AdaptiveDataTable` does **not** squeeze a desktop table into a phone. Compact/medium capability regimes render structured records; expanded/wide regimes render a columnar view.
 - `Pagination` uses the shared pure pagination-window solver. `CursorPagination` and
   `InfinitePagination` expose backend-neutral cursor/infinite controls without assuming REST.
-- Currency, percent, and compact-number formatting live in `@precision-calm/platform`; feature screens do not instantiate locale formatters independently.
+- Currency, percent, and compact-number formatting live in `@expo-base/platform`; feature screens do not instantiate locale formatters independently.
 
 ## Accessibility
 

@@ -1,4 +1,4 @@
-import { useOptionalPrecisionCapability, usePrecisionCapability } from '@precision-calm/capabilities';
-import { precisionHapticsCapability, type PrecisionHaptics } from './contracts';
-export function usePrecisionHaptics(): PrecisionHaptics { return usePrecisionCapability<PrecisionHaptics>(precisionHapticsCapability); }
-export function useOptionalPrecisionHaptics(): PrecisionHaptics | null { return useOptionalPrecisionCapability<PrecisionHaptics>(precisionHapticsCapability); }
+import { useOptionalExpoBaseCapability, useExpoBaseCapability } from '@expo-base/capabilities';
+import { expoBaseHapticsCapability, type ExpoBaseHaptics } from './contracts';
+export function useExpoBaseHaptics(): ExpoBaseHaptics { return useExpoBaseCapability<ExpoBaseHaptics>(expoBaseHapticsCapability); }
+export function useOptionalExpoBaseHaptics(): ExpoBaseHaptics | null { return useOptionalExpoBaseCapability<ExpoBaseHaptics>(expoBaseHapticsCapability); }

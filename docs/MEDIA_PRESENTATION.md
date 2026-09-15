@@ -1,6 +1,6 @@
 # Media presentation
 
-`MediaFrame` from `@precision-calm/ui` owns image/media display state: stable aspect geometry,
+`MediaFrame` from `@expo-base/ui` owns image/media display state: stable aspect geometry,
 cover/contain fit, loading placeholder, error fallback, image accessibility, and decorative-media
 semantics. It is a kernel UI owner and has no picker, camera, or native acquisition dependency.
 
@@ -18,7 +18,7 @@ dimensions are known, pass `aspectRatio` so loading and failure preserve page ge
 may provide their own fallback content, but should not rebuild `loading ? spinner : Image` shells.
 
 Acquisition remains separate: select a document, image, or camera asset through the selected
-optional `@precision-calm/media` capability, then pass its product-owned URI/metadata to
+optional `@expo-base/media` capability, then pass its product-owned URI/metadata to
 `MediaFrame`. Uploads, remote storage, transformations, and image editing remain product-owned.
 
 `Avatar` and `AvatarGroup` compose `MediaFrame` for identity presentation. They inherit stable

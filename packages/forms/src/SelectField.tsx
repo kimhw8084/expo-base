@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Platform, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Icon } from '@precision-calm/icons';
-import { MenuGroup, MenuItem, Popover } from '@precision-calm/overlays';
-import { Text, useInteractionState } from '@precision-calm/primitives';
+import { Icon } from '@expo-base/icons';
+import { MenuGroup, MenuItem, Popover } from '@expo-base/overlays';
+import { Text, useInteractionState } from '@expo-base/primitives';
 import { FormField } from './FormField';
 
 export interface SelectOption { value: string; label: string; description?: string | undefined; disabled?: boolean | undefined; }

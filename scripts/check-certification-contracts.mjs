@@ -24,7 +24,7 @@ if (missingStress.length) {
 }
 
 const servicesSource = fs.readFileSync(path.join(appDir, 'services.tsx'), 'utf8');
-const serviceMarkers = ['usePrecisionServices', 'usePrecisionAuth', 'auth.signOut', 'services.storage.get', 'services.analytics.track', 'services.images.resolve'];
+const serviceMarkers = ['useExpoBaseServices', 'useExpoBaseAuth', 'auth.signOut', 'services.storage.get', 'services.analytics.track', 'services.images.resolve'];
 const missingServices = serviceMarkers.filter((marker) => !servicesSource.includes(marker));
 if (missingServices.length) {
   console.error('Services route is missing adapter acceptance cases:\n' + missingServices.map((marker) => `- ${marker}`).join('\n'));
@@ -35,7 +35,7 @@ const authSources = [
   fs.readFileSync(path.join(appDir, 'sign-in.tsx'), 'utf8'),
   fs.readFileSync(path.join(appDir, '_layout.tsx'), 'utf8'),
 ].join('\n');
-const authMarkers = ['auth.signIn', 'consumeReturnIntent', 'ProtectedRouterStack', 'usePrecisionAuthAccess', 'useCaptureReturnIntent'];
+const authMarkers = ['auth.signIn', 'consumeReturnIntent', 'ProtectedRouterStack', 'useExpoBaseAuthAccess', 'useCaptureReturnIntent'];
 const missingAuth = authMarkers.filter((marker) => !authSources.includes(marker));
 if (missingAuth.length) {
   console.error('Auth/session acceptance coverage missing:\n' + missingAuth.map((marker) => `- ${marker}`).join('\n'));
@@ -47,7 +47,7 @@ const authorizationSources = [
   fs.readFileSync(path.join(appDir, 'authorization.tsx'), 'utf8'),
   fs.readFileSync(path.join(appDir, '_layout.tsx'), 'utf8'),
 ].join('\n');
-const authorizationMarkers = ['usePrecisionAuthorizationRequirement', 'CapabilityGate', 'conditionalAuthenticated', 'settings.manage'];
+const authorizationMarkers = ['useExpoBaseAuthorizationRequirement', 'CapabilityGate', 'conditionalAuthenticated', 'settings.manage'];
 const missingAuthorization = authorizationMarkers.filter((marker) => !authorizationSources.includes(marker));
 if (missingAuthorization.length) {
   console.error('Authorization/capability acceptance coverage missing:\n' + missingAuthorization.map((marker) => `- ${marker}`).join('\n'));

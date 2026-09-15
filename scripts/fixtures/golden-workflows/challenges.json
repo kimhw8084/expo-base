@@ -5,7 +5,7 @@
     "pattern": "data-workspace",
     "name": "customers",
     "requiredFiles": ["app/customers.tsx", "app/customers/[id].tsx"],
-    "requiredOwners": ["DataWorkspaceLayout", "ServerStateContent", "usePrecisionQuery", "DataToolbar"]
+    "requiredOwners": ["DataWorkspaceLayout", "ServerStateContent", "useExpoBaseQuery", "DataToolbar"]
   },
   {
     "id": "account-settings",
@@ -14,7 +14,7 @@
     "name": "account-settings",
     "capabilities": ["preferences"],
     "requiredFiles": ["app/account-settings.tsx"],
-    "requiredOwners": ["FormWorkspaceLayout", "usePrecisionMutation", "FormDiscardDialog", "usePrecisionPreferences"]
+    "requiredOwners": ["FormWorkspaceLayout", "useExpoBaseMutation", "FormDiscardDialog", "useExpoBasePreferences"]
   },
   {
     "id": "document-import",
@@ -23,7 +23,7 @@
     "name": "imports",
     "capabilities": ["media"],
     "requiredFiles": ["app/imports.tsx"],
-    "requiredOwners": ["ImportWorkflowLayout", "usePrecisionDocumentPicker", "usePrecisionMutation"]
+    "requiredOwners": ["ImportWorkflowLayout", "useExpoBaseDocumentPicker", "useExpoBaseMutation"]
   },
   {
     "id": "offline-activity",
@@ -32,6 +32,6 @@
     "name": "activity",
     "capabilities": ["runtime-signals"],
     "requiredFiles": ["app/activity.tsx"],
-    "requiredOwners": ["OfflineWorkspaceLayout", "ServerStateContent", "usePrecisionQuery"]
+    "requiredOwners": ["OfflineWorkspaceLayout", "ServerStateContent", "useExpoBaseQuery"]
   }
 ]

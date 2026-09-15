@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { ActionMenu, BottomSheet, Dialog, useOverlayManager } from '@precision-calm/ui';
-import { Page, PageHeader, ScrollScreen, Section } from '@precision-calm/ui';
-import { Badge, Button, Card } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
+import { ActionMenu, BottomSheet, Dialog, useOverlayManager } from '@expo-base/ui';
+import { Page, PageHeader, ScrollScreen, Section } from '@expo-base/ui';
+import { Badge, Button, Card } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
 import { ReferenceBackAction } from '../ReferenceBackAction';
 import { useReferenceCopy } from '../ReferenceCopy';
 

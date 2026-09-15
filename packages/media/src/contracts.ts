@@ -1,9 +1,9 @@
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult, PrecisionPermissionAdapter } from '@precision-calm/capabilities';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult, ExpoBasePermissionAdapter } from '@expo-base/capabilities';
 
-export const precisionDocumentsCapability = 'documents';
-export const precisionMediaCapability = 'media';
+export const expoBaseDocumentsCapability = 'documents';
+export const expoBaseMediaCapability = 'media';
 
-export interface PrecisionAcquiredResource {
+export interface ExpoBaseAcquiredResource {
   uri: string;
   name: string | null;
   mimeType: string | null;
@@ -14,26 +14,26 @@ export interface PrecisionAcquiredResource {
   durationMs?: number | undefined;
 }
 
-export interface PrecisionDocumentPickOptions {
+export interface ExpoBaseDocumentPickOptions {
   mimeTypes?: readonly string[] | undefined;
   multiple?: boolean | undefined;
 }
 
-export interface PrecisionDocumentPicker {
-  availability(): Promise<PrecisionCapabilityAvailability>;
-  pick(options?: PrecisionDocumentPickOptions): Promise<PrecisionCapabilityResult<readonly PrecisionAcquiredResource[]>>;
+export interface ExpoBaseDocumentPicker {
+  availability(): Promise<ExpoBaseCapabilityAvailability>;
+  pick(options?: ExpoBaseDocumentPickOptions): Promise<ExpoBaseCapabilityResult<readonly ExpoBaseAcquiredResource[]>>;
 }
 
-export interface PrecisionMediaPickOptions {
+export interface ExpoBaseMediaPickOptions {
   mediaTypes?: readonly ('image' | 'video')[] | undefined;
   multiple?: boolean | undefined;
   allowsEditing?: boolean | undefined;
 }
 
-export interface PrecisionMediaAcquisition {
-  availability(): Promise<PrecisionCapabilityAvailability>;
-  libraryPermission: PrecisionPermissionAdapter;
-  cameraPermission: PrecisionPermissionAdapter;
-  pickFromLibrary(options?: PrecisionMediaPickOptions): Promise<PrecisionCapabilityResult<readonly PrecisionAcquiredResource[]>>;
-  captureWithCamera(options?: Omit<PrecisionMediaPickOptions, 'multiple'>): Promise<PrecisionCapabilityResult<readonly PrecisionAcquiredResource[]>>;
+export interface ExpoBaseMediaAcquisition {
+  availability(): Promise<ExpoBaseCapabilityAvailability>;
+  libraryPermission: ExpoBasePermissionAdapter;
+  cameraPermission: ExpoBasePermissionAdapter;
+  pickFromLibrary(options?: ExpoBaseMediaPickOptions): Promise<ExpoBaseCapabilityResult<readonly ExpoBaseAcquiredResource[]>>;
+  captureWithCamera(options?: Omit<ExpoBaseMediaPickOptions, 'multiple'>): Promise<ExpoBaseCapabilityResult<readonly ExpoBaseAcquiredResource[]>>;
 }

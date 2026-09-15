@@ -13,7 +13,7 @@
         "components.actions"
       ],
       "owner": "Button",
-      "package": "@precision-calm/components",
+      "package": "@expo-base/components",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -110,7 +110,7 @@
         "components.identity-status"
       ],
       "owner": "Avatar",
-      "package": "@precision-calm/components",
+      "package": "@expo-base/components",
       "interactive": false,
       "async": true,
       "responsive": true,
@@ -196,7 +196,7 @@
         "components.disclosure"
       ],
       "owner": "Disclosure",
-      "package": "@precision-calm/components",
+      "package": "@expo-base/components",
       "interactive": true,
       "async": false,
       "responsive": true,
@@ -285,7 +285,7 @@
         "forms.text-input"
       ],
       "owner": "Text entry fields",
-      "package": "@precision-calm/forms",
+      "package": "@expo-base/forms",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -378,7 +378,7 @@
         "forms.choice"
       ],
       "owner": "Static choice fields",
-      "package": "@precision-calm/forms",
+      "package": "@expo-base/forms",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -467,7 +467,7 @@
         "forms.semantic-input"
       ],
       "owner": "Semantic value fields",
-      "package": "@precision-calm/forms",
+      "package": "@expo-base/forms",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -560,7 +560,7 @@
         "forms.searchable-choice"
       ],
       "owner": "Searchable choice fields",
-      "package": "@precision-calm/forms",
+      "package": "@expo-base/forms",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -657,7 +657,7 @@
         "forms.code-input"
       ],
       "owner": "Verification code fields",
-      "package": "@precision-calm/forms",
+      "package": "@expo-base/forms",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -754,7 +754,7 @@
         "overlays.confirmation"
       ],
       "owner": "Dialog and alert dialog",
-      "package": "@precision-calm/overlays",
+      "package": "@expo-base/overlays",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -843,7 +843,7 @@
         "overlays.sheet"
       ],
       "owner": "Bottom sheet",
-      "package": "@precision-calm/overlays",
+      "package": "@expo-base/overlays",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -928,7 +928,7 @@
         "overlays.menu"
       ],
       "owner": "ActionMenu",
-      "package": "@precision-calm/overlays",
+      "package": "@expo-base/overlays",
       "interactive": true,
       "async": false,
       "responsive": true,
@@ -1022,7 +1022,7 @@
         "feedback.loading"
       ],
       "owner": "AsyncStateView",
-      "package": "@precision-calm/feedback",
+      "package": "@expo-base/feedback",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -1120,7 +1120,7 @@
         "data.scale"
       ],
       "owner": "AdaptiveDataTable",
-      "package": "@precision-calm/data-display",
+      "package": "@expo-base/data-display",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -1217,7 +1217,7 @@
         "components.content"
       ],
       "owner": "Metric",
-      "package": "@precision-calm/data-display",
+      "package": "@expo-base/data-display",
       "interactive": false,
       "async": true,
       "responsive": true,
@@ -1295,7 +1295,7 @@
         "data.timeline"
       ],
       "owner": "Timeline",
-      "package": "@precision-calm/data-display",
+      "package": "@expo-base/data-display",
       "interactive": true,
       "async": false,
       "responsive": true,
@@ -1376,7 +1376,7 @@
         "media.frame"
       ],
       "owner": "MediaFrame",
-      "package": "@precision-calm/media-presentation",
+      "package": "@expo-base/media-presentation",
       "interactive": false,
       "async": true,
       "responsive": true,
@@ -1458,7 +1458,7 @@
         "visualization.progress"
       ],
       "owner": "ChartFrame",
-      "package": "@precision-calm/visualization",
+      "package": "@expo-base/visualization",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -1555,7 +1555,7 @@
         "visualization.chart"
       ],
       "owner": "Single-series charts",
-      "package": "@precision-calm/visualization",
+      "package": "@expo-base/visualization",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -1648,7 +1648,7 @@
         "visualization.anatomy"
       ],
       "owner": "Chart anatomy and fallback",
-      "package": "@precision-calm/visualization",
+      "package": "@expo-base/visualization",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -1745,7 +1745,7 @@
         "visualization.plus"
       ],
       "owner": "Multi-series compositions",
-      "package": "@precision-calm/visualization",
+      "package": "@expo-base/visualization",
       "interactive": true,
       "async": true,
       "responsive": true,
@@ -1842,7 +1842,7 @@
         "visualization.advanced"
       ],
       "owner": "Advanced chart module",
-      "package": "@precision-calm/visualization-advanced",
+      "package": "@expo-base/visualization-advanced",
       "interactive": true,
       "async": true,
       "responsive": true,

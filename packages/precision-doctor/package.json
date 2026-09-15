@@ -1,7 +1,0 @@
-{
-  "name":"@precision-calm/doctor",
-  "version":"1.0.0",
-  "private":true,
-  "type":"module",
-  "bin":{"precision-doctor":"bin/precision-doctor.mjs"}
-}

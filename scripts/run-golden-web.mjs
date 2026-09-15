@@ -51,7 +51,7 @@ const stopServer = async (server) => {
 let server;
 try {
   rmSync('apps/reference/dist', { recursive: true, force: true });
-  run(npm, ['exec', '-w', '@precision-calm/reference', '--', 'expo', 'export', '--platform', 'web', '--output-dir', 'dist', '--source-maps'], 'DETERMINISTIC STATIC EXPORT', { ...process.env, CI: '1', TZ: 'UTC' });
+  run(npm, ['exec', '-w', '@expo-base/reference', '--', 'expo', 'export', '--platform', 'web', '--output-dir', 'dist', '--source-maps'], 'DETERMINISTIC STATIC EXPORT', { ...process.env, CI: '1', TZ: 'UTC' });
   if (mode === 'performance' || mode === 'all') run(process.execPath, ['scripts/check-golden-performance.mjs'], 'PERFORMANCE AND BUNDLE BUDGETS');
   server = startServer();
   const baseURL = await server.startup;
@@ -59,7 +59,7 @@ try {
   const grep = mode === 'all' ? '@(?:visual|semantic|performance)' : `@${mode}`;
   const args = ['exec', '--', 'playwright', 'test', '--config', 'playwright.golden.config.ts', '--grep', grep];
   if (updateFlag === '--update-snapshots') args.push('--update-snapshots');
-  run(npm, args, `GOLDEN ${mode.toUpperCase()} CERTIFICATION`, { ...process.env, PRECISION_CALM_BASE_URL: baseURL, TZ: 'UTC' });
+  run(npm, args, `GOLDEN ${mode.toUpperCase()} CERTIFICATION`, { ...process.env, EXPO_BASE_BASE_URL: baseURL, TZ: 'UTC' });
 } finally {
   await stopServer(server);
 }

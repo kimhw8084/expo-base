@@ -2,12 +2,12 @@ import type { ReactElement, ReactNode } from 'react';
 import { SectionList, View, type SectionListData, type SectionListRenderItemInfo } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-export interface PrecisionSection<T> { key: string; title: string; data: readonly T[]; }
+export interface ExpoBaseSection<T> { key: string; title: string; data: readonly T[]; }
 export interface SectionListScreenProps<T> {
-  sections: readonly PrecisionSection<T>[];
+  sections: readonly ExpoBaseSection<T>[];
   keyExtractor: (item: T, index: number) => string;
-  renderItem: (info: SectionListRenderItemInfo<T, PrecisionSection<T>>) => ReactElement | null;
-  renderSectionHeader: (section: PrecisionSection<T>) => ReactElement | null;
+  renderItem: (info: SectionListRenderItemInfo<T, ExpoBaseSection<T>>) => ReactElement | null;
+  renderSectionHeader: (section: ExpoBaseSection<T>) => ReactElement | null;
   header?: ReactNode;
   empty?: ReactNode;
   stickySectionHeadersEnabled?: boolean;
@@ -16,8 +16,8 @@ export interface SectionListScreenProps<T> {
 export function SectionListScreen<T>({ sections, keyExtractor, renderItem, renderSectionHeader, header, empty, stickySectionHeadersEnabled = true }: SectionListScreenProps<T>) {
   return (
     <View style={styles.screen}>
-      <SectionList<T, PrecisionSection<T>>
-        sections={sections as readonly SectionListData<T, PrecisionSection<T>>[]}
+      <SectionList<T, ExpoBaseSection<T>>
+        sections={sections as readonly SectionListData<T, ExpoBaseSection<T>>[]}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         renderSectionHeader={({ section }) => renderSectionHeader(section)}

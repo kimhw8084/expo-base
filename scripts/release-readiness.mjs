@@ -38,7 +38,7 @@ if (!process.argv.includes('--check')) {
 }
 
 const packageJson = readJson('package.json');
-const compatibility = readJson('precision.compatibility.json');
+const compatibility = readJson('expo-base.compatibility.json');
 const manifest = readJson('ios.certification.json');
 const recordPath = 'release-candidate.certification.json';
 if (packageJson.version !== '1.0.0') fail('Root package version must be 1.0.0.');

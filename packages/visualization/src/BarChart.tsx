@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet as RNStyleSheet, View } from 'react-native';
 import Svg, { Line, Rect } from 'react-native-svg';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { barRects, chartSummary, finiteChartData, type ChartDatum } from '@precision-calm/platform';
+import { barRects, chartSummary, finiteChartData, type ChartDatum } from '@expo-base/platform';
 import { ChartFrame, type ChartSize, type ChartState } from './ChartFrame';
 import { ChartDataTable } from './ChartAnatomy';
 import type { VisualizationSeries } from './types';

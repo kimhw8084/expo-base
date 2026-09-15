@@ -1,6 +1,12 @@
 # Existing-app migration
 
-Precision Calm migrations should be executed as vertical slices, but only after auditing the existing codebase for platform violations and dependency drift.
+Expo Base migrations should be executed as vertical slices, but only after auditing the existing codebase for platform violations and dependency drift.
+
+CHG-24 identity migration: current workspaces use the private `@expo-base/*` scope, `ExpoBase*`
+symbols, and `expo-base` tool/config stems. The former `Precision*` root facade symbols are
+deprecated aliases only; update imports and names to Expo Base in migrated code. The aliases are
+isolated from the generator and current examples so a migration cannot accidentally establish a
+second supported namespace.
 
 ## Audit
 
@@ -23,7 +29,7 @@ High-severity findings should be addressed before broad visual migration because
 For each feature:
 
 1. Preserve product behavior and data contracts.
-2. Replace route shell/layout with Precision Calm primitives/patterns.
+2. Replace route shell/layout with Expo Base primitives/patterns.
 3. Move forms, lists, overlays and navigation to platform APIs.
 4. Move service calls behind adapters if they currently live in UI modules.
 5. Run contract gates and runtime certification.

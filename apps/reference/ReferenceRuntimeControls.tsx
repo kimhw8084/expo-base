@@ -1,4 +1,4 @@
-import { AdaptiveGrid, AdaptiveGridItem, Card, Chip, HStack, Text, usePrecisionI18n, VStack } from '@precision-calm/ui';
+import { AdaptiveGrid, AdaptiveGridItem, Card, Chip, HStack, Text, useExpoBaseI18n, VStack } from '@expo-base/ui';
 import { useReferenceRuntimeSettings, type ReferenceLocale, type ReferenceMotionMode, type ReferenceThemeMode } from './ReferenceRuntimeSettings';
 
 const themes: readonly ReferenceThemeMode[] = ['system', 'light', 'dark'];
@@ -7,7 +7,7 @@ const motionModes: readonly ReferenceMotionMode[] = ['system', 'reduced'];
 
 export function ReferenceRuntimeControls() {
   const { themeMode, setThemeMode, density, setDensity, locale, setLocale, motionMode, setMotionMode } = useReferenceRuntimeSettings();
-  const { direction, pseudoLocale, t } = usePrecisionI18n();
+  const { direction, pseudoLocale, t } = useExpoBaseI18n();
   return (
     <Card>
       <VStack gap="lg">

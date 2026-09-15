@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Platform, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text, useInteractionState } from '@precision-calm/primitives';
+import { Text, useInteractionState } from '@expo-base/primitives';
 
 function OptionList({ id, label, multiple = false, children, testID }: { id: string; label: string; multiple?: boolean; children: ReactNode; testID?: string | undefined }) {
   const webListboxProps = { role: 'listbox', ...(multiple ? { 'aria-multiselectable': true } : {}) } as Record<string, unknown>;

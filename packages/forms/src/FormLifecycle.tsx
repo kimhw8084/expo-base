@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Button } from '@precision-calm/components';
-import { Dialog } from '@precision-calm/overlays';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Button } from '@expo-base/components';
+import { Dialog } from '@expo-base/overlays';
+import { Text, VStack } from '@expo-base/primitives';
 
 export interface FormErrorSummaryItem {
   id: string;

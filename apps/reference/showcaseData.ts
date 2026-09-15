@@ -1,5 +1,5 @@
-import type { ChartDatum } from '@precision-calm/platform';
-import type { AdvancedSeriesDatum, AdvancedSeriesDefinition, RangeBarDatum } from '@precision-calm/visualization-advanced';
+import type { ChartDatum } from '@expo-base/platform';
+import type { AdvancedSeriesDatum, AdvancedSeriesDefinition, RangeBarDatum } from '@expo-base/visualization-advanced';
 
 export const showcaseSeries: AdvancedSeriesDefinition[] = [
   { key: 'current', label: 'Current period', series: 'series1' },

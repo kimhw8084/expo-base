@@ -1,8 +1,8 @@
-# Precision Calm Universal — Reference Specification v1.0
+# Expo Base — Reference Specification v1.0
 
 ## Product constitution
 
-Precision Calm Universal is a strongly constrained, adaptive, accessible, cross-platform Expo application platform.
+Expo Base is a strongly constrained, adaptive, accessible, cross-platform Expo application foundation.
 
 ### Non-negotiable qualities
 

@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Icon, type IconName } from '@precision-calm/icons';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Icon, type IconName } from '@expo-base/icons';
+import { Text, VStack } from '@expo-base/primitives';
 
 export type AlertTone = 'info' | 'positive' | 'warning' | 'negative';
 export interface AlertBannerProps {

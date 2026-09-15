@@ -1,6 +1,6 @@
 # Expo Base
 
-Expo Base is a production-oriented universal Expo foundation built around the Precision Calm design system. Shared packages own tokens, layout, interaction, forms, navigation, overlays, feedback, data composition, motion, server state, and runtime services so product routes stay semantic and portable.
+Expo Base is a production-oriented universal Expo foundation. Shared packages own tokens, layout, interaction, forms, navigation, overlays, feedback, data composition, motion, server state, and runtime services so product routes stay semantic and portable.
 
 ## Prerequisites
 
@@ -51,6 +51,6 @@ See [docs/CERTIFICATION.md](docs/CERTIFICATION.md), [docs/GENERATOR.md](docs/GEN
 
 Expo Base is licensed under the [MIT License](LICENSE).
 
-Native development uses an Expo development client through the native scripts; native runtime acceptance is a separate validation gate and is not implied by web certification. The current release-candidate baseline includes iOS Simulator Release XCUITest acceptance and native visual comparison on the semantic iPhone 17 Pro / iOS 26.5 profile. Android native acceptance is deferred/waived under Policy B. Human VoiceOver, exact Dynamic Type settings, and physical-device behavior remain explicit boundaries.
+Native development uses an Expo development client through the native scripts; native runtime acceptance is a separate validation gate and is not implied by web certification. The tagged Expo Base `1.0.0` evidence baseline includes iOS Simulator Release XCUITest acceptance and native visual comparison on the semantic iPhone 17 Pro / iOS 26.5 profile. Android native acceptance is deferred/waived under Policy B. Human VoiceOver, exact Dynamic Type settings, and physical-device behavior remain explicit boundaries. Follow-up identity changes require their own verification; this documentation does not promote a new release.
 
 The current static web export remains one approximately 4.5 MB bundle. Route-level splitting is an application-scale follow-up. Use `npm run ios:verify` for the expensive fresh-CNG native lane and `npm run release:verify` for final governance invariants. See [docs/RELEASE_CANDIDATE_1_0.md](docs/RELEASE_CANDIDATE_1_0.md) for the release identity and governance procedure.

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Button, Card, ScrollScreen, Text, VStack } from '@precision-calm/ui';
-import { usePrecisionAuth, usePrecisionSessionSecurity } from '@precision-calm/runtime';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+import { Button, Card, ScrollScreen, Text, VStack } from '@expo-base/ui';
+import { useExpoBaseAuth, useExpoBaseSessionSecurity } from '@expo-base/runtime';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 
 export default function UnlockScreen() {
-  const sessionSecurity = usePrecisionSessionSecurity();
-  const auth = usePrecisionAuth();
-  const router = usePrecisionRouter();
+  const sessionSecurity = useExpoBaseSessionSecurity();
+  const auth = useExpoBaseAuth();
+  const router = useExpoBaseRouter();
   const [result, setResult] = useState<'idle' | 'denied' | 'error'>('idle');
   const unlock = async () => {
     const next = await sessionSecurity.requestUnlock();

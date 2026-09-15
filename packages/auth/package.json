@@ -1,5 +1,5 @@
 {
-  "name": "@precision-calm/auth",
+  "name": "@expo-base/auth",
   "version": "1.0.0",
   "private": true,
   "type": "module",

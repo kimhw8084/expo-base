@@ -24,10 +24,10 @@ import {
   Timeline,
   VStack,
   serializeDelimitedData,
-} from '@precision-calm/ui';
-import { CopyableCode, CopyableValue } from '@precision-calm/sharing/ui';
-import { Heatmap, Histogram, ScatterPlot } from '@precision-calm/visualization-advanced';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+} from '@expo-base/ui';
+import { CopyableCode, CopyableValue } from '@expo-base/sharing/ui';
+import { Heatmap, Histogram, ScatterPlot } from '@expo-base/visualization-advanced';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 import { useReferenceCopy } from '../ReferenceCopy';
 
 const activity = [
@@ -65,7 +65,7 @@ const cohortCells = [
 ] as const;
 
 export default function GoldenPlusReferenceScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   const [date, setDate] = useState('2026-09-07');
   const [time, setTime] = useState('14:30');

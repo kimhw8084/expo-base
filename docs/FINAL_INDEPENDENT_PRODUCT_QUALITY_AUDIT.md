@@ -4,6 +4,10 @@ Date: 2026-09-07
 Repository: `/Users/haewonkim/home/development/expo-base`  
 Mode: audit only; no product fixes, baseline updates, native execution, or release operations
 
+Historical provenance note: the companion defect/coverage ledger preserves the package names and
+implementation identifiers observed during this pre-CHG-24 audit. Those identifiers are evidence,
+not current Expo Base guidance.
+
 ## Findings lock
 
 The independent route inventory, screenshot review, interaction review, severities, and six fresh

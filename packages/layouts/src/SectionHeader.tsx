@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Text, VStack } from '@expo-base/primitives';
 
 export interface SectionHeaderProps {
   title: string;

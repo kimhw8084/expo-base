@@ -1,9 +1,9 @@
 import { forwardRef, useRef, type ComponentRef } from 'react';
 import { Platform, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { usePrecisionDirection } from '@precision-calm/i18n';
-import { resolveRovingFocusIndex } from '@precision-calm/platform';
-import { Text, useInteractionState } from '@precision-calm/primitives';
+import { useExpoBaseDirection } from '@expo-base/i18n';
+import { resolveRovingFocusIndex } from '@expo-base/platform';
+import { Text, useInteractionState } from '@expo-base/primitives';
 
 export interface SegmentedControlOption {
   value: string;
@@ -23,7 +23,7 @@ export interface SegmentedControlProps {
 
 /** A finite single-choice control; use a SelectField or Combobox for large option sets. */
 export function SegmentedControl({ label, value, options, onChange, disabled = false, invalid = false, testID }: SegmentedControlProps) {
-  const direction = usePrecisionDirection();
+  const direction = useExpoBaseDirection();
   const itemRefs = useRef<Array<ComponentRef<typeof Pressable> | null>>([]);
   const enabled = options.map((option) => !disabled && !option.disabled);
   const selectedIndex = options.findIndex((option, index) => option.value === value && enabled[index]);

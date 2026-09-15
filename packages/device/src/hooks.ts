@@ -1,4 +1,4 @@
-import { useOptionalPrecisionCapability, usePrecisionCapability } from '@precision-calm/capabilities';
-import { precisionDeviceCapability, type PrecisionDevice } from './contracts';
-export function usePrecisionDevice(): PrecisionDevice { return usePrecisionCapability<PrecisionDevice>(precisionDeviceCapability); }
-export function useOptionalPrecisionDevice(): PrecisionDevice | null { return useOptionalPrecisionCapability<PrecisionDevice>(precisionDeviceCapability); }
+import { useOptionalExpoBaseCapability, useExpoBaseCapability } from '@expo-base/capabilities';
+import { expoBaseDeviceCapability, type ExpoBaseDevice } from './contracts';
+export function useExpoBaseDevice(): ExpoBaseDevice { return useExpoBaseCapability<ExpoBaseDevice>(expoBaseDeviceCapability); }
+export function useOptionalExpoBaseDevice(): ExpoBaseDevice | null { return useOptionalExpoBaseCapability<ExpoBaseDevice>(expoBaseDeviceCapability); }

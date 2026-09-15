@@ -1,6 +1,6 @@
 # Gate 35 — authentication session and protected routes
 
-Precision Calm owns authentication resolution separately from backend identity providers and separately from local device re-lock.
+Expo Base owns authentication resolution separately from backend identity providers and separately from local device re-lock.
 
 ## State model
 
@@ -23,7 +23,7 @@ A local session lock can only reduce `signed-in` to `locked`; it cannot turn loa
 
 ## Protected route owner
 
-Application layouts use `ProtectedRouterStack` from `@precision-calm/navigation-router`. Feature screens must not own `Stack.Protected`, redirects to `/sign-in`, or direct auth-adapter subscriptions.
+Application layouts use `ProtectedRouterStack` from `@expo-base/navigation-router`. Feature screens must not own `Stack.Protected`, redirects to `/sign-in`, or direct auth-adapter subscriptions.
 
 During bootstrap only the session-loading route is eligible. This prevents a protected screen or sign-in screen from briefly flashing while secure session state is unresolved.
 
@@ -49,7 +49,7 @@ Never store OAuth callback codes/tokens as return intent. Exclude provider callb
 Gate 33 can feed its lock state into the same access derivation without coupling the auth package to the device-security implementation:
 
 ```tsx
-const access = usePrecisionAuthAccess({ locallyLocked: sessionSecurity.locked });
+const access = useExpoBaseAuthAccess({ locallyLocked: sessionSecurity.locked });
 
 <ProtectedRouterStack
   access={access}

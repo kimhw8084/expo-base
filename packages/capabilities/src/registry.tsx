@@ -1,19 +1,19 @@
 import { createContext, useContext, type PropsWithChildren } from 'react';
-import type { PrecisionCapabilityRegistry } from './contracts';
+import type { ExpoBaseCapabilityRegistry } from './contracts';
 
-const PrecisionCapabilitiesContext = createContext<PrecisionCapabilityRegistry>({});
+const ExpoBaseCapabilitiesContext = createContext<ExpoBaseCapabilityRegistry>({});
 
 /** Root-owned registry for explicitly selected optional capability adapters. */
-export function PrecisionCapabilitiesProvider({ capabilities = {}, children }: PropsWithChildren<{ capabilities?: PrecisionCapabilityRegistry | undefined }>) {
-  return <PrecisionCapabilitiesContext.Provider value={capabilities}>{children}</PrecisionCapabilitiesContext.Provider>;
+export function ExpoBaseCapabilitiesProvider({ capabilities = {}, children }: PropsWithChildren<{ capabilities?: ExpoBaseCapabilityRegistry | undefined }>) {
+  return <ExpoBaseCapabilitiesContext.Provider value={capabilities}>{children}</ExpoBaseCapabilitiesContext.Provider>;
 }
 
-export function useOptionalPrecisionCapability<T>(key: string): T | null {
-  return (useContext(PrecisionCapabilitiesContext)[key] as T | undefined) ?? null;
+export function useOptionalExpoBaseCapability<T>(key: string): T | null {
+  return (useContext(ExpoBaseCapabilitiesContext)[key] as T | undefined) ?? null;
 }
 
-export function usePrecisionCapability<T>(key: string): T {
-  const capability = useOptionalPrecisionCapability<T>(key);
-  if (!capability) throw new Error(`Precision capability "${key}" is not registered. Add its optional package and register it at the application root.`);
+export function useExpoBaseCapability<T>(key: string): T {
+  const capability = useOptionalExpoBaseCapability<T>(key);
+  if (!capability) throw new Error(`Expo Base capability "${key}" is not registered. Add its optional package and register it at the application root.`);
   return capability;
 }

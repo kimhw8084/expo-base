@@ -1,15 +1,15 @@
 import { forwardRef, useEffect, useRef, useState, type ComponentRef } from 'react';
 import { Platform, Pressable, ScrollView, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { usePrecisionDirection } from '@precision-calm/i18n';
-import { Icon } from '@precision-calm/icons';
-import { resolveRovingFocusIndex } from '@precision-calm/platform';
-import { Text, useInteractionState } from '@precision-calm/primitives';
+import { useExpoBaseDirection } from '@expo-base/i18n';
+import { Icon } from '@expo-base/icons';
+import { resolveRovingFocusIndex } from '@expo-base/platform';
+import { Text, useInteractionState } from '@expo-base/primitives';
 
 export interface TabItem { key: string; label: string; disabled?: boolean | undefined; }
 export interface TabsProps { items: readonly TabItem[]; activeKey: string; onChange: (key: string) => void; accessibilityLabel?: string; }
 export function Tabs({ items, activeKey, onChange, accessibilityLabel = 'Sections' }: TabsProps) {
-  const direction = usePrecisionDirection();
+  const direction = useExpoBaseDirection();
   const itemRefs = useRef<Array<ComponentRef<typeof Pressable> | null>>([]);
   const [viewportWidth, setViewportWidth] = useState(0);
   const [contentWidth, setContentWidth] = useState(0);

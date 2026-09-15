@@ -1,10 +1,10 @@
 import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult } from '@precision-calm/capabilities';
-import type { HapticIntent, PrecisionHaptics } from './contracts';
-export class ExpoHaptics implements PrecisionHaptics {
-  async availability(): Promise<PrecisionCapabilityAvailability> { return Platform.OS === 'web' ? { status: 'unavailable', reason: 'unsupported' } : { status: 'available' }; }
-  async perform(intent: HapticIntent): Promise<PrecisionCapabilityResult<undefined>> {
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult } from '@expo-base/capabilities';
+import type { HapticIntent, ExpoBaseHaptics } from './contracts';
+export class ExpoHaptics implements ExpoBaseHaptics {
+  async availability(): Promise<ExpoBaseCapabilityAvailability> { return Platform.OS === 'web' ? { status: 'unavailable', reason: 'unsupported' } : { status: 'available' }; }
+  async perform(intent: HapticIntent): Promise<ExpoBaseCapabilityResult<undefined>> {
     const availability = await this.availability();
     if (availability.status !== 'available') return availability;
     try {

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Pressable, StyleSheet as RNStyleSheet, View } from 'react-native';
 import Svg, { Circle, Rect } from 'react-native-svg';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { bandScale, heatmapCells, histogramBins, linearScale, numericDomain, type HeatmapCell, type HeatmapDatum } from '@precision-calm/platform';
-import { Text } from '@precision-calm/primitives';
-import { ChartAxes, ChartDataTable, ChartFrame, ChartInspector, XYChartDataTable, type ChartSize, type ChartState, type ChartValueFormatter, type VisualizationSeries } from '@precision-calm/visualization';
+import { bandScale, heatmapCells, histogramBins, linearScale, numericDomain, type HeatmapCell, type HeatmapDatum } from '@expo-base/platform';
+import { Text } from '@expo-base/primitives';
+import { ChartAxes, ChartDataTable, ChartFrame, ChartInspector, XYChartDataTable, type ChartSize, type ChartState, type ChartValueFormatter, type VisualizationSeries } from '@expo-base/visualization';
 
 export interface ScatterDatum { id: string; x: number; y: number; label?: string; }
 export interface ScatterPlotProps {

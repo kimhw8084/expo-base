@@ -1,4 +1,4 @@
-import { PrecisionServerError } from '@precision-calm/server-state';
+import { ExpoBaseServerError } from '@expo-base/server-state';
 
 export interface ReferenceTask {
   id: string;
@@ -28,7 +28,7 @@ export class ReferenceServerStateService {
     throwIfAborted(signal);
     if (this.#remainingLoadFailures > 0) {
       this.#remainingLoadFailures -= 1;
-      throw new PrecisionServerError('unavailable', 'The latest task refresh failed.', { code: 'reference_refresh_failed' });
+      throw new ExpoBaseServerError('unavailable', 'The latest task refresh failed.', { code: 'reference_refresh_failed' });
     }
     return this.#tasks.filter((task) => team === 'all' || task.team === team).map((task) => ({ ...task }));
   }
@@ -39,10 +39,10 @@ export class ReferenceServerStateService {
     throwIfAborted(signal);
     if (this.#failNextMutation) {
       this.#failNextMutation = false;
-      throw new PrecisionServerError('conflict', 'The optimistic task update was rejected.', { code: 'reference_conflict' });
+      throw new ExpoBaseServerError('conflict', 'The optimistic task update was rejected.', { code: 'reference_conflict' });
     }
     const current = this.#tasks.find((task) => task.id === id);
-    if (!current) throw new PrecisionServerError('not-found', 'The task no longer exists.');
+    if (!current) throw new ExpoBaseServerError('not-found', 'The task no longer exists.');
     const next = { ...current, done: !current.done };
     this.#tasks = this.#tasks.map((task) => task.id === id ? next : task);
     return { ...next };

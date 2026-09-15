@@ -58,8 +58,8 @@ import {
 } from 'lucide-react-native';
 import { View } from 'react-native';
 import { useUnistyles } from 'react-native-unistyles';
-import { usePrecisionDirection } from '@precision-calm/i18n';
-import { iconSizes, type IconSize } from '@precision-calm/tokens';
+import { useExpoBaseDirection } from '@expo-base/i18n';
+import { iconSizes, type IconSize } from '@expo-base/tokens';
 
 const registry = {
   archive: Archive,
@@ -136,7 +136,7 @@ const directionalNames = new Set<IconName>(['arrowLeft', 'arrowRight', 'chevronL
 
 export function Icon({ name, size = 'md', tone = 'primary', strokeWidth = 'regular', accessibilityLabel, directional = true }: IconProps) {
   const { theme } = useUnistyles();
-  const direction = usePrecisionDirection();
+  const direction = useExpoBaseDirection();
   const Component = registry[name];
   const color = tone === 'primary' ? theme.colors.text.primary
     : tone === 'secondary' ? theme.colors.text.secondary

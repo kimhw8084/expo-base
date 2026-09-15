@@ -1,11 +1,11 @@
 import { forwardRef, useRef, type ComponentRef } from 'react';
 import { Platform, Pressable, Switch, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { SegmentedControl, type SegmentedControlOption } from '@precision-calm/components';
-import { usePrecisionDirection } from '@precision-calm/i18n';
-import { resolveRovingFocusIndex } from '@precision-calm/platform';
-import { Icon } from '@precision-calm/icons';
-import { Text, VStack, useInteractionState } from '@precision-calm/primitives';
+import { SegmentedControl, type SegmentedControlOption } from '@expo-base/components';
+import { useExpoBaseDirection } from '@expo-base/i18n';
+import { resolveRovingFocusIndex } from '@expo-base/platform';
+import { Icon } from '@expo-base/icons';
+import { Text, VStack, useInteractionState } from '@expo-base/primitives';
 import { FormField } from './FormField';
 
 export interface CheckboxProps { id?: string; label: string; checked: boolean; onChange: (checked: boolean) => void; description?: string | undefined; disabled?: boolean; error?: string | undefined; required?: boolean; testID?: string; onBlur?: () => void; }
@@ -58,7 +58,7 @@ export interface RadioOption { value: string; label: string; description?: strin
 export interface RadioGroupProps { id?: string; label: string; value: string; options: readonly RadioOption[]; onChange: (value: string) => void; description?: string | undefined; error?: string | undefined; required?: boolean; disabled?: boolean; testID?: string; onBlur?: () => void; }
 export function RadioGroup({ id, label, value, options, onChange, description, error, required = false, disabled = false, testID, onBlur }: RadioGroupProps) {
   const fieldId = id ?? `radio-${label.replace(/[^a-zA-Z0-9_-]/g, '-').toLowerCase()}`;
-  const direction = usePrecisionDirection();
+  const direction = useExpoBaseDirection();
   const itemRefs = useRef<Array<ComponentRef<typeof Pressable> | null>>([]);
   const enabled = options.map((option) => !disabled && !option.disabled);
   const selectedIndex = options.findIndex((option, index) => option.value === value && enabled[index]);

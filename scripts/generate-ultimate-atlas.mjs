@@ -4,7 +4,7 @@ import { chromium } from 'playwright';
 
 const root = process.cwd();
 const output = path.resolve(process.argv[2] ?? 'test-results/ultimate-golden-pass2/atlas');
-const baseURL = process.env.PRECISION_CALM_BASE_URL ?? 'http://127.0.0.1:8081';
+const baseURL = process.env.EXPO_BASE_BASE_URL ?? 'http://127.0.0.1:8081';
 const routes = ['/', '/forms', '/data', '/overlays', '/visualization', '/golden-plus', '/state-workbench', '/analytics-showcase', '/finance-showcase', '/monitoring-showcase'];
 const profiles = [
   { id: 'desktop-light', viewport: { width: 1440, height: 900 }, theme: 'Light', density: 'Comfortable' },

@@ -50,7 +50,7 @@ test('GPQ-002/003 overlays expose one named modal root and restore focus', async
   await dialogTrigger.press('Enter');
   await expect(page.getByRole('dialog', { name: 'Review this recommendation' })).toHaveCount(1);
   await expect(page.locator('[aria-modal="true"]')).toHaveCount(1);
-  await expect(page.locator('[data-precision-modal-host="true"] > [role="dialog"]')).toHaveCount(0);
+  await expect(page.locator('[data-expo-base-modal-host="true"] > [role="dialog"]')).toHaveCount(0);
   await expect.poll(() => page.evaluate(() => document.body.style.overflow)).toBe('hidden');
   await page.keyboard.press('Escape');
   await expect(dialogTrigger).toBeFocused();
@@ -204,7 +204,7 @@ test('GPQ-008 short-height Combobox stays anchor-sized and above persistent navi
   const listbox = page.getByRole('listbox', { name: 'Primary issuer results' });
   await expect(listbox).toBeVisible();
   const triggerBox = await trigger.boundingBox();
-  const popupBox = await page.getByTestId('precision-popover-panel').boundingBox();
+  const popupBox = await page.getByTestId('expo-base-popover-panel').boundingBox();
   const navigationBox = await page.getByRole('navigation', { name: 'Primary navigation' }).boundingBox();
   expect(triggerBox).not.toBeNull();
   expect(popupBox).not.toBeNull();

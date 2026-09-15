@@ -1,4 +1,4 @@
-import type { BreakpointName, ControlSize } from '@precision-calm/tokens';
+import type { BreakpointName, ControlSize } from '@expo-base/tokens';
 
 export type Density = 'comfortable' | 'compact';
 export type ColorSchemePreference = 'system' | 'light' | 'dark';

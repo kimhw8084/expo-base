@@ -1,89 +1,89 @@
-export type PrecisionQueryValue =
+export type ExpoBaseQueryValue =
   | string
   | number
   | boolean
   | null
-  | readonly PrecisionQueryValue[]
-  | { readonly [key: string]: PrecisionQueryValue };
+  | readonly ExpoBaseQueryValue[]
+  | { readonly [key: string]: ExpoBaseQueryValue };
 
-export type PrecisionQueryKey = readonly [namespace: string, ...segments: PrecisionQueryValue[]];
+export type ExpoBaseQueryKey = readonly [namespace: string, ...segments: ExpoBaseQueryValue[]];
 
-export interface PrecisionPageKeyInput {
+export interface ExpoBasePageKeyInput {
   page: number;
   pageSize: number;
-  filters?: PrecisionQueryValue | undefined;
+  filters?: ExpoBaseQueryValue | undefined;
 }
 
-export interface PrecisionCursorKeyInput {
+export interface ExpoBaseCursorKeyInput {
   cursor: string | null;
   limit: number;
-  filters?: PrecisionQueryValue | undefined;
+  filters?: ExpoBaseQueryValue | undefined;
 }
 
 /** Typed key helpers keep entity, list, page, and cursor identity consistent. */
-export const precisionQueryKey = {
-  family(namespace: string): PrecisionQueryKey {
+export const expoBaseQueryKey = {
+  family(namespace: string): ExpoBaseQueryKey {
     return [normalizeNamespace(namespace)];
   },
-  entity(namespace: string, id: string | number): PrecisionQueryKey {
-    return [normalizeNamespace(namespace), 'entity', normalizePrecisionQueryValue(id)];
+  entity(namespace: string, id: string | number): ExpoBaseQueryKey {
+    return [normalizeNamespace(namespace), 'entity', normalizeExpoBaseQueryValue(id)];
   },
-  list(namespace: string, filters: PrecisionQueryValue = {}): PrecisionQueryKey {
-    return [normalizeNamespace(namespace), 'list', normalizePrecisionQueryValue(filters)];
+  list(namespace: string, filters: ExpoBaseQueryValue = {}): ExpoBaseQueryKey {
+    return [normalizeNamespace(namespace), 'list', normalizeExpoBaseQueryValue(filters)];
   },
-  page(namespace: string, input: PrecisionPageKeyInput): PrecisionQueryKey {
+  page(namespace: string, input: ExpoBasePageKeyInput): ExpoBaseQueryKey {
     assertPositiveInteger(input.page, 'page');
     assertPositiveInteger(input.pageSize, 'pageSize');
-    return [normalizeNamespace(namespace), 'page', normalizePrecisionQueryValue({
+    return [normalizeNamespace(namespace), 'page', normalizeExpoBaseQueryValue({
       filters: input.filters ?? {},
       page: input.page,
       pageSize: input.pageSize,
     })];
   },
-  cursor(namespace: string, input: PrecisionCursorKeyInput): PrecisionQueryKey {
+  cursor(namespace: string, input: ExpoBaseCursorKeyInput): ExpoBaseQueryKey {
     assertPositiveInteger(input.limit, 'limit');
-    return [normalizeNamespace(namespace), 'cursor', normalizePrecisionQueryValue({
+    return [normalizeNamespace(namespace), 'cursor', normalizeExpoBaseQueryValue({
       cursor: input.cursor,
       filters: input.filters ?? {},
       limit: input.limit,
     })];
   },
-  custom(namespace: string, ...segments: readonly PrecisionQueryValue[]): PrecisionQueryKey {
-    return [normalizeNamespace(namespace), ...segments.map(normalizePrecisionQueryValue)];
+  custom(namespace: string, ...segments: readonly ExpoBaseQueryValue[]): ExpoBaseQueryKey {
+    return [normalizeNamespace(namespace), ...segments.map(normalizeExpoBaseQueryValue)];
   },
 } as const;
 
-export function normalizePrecisionQueryKey(key: PrecisionQueryKey): PrecisionQueryKey {
-  if (!Array.isArray(key) || key.length === 0) throw new Error('A Precision query key requires a namespace.');
+export function normalizeExpoBaseQueryKey(key: ExpoBaseQueryKey): ExpoBaseQueryKey {
+  if (!Array.isArray(key) || key.length === 0) throw new Error('An Expo Base query key requires a namespace.');
   const [namespace, ...segments] = key;
-  return [normalizeNamespace(namespace), ...segments.map(normalizePrecisionQueryValue)];
+  return [normalizeNamespace(namespace), ...segments.map(normalizeExpoBaseQueryValue)];
 }
 
-export function normalizePrecisionQueryValue(value: PrecisionQueryValue): PrecisionQueryValue {
+export function normalizeExpoBaseQueryValue(value: ExpoBaseQueryValue): ExpoBaseQueryValue {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
   if (typeof value === 'number') {
-    if (!Number.isFinite(value)) throw new Error('Precision query keys require finite numbers.');
+    if (!Number.isFinite(value)) throw new Error('Expo Base query keys require finite numbers.');
     return Object.is(value, -0) ? 0 : value;
   }
-  if (Array.isArray(value)) return value.map((entry) => normalizePrecisionQueryValue(entry));
+  if (Array.isArray(value)) return value.map((entry) => normalizeExpoBaseQueryValue(entry));
   if (typeof value === 'object') {
     const prototype = Object.getPrototypeOf(value);
-    if (prototype !== Object.prototype && prototype !== null) throw new Error('Precision query keys accept only serializable plain objects.');
-    const normalized: Record<string, PrecisionQueryValue> = {};
+    if (prototype !== Object.prototype && prototype !== null) throw new Error('Expo Base query keys accept only serializable plain objects.');
+    const normalized: Record<string, ExpoBaseQueryValue> = {};
     for (const key of Object.keys(value).sort()) {
-      const entry = (value as Readonly<Record<string, PrecisionQueryValue>>)[key];
-      if (entry === undefined) throw new Error(`Precision query key property "${key}" cannot be undefined.`);
-      normalized[key] = normalizePrecisionQueryValue(entry);
+      const entry = (value as Readonly<Record<string, ExpoBaseQueryValue>>)[key];
+      if (entry === undefined) throw new Error(`Expo Base query key property "${key}" cannot be undefined.`);
+      normalized[key] = normalizeExpoBaseQueryValue(entry);
     }
     return normalized;
   }
-  throw new Error('Precision query keys must be serializable.');
+  throw new Error('Expo Base query keys must be serializable.');
 }
 
 function normalizeNamespace(namespace: string): string {
   const value = namespace.trim();
   if (!/^[a-z][a-z0-9]*(?:[._:-][a-z0-9]+)*$/.test(value) || value.length > 128) {
-    throw new Error(`Invalid Precision query namespace: ${namespace}`);
+    throw new Error(`Invalid Expo Base query namespace: ${namespace}`);
   }
   return value;
 }

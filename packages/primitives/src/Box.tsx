@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { View, type AccessibilityProps } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import type { RadiusToken, SpacingToken } from '@precision-calm/tokens';
+import type { RadiusToken, SpacingToken } from '@expo-base/tokens';
 
 type Surface = 'none' | 'canvas' | 'surface' | 'subtle' | 'elevated';
 

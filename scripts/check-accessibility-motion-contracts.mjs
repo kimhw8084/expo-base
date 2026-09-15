@@ -7,9 +7,9 @@ const appsRoot = path.join(root, 'apps');
 const problems = [];
 
 const forbidden = [
-  [/from\s+['"]react-native-reanimated['"]/, 'direct Reanimated usage; use @precision-calm/motion'],
-  [/from\s+['"]expo-haptics['"]/, 'direct haptics usage; use @precision-calm/haptics'],
-  [/\bAccessibilityInfo\.announceForAccessibility\s*\(/, 'direct accessibility announcement; use @precision-calm/accessibility LiveRegion'],
+  [/from\s+['"]react-native-reanimated['"]/, 'direct Reanimated usage; use @expo-base/motion'],
+  [/from\s+['"]expo-haptics['"]/, 'direct haptics usage; use @expo-base/haptics'],
+  [/\bAccessibilityInfo\.announceForAccessibility\s*\(/, 'direct accessibility announcement; use @expo-base/accessibility LiveRegion'],
   [/accessibilityRole\s*=\s*['"]none['"]/, 'suppressing semantics requires accessibility-system review'],
 ];
 
@@ -88,7 +88,7 @@ const resilienceContracts = [
   ['packages/primitives/src/Text.tsx', ['maxFontSizeMultiplier']],
   ['packages/motion/src/MotionRootProvider.tsx', ['useReducedMotion', 'reducedMotion?: boolean']],
   ['packages/motion/src/Reveal.tsx', ['ReduceMotion.Always']],
-  ['packages/overlays/src/OverlayRootProvider.tsx', ['usePrecisionReducedMotion']],
+  ['packages/overlays/src/OverlayRootProvider.tsx', ['useExpoBaseReducedMotion']],
   ['packages/overlays/src/Dialog.tsx', ['aria-modal']],
   ['packages/forms/src/FormLifecycle.tsx', ['role="alert"', 'accessibilityLiveRegion="assertive"']],
   ['packages/data-display/src/DataTableControls.tsx', ['accessibilityLiveRegion="polite"', 'InfinitePagination']],

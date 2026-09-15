@@ -1,0 +1,10 @@
+{
+  "name": "@expo-base/create-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "create-expo-base-app": "bin/create-expo-base-app.mjs",
+    "scaffold-expo-base-screen": "bin/scaffold-expo-base-screen.mjs"
+  }
+}

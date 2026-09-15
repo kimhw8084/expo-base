@@ -1,5 +1,5 @@
 {
-  "name": "@precision-calm/i18n",
+  "name": "@expo-base/i18n",
   "version": "1.0.0",
   "private": true,
   "type": "module",

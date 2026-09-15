@@ -1,9 +1,9 @@
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
-import { Button, ResponsiveSlot } from '@precision-calm/ui';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
+import { Button, ResponsiveSlot } from '@expo-base/ui';
 import { useReferenceCopy } from './ReferenceCopy';
 
 export function ReferenceBackAction() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   return (
     <ResponsiveSlot until="expanded">

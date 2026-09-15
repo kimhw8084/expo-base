@@ -1,9 +1,9 @@
 import { Appearance, Platform } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { breakpoints, createPrecisionThemes } from '@precision-calm/tokens';
+import { breakpoints, createExpoBaseThemes } from '@expo-base/tokens';
 import { referenceBrand } from './brand';
 
-const themes = createPrecisionThemes(referenceBrand);
+const themes = createExpoBaseThemes(referenceBrand);
 type AppThemes = typeof themes;
 type AppBreakpoints = typeof breakpoints;
 

@@ -1,5 +1,5 @@
 {
-  "name": "@precision-calm/tokens",
+  "name": "@expo-base/tokens",
   "version": "1.0.0",
   "private": true,
   "type": "module",
