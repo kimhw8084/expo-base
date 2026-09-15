@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useInsertionEffect } from 'react';
 import { Platform, StatusBar, useColorScheme } from 'react-native';
 import { UnistylesRuntime } from 'react-native-unistyles';
 import type { ReferenceThemeMode } from './ReferenceRuntimeSettings';
@@ -13,7 +13,7 @@ export function ThemeRuntimeSync({ mode = 'system' }: { mode?: ReferenceThemeMod
 
   const effectiveTheme = mode === 'system' ? (colorScheme === 'dark' ? 'dark' : 'light') : mode;
 
-  useEffect(() => {
+  useInsertionEffect(() => {
     if (UnistylesRuntime.themeName !== effectiveTheme) UnistylesRuntime.setTheme(effectiveTheme);
   }, [effectiveTheme]);
 
