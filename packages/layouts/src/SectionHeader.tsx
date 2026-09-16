@@ -37,6 +37,7 @@ const styles = StyleSheet.create((theme) => ({
   copy: {
     minWidth: 0,
     flex: 1,
+    width: { compact: '100%', medium: 'auto' },
     maxWidth: theme.contentWidths.reading,
   },
   accessory: {
