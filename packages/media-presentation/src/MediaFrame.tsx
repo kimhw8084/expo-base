@@ -1,8 +1,8 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { ActivityIndicator, Image, type ImageResizeMode, type ImageSourcePropType, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Icon } from '@precision-calm/icons';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Icon } from '@expo-base/icons';
+import { Text, VStack } from '@expo-base/primitives';
 
 export type MediaFrameState = 'loading' | 'ready' | 'error' | 'empty';
 export type MediaFrameSource = ImageSourcePropType | string | null | undefined;

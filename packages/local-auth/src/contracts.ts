@@ -1,12 +1,12 @@
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult } from '@precision-calm/capabilities';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult } from '@expo-base/capabilities';
 
-export const precisionLocalAuthenticationCapability = 'localAuthentication';
+export const expoBaseLocalAuthenticationCapability = 'localAuthentication';
 
-export type PrecisionLocalAuthenticationAvailability = PrecisionCapabilityAvailability & {
+export type ExpoBaseLocalAuthenticationAvailability = ExpoBaseCapabilityAvailability & {
   enrolled?: boolean | undefined;
 };
 
-export interface PrecisionLocalAuthenticationRequest {
+export interface ExpoBaseLocalAuthenticationRequest {
   prompt: string;
   cancelLabel?: string | undefined;
   fallbackLabel?: string | undefined;
@@ -14,7 +14,7 @@ export interface PrecisionLocalAuthenticationRequest {
 }
 
 /** Local device assurance only. It never authenticates a user with a backend. */
-export interface PrecisionLocalAuthentication {
-  availability(): Promise<PrecisionLocalAuthenticationAvailability>;
-  authenticate(request: PrecisionLocalAuthenticationRequest): Promise<PrecisionCapabilityResult<undefined>>;
+export interface ExpoBaseLocalAuthentication {
+  availability(): Promise<ExpoBaseLocalAuthenticationAvailability>;
+  authenticate(request: ExpoBaseLocalAuthenticationRequest): Promise<ExpoBaseCapabilityResult<undefined>>;
 }

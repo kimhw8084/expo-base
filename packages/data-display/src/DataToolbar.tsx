@@ -2,9 +2,9 @@ import type { ReactNode } from 'react';
 import { useState } from 'react';
 import { TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Chip, IconButton } from '@precision-calm/components';
-import { Icon } from '@precision-calm/icons';
-import { Text } from '@precision-calm/primitives';
+import { Chip, IconButton } from '@expo-base/components';
+import { Icon } from '@expo-base/icons';
+import { Text } from '@expo-base/primitives';
 
 export interface DataToolbarFilter {
   key: string;

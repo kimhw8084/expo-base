@@ -12,36 +12,36 @@ package documentation remains the detailed API reference.
 
 | Concern | Owner | Product-route role |
 | --- | --- | --- |
-| Tokens, theme, density, breakpoints, layers | `@precision-calm/tokens` | Consume through shared owners; do not recreate values. |
-| Basic layout/text/interaction primitives | `@precision-calm/primitives` | Compose sparingly; prefer semantic components and layouts first. |
-| Actions, cards, identity/status, code, labels, icons, disclosure | `@precision-calm/components`, `@precision-calm/icons` | Use semantic controls, not raw React Native controls. |
-| Page, section, adaptive geometry, safe areas | `@precision-calm/layouts` | Choose a page/layout owner before writing a route. |
-| Navigation and Expo Router integration | `@precision-calm/navigation`, `@precision-calm/navigation-router` | Use the router adapter; keep Router internals at the shell boundary. |
-| Form fields and form composition | `@precision-calm/forms` | Use fields, sections, rows, actions, and `FormScreen`. |
-| React Hook Form integration | `@precision-calm/form-rhf` | Use optional adapters; do not import RHF directly in a route. |
-| Locale, messages, formatting, RTL direction | `@precision-calm/i18n`, runtime `i18n` | Configure once at the root; product applications own message catalogs. |
-| Dialogs, sheets, popovers, menus, toasts | `@precision-calm/overlays` | Use the overlay owner; never build local modal/backdrop/focus behavior. |
-| Motion and reduced-motion behavior | `@precision-calm/motion` | Use semantic shared motion; routes do not create timings or preference branches. |
-| Loading, empty, error, offline, retry states | `@precision-calm/feedback` | Keep product copy/domain conditions, reuse shared state anatomy. |
-| Rows, metrics, tables, timeline, selection, pagination, export serialization | `@precision-calm/data-display` | Use controlled data presentation owners. |
-| Static, virtualized, and sectioned lists | `@precision-calm/lists` | Let the list own scrolling, refresh, and list states. |
-| Image/media display | `@precision-calm/media-presentation` | Use `MediaFrame`; acquisition remains the selected optional media capability. |
-| Charts and progress | `@precision-calm/visualization`; optional `@precision-calm/visualization-advanced` | Use core owners for ordinary plots; select the advanced module for scatter, histogram, or heatmap mechanics. Keep specialist visualizations product-specific or adapter-owned. |
-| Runtime providers and async actions | `@precision-calm/runtime` | Consume services and `usePrecisionAsyncAction`; do not create global clients. |
-| Server queries, cache, invalidation, and mutations | `@precision-calm/server-state` | Use deterministic keys and the shared scoped lifecycle; keep transport in services/adapters. |
-| Backend-neutral service contracts | `@precision-calm/adapters` | Compose adapters outside feature routes. |
-| Authentication and return intent | `@precision-calm/auth`, runtime auth | Use runtime hooks and protected routing. |
-| Authorization | `@precision-calm/authorization`, runtime authorization | Ask for capabilities; never hardcode roles in a feature. |
-| Local session lock | `@precision-calm/session-security` | Configure one adapter at the root; consume runtime state. |
-| Optional device/platform capabilities | `@precision-calm/capabilities` plus selected capability packages | Register once at the root; consume the selected adapter in routes. |
-| Secrets / ordinary preferences | `@precision-calm/secure-storage` / `@precision-calm/preferences` | Never fall back from secrets to ordinary or browser storage. |
-| Connectivity / lifecycle | `@precision-calm/runtime-capabilities` | Consume signals; opt into query refetch policy deliberately. |
-| Copy/share and copyable values, acquisition, local auth | `@precision-calm/sharing`, `@precision-calm/media`, `@precision-calm/local-auth` | Keep capability choice and permission rationale out of route infrastructure. |
-| Notifications, updates, device, haptics | Selected optional Precision package | Device boundary only; backend/release policy stays product-owned. |
-| Observability | `@precision-calm/observability` | Use provider-neutral root integration; never import a vendor SDK in a feature. |
-| Golden workflow taxonomy and screen scaffolding | `golden.patterns.json`, `@precision-calm/patterns`, `@precision-calm/create-app` | Classify a standard route, then scaffold or manually compose its sanctioned pattern. |
+| Tokens, theme, density, breakpoints, layers | `@expo-base/tokens` | Consume through shared owners; do not recreate values. |
+| Basic layout/text/interaction primitives | `@expo-base/primitives` | Compose sparingly; prefer semantic components and layouts first. |
+| Actions, cards, identity/status, code, labels, icons, disclosure | `@expo-base/components`, `@expo-base/icons` | Use semantic controls, not raw React Native controls. |
+| Page, section, adaptive geometry, safe areas | `@expo-base/layouts` | Choose a page/layout owner before writing a route. |
+| Navigation and Expo Router integration | `@expo-base/navigation`, `@expo-base/navigation-router` | Use the router adapter; keep Router internals at the shell boundary. |
+| Form fields and form composition | `@expo-base/forms` | Use fields, sections, rows, actions, and `FormScreen`. |
+| React Hook Form integration | `@expo-base/form-rhf` | Use optional adapters; do not import RHF directly in a route. |
+| Locale, messages, formatting, RTL direction | `@expo-base/i18n`, runtime `i18n` | Configure once at the root; product applications own message catalogs. |
+| Dialogs, sheets, popovers, menus, toasts | `@expo-base/overlays` | Use the overlay owner; never build local modal/backdrop/focus behavior. |
+| Motion and reduced-motion behavior | `@expo-base/motion` | Use semantic shared motion; routes do not create timings or preference branches. |
+| Loading, empty, error, offline, retry states | `@expo-base/feedback` | Keep product copy/domain conditions, reuse shared state anatomy. |
+| Rows, metrics, tables, timeline, selection, pagination, export serialization | `@expo-base/data-display` | Use controlled data presentation owners. |
+| Static, virtualized, and sectioned lists | `@expo-base/lists` | Let the list own scrolling, refresh, and list states. |
+| Image/media display | `@expo-base/media-presentation` | Use `MediaFrame`; acquisition remains the selected optional media capability. |
+| Charts and progress | `@expo-base/visualization`; optional `@expo-base/visualization-advanced` | Use core owners for ordinary plots; select the advanced module for scatter, histogram, or heatmap mechanics. Keep specialist visualizations product-specific or adapter-owned. |
+| Runtime providers and async actions | `@expo-base/runtime` | Consume services and `useExpoBaseAsyncAction`; do not create global clients. |
+| Server queries, cache, invalidation, and mutations | `@expo-base/server-state` | Use deterministic keys and the shared scoped lifecycle; keep transport in services/adapters. |
+| Backend-neutral service contracts | `@expo-base/adapters` | Compose adapters outside feature routes. |
+| Authentication and return intent | `@expo-base/auth`, runtime auth | Use runtime hooks and protected routing. |
+| Authorization | `@expo-base/authorization`, runtime authorization | Ask for capabilities; never hardcode roles in a feature. |
+| Local session lock | `@expo-base/session-security` | Configure one adapter at the root; consume runtime state. |
+| Optional device/platform capabilities | `@expo-base/capabilities` plus selected capability packages | Register once at the root; consume the selected adapter in routes. |
+| Secrets / ordinary preferences | `@expo-base/secure-storage` / `@expo-base/preferences` | Never fall back from secrets to ordinary or browser storage. |
+| Connectivity / lifecycle | `@expo-base/runtime-capabilities` | Consume signals; opt into query refetch policy deliberately. |
+| Copy/share and copyable values, acquisition, local auth | `@expo-base/sharing`, `@expo-base/media`, `@expo-base/local-auth` | Keep capability choice and permission rationale out of route infrastructure. |
+| Notifications, updates, device, haptics | Selected optional Expo Base package | Device boundary only; backend/release policy stays product-owned. |
+| Observability | `@expo-base/observability` | Use provider-neutral root integration; never import a vendor SDK in a feature. |
+| Golden workflow taxonomy and screen scaffolding | `golden.patterns.json`, `@expo-base/patterns`, `@expo-base/create-app` | Classify a standard route, then scaffold or manually compose its sanctioned pattern. |
 | Living specification | `apps/reference` | Add a reference example when a shared capability changes. |
-| Fresh-app parity | `@precision-calm/create-app` | Update generator and its test when a generated boundary changes. |
+| Fresh-app parity | `@expo-base/create-app` | Update generator and its test when a generated boundary changes. |
 
 ## Feature-route boundary
 
@@ -57,19 +57,19 @@ or persistence.
 | Hand-authored width branches, `useWindowDimensions`, `Dimensions`, `window.innerWidth` | `AdaptiveGrid`, `AdaptiveSplit`, `MasterDetail`, `ResponsiveSlot`, adaptive navigation | [layout engine](./docs/LAYOUT_ENGINE.md), `apps/reference/app/navigation.tsx` |
 | Raw `Pressable` | `Button`, `IconButton`, `Link`, `ListRow`, or a reviewed `PressableSurface` composition | [catalog: actions](./docs/GOLDEN_CATALOG.md#take-an-action) |
 | Raw `TextInput`, `Switch`, select popup, date/time coercion, locale parser, OTP focus logic, keyboard controller, or `KeyboardAvoidingView` | Semantic forms (`NumberField`, `DateField`, `TimeField`, `DateRangeField`, `ComboboxField`, `CodeField`, groups), `FormScreen`, and form-RHF helpers | [forms](./docs/FORMS.md), `apps/reference/app/forms.tsx` |
-| Local validation summary, server field-error mapper, dirty-leave prompt, or reset guard | `FormErrorSummary`, `FormDiscardDialog`, `useFormLeaveGuard`, and `usePrecisionFormLifecycle` for RHF | [forms](./docs/FORMS.md), `apps/reference/app/forms.tsx` |
+| Local validation summary, server field-error mapper, dirty-leave prompt, or reset guard | `FormErrorSummary`, `FormDiscardDialog`, `useFormLeaveGuard`, and `useExpoBaseFormLifecycle` for RHF | [forms](./docs/FORMS.md), `apps/reference/app/forms.tsx` |
 | Raw `Modal`, portal, backdrop, measurement, or focus restoration | `Dialog`, `BottomSheet`, `Popover`, `Menu`, `ActionMenu`, `OverlayRootProvider` | [overlays](./docs/OVERLAYS.md), `apps/reference/app/overlays.tsx` |
-| `Intl.*`, `localeCompare`, `toLocale*`, `I18nManager`, hard-coded `ltr`/`rtl`, or local pseudo-copy transforms | Runtime `i18n`, `usePrecisionI18n`, `usePrecisionDirection`, semantic start/end styles | [internationalization](./docs/INTERNATIONALIZATION.md), reference runtime controls |
+| `Intl.*`, `localeCompare`, `toLocale*`, `I18nManager`, hard-coded `ltr`/`rtl`, or local pseudo-copy transforms | Runtime `i18n`, `useExpoBaseI18n`, `useExpoBaseDirection`, semantic start/end styles | [internationalization](./docs/INTERNATIONALIZATION.md), reference runtime controls |
 | Local animation timing or reduced-motion branch | `MotionRootProvider`, `Reveal`, and shared feedback/overlay motion | [accessibility and motion](./docs/ACCESSIBILITY_MOTION.md), `apps/reference/app/accessibility-motion.tsx` |
-| `Platform.OS`, `AppState`, SecureStore, AsyncStorage, Expo picker/media/notification/update/local-auth APIs, or vendor telemetry in a route | Selected Precision capability adapter registered through `PrecisionRuntimeProvider` | [runtime capabilities](./docs/RUNTIME_CAPABILITIES.md), [catalog: device capabilities](./docs/GOLDEN_CATALOG.md#use-an-optional-device-capability) |
+| `Platform.OS`, `AppState`, SecureStore, AsyncStorage, Expo picker/media/notification/update/local-auth APIs, or vendor telemetry in a route | Selected Expo Base capability adapter registered through `ExpoBaseRuntimeProvider` | [runtime capabilities](./docs/RUNTIME_CAPABILITIES.md), [catalog: device capabilities](./docs/GOLDEN_CATALOG.md#use-an-optional-device-capability) |
 | `fetch`, axios/ky clients, `AsyncStorage`, SecureStore, `localStorage` | Injected `AppServices`/adapters and runtime hooks; optional capabilities only when approved | [adapters](./docs/ADAPTERS.md), `apps/reference/app/services.tsx` |
-| `useEffect` data loading, local cache/retry maps, direct TanStack imports, or hand-built optimistic rollback | `precisionQueryKey`, `usePrecisionQuery`, `usePrecisionMutation`, `usePrecisionServerState` | [server state](./docs/SERVER_STATE.md), `apps/reference/app/server-state.tsx` |
-| Direct Expo Router/React Navigation use in a feature | `usePrecisionRouter`, `ProtectedRouterStack`, navigation components | [navigation](./docs/NAVIGATION.md), `apps/reference/app/navigation.tsx` |
+| `useEffect` data loading, local cache/retry maps, direct TanStack imports, or hand-built optimistic rollback | `expoBaseQueryKey`, `useExpoBaseQuery`, `useExpoBaseMutation`, `useExpoBaseServerState` | [server state](./docs/SERVER_STATE.md), `apps/reference/app/server-state.tsx` |
+| Direct Expo Router/React Navigation use in a feature | `useExpoBaseRouter`, `ProtectedRouterStack`, navigation components | [navigation](./docs/NAVIGATION.md), `apps/reference/app/navigation.tsx` |
 | Local spinner/error/empty screen anatomy | `LoadingState`, `StateView`, `AsyncStateView`, `AlertBanner` | [feedback](./docs/FEEDBACK.md), `apps/reference/app/feedback.tsx` |
-| Raw `Image` plus local loading/error shell | `MediaFrame`; selected `@precision-calm/media` only for acquisition | [media presentation](./docs/MEDIA_PRESENTATION.md), `apps/reference/app/system.tsx` |
+| Raw `Image` plus local loading/error shell | `MediaFrame`; selected `@expo-base/media` only for acquisition | [media presentation](./docs/MEDIA_PRESENTATION.md), `apps/reference/app/system.tsx` |
 | Local pagination/infinite state machine, custom timeline/avatar overlap, raw CSV quoting, or chart engine/colors | `CursorPagination`, `Timeline`, `AvatarGroup`, `serializeDelimitedData`, and visualization owners | [data display](./docs/DATA_DISPLAY.md), [visualization](./docs/VISUALIZATION.md) |
 | Raw clipboard action, custom code surface, local sparkline/stacked SVG, or native date-picker import | Optional `CopyableValue`/`CopyableCode`, `CodeBlock`, Plus chart owners, and the documented picker adapter boundary | [components](./docs/COMPONENTS.md), [forms](./docs/FORMS.md), `apps/reference/app/golden-plus.tsx` |
-| Role checks or direct auth adapter calls | `usePrecisionAuth`, `usePrecisionAuthorization`, protected routing | [auth](./docs/AUTH_PROTECTED_ROUTES.md), `apps/reference/app/auth-session.tsx` |
+| Role checks or direct auth adapter calls | `useExpoBaseAuth`, `useExpoBaseAuthorization`, protected routing | [auth](./docs/AUTH_PROTECTED_ROUTES.md), `apps/reference/app/auth-session.tsx` |
 
 `golden-architecture.config.json` is the only exception mechanism for feature-boundary checks.
 An exception must name narrow paths, rule IDs, and a concrete rationale. Do not add source comment
@@ -89,7 +89,7 @@ disables or broad global bypasses.
 
 For shared visual, semantic, accessibility, or performance changes, run `npm run golden:verify`. Treat a visual diff as a defect until reviewed. Never update baselines as an automatic failure fix; the deliberate update policy lives in `docs/CERTIFICATION.md`.
 
-For new reusable owners, update `golden.owner-certification.json` and link the owner to one Golden Catalog item. Use `npm run check:owner-certification`, `npm run check:dependency-graph`, and `npm run check:ultimate-audit`; advanced visualization belongs in `@precision-calm/visualization-advanced` and must not be pulled into the minimal generated app or reimplemented in a feature route. Run `npm run golden:verify` and `npm run mobile:verify` for shared visual or responsive changes.
+For new reusable owners, update `golden.owner-certification.json` and link the owner to one Golden Catalog item. Use `npm run check:owner-certification`, `npm run check:dependency-graph`, and `npm run check:ultimate-audit`; advanced visualization belongs in `@expo-base/visualization-advanced` and must not be pulled into the minimal generated app or reimplemented in a feature route. Run `npm run golden:verify` and `npm run mobile:verify` for shared visual or responsive changes.
 
 Do not create a new page architecture when an existing Golden pattern matches the requested intent. Scaffolding is preferred for standard workflows; manual Golden composition remains valid for genuinely unique product work.
 
@@ -120,7 +120,7 @@ return <Modal><TextInput /><ActivityIndicator /></Modal>;
 Good — shared state and interaction owners:
 
 ```tsx
-const save = usePrecisionAsyncAction(() => services.profile.save(input));
+const save = useExpoBaseAsyncAction(() => services.profile.save(input));
 return <Button label="Save" loading={save.state.status === 'loading'} onPress={() => { void save.run(); }} />;
 // Use AsyncStateView for query presentation and Dialog + TextField for editing.
 ```
@@ -135,8 +135,8 @@ const cache = new Map(); // local retries and optimistic rollback follow
 Good — a service loader behind shared server-state ownership:
 
 ```tsx
-const projects = usePrecisionQuery({
-  key: precisionQueryKey.list('projects', filters),
+const projects = useExpoBaseQuery({
+  key: expoBaseQueryKey.list('projects', filters),
   query: ({ signal }) => services.projects.list(filters, signal),
 });
 ```

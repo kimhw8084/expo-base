@@ -7,7 +7,7 @@ import type {
   IncomingLinkPolicy,
   LinkBlockReason,
   LinkDecision,
-  PrecisionLinkingRuntime,
+  ExpoBaseLinkingRuntime,
 } from './contracts';
 
 const ALWAYS_BLOCKED_SCHEMES = new Set(['javascript', 'data', 'file', 'vbscript', 'blob', 'intent']);
@@ -98,13 +98,13 @@ export function redactUrlForDiagnostics(input: string): string {
   }
 }
 
-export function createPrecisionLinkingRuntime(options: {
+export function createExpoBaseLinkingRuntime(options: {
   adapter: ExternalNavigationAdapter;
   externalPolicy: ExternalNavigationPolicy;
   incomingPolicy: IncomingLinkPolicy;
   /** Optional side-effect boundary for already-validated internal routes. Observer failures are ignored. */
   onIncomingRoute?: (route: `/${string}`) => void;
-}): PrecisionLinkingRuntime {
+}): ExpoBaseLinkingRuntime {
   return {
     validateExternal: (url) => validateExternalUrl(url, options.externalPolicy),
     async openExternal(url) {
@@ -129,7 +129,7 @@ export function createPrecisionLinkingRuntime(options: {
 
 
 function validateIncomingRoute(route: `/${string}`, source: 'internal-path' | 'custom-scheme' | 'universal-link', policy: IncomingLinkPolicy): IncomingLinkDecision {
-  const parsed = new URL(route, 'https://precision.invalid');
+  const parsed = new URL(route, 'https://expo-base.invalid');
   const rule = (policy.callbackRules ?? []).find((candidate) => candidate.path === parsed.pathname);
   if (!rule) return { action: 'route', route, source };
   const keys = Array.from(parsed.searchParams.keys());
@@ -149,8 +149,8 @@ function reject(route: `/${string}`, reason: LinkBlockReason): IncomingLinkDecis
 function normalizeRoute(value: string): `/${string}` | null {
   if (!value.startsWith('/') || value.startsWith('//') || CONTROL_CHARACTERS.test(value)) return null;
   try {
-    const parsed = new URL(value, 'https://precision.invalid');
-    if (parsed.origin !== 'https://precision.invalid') return null;
+    const parsed = new URL(value, 'https://expo-base.invalid');
+    if (parsed.origin !== 'https://expo-base.invalid') return null;
     return `${parsed.pathname}${parsed.search}` as `/${string}`;
   } catch { return null; }
 }

@@ -1,22 +1,22 @@
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult } from '@precision-calm/capabilities';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult } from '@expo-base/capabilities';
 
-export const precisionClipboardCapability = 'clipboard';
-export const precisionSharingCapability = 'sharing';
+export const expoBaseClipboardCapability = 'clipboard';
+export const expoBaseSharingCapability = 'sharing';
 
-export interface PrecisionClipboard {
-  availability(): Promise<PrecisionCapabilityAvailability>;
-  copyText(value: string): Promise<PrecisionCapabilityResult<undefined>>;
-  readText?(): Promise<PrecisionCapabilityResult<string>>;
+export interface ExpoBaseClipboard {
+  availability(): Promise<ExpoBaseCapabilityAvailability>;
+  copyText(value: string): Promise<ExpoBaseCapabilityResult<undefined>>;
+  readText?(): Promise<ExpoBaseCapabilityResult<string>>;
 }
 
-export interface PrecisionShareRequest {
+export interface ExpoBaseShareRequest {
   url: string;
   title?: string | undefined;
   mimeType?: string | undefined;
   dialogTitle?: string | undefined;
 }
 
-export interface PrecisionSharing {
-  availability(): Promise<PrecisionCapabilityAvailability>;
-  share(request: PrecisionShareRequest): Promise<PrecisionCapabilityResult<undefined>>;
+export interface ExpoBaseSharing {
+  availability(): Promise<ExpoBaseCapabilityAvailability>;
+  share(request: ExpoBaseShareRequest): Promise<ExpoBaseCapabilityResult<undefined>>;
 }

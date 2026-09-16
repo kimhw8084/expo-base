@@ -16,7 +16,7 @@ Gate 10 provides a lightweight universal chart foundation on the already-approve
 ## System-owned behavior
 
 - Chart frames measure their own available width; feature screens do not query viewport size or generate SVG geometry.
-- Scale, bounds, point, path, bar, progress, and summary functions live as platform-neutral pure functions in `@precision-calm/platform`.
+- Scale, bounds, point, path, bar, progress, and summary functions live as platform-neutral pure functions in `@expo-base/platform`.
 - The light and dark themes each define six visualization-series colors. Product screens select a semantic series slot instead of literal colors.
 - Chart dimensions, line width, point radius, fill opacity, grid width, and progress geometry are theme tokens.
 - Invalid numeric values are filtered before geometry generation, preventing `NaN`/`Infinity` SVG output.
@@ -38,7 +38,7 @@ Gate 10 provides a lightweight universal chart foundation on the already-approve
 
 The core package intentionally avoids locking the whole application platform to a heavyweight chart engine. Its platform-neutral math now owns finite domains, nice numeric boundaries, linear and band scales, deterministic ticks, min/max downsampling, histogram bins, heatmap cells, and waterfall geometry. These functions are pure and usable in native or web renderers without importing SVG.
 
-`@precision-calm/visualization-advanced` is an opt-in Golden Module. It provides `ScatterPlot`, `Histogram`, `Heatmap`, `GroupedBarChart`, `HorizontalBarChart`, `DivergingBarChart`, `NormalizedStackedBarChart`, `MultiLineChart`, `WaterfallChart`, `RangeBarChart`, and `BulletChart` while reusing `ChartFrame`, `ChartAxes`, `ChartInspector`, the shared palette, responsive heights, stable series IDs, and visible data-table fallbacks. It is intentionally not re-exported by `@precision-calm/ui`, not included by the minimal generator, and not a vendor chart engine.
+`@expo-base/visualization-advanced` is an opt-in Golden Module. It provides `ScatterPlot`, `Histogram`, `Heatmap`, `GroupedBarChart`, `HorizontalBarChart`, `DivergingBarChart`, `NormalizedStackedBarChart`, `MultiLineChart`, `WaterfallChart`, `RangeBarChart`, and `BulletChart` while reusing `ChartFrame`, `ChartAxes`, `ChartInspector`, the shared palette, responsive heights, stable series IDs, and visible data-table fallbacks. It is intentionally not re-exported by `@expo-base/ui`, not included by the minimal generator, and not a vendor chart engine.
 
 The advanced module is appropriate for exploratory relationship, distribution, matrix, comparison, contribution, range, and target views. It is not an enterprise grid, mapping system, rich editor, realtime GPU renderer, or financial trading engine. Candlestick/OHLC, box plot, funnel, cohort, combo, geographic/maps, and GPU-heavy realtime charts remain deferred specialist boundaries until a real product supplies evidence.
 

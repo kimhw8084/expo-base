@@ -1,10 +1,10 @@
 # New-app generator
 
-`@precision-calm/create-app` produces a new Expo application workspace that consumes the shared platform instead of copying component source.
+`@expo-base/create-app` produces a new Expo application workspace that consumes the shared platform instead of copying component source.
 
 ## App generator and screen scaffolder
 
-`create-precision-app` creates a new application. After generation, use the separate
+`create-expo-base-app` creates a new application. After generation, use the separate
 [`screen scaffolder`](./SCREEN_SCAFFOLDING.md) for standard Golden routes; it is intentionally not
 folded into the app-generator questionnaire.
 
@@ -19,7 +19,7 @@ folded into the app-generator questionnaire.
 
 ## Example
 
-`node packages/create-precision-app/bin/create-precision-app.mjs --name "Orbit Ledger" --slug orbit-ledger --accent violet`
+`node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name "Orbit Ledger" --slug orbit-ledger --accent violet`
 
 Available starter accents: blue, violet, green, orange. A custom brand should define both light and dark accent palettes rather than derive dark mode from a single hex value.
 
@@ -28,18 +28,18 @@ Available starter accents: blue, violet, green, orange. A custom brand should de
 The minimal output has no optional native capability dependencies. Use `--capabilities` only for
 approved application needs, for example:
 
-`node packages/create-precision-app/bin/create-precision-app.mjs --name "Orbit Ledger" --slug orbit-ledger --capabilities secure-storage,runtime-signals,media`
+`node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name "Orbit Ledger" --slug orbit-ledger --capabilities secure-storage,runtime-signals,media`
 
 Available selections are `secure-storage`, `preferences`, `runtime-signals`, `sharing`, `media`,
 `local-auth`, `notifications`, `updates`, `device`, `haptics`, and `observability`. The generator
-writes `precision.capabilities.json`, registers selected adapters in `capabilities.ts`, adds only
+writes `expo-base.capabilities.json`, registers selected adapters in `capabilities.ts`, adds only
 their package/dependency/plugin requirements, and passes the registry through the runtime root.
 Read [`RUNTIME_CAPABILITIES.md`](./RUNTIME_CAPABILITIES.md) before choosing a profile; product
 routes never import the Expo modules directly.
 
 ## Verified web links
 
-Pass `--link-host app.example.com` to configure the native iOS associated-domain and Android auto-verified HTTPS intent filter and to seed the Precision linking allowlist. This does **not** prove domain ownership: the deployment must still publish the Apple AASA and Android Digital Asset Links files. Omitting `--link-host` is intentionally safer than inventing a domain.
+Pass `--link-host app.example.com` to configure the native iOS associated-domain and Android auto-verified HTTPS intent filter and to seed the Expo Base linking allowlist. This does **not** prove domain ownership: the deployment must still publish the Apple AASA and Android Digital Asset Links files. Omitting `--link-host` is intentionally safer than inventing a domain.
 
 ## Validation
 

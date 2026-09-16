@@ -6,10 +6,15 @@ const root = process.cwd();
 const audit = JSON.parse(fs.readFileSync(path.join(root, 'docs/ultimate-golden-capabilities.json'), 'utf8'));
 const coverage = JSON.parse(fs.readFileSync(path.join(root, 'docs/ultimate-golden-coverage.json'), 'utf8'));
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'golden.catalog.json'), 'utf8'));
-const api = JSON.parse(fs.readFileSync(path.join(root, 'precision.api.json'), 'utf8'));
+const api = JSON.parse(fs.readFileSync(path.join(root, 'expo-base.api.json'), 'utf8'));
 const cert = JSON.parse(fs.readFileSync(path.join(root, 'golden.certification.json'), 'utf8'));
 const ownerCert = JSON.parse(fs.readFileSync(path.join(root, 'golden.owner-certification.json'), 'utf8'));
-const workspaceCount = ['packages', 'apps'].flatMap((scope) => fs.readdirSync(path.join(root, scope), { withFileTypes: true }).filter((entry) => entry.isDirectory() && fs.existsSync(path.join(root, scope, entry.name, 'package.json')))).length;
+const workspaceCount = ['packages', 'apps'].flatMap((scope) => fs.readdirSync(path.join(root, scope), { withFileTypes: true }).filter((entry) => {
+  if (!entry.isDirectory()) return false;
+  const manifestPath = path.join(root, scope, entry.name, 'package.json');
+  if (!fs.existsSync(manifestPath)) return false;
+  return !JSON.parse(fs.readFileSync(manifestPath, 'utf8')).expoBaseCompatibility;
+})).length;
 assert.equal(audit.metrics.workspaces, workspaceCount, 'Ultimate audit workspace count is stale; run npm run ultimate:audit.');
 assert.equal(audit.metrics.catalogOwners, catalog.items.length, 'Ultimate audit catalog count is stale.');
 assert.equal(audit.metrics.ownershipRecords, catalog.ownership.length, 'Ultimate audit ownership count is stale.');

@@ -1,12 +1,12 @@
 {
-  "name": "@precision-calm/form-rhf",
+  "name": "@expo-base/form-rhf",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.tsx",
   "types": "src/index.tsx",
   "dependencies": {
-    "@precision-calm/forms": "*",
+    "@expo-base/forms": "*",
     "react-hook-form": "7.87.0"
   },
   "peerDependencies": {

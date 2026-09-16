@@ -14,7 +14,7 @@ patterns are in [`golden.patterns.json`](../golden.patterns.json) and [Golden wo
 
 The scaffold creates only:
 
-- protected/public route registration in `precision.routes.json` and `routes.ts`;
+- protected/public route registration in `expo-base.routes.json` and `routes.ts`;
 - a route composed from sanctioned owners;
 - a neutral domain model and service-adapter TODO boundary.
 
@@ -27,7 +27,7 @@ and unique visualization before enabling the generated query.
 The app must already have the required optional capability profile. For example:
 
 ```sh
-create-precision-app --name Acme --slug acme --capabilities media,runtime-signals
+create-expo-base-app --name Acme --slug acme --capabilities media,runtime-signals
 npm run scaffold:screen -- --app apps/acme --name imports --pattern import-workflow
 ```
 
@@ -40,7 +40,7 @@ The command validates pattern ID, kebab-case route name, selected capabilities, 
 registration, and every destination before it writes. It refuses collisions and stages writes with
 rollback, so a failed command leaves no partially registered route.
 
-`precision.routes.json` is the source manifest for scaffolded routes. Do not edit it manually;
+`expo-base.routes.json` is the source manifest for scaffolded routes. Do not edit it manually;
 rerun the scaffold with a new name or make a conscious manual Golden composition for unusual work.
 
 ## Verify

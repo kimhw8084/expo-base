@@ -1,7 +1,7 @@
 import '../unistyles';
 import { ScrollViewStyleReset } from 'expo-router/html';
 import type { PropsWithChildren } from 'react';
-import { PrecisionWebAccessibilityStyles } from '@precision-calm/ui';
+import { ExpoBaseWebAccessibilityStyles } from '@expo-base/ui';
 
 export default function Root({ children }: PropsWithChildren) {
   return (
@@ -14,7 +14,7 @@ export default function Root({ children }: PropsWithChildren) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <ScrollViewStyleReset />
-        <PrecisionWebAccessibilityStyles />
+        <ExpoBaseWebAccessibilityStyles />
       </head>
       <body>{children}</body>
     </html>

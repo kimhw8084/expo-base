@@ -14,14 +14,14 @@ for (const marker of ['getState()', 'lock(reason', 'requestUnlock()', 'subscribe
 assert.ok(runtime.includes("useState<SessionSecurityStatus>('loading')"));
 assert.ok(runtime.includes("setState({ locked: true, reason: 'security-policy' })"));
 assert.ok(runtime.includes("errorCode: 'session_security_unavailable'"));
-assert.ok(runtime.includes('PrecisionSessionSecurityBootstrap'));
+assert.ok(runtime.includes('ExpoBaseSessionSecurityBootstrap'));
 assert.ok(runtime.includes("runtime.status !== 'loading'"));
 assert.ok(runtime.includes('if (!resolvedOnce.current) return fallback'));
 assert.ok(auth.includes("sessionSecurity?.status === 'loading'"));
 assert.ok(auth.includes("sessionSecurity.status === 'error' || sessionSecurity.locked"));
 assert.ok(auth.includes('deriveRuntimeProtectedAccess(status, sessionSecurity, options)'));
 assert.ok(auth.includes('runtimeLocked || options.locallyLocked === true'));
-assert.ok(root.includes('PrecisionSessionSecurityBootstrap'));
+assert.ok(root.includes('ExpoBaseSessionSecurityBootstrap'));
 assert.ok(root.includes("locked: ['unlock']"));
 assert.ok(root.includes("'/unlock'"));
 assert.ok(acceptance.includes("sessionSecurity.lock('manual')"));

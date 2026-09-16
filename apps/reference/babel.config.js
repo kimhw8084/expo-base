@@ -5,7 +5,7 @@ module.exports = function (api) {
     plugins: [
       ['react-native-unistyles/plugin', {
         root: 'app',
-        autoProcessImports: ['@precision-calm/ui']
+        autoProcessImports: ['@expo-base/ui']
       }]
     ]
   };

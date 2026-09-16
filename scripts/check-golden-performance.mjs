@@ -45,7 +45,7 @@ const contributorBytes = new Map();
 for (const [source, bytes] of sourceBytes) {
   const nodeModule = source.match(/node_modules\/(?:\.pnpm\/[^/]+\/node_modules\/)?((?:@[^/]+\/)?[^/]+)/)?.[1];
   const workspace = source.match(/(?:^|\/)packages\/([^/]+)/)?.[1];
-  const owner = nodeModule ?? (workspace ? `@precision-calm/${workspace}` : source.includes('/apps/reference/') ? '@precision-calm/reference' : 'other');
+  const owner = nodeModule ?? (workspace ? `@expo-base/${workspace}` : source.includes('/apps/reference/') ? '@expo-base/reference' : 'other');
   contributorBytes.set(owner, (contributorBytes.get(owner) ?? 0) + bytes);
 }
 const majorSourceContributors = [...contributorBytes].map(([owner, bytes]) => ({ owner, bytes })).sort((left, right) => right.bytes - left.bytes).slice(0, 15);

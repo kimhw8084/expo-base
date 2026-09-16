@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Button, IconButton } from '@precision-calm/components';
-import { paginationWindow } from '@precision-calm/platform';
+import { Button, IconButton } from '@expo-base/components';
+import { paginationWindow } from '@expo-base/platform';
 
 export interface PaginationProps { page: number; pageCount: number; onChange: (page: number) => void; }
 export function Pagination({ page, pageCount, onChange }: PaginationProps) {

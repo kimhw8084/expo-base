@@ -1,12 +1,12 @@
 {
-  "name": "@precision-calm/haptics",
+  "name": "@expo-base/haptics",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@precision-calm/capabilities": "*",
+    "@expo-base/capabilities": "*",
     "expo-haptics": "~57.0.2"
   },
   "peerDependencies": {

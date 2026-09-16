@@ -5,6 +5,10 @@ Repository: `/Users/haewonkim/home/development/expo-base`
 Branch / HEAD: `main` / `a63c006b6aaf8f4f9f3df25289414a88134945c5`  
 Audit mode: documentation only; no product implementation was changed.
 
+Historical provenance note: this audit records the pre-CHG-24 implementation baseline. References
+to Precision Calm, its package scope, symbols, and file paths are intentionally retained as
+historical evidence and are not current Expo Base guidance.
+
 ## Executive conclusion
 
 Expo Base is already a strong Precision Calm UI foundation. It has unusually good semantic

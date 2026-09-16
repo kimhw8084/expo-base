@@ -28,7 +28,7 @@ if (!button.includes('styles.compactFull')) failures.push('Button compact-full b
 if (!button.includes("alignSelf: 'flex-start'")) failures.push('Button must be intrinsic-width by default.');
 if (!button.includes('styles.loadingContent') || !button.includes('styles.loadingIndicator')) failures.push('Button loading must preserve its content geometry while placing the indicator over the stable action surface.');
 
-const asyncAction = read('packages/runtime/src/usePrecisionAsyncAction.ts');
+const asyncAction = read('packages/runtime/src/useExpoBaseAsyncAction.ts');
 if (!asyncAction.includes('active.current') || !asyncAction.includes('started !== revision.current') || !asyncAction.includes('mounted.current = false')) failures.push('Shared async actions must single-flight repeated taps and ignore late completions after reset/unmount.');
 
 const navRouter = read('packages/navigation-router/src/index.tsx');
@@ -101,7 +101,7 @@ const themeSync = read('apps/reference/ThemeRuntimeSync.tsx');
 if (!runtimeSettings.includes("ReferenceThemeMode = 'system' | 'light' | 'dark'")) failures.push('Reference app must expose system/light/dark runtime theme modes.');
 if (!runtimeControls.includes('runtime-settings-status')) failures.push('Reference runtime controls must expose a testable active-state summary.');
 if (!runtimeControls.includes('Theme: ${capitalize(mode)}') || !runtimeControls.includes('Density: Compact')) failures.push('Reference runtime controls must use contextual accessibility labels that cannot collide with shell destinations.');
-if (!rootLayout.includes('density={density}')) failures.push('Reference runtime density control must feed PrecisionRuntimeProvider.');
+if (!rootLayout.includes('density={density}')) failures.push('Reference runtime density control must feed ExpoBaseRuntimeProvider.');
 if (!themeSync.includes("mode === 'system'")) failures.push('Theme synchronizer must honor explicit reference theme overrides without losing system mode.');
 
 const formLayout = read('packages/forms/src/FormLayout.tsx');

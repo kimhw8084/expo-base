@@ -1,8 +1,8 @@
 import { forwardRef, useState } from 'react';
 import { Platform, TextInput, type TextInputProps, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Icon, type IconName } from '@precision-calm/icons';
-import { IconButton } from '@precision-calm/components';
+import { Icon, type IconName } from '@expo-base/icons';
+import { IconButton } from '@expo-base/components';
 import { FormField } from './FormField';
 
 type AllowedTextInputProps = Pick<TextInputProps,

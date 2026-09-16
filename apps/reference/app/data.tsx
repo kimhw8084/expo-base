@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 import { Alert } from 'react-native';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
-import { formatCurrency, formatPercent } from '@precision-calm/platform';
-import { Page, PageHeader, ScrollScreen, Section, SectionHeader } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
-import { Badge, Button, Card } from '@precision-calm/ui';
-import { AdaptiveDataTable, CheckboxGroup, CursorPagination, DataToolbar, FilterDrawer, InfinitePagination, KeyValueList, ListRow, Metric, MetricGroup, Pagination, SelectionBar, sortDataRows, useDataColumnVisibility, type DataColumn, type DataSort, type DataToolbarFilter } from '@precision-calm/ui';
-import { StateView } from '@precision-calm/ui';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
+import { formatCurrency, formatPercent } from '@expo-base/platform';
+import { Page, PageHeader, ScrollScreen, Section, SectionHeader } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
+import { Badge, Button, Card } from '@expo-base/ui';
+import { AdaptiveDataTable, CheckboxGroup, CursorPagination, DataToolbar, FilterDrawer, InfinitePagination, KeyValueList, ListRow, Metric, MetricGroup, Pagination, SelectionBar, sortDataRows, useDataColumnVisibility, type DataColumn, type DataSort, type DataToolbarFilter } from '@expo-base/ui';
+import { StateView } from '@expo-base/ui';
 import { useReferenceCopy } from '../ReferenceCopy';
 
 type CardRecord = {
@@ -42,7 +42,7 @@ const columns: readonly DataColumn<CardRecord>[] = [
 ];
 
 export default function DataDisplayReferenceScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   const [page, setPage] = useState(1);
   const [selectedKey, setSelectedKey] = useState('venture-x');

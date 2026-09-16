@@ -1,6 +1,6 @@
 # Gate 36 — capability and entitlement authorization
 
-Precision Calm separates **authentication** from **client capability gating**.
+Expo Base separates **authentication** from **client capability gating**.
 
 Authentication answers **who is signed in**. Authorization capabilities answer **which product experiences this authenticated identity should be able to see or invoke in the client**.
 
@@ -45,11 +45,11 @@ Capability keys are normalized, deduplicated, validated, and bounded. Invalid re
 
 ## Runtime ownership
 
-`PrecisionAuthorizationProvider` binds the configured `AuthorizationAdapter` to the currently authenticated user. Product screens consume:
+`ExpoBaseAuthorizationProvider` binds the configured `AuthorizationAdapter` to the currently authenticated user. Product screens consume:
 
 ```tsx
-const authorization = usePrecisionAuthorization();
-const decision = usePrecisionAuthorizationRequirement({ all: ['reports.view'] });
+const authorization = useExpoBaseAuthorization();
+const decision = useExpoBaseAuthorizationRequirement({ all: ['reports.view'] });
 ```
 
 or declaratively:
@@ -78,7 +78,7 @@ Raw adapter/provider errors are not rendered to users. The runtime exposes the s
 Capability-protected navigation is expressed as a nested authenticated guard through `ProtectedRouterStack`:
 
 ```tsx
-const settings = usePrecisionAuthorizationRequirement({
+const settings = useExpoBaseAuthorizationRequirement({
   all: ['settings.manage'],
 });
 

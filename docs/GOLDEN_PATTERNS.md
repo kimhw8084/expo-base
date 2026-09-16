@@ -1,6 +1,6 @@
 # Golden page patterns
 
-The golden-layout gate moves Precision Calm from a component kit to a reusable application platform.
+The golden-layout gate moves Expo Base from a component kit to a reusable application platform.
 
 The original page-layout catalog contains 15 core layouts:
 

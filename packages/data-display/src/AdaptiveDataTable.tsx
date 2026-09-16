@@ -1,8 +1,8 @@
 import { useCallback, useMemo, type ReactNode } from 'react';
 import { Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Icon } from '@precision-calm/icons';
-import { Text, VStack, useDensity, useInteractionState } from '@precision-calm/primitives';
+import { Icon } from '@expo-base/icons';
+import { Text, VStack, useDensity, useInteractionState } from '@expo-base/primitives';
 
 export type DataSortDirection = 'asc' | 'desc';
 

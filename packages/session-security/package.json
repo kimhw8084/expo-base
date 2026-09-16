@@ -1,5 +1,5 @@
 {
-  "name": "@precision-calm/session-security",
+  "name": "@expo-base/session-security",
   "version": "1.0.0",
   "private": true,
   "type": "module",

@@ -6,7 +6,7 @@ const root = process.cwd();
 const visualPackages = [
   'accessibility','components','data-display','feedback','forms','i18n','icons','layouts','lists','media-presentation','motion','navigation','overlays','patterns','primitives','visualization'
 ];
-const forbiddenFeatureImports = new Set(visualPackages.map((name) => `@precision-calm/${name}`));
+const forbiddenFeatureImports = new Set(visualPackages.map((name) => `@expo-base/${name}`));
 const violations = [];
 
 function walk(dir, visit) {
@@ -26,8 +26,8 @@ if (fs.existsSync(appsDir)) {
       const text = fs.readFileSync(file, 'utf8');
       const imports = [...text.matchAll(/(?:from\s+|import\s*\(?\s*)['"]([^'"]+)['"]/g)].map((m) => m[1]);
       for (const source of imports) {
-        if (forbiddenFeatureImports.has(source)) violations.push(`${path.relative(root, file)} bypasses @precision-calm/ui via ${source}`);
-        if (/^@precision-calm\/[^/]+\/src(?:\/|$)/.test(source)) violations.push(`${path.relative(root, file)} uses private deep import ${source}`);
+        if (forbiddenFeatureImports.has(source)) violations.push(`${path.relative(root, file)} bypasses @expo-base/ui via ${source}`);
+        if (/^@expo-base\/[^/]+\/src(?:\/|$)/.test(source)) violations.push(`${path.relative(root, file)} uses private deep import ${source}`);
       }
     });
   }
@@ -35,7 +35,7 @@ if (fs.existsSync(appsDir)) {
 
 const uiIndex = fs.readFileSync(path.join(root, 'packages/ui/src/index.ts'), 'utf8');
 for (const pkg of visualPackages) {
-  if (!uiIndex.includes(`'@precision-calm/${pkg}'`)) violations.push(`@precision-calm/ui does not expose @precision-calm/${pkg}`);
+  if (!uiIndex.includes(`'@expo-base/${pkg}'`)) violations.push(`@expo-base/ui does not expose @expo-base/${pkg}`);
 }
 
 // Detect public name collisions before export-star aggregation can become ambiguous.

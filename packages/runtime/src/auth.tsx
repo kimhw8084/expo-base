@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type PropsWithChildren } from 'react';
-import type { AuthAdapter, AuthSession } from '@precision-calm/adapters';
+import type { AuthAdapter, AuthSession } from '@expo-base/adapters';
 import {
   createReturnIntentChannel,
   deriveProtectedAccess,
@@ -10,10 +10,10 @@ import {
   type ReturnIntentChannel,
   type ReturnIntentPolicy,
   type SafeAuthErrorCode,
-} from '@precision-calm/auth';
-import { useOptionalPrecisionSessionSecurity, type PrecisionSessionSecurityRuntime } from './sessionSecurity';
+} from '@expo-base/auth';
+import { useOptionalExpoBaseSessionSecurity, type ExpoBaseSessionSecurityRuntime } from './sessionSecurity';
 
-export interface PrecisionAuthSnapshot {
+export interface ExpoBaseAuthSnapshot {
   status: AuthResolutionStatus;
   session: AuthSession | null;
   /** Increments whenever an authoritative session snapshot is applied. */
@@ -23,7 +23,7 @@ export interface PrecisionAuthSnapshot {
   pendingReturnIntent: `/${string}` | null;
 }
 
-export interface PrecisionAuthRuntime extends PrecisionAuthSnapshot {
+export interface ExpoBaseAuthRuntime extends ExpoBaseAuthSnapshot {
   refresh(): Promise<void>;
   signIn(input: { email: string; password: string }): Promise<boolean>;
   signOut(): Promise<boolean>;
@@ -32,9 +32,9 @@ export interface PrecisionAuthRuntime extends PrecisionAuthSnapshot {
   consumeReturnIntent(fallback?: `/${string}`): `/${string}`;
 }
 
-const PrecisionAuthContext = createContext<PrecisionAuthRuntime | null>(null);
+const ExpoBaseAuthContext = createContext<ExpoBaseAuthRuntime | null>(null);
 
-export interface PrecisionAuthProviderProps extends PropsWithChildren {
+export interface ExpoBaseAuthProviderProps extends PropsWithChildren {
   adapter: AuthAdapter;
   returnIntentPolicy?: ReturnIntentPolicy;
   /** Optional shared in-memory channel for native incoming-link return intent. */
@@ -45,12 +45,12 @@ export interface PrecisionAuthProviderProps extends PropsWithChildren {
  * Owns initial session resolution and subscription ordering. Product screens
  * never infer authentication from a nullable session while loading is pending.
  */
-export function PrecisionAuthProvider({ adapter, returnIntentPolicy, returnIntentChannel, children }: PrecisionAuthProviderProps) {
+export function ExpoBaseAuthProvider({ adapter, returnIntentPolicy, returnIntentChannel, children }: ExpoBaseAuthProviderProps) {
   const localReturnChannel = useRef<ReturnIntentChannel | null>(null);
   const localChannel = localReturnChannel.current ?? createReturnIntentChannel(returnIntentPolicy);
   if (!localReturnChannel.current) localReturnChannel.current = localChannel;
   const returnChannel = returnIntentChannel ?? localChannel;
-  const [snapshot, setSnapshot] = useState<PrecisionAuthSnapshot>({
+  const [snapshot, setSnapshot] = useState<ExpoBaseAuthSnapshot>({
     status: 'loading', session: null, sessionRevision: 0, actionStatus: 'idle', errorCode: null, pendingReturnIntent: returnChannel.peek(),
   });
   const mounted = useRef(true);
@@ -163,27 +163,27 @@ export function PrecisionAuthProvider({ adapter, returnIntentPolicy, returnInten
   const clearReturnIntent = useCallback(() => returnChannel.clear(), [returnChannel]);
   const consumeReturnIntent = useCallback((fallback: `/${string}` = '/') => returnChannel.consume(fallback), [returnChannel]);
 
-  const runtime = useMemo<PrecisionAuthRuntime>(() => ({
+  const runtime = useMemo<ExpoBaseAuthRuntime>(() => ({
     ...snapshot, refresh, signIn, signOut, captureReturnIntent, clearReturnIntent, consumeReturnIntent,
   }), [snapshot, refresh, signIn, signOut, captureReturnIntent, clearReturnIntent, consumeReturnIntent]);
 
-  return <PrecisionAuthContext.Provider value={runtime}>{children}</PrecisionAuthContext.Provider>;
+  return <ExpoBaseAuthContext.Provider value={runtime}>{children}</ExpoBaseAuthContext.Provider>;
 }
 
-export function usePrecisionAuth(): PrecisionAuthRuntime {
-  const auth = useContext(PrecisionAuthContext);
-  if (!auth) throw new Error('usePrecisionAuth requires PrecisionRuntimeProvider with services/auth enabled.');
+export function useExpoBaseAuth(): ExpoBaseAuthRuntime {
+  const auth = useContext(ExpoBaseAuthContext);
+  if (!auth) throw new Error('useExpoBaseAuth requires ExpoBaseRuntimeProvider with services/auth enabled.');
   return auth;
 }
 
 export function deriveRuntimeProtectedAccess(
   authStatus: AuthResolutionStatus,
-  sessionSecurity: Pick<PrecisionSessionSecurityRuntime, 'status' | 'locked'> | null,
+  sessionSecurity: Pick<ExpoBaseSessionSecurityRuntime, 'status' | 'locked'> | null,
   options: { locallyLocked?: boolean } = {},
 ): ProtectedAccessState {
   // A later local-security revalidation is fail-closed without pretending an
   // explicit lock occurred. Initial local-security resolution is held outside
-  // the navigator by PrecisionSessionSecurityBootstrap so cold/direct-entry
+  // the navigator by ExpoBaseSessionSecurityBootstrap so cold/direct-entry
   // routes are never registered and then removed by Stack.Protected.
   if (authStatus === 'signed-in' && sessionSecurity?.status === 'loading') return 'booting';
 
@@ -194,8 +194,8 @@ export function deriveRuntimeProtectedAccess(
   return deriveProtectedAccess(authStatus, { locallyLocked });
 }
 
-export function usePrecisionAuthAccess(options: { locallyLocked?: boolean } = {}): ProtectedAccessState {
-  const { status } = usePrecisionAuth();
-  const sessionSecurity = useOptionalPrecisionSessionSecurity();
+export function useExpoBaseAuthAccess(options: { locallyLocked?: boolean } = {}): ProtectedAccessState {
+  const { status } = useExpoBaseAuth();
+  const sessionSecurity = useOptionalExpoBaseSessionSecurity();
   return deriveRuntimeProtectedAccess(status, sessionSecurity, options);
 }

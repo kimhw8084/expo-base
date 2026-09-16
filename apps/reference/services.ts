@@ -5,7 +5,7 @@ import {
   NoopAnalyticsAdapter,
   PassthroughImageProvider,
   type AppServices,
-} from '@precision-calm/adapters';
+} from '@expo-base/adapters';
 import { ReferenceServerStateService } from './serverState';
 
 /** Reference-only deterministic services. Production apps replace these adapters. */

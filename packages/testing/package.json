@@ -1,11 +1,11 @@
 {
-  "name": "@precision-calm/testing",
+  "name": "@expo-base/testing",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@precision-calm/tokens": "*"
+    "@expo-base/tokens": "*"
   }
 }

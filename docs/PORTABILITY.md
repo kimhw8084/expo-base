@@ -1,6 +1,6 @@
 # Portability contract
 
-Precision Calm is designed so product applications can change product domain, backend, hosting provider, brand and device composition without rewriting the UI foundation.
+Expo Base is designed so product applications can change product domain, backend, hosting provider, brand and device composition without rewriting the UI foundation.
 
 ## Boundaries
 

@@ -73,7 +73,7 @@ export type ExternalOpenResult =
   | { status: 'unavailable'; url: string }
   | { status: 'failed'; url: string; error: unknown };
 
-export interface PrecisionLinkingRuntime {
+export interface ExpoBaseLinkingRuntime {
   validateExternal(url: string): LinkDecision;
   openExternal(url: string): Promise<ExternalOpenResult>;
   resolveIncoming(path: string, options?: { initial?: boolean }): IncomingLinkDecision;

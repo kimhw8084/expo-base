@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { ScrollView, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { usePrecisionDirection } from '@precision-calm/i18n';
-import { Text, VStack } from '@precision-calm/primitives';
+import { useExpoBaseDirection } from '@expo-base/i18n';
+import { Text, VStack } from '@expo-base/primitives';
 import { NavigationItemButton } from './NavigationItemButton';
 import type { NavigationItem } from './types';
 
@@ -27,10 +27,10 @@ export interface SidebarNavigationProps {
   density?: 'compact' | 'standard';
 }
 
-export function SidebarNavigation({ items, activeKey, onNavigate, onNavigateIntent, brand = 'Precision', brandMark, footer, density = 'standard' }: SidebarNavigationProps) {
-  const mark = brandMark ?? (brand.trim().charAt(0).toUpperCase() || 'P');
+export function SidebarNavigation({ items, activeKey, onNavigate, onNavigateIntent, brand = 'Expo Base', brandMark, footer, density = 'standard' }: SidebarNavigationProps) {
+  const mark = brandMark ?? (brand.trim().charAt(0).toUpperCase() || 'E');
   const { rt, theme } = useUnistyles();
-  const direction = usePrecisionDirection();
+  const direction = useExpoBaseDirection();
   const horizontalInsets = direction === 'rtl'
     ? { paddingStart: rt.insets.right + theme.spacing.sm, paddingEnd: theme.spacing.sm }
     : { paddingStart: rt.insets.left + theme.spacing.sm, paddingEnd: theme.spacing.sm };

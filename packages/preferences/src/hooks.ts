@@ -1,4 +1,4 @@
-import { usePrecisionCapability, useOptionalPrecisionCapability } from '@precision-calm/capabilities';
-import { precisionPreferencesCapability, type PrecisionPreferences } from './contracts';
-export function usePrecisionPreferences(): PrecisionPreferences { return usePrecisionCapability<PrecisionPreferences>(precisionPreferencesCapability); }
-export function useOptionalPrecisionPreferences(): PrecisionPreferences | null { return useOptionalPrecisionCapability<PrecisionPreferences>(precisionPreferencesCapability); }
+import { useExpoBaseCapability, useOptionalExpoBaseCapability } from '@expo-base/capabilities';
+import { expoBasePreferencesCapability, type ExpoBasePreferences } from './contracts';
+export function useExpoBasePreferences(): ExpoBasePreferences { return useExpoBaseCapability<ExpoBasePreferences>(expoBasePreferencesCapability); }
+export function useOptionalExpoBasePreferences(): ExpoBasePreferences | null { return useOptionalExpoBaseCapability<ExpoBasePreferences>(expoBasePreferencesCapability); }

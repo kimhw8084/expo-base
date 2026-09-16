@@ -7,11 +7,14 @@ const packageDirs = [];
 for (const scope of ['packages', 'apps']) {
   for (const entry of fs.readdirSync(path.join(root, scope), { withFileTypes: true })) {
     const manifestPath = path.join(root, scope, entry.name, 'package.json');
-    if (entry.isDirectory() && fs.existsSync(manifestPath)) packageDirs.push({ scope, dir: path.join(scope, entry.name), manifest: readJson(path.join(scope, entry.name, 'package.json')) });
+    if (entry.isDirectory() && fs.existsSync(manifestPath)) {
+      const manifest = readJson(path.join(scope, entry.name, 'package.json'));
+      if (!manifest.expoBaseCompatibility) packageDirs.push({ scope, dir: path.join(scope, entry.name), manifest });
+    }
   }
 }
 const catalog = readJson('golden.catalog.json');
-const api = readJson('precision.api.json');
+const api = readJson('expo-base.api.json');
 const cert = readJson('golden.certification.json');
 const ownerCertPath = path.join(root, 'golden.owner-certification.json');
 const ownerCert = fs.existsSync(ownerCertPath) ? readJson('golden.owner-certification.json') : { owners: [], exemptions: [] };
@@ -33,26 +36,26 @@ const sourceInventory = {
   advancedVisualization: fs.readdirSync(path.join(root, 'packages/visualization-advanced/src')).filter((file) => /\.(ts|tsx)$/.test(file)).sort(),
   referenceRoutes: routes,
 };
-const graph = Object.fromEntries(packageDirs.map(({ manifest }) => [manifest.name, Object.keys({ ...(manifest.dependencies ?? {}), ...(manifest.peerDependencies ?? {}) }).filter((name) => name.startsWith('@precision-calm/')).sort()]));
+const graph = Object.fromEntries(packageDirs.map(({ manifest }) => [manifest.name, Object.keys({ ...(manifest.dependencies ?? {}), ...(manifest.peerDependencies ?? {}) }).filter((name) => name.startsWith('@expo-base/')).sort()]));
 const decisions = [
   { candidate: 'owner certification', disposition: 'BUILD_KERNEL', owner: 'scripts/check-owner-certification.mjs + golden.owner-certification.json', rationale: 'Stable owners need a machine-readable contract for state, responsive, semantic, theme, and touch coverage.' },
   { candidate: 'dependency graph', disposition: 'BUILD_KERNEL', owner: 'scripts/check-dependency-graph.mjs', rationale: 'Acyclic package ownership and core/advanced separation are architectural invariants.' },
-  { candidate: 'advanced visualization', disposition: 'BUILD_GOLDEN_MODULE', owner: '@precision-calm/visualization-advanced', rationale: 'Scatter, histogram, heatmap, grouped/diverging/normalized bars, multi-line, waterfall, range, bullet, and shared inspector mechanics are reusable but remain outside the minimal facade.' },
-  { candidate: 'tooltip', disposition: 'RECIPE_ONLY', owner: '@precision-calm/overlays Popover + explicit HelpPopover recipe', rationale: 'Critical information cannot depend on hover; a universal touch-safe tooltip needs a separate interaction contract.' },
-  { candidate: 'slider/range', disposition: 'RECIPE_ONLY', owner: '@precision-calm/forms', rationale: 'No current cross-platform owner meets the complete keyboard/touch/native contract without a specialist adapter.' },
-  { candidate: 'enterprise grid', disposition: 'OPTIONAL_ADAPTER', owner: '@precision-calm/data-display + future adapter boundary', rationale: 'Virtualization, pinned columns, formulas, and cell editing are specialist infrastructure.' },
+  { candidate: 'advanced visualization', disposition: 'BUILD_GOLDEN_MODULE', owner: '@expo-base/visualization-advanced', rationale: 'Scatter, histogram, heatmap, grouped/diverging/normalized bars, multi-line, waterfall, range, bullet, and shared inspector mechanics are reusable but remain outside the minimal facade.' },
+  { candidate: 'tooltip', disposition: 'RECIPE_ONLY', owner: '@expo-base/overlays Popover + explicit HelpPopover recipe', rationale: 'Critical information cannot depend on hover; a universal touch-safe tooltip needs a separate interaction contract.' },
+  { candidate: 'slider/range', disposition: 'RECIPE_ONLY', owner: '@expo-base/forms', rationale: 'No current cross-platform owner meets the complete keyboard/touch/native contract without a specialist adapter.' },
+  { candidate: 'enterprise grid', disposition: 'OPTIONAL_ADAPTER', owner: '@expo-base/data-display + future adapter boundary', rationale: 'Virtualization, pinned columns, formulas, and cell editing are specialist infrastructure.' },
   { candidate: 'maps/editor/realtime GPU', disposition: 'PRODUCT_SPECIFIC', owner: 'product-owned specialist adapter', rationale: 'Low universal leverage and high dependency/platform cost.' },
   { candidate: 'native picker/safe area/VoiceOver', disposition: 'NATIVE_VALIDATION_REQUIRED', owner: 'runtime/platform contracts', rationale: 'Web and source contracts cannot prove physical device behavior.' },
-  { candidate: 'help popover', disposition: 'RECIPE_ONLY', owner: '@precision-calm/overlays Popover + disclosure', rationale: 'Explicit help is already supported by the overlay contract without introducing a second positioning system.' },
-  { candidate: 'split/button group/shortcut hint', disposition: 'RECIPE_ONLY', owner: '@precision-calm/components + existing action/menu owners', rationale: 'Existing Button, ActionMenu, and shortcut composition cover the generic mechanics without a new public family.' },
+  { candidate: 'help popover', disposition: 'RECIPE_ONLY', owner: '@expo-base/overlays Popover + disclosure', rationale: 'Explicit help is already supported by the overlay contract without introducing a second positioning system.' },
+  { candidate: 'split/button group/shortcut hint', disposition: 'RECIPE_ONLY', owner: '@expo-base/components + existing action/menu owners', rationale: 'Existing Button, ActionMenu, and shortcut composition cover the generic mechanics without a new public family.' },
   { candidate: 'tree/hierarchy view', disposition: 'OPTIONAL_ADAPTER', owner: 'data-display adapter boundary', rationale: 'Keyboard tree navigation and virtualization are valuable but materially more specialized than the core list/table contract.' },
-  { candidate: 'attachment/file/media tiles', disposition: 'RECIPE_ONLY', owner: '@precision-calm/media-presentation MediaFrame + data composition', rationale: 'Presentation can be composed without owning upload transport, file permissions, or a new media hierarchy.' },
-  { candidate: 'token input', disposition: 'RECIPE_ONLY', owner: '@precision-calm/forms searchable-choice', rationale: 'The existing choice and multiselect contracts own the generic selection lifecycle.' },
+  { candidate: 'attachment/file/media tiles', disposition: 'RECIPE_ONLY', owner: '@expo-base/media-presentation MediaFrame + data composition', rationale: 'Presentation can be composed without owning upload transport, file permissions, or a new media hierarchy.' },
+  { candidate: 'token input', disposition: 'RECIPE_ONLY', owner: '@expo-base/forms searchable-choice', rationale: 'The existing choice and multiselect contracts own the generic selection lifecycle.' },
   { candidate: 'file-picker field', disposition: 'OPTIONAL_ADAPTER', owner: 'capability media adapter + form composition', rationale: 'The input needs platform capability selection and must not pull acquisition dependencies into the kernel.' },
-  { candidate: 'analytics panels and dashboard compositions', disposition: 'BUILD_GOLDEN_MODULE', owner: '@precision-calm/data-display AnalyticsPanels + Golden patterns', rationale: 'ChartPanel, MetricTrendCard, BreakdownPanel, and flagship compositions repeat stable presentation anatomy while product meaning remains caller-owned.' },
-  { candidate: 'chart axes/formatters/data fallback', disposition: 'BUILD_KERNEL', owner: '@precision-calm/platform + @precision-calm/visualization', rationale: 'Scales, finite data, deterministic ticks, shared state anatomy, and accessible table fallback are common mechanics.' },
-  { candidate: 'specialist statistical/financial chart families', disposition: 'DEFER', owner: '@precision-calm/visualization-advanced boundary', rationale: 'Candlestick/OHLC, box plot, funnel, cohort, and combo composites remain intentionally deferred until concrete product demand supplies fixtures and interaction semantics; no vendor dependency is justified by the current reference app.' },
-  { candidate: 'chart inspector/legend interaction', disposition: 'BUILD_GOLDEN_MODULE', owner: '@precision-calm/visualization ChartInspector + ChartLegend', rationale: 'Selection, touch persistence, formatted multi-series context, stable IDs, and keyboard-safe fallback are shared mechanics used by advanced charts.' },
+  { candidate: 'analytics panels and dashboard compositions', disposition: 'BUILD_GOLDEN_MODULE', owner: '@expo-base/data-display AnalyticsPanels + Golden patterns', rationale: 'ChartPanel, MetricTrendCard, BreakdownPanel, and flagship compositions repeat stable presentation anatomy while product meaning remains caller-owned.' },
+  { candidate: 'chart axes/formatters/data fallback', disposition: 'BUILD_KERNEL', owner: '@expo-base/platform + @expo-base/visualization', rationale: 'Scales, finite data, deterministic ticks, shared state anatomy, and accessible table fallback are common mechanics.' },
+  { candidate: 'specialist statistical/financial chart families', disposition: 'DEFER', owner: '@expo-base/visualization-advanced boundary', rationale: 'Candlestick/OHLC, box plot, funnel, cohort, and combo composites remain intentionally deferred until concrete product demand supplies fixtures and interaction semantics; no vendor dependency is justified by the current reference app.' },
+  { candidate: 'chart inspector/legend interaction', disposition: 'BUILD_GOLDEN_MODULE', owner: '@expo-base/visualization ChartInspector + ChartLegend', rationale: 'Selection, touch persistence, formatted multi-series context, stable IDs, and keyboard-safe fallback are shared mechanics used by advanced charts.' },
   { candidate: 'specialist media/editor/maps', disposition: 'PRODUCT_SPECIFIC', owner: 'product-owned specialist adapter', rationale: 'These require domain, platform, or heavy rendering infrastructure that Golden Base should not own.' },
 ];
 const audit = {

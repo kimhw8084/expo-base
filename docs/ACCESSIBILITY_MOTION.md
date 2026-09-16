@@ -6,7 +6,7 @@ Gate 12 centralizes motion as progressive enhancement and accessibility behavior
 
 - The reference app pins Expo SDK 57's recommended `react-native-reanimated` 4.5.1 and matching `react-native-worklets` 0.10.1.
 - `MotionRootProvider` reads the system reduced-motion preference once and accepts a deterministic runtime override for reference/test accessibility modes.
-- `Reveal` exposes only semantic fade/slide/scale transitions, uses Precision Calm motion durations, and disables decorative transitions under reduced motion.
+- `Reveal` exposes only semantic fade/slide/scale transitions, uses Expo Base motion durations, and disables decorative transitions under reduced motion.
 - Dialogs, sheets, and toast progress consume the same policy: structural feedback remains visible while decorative animation is removed.
 - Feature apps are blocked from importing Reanimated directly.
 - Final geometry and information hierarchy must remain identical with animation disabled.
@@ -42,6 +42,6 @@ compact width, dark mode, keyboard interaction, and reduced motion through the r
 
 ### Web certification
 
-`PrecisionWebAccessibilityStyles` is installed by the reference app and app generator at the web document root. It preserves system focus indicators and non-color selected, expanded, invalid, and alert boundaries under forced-colors. Selective Playwright ARIA snapshots protect semantic hierarchy without snapshotting implementation-only DOM, while keyboard-only and zoom/RTL stress tests protect operability. See `docs/CERTIFICATION.md` and `golden.certification.json`.
+`ExpoBaseWebAccessibilityStyles` is installed by the reference app and app generator at the web document root. It preserves system focus indicators and non-color selected, expanded, invalid, and alert boundaries under forced-colors. Selective Playwright ARIA snapshots protect semantic hierarchy without snapshotting implementation-only DOM, while keyboard-only and zoom/RTL stress tests protect operability. See `docs/CERTIFICATION.md` and `golden.certification.json`.
 
 Actual VoiceOver, TalkBack, Dynamic Type, physical touch-target, and native orientation acceptance remain native runtime checks; source contracts and web equivalence do not replace them.

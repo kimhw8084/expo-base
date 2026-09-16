@@ -2,9 +2,9 @@ import type { PropsWithChildren } from 'react';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, Pressable, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Icon } from '@precision-calm/icons';
-import { Text } from '@precision-calm/primitives';
-import { usePrecisionReducedMotion } from '@precision-calm/motion';
+import { Icon } from '@expo-base/icons';
+import { Text } from '@expo-base/primitives';
+import { useExpoBaseReducedMotion } from '@expo-base/motion';
 
 type CloseOverlay = () => void;
 interface OverlayManagerValue {
@@ -18,7 +18,7 @@ const OverlayManagerContext = createContext<OverlayManagerValue | null>(null);
 
 export function OverlayRootProvider({ children }: PropsWithChildren) {
   const { theme } = useUnistyles();
-  const reducedMotion = usePrecisionReducedMotion();
+  const reducedMotion = useExpoBaseReducedMotion();
   const activeRef = useRef<{ id: string; close: CloseOverlay } | null>(null);
   const [toast, setToast] = useState<{ id: number; message: string } | null>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);

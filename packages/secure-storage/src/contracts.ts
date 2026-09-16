@@ -1,15 +1,15 @@
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult } from '@precision-calm/capabilities';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult } from '@expo-base/capabilities';
 
-export const precisionSecureStorageCapability = 'secureStorage';
+export const expoBaseSecureStorageCapability = 'secureStorage';
 
-export interface PrecisionSecureStorage {
-  availability(): Promise<PrecisionCapabilityAvailability>;
-  get(key: string): Promise<PrecisionCapabilityResult<string | null>>;
-  set(key: string, value: string): Promise<PrecisionCapabilityResult<undefined>>;
-  remove(key: string): Promise<PrecisionCapabilityResult<undefined>>;
+export interface ExpoBaseSecureStorage {
+  availability(): Promise<ExpoBaseCapabilityAvailability>;
+  get(key: string): Promise<ExpoBaseCapabilityResult<string | null>>;
+  set(key: string, value: string): Promise<ExpoBaseCapabilityResult<undefined>>;
+  remove(key: string): Promise<ExpoBaseCapabilityResult<undefined>>;
 }
 
-export interface PrecisionSecureStorageOptions {
+export interface ExpoBaseSecureStorageOptions {
   namespace: string;
   version?: number | undefined;
 }

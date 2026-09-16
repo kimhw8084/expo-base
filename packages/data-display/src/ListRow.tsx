@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Icon, type IconName } from '@precision-calm/icons';
-import { Text, VStack, useDensity, useInteractionState } from '@precision-calm/primitives';
+import { Icon, type IconName } from '@expo-base/icons';
+import { Text, VStack, useDensity, useInteractionState } from '@expo-base/primitives';
 
 export interface ListRowProps {
   title: string;

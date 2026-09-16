@@ -39,7 +39,7 @@ function ModalSurface({ visible, children, lockBackground = false }: ModalSurfac
 
   useLayoutEffect(() => {
     if (!visible || !host || typeof document === 'undefined') return;
-    host.dataset.precisionModalHost = 'true';
+    host.dataset.expoBaseModalHost = 'true';
     host.style.position = 'fixed';
     host.style.inset = '0';
     host.style.display = 'flex';

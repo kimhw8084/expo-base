@@ -1,7 +1,7 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text, VStack, useDensity } from '@precision-calm/primitives';
+import { Text, VStack, useDensity } from '@expo-base/primitives';
 
 export interface MetricProps extends PropsWithChildren {
   label: string;

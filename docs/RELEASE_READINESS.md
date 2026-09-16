@@ -1,13 +1,13 @@
 # 1.0 release-readiness checklist
 
-This checklist separates development completion from runtime validation and release decisions for the Expo Base 1.0 release.
+This checklist records the Expo Base `1.0.0` release baseline and separates its bounded evidence from follow-up development validation.
 
 The current repository is a public source/template workspace, not a configured multi-package npm publication. The root MIT license governs the repository source; all 47 workspace packages remain private and any future package publication would require a separate package-release plan.
 
 ## Development gates — complete
 
 - [x] Shared architecture and package ownership are coherent.
-- [x] Precision Calm tokens, themes, density, layouts, and reusable compositions are contract-checked.
+- [x] Expo Base tokens, themes, density, layouts, and reusable compositions are contract-checked.
 - [x] Forms, keyboard/focus behavior, overlays, navigation, feedback, data workflows, and async action ownership are hardened.
 - [x] Auth, authorization, session security, linking, and service boundaries have stale-response and failure-path protection.
 - [x] Reference-app showcase and generated-app foundation remain aligned.
@@ -20,7 +20,7 @@ The current repository is a public source/template workspace, not a configured m
 - [x] Documentation, configuration, dependency, and repository-hygiene review is complete.
 - [x] Release-candidate metadata is aligned to the coordinated `1.0.0` version plan.
 
-## Release-candidate baseline
+## Tagged `1.0.0` certification baseline
 
 - [x] Owner-approved MIT licensing and root `LICENSE`/manifest metadata are present.
 - [x] iOS Simulator Release XCUITest acceptance: 17/17, with 9/9 reviewed native visual comparisons.
@@ -34,16 +34,22 @@ The current repository is a public source/template workspace, not a configured m
 - Android runtime execution is deferred/waived for `1.0.0` under PM Policy B because the local Android runtime is unavailable.
 - Human VoiceOver usability, exact Dynamic Type settings, physical-device hardware/safe-area behavior, and backend-integrated smoke validation remain explicit boundaries, not claims made by this repository candidate.
 
-## Release decision gates — pending approval
+## `1.0.0` release facts
 
 - [x] PM-approved release model is a private repository/template release; npm publication is not configured.
 - [x] PM-approved coordinated `1.0.0` metadata and Expo/EAS semantic app version are applied.
 - [x] PM-approved native build-number policy keeps native numbers owner-managed, monotonic, and independent of semantic version.
 - [x] MIT license and repository metadata required for distribution are approved and committed.
 - [x] Complete iOS Simulator runtime acceptance and native release review.
-- [x] Complete final release-candidate governance review.
-- [x] Create the final tag and publish the repository release artifacts.
+- [x] Complete final release-candidate governance review for the tagged `1.0.0` baseline.
+- [x] Create the `v1.0.0` tag; repository release publication remains outside this source-template checkout.
 - [x] Complete the final 1.0 release review.
+
+CHG-24 is a follow-up identity/documentation change. It does not inherit the source-tree-bound
+certification record above, create a new tag, publish packages, or deploy an application.
+Accordingly, `npm run release:verify` remains intentionally blocked on this candidate until a
+separate authorized post-change certification record is produced; CHG-24 does not rewrite the
+record or claim new release evidence.
 
 ## Canonical commands
 

@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { formatCompactNumber } from '@precision-calm/platform';
-import { Text, VStack } from '@precision-calm/primitives';
+import { formatCompactNumber } from '@expo-base/platform';
+import { Text, VStack } from '@expo-base/primitives';
 import type { ChartValueFormatter, VisualizationSeries } from './types';
 
 export interface ChartInspectorValue { id: string; label: string; value: number; series?: VisualizationSeries; formatter?: ChartValueFormatter; }

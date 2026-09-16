@@ -1,5 +1,5 @@
 {
-  "name": "@precision-calm/sharing",
+  "name": "@expo-base/sharing",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -11,9 +11,9 @@
     "./ui": "./src/ui.ts"
   },
   "dependencies": {
-    "@precision-calm/capabilities": "*",
-    "@precision-calm/components": "*",
-    "@precision-calm/primitives": "*",
+    "@expo-base/capabilities": "*",
+    "@expo-base/components": "*",
+    "@expo-base/primitives": "*",
     "expo-clipboard": "~57.0.1",
     "expo-sharing": "~57.0.16"
   },

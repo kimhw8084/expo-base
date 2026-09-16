@@ -17,8 +17,8 @@ try { const forms=await import(pathToFileURL(path.join(outDir,'platform/src/form
   assert.deepEqual(forms.validateUrl('mailto:ada@example.com'), {code:'pattern',message:'Enter a valid URL.'});
   assert.equal(forms.normalizePhoneInput('+1 (312) 555-0199'), '+13125550199');
   assert.equal(forms.validateInternationalPhone('+13125550199'), null);
-  assert.equal(forms.parsePrecisionDateValue('2024-02-29'), '2024-02-29');
-  assert.equal(forms.parsePrecisionDateValue('2023-02-29'), null);
+  assert.equal(forms.parseExpoBaseDateValue('2024-02-29'), '2024-02-29');
+  assert.equal(forms.parseExpoBaseDateValue('2023-02-29'), null);
   assert.deepEqual(forms.firstInvalidField([{name:'second',order:2,message:'Bad'},{name:'first',order:1,message:'Required'}]),{name:'first',order:1,message:'Required'});
   assert.equal(forms.firstInvalidField([{name:'ok',order:1}]),null);
   console.log('Form contract tests passed (semantic validation, numeric/date parsing, deterministic first error).');

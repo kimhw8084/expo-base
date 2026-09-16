@@ -1,6 +1,6 @@
 import { forwardRef, useState } from 'react';
 import { TextInput } from 'react-native';
-import { formatPrecisionEditableNumber, parsePrecisionDecimalInput, usePrecisionI18n } from '@precision-calm/i18n';
+import { formatExpoBaseEditableNumber, parseExpoBaseDecimalInput, useExpoBaseI18n } from '@expo-base/i18n';
 import { TextField, type TextFieldProps } from './TextField';
 
 type SpecializedProps = Omit<TextFieldProps, 'secureTextEntry' | 'iconEnd' | 'onIconEndPress' | 'iconEndLabel'>;
@@ -37,16 +37,16 @@ export interface NumberFieldProps extends Omit<TextFieldProps, 'inputMode' | 'ke
 
 /** Keeps an editable string under product control while exposing a locale-aware committed numeric value. */
 export const NumberField = forwardRef<TextInput, NumberFieldProps>(function NumberField({ locale: localeOverride, onValueChange, formatOnBlur = false, minimumFractionDigits, maximumFractionDigits, onChangeText, onBlur, ...props }, ref) {
-  const { locale } = usePrecisionI18n();
+  const { locale } = useExpoBaseI18n();
   const resolvedLocale = localeOverride ?? locale;
   const change = (next: string) => {
     onChangeText(next);
-    onValueChange?.(parsePrecisionDecimalInput(next, resolvedLocale));
+    onValueChange?.(parseExpoBaseDecimalInput(next, resolvedLocale));
   };
   const blur: NonNullable<TextFieldProps['onBlur']> = (event) => {
     if (formatOnBlur) {
-      const parsed = parsePrecisionDecimalInput(props.value, resolvedLocale);
-      if (parsed !== null) onChangeText(formatPrecisionEditableNumber(parsed, resolvedLocale, { minimumFractionDigits, maximumFractionDigits }));
+      const parsed = parseExpoBaseDecimalInput(props.value, resolvedLocale);
+      if (parsed !== null) onChangeText(formatExpoBaseEditableNumber(parsed, resolvedLocale, { minimumFractionDigits, maximumFractionDigits }));
     }
     onBlur?.(event);
   };
@@ -59,16 +59,16 @@ export interface CurrencyFieldProps extends Omit<NumberFieldProps, 'minimumFract
 
 /** A locale-aware editable currency field. It formats only after blur, never while a user is typing. */
 export const CurrencyField = forwardRef<TextInput, CurrencyFieldProps>(function CurrencyField({ currency = 'USD', formatOnBlur = true, locale: localeOverride, onValueChange, onChangeText, onBlur, ...props }, ref) {
-  const { locale } = usePrecisionI18n();
+  const { locale } = useExpoBaseI18n();
   const resolvedLocale = localeOverride ?? locale;
   const change = (next: string) => {
     onChangeText(next);
-    onValueChange?.(parsePrecisionDecimalInput(next, resolvedLocale));
+    onValueChange?.(parseExpoBaseDecimalInput(next, resolvedLocale));
   };
   const blur: NonNullable<TextFieldProps['onBlur']> = (event) => {
     if (formatOnBlur) {
-      const parsed = parsePrecisionDecimalInput(props.value, resolvedLocale);
-      if (parsed !== null) onChangeText(formatPrecisionEditableNumber(parsed, resolvedLocale, { style: 'currency', currency }));
+      const parsed = parseExpoBaseDecimalInput(props.value, resolvedLocale);
+      if (parsed !== null) onChangeText(formatExpoBaseEditableNumber(parsed, resolvedLocale, { style: 'currency', currency }));
     }
     onBlur?.(event);
   };

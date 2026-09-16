@@ -2,29 +2,29 @@ import { Linking } from 'react-native';
 import * as Camera from 'expo-camera';
 import * as DocumentPicker from 'expo-document-picker';
 import * as ImagePicker from 'expo-image-picker';
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult, PrecisionPermissionAdapter, PrecisionPermissionSnapshot } from '@precision-calm/capabilities';
-import type { PrecisionAcquiredResource, PrecisionDocumentPicker, PrecisionDocumentPickOptions, PrecisionMediaAcquisition, PrecisionMediaPickOptions } from './contracts';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult, ExpoBasePermissionAdapter, ExpoBasePermissionSnapshot } from '@expo-base/capabilities';
+import type { ExpoBaseAcquiredResource, ExpoBaseDocumentPicker, ExpoBaseDocumentPickOptions, ExpoBaseMediaAcquisition, ExpoBaseMediaPickOptions } from './contracts';
 
 interface ExpoPermissionResponse { granted: boolean; canAskAgain: boolean; status: string; }
 
-class ExpoPermissionAdapter implements PrecisionPermissionAdapter {
+class ExpoPermissionAdapter implements ExpoBasePermissionAdapter {
   readonly #getPermission: () => Promise<ExpoPermissionResponse>;
   readonly #requestPermission: () => Promise<ExpoPermissionResponse>;
   constructor(getPermission: () => Promise<ExpoPermissionResponse>, requestPermission: () => Promise<ExpoPermissionResponse>) {
     this.#getPermission = getPermission;
     this.#requestPermission = requestPermission;
   }
-  async get(): Promise<PrecisionPermissionSnapshot> { try { return normalizePermission(await this.#getPermission()); } catch { return unavailablePermission(); } }
-  async request(): Promise<PrecisionPermissionSnapshot> { try { return normalizePermission(await this.#requestPermission()); } catch { return unavailablePermission(); } }
-  async openSettings(): Promise<PrecisionCapabilityResult<undefined>> {
+  async get(): Promise<ExpoBasePermissionSnapshot> { try { return normalizePermission(await this.#getPermission()); } catch { return unavailablePermission(); } }
+  async request(): Promise<ExpoBasePermissionSnapshot> { try { return normalizePermission(await this.#requestPermission()); } catch { return unavailablePermission(); } }
+  async openSettings(): Promise<ExpoBaseCapabilityResult<undefined>> {
     try { await Linking.openSettings(); return { status: 'success', value: undefined }; }
     catch { return { status: 'unavailable', reason: 'unsupported' }; }
   }
 }
 
-export class ExpoDocumentPicker implements PrecisionDocumentPicker {
-  async availability(): Promise<PrecisionCapabilityAvailability> { return { status: 'available' }; }
-  async pick(options: PrecisionDocumentPickOptions = {}): Promise<PrecisionCapabilityResult<readonly PrecisionAcquiredResource[]>> {
+export class ExpoDocumentPicker implements ExpoBaseDocumentPicker {
+  async availability(): Promise<ExpoBaseCapabilityAvailability> { return { status: 'available' }; }
+  async pick(options: ExpoBaseDocumentPickOptions = {}): Promise<ExpoBaseCapabilityResult<readonly ExpoBaseAcquiredResource[]>> {
     try {
       const result = await DocumentPicker.getDocumentAsync({
         type: options.mimeTypes?.length ? [...options.mimeTypes] : '*/*',
@@ -37,17 +37,17 @@ export class ExpoDocumentPicker implements PrecisionDocumentPicker {
   }
 }
 
-export class ExpoMediaAcquisition implements PrecisionMediaAcquisition {
+export class ExpoMediaAcquisition implements ExpoBaseMediaAcquisition {
   readonly libraryPermission = new ExpoPermissionAdapter(ImagePicker.getMediaLibraryPermissionsAsync, ImagePicker.requestMediaLibraryPermissionsAsync);
   readonly cameraPermission = new ExpoPermissionAdapter(Camera.Camera.getCameraPermissionsAsync, Camera.Camera.requestCameraPermissionsAsync);
-  async availability(): Promise<PrecisionCapabilityAvailability> { return { status: 'available' }; }
-  async pickFromLibrary(options: PrecisionMediaPickOptions = {}): Promise<PrecisionCapabilityResult<readonly PrecisionAcquiredResource[]>> {
+  async availability(): Promise<ExpoBaseCapabilityAvailability> { return { status: 'available' }; }
+  async pickFromLibrary(options: ExpoBaseMediaPickOptions = {}): Promise<ExpoBaseCapabilityResult<readonly ExpoBaseAcquiredResource[]>> {
     try {
       const result = await ImagePicker.launchImageLibraryAsync(toImagePickerOptions(options));
       return result.canceled ? { status: 'cancelled' } : { status: 'success', value: result.assets.map(toResource) };
     } catch { return { status: 'error', code: 'media_library_pick_failed' }; }
   }
-  async captureWithCamera(options: Omit<PrecisionMediaPickOptions, 'multiple'> = {}): Promise<PrecisionCapabilityResult<readonly PrecisionAcquiredResource[]>> {
+  async captureWithCamera(options: Omit<ExpoBaseMediaPickOptions, 'multiple'> = {}): Promise<ExpoBaseCapabilityResult<readonly ExpoBaseAcquiredResource[]>> {
     try {
       const result = await ImagePicker.launchCameraAsync(toImagePickerOptions(options));
       return result.canceled ? { status: 'cancelled' } : { status: 'success', value: result.assets.map(toResource) };
@@ -55,19 +55,19 @@ export class ExpoMediaAcquisition implements PrecisionMediaAcquisition {
   }
 }
 
-function unavailablePermission(): PrecisionPermissionSnapshot { return { status: 'unavailable', canAskAgain: false, canOpenSettings: false }; }
-function normalizePermission(response: ExpoPermissionResponse): PrecisionPermissionSnapshot {
+function unavailablePermission(): ExpoBasePermissionSnapshot { return { status: 'unavailable', canAskAgain: false, canOpenSettings: false }; }
+function normalizePermission(response: ExpoPermissionResponse): ExpoBasePermissionSnapshot {
   const status = response.granted ? 'granted' : response.status === 'denied' ? 'denied' : response.status === 'undetermined' ? 'undetermined' : 'restricted';
   return { status, canAskAgain: response.canAskAgain, canOpenSettings: !response.granted && !response.canAskAgain };
 }
-function toImagePickerOptions(options: PrecisionMediaPickOptions): ImagePicker.ImagePickerOptions {
+function toImagePickerOptions(options: ExpoBaseMediaPickOptions): ImagePicker.ImagePickerOptions {
   return {
     mediaTypes: options.mediaTypes?.map((type) => type === 'image' ? 'images' : 'videos') ?? ['images', 'videos'],
     allowsMultipleSelection: options.multiple ?? false,
     allowsEditing: options.allowsEditing ?? false,
   };
 }
-function toResource(asset: ImagePicker.ImagePickerAsset): PrecisionAcquiredResource {
+function toResource(asset: ImagePicker.ImagePickerAsset): ExpoBaseAcquiredResource {
   return {
     uri: asset.uri,
     name: asset.fileName ?? null,

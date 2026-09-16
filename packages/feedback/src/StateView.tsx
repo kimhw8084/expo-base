@@ -1,9 +1,9 @@
-import type { IconName } from '@precision-calm/icons';
-import { Icon } from '@precision-calm/icons';
+import type { IconName } from '@expo-base/icons';
+import { Icon } from '@expo-base/icons';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Button } from '@precision-calm/components';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Button } from '@expo-base/components';
+import { Text, VStack } from '@expo-base/primitives';
 
 export type StateKind = 'empty' | 'noResults' | 'error' | 'offline' | 'permission' | 'reconnect' | 'maintenance';
 

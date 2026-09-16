@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
-import { Page, PageHeader, Section, AdaptiveSplit, MasterDetail, AdaptiveGrid } from '@precision-calm/layouts';
-import { Card } from '@precision-calm/components';
-import { FormActions } from '@precision-calm/forms';
-import { StateView } from '@precision-calm/feedback';
-import { Dialog, BottomSheet } from '@precision-calm/overlays';
-import { VStack } from '@precision-calm/primitives';
+import { Page, PageHeader, Section, AdaptiveSplit, MasterDetail, AdaptiveGrid } from '@expo-base/layouts';
+import { Card } from '@expo-base/components';
+import { FormActions } from '@expo-base/forms';
+import { StateView } from '@expo-base/feedback';
+import { Dialog, BottomSheet } from '@expo-base/overlays';
+import { VStack } from '@expo-base/primitives';
 
 export interface PatternHeaderProps {
   title: string;

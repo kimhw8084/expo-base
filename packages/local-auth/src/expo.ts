@@ -1,17 +1,17 @@
 import * as LocalAuthentication from 'expo-local-authentication';
 import { Platform } from 'react-native';
-import type { PrecisionCapabilityResult } from '@precision-calm/capabilities';
-import type { PrecisionLocalAuthentication, PrecisionLocalAuthenticationAvailability, PrecisionLocalAuthenticationRequest } from './contracts';
+import type { ExpoBaseCapabilityResult } from '@expo-base/capabilities';
+import type { ExpoBaseLocalAuthentication, ExpoBaseLocalAuthenticationAvailability, ExpoBaseLocalAuthenticationRequest } from './contracts';
 
-export class ExpoLocalAuthentication implements PrecisionLocalAuthentication {
-  async availability(): Promise<PrecisionLocalAuthenticationAvailability> {
+export class ExpoLocalAuthentication implements ExpoBaseLocalAuthentication {
+  async availability(): Promise<ExpoBaseLocalAuthenticationAvailability> {
     if (Platform.OS === 'web') return { status: 'unavailable', reason: 'unsupported' };
     try {
       const [hardware, enrolled] = await Promise.all([LocalAuthentication.hasHardwareAsync(), LocalAuthentication.isEnrolledAsync()]);
       return hardware ? { status: 'available', enrolled } : { status: 'unavailable', reason: 'unsupported' };
     } catch { return { status: 'unavailable', reason: 'temporarily-unavailable' }; }
   }
-  async authenticate(request: PrecisionLocalAuthenticationRequest): Promise<PrecisionCapabilityResult<undefined>> {
+  async authenticate(request: ExpoBaseLocalAuthenticationRequest): Promise<ExpoBaseCapabilityResult<undefined>> {
     const availability = await this.availability();
     if (availability.status !== 'available') return availability;
     if (!availability.enrolled) return { status: 'unavailable', reason: 'configuration-missing' };

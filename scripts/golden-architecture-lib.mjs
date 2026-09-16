@@ -33,20 +33,20 @@ const OVERLAY_MODULES = new Set(['@floating-ui/react-native', '@floating-ui/dom'
 const QUERY_IMPLEMENTATION_MODULES = new Set(['@tanstack/react-query', '@tanstack/query-core']);
 const DATE_TIME_IMPLEMENTATION_MODULES = new Set(['@react-native-community/datetimepicker', 'react-native-date-picker', 'react-native-calendars']);
 const CAPABILITY_MODULES = new Map([
-  ['expo-secure-store', '@precision-calm/secure-storage'],
-  ['@react-native-async-storage/async-storage', '@precision-calm/preferences'],
-  ['expo-network', '@precision-calm/runtime-capabilities'],
-  ['expo-clipboard', '@precision-calm/sharing'],
-  ['expo-sharing', '@precision-calm/sharing'],
-  ['expo-document-picker', '@precision-calm/media'],
-  ['expo-image-picker', '@precision-calm/media'],
-  ['expo-camera', '@precision-calm/media'],
-  ['expo-local-authentication', '@precision-calm/local-auth'],
-  ['expo-notifications', '@precision-calm/notifications'],
-  ['expo-updates', '@precision-calm/updates'],
-  ['expo-device', '@precision-calm/device'],
-  ['expo-application', '@precision-calm/device'],
-  ['expo-haptics', '@precision-calm/haptics'],
+  ['expo-secure-store', '@expo-base/secure-storage'],
+  ['@react-native-async-storage/async-storage', '@expo-base/preferences'],
+  ['expo-network', '@expo-base/runtime-capabilities'],
+  ['expo-clipboard', '@expo-base/sharing'],
+  ['expo-sharing', '@expo-base/sharing'],
+  ['expo-document-picker', '@expo-base/media'],
+  ['expo-image-picker', '@expo-base/media'],
+  ['expo-camera', '@expo-base/media'],
+  ['expo-local-authentication', '@expo-base/local-auth'],
+  ['expo-notifications', '@expo-base/notifications'],
+  ['expo-updates', '@expo-base/updates'],
+  ['expo-device', '@expo-base/device'],
+  ['expo-application', '@expo-base/device'],
+  ['expo-haptics', '@expo-base/haptics'],
 ]);
 const OBSERVABILITY_MODULES = new Set(['@sentry/react-native', '@sentry/react', '@segment/analytics-react-native', 'posthog-react-native', '@react-native-firebase/analytics']);
 
@@ -143,28 +143,28 @@ function inspectFile({ file, relativePath, config, violations }) {
   };
 
   for (const entry of bindings.imports) {
-    if (NETWORK_MODULES.has(entry.module)) report('runtime-ownership', entry.node, `network client import from ${entry.module}`, 'Use injected AppServices/adapters and @precision-calm/runtime.');
+    if (NETWORK_MODULES.has(entry.module)) report('runtime-ownership', entry.node, `network client import from ${entry.module}`, 'Use injected AppServices/adapters and @expo-base/runtime.');
     if (STORAGE_MODULES.has(entry.module)) report('runtime-ownership', entry.node, `persistence import from ${entry.module}`, 'Use a root-composed adapter; optional capability packages are not feature-route APIs.');
-    if (OVERLAY_MODULES.has(entry.module)) report('overlay-ownership', entry.node, `overlay dependency import from ${entry.module}`, 'Use @precision-calm/overlays Dialog, BottomSheet, Popover, Menu, or ActionMenu.');
-    if (QUERY_IMPLEMENTATION_MODULES.has(entry.module)) report('server-state-ownership', entry.node, `query implementation import from ${entry.module}`, 'Use @precision-calm/server-state keys, queries, mutations, and cache facade.');
-    if (DATE_TIME_IMPLEMENTATION_MODULES.has(entry.module)) report('form-ownership', entry.node, `direct date/time implementation import from ${entry.module}`, 'Use @precision-calm/forms DateField, TimeField, or DateRangeField; place an approved native picker adapter behind a shared/root boundary.');
+    if (OVERLAY_MODULES.has(entry.module)) report('overlay-ownership', entry.node, `overlay dependency import from ${entry.module}`, 'Use @expo-base/overlays Dialog, BottomSheet, Popover, Menu, or ActionMenu.');
+    if (QUERY_IMPLEMENTATION_MODULES.has(entry.module)) report('server-state-ownership', entry.node, `query implementation import from ${entry.module}`, 'Use @expo-base/server-state keys, queries, mutations, and cache facade.');
+    if (DATE_TIME_IMPLEMENTATION_MODULES.has(entry.module)) report('form-ownership', entry.node, `direct date/time implementation import from ${entry.module}`, 'Use @expo-base/forms DateField, TimeField, or DateRangeField; place an approved native picker adapter behind a shared/root boundary.');
     const capabilityOwner = CAPABILITY_MODULES.get(entry.module);
     if (capabilityOwner) report('capability-ownership', entry.node, `direct ${entry.module} import`, `Use the selected ${capabilityOwner} adapter registered at the application root.`);
-    if (OBSERVABILITY_MODULES.has(entry.module)) report('capability-ownership', entry.node, `direct observability vendor import from ${entry.module}`, 'Use the selected @precision-calm/observability adapter registered at the application root.');
+    if (OBSERVABILITY_MODULES.has(entry.module)) report('capability-ownership', entry.node, `direct observability vendor import from ${entry.module}`, 'Use the selected @expo-base/observability adapter registered at the application root.');
     if (entry.module === 'expo-router' || entry.module.startsWith('@react-navigation/')) {
-      report('navigation-ownership', entry.node, `navigation import from ${entry.module}`, 'Use @precision-calm/navigation-router or configure the root navigation boundary.');
+      report('navigation-ownership', entry.node, `navigation import from ${entry.module}`, 'Use @expo-base/navigation-router or configure the root navigation boundary.');
     }
     if (entry.module === 'react-native-keyboard-controller') {
-      report('form-ownership', entry.node, 'keyboard-controller import', 'Use FormScreen and @precision-calm/form-rhf keyboard helpers.');
+      report('form-ownership', entry.node, 'keyboard-controller import', 'Use FormScreen and @expo-base/form-rhf keyboard helpers.');
     }
     if (entry.module === 'react-hook-form') {
-      report('form-ownership', entry.node, 'direct react-hook-form import', 'Use @precision-calm/form-rhf adapters from the approved form boundary.');
+      report('form-ownership', entry.node, 'direct react-hook-form import', 'Use @expo-base/form-rhf adapters from the approved form boundary.');
     }
     if (entry.module === 'react-native' && [...bindings.names.values()].some((binding) => binding.module === 'react-native' && binding.imported === 'I18nManager')) {
-      report('i18n-ownership', entry.node, 'I18nManager import', 'Configure locale and direction through PrecisionRuntimeProvider and use @precision-calm/i18n.');
+      report('i18n-ownership', entry.node, 'I18nManager import', 'Configure locale and direction through ExpoBaseRuntimeProvider and use @expo-base/i18n.');
     }
     if (entry.module === 'react-native' && [...bindings.names.values()].some((binding) => binding.module === 'react-native' && binding.imported === 'AppState')) {
-      report('capability-ownership', entry.node, 'direct AppState import', 'Use the selected @precision-calm/runtime-capabilities lifecycle adapter registered at the application root.');
+      report('capability-ownership', entry.node, 'direct AppState import', 'Use the selected @expo-base/runtime-capabilities lifecycle adapter registered at the application root.');
     }
   }
 
@@ -218,12 +218,12 @@ function collectImportBindings(source) {
 function inspectJsxElement(node, bindings, report) {
   for (const [component, ruleId, replacement] of [
     ['Pressable', 'interaction-ownership', 'Use Button, IconButton, Link, ListRow, or a reviewed shared PressableSurface composition.'],
-    ['TextInput', 'form-ownership', 'Use @precision-calm/forms TextField, PasswordField, TextArea, SearchField, or CurrencyField.'],
-    ['Switch', 'form-ownership', 'Use @precision-calm/forms SwitchField.'],
-    ['KeyboardAvoidingView', 'form-ownership', 'Use @precision-calm/layouts FormScreen.'],
-    ['Modal', 'overlay-ownership', 'Use @precision-calm/overlays Dialog or BottomSheet.'],
-    ['ActivityIndicator', 'feedback-ownership', 'Use @precision-calm/feedback LoadingState, SkeletonLine, SkeletonList, StateView, or AsyncStateView.'],
-    ['Image', 'media-ownership', 'Use @precision-calm/ui MediaFrame for responsive aspect ratio, loading/error fallback, and accessible alternative text.'],
+    ['TextInput', 'form-ownership', 'Use @expo-base/forms TextField, PasswordField, TextArea, SearchField, or CurrencyField.'],
+    ['Switch', 'form-ownership', 'Use @expo-base/forms SwitchField.'],
+    ['KeyboardAvoidingView', 'form-ownership', 'Use @expo-base/layouts FormScreen.'],
+    ['Modal', 'overlay-ownership', 'Use @expo-base/overlays Dialog or BottomSheet.'],
+    ['ActivityIndicator', 'feedback-ownership', 'Use @expo-base/feedback LoadingState, SkeletonLine, SkeletonList, StateView, or AsyncStateView.'],
+    ['Image', 'media-ownership', 'Use @expo-base/ui MediaFrame for responsive aspect ratio, loading/error fallback, and accessible alternative text.'],
   ]) {
     if (isImportedJsxComponent(node.tagName, component, bindings)) report(ruleId, node.tagName, `raw ${component}`, replacement);
   }
@@ -231,10 +231,10 @@ function inspectJsxElement(node, bindings, report) {
 
 function inspectCallExpression(node, bindings, report) {
   if (ts.isIdentifier(node.expression) && node.expression.text === 'fetch' && !bindings.names.has('fetch')) {
-    report('runtime-ownership', node.expression, 'direct fetch call', 'Use injected AppServices/adapters and @precision-calm/runtime.');
+    report('runtime-ownership', node.expression, 'direct fetch call', 'Use injected AppServices/adapters and @expo-base/runtime.');
   }
   if (isGlobalMember(node.expression, 'fetch')) {
-    report('runtime-ownership', node.expression, 'direct fetch call', 'Use injected AppServices/adapters and @precision-calm/runtime.');
+    report('runtime-ownership', node.expression, 'direct fetch call', 'Use injected AppServices/adapters and @expo-base/runtime.');
   }
   if (isImportedMemberCall(node.expression, 'react-native', 'Dimensions', 'get', bindings)) {
     report('platform-ownership', node.expression, 'Dimensions.get viewport branch', 'Use AdaptiveGrid, AdaptiveSplit, MasterDetail, ResponsiveSlot, or shared navigation.');
@@ -249,7 +249,7 @@ function inspectCallExpression(node, bindings, report) {
     report('platform-ownership', node.expression, 'manual matchMedia viewport branch', 'Use shared responsive layout composition.');
   }
   if (isIntlConstructor(node.expression) || isLocaleMethod(node.expression)) {
-    report('i18n-ownership', node.expression, 'feature-local locale formatting', 'Use usePrecisionI18n() formatters, t(), and compare() from @precision-calm/i18n.');
+    report('i18n-ownership', node.expression, 'feature-local locale formatting', 'Use useExpoBaseI18n() formatters, t(), and compare() from @expo-base/i18n.');
   }
 }
 
@@ -261,7 +261,7 @@ function inspectPropertyAccess(node, bindings, report) {
     report('platform-ownership', node, 'Dimensions.get viewport branch', 'Use shared responsive layout composition.');
   }
   if (isImportedMember(node, 'react-native', 'I18nManager', 'isRTL', bindings)) {
-    report('i18n-ownership', node, 'I18nManager direction branch', 'Use usePrecisionDirection() and shared RTL-safe owners from @precision-calm/i18n.');
+    report('i18n-ownership', node, 'I18nManager direction branch', 'Use useExpoBaseDirection() and shared RTL-safe owners from @expo-base/i18n.');
   }
   if (isGlobalMember(node, 'innerWidth') || isGlobalMember(node, 'outerWidth')) {
     report('platform-ownership', node, 'manual browser viewport branch', 'Use AdaptiveGrid, AdaptiveSplit, MasterDetail, ResponsiveSlot, or shared navigation.');
@@ -270,7 +270,7 @@ function inspectPropertyAccess(node, bindings, report) {
     report('runtime-ownership', node, 'direct browser storage access', 'Use a root-composed storage adapter; optional capability packages are not feature-route APIs.');
   }
   if (node.name.text === 'measureInWindow' || node.name.text === 'measureLayout') {
-    report('overlay-ownership', node, `feature-owned ${node.name.text} measurement`, 'Use @precision-calm/overlays Popover or another shared overlay owner.');
+    report('overlay-ownership', node, `feature-owned ${node.name.text} measurement`, 'Use @expo-base/overlays Popover or another shared overlay owner.');
   }
 }
 
@@ -298,7 +298,7 @@ function inspectStyleExpression(expression, report, bindings) {
     if (COLOR_PROPERTIES.has(name) && isLiteralColor(value, bindings)) report('design-ownership', property.name, `literal ${name}`, 'Use semantic theme colors through a shared component or owner.');
     if (name.startsWith('@media')) report('platform-ownership', property.name, 'ad-hoc media breakpoint', 'Use shared responsive layout composition and tokenized regimes.');
     if ((name === 'direction' || name === 'writingDirection') && (isString(value, 'ltr', bindings) || isString(value, 'rtl', bindings))) {
-      report('i18n-ownership', property.name, 'feature-owned writing direction', 'Configure locale direction through PrecisionRuntimeProvider and shared RTL-safe owners.');
+      report('i18n-ownership', property.name, 'feature-owned writing direction', 'Configure locale direction through ExpoBaseRuntimeProvider and shared RTL-safe owners.');
     }
     if (ts.isObjectLiteralExpression(value) || ts.isArrayLiteralExpression(value)) inspectStyleExpression(value, report, bindings);
   }

@@ -2,7 +2,7 @@
 
 Product branding is configuration, not a component fork.
 
-`PrecisionBrand` explicitly defines a light and dark semantic accent palette. The platform applies it to:
+`ExpoBaseBrand` explicitly defines a light and dark semantic accent palette. The platform applies it to:
 
 - primary/hover/pressed interaction colors
 - foreground-on-primary color

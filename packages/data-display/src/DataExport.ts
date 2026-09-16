@@ -1,4 +1,4 @@
-import { serializePrecisionDelimitedData } from '@precision-calm/platform';
+import { serializeExpoBaseDelimitedData } from '@expo-base/platform';
 
 export interface DataExportColumn<Row> {
   key: string;
@@ -14,5 +14,5 @@ export interface DelimitedDataOptions {
 
 /** Deterministic serialization; file creation, authorization, and delivery remain product-owned. */
 export function serializeDelimitedData<Row>(rows: readonly Row[], columns: readonly DataExportColumn<Row>[], options: DelimitedDataOptions = {}): string {
-  return serializePrecisionDelimitedData(rows, columns, options);
+  return serializeExpoBaseDelimitedData(rows, columns, options);
 }

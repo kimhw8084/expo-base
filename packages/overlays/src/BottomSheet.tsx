@@ -2,8 +2,8 @@ import type { ComponentRef, ReactNode } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Platform, Pressable, ScrollView, StyleSheet as RNStyleSheet, View, type LayoutChangeEvent } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Text, VStack } from '@precision-calm/primitives';
-import { usePrecisionReducedMotion } from '@precision-calm/motion';
+import { Text, VStack } from '@expo-base/primitives';
+import { useExpoBaseReducedMotion } from '@expo-base/motion';
 import { useOverlayLifecycle } from './useOverlayLifecycle';
 import { ModalSurface } from './ModalSurface';
 
@@ -19,7 +19,7 @@ export interface BottomSheetProps {
 
 export function BottomSheet({ open, onOpenChange, title, children, footer, dismissOnBackdrop = true, dismissOnEscape = true }: BottomSheetProps) {
   const { theme } = useUnistyles();
-  const reduceMotion = usePrecisionReducedMotion();
+  const reduceMotion = useExpoBaseReducedMotion();
   const [present, setPresent] = useState(open);
   const [sheetHeight, setSheetHeight] = useState(0);
   const translateY = useRef(new Animated.Value(open ? 1000 : 0)).current;

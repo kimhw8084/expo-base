@@ -1,61 +1,61 @@
 import { QueryClient, type QueryKey } from '@tanstack/react-query';
-import { normalizePrecisionServerError } from './errors';
-import { normalizePrecisionQueryKey, type PrecisionQueryKey } from './keys';
+import { normalizeExpoBaseServerError } from './errors';
+import { normalizeExpoBaseQueryKey, type ExpoBaseQueryKey } from './keys';
 import {
-  precisionRetryDelayMs,
-  precisionServerStateDefaults,
-  shouldRetryPrecisionQuery,
-  type PrecisionRetryPolicy,
-  type PrecisionServerStateConfig,
+  expoBaseRetryDelayMs,
+  expoBaseServerStateDefaults,
+  shouldRetryExpoBaseQuery,
+  type ExpoBaseRetryPolicy,
+  type ExpoBaseServerStateConfig,
 } from './policy';
 
-export type PrecisionServerStateScope =
+export type ExpoBaseServerStateScope =
   | { readonly kind: 'public'; readonly id?: string | undefined; readonly revision?: string | number | undefined }
   | { readonly kind: 'session'; readonly id: string; readonly revision: string | number };
 
-export interface PrecisionQueryFunctionContext {
+export interface ExpoBaseQueryFunctionContext {
   signal: AbortSignal;
-  key: PrecisionQueryKey;
+  key: ExpoBaseQueryKey;
 }
 
-export interface PrecisionFetchQueryOptions<TData> {
-  key: PrecisionQueryKey;
-  query: (context: PrecisionQueryFunctionContext) => Promise<TData>;
+export interface ExpoBaseFetchQueryOptions<TData> {
+  key: ExpoBaseQueryKey;
+  query: (context: ExpoBaseQueryFunctionContext) => Promise<TData>;
   staleTimeMs?: number | undefined;
-  retry?: PrecisionRetryPolicy | false | undefined;
+  retry?: ExpoBaseRetryPolicy | false | undefined;
 }
 
-export interface PrecisionInvalidateOptions {
+export interface ExpoBaseInvalidateOptions {
   exact?: boolean | undefined;
   refetch?: 'active' | 'all' | 'none' | undefined;
 }
 
-const implementations = new WeakMap<PrecisionServerStateClient, QueryClient>();
+const implementations = new WeakMap<ExpoBaseServerStateClient, QueryClient>();
 
-interface ResolvedPrecisionServerStateConfig {
+interface ResolvedExpoBaseServerStateConfig {
   staleTimeMs: number;
   cacheRetentionMs: number;
-  queryRetry: PrecisionRetryPolicy | false;
+  queryRetry: ExpoBaseRetryPolicy | false;
 }
 
-export class PrecisionServerStateClient {
-  #scope: PrecisionServerStateScope;
-  readonly config: Readonly<ResolvedPrecisionServerStateConfig>;
+export class ExpoBaseServerStateClient {
+  #scope: ExpoBaseServerStateScope;
+  readonly config: Readonly<ResolvedExpoBaseServerStateConfig>;
 
-  constructor(scope: PrecisionServerStateScope = { kind: 'public' }, config: PrecisionServerStateConfig = {}) {
+  constructor(scope: ExpoBaseServerStateScope = { kind: 'public' }, config: ExpoBaseServerStateConfig = {}) {
     this.#scope = normalizeScope(scope);
     this.config = Object.freeze({
-      staleTimeMs: normalizeDuration(config.staleTimeMs, precisionServerStateDefaults.staleTimeMs),
-      cacheRetentionMs: normalizeDuration(config.cacheRetentionMs, precisionServerStateDefaults.cacheRetentionMs),
-      queryRetry: config.queryRetry ?? { retries: precisionServerStateDefaults.queryRetries },
+      staleTimeMs: normalizeDuration(config.staleTimeMs, expoBaseServerStateDefaults.staleTimeMs),
+      cacheRetentionMs: normalizeDuration(config.cacheRetentionMs, expoBaseServerStateDefaults.cacheRetentionMs),
+      queryRetry: config.queryRetry ?? { retries: expoBaseServerStateDefaults.queryRetries },
     });
     implementations.set(this, new QueryClient({
       defaultOptions: {
         queries: {
           staleTime: this.config.staleTimeMs,
           gcTime: this.config.cacheRetentionMs,
-          retry: (failureCount, error) => shouldRetryPrecisionQuery(failureCount, error, this.config.queryRetry),
-          retryDelay: (failureCount, error) => precisionRetryDelayMs(failureCount, error, this.config.queryRetry),
+          retry: (failureCount, error) => shouldRetryExpoBaseQuery(failureCount, error, this.config.queryRetry),
+          retryDelay: (failureCount, error) => expoBaseRetryDelayMs(failureCount, error, this.config.queryRetry),
           refetchOnWindowFocus: false,
           refetchOnReconnect: false,
           networkMode: 'always',
@@ -65,97 +65,97 @@ export class PrecisionServerStateClient {
     }));
   }
 
-  get scope(): PrecisionServerStateScope { return this.#scope; }
+  get scope(): ExpoBaseServerStateScope { return this.#scope; }
 
-  async fetch<TData>(options: PrecisionFetchQueryOptions<TData>): Promise<TData> {
-    const key = normalizePrecisionQueryKey(options.key);
-    return getPrecisionQueryImplementation(this).fetchQuery({
+  async fetch<TData>(options: ExpoBaseFetchQueryOptions<TData>): Promise<TData> {
+    const key = normalizeExpoBaseQueryKey(options.key);
+    return getExpoBaseQueryImplementation(this).fetchQuery({
       queryKey: scopeQueryKey(this, key),
       queryFn: async ({ signal }) => {
         try { return await options.query({ signal, key }); }
-        catch (error) { throw normalizePrecisionServerError(error); }
+        catch (error) { throw normalizeExpoBaseServerError(error); }
       },
       ...(options.staleTimeMs === undefined ? {} : { staleTime: normalizeDuration(options.staleTimeMs, this.config.staleTimeMs) }),
       ...(options.retry === undefined ? {} : {
-        retry: (failureCount: number, error: unknown) => shouldRetryPrecisionQuery(failureCount, error, options.retry),
-        retryDelay: (failureCount: number, error: unknown) => precisionRetryDelayMs(failureCount, error, options.retry),
+        retry: (failureCount: number, error: unknown) => shouldRetryExpoBaseQuery(failureCount, error, options.retry),
+        retryDelay: (failureCount: number, error: unknown) => expoBaseRetryDelayMs(failureCount, error, options.retry),
       }),
     });
   }
 
-  getData<TData>(key: PrecisionQueryKey): TData | undefined {
-    return getPrecisionQueryImplementation(this).getQueryData<TData>(scopeQueryKey(this, normalizePrecisionQueryKey(key)));
+  getData<TData>(key: ExpoBaseQueryKey): TData | undefined {
+    return getExpoBaseQueryImplementation(this).getQueryData<TData>(scopeQueryKey(this, normalizeExpoBaseQueryKey(key)));
   }
 
-  setData<TData>(key: PrecisionQueryKey, value: TData | ((current: TData | undefined) => TData | undefined)): TData | undefined {
-    return getPrecisionQueryImplementation(this).setQueryData<TData>(scopeQueryKey(this, normalizePrecisionQueryKey(key)), value);
+  setData<TData>(key: ExpoBaseQueryKey, value: TData | ((current: TData | undefined) => TData | undefined)): TData | undefined {
+    return getExpoBaseQueryImplementation(this).setQueryData<TData>(scopeQueryKey(this, normalizeExpoBaseQueryKey(key)), value);
   }
 
-  remove(key: PrecisionQueryKey): void {
-    getPrecisionQueryImplementation(this).removeQueries({ queryKey: scopeQueryKey(this, normalizePrecisionQueryKey(key)), exact: true });
+  remove(key: ExpoBaseQueryKey): void {
+    getExpoBaseQueryImplementation(this).removeQueries({ queryKey: scopeQueryKey(this, normalizeExpoBaseQueryKey(key)), exact: true });
   }
 
-  async invalidate(key?: PrecisionQueryKey, options: PrecisionInvalidateOptions = {}): Promise<void> {
-    await getPrecisionQueryImplementation(this).invalidateQueries({
-      queryKey: key ? scopeQueryKey(this, normalizePrecisionQueryKey(key)) : scopeRootKey(this),
+  async invalidate(key?: ExpoBaseQueryKey, options: ExpoBaseInvalidateOptions = {}): Promise<void> {
+    await getExpoBaseQueryImplementation(this).invalidateQueries({
+      queryKey: key ? scopeQueryKey(this, normalizeExpoBaseQueryKey(key)) : scopeRootKey(this),
       exact: options.exact ?? false,
       refetchType: options.refetch ?? 'active',
     });
   }
 
-  async refetch(key: PrecisionQueryKey, options: { exact?: boolean | undefined; type?: 'active' | 'all' | undefined } = {}): Promise<void> {
-    await getPrecisionQueryImplementation(this).refetchQueries({
-      queryKey: scopeQueryKey(this, normalizePrecisionQueryKey(key)),
+  async refetch(key: ExpoBaseQueryKey, options: { exact?: boolean | undefined; type?: 'active' | 'all' | undefined } = {}): Promise<void> {
+    await getExpoBaseQueryImplementation(this).refetchQueries({
+      queryKey: scopeQueryKey(this, normalizeExpoBaseQueryKey(key)),
       exact: options.exact ?? true,
       type: options.type ?? 'active',
     });
   }
 
-  async cancel(key?: PrecisionQueryKey): Promise<void> {
-    await getPrecisionQueryImplementation(this).cancelQueries({
-      queryKey: key ? scopeQueryKey(this, normalizePrecisionQueryKey(key)) : scopeRootKey(this),
+  async cancel(key?: ExpoBaseQueryKey): Promise<void> {
+    await getExpoBaseQueryImplementation(this).cancelQueries({
+      queryKey: key ? scopeQueryKey(this, normalizeExpoBaseQueryKey(key)) : scopeRootKey(this),
     }, { silent: true, revert: true });
   }
 
   /** Clears all query and mutation state before adopting a new identity scope. */
-  resetScope(scope: PrecisionServerStateScope): boolean {
+  resetScope(scope: ExpoBaseServerStateScope): boolean {
     const next = normalizeScope(scope);
-    if (precisionServerStateScopeId(next) === precisionServerStateScopeId(this.#scope)) return false;
-    getPrecisionQueryImplementation(this).clear();
+    if (expoBaseServerStateScopeId(next) === expoBaseServerStateScopeId(this.#scope)) return false;
+    getExpoBaseQueryImplementation(this).clear();
     this.#scope = next;
     return true;
   }
 
-  clear(): void { getPrecisionQueryImplementation(this).clear(); }
-  getQueryCount(): number { return getPrecisionQueryImplementation(this).getQueryCache().getAll().length; }
-  subscribe(listener: () => void): () => void { return getPrecisionQueryImplementation(this).getQueryCache().subscribe(listener); }
+  clear(): void { getExpoBaseQueryImplementation(this).clear(); }
+  getQueryCount(): number { return getExpoBaseQueryImplementation(this).getQueryCache().getAll().length; }
+  subscribe(listener: () => void): () => void { return getExpoBaseQueryImplementation(this).getQueryCache().subscribe(listener); }
 }
 
-export function createPrecisionServerStateClient(scope?: PrecisionServerStateScope, config?: PrecisionServerStateConfig): PrecisionServerStateClient {
-  return new PrecisionServerStateClient(scope, config);
+export function createExpoBaseServerStateClient(scope?: ExpoBaseServerStateScope, config?: ExpoBaseServerStateConfig): ExpoBaseServerStateClient {
+  return new ExpoBaseServerStateClient(scope, config);
 }
 
-export function precisionServerStateScopeId(scope: PrecisionServerStateScope): string {
+export function expoBaseServerStateScopeId(scope: ExpoBaseServerStateScope): string {
   const normalized = normalizeScope(scope);
   return JSON.stringify([normalized.kind, normalized.id ?? 'default', normalized.revision ?? 0]);
 }
 
-export function getPrecisionQueryImplementation(client: PrecisionServerStateClient): QueryClient {
+export function getExpoBaseQueryImplementation(client: ExpoBaseServerStateClient): QueryClient {
   const implementation = implementations.get(client);
-  if (!implementation) throw new Error('Unknown Precision server-state client.');
+  if (!implementation) throw new Error('Unknown Expo Base server-state client.');
   return implementation;
 }
 
-export function scopeQueryKey(client: PrecisionServerStateClient, key: PrecisionQueryKey): QueryKey {
+export function scopeQueryKey(client: ExpoBaseServerStateClient, key: ExpoBaseQueryKey): QueryKey {
   return [...scopeRootKey(client), ...key];
 }
 
-function scopeRootKey(client: PrecisionServerStateClient): QueryKey {
+function scopeRootKey(client: ExpoBaseServerStateClient): QueryKey {
   const scope = client.scope;
-  return ['precision-server-state', scope.kind, scope.id ?? 'default', scope.revision ?? 0];
+  return ['expo-base-server-state', scope.kind, scope.id ?? 'default', scope.revision ?? 0];
 }
 
-function normalizeScope(scope: PrecisionServerStateScope): PrecisionServerStateScope {
+function normalizeScope(scope: ExpoBaseServerStateScope): ExpoBaseServerStateScope {
   if (scope.kind === 'session') {
     const id = scope.id.trim();
     if (!id) throw new Error('A session server-state scope requires a non-empty identity.');

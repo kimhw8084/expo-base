@@ -1,5 +1,5 @@
 import { Alert } from 'react-native';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 import {
   AdaptiveGrid,
   AdaptiveGridItem,
@@ -11,9 +11,9 @@ import {
   ScrollScreen,
   Section,
   SectionHeader,
-} from '@precision-calm/ui';
-import { Badge, Button, Card, ListRow, Metric, MetricGroup } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
+} from '@expo-base/ui';
+import { Badge, Button, Card, ListRow, Metric, MetricGroup } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
 import { ReferenceRuntimeControls } from '../ReferenceRuntimeControls';
 import { useReferenceCopy } from '../ReferenceCopy';
 
@@ -62,7 +62,7 @@ const routeGroups = [
 ] as const;
 
 export default function FoundationReferenceScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   return (
     <ScrollScreen>

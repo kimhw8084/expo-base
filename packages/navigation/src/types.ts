@@ -1,4 +1,4 @@
-import type { IconName } from '@precision-calm/icons';
+import type { IconName } from '@expo-base/icons';
 
 export interface NavigationItem {
   key: string;

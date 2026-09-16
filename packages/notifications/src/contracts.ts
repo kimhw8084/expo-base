@@ -1,16 +1,16 @@
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult, PrecisionPermissionAdapter } from '@precision-calm/capabilities';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult, ExpoBasePermissionAdapter } from '@expo-base/capabilities';
 
-export const precisionNotificationsCapability = 'notifications';
+export const expoBaseNotificationsCapability = 'notifications';
 
-export interface PrecisionNotificationOpenEvent {
+export interface ExpoBaseNotificationOpenEvent {
   identifier: string;
   data: Readonly<Record<string, unknown>>;
 }
 
 /** Device permission/token/open-event boundary. Push backend and business routing remain product-owned. */
-export interface PrecisionNotifications {
-  availability(): Promise<PrecisionCapabilityAvailability>;
-  permission: PrecisionPermissionAdapter;
-  getToken(options?: { projectId?: string | undefined }): Promise<PrecisionCapabilityResult<string>>;
-  subscribeOpen(listener: (event: PrecisionNotificationOpenEvent) => void): () => void;
+export interface ExpoBaseNotifications {
+  availability(): Promise<ExpoBaseCapabilityAvailability>;
+  permission: ExpoBasePermissionAdapter;
+  getToken(options?: { projectId?: string | undefined }): Promise<ExpoBaseCapabilityResult<string>>;
+  subscribeOpen(listener: (event: ExpoBaseNotificationOpenEvent) => void): () => void;
 }

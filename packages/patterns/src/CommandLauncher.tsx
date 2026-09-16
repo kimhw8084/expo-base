@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { ListRow } from '@precision-calm/data-display';
-import { SearchField } from '@precision-calm/forms';
-import { Dialog } from '@precision-calm/overlays';
-import { Text, VStack } from '@precision-calm/primitives';
+import { ListRow } from '@expo-base/data-display';
+import { SearchField } from '@expo-base/forms';
+import { Dialog } from '@expo-base/overlays';
+import { Text, VStack } from '@expo-base/primitives';
 
-export interface PrecisionCommand {
+export interface ExpoBaseCommand {
   id: string;
   label: string;
   description?: string | undefined;
@@ -20,7 +20,7 @@ export interface PrecisionCommand {
 export interface CommandLauncherProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  commands: readonly PrecisionCommand[];
+  commands: readonly ExpoBaseCommand[];
   title?: string | undefined;
   shortcut?: string | undefined;
 }
@@ -61,7 +61,7 @@ export function CommandLauncher({ open, onOpenChange, commands, title = 'Command
     <Dialog open={open} onOpenChange={onOpenChange} title={title} description={`Press Command or Control + ${shortcut.toUpperCase()} to open this launcher.`}>
       <VStack gap="md">
         <SearchField
-          id="precision-command-search"
+          id="expo-base-command-search"
           label="Search commands"
           value={query}
           onChangeText={setQuery}

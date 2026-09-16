@@ -1,12 +1,12 @@
-import { Badge, Button, Card, KeyValueList, ScrollScreen, StateView, Text, VStack } from '@precision-calm/ui';
-import { CapabilityGate, usePrecisionAuthorization, usePrecisionAuthorizationRequirement } from '@precision-calm/runtime';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+import { Badge, Button, Card, KeyValueList, ScrollScreen, StateView, Text, VStack } from '@expo-base/ui';
+import { CapabilityGate, useExpoBaseAuthorization, useExpoBaseAuthorizationRequirement } from '@expo-base/runtime';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 
 export default function AuthorizationAcceptanceScreen() {
-  const authorization = usePrecisionAuthorization();
-  const router = usePrecisionRouter();
-  const reports = usePrecisionAuthorizationRequirement({ all: ['reports.view'] });
-  const billing = usePrecisionAuthorizationRequirement({ all: ['billing.manage'] });
+  const authorization = useExpoBaseAuthorization();
+  const router = useExpoBaseRouter();
+  const reports = useExpoBaseAuthorizationRequirement({ all: ['reports.view'] });
+  const billing = useExpoBaseAuthorizationRequirement({ all: ['billing.manage'] });
   return <ScrollScreen><Card><VStack gap="lg">
     <Text variant="h2">Authorization capability acceptance</Text>
     <Text tone="secondary">Authenticated identity and product capability are separate. Loading/error states fail closed and backend APIs must still enforce authorization.</Text>

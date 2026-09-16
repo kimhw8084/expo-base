@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text } from '@precision-calm/primitives';
+import { Text } from '@expo-base/primitives';
 
 export interface StepIndicatorStep {
   id: string;

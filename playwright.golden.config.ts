@@ -10,7 +10,7 @@ export default defineConfig({
   expect: { toHaveScreenshot: { animations: 'disabled', caret: 'hide', scale: 'css', maxDiffPixelRatio: 0.002 } },
   use: {
     ...devices['Desktop Chrome'],
-    baseURL: process.env.PRECISION_CALM_BASE_URL ?? 'http://127.0.0.1:8081',
+    baseURL: process.env.EXPO_BASE_BASE_URL ?? 'http://127.0.0.1:8081',
     locale: 'en-US',
     timezoneId: 'UTC',
     colorScheme: 'light',

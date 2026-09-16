@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text } from '@precision-calm/primitives';
-import { MediaFrame, type MediaFrameSource } from '@precision-calm/media-presentation';
+import { Text } from '@expo-base/primitives';
+import { MediaFrame, type MediaFrameSource } from '@expo-base/media-presentation';
 
 export interface AvatarProps {
   name: string;

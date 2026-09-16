@@ -31,7 +31,7 @@ export default defineConfig({
   reporter: process.env.CI ? [['line'], ['html', { open: 'never', outputFolder: 'test-results/mobile-report' }]] : [['list']],
   outputDir: 'test-results/mobile',
   use: {
-    baseURL: process.env.PRECISION_CALM_BASE_URL ?? 'http://127.0.0.1:8081',
+    baseURL: process.env.EXPO_BASE_BASE_URL ?? 'http://127.0.0.1:8081',
     locale: 'en-US',
     timezoneId: 'UTC',
     colorScheme: 'light',

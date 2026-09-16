@@ -32,10 +32,10 @@ export interface FieldErrorSnapshot {
   message?: string;
 }
 
-export type PrecisionDateValue = string;
-export type PrecisionTimeValue = string;
-export interface PrecisionDateRangeValue { start: PrecisionDateValue; end: PrecisionDateValue; }
-export interface PrecisionDateConstraints { required?: string; min?: PrecisionDateValue; max?: PrecisionDateValue; invalid?: string; }
+export type ExpoBaseDateValue = string;
+export type ExpoBaseTimeValue = string;
+export interface ExpoBaseDateRangeValue { start: ExpoBaseDateValue; end: ExpoBaseDateValue; }
+export interface ExpoBaseDateConstraints { required?: string; min?: ExpoBaseDateValue; max?: ExpoBaseDateValue; invalid?: string; }
 
 export function validateEmail(value: string, message = 'Enter a valid email address.'): ValidationIssue | null {
   const normalized = value.trim();
@@ -65,7 +65,7 @@ export function validateInternationalPhone(value: string, message = 'Enter a val
 }
 
 /** A transport-neutral ISO calendar date contract; native/calendar picker UI remains optional. */
-export function parsePrecisionDateValue(value: string): string | null {
+export function parseExpoBaseDateValue(value: string): string | null {
   const normalized = value.trim();
   if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized)) return null;
   const date = new Date(`${normalized}T00:00:00.000Z`);
@@ -73,7 +73,7 @@ export function parsePrecisionDateValue(value: string): string | null {
 }
 
 /** Parses a timezone-free wall-clock value using a canonical 24-hour HH:mm transport shape. */
-export function parsePrecisionTimeValue(value: string): PrecisionTimeValue | null {
+export function parseExpoBaseTimeValue(value: string): ExpoBaseTimeValue | null {
   const normalized = value.trim();
   const match = /^(\d{2}):(\d{2})$/.exec(normalized);
   if (!match) return null;
@@ -82,16 +82,16 @@ export function parsePrecisionTimeValue(value: string): PrecisionTimeValue | nul
   return hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59 ? normalized : null;
 }
 
-export function parsePrecisionDateRange(start: string, end: string): PrecisionDateRangeValue | null {
-  const parsedStart = parsePrecisionDateValue(start);
-  const parsedEnd = parsePrecisionDateValue(end);
+export function parseExpoBaseDateRange(start: string, end: string): ExpoBaseDateRangeValue | null {
+  const parsedStart = parseExpoBaseDateValue(start);
+  const parsedEnd = parseExpoBaseDateValue(end);
   return parsedStart && parsedEnd && parsedStart <= parsedEnd ? { start: parsedStart, end: parsedEnd } : null;
 }
 
-export function validatePrecisionDateValue(value: string, constraints: PrecisionDateConstraints = {}): ValidationIssue | null {
+export function validateExpoBaseDateValue(value: string, constraints: ExpoBaseDateConstraints = {}): ValidationIssue | null {
   const normalized = value.trim();
   if (!normalized) return constraints.required ? { code: 'required', message: constraints.required } : null;
-  const parsed = parsePrecisionDateValue(normalized);
+  const parsed = parseExpoBaseDateValue(normalized);
   if (!parsed) return { code: 'custom', message: constraints.invalid ?? 'Enter a valid date in YYYY-MM-DD format.' };
   if (constraints.min && parsed < constraints.min) return { code: 'min', message: `Choose ${constraints.min} or later.` };
   if (constraints.max && parsed > constraints.max) return { code: 'max', message: `Choose ${constraints.max} or earlier.` };
@@ -99,15 +99,15 @@ export function validatePrecisionDateValue(value: string, constraints: Precision
 }
 
 /** Formats a calendar date without translating it through the device timezone. */
-export function formatPrecisionCalendarDate(value: string, locale: string, options: Intl.DateTimeFormatOptions = {}): string {
-  const parsed = parsePrecisionDateValue(value);
+export function formatExpoBaseCalendarDate(value: string, locale: string, options: Intl.DateTimeFormatOptions = {}): string {
+  const parsed = parseExpoBaseDateValue(value);
   if (!parsed) return '—';
   return new Intl.DateTimeFormat(locale, { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric', ...options }).format(new Date(`${parsed}T00:00:00.000Z`));
 }
 
 /** Formats a timezone-free wall-clock value according to the locale's 12/24-hour preference. */
-export function formatPrecisionTimeValue(value: string, locale: string, options: Intl.DateTimeFormatOptions = {}): string {
-  const parsed = parsePrecisionTimeValue(value);
+export function formatExpoBaseTimeValue(value: string, locale: string, options: Intl.DateTimeFormatOptions = {}): string {
+  const parsed = parseExpoBaseTimeValue(value);
   if (!parsed) return '—';
   const [hours = '0', minutes = '0'] = parsed.split(':');
   return new Intl.DateTimeFormat(locale, { timeZone: 'UTC', hour: 'numeric', minute: '2-digit', ...options }).format(new Date(Date.UTC(2000, 0, 1, Number(hours), Number(minutes))));

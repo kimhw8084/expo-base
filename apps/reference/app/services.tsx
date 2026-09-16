@@ -1,20 +1,20 @@
 import { useState } from 'react';
-import { usePrecisionAsyncAction, usePrecisionAuth, usePrecisionServices } from '@precision-calm/runtime';
-import { Badge, Button, Card, KeyValueList, Page, PageHeader, ScrollScreen, Section, Text, VStack } from '@precision-calm/ui';
+import { useExpoBaseAsyncAction, useExpoBaseAuth, useExpoBaseServices } from '@expo-base/runtime';
+import { Badge, Button, Card, KeyValueList, Page, PageHeader, ScrollScreen, Section, Text, VStack } from '@expo-base/ui';
 import { ReferenceBackAction } from '../ReferenceBackAction';
 
 export default function ServicesReferenceScreen() {
-  const services = usePrecisionServices();
-  const auth = usePrecisionAuth();
+  const services = useExpoBaseServices();
+  const auth = useExpoBaseAuth();
   const [status, setStatus] = useState('Adapters ready');
 
-  const signOut = usePrecisionAsyncAction(async () => {
+  const signOut = useExpoBaseAsyncAction(async () => {
     await services.analytics.identify(null);
     await services.analytics.track({ name: 'reference_sign_out' });
     return auth.signOut();
   });
 
-  const verifyStorage = usePrecisionAsyncAction(async () => {
+  const verifyStorage = useExpoBaseAsyncAction(async () => {
     const userId = auth.session?.user.id ?? 'no-user';
     await services.storage.set('reference:last-user', userId);
     return services.storage.get('reference:last-user');

@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
-import { AlertBanner, StateView } from '@precision-calm/feedback';
-import { FormActions } from '@precision-calm/forms';
-import { FormScreen, Page, PageHeader, Section, StickyActionBar } from '@precision-calm/layouts';
-import { Card } from '@precision-calm/components';
-import { VStack } from '@precision-calm/primitives';
+import { AlertBanner, StateView } from '@expo-base/feedback';
+import { FormActions } from '@expo-base/forms';
+import { FormScreen, Page, PageHeader, Section, StickyActionBar } from '@expo-base/layouts';
+import { Card } from '@expo-base/components';
+import { VStack } from '@expo-base/primitives';
 import type { PatternHeaderProps } from './PagePatterns';
 
 const header = ({ title, description, eyebrow, actions }: PatternHeaderProps) => (

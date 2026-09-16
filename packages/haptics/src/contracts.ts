@@ -1,8 +1,8 @@
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult } from '@precision-calm/capabilities';
-export const precisionHapticsCapability = 'haptics';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult } from '@expo-base/capabilities';
+export const expoBaseHapticsCapability = 'haptics';
 export type HapticIntent = 'selection' | 'confirm' | 'warning' | 'error' | 'impact';
 /** Optional progressive enhancement. Product success/failure must never depend on haptic delivery. */
-export interface PrecisionHaptics {
-  availability(): Promise<PrecisionCapabilityAvailability>;
-  perform(intent: HapticIntent): Promise<PrecisionCapabilityResult<undefined>>;
+export interface ExpoBaseHaptics {
+  availability(): Promise<ExpoBaseCapabilityAvailability>;
+  perform(intent: HapticIntent): Promise<ExpoBaseCapabilityResult<undefined>>;
 }

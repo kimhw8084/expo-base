@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { Text as RNText, type TextProps as RNTextProps } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { usePrecisionDirection } from '@precision-calm/i18n';
+import { useExpoBaseDirection } from '@expo-base/i18n';
 
 export type TextVariant = 'display' | 'h1' | 'h2' | 'h3' | 'bodyLg' | 'body' | 'label' | 'caption' | 'micro' | 'code';
 export type TextTone = 'primary' | 'secondary' | 'tertiary' | 'inverse' | 'onPrimary' | 'accent' | 'positive' | 'warning' | 'negative' | 'info';
@@ -16,7 +16,7 @@ export interface TextProps extends PropsWithChildren, Pick<RNTextProps, 'numberO
 }
 
 export function Text({ children, variant = 'body', tone = 'primary', numeric = false, direction = 'locale', align = 'start', accessibilityRole, role, maxFontSizeMultiplier = 2, 'aria-level': ariaLevel, ...props }: TextProps) {
-  const localeDirection = usePrecisionDirection();
+  const localeDirection = useExpoBaseDirection();
   const resolvedDirection = direction === 'locale' ? localeDirection : direction;
   const heading = variant === 'h1' || variant === 'h2' || variant === 'h3';
   const resolvedRole = role ?? (heading ? 'heading' : undefined);

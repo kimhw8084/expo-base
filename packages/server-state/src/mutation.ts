@@ -1,55 +1,55 @@
 import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
-import { normalizePrecisionServerError, PrecisionServerError } from './errors';
-import type { PrecisionQueryKey } from './keys';
-import { precisionRetryDelayMs, shouldRetryPrecisionQuery, type PrecisionRetryPolicy } from './policy';
-import { type PrecisionServerStateClient } from './client';
-import { usePrecisionServerState } from './PrecisionServerStateProvider';
+import { normalizeExpoBaseServerError, ExpoBaseServerError } from './errors';
+import type { ExpoBaseQueryKey } from './keys';
+import { expoBaseRetryDelayMs, shouldRetryExpoBaseQuery, type ExpoBaseRetryPolicy } from './policy';
+import { type ExpoBaseServerStateClient } from './client';
+import { useExpoBaseServerState } from './ExpoBaseServerStateProvider';
 
-export type PrecisionMutationConcurrency = 'single-flight' | 'queue' | 'replace' | 'parallel';
+export type ExpoBaseMutationConcurrency = 'single-flight' | 'queue' | 'replace' | 'parallel';
 
-export type PrecisionMutationState<TResult> =
+export type ExpoBaseMutationState<TResult> =
   | { status: 'idle'; pendingCount: 0; data: undefined; error: null }
   | { status: 'pending'; pendingCount: number; data: TResult | undefined; error: null }
   | { status: 'success'; pendingCount: 0; data: TResult; error: null }
-  | { status: 'error'; pendingCount: 0; data: undefined; error: PrecisionServerError };
+  | { status: 'error'; pendingCount: 0; data: undefined; error: ExpoBaseServerError };
 
-export type PrecisionMutationOutcome<TResult> =
+export type ExpoBaseMutationOutcome<TResult> =
   | { ok: true; data: TResult }
-  | { ok: false; error: PrecisionServerError };
+  | { ok: false; error: ExpoBaseServerError };
 
-export interface PrecisionMutationFunctionContext<TVariables> {
+export interface ExpoBaseMutationFunctionContext<TVariables> {
   variables: TVariables;
   signal: AbortSignal;
 }
 
-export interface PrecisionOptimisticUpdate {
-  key: PrecisionQueryKey;
+export interface ExpoBaseOptimisticUpdate {
+  key: ExpoBaseQueryKey;
   apply(current: unknown): unknown;
 }
 
-export function precisionOptimisticUpdate<TData>(
-  key: PrecisionQueryKey,
+export function expoBaseOptimisticUpdate<TData>(
+  key: ExpoBaseQueryKey,
   apply: (current: TData | undefined) => TData,
-): PrecisionOptimisticUpdate {
+): ExpoBaseOptimisticUpdate {
   return { key, apply: (current) => apply(current as TData | undefined) };
 }
 
-export interface PrecisionMutationOptions<TVariables, TResult> {
-  mutation: (context: PrecisionMutationFunctionContext<TVariables>) => Promise<TResult>;
-  /** Defaults to single-flight, matching usePrecisionAsyncAction for repeated taps. */
-  concurrency?: PrecisionMutationConcurrency | undefined;
+export interface ExpoBaseMutationOptions<TVariables, TResult> {
+  mutation: (context: ExpoBaseMutationFunctionContext<TVariables>) => Promise<TResult>;
+  /** Defaults to single-flight, matching useExpoBaseAsyncAction for repeated taps. */
+  concurrency?: ExpoBaseMutationConcurrency | undefined;
   /** Mutations do not retry unless an explicit bounded policy is supplied. */
-  retry?: PrecisionRetryPolicy | false | undefined;
-  optimistic?: ((variables: TVariables) => readonly PrecisionOptimisticUpdate[]) | undefined;
-  invalidate?: readonly PrecisionQueryKey[] | ((result: TResult | undefined, variables: TVariables) => readonly PrecisionQueryKey[]) | undefined;
+  retry?: ExpoBaseRetryPolicy | false | undefined;
+  optimistic?: ((variables: TVariables) => readonly ExpoBaseOptimisticUpdate[]) | undefined;
+  invalidate?: readonly ExpoBaseQueryKey[] | ((result: TResult | undefined, variables: TVariables) => readonly ExpoBaseQueryKey[]) | undefined;
   invalidateOn?: 'success' | 'settled' | undefined;
-  onSuccess?: ((result: TResult, variables: TVariables, client: PrecisionServerStateClient) => void | Promise<void>) | undefined;
-  onError?: ((error: PrecisionServerError, variables: TVariables, client: PrecisionServerStateClient) => void | Promise<void>) | undefined;
+  onSuccess?: ((result: TResult, variables: TVariables, client: ExpoBaseServerStateClient) => void | Promise<void>) | undefined;
+  onError?: ((error: ExpoBaseServerError, variables: TVariables, client: ExpoBaseServerStateClient) => void | Promise<void>) | undefined;
 }
 
-export interface PrecisionMutation<TResult, TVariables> {
-  state: PrecisionMutationState<TResult>;
-  execute(variables: TVariables): Promise<PrecisionMutationOutcome<TResult>>;
+export interface ExpoBaseMutation<TResult, TVariables> {
+  state: ExpoBaseMutationState<TResult>;
+  execute(variables: TVariables): Promise<ExpoBaseMutationOutcome<TResult>>;
   reset(): void;
 }
 
@@ -59,47 +59,47 @@ interface ActiveExecution {
 }
 
 interface Snapshot {
-  key: PrecisionQueryKey;
+  key: ExpoBaseQueryKey;
   data: unknown;
 }
 
-const cancelledOutcome = <TResult>(): PrecisionMutationOutcome<TResult> => ({
+const cancelledOutcome = <TResult>(): ExpoBaseMutationOutcome<TResult> => ({
   ok: false,
-  error: new PrecisionServerError('cancelled', 'The request was cancelled.', { retryable: false }),
+  error: new ExpoBaseServerError('cancelled', 'The request was cancelled.', { retryable: false }),
 });
 
 /** Headless controller used by the hook and deterministic contract tests. */
-export class PrecisionMutationController<TVariables, TResult> {
-  readonly #client: PrecisionServerStateClient;
-  #options: PrecisionMutationOptions<TVariables, TResult>;
-  #state: PrecisionMutationState<TResult> = { status: 'idle', pendingCount: 0, data: undefined, error: null };
+export class ExpoBaseMutationController<TVariables, TResult> {
+  readonly #client: ExpoBaseServerStateClient;
+  #options: ExpoBaseMutationOptions<TVariables, TResult>;
+  #state: ExpoBaseMutationState<TResult> = { status: 'idle', pendingCount: 0, data: undefined, error: null };
   #listeners = new Set<() => void>();
   #active = new Map<number, ActiveExecution>();
-  #singleFlight: Promise<PrecisionMutationOutcome<TResult>> | null = null;
+  #singleFlight: Promise<ExpoBaseMutationOutcome<TResult>> | null = null;
   #queue: Promise<unknown> = Promise.resolve();
   #sequence = 0;
   #latestSequence = 0;
   #pendingCount = 0;
   #generation = 0;
   #preFinished = new Set<number>();
-  #latestSettledState: PrecisionMutationState<TResult> = this.#state;
+  #latestSettledState: ExpoBaseMutationState<TResult> = this.#state;
   #disposed = false;
 
-  constructor(client: PrecisionServerStateClient, options: PrecisionMutationOptions<TVariables, TResult>) {
+  constructor(client: ExpoBaseServerStateClient, options: ExpoBaseMutationOptions<TVariables, TResult>) {
     this.#client = client;
     this.#options = options;
     validateMutationOptions(options);
   }
 
-  setOptions(options: PrecisionMutationOptions<TVariables, TResult>): void {
+  setOptions(options: ExpoBaseMutationOptions<TVariables, TResult>): void {
     validateMutationOptions(options);
     this.#options = options;
   }
 
-  getSnapshot = (): PrecisionMutationState<TResult> => this.#state;
+  getSnapshot = (): ExpoBaseMutationState<TResult> => this.#state;
   subscribe = (listener: () => void): (() => void) => { this.#listeners.add(listener); return () => this.#listeners.delete(listener); };
 
-  execute(variables: TVariables): Promise<PrecisionMutationOutcome<TResult>> {
+  execute(variables: TVariables): Promise<ExpoBaseMutationOutcome<TResult>> {
     if (this.#disposed) return Promise.resolve(cancelledOutcome());
     const concurrency = this.#options.concurrency ?? 'single-flight';
     if (concurrency === 'single-flight' && this.#singleFlight) return this.#singleFlight;
@@ -147,7 +147,7 @@ export class PrecisionMutationController<TVariables, TResult> {
     this.#listeners.clear();
   }
 
-  async #run(sequence: number, generation: number, variables: TVariables): Promise<PrecisionMutationOutcome<TResult>> {
+  async #run(sequence: number, generation: number, variables: TVariables): Promise<ExpoBaseMutationOutcome<TResult>> {
     if (!this.#isCurrent(generation, sequence)) return cancelledOutcome();
     const controller = new AbortController();
     const execution: ActiveExecution = { controller, rollback: null };
@@ -177,7 +177,7 @@ export class PrecisionMutationController<TVariables, TResult> {
       await this.#invalidate(result, variables, 'success');
       return { ok: true, data: result };
     } catch (error) {
-      const normalized = normalizePrecisionServerError(error);
+      const normalized = normalizeExpoBaseServerError(error);
       execution.rollback?.();
       if (!this.#isCurrent(generation, sequence) || normalized.kind === 'cancelled') return cancelledOutcome();
       try { await this.#options.onError?.(normalized, variables, this.#client); } catch { /* Error reporting must not hide the mutation error. */ }
@@ -194,9 +194,9 @@ export class PrecisionMutationController<TVariables, TResult> {
       if (signal.aborted) throw abortError();
       try { return await this.#options.mutation({ variables, signal }); }
       catch (error) {
-        const normalized = normalizePrecisionServerError(error);
-        if (signal.aborted || !shouldRetryPrecisionQuery(failureCount, normalized, this.#options.retry ?? false)) throw normalized;
-        const delay = precisionRetryDelayMs(failureCount, normalized, this.#options.retry);
+        const normalized = normalizeExpoBaseServerError(error);
+        if (signal.aborted || !shouldRetryExpoBaseQuery(failureCount, normalized, this.#options.retry ?? false)) throw normalized;
+        const delay = expoBaseRetryDelayMs(failureCount, normalized, this.#options.retry);
         failureCount += 1;
         await waitForRetry(delay, signal);
       }
@@ -211,7 +211,7 @@ export class PrecisionMutationController<TVariables, TResult> {
     await Promise.all(keys.map((key) => this.#client.invalidate(key)));
   }
 
-  #finish(sequence: number, generation: number, outcome: PrecisionMutationOutcome<TResult>): void {
+  #finish(sequence: number, generation: number, outcome: ExpoBaseMutationOutcome<TResult>): void {
     if (generation !== this.#generation || this.#disposed) return;
     if (this.#preFinished.delete(sequence)) return;
     this.#pendingCount = Math.max(0, this.#pendingCount - 1);
@@ -246,15 +246,15 @@ export class PrecisionMutationController<TVariables, TResult> {
     return (this.#options.concurrency ?? 'single-flight') !== 'replace' || sequence === this.#latestSequence;
   }
 
-  #publish(state: PrecisionMutationState<TResult>): void {
+  #publish(state: ExpoBaseMutationState<TResult>): void {
     this.#state = state;
     for (const listener of this.#listeners) listener();
   }
 }
 
-export function usePrecisionMutation<TVariables, TResult>(options: PrecisionMutationOptions<TVariables, TResult>): PrecisionMutation<TResult, TVariables> {
-  const client = usePrecisionServerState();
-  const controller = useMemo(() => new PrecisionMutationController(client, options), [client]);
+export function useExpoBaseMutation<TVariables, TResult>(options: ExpoBaseMutationOptions<TVariables, TResult>): ExpoBaseMutation<TResult, TVariables> {
+  const client = useExpoBaseServerState();
+  const controller = useMemo(() => new ExpoBaseMutationController(client, options), [client]);
   controller.setOptions(options);
   useEffect(() => () => controller.dispose(), [controller]);
   const state = useSyncExternalStore(controller.subscribe, controller.getSnapshot, controller.getSnapshot);
@@ -263,7 +263,7 @@ export function usePrecisionMutation<TVariables, TResult>(options: PrecisionMuta
   return useMemo(() => ({ state, execute, reset }), [state, execute, reset]);
 }
 
-function validateMutationOptions<TVariables, TResult>(options: PrecisionMutationOptions<TVariables, TResult>): void {
+function validateMutationOptions<TVariables, TResult>(options: ExpoBaseMutationOptions<TVariables, TResult>): void {
   if (options.optimistic && options.concurrency === 'parallel') {
     throw new Error('Parallel optimistic mutations are ambiguous. Use single-flight, queue, or replace, or remove optimistic bookkeeping.');
   }

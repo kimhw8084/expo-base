@@ -1,9 +1,9 @@
 # Gate 05 — Forms contract
 
-Precision Calm forms separate **visual controls** from **form-state orchestration**.
+Expo Base forms separate **visual controls** from **form-state orchestration**.
 
-- `@precision-calm/forms` owns labels, inputs, focus/error states, selection controls, semantic geometry, and accessible anatomy.
-- `@precision-calm/form-rhf` is an optional React Hook Form adapter. Product UI does not import `react-hook-form` directly.
+- `@expo-base/forms` owns labels, inputs, focus/error states, selection controls, semantic geometry, and accessible anatomy.
+- `@expo-base/form-rhf` is an optional React Hook Form adapter. Product UI does not import `react-hook-form` directly.
 - `FormScreen` owns keyboard-aware scrolling and toolbar behavior through `react-native-keyboard-controller`.
 - Finite selection uses `SelectField`, `RadioGroup`, or `SegmentedField`; searchable selection uses
   `ComboboxField` / `MultiSelectField`. These use the shared Popover/Menu ownership rather than
@@ -24,25 +24,25 @@ Precision Calm forms separate **visual controls** from **form-state orchestratio
 
 ## Keyboard and validation lifecycle
 
-- Product screens use `createPrecisionFormKeyboardFlow(form)` from `@precision-calm/form-rhf` instead of hand-authoring return-key behavior.
+- Product screens use `createExpoBaseFormKeyboardFlow(form)` from `@expo-base/form-rhf` instead of hand-authoring return-key behavior.
 - `next(field)` uses `returnKeyType="next"` with `submitBehavior="submit"`, then delegates focus to React Hook Form's registered field ref.
 - `done(submit)` uses `returnKeyType="done"` with `submitBehavior="blurAndSubmit"` and invokes the canonical form submit handler.
-- `usePrecisionForm` keeps `shouldFocusError: true`; every controlled focusable field, including checkbox rows, must register `field.ref` so the first invalid field is deterministic.
+- `useExpoBaseForm` keeps `shouldFocusError: true`; every controlled focusable field, including checkbox rows, must register `field.ref` so the first invalid field is deterministic.
 - Shared fields expose validation state to web accessibility APIs (`aria-invalid`, `aria-describedby`, `aria-required`) and provide native accessibility hints. Error messages are polite live regions so validation changes are announced without feature-owned accessibility code.
 
 ## Shared form lifecycle
 
-For supported form workflows, `@precision-calm/forms` owns `FormErrorSummary`,
-`FormDiscardDialog`, and `useFormLeaveGuard`. The optional `@precision-calm/form-rhf` adapter
-adds `usePrecisionFormLifecycle` and `applyPrecisionFormServerErrors`: it focuses the first
+For supported form workflows, `@expo-base/forms` owns `FormErrorSummary`,
+`FormDiscardDialog`, and `useFormLeaveGuard`. The optional `@expo-base/form-rhf` adapter
+adds `useExpoBaseFormLifecycle` and `applyExpoBaseFormServerErrors`: it focuses the first
 invalid registered field, presents one post-submit alert summary, maps server field/root errors,
 and resets only through a confirmed dirty-state leave flow. Product routes supply domain copy and
 the navigation continuation; they do not build a second error summary or discard modal.
 
-`usePrecisionFieldArray` provides RHF-safe append/insert/remove with stable keys and focused
-insertions. `usePrecisionConditionalField` makes hidden-value reset/preserve policy explicit.
-`createPrecisionAsyncValidator` owns abort/revision suppression for field checks, while
-`usePrecisionAutosave` provides opt-in, explicitly timed dirty save/retry behavior. Autosave never
+`useExpoBaseFieldArray` provides RHF-safe append/insert/remove with stable keys and focused
+insertions. `useExpoBaseConditionalField` makes hidden-value reset/preserve policy explicit.
+`createExpoBaseAsyncValidator` owns abort/revision suppression for field checks, while
+`useExpoBaseAutosave` provides opt-in, explicitly timed dirty save/retry behavior. Autosave never
 persists locally or resolves offline conflicts by itself: products choose a service mutation and
 any selected Phase 4 storage capability.
 
@@ -55,7 +55,7 @@ patches or timing hacks to simulate a universal before-leave hook.
 - `EmailField`, `UrlField`, and `PhoneField` provide semantic input hints and normalized,
   presentation-ready validation helpers. Regional telephone business rules remain product-owned.
 - `NumberField` and `CurrencyField` keep editable text separate from parsed values. They parse
-  locale decimal/grouping symbols through `@precision-calm/i18n` and format on blur, never while a
+  locale decimal/grouping symbols through `@expo-base/i18n` and format on blur, never while a
   user is midway through an edit. `NumberStepper` is for bounded discrete values.
 - `ComboboxField` and `MultiSelectField` own searchable menu navigation, loading, no-results,
   disabled-option, Escape, Enter, and selected-state behavior. A product owns option loading and
@@ -72,7 +72,7 @@ patches or timing hacks to simulate a universal before-leave hook.
 - calendar dates use `YYYY-MM-DD` and never pass through the device timezone;
 - wall-clock values use 24-hour `HH:mm` transport while the helper preview follows locale 12/24h;
 - range order, min/max values, visible labels, shared errors, and compact stacking are explicit;
-- parsing/formatting helpers live in `@precision-calm/platform`.
+- parsing/formatting helpers live in `@expo-base/platform`.
 
 The fields deliberately do not claim to be a calendar/scheduling system. A product may register a
 reviewed optional native picker adapter that reads/writes the same value shapes, but the minimal

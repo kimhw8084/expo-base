@@ -1,9 +1,0 @@
-{
-  "name": "@precision-calm/migrate-app",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "bin": {
-    "precision-migrate-audit": "bin/precision-migrate-audit.mjs"
-  }
-}

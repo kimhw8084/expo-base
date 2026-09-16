@@ -1,6 +1,6 @@
 # Expo Base 1.0.0
 
-Expo Base is a universal Expo foundation for teams building production-oriented iOS, Android, tablet, and web applications. The release keeps product code semantic while shared Precision Calm packages own layout, responsiveness, themes, density, interaction, forms, overlays, navigation, feedback, data composition, motion, and runtime boundaries.
+Expo Base is a universal Expo foundation for teams building production-oriented iOS, Android, tablet, and web applications. The release keeps product code semantic while shared Expo Base packages own layout, responsiveness, themes, density, interaction, forms, overlays, navigation, feedback, data composition, motion, and runtime boundaries.
 
 ## What is included
 
@@ -32,7 +32,7 @@ Expo Base is a universal Expo foundation for teams building production-oriented 
 - Generated service, authentication, session-security, and linking adapters are replaceable demonstrations. They must be connected to product implementations before production use.
 - Client-side authentication and authorization improve navigation and UX; product backends must independently enforce authorization and data access.
 
-## Deliberate boundaries before the official tag
+## Deliberate boundaries of `1.0.0`
 
 - Human VoiceOver usability traversal and exact Dynamic Type user-settings behavior are not claimed by automated simulator evidence.
 - Physical-device haptics, camera fidelity, biometrics, hardware permission nuances, and real-device safe-area variants remain outside this simulator candidate.

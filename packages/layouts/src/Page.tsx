@@ -1,8 +1,8 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import type { ContentWidth } from '@precision-calm/tokens';
-import { useDensity } from '@precision-calm/primitives';
+import type { ContentWidth } from '@expo-base/tokens';
+import { useDensity } from '@expo-base/primitives';
 import { Container } from './Container';
 
 export interface PageProps extends PropsWithChildren {

@@ -25,7 +25,7 @@ assertBootstrapOrder(referenceEntry, referenceLayout, referenceHtml, 'reference 
 const destination = fs.mkdtempSync(path.join(os.tmpdir(), 'expo-base-bootstrap-'));
 try {
   const run = spawnSync(process.execPath, [
-    'packages/create-precision-app/bin/create-precision-app.mjs',
+    'packages/create-expo-base-app/bin/create-expo-base-app.mjs',
     '--name', 'Bootstrap Probe',
     '--slug', 'bootstrap-probe',
     '--accent', 'violet',

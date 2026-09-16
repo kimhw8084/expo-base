@@ -1,23 +1,23 @@
 import { Linking, Platform } from 'react-native';
 import type { NotificationPermissionsStatus } from 'expo-notifications';
-import type { PrecisionCapabilityAvailability, PrecisionCapabilityResult, PrecisionPermissionAdapter, PrecisionPermissionSnapshot } from '@precision-calm/capabilities';
-import type { PrecisionNotificationOpenEvent, PrecisionNotifications } from './contracts';
+import type { ExpoBaseCapabilityAvailability, ExpoBaseCapabilityResult, ExpoBasePermissionAdapter, ExpoBasePermissionSnapshot } from '@expo-base/capabilities';
+import type { ExpoBaseNotificationOpenEvent, ExpoBaseNotifications } from './contracts';
 
-class ExpoNotificationsPermission implements PrecisionPermissionAdapter {
-  async get(): Promise<PrecisionPermissionSnapshot> { if (Platform.OS === 'web') return unavailablePermission(); try { const notifications = await loadNotifications(); return normalizePermission(await notifications.getPermissionsAsync()); } catch { return unavailablePermission(); } }
-  async request(): Promise<PrecisionPermissionSnapshot> { if (Platform.OS === 'web') return unavailablePermission(); try { const notifications = await loadNotifications(); return normalizePermission(await notifications.requestPermissionsAsync()); } catch { return unavailablePermission(); } }
-  async openSettings(): Promise<PrecisionCapabilityResult<undefined>> {
+class ExpoNotificationsPermission implements ExpoBasePermissionAdapter {
+  async get(): Promise<ExpoBasePermissionSnapshot> { if (Platform.OS === 'web') return unavailablePermission(); try { const notifications = await loadNotifications(); return normalizePermission(await notifications.getPermissionsAsync()); } catch { return unavailablePermission(); } }
+  async request(): Promise<ExpoBasePermissionSnapshot> { if (Platform.OS === 'web') return unavailablePermission(); try { const notifications = await loadNotifications(); return normalizePermission(await notifications.requestPermissionsAsync()); } catch { return unavailablePermission(); } }
+  async openSettings(): Promise<ExpoBaseCapabilityResult<undefined>> {
     try { await Linking.openSettings(); return { status: 'success', value: undefined }; }
     catch { return { status: 'unavailable', reason: 'unsupported' }; }
   }
 }
 
-export class ExpoNotifications implements PrecisionNotifications {
+export class ExpoNotifications implements ExpoBaseNotifications {
   readonly permission = new ExpoNotificationsPermission();
-  async availability(): Promise<PrecisionCapabilityAvailability> {
+  async availability(): Promise<ExpoBaseCapabilityAvailability> {
     return Platform.OS === 'web' ? { status: 'unavailable', reason: 'unsupported' } : { status: 'available' };
   }
-  async getToken(options: { projectId?: string | undefined } = {}): Promise<PrecisionCapabilityResult<string>> {
+  async getToken(options: { projectId?: string | undefined } = {}): Promise<ExpoBaseCapabilityResult<string>> {
     const availability = await this.availability();
     if (availability.status !== 'available') return availability;
     const permission = await this.permission.get();
@@ -26,7 +26,7 @@ export class ExpoNotifications implements PrecisionNotifications {
     try { const notifications = await loadNotifications(); return { status: 'success', value: (await notifications.getExpoPushTokenAsync({ projectId: options.projectId })).data }; }
     catch { return { status: 'error', code: 'notification_token_failed' }; }
   }
-  subscribeOpen(listener: (event: PrecisionNotificationOpenEvent) => void): () => void {
+  subscribeOpen(listener: (event: ExpoBaseNotificationOpenEvent) => void): () => void {
     if (Platform.OS === 'web') return () => {};
     let active = true;
     let remove: (() => void) | undefined;
@@ -42,8 +42,8 @@ export class ExpoNotifications implements PrecisionNotifications {
   }
 }
 
-function unavailablePermission(): PrecisionPermissionSnapshot { return { status: 'unavailable', canAskAgain: false, canOpenSettings: false }; }
-function normalizePermission(response: NotificationPermissionsStatus): PrecisionPermissionSnapshot {
+function unavailablePermission(): ExpoBasePermissionSnapshot { return { status: 'unavailable', canAskAgain: false, canOpenSettings: false }; }
+function normalizePermission(response: NotificationPermissionsStatus): ExpoBasePermissionSnapshot {
   const status = response.granted ? 'granted' : response.status === 'denied' ? 'denied' : response.status === 'undetermined' ? 'undetermined' : 'restricted';
   return { status, canAskAgain: response.canAskAgain, canOpenSettings: !response.granted && !response.canAskAgain };
 }

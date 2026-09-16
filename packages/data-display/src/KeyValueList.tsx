@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text, useDensity } from '@precision-calm/primitives';
+import { Text, useDensity } from '@expo-base/primitives';
 
 export interface KeyValueItem {
   key: string;

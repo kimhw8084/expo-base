@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import type { ContentWidth } from '@precision-calm/tokens';
+import type { ContentWidth } from '@expo-base/tokens';
 
 export function Container({ children, width = 'standard' }: PropsWithChildren<{ width?: ContentWidth }>) {
   return <View style={[styles.base, styles[width]]}>{children}</View>;

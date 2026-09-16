@@ -1,12 +1,12 @@
 {
-  "name": "@precision-calm/media",
+  "name": "@expo-base/media",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@precision-calm/capabilities": "*",
+    "@expo-base/capabilities": "*",
     "expo-camera": "~57.0.4",
     "expo-document-picker": "~57.0.1",
     "expo-image-picker": "~57.0.14"

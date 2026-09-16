@@ -1,12 +1,12 @@
 import { Pressable, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { Text, VStack } from '@precision-calm/primitives';
+import { Text, VStack } from '@expo-base/primitives';
 import type { ChartDatum, ChartValueFormatter } from './types';
 import type { VisualizationSeries } from './types';
 
 export interface ChartLegendItem { id?: string; label: string; series: VisualizationSeries; }
 
-/** Shared legend anatomy for the small Precision chart set. Products decide what each series means. */
+/** Shared legend anatomy for the small Expo Base chart set. Products decide what each series means. */
 export function ChartLegend({ items, label = 'Chart legend', testID, interactive = false, selectedIds, onToggle }: { items: readonly ChartLegendItem[]; label?: string; testID?: string | undefined; interactive?: boolean; selectedIds?: readonly string[]; onToggle?: ((id: string) => void) | undefined }) {
   const { theme } = useUnistyles();
   return <View accessibilityRole="list" role="list" accessibilityLabel={label} style={styles.legend} testID={testID}>{items.map((item) => { const id = item.id ?? item.label; const selected = selectedIds ? selectedIds.includes(id) : true; const content = <><View style={[styles.swatch, { backgroundColor: theme.colors.visualization[item.series] }]} /><Text variant="caption">{item.label}</Text></>; return interactive && onToggle ? <Pressable key={id} accessibilityRole="button" accessibilityLabel={item.label} accessibilityState={{ selected }} aria-pressed={selected} onPress={() => onToggle(id)} style={styles.legendItem}>{content}</Pressable> : <View key={id} role="listitem" style={styles.legendItem}>{content}</View>; })}</View>;

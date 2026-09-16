@@ -1,9 +1,9 @@
 import { useRef, type ComponentRef } from 'react';
 import { Pressable, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { usePrecisionDirection } from '@precision-calm/i18n';
-import { resolveRovingFocusIndex } from '@precision-calm/platform';
-import { useDensity } from '@precision-calm/primitives';
+import { useExpoBaseDirection } from '@expo-base/i18n';
+import { resolveRovingFocusIndex } from '@expo-base/platform';
+import { useDensity } from '@expo-base/primitives';
 import { NavigationItemButton } from './NavigationItemButton';
 import type { NavigationItem } from './types';
 
@@ -22,7 +22,7 @@ export function BottomNavigation({ items, activeKey, onNavigate, onNavigateInten
   const { rt, theme } = useUnistyles();
   const density = useDensity();
   const horizontalPadding = density === 'compact' ? theme.spacing.xs : theme.spacing.sm;
-  const direction = usePrecisionDirection();
+  const direction = useExpoBaseDirection();
   const itemRefs = useRef<Array<ComponentRef<typeof Pressable> | null>>([]);
   const enabled = items.map((item) => !item.disabled);
   const usesRouteLinks = items.some((item) => Boolean(item.href));
@@ -41,7 +41,7 @@ export function BottomNavigation({ items, activeKey, onNavigate, onNavigateInten
     : { paddingStart: rt.insets.left + horizontalPadding, paddingEnd: rt.insets.right + horizontalPadding };
   return (
     <View
-      nativeID="precision-bottom-navigation"
+      nativeID="expo-base-bottom-navigation"
       style={[styles.root, horizontalInsets]}
       accessibilityRole="tablist"
       role={usesRouteLinks ? 'navigation' : 'tablist'}

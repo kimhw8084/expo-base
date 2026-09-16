@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { Alert } from 'react-native';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
-import { GOLDEN_PATTERN_IDS, formatCurrency, type GoldenPatternId } from '@precision-calm/platform';
-import { ScrollScreen } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
-import { Badge, Button, Card, Chip } from '@precision-calm/ui';
-import { TextField, FormSection } from '@precision-calm/ui';
-import { AlertBanner } from '@precision-calm/ui';
-import { AdaptiveDataTable, KeyValueList, ListRow, Metric, MetricGroup, type DataColumn } from '@precision-calm/ui';
-import { LineChart, ProgressBar } from '@precision-calm/ui';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
+import { GOLDEN_PATTERN_IDS, formatCurrency, type GoldenPatternId } from '@expo-base/platform';
+import { ScrollScreen } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
+import { Badge, Button, Card, Chip } from '@expo-base/ui';
+import { TextField, FormSection } from '@expo-base/ui';
+import { AlertBanner } from '@expo-base/ui';
+import { AdaptiveDataTable, KeyValueList, ListRow, Metric, MetricGroup, type DataColumn } from '@expo-base/ui';
+import { LineChart, ProgressBar } from '@expo-base/ui';
 import {
   AnalyticsLayout, AuthenticationLayout, CreateEditFormLayout, DashboardLayout, DataWorkspaceLayout, DetailLayout,
   EmptyStartLayout, FeedListLayout, FullScreenWorkflowLayout, MasterDetailPageLayout, OverlayWorkflowLayout,
   ProfileLayout, SearchResultsLayout, SettingsLayout, WizardLayout,
-} from '@precision-calm/ui';
+} from '@expo-base/ui';
 import { useReferenceCopy } from '../ReferenceCopy';
 
 type DemoRow={id:string;name:string;issuer:string;value:number};
@@ -22,7 +22,7 @@ const columns:readonly DataColumn<DemoRow>[]=[{key:'name',label:'Card',primary:t
 const trend=[{label:'Jan',value:6200},{label:'Feb',value:6480},{label:'Mar',value:6310},{label:'Apr',value:6840},{label:'May',value:7010},{label:'Jun',value:7380},{label:'Jul',value:7210},{label:'Aug',value:8420}];
 
 export default function GoldenPatternsReferenceScreen(){
-  const router=usePrecisionRouter();
+  const router=useExpoBaseRouter();
   const copy=useReferenceCopy();
   const [index,setIndex]=useState(0);
   const [overlayOpen,setOverlayOpen]=useState(false);
@@ -49,7 +49,7 @@ function renderPattern(id:GoldenPatternId,ctx:RenderContext){
     case 'wizard': return <WizardLayout {...common} title="Connect account" description="Progressive multi-step workflows keep progress and actions in stable locations." progress={<ProgressBar value={0.5} label="Step 2 of 4"/>} step={<Card><VStack gap="md"><Text variant="h2">Confirm institution</Text><Text tone="secondary">Review the selected provider before continuing.</Text><KeyValueList items={[{key:'bank',label:'Institution',value:'Example Bank'},{key:'type',label:'Connection',value:'Secure OAuth'}]}/></VStack></Card>} primaryAction={<Button label="Continue" onPress={()=>{}}/>} secondaryAction={<Button label="Back" variant="secondary" onPress={()=>{}}/>}/>;
     case 'settings': return <SettingsLayout {...common} title="Settings" description="Settings become a master/detail workspace on larger layouts and a safe stack on compact layouts." navigation={<Card><VStack gap="sm"><Button label="General" variant="secondary" onPress={()=>{}}/><Button label="Notifications" variant="ghost" onPress={()=>{}}/><Button label="Privacy" variant="ghost" onPress={()=>{}}/></VStack></Card>} content={<Card><VStack gap="lg"><Text variant="h2">General</Text><ListRow title="Appearance" subtitle="System theme"/><ListRow title="Density" subtitle="Comfortable"/><ListRow title="Language" subtitle="English"/></VStack></Card>}/>;
     case 'profile': return <ProfileLayout {...common} title="Profile" description="Identity summary followed by independent profile sections." summary={<Card><VStack gap="sm"><Text variant="h2">Alex Kim</Text><Text tone="secondary">alex@example.com</Text><Badge label="Verified" tone="positive"/></VStack></Card>} sections={[<Card key="personal"><VStack gap="md"><Text variant="h3">Personal information</Text><ListRow title="Name" trailing={<Text>Alex Kim</Text>}/><ListRow title="Timezone" trailing={<Text>Central</Text>}/></VStack></Card>,<Card key="security"><VStack gap="md"><Text variant="h3">Security</Text><ListRow title="Passkey" trailing={<Badge label="Enabled" tone="positive"/>}/><ListRow title="Recovery" trailing={<Badge label="Ready" tone="positive"/>}/></VStack></Card>]}/>;
-    case 'authentication': return <AuthenticationLayout brand={<Text variant="micro" tone="secondary">PRECISION CALM</Text>} title="Welcome back" description="Authentication stays focused and deliberately narrow on large screens." form={<VStack gap="lg"><TextField id="golden-email" label="Email" value="alex@example.com" onChangeText={()=>{}}/><TextField id="golden-password" label="Password" value="example-password" onChangeText={()=>{}} secureTextEntry/><Button label="Sign in" onPress={()=>{}}/></VStack>} footer={ctx.actions}/>;
+    case 'authentication': return <AuthenticationLayout brand={<Text variant="micro" tone="secondary">EXPO BASE</Text>} title="Welcome back" description="Authentication stays focused and deliberately narrow on large screens." form={<VStack gap="lg"><TextField id="golden-email" label="Email" value="alex@example.com" onChangeText={()=>{}}/><TextField id="golden-password" label="Password" value="example-password" onChangeText={()=>{}} secureTextEntry/><Button label="Sign in" onPress={()=>{}}/></VStack>} footer={ctx.actions}/>;
     case 'analytics': return <AnalyticsLayout {...common} title="Analytics" description="Metrics and visualizations scale independently while insight context moves to an aside." metrics={metric} primaryChart={<Card><VStack gap="lg"><Text variant="h2">Value over time</Text><LineChart data={trend} area/></VStack></Card>} insights={<Card><VStack gap="md"><Text variant="h3">Insights</Text><AlertBanner tone="positive" title="Value increased" message="Synthetic tracked value is up from January."/></VStack></Card>}/>;
     case 'empty-start': return <EmptyStartLayout {...common} title="Cards" description="New-user and zero-data experiences preserve hierarchy rather than showing a blank page." emptyTitle="Add your first card" emptyMessage="Start with one account. The platform will build the rest of the experience around real content." actionLabel="Add card" onAction={()=>Alert.alert('Start')} secondaryLabel="Learn more" onSecondary={()=>{}}/>;
     case 'full-screen-workflow': return <FullScreenWorkflowLayout {...common} title="Review changes" description="Focused workflows keep one dominant task and stable exit/continue actions." status={<AlertBanner tone="info" title="3 changes ready" message="Nothing is submitted until you confirm."/>} content={<Card><KeyValueList items={[{key:'nickname',label:'Nickname',value:ctx.name},{key:'issuer',label:'Issuer',value:'Capital One'},{key:'status',label:'Status',value:'Active'}]}/></Card>} primaryAction={<Button label="Confirm changes" onPress={()=>Alert.alert('Confirmed')}/>} secondaryAction={<Button label="Back" variant="secondary" onPress={()=>{}}/>}/>;

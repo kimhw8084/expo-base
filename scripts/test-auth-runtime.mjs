@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const runtime=fs.readFileSync('packages/runtime/src/auth.tsx','utf8');
-const provider=fs.readFileSync('packages/runtime/src/PrecisionRuntimeProvider.tsx','utf8');
+const provider=fs.readFileSync('packages/runtime/src/ExpoBaseRuntimeProvider.tsx','utf8');
 const navigation=fs.readFileSync('packages/navigation-router/src/index.tsx','utf8');
 const root=fs.readFileSync('apps/reference/app/_layout.tsx','utf8');
 const signIn=fs.readFileSync('apps/reference/app/sign-in.tsx','utf8');

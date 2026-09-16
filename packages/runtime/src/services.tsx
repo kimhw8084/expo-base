@@ -1,14 +1,14 @@
 import { createContext, useContext, type PropsWithChildren } from 'react';
-import type { AppServices } from '@precision-calm/adapters';
+import type { AppServices } from '@expo-base/adapters';
 
-const PrecisionServicesContext = createContext<AppServices | null>(null);
+const ExpoBaseServicesContext = createContext<AppServices | null>(null);
 
-export function PrecisionServicesProvider({ services, children }: PropsWithChildren<{ services: AppServices }>) {
-  return <PrecisionServicesContext.Provider value={services}>{children}</PrecisionServicesContext.Provider>;
+export function ExpoBaseServicesProvider({ services, children }: PropsWithChildren<{ services: AppServices }>) {
+  return <ExpoBaseServicesContext.Provider value={services}>{children}</ExpoBaseServicesContext.Provider>;
 }
 
-export function usePrecisionServices<TServices extends AppServices = AppServices>(): TServices {
-  const services = useContext(PrecisionServicesContext);
-  if (!services) throw new Error('usePrecisionServices requires PrecisionServicesProvider or PrecisionRuntimeProvider with a services prop.');
+export function useExpoBaseServices<TServices extends AppServices = AppServices>(): TServices {
+  const services = useContext(ExpoBaseServicesContext);
+  if (!services) throw new Error('useExpoBaseServices requires ExpoBaseServicesProvider or ExpoBaseRuntimeProvider with a services prop.');
   return services as TServices;
 }

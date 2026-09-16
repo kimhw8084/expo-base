@@ -1,0 +1,14 @@
+{
+  "name": "@precision-calm/media",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "description": "Deprecated v1 migration-only forwarding shim; use @expo-base/media.",
+  "expoBaseCompatibility": {
+    "canonical": "@expo-base/media",
+    "removeAfter": "2.0.0"
+  },
+  "dependencies": { "@expo-base/media": "*" }
+}

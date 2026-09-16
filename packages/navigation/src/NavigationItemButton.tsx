@@ -1,8 +1,8 @@
 import { forwardRef, type ComponentRef } from 'react';
 import { Platform, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Icon } from '@precision-calm/icons';
-import { Text, useInteractionState } from '@precision-calm/primitives';
+import { Icon } from '@expo-base/icons';
+import { Text, useInteractionState } from '@expo-base/primitives';
 import type { NavigationItem } from './types';
 
 type NavigationActivationHandler = (event?: {

@@ -1,8 +1,8 @@
 import { forwardRef, type ComponentRef, type ReactNode } from 'react';
 import { Platform, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Icon, type IconName } from '@precision-calm/icons';
-import { Text, useInteractionState } from '@precision-calm/primitives';
+import { Icon, type IconName } from '@expo-base/icons';
+import { Text, useInteractionState } from '@expo-base/primitives';
 
 export interface MenuItemProps { label: string; onPress: () => void; icon?: IconName; destructive?: boolean; disabled?: boolean; selected?: boolean; trailing?: ReactNode; tabIndex?: 0 | -1; onKeyDown?: ((event: { key: string; preventDefault: () => void }) => void) | undefined; }
 export const MenuItem = forwardRef<ComponentRef<typeof Pressable>, MenuItemProps>(function MenuItem({ label, onPress, icon, destructive = false, disabled = false, selected = false, trailing, tabIndex, onKeyDown }, ref) {

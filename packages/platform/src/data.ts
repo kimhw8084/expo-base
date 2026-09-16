@@ -41,19 +41,19 @@ export function formatCompactNumber(value: number, locale = 'en-US'): string {
   return new Intl.NumberFormat(locale, { notation: 'compact', maximumFractionDigits: 1 }).format(value);
 }
 
-export interface PrecisionDelimitedDataColumn<Row> {
+export interface ExpoBaseDelimitedDataColumn<Row> {
   key: string;
   label: string;
   value: (row: Row) => string | number | boolean | null | undefined;
 }
 
-export interface PrecisionDelimitedDataOptions {
+export interface ExpoBaseDelimitedDataOptions {
   delimiter?: ',' | '\t' | ';';
   lineEnding?: '\n' | '\r\n';
   includeHeader?: boolean;
 }
 
-export function serializePrecisionDelimitedData<Row>(rows: readonly Row[], columns: readonly PrecisionDelimitedDataColumn<Row>[], options: PrecisionDelimitedDataOptions = {}): string {
+export function serializeExpoBaseDelimitedData<Row>(rows: readonly Row[], columns: readonly ExpoBaseDelimitedDataColumn<Row>[], options: ExpoBaseDelimitedDataOptions = {}): string {
   if (columns.length === 0) return '';
   const delimiter = options.delimiter ?? ',';
   const lineEnding = options.lineEnding ?? '\n';

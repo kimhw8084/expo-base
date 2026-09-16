@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
-import { Button, CodeBlock, IconButton } from '@precision-calm/components';
-import { HStack, Text, VStack } from '@precision-calm/primitives';
-import { useOptionalPrecisionClipboard } from './hooks';
+import { Button, CodeBlock, IconButton } from '@expo-base/components';
+import { HStack, Text, VStack } from '@expo-base/primitives';
+import { useOptionalExpoBaseClipboard } from './hooks';
 
 type CopyActionStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -24,7 +24,7 @@ export interface CopyButtonProps {
 
 /** Capability-backed copy action. It never falls back to an unsanctioned browser API. */
 export function CopyButton({ value, label = 'Copy', copiedLabel = 'Copied', errorLabel = 'Copy unavailable', accessibilityLabel, copiedAccessibilityLabel, errorAccessibilityLabel, disabled = false, compact = false, onCopied, testID }: CopyButtonProps) {
-  const clipboard = useOptionalPrecisionClipboard();
+  const clipboard = useOptionalExpoBaseClipboard();
   const copy = useCopyAction(async () => {
     if (!clipboard) throw new Error('clipboard_not_registered');
     const availability = await clipboard.availability();

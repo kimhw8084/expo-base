@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { ScrollView, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text } from '@precision-calm/primitives';
+import { Text } from '@expo-base/primitives';
 
 export interface CodeBlockProps {
   value: string;

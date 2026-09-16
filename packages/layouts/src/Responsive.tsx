@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import { Display, mq } from 'react-native-unistyles';
-import { breakpoints, type BreakpointName } from '@precision-calm/tokens';
+import { breakpoints, type BreakpointName } from '@expo-base/tokens';
 
 export interface ResponsiveSlotProps extends PropsWithChildren {
   from?: BreakpointName;

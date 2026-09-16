@@ -1,48 +1,48 @@
 import { forwardRef } from 'react';
 import { TextInput, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { usePrecisionI18n } from '@precision-calm/i18n';
+import { useExpoBaseI18n } from '@expo-base/i18n';
 import {
-  formatPrecisionCalendarDate,
-  formatPrecisionTimeValue,
-  parsePrecisionDateRange,
-  parsePrecisionDateValue,
-  parsePrecisionTimeValue,
-  type PrecisionDateRangeValue,
-  type PrecisionDateValue,
-  type PrecisionTimeValue,
-} from '@precision-calm/platform';
+  formatExpoBaseCalendarDate,
+  formatExpoBaseTimeValue,
+  parseExpoBaseDateRange,
+  parseExpoBaseDateValue,
+  parseExpoBaseTimeValue,
+  type ExpoBaseDateRangeValue,
+  type ExpoBaseDateValue,
+  type ExpoBaseTimeValue,
+} from '@expo-base/platform';
 import { FormField } from './FormField';
 import { TextField, type TextFieldProps } from './TextField';
 
 type DateTimeBaseProps = Omit<TextFieldProps, 'autoCapitalize' | 'autoCorrect' | 'iconStart'> & { locale?: string };
 
 export interface DateFieldProps extends DateTimeBaseProps {
-  min?: PrecisionDateValue;
-  max?: PrecisionDateValue;
-  onValueChange?: ((value: PrecisionDateValue | null) => void) | undefined;
+  min?: ExpoBaseDateValue;
+  max?: ExpoBaseDateValue;
+  onValueChange?: ((value: ExpoBaseDateValue | null) => void) | undefined;
 }
 
 /** Portable calendar-date field. The transport value is YYYY-MM-DD and never receives timezone coercion. */
 export const DateField = forwardRef<TextInput, DateFieldProps>(function DateField({ locale: localeOverride, min, max, onValueChange, onChangeText, description, ...props }, ref) {
-  const { locale } = usePrecisionI18n();
-  const parsed = parsePrecisionDateValue(props.value);
-  const hint = parsed ? formatPrecisionCalendarDate(parsed, localeOverride ?? locale) : 'Use YYYY-MM-DD';
-  return <TextField ref={ref} {...props} description={description ?? hint} placeholder={props.placeholder ?? 'YYYY-MM-DD'} autoCapitalize="none" autoCorrect={false} iconStart="calendar" onChangeText={(next) => { onChangeText(next); const nextParsed = parsePrecisionDateValue(next); onValueChange?.(nextParsed && (!min || nextParsed >= min) && (!max || nextParsed <= max) ? nextParsed : null); }} />;
+  const { locale } = useExpoBaseI18n();
+  const parsed = parseExpoBaseDateValue(props.value);
+  const hint = parsed ? formatExpoBaseCalendarDate(parsed, localeOverride ?? locale) : 'Use YYYY-MM-DD';
+  return <TextField ref={ref} {...props} description={description ?? hint} placeholder={props.placeholder ?? 'YYYY-MM-DD'} autoCapitalize="none" autoCorrect={false} iconStart="calendar" onChangeText={(next) => { onChangeText(next); const nextParsed = parseExpoBaseDateValue(next); onValueChange?.(nextParsed && (!min || nextParsed >= min) && (!max || nextParsed <= max) ? nextParsed : null); }} />;
 });
 
 export interface TimeFieldProps extends DateTimeBaseProps {
-  min?: PrecisionTimeValue;
-  max?: PrecisionTimeValue;
-  onValueChange?: ((value: PrecisionTimeValue | null) => void) | undefined;
+  min?: ExpoBaseTimeValue;
+  max?: ExpoBaseTimeValue;
+  onValueChange?: ((value: ExpoBaseTimeValue | null) => void) | undefined;
 }
 
 /** Portable wall-clock field. HH:mm is explicit and independent of date or timezone. */
 export const TimeField = forwardRef<TextInput, TimeFieldProps>(function TimeField({ locale: localeOverride, min, max, onValueChange, onChangeText, description, ...props }, ref) {
-  const { locale } = usePrecisionI18n();
-  const parsed = parsePrecisionTimeValue(props.value);
-  const hint = parsed ? formatPrecisionTimeValue(parsed, localeOverride ?? locale) : 'Use 24-hour HH:mm';
-  return <TextField ref={ref} {...props} description={description ?? hint} placeholder={props.placeholder ?? 'HH:mm'} autoCapitalize="none" autoCorrect={false} iconStart="clock" onChangeText={(next) => { onChangeText(next); const nextParsed = parsePrecisionTimeValue(next); onValueChange?.(nextParsed && (!min || nextParsed >= min) && (!max || nextParsed <= max) ? nextParsed : null); }} />;
+  const { locale } = useExpoBaseI18n();
+  const parsed = parseExpoBaseTimeValue(props.value);
+  const hint = parsed ? formatExpoBaseTimeValue(parsed, localeOverride ?? locale) : 'Use 24-hour HH:mm';
+  return <TextField ref={ref} {...props} description={description ?? hint} placeholder={props.placeholder ?? 'HH:mm'} autoCapitalize="none" autoCorrect={false} iconStart="clock" onChangeText={(next) => { onChangeText(next); const nextParsed = parseExpoBaseTimeValue(next); onValueChange?.(nextParsed && (!min || nextParsed >= min) && (!max || nextParsed <= max) ? nextParsed : null); }} />;
 });
 
 export interface DateRangeFieldProps {
@@ -51,11 +51,11 @@ export interface DateRangeFieldProps {
   start: string;
   end: string;
   onChange: (value: { start: string; end: string }) => void;
-  onValueChange?: ((value: PrecisionDateRangeValue | null) => void) | undefined;
+  onValueChange?: ((value: ExpoBaseDateRangeValue | null) => void) | undefined;
   startLabel?: string;
   endLabel?: string;
-  min?: PrecisionDateValue;
-  max?: PrecisionDateValue;
+  min?: ExpoBaseDateValue;
+  max?: ExpoBaseDateValue;
   description?: string;
   error?: string;
   required?: boolean;
@@ -68,7 +68,7 @@ export interface DateRangeFieldProps {
 export function DateRangeField({ id, label, start, end, onChange, onValueChange, startLabel = 'Start date', endLabel = 'End date', min, max, description, error, required = false, disabled = false, locale, testID }: DateRangeFieldProps) {
   const emit = (next: { start: string; end: string }) => {
     onChange(next);
-    const parsed = parsePrecisionDateRange(next.start, next.end);
+    const parsed = parseExpoBaseDateRange(next.start, next.end);
     const withinBounds = parsed && (!min || parsed.start >= min) && (!max || parsed.end <= max);
     onValueChange?.(withinBounds ? parsed : null);
   };

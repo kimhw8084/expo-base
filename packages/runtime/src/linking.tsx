@@ -1,14 +1,14 @@
 import { createContext, useContext, type PropsWithChildren } from 'react';
-import type { PrecisionLinkingRuntime } from '@precision-calm/linking';
+import type { ExpoBaseLinkingRuntime } from '@expo-base/linking';
 
-const PrecisionLinkingContext = createContext<PrecisionLinkingRuntime | null>(null);
+const ExpoBaseLinkingContext = createContext<ExpoBaseLinkingRuntime | null>(null);
 
-export function PrecisionLinkingProvider({ linking, children }: PropsWithChildren<{ linking: PrecisionLinkingRuntime }>) {
-  return <PrecisionLinkingContext.Provider value={linking}>{children}</PrecisionLinkingContext.Provider>;
+export function ExpoBaseLinkingProvider({ linking, children }: PropsWithChildren<{ linking: ExpoBaseLinkingRuntime }>) {
+  return <ExpoBaseLinkingContext.Provider value={linking}>{children}</ExpoBaseLinkingContext.Provider>;
 }
 
-export function usePrecisionLinking(): PrecisionLinkingRuntime {
-  const linking = useContext(PrecisionLinkingContext);
-  if (!linking) throw new Error('usePrecisionLinking requires PrecisionRuntimeProvider with a linking prop.');
+export function useExpoBaseLinking(): ExpoBaseLinkingRuntime {
+  const linking = useContext(ExpoBaseLinkingContext);
+  if (!linking) throw new Error('useExpoBaseLinking requires ExpoBaseRuntimeProvider with a linking prop.');
   return linking;
 }

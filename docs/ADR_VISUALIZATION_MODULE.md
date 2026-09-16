@@ -4,9 +4,9 @@ Status: accepted
 
 ## Decision
 
-Expo Base keeps the ordinary chart contract in `@precision-calm/visualization` and
+Expo Base keeps the ordinary chart contract in `@expo-base/visualization` and
 places specialized, still product-neutral chart families in the optional
-`@precision-calm/visualization-advanced` workspace.
+`@expo-base/visualization-advanced` workspace.
 
 The core owns the stable frame, state anatomy, semantic data fallback, shared
 tokens, and the platform-neutral math needed by common line, area, bar, donut,

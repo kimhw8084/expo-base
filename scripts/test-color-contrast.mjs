@@ -5,7 +5,7 @@ const failures = [];
 
 function palette(name) {
   const start = source.indexOf(`export const ${name} =`);
-  const end = source.indexOf('satisfies PrecisionColors;', start);
+  const end = source.indexOf('satisfies ExpoBaseColors;', start);
   if (start < 0 || end < 0) throw new Error(`Could not parse ${name}`);
   return source.slice(start, end);
 }

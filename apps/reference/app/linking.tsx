@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Button, Card, ScrollScreen, Text, VStack } from '@precision-calm/ui';
-import { usePrecisionAsyncAction, usePrecisionLinking } from '@precision-calm/runtime';
+import { Button, Card, ScrollScreen, Text, VStack } from '@expo-base/ui';
+import { useExpoBaseAsyncAction, useExpoBaseLinking } from '@expo-base/runtime';
 
 export default function LinkingAcceptanceScreen() {
-  const linking = usePrecisionLinking();
-  const openDocs = usePrecisionAsyncAction(() => linking.openExternal('https://docs.expo.dev/linking/overview/'));
+  const linking = useExpoBaseLinking();
+  const openDocs = useExpoBaseAsyncAction(() => linking.openExternal('https://docs.expo.dev/linking/overview/'));
   const [status, setStatus] = useState('Not tested');
   const safe = linking.validateExternal('https://docs.expo.dev/linking/overview/');
   const hostile = linking.validateExternal('javascript:alert(1)');

@@ -5,7 +5,7 @@ Date: 2026-09-06
 
 ## Decision
 
-Use Option C: `@precision-calm/server-state` is the application-facing facade and
+Use Option C: `@expo-base/server-state` is the application-facing facade and
 `@tanstack/react-query` is its internal cache/query engine. Product routes do not import TanStack.
 The facade is transport-neutral: a query is a deterministic key, an async loader that may consume
 an `AbortSignal`, and explicit lifecycle policy. REST, GraphQL, Supabase, Firebase, tRPC, and other
@@ -18,7 +18,7 @@ not promise that arbitrary TanStack plugins or options can be swapped transparen
 
 ## Options considered
 
-- **A — Extend adapters plus `usePrecisionAsyncAction`: rejected.** It preserves the smallest
+- **A — Extend adapters plus `useExpoBaseAsyncAction`: rejected.** It preserves the smallest
   bundle, but leaves request identity, cache lifetime, deduplication, invalidation, background
   refresh, and optimistic bookkeeping to every product.
 - **B — First-party cache/query engine: rejected.** The apparent dependency saving would require
@@ -38,7 +38,7 @@ not promise that arbitrary TanStack plugins or options can be swapped transparen
 - Data is fresh for 30 seconds and retained for five minutes after its last consumer. Products may
   override these policies for unusual data.
 - Queries retry at most twice, and only when a service adapter returns a
-  `PrecisionServerError` explicitly marked retryable. Authorization, validation, not-found,
+  `ExpoBaseServerError` explicitly marked retryable. Authorization, validation, not-found,
   conflict, cancellation, and unknown failures do not retry automatically.
 - Mutations never retry by default. They choose single-flight, queue, replace, or parallel
   concurrency deliberately; optimistic updates are forbidden with parallel execution because
@@ -47,7 +47,7 @@ not promise that arbitrary TanStack plugins or options can be swapped transparen
   a root adapter without changing feature queries.
 - Cache persistence is off. A future opt-in adapter must define encryption/security, identity
   scope, schema migration, staleness, and startup cost before persistence is approved.
-- `PrecisionRuntimeProvider` creates an isolated cache for public/auth-loading/signed-out/session
+- `ExpoBaseRuntimeProvider` creates an isolated cache for public/auth-loading/signed-out/session
   scope. A user or authoritative session revision change mounts an empty client and clears the
   retired client, so prior-user data is never authoritative in a new session.
 - Expo static export creates clients inside the application provider. No process-global query

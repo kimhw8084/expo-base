@@ -1,30 +1,30 @@
 import { Alert } from 'react-native';
 import { useMemo, useState } from 'react';
-import { FormScreen, Page, PageHeader, Section } from '@precision-calm/ui';
-import { Badge, Button, Card, Link, Tag } from '@precision-calm/ui';
-import { Checkbox, CheckboxGroup, CodeField, ComboboxField, CurrencyField, EmailField, FormActions, FormDiscardDialog, FormErrorSummary, FormRow, FormSection, FormSectionGroup, MultiSelectField, NumberField, NumberStepper, PasswordField, PhoneField, RadioGroup, SearchField, SegmentedField, SelectField, SwitchField, TextArea, TextField, UrlField } from '@precision-calm/ui';
-import { ControlledCheckbox, ControlledPasswordField, ControlledTextField, createPrecisionFormKeyboardFlow, createPrecisionFormSubmit, usePrecisionForm, usePrecisionFormLifecycle, type PrecisionFormField } from '@precision-calm/form-rhf';
-import { HStack, Text, VStack } from '@precision-calm/ui';
+import { FormScreen, Page, PageHeader, Section } from '@expo-base/ui';
+import { Badge, Button, Card, Link, Tag } from '@expo-base/ui';
+import { Checkbox, CheckboxGroup, CodeField, ComboboxField, CurrencyField, EmailField, FormActions, FormDiscardDialog, FormErrorSummary, FormRow, FormSection, FormSectionGroup, MultiSelectField, NumberField, NumberStepper, PasswordField, PhoneField, RadioGroup, SearchField, SegmentedField, SelectField, SwitchField, TextArea, TextField, UrlField } from '@expo-base/ui';
+import { ControlledCheckbox, ControlledPasswordField, ControlledTextField, createExpoBaseFormKeyboardFlow, createExpoBaseFormSubmit, useExpoBaseForm, useExpoBaseFormLifecycle, type ExpoBaseFormField } from '@expo-base/form-rhf';
+import { HStack, Text, VStack } from '@expo-base/ui';
 import { ReferenceBackAction } from '../ReferenceBackAction';
 import { useReferenceCopy } from '../ReferenceCopy';
-import { usePrecisionRouter } from '@precision-calm/navigation-router';
+import { useExpoBaseRouter } from '@expo-base/navigation-router';
 
 type DemoForm = { name: string; email: string; password: string; terms: boolean };
 
 export default function FormsReferenceScreen() {
-  const router = usePrecisionRouter();
+  const router = useExpoBaseRouter();
   const copy = useReferenceCopy();
   const demoFormFields = useMemo(() => [
     { name: 'name', label: copy('Full name') },
     { name: 'email', label: copy('Email address') },
     { name: 'password', label: copy('Password') },
     { name: 'terms', label: copy('Terms and consent') },
-  ] as const satisfies readonly PrecisionFormField<DemoForm>[], [copy]);
-  const form = usePrecisionForm<DemoForm>({ defaultValues: { name: '', email: '', password: '', terms: false } });
-  const lifecycle = usePrecisionFormLifecycle(form, demoFormFields);
-  const submit = createPrecisionFormSubmit(form, (values) => Alert.alert('Validated form', JSON.stringify(values, null, 2)));
+  ] as const satisfies readonly ExpoBaseFormField<DemoForm>[], [copy]);
+  const form = useExpoBaseForm<DemoForm>({ defaultValues: { name: '', email: '', password: '', terms: false } });
+  const lifecycle = useExpoBaseFormLifecycle(form, demoFormFields);
+  const submit = createExpoBaseFormSubmit(form, (values) => Alert.alert('Validated form', JSON.stringify(values, null, 2)));
 
-  const keyboard = createPrecisionFormKeyboardFlow(form);
+  const keyboard = createExpoBaseFormKeyboardFlow(form);
   return <FormScreen><Page width="form" header={<PageHeader eyebrow={copy('GATE 05 / FORMS')} title={copy('Form interaction acceptance surface')} description={copy('Keyboard-aware scrolling, visible labels, deterministic focus, validation summary, server-error mapping, and unsaved-change protection remain outside the visual component package.')} actions={<ReferenceBackAction />} />}>
     <Section><Card><VStack gap="xl">
       <FormErrorSummary errors={lifecycle.errors} testID="adapter-form-error-summary" />

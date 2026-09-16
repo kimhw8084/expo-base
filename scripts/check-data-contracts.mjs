@@ -6,9 +6,9 @@ const root = process.cwd();
 const appsRoot = path.join(root, 'apps');
 const problems = [];
 const forbidden = [
-  [/from\s+['"](?:@tanstack\/react-table|ag-grid-react|react-data-grid|@mui\/x-data-grid)['"]/, 'direct table/grid library; use @precision-calm/data-display or add a reviewed adapter'],
-  [/\bnew\s+Intl\.NumberFormat\s*\(/, 'direct numeric formatter; use @precision-calm/platform formatting utilities'],
-  [/\bIntl\.NumberFormat\s*\(/, 'direct numeric formatter; use @precision-calm/platform formatting utilities'],
+  [/from\s+['"](?:@tanstack\/react-table|ag-grid-react|react-data-grid|@mui\/x-data-grid)['"]/, 'direct table/grid library; use @expo-base/data-display or add a reviewed adapter'],
+  [/\bnew\s+Intl\.NumberFormat\s*\(/, 'direct numeric formatter; use @expo-base/platform formatting utilities'],
+  [/\bIntl\.NumberFormat\s*\(/, 'direct numeric formatter; use @expo-base/platform formatting utilities'],
 ];
 
 function walk(dir) {

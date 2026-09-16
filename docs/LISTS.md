@@ -1,6 +1,6 @@
 # Gate 08 — Scroll and list infrastructure
 
-Precision Calm separates **small in-page groups** from **scroll-owning datasets**.
+Expo Base separates **small in-page groups** from **scroll-owning datasets**.
 
 - `StaticList` is for small groups inside an existing screen scroll owner and warns above 40 items in development.
 - `ListScreen` owns the vertical `FlatList`, safe-area/content padding, refresh/end-reach behavior, empty/header/footer regions, and semantic inter-item gap.

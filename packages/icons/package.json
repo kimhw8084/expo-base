@@ -1,13 +1,13 @@
 {
-  "name": "@precision-calm/icons",
+  "name": "@expo-base/icons",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@precision-calm/i18n": "*",
-    "@precision-calm/tokens": "*"
+    "@expo-base/i18n": "*",
+    "@expo-base/tokens": "*"
   },
   "peerDependencies": {
     "lucide-react-native": "1.37.0",

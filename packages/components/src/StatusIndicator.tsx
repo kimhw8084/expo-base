@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { HStack, Text, VStack } from '@precision-calm/primitives';
+import { HStack, Text, VStack } from '@expo-base/primitives';
 
 export type StatusIndicatorTone = 'neutral' | 'info' | 'positive' | 'warning' | 'negative';
 

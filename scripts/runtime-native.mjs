@@ -15,4 +15,4 @@ function run(args, label) {
 }
 
 run(['run', 'runtime:verify'], 'RUNTIME VERIFY');
-run(['exec', '-w', '@precision-calm/reference', '--', 'expo', `run:${platform}`, ...forwarded], `EXPO BASE ${platform.toUpperCase()} DEVELOPMENT BUILD`);
+run(['exec', '-w', '@expo-base/reference', '--', 'expo', `run:${platform}`, ...forwarded], `EXPO BASE ${platform.toUpperCase()} DEVELOPMENT BUILD`);

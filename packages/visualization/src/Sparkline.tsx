@@ -1,4 +1,4 @@
-import type { ChartDatum } from '@precision-calm/platform';
+import type { ChartDatum } from '@expo-base/platform';
 import { LineChart } from './LineChart';
 import type { VisualizationSeries } from './types';
 

@@ -1,0 +1,7 @@
+{
+  "name":"@expo-base/doctor",
+  "version":"1.0.0",
+  "private":true,
+  "type":"module",
+  "bin":{"expo-base-doctor":"bin/expo-base-doctor.mjs"}
+}

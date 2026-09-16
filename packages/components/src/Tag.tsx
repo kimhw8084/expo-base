@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { Text, HStack } from '@precision-calm/primitives';
-import { Icon, type IconName } from '@precision-calm/icons';
+import { Text, HStack } from '@expo-base/primitives';
+import { Icon, type IconName } from '@expo-base/icons';
 
 export type TagTone = 'neutral' | 'positive' | 'warning' | 'negative' | 'info';
 export interface TagProps { label: string; tone?: TagTone; icon?: IconName; }

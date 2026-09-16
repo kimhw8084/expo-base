@@ -1,9 +1,9 @@
 import { Alert } from 'react-native';
 import { useState } from 'react';
-import { Breadcrumbs, Tabs, type NavigationItem } from '@precision-calm/ui';
-import { Page, PageHeader, ScrollScreen, Section } from '@precision-calm/ui';
-import { Badge, Button, Card } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
+import { Breadcrumbs, Tabs, type NavigationItem } from '@expo-base/ui';
+import { Page, PageHeader, ScrollScreen, Section } from '@expo-base/ui';
+import { Badge, Button, Card } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
 import { ReferenceBackAction } from '../ReferenceBackAction';
 import { useReferenceCopy } from '../ReferenceCopy';
 
@@ -24,7 +24,7 @@ export default function NavigationReferenceScreen() {
     <ScrollScreen>
       <Page
         width="standard"
-        header={<PageHeader eyebrow={copy('GATE 06 / NAVIGATION')} title={copy('Navigation acceptance surface')} description={copy('The visual navigation system is route-library agnostic. Expo Router integration is isolated behind @precision-calm/navigation-router.')} actions={<ReferenceBackAction />} />}
+        header={<PageHeader eyebrow={copy('GATE 06 / NAVIGATION')} title={copy('Navigation acceptance surface')} description={copy('The visual navigation system is route-library agnostic. Expo Router integration is isolated behind @expo-base/navigation-router.')} actions={<ReferenceBackAction />} />}
       >
         <Section>
           <Card>

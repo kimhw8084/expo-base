@@ -1,13 +1,13 @@
 {
-  "name": "@precision-calm/secure-storage",
+  "name": "@expo-base/secure-storage",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@precision-calm/adapters": "*",
-    "@precision-calm/capabilities": "*",
+    "@expo-base/adapters": "*",
+    "@expo-base/capabilities": "*",
     "expo-secure-store": "~57.0.2"
   },
   "peerDependencies": {

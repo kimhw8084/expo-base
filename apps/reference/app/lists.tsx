@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { ListScreen, StaticList } from '@precision-calm/ui';
-import { PageHeader, SectionHeader } from '@precision-calm/ui';
-import { Badge, Button, Card } from '@precision-calm/ui';
-import { HStack, Text, VStack } from '@precision-calm/ui';
-import { ListRow } from '@precision-calm/ui';
-import { SkeletonList, StateView } from '@precision-calm/ui';
+import { ListScreen, StaticList } from '@expo-base/ui';
+import { PageHeader, SectionHeader } from '@expo-base/ui';
+import { Badge, Button, Card } from '@expo-base/ui';
+import { HStack, Text, VStack } from '@expo-base/ui';
+import { ListRow } from '@expo-base/ui';
+import { SkeletonList, StateView } from '@expo-base/ui';
 import { ReferenceBackAction } from '../ReferenceBackAction';
 
 interface ActivityRow { id: string; title: string; subtitle: string; value: string; positive?: boolean; }

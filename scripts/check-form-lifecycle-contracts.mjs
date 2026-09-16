@@ -10,13 +10,13 @@ const failures = [];
 for (const marker of ['FormErrorSummary', 'accessibilityRole="alert"', 'FormDiscardDialog', 'dismissOnBackdrop={false}', 'useFormLeaveGuard', 'pendingLeave']) {
   if (!forms.includes(marker)) failures.push(`Form lifecycle owner must include ${marker}.`);
 }
-for (const marker of ['applyPrecisionFormServerErrors', "'root.server'", 'usePrecisionFormErrorSummary', 'usePrecisionFormLifecycle', 'form.formState.isDirty']) {
+for (const marker of ['applyExpoBaseFormServerErrors', "'root.server'", 'useExpoBaseFormErrorSummary', 'useExpoBaseFormLifecycle', 'form.formState.isDirty']) {
   if (!rhf.includes(marker)) failures.push(`RHF lifecycle adapter must include ${marker}.`);
 }
-for (const marker of ['usePrecisionFieldArray', 'usePrecisionConditionalField', 'createPrecisionAsyncValidator', 'usePrecisionAutosave', 'AbortController', 'requestRevision === revision.current']) {
+for (const marker of ['useExpoBaseFieldArray', 'useExpoBaseConditionalField', 'createExpoBaseAsyncValidator', 'useExpoBaseAutosave', 'AbortController', 'requestRevision === revision.current']) {
   if (!rhf.includes(marker)) failures.push(`RHF lifecycle depth must include ${marker}.`);
 }
-for (const marker of ['usePrecisionFormLifecycle(form, demoFormFields)', 'FormErrorSummary errors={lifecycle.errors}', 'FormDiscardDialog guard={lifecycle.leaveGuard}', 'Apply server validation', 'Leave form']) {
+for (const marker of ['useExpoBaseFormLifecycle(form, demoFormFields)', 'FormErrorSummary errors={lifecycle.errors}', 'FormDiscardDialog guard={lifecycle.leaveGuard}', 'Apply server validation', 'Leave form']) {
   if (!reference.includes(marker)) failures.push(`Reference form must prove ${marker}.`);
 }
 for (const name of ['form lifecycle summarizes errors and protects dirty navigation', 'form lifecycle maps server errors into the shared summary']) {

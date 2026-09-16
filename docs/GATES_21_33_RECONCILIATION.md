@@ -10,10 +10,10 @@ Gate 33 is represented in the current line by the platform-neutral session-secur
 
 ## Current Gate 33 boundary
 
-- `@precision-calm/session-security` owns the platform-neutral session-lock contract.
-- `PrecisionRuntimeProvider` owns adapter injection.
-- `usePrecisionSessionSecurity()` is the feature-facing session-lock runtime.
-- `usePrecisionAuthAccess()` remains fail-closed while session security is loading, errored, or locked.
+- `@expo-base/session-security` owns the platform-neutral session-lock contract.
+- `ExpoBaseRuntimeProvider` owns adapter injection.
+- `useExpoBaseSessionSecurity()` is the feature-facing session-lock runtime.
+- `useExpoBaseAuthAccess()` remains fail-closed while session security is loading, errored, or locked.
 - The router owns the `locked: ['unlock']` route set.
 - The reference app proves lock, protected-route removal, unlock, and safe return-intent restoration.
 - The generator emits the same boundary for fresh apps, and Doctor enforces it.

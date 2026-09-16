@@ -1,14 +1,14 @@
-import type { SessionLockReason, SessionSecurityAdapter, SessionSecurityListener, SessionSecurityState, SessionUnlockResult } from '@precision-calm/session-security';
-import type { PrecisionLocalAuthentication } from './contracts';
+import type { SessionLockReason, SessionSecurityAdapter, SessionSecurityListener, SessionSecurityState, SessionUnlockResult } from '@expo-base/session-security';
+import type { ExpoBaseLocalAuthentication } from './contracts';
 
 /** Root-composed bridge: local authentication unlocks a local session only. */
 export class LocalAuthenticationSessionSecurityAdapter implements SessionSecurityAdapter {
-  readonly #authentication: PrecisionLocalAuthentication;
+  readonly #authentication: ExpoBaseLocalAuthentication;
   readonly #request: { prompt: string; requireBiometrics?: boolean | undefined };
   #state: SessionSecurityState;
   #listeners = new Set<SessionSecurityListener>();
 
-  constructor(authentication: PrecisionLocalAuthentication, options: { initiallyLocked?: boolean | undefined; prompt?: string | undefined; requireBiometrics?: boolean | undefined } = {}) {
+  constructor(authentication: ExpoBaseLocalAuthentication, options: { initiallyLocked?: boolean | undefined; prompt?: string | undefined; requireBiometrics?: boolean | undefined } = {}) {
     this.#authentication = authentication;
     this.#request = { prompt: options.prompt ?? 'Unlock secure session', ...(options.requireBiometrics === undefined ? {} : { requireBiometrics: options.requireBiometrics }) };
     this.#state = { locked: options.initiallyLocked ?? false, reason: options.initiallyLocked ? 'security-policy' : null };

@@ -1,40 +1,40 @@
-import type { PrecisionCapabilityAvailability } from '@precision-calm/capabilities';
-import type { PrecisionAppLifecycle, PrecisionAppLifecycleState, PrecisionConnectivity, PrecisionConnectivityState } from './contracts';
+import type { ExpoBaseCapabilityAvailability } from '@expo-base/capabilities';
+import type { ExpoBaseAppLifecycle, ExpoBaseAppLifecycleState, ExpoBaseConnectivity, ExpoBaseConnectivityState } from './contracts';
 
-export class MemoryConnectivity implements PrecisionConnectivity {
-  #state: PrecisionConnectivityState;
-  #listeners = new Set<(state: PrecisionConnectivityState) => void>();
+export class MemoryConnectivity implements ExpoBaseConnectivity {
+  #state: ExpoBaseConnectivityState;
+  #listeners = new Set<(state: ExpoBaseConnectivityState) => void>();
 
-  constructor(initial: Partial<PrecisionConnectivityState> = {}) {
+  constructor(initial: Partial<ExpoBaseConnectivityState> = {}) {
     this.#state = { status: initial.status ?? 'unknown', internetReachable: initial.internetReachable ?? null };
   }
 
-  async availability(): Promise<PrecisionCapabilityAvailability> { return { status: 'available' }; }
-  async getState(): Promise<PrecisionConnectivityState> { return { ...this.#state }; }
-  subscribe(listener: (state: PrecisionConnectivityState) => void): () => void {
+  async availability(): Promise<ExpoBaseCapabilityAvailability> { return { status: 'available' }; }
+  async getState(): Promise<ExpoBaseConnectivityState> { return { ...this.#state }; }
+  subscribe(listener: (state: ExpoBaseConnectivityState) => void): () => void {
     this.#listeners.add(listener);
     listener({ ...this.#state });
     return () => this.#listeners.delete(listener);
   }
-  setState(next: Partial<PrecisionConnectivityState>): void {
+  setState(next: Partial<ExpoBaseConnectivityState>): void {
     this.#state = { ...this.#state, ...next };
     for (const listener of this.#listeners) listener({ ...this.#state });
   }
 }
 
-export class MemoryAppLifecycle implements PrecisionAppLifecycle {
-  #state: PrecisionAppLifecycleState;
-  #listeners = new Set<(state: PrecisionAppLifecycleState) => void>();
+export class MemoryAppLifecycle implements ExpoBaseAppLifecycle {
+  #state: ExpoBaseAppLifecycleState;
+  #listeners = new Set<(state: ExpoBaseAppLifecycleState) => void>();
 
-  constructor(initial: PrecisionAppLifecycleState = 'active') { this.#state = initial; }
-  async availability(): Promise<PrecisionCapabilityAvailability> { return { status: 'available' }; }
-  getState(): PrecisionAppLifecycleState { return this.#state; }
-  subscribe(listener: (state: PrecisionAppLifecycleState) => void): () => void {
+  constructor(initial: ExpoBaseAppLifecycleState = 'active') { this.#state = initial; }
+  async availability(): Promise<ExpoBaseCapabilityAvailability> { return { status: 'available' }; }
+  getState(): ExpoBaseAppLifecycleState { return this.#state; }
+  subscribe(listener: (state: ExpoBaseAppLifecycleState) => void): () => void {
     this.#listeners.add(listener);
     listener(this.#state);
     return () => this.#listeners.delete(listener);
   }
-  setState(next: PrecisionAppLifecycleState): void {
+  setState(next: ExpoBaseAppLifecycleState): void {
     this.#state = next;
     for (const listener of this.#listeners) listener(next);
   }

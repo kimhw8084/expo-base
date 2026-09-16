@@ -1,12 +1,12 @@
 {
-  "name": "@precision-calm/device",
+  "name": "@expo-base/device",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@precision-calm/capabilities": "*",
+    "@expo-base/capabilities": "*",
     "expo-application": "~57.0.2",
     "expo-device": "~57.0.1"
   },

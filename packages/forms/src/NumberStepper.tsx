@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { IconButton } from '@precision-calm/components';
-import { Text } from '@precision-calm/primitives';
+import { IconButton } from '@expo-base/components';
+import { Text } from '@expo-base/primitives';
 import { FormField } from './FormField';
 
 export interface NumberStepperProps {

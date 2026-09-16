@@ -4,10 +4,10 @@ Gate 34 centralizes URL behavior so product screens cannot invoke arbitrary dest
 
 ## Boundary
 
-- Internal app navigation: `@precision-calm/navigation-router`
-- URL policy and normalization: `@precision-calm/linking`
-- Expo `openURL` / `canOpenURL`: `@precision-calm/linking-expo`
-- Feature consumption: `usePrecisionLinking()` from `@precision-calm/runtime`
+- Internal app navigation: `@expo-base/navigation-router`
+- URL policy and normalization: `@expo-base/linking`
+- Expo `openURL` / `canOpenURL`: `@expo-base/linking-expo`
+- Feature consumption: `useExpoBaseLinking()` from `@expo-base/runtime`
 - Native incoming rewrite: `app/+native-intent.tsx`
 
 ## Default safety policy

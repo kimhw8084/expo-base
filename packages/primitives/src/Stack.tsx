@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import type { SpacingToken } from '@precision-calm/tokens';
+import type { SpacingToken } from '@expo-base/tokens';
 import { densitySpacingToken, useDensity } from './Density';
 
 export interface StackProps extends PropsWithChildren {

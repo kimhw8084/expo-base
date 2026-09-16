@@ -2,8 +2,8 @@
 
 Navigation is split into two layers for portability:
 
-- `@precision-calm/navigation` owns adaptive navigation UI, tabs, breadcrumbs, destination anatomy, focus/hover/pressed states, and compact/expanded composition.
-- `@precision-calm/navigation-router` is the only feature-facing adapter that knows Expo Router.
+- `@expo-base/navigation` owns adaptive navigation UI, tabs, breadcrumbs, destination anatomy, focus/hover/pressed states, and compact/expanded composition.
+- `@expo-base/navigation-router` is the only feature-facing adapter that knows Expo Router.
 
 ## Rules
 

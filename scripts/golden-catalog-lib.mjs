@@ -56,7 +56,7 @@ export function validateGoldenCatalog(root, catalog = readGoldenCatalog(root)) {
   if (!Array.isArray(catalog.items) || catalog.items.length === 0) errors.push('golden.catalog.json must declare catalog items.');
   if (!Array.isArray(catalog.discoveryChallenges)) errors.push('golden.catalog.json must declare discoveryChallenges.');
 
-  const snapshotPath = path.join(root, catalog.apiSnapshot ?? 'precision.api.json');
+  const snapshotPath = path.join(root, catalog.apiSnapshot ?? 'expo-base.api.json');
   let api = null;
   try { api = JSON.parse(fs.readFileSync(snapshotPath, 'utf8')); } catch { errors.push(`Public API snapshot not readable: ${path.relative(root, snapshotPath)}.`); }
   const packageNames = workspacePackageNames(root);
@@ -70,10 +70,10 @@ export function validateGoldenCatalog(root, catalog = readGoldenCatalog(root)) {
     if (typeof item.recipeReference === 'string' && !fs.existsSync(path.join(root, item.recipeReference))) errors.push(`${item.id}: recipeReference does not exist: ${item.recipeReference}.`);
     if (item.apiPackage) {
       const symbols = api?.packages?.[item.apiPackage];
-      if (!Array.isArray(symbols)) errors.push(`${item.id}: apiPackage ${item.apiPackage} is absent from precision.api.json.`);
+      if (!Array.isArray(symbols)) errors.push(`${item.id}: apiPackage ${item.apiPackage} is absent from expo-base.api.json.`);
       else for (const symbol of item.apiSymbols ?? []) if (!symbols.includes(symbol)) errors.push(`${item.id}: ${symbol} is absent from public API package ${item.apiPackage}.`);
-      if (item.package !== '@precision-calm/ui') errors.push(`${item.id}: items with apiPackage must import from @precision-calm/ui.`);
-    } else if (typeof item.package === 'string' && item.package.startsWith('@precision-calm/') && !packageNames.has(item.package)) {
+      if (item.package !== '@expo-base/ui') errors.push(`${item.id}: items with apiPackage must import from @expo-base/ui.`);
+    } else if (typeof item.package === 'string' && item.package.startsWith('@expo-base/') && !packageNames.has(item.package)) {
       errors.push(`${item.id}: package ${item.package} does not exist in workspace manifests.`);
     }
   }

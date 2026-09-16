@@ -1,7 +1,7 @@
 import fs from 'node:fs'; import path from 'node:path'; import process from 'node:process';
 const root=process.cwd();const appsRoot=path.join(root,'apps');const problems=[];
 const forbidden=[
-  [/\bActivityIndicator\b/, 'raw ActivityIndicator; use @precision-calm/feedback LoadingState'],
+  [/\bActivityIndicator\b/, 'raw ActivityIndicator; use @expo-base/feedback LoadingState'],
   [/from\s+['"]react-native-loading-spinner-overlay['"]/, 'direct loading overlay; use system feedback/overlay components'],
   [/from\s+['"]react-native-toast-message['"]/, 'direct toast library; use the shared OverlayRootProvider toast path'],
 ];

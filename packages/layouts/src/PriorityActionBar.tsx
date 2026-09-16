@@ -1,8 +1,8 @@
 import { Children, cloneElement, isValidElement, useEffect, useMemo, useState, type Dispatch, type ReactElement, type ReactNode, type SetStateAction } from 'react';
 import { View, type LayoutChangeEvent } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { actionMetrics, spacing, type OverflowTriggerSize } from '@precision-calm/tokens';
-import { solveActionOverflow, type ActionPriority } from '@precision-calm/platform';
+import { actionMetrics, spacing, type OverflowTriggerSize } from '@expo-base/tokens';
+import { solveActionOverflow, type ActionPriority } from '@expo-base/platform';
 
 export interface PriorityActionProps {
   actionKey: string;

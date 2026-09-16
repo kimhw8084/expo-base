@@ -12,8 +12,8 @@ fs.rmSync(out, { recursive: true, force: true });
 const packages = ['capabilities', 'secure-storage', 'preferences', 'runtime-capabilities', 'sharing', 'media', 'local-auth', 'notifications', 'updates', 'device', 'haptics', 'observability', 'server-state'];
 for (const name of packages) compile(name);
 fs.writeFileSync(path.join(out, 'package.json'), '{"type":"commonjs"}\n');
-link('@precision-calm/capabilities', 'capabilities');
-link('@precision-calm/server-state', 'server-state');
+link('@expo-base/capabilities', 'capabilities');
+link('@expo-base/server-state', 'server-state');
 
 try {
   const require = createRequire(import.meta.url);
@@ -47,7 +47,7 @@ try {
   const connectivity = new signals.MemoryConnectivity({ status: 'offline' });
   const lifecycle = new signals.MemoryAppLifecycle('background');
   let invalidations = 0;
-  const cleanup = bridge.connectPrecisionServerStateRuntime({ async invalidate() { invalidations += 1; } }, { connectivity, lifecycle, policy: { refetchOnReconnect: true, refetchOnForeground: true } });
+  const cleanup = bridge.connectExpoBaseServerStateRuntime({ async invalidate() { invalidations += 1; } }, { connectivity, lifecycle, policy: { refetchOnReconnect: true, refetchOnForeground: true } });
   connectivity.setState({ status: 'online' }); lifecycle.setState('active');
   await Promise.resolve(); assert.equal(invalidations, 2);
   cleanup(); connectivity.setState({ status: 'offline' }); connectivity.setState({ status: 'online' });

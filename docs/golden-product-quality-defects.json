@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "historicalProvenance": "Pre-CHG-24 audit evidence; legacy identity names are intentionally preserved and are not current guidance.",
   "auditDate": "2026-09-07",
   "repository": "/Users/haewonkim/home/development/expo-base",
   "status": "P2_FIX_PASS_2_COMPLETE",

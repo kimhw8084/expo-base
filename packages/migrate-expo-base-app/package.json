@@ -1,0 +1,9 @@
+{
+  "name": "@expo-base/migrate-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "expo-base-migrate-audit": "bin/expo-base-migrate-audit.mjs"
+  }
+}

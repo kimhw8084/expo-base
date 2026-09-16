@@ -6,8 +6,8 @@ const root = process.cwd();
 const appsRoot = path.join(root, 'apps');
 const problems = [];
 const forbidden = [
-  [/from\s+['"]@react-navigation\//, 'direct React Navigation import; Expo SDK 56+ app code should route through Expo Router/Precision Calm adapters'],
-  [/from\s+['"]expo-router['"]/, 'feature-level Expo Router import; use @precision-calm/navigation-router'],
+  [/from\s+['"]@react-navigation\//, 'direct React Navigation import; Expo SDK 56+ app code should route through Expo Router/Expo Base adapters'],
+  [/from\s+['"]expo-router['"]/, 'feature-level Expo Router import; use @expo-base/navigation-router'],
 ];
 
 function walk(dir) {
