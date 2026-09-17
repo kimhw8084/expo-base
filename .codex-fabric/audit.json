@@ -1,0 +1,405 @@
+{
+  "accepted_at": "2026-09-17T23:04:53Z",
+  "changed_files": [
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/FORMS.md",
+      "status": "M"
+    },
+    {
+      "additions": 37,
+      "deletions": 17,
+      "path": "packages/components/src/Button.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 5,
+      "path": "packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 19,
+      "deletions": 12,
+      "path": "packages/layouts/src/FormScreen.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 18,
+      "deletions": 0,
+      "path": "scripts/test-generator.mjs",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"<form|createElement\\\\(['\\\\\\\"]form|role=.?form|onSubmit|htmlFor|aria-owns|formNoValidate|submitBehavior\\\" packages apps scripts docs --glob '*.ts' --glob '*.tsx' --glob '*.mjs' --glob '*.md' --glob '\"'!**/node_modules/**'\"' | head -n 300 && rtk sed -n '1,220p' packages/forms/package.json && rtk sed -n '1,180p' packages/ui/src/index.ts && rtk rg -n \\\"export \\\\* from '@expo-base/forms'|from './.*Form'|FormScreen\\\" packages/ui packages --glob '*.ts' --glob '*.tsx' | head -n 160 && rtk sed -n '1,220p' docs/FORMS.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat tsconfig.base.json && rtk cat packages/forms/tsconfig.json && rtk cat packages/ui/package.json && rtk cat packages/components/package.json && rtk cat packages/primitives/package.json && rtk cat packages/layouts/package.json && rtk git log --oneline --all -- packages/create-expo-base-app/bin/create-expo-base-app.mjs packages/forms/src | head -n 20'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-base-repro.M63u94 && node --input-type=module - <<'\"'EOF'\nimport { chromium } from \\\"playwright\\\";\nconst browser = await chromium.launch({ headless: true, executablePath: \\\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\\\" });\nconst page = await browser.newPage();\nawait page.goto(\\\"http://127.0.0.1:38110/sign-in\\\", { waitUntil: \\\"networkidle\\\" });\nconsole.log(JSON.stringify(await page.locator(\\\"body\\\").evaluate(body => ({\n  password: (() => { const node = body.querySelector(\\\"input[type=password]\\\"); return node ? { tag: node.tagName, outer: node.outerHTML.slice(0, 500) } : null; })(),\n  buttons: [...body.querySelectorAll(\\\"[role=button],button\\\")].map(node => ({ tag: node.tagName, role: node.getAttribute(\\\"role\\\"), text: node.textContent?.trim(), outer: node.outerHTML.slice(0, 500) })),\n  forms: [...body.querySelectorAll(\\\"form\\\")].length,\n})), null, 2));\nawait browser.close();\nEOF'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n '\\\"forms\\\"|FormErrorSummary|TextField|FormScreen|Button' expo-base.api.json | head -n 80 && rtk sed -n '1,160p' scripts/check-public-api.mjs && rtk sed -n '1,220p' scripts/api-snapshot.mjs && rtk rg -n 'FormScreen|TextField|FormErrorSummary|Button' golden.catalog.json docs/GOLDEN_CATALOG.md golden.owner-certification.json | head -n 120\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk find . -type f \\\\( -iname '*.ico' -o -iname '*.png' -o -iname '*.svg' \\\\) -not -path './node_modules/*' | sort | head -n 100 && rtk rg -n \\\"favicon|web: \\\\{ output|public/\\\" . --glob '\"'!node_modules/**'\"' --glob '\"'!**/.expo/**'\"' | head -n 200 && rtk sed -n '470,560p' packages/create-expo-base-app/bin/create-expo-base-app.mjs && rtk sed -n '1,120p' packages/create-expo-base-app/bin/scaffold-expo-base-screen.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,180p' .gitignore && rtk sed -n '1,120p' packages/navigation-router/src/index.tsx && rtk sed -n '1,120p' packages/layouts/src/index.ts && rtk sed -n '100,180p' expo-base.api.json && rtk sed -n '1,100p' scripts/test-generator.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,90p' packages/components/src/Button.tsx && rtk sed -n '1,110p' packages/layouts/src/FormScreen.tsx && rtk sed -n '1,75p' packages/create-expo-base-app/bin/create-expo-base-app.mjs && rtk sed -n '150,235p' packages/create-expo-base-app/bin/create-expo-base-app.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"FormScreen.*general|appConfig|const install|docs/GOLDEN_CATALOG\\\" scripts/test-generator.mjs docs/FORMS.md packages/create-expo-base-app/bin/create-expo-base-app.mjs && rtk sed -n '150,220p' scripts/test-generator.mjs && rtk sed -n '425,465p' packages/create-expo-base-app/bin/create-expo-base-app.mjs && rtk sed -n '10,35p' docs/FORMS.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '18,38p' scripts/test-generator.mjs && rtk sed -n '208,225p' scripts/test-generator.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && npx tsc -p packages/layouts/tsconfig.json --noEmit && npx tsc -p packages/components/tsconfig.json --noEmit && node --check packages/create-expo-base-app/bin/create-expo-base-app.mjs && git diff --check'\"'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && npm install --no-audit --no-fund'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && npx tsc -p packages/layouts/tsconfig.json --noEmit && npx tsc -p packages/components/tsconfig.json --noEmit && node --check packages/create-expo-base-app/bin/create-expo-base-app.mjs && npm run test:generator'\"'\"",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && npm run test:generator'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && fresh=$(mktemp -d /tmp/chg110-candidate-runtime-signals.XXXXXX) && node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name \"CHG110 Candidate Proof\" --slug chg110-candidate-proof --accent violet --capabilities runtime-signals --directory \"$fresh\" && echo FRESH=$fresh'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-candidate-runtime-signals.mV8lvY && npm install --no-audit --no-fund && npm run verify'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-candidate-runtime-signals.mV8lvY && npm run typecheck > /tmp/chg110-candidate-typecheck.out 2> /tmp/chg110-candidate-typecheck.err; type_status=$?; echo TYPECHECK_AFTER_WEB_STATUS=$type_status; sed -n \"1,120p\" /tmp/chg110-candidate-typecheck.err; cd /tmp/chg110-base-repro.M63u94 && node --input-type=module - <<'\"'EOF'\nimport { chromium } from \\\"playwright\\\";\nconst base = \\\"http://127.0.0.1:38111\\\";\nconst browser = await chromium.launch({ headless: true, executablePath: \\\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\\\" });\nconst page = await browser.newPage();\nconst diagnostics = [];\npage.on(\\\"console\\\", message => diagnostics.push({ type: message.type(), text: message.text() }));\npage.on(\\\"pageerror\\\", error => diagnostics.push({ type: \\\"pageerror\\\", text: error.message }));\npage.on(\\\"requestfailed\\\", request => diagnostics.push({ type: \\\"requestfailed\\\", text: request.url() + \\\":\\\" + (request.failure()?.errorText ?? \\\"unknown\\\") }));\nconst response = await page.goto(base + \\\"/sign-in\\\", { waitUntil: \\\"networkidle\\\" });\nconst semantics = await page.locator(\\\"input[type=password]\\\").evaluate(input => ({\n  containedByForm: Boolean(input.closest(\\\"form\\\")),\n  formButtonTypes: [...(input.closest(\\\"form\\\")?.querySelectorAll(\\\"button\\\") ?? [])].map(button => ({ type: button.getAttribute(\\\"type\\\"), text: button.textContent?.trim() })),\n  formCount: document.querySelectorAll(\\\"form\\\").length,\n}));\nconst favicon = await page.request.get(base + \\\"/favicon.svg\\\");\nconst body = await page.locator(\\\"body\\\").innerText();\nconsole.log(JSON.stringify({\n  status: response?.status(),\n  url: page.url(),\n  semantics,\n  faviconStatus: favicon.status(),\n  diagnostics,\n  hasPasswordOutsideFormDiagnostic: diagnostics.some(item => item.text.includes(\\\"Password field is not contained in a form\\\")),\n  hasFavicon404Diagnostic: diagnostics.some(item => item.text.includes(\\\"404\\\") && item.text.toLowerCase().includes(\\\"favicon\\\")),\n  body,\n}, null, 2));\nawait browser.close();\nEOF\ncd /tmp/chg110-candidate-runtime-signals.mV8lvY && printf \\\"%s\\\\n\\\" \\\"-- package resolution --\\\" && node --input-type=module - <<'EOF'\nimport fs from \\\"node:fs\\\";\nimport path from \\\"node:path\\\";\nimport { createRequire } from \\\"node:module\\\";\nconst root = process.cwd();\nconst pkg = JSON.parse(fs.readFileSync(path.join(root, \\\"package.json\\\"), \\\"utf8\\\"));\nconst names = [...new Set(Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }).filter(name => name.startsWith(\\\"@expo-base/\\\")))];\nconst require = createRequire(import.meta.url);\nfor (const name of names) {\n  const resolved = require.resolve(name + \\\"/package.json\\\", { paths: [root] });\n  console.log(name + \\\"=\\\" + resolved);\n  if (\"'!path.resolve(resolved).startsWith(fs.realpathSync(root) + path.sep)) process.exitCode = 2;\n}\nEOF\nprintf \"%s'\"\\\\n\\\" \\\"-- parent-root escapes --\\\"; if rg -n \\\"\\\\.\\\\./\\\\.\\\\.\\\" app packages scripts *.ts *.json README.md AGENTS.md 2>/dev/null; then exit 3; else echo none; fi\nprintf \\\"%s\\\\n\\\" \\\"-- git hygiene --\\\"; git init -q; for path in node_modules .expo dist build coverage .cache npm-debug.log .DS_Store .expo-base/source.json app/sign-in.tsx package-lock.json docs/GOLDEN_CATALOG.md; do git check-ignore -q \\\"\"'$path\" && result=IGNORED || result=TRACKABLE; echo \"$path $result\"; done; echo \"-- status sample --\"; git status --short --untracked-files=all | rg \"node_modules|''^'\"\\\\?\\\\? \\\\.expo|\"'^'\"\\\\?\\\\? \\\\.expo-base|\"'^'\"\\\\?\\\\? app/|\"'^'\"\\\\?\\\\? package-lock|\"'^'\"\\\\?\\\\? docs/\\\" | head -n 50 || true'\"",
+      "exit_code": 3,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"type.*button|button.*type|Pressable\\\" node_modules/react-native-web/dist/cjs/exports/Pressable* node_modules/react-native-web/dist/cjs/exports 2>/dev/null | head -n 120 && rtk sed -n '1,200p' node_modules/react-native-web/dist/cjs/exports/Pressable/index.js 2>/dev/null || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"type: 'button'|type: \\\\\\\"button\\\\\\\"|role.*button|createElement\\\\(.*button|button\\\" node_modules/react-native-web/dist/cjs/exports/View/index.js node_modules/react-native-web/dist/cjs/exports/View 2>/dev/null | head -n 100 && rtk sed -n '1,200p' node_modules/react-native-web/dist/cjs/exports/View/index.js | head -n 180\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"role|button|type\\\" node_modules/react-native-web/dist/cjs/modules/forwardedProps.js node_modules/react-native-web/dist/cjs/exports/createElement/index.js node_modules/react-native-web/dist/cjs/exports/createElement* | head -n 160 && rtk sed -n '1,180p' node_modules/react-native-web/dist/cjs/exports/createElement/index.js\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"propsToAccessibilityComponent|type.*button|type\\\" node_modules/react-native-web/dist/cjs/modules/AccessibilityUtil* node_modules/react-native-web/dist/cjs/modules/createDOMProps* node_modules/react-native-web/dist/cjs/modules/AccessibilityUtil/index.js node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js | head -n 200 && rtk sed -n '1,220p' node_modules/react-native-web/dist/cjs/modules/AccessibilityUtil/index.js && rtk sed -n '1,200p' node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,65p' /tmp/chg110-candidate-runtime-signals.mV8lvY/packages/components/src/Button.tsx && rtk rg -n \\\"Button type|FormScreen|favicon\\\" /tmp/chg110-candidate-runtime-signals.mV8lvY/app/sign-in.tsx /tmp/chg110-candidate-runtime-signals.mV8lvY/packages/ui/src/index.ts /tmp/chg110-candidate-runtime-signals.mV8lvY/packages/layouts/src/FormScreen.tsx && rtk sed -n '820,850p' node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js && rtk sed -n '30,80p' node_modules/react-native-web/dist/cjs/modules/AccessibilityUtil/propsToAccessibilityComponent.js\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"function useInteractionState|const useInteractionState|export.*useInteractionState\\\" packages/primitives/src node_modules/@expo-base 2>/dev/null && rtk sed -n '1,180p' packages/primitives/src/useInteractionState.ts 2>/dev/null || true && rtk rg -n \\\"useInteractionState\\\" packages/primitives/src -l\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-candidate-runtime-signals.mV8lvY && npm run web -- --port 38111'\"'\"",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && npm run test:generator'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && fresh=$(mktemp -d /tmp/chg110-candidate-runtime-signals-r2.XXXXXX) && node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name \"CHG110 Candidate Proof R2\" --slug chg110-candidate-proof-r2 --accent violet --capabilities runtime-signals --directory \"$fresh\" && echo FRESH=$fresh'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-candidate-runtime-signals-r2.QXPbnC && npm run typecheck > /tmp/chg110-candidate-r2-typecheck.out 2> /tmp/chg110-candidate-r2-typecheck.err; type_status=$?; echo TYPECHECK_AFTER_WEB_STATUS=$type_status; sed -n \"1,80p\" /tmp/chg110-candidate-r2-typecheck.err; cd /tmp/chg110-base-repro.M63u94 && node --input-type=module - <<'\"'EOF'\nimport { chromium } from \\\"playwright\\\";\nconst base = \\\"http://127.0.0.1:38112\\\";\nconst browser = await chromium.launch({ headless: true, executablePath: \\\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\\\" });\nconst page = await browser.newPage();\nconst diagnostics = [];\npage.on(\\\"console\\\", message => diagnostics.push({ type: message.type(), text: message.text() }));\npage.on(\\\"pageerror\\\", error => diagnostics.push({ type: \\\"pageerror\\\", text: error.message }));\npage.on(\\\"requestfailed\\\", request => diagnostics.push({ type: \\\"requestfailed\\\", text: request.url() + \\\":\\\" + (request.failure()?.errorText ?? \\\"unknown\\\") }));\nconst response = await page.goto(base + \\\"/sign-in\\\", { waitUntil: \\\"networkidle\\\" });\nconst semantics = await page.locator(\\\"input[type=password]\\\").evaluate(input => ({\n  containedByForm: Boolean(input.closest(\\\"form\\\")),\n  formButtonTypes: [...(input.closest(\\\"form\\\")?.querySelectorAll(\\\"button\\\") ?? [])].map(button => ({ type: button.getAttribute(\\\"type\\\"), text: button.textContent?.trim() })),\n  submitButtonCount: input.closest(\\\"form\\\")?.querySelectorAll(\\\"button[type=submit]\\\").length ?? 0,\n  formCount: document.querySelectorAll(\\\"form\\\").length,\n}));\nconst favicon = await page.request.get(base + \\\"/favicon.svg\\\");\nconsole.log(JSON.stringify({\n  status: response?.status(),\n  url: page.url(),\n  semantics,\n  faviconStatus: favicon.status(),\n  diagnostics,\n  hasPasswordOutsideFormDiagnostic: diagnostics.some(item => item.text.includes(\\\"Password field is not contained in a form\\\")),\n  hasFavicon404Diagnostic: diagnostics.some(item => item.text.includes(\\\"404\\\") && item.text.toLowerCase().includes(\\\"favicon\\\")),\n}, null, 2));\nawait browser.close();\nEOF\ncd /tmp/chg110-candidate-runtime-signals-r2.QXPbnC && printf \\\"%s\\\\n\\\" \\\"-- package resolution --\\\" && node --input-type=module - <<'EOF'\nimport fs from \\\"node:fs\\\";\nimport path from \\\"node:path\\\";\nimport { createRequire } from \\\"node:module\\\";\nconst root = process.cwd();\nconst pkg = JSON.parse(fs.readFileSync(path.join(root, \\\"package.json\\\"), \\\"utf8\\\"));\nconst names = [...new Set(Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }).filter(name => name.startsWith(\\\"@expo-base/\\\")))];\nconst require = createRequire(import.meta.url);\nlet outside = 0;\nfor (const name of names) {\n  const resolved = require.resolve(name + \\\"/package.json\\\", { paths: [root] });\n  console.log(name + \\\"=\\\" + resolved);\n  if (\"'!path.resolve(resolved).startsWith(fs.realpathSync(root) + path.sep)) outside += 1;\n}\nif (outside) process.exit(2);\nEOF\nprintf \"%s'\"\\\\n\\\" \\\"-- generated product import escapes --\\\"; if rg -n \\\"\\\\.\\\\./\\\\.\\\\.\\\" app --glob \\\"*.ts\\\" --glob \\\"*.tsx\\\"; then exit 3; else echo none; fi\nprintf \\\"%s\\\\n\\\" \\\"-- git hygiene --\\\"; git init -q; for path in node_modules .expo dist build coverage .cache npm-debug.log .DS_Store .expo-base/source.json app/sign-in.tsx package-lock.json docs/GOLDEN_CATALOG.md; do git check-ignore -q \\\"\"'$path\" && result=IGNORED || result=TRACKABLE; echo \"$path $result\"; done; echo \"-- status runtime artifacts --\"; git status --short --untracked-files=all | rg \"node_modules|''^'\"\\\\?\\\\? \\\\.expo|\"'^'\"\\\\?\\\\? \\\\.expo-base|\"'^'\"\\\\?\\\\? app/|\"'^'\"\\\\?\\\\? package-lock|\"'^'\"\\\\?\\\\? docs/\\\" | head -n 40 || true'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'cd /tmp/chg110-candidate-runtime-signals-r2.QXPbnC && mkdir -p dist build coverage .cache .expo-shared && touch dist/bundle.js build/output.js coverage/coverage.json .cache/tool.json .expo-shared/state.json && for path in dist/bundle.js build/output.js coverage/coverage.json .cache/tool.json .expo-shared/state.json; do git check-ignore -q \\\"\"'$path\" && echo \"$path IGNORED\" || echo \"$path TRACKABLE\"; done'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-base-repro.M63u94 && node --input-type=module - <<'\"'EOF'\nimport { chromium } from \\\"playwright\\\";\nconst browser = await chromium.launch({ headless: true, executablePath: \\\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\\\" });\nconst page = await browser.newPage();\nawait page.goto(\\\"http://127.0.0.1:38112/sign-in\\\", { waitUntil: \\\"networkidle\\\" });\nawait page.evaluate(() => { window.__chg110SubmitCount = 0; document.querySelector(\\\"form\\\")?.addEventListener(\\\"submit\\\", () => { window.__chg110SubmitCount += 1; }); });\nawait page.locator(\\\"input[type=password]\\\").press(\\\"Enter\\\");\nawait page.waitForTimeout(200);\nconsole.log(JSON.stringify(await page.evaluate(() => ({ formSubmitEvents: window.__chg110SubmitCount, buttonType: document.querySelector(\\\"form button\\\")?.getAttribute(\\\"type\\\") }))));\nawait browser.close();\nEOF'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-candidate-runtime-signals-r2.QXPbnC && npm install --no-audit --no-fund && npm run verify && npm run web -- --port 38112'\"'\"",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --short && rtk git diff --stat && rtk git diff -- packages/components/src/Button.tsx packages/layouts/src/FormScreen.tsx packages/create-expo-base-app/bin/create-expo-base-app.mjs scripts/test-generator.mjs docs/FORMS.md | sed -n '1,360p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && npm run test:generator && npm run test:screen-scaffolder'\"'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '20,45p' scripts/test-generator.mjs && rtk sed -n '118,140p' scripts/test-generator.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && npm run test:generator && npm run test:screen-scaffolder'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && rtk npm run check:golden-patterns'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && rtk npm run check:public-api'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && rtk npm run api:snapshot:check'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && rtk npm run check:package-manifests'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && rtk npm run check:golden-architecture'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && rtk npm run typecheck'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && npm run quality:gate17'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && git diff --check && git status --short --branch && git diff --stat && git diff --name-only'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add docs/FORMS.md packages/components/src/Button.tsx packages/create-expo-base-app/bin/create-expo-base-app.mjs packages/layouts/src/FormScreen.tsx scripts/test-generator.mjs && rtk git commit -m \"fix(generator): repair standalone web auth output\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && fresh=$(mktemp -d /tmp/chg110-final-runtime-signals.XXXXXX) && node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name \"CHG110 Final Proof\" --slug chg110-final-proof --accent green --capabilities runtime-signals --directory \"$fresh\" && echo FRESH=$fresh && echo SOURCE_COMMIT=$(node -e \"console.log(JSON.parse(require('\"\\\\\\\"fs\\\\\\\").readFileSync(\\\\\\\"\"'$fresh/.expo-base/source.json'\"\\\\\\\", \\\\\\\"utf8\\\\\\\")).sourceCommit)\\\")'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-final-runtime-signals.9KtyZS && npm install --no-audit --no-fund && npm run verify && npx expo config --type public >/tmp/chg110-final-expo-config.json && echo EXPO_CONFIG_STATUS=$? && node -e \"const c=JSON.parse(require('\"\\\\\\\"fs\\\\\\\").readFileSync(\\\\\\\"/tmp/chg110-final-expo-config.json\\\\\\\",\\\\\\\"utf8\\\\\\\")); console.log(JSON.stringify({name:c.name,web:c.web}))\\\"'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-final-runtime-signals.9KtyZS && npm run typecheck >/tmp/chg110-final-typecheck.out 2>/tmp/chg110-final-typecheck.err; echo TYPECHECK_AFTER_WEB_STATUS=$?; cd /tmp/chg110-base-repro.M63u94 && node --input-type=module - <<'\"'EOF'\nimport { chromium } from \\\"playwright\\\";\nconst base = \\\"http://127.0.0.1:38113\\\";\nconst browser = await chromium.launch({ headless: true, executablePath: \\\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\\\" });\nconst page = await browser.newPage();\nconst diagnostics = [];\npage.on(\\\"console\\\", message => diagnostics.push({ type: message.type(), text: message.text() }));\npage.on(\\\"pageerror\\\", error => diagnostics.push({ type: \\\"pageerror\\\", text: error.message }));\npage.on(\\\"requestfailed\\\", request => diagnostics.push({ type: \\\"requestfailed\\\", text: request.url() + \\\":\\\" + (request.failure()?.errorText ?? \\\"unknown\\\") }));\nconst response = await page.goto(base + \\\"/sign-in\\\", { waitUntil: \\\"networkidle\\\" });\nconst semantics = await page.locator(\\\"input[type=password]\\\").evaluate(input => ({ containedByForm: Boolean(input.closest(\\\"form\\\")), buttonType: input.closest(\\\"form\\\")?.querySelector(\\\"button\\\")?.getAttribute(\\\"type\\\"), formCount: document.querySelectorAll(\\\"form\\\").length }));\nconst favicon = await page.request.get(base + \\\"/favicon.svg\\\");\nconsole.log(JSON.stringify({ status: response?.status(), url: page.url(), semantics, faviconStatus: favicon.status(), diagnostics, hasPasswordOutsideFormDiagnostic: diagnostics.some(item => item.text.includes(\\\"Password field is not contained in a form\\\")), hasFavicon404Diagnostic: diagnostics.some(item => item.text.includes(\\\"404\\\") && item.text.toLowerCase().includes(\\\"favicon\\\")) }, null, 2));\nawait browser.close();\nEOF\ncd /tmp/chg110-final-runtime-signals.9KtyZS && node --input-type=module - <<'EOF'\nimport fs from \\\"node:fs\\\";\nimport path from \\\"node:path\\\";\nimport { createRequire } from \\\"node:module\\\";\nconst root = process.cwd();\nconst provenance = JSON.parse(fs.readFileSync(path.join(root, \\\".expo-base/source.json\\\"), \\\"utf8\\\"));\nconsole.log(\\\"PROVENANCE_SOURCE_COMMIT=\\\" + provenance.sourceCommit);\nconst pkg = JSON.parse(fs.readFileSync(path.join(root, \\\"package.json\\\"), \\\"utf8\\\"));\nconst require = createRequire(import.meta.url);\nlet outside = 0;\nfor (const name of Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }).filter(name => name.startsWith(\\\"@expo-base/\\\"))) {\n  const resolved = require.resolve(name + \\\"/package.json\\\", { paths: [root] });\n  if (\"'!path.resolve(resolved).startsWith(fs.realpathSync(root) + path.sep)) outside += 1;\n}\nconsole.log(\"PACKAGE_RESOLUTION_OUTSIDE_COUNT=\" + outside);\nEOF\nif rg -n \"'\"\\\\.\\\\./\\\\.\\\\.\\\" app --glob \\\"*.ts\\\" --glob \\\"*.tsx\\\"; then echo PRODUCT_IMPORT_ESCAPES=found; else echo PRODUCT_IMPORT_ESCAPES=none; fi\ngit init -q\nmkdir -p dist build coverage .cache .expo-shared\ntouch dist/bundle.js build/output.js coverage/coverage.json .cache/tool.json .expo-shared/state.json\nfor path in node_modules .expo dist/bundle.js build/output.js coverage/coverage.json .cache/tool.json .expo-shared/state.json npm-debug.log .DS_Store .expo-base/source.json app/sign-in.tsx package-lock.json docs/GOLDEN_CATALOG.md; do git check-ignore -q \\\"\"'$path\" && result=IGNORED || result=TRACKABLE; echo \"$path $result\"; done\necho STATUS_RUNTIME_ARTIFACTS; git status --short --untracked-files=all | rg \"node_modules|''^'\"\\\\?\\\\? \\\\.expo|\"'^'\"\\\\?\\\\? dist|\"'^'\"\\\\?\\\\? build|\"'^'\"\\\\?\\\\? coverage|\"'^'\"\\\\?\\\\? \\\\.cache|\"'^'\"\\\\?\\\\? \\\\.expo-base|\"'^'\"\\\\?\\\\? package-lock\\\" | head -n 30 || true'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-final-runtime-signals.9KtyZS && npm run web -- --port 38113'\"'\"",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && echo BRANCH=$(git branch --show-current) && echo HEAD=$(git rev-parse HEAD) && echo BASE_ANCESTRY=$(git merge-base HEAD 43ae1b27257697093d893d504b7e22b6f25cfad7) && git show -s --format=\"COMMIT=%H%nPARENT=%P%nSUBJECT=%s\" HEAD && echo WORKTREE_STATUS && git status --short --branch && echo DIFF_STAT && git diff --stat 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD && echo CHANGED_FILES && git diff --name-only 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD && git diff --check HEAD''^ HEAD'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-base-repro.M63u94 && node --input-type=module - <<'\"'EOF'\nimport { chromium } from \\\"playwright\\\";\nconst browser = await chromium.launch({ headless: true, executablePath: \\\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\\\" });\nconst page = await browser.newPage();\nawait page.goto(\\\"http://127.0.0.1:38114/sign-in\\\", { waitUntil: \\\"networkidle\\\" });\nawait page.evaluate(() => { window.__chg110SubmitCount = 0; document.querySelector(\\\"form\\\")?.addEventListener(\\\"submit\\\", () => { window.__chg110SubmitCount += 1; }); });\nawait page.locator(\\\"input[type=password]\\\").press(\\\"Enter\\\");\nawait page.waitForTimeout(200);\nconsole.log(JSON.stringify(await page.evaluate(() => ({ formSubmitEvents: window.__chg110SubmitCount, buttonType: document.querySelector(\\\"form button\\\")?.getAttribute(\\\"type\\\") }))));\nawait browser.close();\nEOF'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk bash -lc 'source \\\"\"'$NVM_DIR/nvm.sh\" && nvm use 22 >/dev/null && cd /tmp/chg110-final-runtime-signals.9KtyZS && npm run web -- --port 38114'\"'\"",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git rev-parse HEAD && rtk git diff --check HEAD''^ HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 179,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.63,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 20770048,
+      "fresh_input_tokens": 288518,
+      "input_tokens": 21058566,
+      "non_reasoning_output_tokens": 28622,
+      "output_tokens": 55754,
+      "reasoning_output_tokens": 27132,
+      "total_processed_tokens": 21114320
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "94f0f7cc67dabef87b80527f3f0314f686fc04c6",
+      "subject": "fix(generator): repair standalone web auth output"
+    }
+  ],
+  "diff": {
+    "additions": 83,
+    "changed_files": 5,
+    "commit_count": 1,
+    "deletions": 35
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 1,
+    "items": [
+      {
+        "bytes": 7056,
+        "path": "docs/FORMS.md",
+        "sha256": "0ee24ca8b847b6c4f467b92cc410a7a8489ef9470c93e4d2b74ad47eb941e7c5"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-17T23:30:27Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "branch": "codex/expo-base-chg110-standalone-web-fix-r1",
+    "head_sha": "94f0f7cc67dabef87b80527f3f0314f686fc04c6",
+    "remote_exact_head": true,
+    "remote_head_sha": "94f0f7cc67dabef87b80527f3f0314f686fc04c6",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "work_branch": "codex/expo-base-chg110-standalone-web-fix-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-5db921665ff2dfdfd794b786",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg110-standalone-web-fix-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg110-standalone-web-fix-r1"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg110-standalone-web-fix-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-17T23:04:54Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 1533,
+    "queue_seconds": 1,
+    "total_seconds": 1534
+  },
+  "transport": {
+    "bytes": 8850,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 8529,
+    "prompt_sha256": "10e02baf595a523fc862a2aed7a69ace9bf585d4069baba14bcf884213742f39",
+    "sha256": "5db921665ff2dfdfd794b7863c450278b05ae5dc328fc17575d7a6b4dd15c62c"
+  }
+}
