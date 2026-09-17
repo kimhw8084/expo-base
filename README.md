@@ -32,7 +32,15 @@ The reference app is the canonical showcase for adaptive navigation, forms, over
 npm run create:app -- --name "Orbit Ledger" --slug orbit-ledger --accent violet
 ```
 
-Generated applications inherit the provider order, deterministic web theme bootstrap, native theme synchronization, UI facade, forms, session-security architecture, and scoped server-state owner with deterministic key helpers. Replace the demo adapters in `services.ts`, `auth.ts`, `sessionSecurity.ts`, and `linking.ts` with product implementations before production use.
+The normal output is a standalone repository. It contains the provider order, deterministic web theme bootstrap, native theme synchronization, UI facade, forms, session-security architecture, scoped server-state owner, local Golden catalog/scaffolder, and the transitive vendored `@expo-base/*` source packages required by the selected profile. Move it anywhere, then run `npm install` and `npm run verify`; it does not resolve Expo Base packages or tooling from this source workspace. Replace the demo adapters in `services.ts`, `auth.ts`, `sessionSecurity.ts`, and `linking.ts` with product implementations before production use.
+
+Expo Base's reference/testing workflows may opt into the source-workspace proving mode:
+
+```bash
+npm run create:app -- --mode workspace --name "Orbit Ledger" --slug orbit-ledger
+```
+
+That mode is explicit and is not the product distribution path.
 
 ## Architecture
 

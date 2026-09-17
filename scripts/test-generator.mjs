@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { spawnSync } from 'node:child_process';
@@ -7,10 +8,12 @@ import { spawnSync } from 'node:child_process';
 const root = process.cwd();
 const destination = path.join(root, 'apps', '.tmp-generated-app');
 const capabilityDestination = path.join(root, 'apps', '.tmp-generated-capability-app');
+const standaloneDestination = fs.mkdtempSync(path.join(os.tmpdir(), 'expo-base-chg102-minimal-'));
+const standaloneCapabilityDestination = fs.mkdtempSync(path.join(os.tmpdir(), 'expo-base-chg102-capability-'));
 fs.rmSync(destination, { recursive: true, force: true });
 fs.rmSync(capabilityDestination, { recursive: true, force: true });
 try {
-  const run = spawnSync(process.execPath, ['packages/create-expo-base-app/bin/create-expo-base-app.mjs', '--name', 'Orbit Ledger', '--slug', 'orbit-ledger', '--accent', 'violet', '--link-host', 'app.example.com', '--directory', destination], { cwd: root, encoding: 'utf8' });
+  const run = spawnSync(process.execPath, ['packages/create-expo-base-app/bin/create-expo-base-app.mjs', '--name', 'Orbit Ledger', '--slug', 'orbit-ledger', '--accent', 'violet', '--link-host', 'app.example.com', '--mode', 'workspace', '--directory', destination], { cwd: root, encoding: 'utf8' });
   assert.equal(run.status, 0, run.stderr || run.stdout);
   const typecheck = spawnSync('tsc', ['-p', path.join(destination, 'tsconfig.json'), '--noEmit'], { cwd: root, encoding: 'utf8' });
   assert.equal(typecheck.status, 0, typecheck.stderr || typecheck.stdout);
@@ -162,7 +165,7 @@ try {
   assert.ok(capabilities.includes('minimal kernel'));
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(destination, 'expo-base.capabilities.json'), 'utf8')), { schemaVersion: 1, capabilities: [] });
 
-  const capabilityRun = spawnSync(process.execPath, ['packages/create-expo-base-app/bin/create-expo-base-app.mjs', '--name', 'Capability Ledger', '--slug', 'capability-ledger', '--directory', capabilityDestination, '--capabilities', 'secure-storage,runtime-signals,media,local-auth,notifications,updates,device,haptics,observability'], { cwd: root, encoding: 'utf8' });
+  const capabilityRun = spawnSync(process.execPath, ['packages/create-expo-base-app/bin/create-expo-base-app.mjs', '--name', 'Capability Ledger', '--slug', 'capability-ledger', '--mode', 'workspace', '--directory', capabilityDestination, '--capabilities', 'secure-storage,runtime-signals,media,local-auth,notifications,updates,device,haptics,observability'], { cwd: root, encoding: 'utf8' });
   assert.equal(capabilityRun.status, 0, capabilityRun.stderr || capabilityRun.stdout);
   const capabilityTypecheck = spawnSync('tsc', ['-p', path.join(capabilityDestination, 'tsconfig.json'), '--noEmit'], { cwd: root, encoding: 'utf8' });
   assert.equal(capabilityTypecheck.status, 0, capabilityTypecheck.stderr || capabilityTypecheck.stdout);
@@ -175,8 +178,63 @@ try {
   const capabilityGoldenCheck = spawnSync(process.execPath, ['../../scripts/check-golden-architecture.mjs', '--config', 'golden-architecture.config.json'], { cwd: capabilityDestination, encoding: 'utf8' });
   assert.equal(capabilityGoldenCheck.status, 0, capabilityGoldenCheck.stderr || capabilityGoldenCheck.stdout);
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(capabilityDestination, 'expo-base.capabilities.json'), 'utf8')).capabilities, ['secure-storage', 'runtime-signals', 'media', 'local-auth', 'notifications', 'updates', 'device', 'haptics', 'observability']);
+
+  assert.ok(!standaloneDestination.startsWith(root), 'standalone fixture must live outside the source workspace');
+  assert.ok(!standaloneCapabilityDestination.startsWith(root), 'optional standalone fixture must live outside the source workspace');
+  for (const [target, args] of [
+    [standaloneDestination, ['--name', 'Standalone Ledger', '--slug', 'standalone-ledger', '--accent', 'green']],
+    [standaloneCapabilityDestination, ['--name', 'Standalone Media Ledger', '--slug', 'standalone-media-ledger', '--capabilities', 'secure-storage,runtime-signals,media']],
+  ]) {
+    const generated = spawnSync(process.execPath, ['packages/create-expo-base-app/bin/create-expo-base-app.mjs', ...args, '--directory', target], { cwd: root, encoding: 'utf8' });
+    assert.equal(generated.status, 0, generated.stderr || generated.stdout);
+    const generatedPackage = JSON.parse(fs.readFileSync(path.join(target, 'package.json'), 'utf8'));
+    assert.deepEqual(generatedPackage.workspaces, ['packages/*']);
+    for (const script of ['typecheck', 'check:golden-architecture', 'scaffold:screen', 'verify']) assert.equal(typeof generatedPackage.scripts[script], 'string', script);
+    for (const field of ['dependencies', 'devDependencies']) {
+      for (const [name, version] of Object.entries(generatedPackage[field] ?? {})) {
+        if (!name.startsWith('@expo-base/')) assert.equal(version, compatibility[name], `${target} ${name}`);
+      }
+    }
+    for (const packageName of fs.readdirSync(path.join(target, 'packages'))) {
+      const manifest = JSON.parse(fs.readFileSync(path.join(target, 'packages', packageName, 'package.json'), 'utf8'));
+      for (const field of ['dependencies', 'optionalDependencies', 'peerDependencies']) {
+        for (const [name, version] of Object.entries(manifest[field] ?? {})) {
+          if (!name.startsWith('@expo-base/')) assert.equal(version, compatibility[name], `${target}/packages/${packageName} ${name}`);
+        }
+      }
+    }
+    for (const contractFile of ['README.md', 'AGENTS.md', 'package.json', 'tsconfig.json', 'golden-architecture.config.json']) {
+      const contract = fs.readFileSync(path.join(target, contractFile), 'utf8');
+      assert.doesNotMatch(contract, /\.\.\/\.\/(?:AGENTS|docs|scripts|packages|tsconfig\.base)/, `${contractFile} escapes the generated repository`);
+    }
+    const provenance = JSON.parse(fs.readFileSync(path.join(target, '.expo-base/source.json'), 'utf8'));
+    assert.equal(provenance.schemaVersion, 1);
+    assert.equal(provenance.sourceRepository, 'https://github.com/kimhw8084/expo-base');
+    assert.equal(provenance.sourceCommit, spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).stdout.trim());
+    assert.equal(provenance.sourceVersion, '1.0.0');
+    assert.equal(provenance.generatorVersion, '1.0.0');
+    const install = spawnSync('npm', ['install', '--no-audit', '--no-fund'], { cwd: target, encoding: 'utf8' });
+    assert.equal(install.status, 0, install.stderr || install.stdout);
+    const resolved = spawnSync(process.execPath, ['-e', "process.stdout.write(require.resolve('@expo-base/ui/package.json'))"], { cwd: target, encoding: 'utf8', env: { ...process.env, NODE_PATH: '' } });
+    assert.equal(resolved.status, 0, resolved.stderr || resolved.stdout);
+    assert.ok(path.resolve(resolved.stdout).startsWith(fs.realpathSync(target)), `@expo-base/ui resolved outside generated repository: ${resolved.stdout}`);
+    const verify = spawnSync('npm', ['run', 'verify'], { cwd: target, encoding: 'utf8' });
+    assert.equal(verify.status, 0, verify.stderr || verify.stdout);
+  }
+  const standalonePackageDirs = fs.readdirSync(path.join(standaloneDestination, 'packages'));
+  assert.equal(standalonePackageDirs.includes('secure-storage'), false, 'minimal standalone profile must omit secure-storage');
+  assert.equal(standalonePackageDirs.includes('media'), false, 'minimal standalone profile must omit media');
+  const optionalPackageDirs = fs.readdirSync(path.join(standaloneCapabilityDestination, 'packages'));
+  for (const packageName of ['secure-storage', 'runtime-capabilities', 'media']) assert.ok(optionalPackageDirs.includes(packageName), packageName);
+  assert.equal(optionalPackageDirs.includes('haptics'), false, 'unselected haptics must not be vendored');
+  const localScaffold = spawnSync('npm', ['run', 'scaffold:screen', '--', '--name', 'imports', '--pattern', 'import-workflow'], { cwd: standaloneCapabilityDestination, encoding: 'utf8' });
+  assert.equal(localScaffold.status, 0, localScaffold.stderr || localScaffold.stdout);
+  const localScaffoldVerify = spawnSync('npm', ['run', 'verify'], { cwd: standaloneCapabilityDestination, encoding: 'utf8' });
+  assert.equal(localScaffoldVerify.status, 0, localScaffoldVerify.stderr || localScaffoldVerify.stdout);
   console.log('Generator tests passed (minimal and opt-in capability-profile branded app scaffolds).');
 } finally {
   fs.rmSync(destination, { recursive: true, force: true });
   fs.rmSync(capabilityDestination, { recursive: true, force: true });
+  fs.rmSync(standaloneDestination, { recursive: true, force: true });
+  fs.rmSync(standaloneCapabilityDestination, { recursive: true, force: true });
 }
