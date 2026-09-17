@@ -17,6 +17,7 @@ if (!args.name || !args.slug) {
 }
 if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(args.slug)) fail('Slug must be lowercase kebab-case.');
 const accents = new Set(['blue', 'violet', 'green', 'orange']);
+const FAVICON_COLORS = Object.freeze({ blue: '#2563eb', violet: '#7c3aed', green: '#16a34a', orange: '#ea580c' });
 if (!accents.has(args.accent)) fail(`Unknown accent "${args.accent}". Choose blue, violet, green, or orange.`);
 if (args.linkHost && !isValidHost(args.linkHost)) fail('--link-host must be a bare HTTPS hostname such as app.example.com (no scheme, port, path, query, or fragment).');
 if (!['standalone', 'workspace'].includes(args.mode)) fail('--mode must be standalone or workspace.');
@@ -160,7 +161,7 @@ import type { PropsWithChildren } from 'react';
 import { ExpoBaseWebAccessibilityStyles } from '@expo-base/ui';
 
 export default function Root({ children }: PropsWithChildren) {
-  return <html lang="en"><head><meta charSet="utf-8" /><meta httpEquiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /><ScrollViewStyleReset /><ExpoBaseWebAccessibilityStyles /></head><body>{children}</body></html>;
+  return <html lang="en"><head><meta charSet="utf-8" /><meta httpEquiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /><link rel="icon" href="/favicon.svg" type="image/svg+xml" /><ScrollViewStyleReset /><ExpoBaseWebAccessibilityStyles /></head><body>{children}</body></html>;
 }
 `,
     'app/+not-found.tsx': `import { useExpoBaseRouter } from '@expo-base/navigation-router';
@@ -171,7 +172,8 @@ export default function NotFoundScreen() {
   return <ScrollScreen><Page width="reading" header={<PageHeader eyebrow="PAGE NOT FOUND" title="This destination does not exist" description="The link may be outdated or the address may have been entered incorrectly." />}><Section><StateView kind="error" title="We could not find that page" message="Return to the application home to continue safely." actionLabel="Return home" onAction={() => router.replace('/')} /></Section></Page></ScrollScreen>;
 }
 `,
-    'app.config.ts': `import type { ExpoConfig } from 'expo/config';\nimport { appBrand } from './brand';\n\ntype ExpoBaseConfig = ExpoConfig & { newArchEnabled?: boolean };\nconst config: ExpoBaseConfig = {\n  name: appBrand.name, slug: ${JSON.stringify(config.slug)}, version: '1.0.0', orientation: 'default', scheme: ${JSON.stringify(config.slug)}, userInterfaceStyle: 'automatic', newArchEnabled: true,\n  ios: { bundleIdentifier: ${JSON.stringify(config.identifier)}${config.linkHost ? `, associatedDomains: ['applinks:${config.linkHost}']` : ''} }, android: { package: ${JSON.stringify(config.identifier)}${config.linkHost ? `, intentFilters: [{ action: 'VIEW', autoVerify: true, data: [{ scheme: 'https', host: ${JSON.stringify(config.linkHost)} }], category: ['BROWSABLE', 'DEFAULT'] }]` : ''} },\n  web: { output: 'static' }, plugins: ${JSON.stringify(appPlugins)}, experiments: { typedRoutes: true },\n};\nexport default config;\n`,
+    'app.config.ts': `import type { ExpoConfig } from 'expo/config';\n\ntype ExpoBaseConfig = ExpoConfig & { newArchEnabled?: boolean };\nconst config: ExpoBaseConfig = {\n  name: ${JSON.stringify(config.name)}, slug: ${JSON.stringify(config.slug)}, version: '1.0.0', orientation: 'default', scheme: ${JSON.stringify(config.slug)}, userInterfaceStyle: 'automatic', newArchEnabled: true,\n  ios: { bundleIdentifier: ${JSON.stringify(config.identifier)}${config.linkHost ? `, associatedDomains: ['applinks:${config.linkHost}']` : ''} }, android: { package: ${JSON.stringify(config.identifier)}${config.linkHost ? `, intentFilters: [{ action: 'VIEW', autoVerify: true, data: [{ scheme: 'https', host: ${JSON.stringify(config.linkHost)} }], category: ['BROWSABLE', 'DEFAULT'] }]` : ''} },\n  web: { output: 'static', favicon: './public/favicon.svg' }, plugins: ${JSON.stringify(appPlugins)}, experiments: { typedRoutes: true },\n};\nexport default config;\n`,
+    'public/favicon.svg': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="${FAVICON_COLORS[config.accent]}"/><circle cx="32" cy="32" r="17" fill="#fff"/></svg>\n`,
     'babel.config.js': `module.exports = function (api) { api.cache(true); return { presets: ['babel-preset-expo'], plugins: [['react-native-unistyles/plugin', { root: 'app', autoProcessImports: ['@expo-base/ui'] }]] }; };\n`,
     'tsconfig.json': JSON.stringify({ extends: '../../tsconfig.base.json', compilerOptions: { noEmit: true, types: ['react', 'react-native'] }, include: ['app/**/*.ts', 'app/**/*.tsx', '*.ts'] }, null, 2) + '\n',
     'app/_layout.tsx': `import '../unistyles';
@@ -202,7 +204,7 @@ export default function RootLayout() {
 `,
     'app/index.tsx': `import { ScrollScreen } from '@expo-base/ui';\nimport { Button, Card } from '@expo-base/ui';\nimport { Text, VStack } from '@expo-base/ui';\nimport { DashboardLayout } from '@expo-base/ui';\nimport { Metric, MetricGroup } from '@expo-base/ui';\nimport { appBrand } from '../brand';\n\nexport default function HomeScreen() {\n  const metrics = <MetricGroup><Metric label="Primary metric" value="$8,420" trend="+14.2%" trendTone="positive" /><Metric label="Secondary metric" value="24" trend="Current" /></MetricGroup>;\n  return <ScrollScreen><DashboardLayout eyebrow={appBrand.name.toUpperCase()} title="Production foundation" description="This screen is composed from portable Expo Base patterns without feature-owned geometry." metrics={metrics} primary={<Card variant="elevated"><VStack gap="lg"><Text variant="h2">Primary workspace</Text><Text tone="secondary">Replace this content with your first product vertical slice.</Text><Button label="Primary action" onPress={() => {}} /></VStack></Card>} secondary={<Card variant="subtle"><VStack gap="md"><Text variant="h3">Context</Text><Text tone="secondary">Adaptive layouts determine where this panel belongs.</Text></VStack></Card>} /></ScrollScreen>;\n}\n`,
     'app/sign-in.tsx': `import { useState } from 'react';
-import { Button, Card, ScrollScreen, Text, TextField, VStack } from '@expo-base/ui';
+import { Button, Card, FormScreen, Text, TextField, VStack } from '@expo-base/ui';
 import { useExpoBaseRouter } from '@expo-base/navigation-router';
 import { useExpoBaseAuth } from '@expo-base/runtime';
 
@@ -211,8 +213,8 @@ export default function SignInScreen() {
   const router = useExpoBaseRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const submit = async () => { if (await auth.signIn({ email, password })) router.replace(auth.consumeReturnIntent('/')); };
-  return <ScrollScreen><Card><VStack gap="lg"><Text variant="h2">Sign in</Text><Text tone="secondary">Protected routes remain unavailable until authentication is confirmed.</Text><TextField id="email" label="Email" value={email} onChangeText={setEmail} autoCapitalize="none" autoComplete="email" /><TextField id="password" label="Password" value={password} onChangeText={setPassword} secureTextEntry autoComplete="current-password" />{auth.errorCode === 'sign_in_failed' ? <Text tone="negative">Sign-in could not be completed. Try again.</Text> : null}<Button label="Sign in" loading={auth.actionStatus === 'signing-in'} onPress={() => { void submit(); }} /></VStack></Card></ScrollScreen>;
+  const submit = async () => { if (await auth.signIn({ email, password })) router.replaceResolvedPath(auth.consumeReturnIntent('/')); };
+  return <FormScreen onSubmit={() => { void submit(); }}><Card><VStack gap="lg"><Text variant="h2">Sign in</Text><Text tone="secondary">Protected routes remain unavailable until authentication is confirmed.</Text><TextField id="email" label="Email" value={email} onChangeText={setEmail} autoCapitalize="none" autoComplete="email" /><TextField id="password" label="Password" value={password} onChangeText={setPassword} secureTextEntry autoComplete="current-password" /><Button type="submit" label="Sign in" loading={auth.actionStatus === 'signing-in'} onPress={() => { void submit(); }} />{auth.errorCode === 'sign_in_failed' ? <Text tone="negative">Sign-in could not be completed. Try again.</Text> : null}</VStack></Card></FormScreen>;
 }
 `,
     'app/session-loading.tsx': `import { LoadingState, Screen } from '@expo-base/ui';
@@ -288,6 +290,7 @@ function buildStandaloneFiles(config, versions, sourceRoot) {
   files['expo-base.api.json'] = JSON.stringify(buildStandaloneApi(sourceRoot, new Set(packageNames)), null, 2) + '\n';
   files['docs/GOLDEN_CATALOG.md'] = renderGoldenCatalog(catalog);
   files['docs/GOLDEN_WORKFLOWS.md'] = renderGoldenPatterns(patterns);
+  files['.gitignore'] = `node_modules/\n.expo/\n.expo-shared/\ndist/\nbuild/\ncoverage/\n.cache/\n.turbo/\n*.tsbuildinfo\nexpo-env.d.ts\n*.log\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\npnpm-debug.log*\n.env\n.env.*\n!.env.example\n.DS_Store\n`;
   files['.expo-base/source.json'] = JSON.stringify(config.sourceMetadata, null, 2) + '\n';
 
   for (const script of [

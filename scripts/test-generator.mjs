@@ -22,12 +22,23 @@ try {
   assert.ok(brand.includes('brandPresets.violet'));
   assert.ok(brand.includes("name: \"Orbit Ledger\""));
   const appConfig = fs.readFileSync(path.join(destination, 'app.config.ts'), 'utf8');
+  assert.equal(appConfig.includes("import { appBrand } from './brand';"), false, 'Expo config must not depend on runtime TypeScript brand loading');
+  assert.ok(appConfig.includes('name: "Orbit Ledger"'));
   assert.ok(appConfig.includes("version: '1.0.0'"));
   assert.ok(appConfig.includes('com.expobase.orbitledger'));
   assert.ok(appConfig.includes("associatedDomains: ['applinks:app.example.com']"));
   assert.ok(appConfig.includes("autoVerify: true"));
   assert.ok(appConfig.includes("host: \"app.example.com\""));
   assert.ok(appConfig.includes('asyncRoutes'));
+  assert.ok(appConfig.includes("favicon: './public/favicon.svg'"));
+  assert.ok(fs.existsSync(path.join(destination, 'public/favicon.svg')));
+  const generatedFaviconHtml = fs.readFileSync(path.join(destination, 'app/+html.tsx'), 'utf8');
+  assert.ok(generatedFaviconHtml.includes('<link rel="icon" href="/favicon.svg" type="image/svg+xml" />'));
+  const signIn = fs.readFileSync(path.join(destination, 'app/sign-in.tsx'), 'utf8');
+  assert.ok(signIn.includes('FormScreen onSubmit'));
+  assert.ok(signIn.includes('<Button type="submit"'));
+  assert.ok(signIn.includes("router.replaceResolvedPath(auth.consumeReturnIntent('/'))"));
+  assert.equal(signIn.includes('router.replace(auth.consumeReturnIntent'), false);
   const services = fs.readFileSync(path.join(destination, 'services.ts'), 'utf8');
   assert.ok(services.includes('createDemoServices'));
   const compatibility = JSON.parse(fs.readFileSync(path.join(root, 'expo-base.compatibility.json'), 'utf8'));
@@ -207,6 +218,11 @@ try {
       const contract = fs.readFileSync(path.join(target, contractFile), 'utf8');
       assert.doesNotMatch(contract, /\.\.\/\.\/(?:AGENTS|docs|scripts|packages|tsconfig\.base)/, `${contractFile} escapes the generated repository`);
     }
+    const generatedGitignore = fs.readFileSync(path.join(target, '.gitignore'), 'utf8');
+    for (const pattern of ['node_modules/', '.expo/', 'dist/', 'build/', '*.log', '.DS_Store']) assert.ok(generatedGitignore.includes(pattern), `${target} .gitignore missing ${pattern}`);
+    assert.equal(generatedGitignore.includes('.expo-base/'), false);
+    assert.equal(generatedGitignore.includes('docs/'), false);
+    assert.equal(generatedGitignore.includes('package-lock.json'), false);
     const provenance = JSON.parse(fs.readFileSync(path.join(target, '.expo-base/source.json'), 'utf8'));
     assert.equal(provenance.schemaVersion, 1);
     assert.equal(provenance.sourceRepository, 'https://github.com/kimhw8084/expo-base');
@@ -215,6 +231,8 @@ try {
     assert.equal(provenance.generatorVersion, '1.0.0');
     const install = spawnSync('npm', ['install', '--no-audit', '--no-fund'], { cwd: target, encoding: 'utf8' });
     assert.equal(install.status, 0, install.stderr || install.stdout);
+    const expoConfig = spawnSync('npx', ['expo', 'config', '--type', 'public'], { cwd: target, encoding: 'utf8' });
+    assert.equal(expoConfig.status, 0, expoConfig.stderr || expoConfig.stdout);
     const resolved = spawnSync(process.execPath, ['-e', "process.stdout.write(require.resolve('@expo-base/ui/package.json'))"], { cwd: target, encoding: 'utf8', env: { ...process.env, NODE_PATH: '' } });
     assert.equal(resolved.status, 0, resolved.stderr || resolved.stdout);
     assert.ok(path.resolve(resolved.stdout).startsWith(fs.realpathSync(target)), `@expo-base/ui resolved outside generated repository: ${resolved.stdout}`);
