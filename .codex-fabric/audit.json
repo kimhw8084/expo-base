@@ -1,0 +1,438 @@
+{
+  "accepted_at": "2026-09-17T12:34:32Z",
+  "changed_files": [
+    {
+      "additions": 9,
+      "deletions": 1,
+      "path": "README.md",
+      "status": "M"
+    },
+    {
+      "additions": 39,
+      "deletions": 8,
+      "path": "docs/GENERATOR.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 1,
+      "path": "docs/PORTABILITY.md",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 2,
+      "path": "docs/SCREEN_SCAFFOLDING.md",
+      "status": "M"
+    },
+    {
+      "additions": 222,
+      "deletions": 6,
+      "path": "packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 1,
+      "path": "scripts/golden-catalog-lib.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "scripts/golden-pattern-lib.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 60,
+      "deletions": 2,
+      "path": "scripts/test-generator.mjs",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'rtk node --check packages/create-expo-base-app/bin/create-expo-base-app.mjs && rtk node --check scripts/golden-catalog-lib.mjs && rtk node --check scripts/golden-pattern-lib.mjs && rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'tmpdir=$(rtk mktemp -d /tmp/expo-base-chg102.XXXXXX | tail -n 1) && rtk node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name '\"'Manual Ledger' --slug manual-ledger --directory \\\"\"'$tmpdir\" && rtk find \"$tmpdir\" -maxdepth 2 -type f | sort | sed -n '\"'1,120p' && printf '%s\\\\n' '--- contract escape scan ---' && rtk rg -n '\\\\.\\\\./\\\\.\\\\./(?:AGENTS|docs|scripts|packages|tsconfig\\\\.base)' \\\"\"'$tmpdir\" || true && printf '\"'%s\\\\n' '--- package set ---' && rtk node -e \\\"const fs=require('fs'); console.log(fs.readdirSync('\"'$tmpdir/packages'\"').sort())\\\" && printf '%s\\\\n' '--- provenance ---' && rtk sed -n '1,120p' \\\"\"'$tmpdir/.expo-base/source.json\" && printf '\"'%s\\\\n' '--- package ---' && rtk sed -n '1,180p' \\\"\"'$tmpdir/package.json\"'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'tmpdir=$(rtk mktemp -d /tmp/expo-base-chg102.XXXXXX | tail -n 1) && rtk node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name '\"'Manual Ledger' --slug manual-ledger --directory \\\"\"'$tmpdir\" && printf '\"'%s\\\\n' '--- package files ---' && rtk find \\\"\"'$tmpdir\" -maxdepth 2 -type f | sort | sed -n '\"'1,140p' && printf '%s\\\\n' '--- contract escape scan ---' && rtk rg -n '\\\\.\\\\./\\\\.\\\\./(?:AGENTS|docs|scripts|packages|tsconfig\\\\.base)' \\\"\"'$tmpdir\" || true && printf '\"'%s\\\\n' '--- package set ---' && rtk node -e \\\"const fs=require('fs'); console.log(fs.readdirSync('\"'$tmpdir/packages'\"').sort())\\\" && printf '%s\\\\n' '--- provenance ---' && rtk sed -n '1,120p' \\\"\"'$tmpdir/.expo-base/source.json\" && printf '\"'%s\\\\n' '--- package ---' && rtk sed -n '1,180p' \\\"\"'$tmpdir/package.json\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm install --no-audit --no-fund'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:generator'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk nl -ba scripts/test-generator.mjs | sed -n '1,35p' && rtk node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name 'Orbit Ledger' --slug orbit-ledger --accent violet --link-host app.example.com --mode workspace --directory apps/.tmp-debug-generator\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk tsc -p apps/.tmp-debug-generator/tsconfig.json --noEmit; printf 'exit=%s\\\\n' \"'$? && rtk git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node - <<'NODE'\nconst {spawnSync}=require('node:child_process'); const path=require('node:path'); const root=process.cwd(); const r=spawnSync('tsc',['-p',path.join(root,'apps/.tmp-debug-generator/tsconfig.json'),'--noEmit'],{cwd:root,encoding:'utf8'}); console.log({status:r.status,signal:r.signal,error:r.error,stdout:r.stdout?.slice(0,200),stderr:r.stderr?.slice(0,200)});\nNODE\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk test -e node_modules/.bin/tsc; echo tscbin=$?; rtk which tsc || true; rtk npm exec -- tsc --version'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk test -f package-lock.json; rtk ls node_modules/typescript/package.json node_modules/react/package.json 2>/dev/null || true; rtk git status --short | sed -n '1,80p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -l package-lock.json node_modules/typescript/package.json node_modules/react/package.json 2>&1 || true'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm install --ignore-scripts --no-audit --no-fund'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -rf /Users/haewonkim/.codex-fabric/worktrees/CF-d82c847234b6e83a96af1588/apps/.tmp-debug-generator && rtk npm run test:generator'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --short && printf '%s\\\\n' '--- diff stat ---' && rtk git diff --stat && printf '%s\\\\n' '--- generator diff snippets ---' && rtk git diff -- packages/create-expo-base-app/bin/create-expo-base-app.mjs scripts/test-generator.mjs scripts/golden-catalog-lib.mjs scripts/golden-pattern-lib.mjs | sed -n '1,360p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:screen-scaffolder'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-patterns'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-catalog'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run golden:patterns:write && rtk npm run check:golden-patterns && rtk git diff -- docs/GOLDEN_WORKFLOWS.md'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run golden:patterns:write && rtk npm run check:golden-patterns && rtk git diff -- docs/GOLDEN_WORKFLOWS.md scripts/golden-pattern-lib.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '24,65p' scripts/golden-pattern-lib.mjs && rtk node -e \\\"import('./scripts/golden-pattern-lib.mjs').then(m=>console.log(m.renderGoldenPatterns({schemaVersion:1,patterns:[],humanGuide:'x'}).split('\\\\\\\\n')[8]))\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short && rtk git diff --check && rtk npm run check:golden-architecture && rtk npm run check:package-manifests && rtk npm run check:public-api && rtk npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run quality:gate17'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '290,310p' packages/create-expo-base-app/bin/create-expo-base-app.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk node --check packages/create-expo-base-app/bin/create-expo-base-app.mjs && rtk node --check scripts/golden-pattern-lib.mjs && rtk node --check scripts/golden-catalog-lib.mjs && rtk git diff --stat'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-patterns'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-catalog'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-architecture'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:screen-scaffolder'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run typecheck && rtk git diff --check && rtk git status --short --branch && rtk git diff --stat'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git diff -- README.md docs/GENERATOR.md docs/PORTABILITY.md docs/SCREEN_SCAFFOLDING.md scripts/golden-catalog-lib.mjs scripts/golden-pattern-lib.mjs | sed -n '1,420p' && printf '%s\\\\n' '--- generator standalone diff ---' && rtk git diff -- packages/create-expo-base-app/bin/create-expo-base-app.mjs | sed -n '1,520p' && printf '%s\\\\n' '--- test diff ---' && rtk git diff -- scripts/test-generator.mjs | sed -n '1,360p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk node --check packages/create-expo-base-app/bin/create-expo-base-app.mjs && rtk npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --short --branch && rtk git diff --check && rtk git diff --numstat && printf '%s\\\\n' '--- no generated temp artifacts ---' && rtk find apps -maxdepth 1 -type d -name '.tmp-*' -print\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:screen-scaffolder'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run quality:gate17'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add README.md docs/GENERATOR.md docs/PORTABILITY.md docs/SCREEN_SCAFFOLDING.md packages/create-expo-base-app/bin/create-expo-base-app.mjs scripts/golden-catalog-lib.mjs scripts/golden-pattern-lib.mjs scripts/test-generator.mjs && rtk git commit -m \"feat(generator): emit standalone product repositories\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --short --branch && rtk git log -1 --format='%H%n%s' && rtk npm run test:generator\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git rev-parse HEAD && rtk git show --stat --oneline --decorate HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 186,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.37,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 14878464,
+      "fresh_input_tokens": 247118,
+      "input_tokens": 15125582,
+      "non_reasoning_output_tokens": 22764,
+      "output_tokens": 48718,
+      "reasoning_output_tokens": 25954,
+      "total_processed_tokens": 15174300
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "4e95cef5a6fd131257a68eb262156ffd52225d9d",
+      "subject": "feat(generator): emit standalone product repositories"
+    }
+  ],
+  "diff": {
+    "additions": 350,
+    "changed_files": 8,
+    "commit_count": 1,
+    "deletions": 22
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 4,
+    "items": [
+      {
+        "bytes": 4167,
+        "path": "README.md",
+        "sha256": "b652416b6ace68fa1fdfc1a1ef5208367ff311a3f46fbe2cd76ca4f7f7581348"
+      },
+      {
+        "bytes": 5527,
+        "path": "docs/GENERATOR.md",
+        "sha256": "79d501b854e7196eb31a8662d46e7669027dcf1b685c4e87f84b12fcec0ff4e4"
+      },
+      {
+        "bytes": 1409,
+        "path": "docs/PORTABILITY.md",
+        "sha256": "d517b68246eff3cd0eaac67257b78355072baacd5e173a19977529c2326773aa"
+      },
+      {
+        "bytes": 2411,
+        "path": "docs/SCREEN_SCAFFOLDING.md",
+        "sha256": "63d5f8e9f9b5e510c8b93d2357bc6d82f6a13780750d63075408b53a11c170d3"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-17T12:56:30Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "73e48168271484db8153cfd4366ea1ffbfa4c866",
+    "branch": "codex/expo-base-chg102-standalone-generator-r1",
+    "head_sha": "4e95cef5a6fd131257a68eb262156ffd52225d9d",
+    "remote_exact_head": true,
+    "remote_head_sha": "4e95cef5a6fd131257a68eb262156ffd52225d9d",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "73e48168271484db8153cfd4366ea1ffbfa4c866",
+    "work_branch": "codex/expo-base-chg102-standalone-generator-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-d82c847234b6e83a96af1588",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg102-standalone-generator-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg102-standalone-generator-r1"
+  },
+  "operation": "BUILD",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg102-standalone-generator-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-17T12:34:32Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 1318,
+    "queue_seconds": 0,
+    "total_seconds": 1318
+  },
+  "transport": {
+    "bytes": 6651,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 6324,
+    "prompt_sha256": "240e1f7a89fa8e47c8301a2a48a98c3ab2913061fe04604b33fcd56d126cf3f2",
+    "sha256": "d82c847234b6e83a96af158840a4b94dbcf7e31fbdfba11b8d3f85f03457cb4a"
+  }
+}
