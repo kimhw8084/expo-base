@@ -1,0 +1,354 @@
+{
+  "accepted_at": "2026-09-17T18:39:42Z",
+  "changed_files": [],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request POST --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/artifact-manifest.json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-819e-a247-00b21a3a91f7/send'\"",
+      "exit_code": 22,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'tmpdir=$(mktemp -d); rtk curl --silent --show-error --output \"$tmpdir/body\" --write-out '\"'%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/artifact-manifest.json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81bb-be49-00b29fdacf3a/send'; code=\"'$?; body=$(rtk sed -n '\"'1,120p' \\\"\"'$tmpdir/body\"); rtk rm -rf \"$tmpdir\"; printf '\"'%s\\\\n%s' \\\"\"'$code\" \"$body\"; exit $code'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/artifact-manifest.json;type=application/json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81b3-950f-00b2bafac6f8/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "update_properties",
+      "type": "mcp_tool_call"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/browser-console-runtime-diagnostics.json;type=application/json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-812d-a986-00b2c8b76fca/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "update_properties",
+      "type": "mcp_tool_call"
+    },
+    {
+      "command": "update_properties",
+      "type": "mcp_tool_call"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk jq -c '{retainedInventory,completeBundle}' '/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/artifact-manifest.json'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk jq -c '{retainedInventory,completeBundle}' /Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/artifact-manifest.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "update_properties",
+      "type": "mcp_tool_call"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk jq -r '.retainedInventory.artifacts[] | [.path,.sha256,.bytes] | @tsv' '/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/artifact-manifest.json'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/browser-console-runtime-diagnostics.json;type=application/json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8110-b8ab-00b2d14498f3/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/capture-run.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8176-a0d4-00b2dec0b580/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/chg107-r2-recovered-evidence-bundle.tar.gz;type=application/gzip' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81e5-bf1f-00b2b5ee9980/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/contract-scans.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81ce-86ee-00b286927d35/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/final-golden-architecture.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8150-a408-00b24ec77f36/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/final-golden-patterns.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-812c-a0c7-00b2142fd1d7/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/final-typecheck.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81f8-ae8b-00b2caaee8e6/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/final-verify.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8102-a65d-00b2d604d3c9/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/first-pass-product-typecheck.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81e3-89ca-00b27ca5a9af/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/first-pass-web.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-816d-945b-00b2ed9985e8/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/initial-npm-install.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-818c-8e67-00b2a10e59e8/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/initial-verify.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81c4-bad7-00b282da4e22/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/proving-report.json;type=application/json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81b8-809e-00b2859afec9/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/proving-report.md;type=text/markdown' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-810a-8cf6-00b21013be07/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/r1-chg107-local-evidence-bundle.tar.gz;type=application/gzip' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8161-9799-00b2d053fd92/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/r1-local-artifact-manifest.json;type=application/json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81ca-8120-00b225aa3247/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/r2-prestage-manifest.json;type=application/json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81bd-b449-00b25e0bae49/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/r2-recovery-lineage.json;type=application/json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-814f-bc00-00b2b23586bc/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/screenshot-state-manifest.json;type=application/json' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8184-a338-00b245b74ede/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/site-ledger-baseline-to-final.patch;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8101-8f9b-00b2e53f1285/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/site-ledger-final-source.tar.gz;type=application/gzip' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81a2-8bc2-00b2fe038cb0/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/source-and-generation.log;type=text/plain' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-811d-9735-00b298692739/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/screenshots/dashboard-1440x900.png;type=image/png' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81d4-a83b-00b2ac61c652/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/screenshots/dashboard-390x844.png;type=image/png' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8195-ad2f-00b2216f5866/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/screenshots/inspection-detail-1440x900.png;type=image/png' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-811b-93c8-00b2d05dabe8/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/screenshots/inspection-detail-390x844.png;type=image/png' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8122-9988-00b221b3a56c/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/screenshots/inspections-1440x900.png;type=image/png' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-81b3-8d91-00b2b4e5f438/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/screenshots/inspections-390x844.png;type=image/png' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8165-aa04-00b2edeb7fb6/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/screenshots/new-inspection-validation-1440x900.png;type=image/png' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8171-ae97-00b275eedc2f/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk curl --fail --silent --show-error --output /dev/null --write-out '%{http_code}' --request 'POST' --header 'authorization: Bearer [REDACTED_SECRET]' --form 'file=@/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/screenshots/new-inspection-validation-390x844.png;type=image/png' 'https://api.notion.com/v1/mcp/file_uploads/3dec564c-8d04-8114-bd86-00b2222b26ce/send'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "update_properties",
+      "type": "mcp_tool_call"
+    },
+    {
+      "command": "insert_content",
+      "type": "mcp_tool_call"
+    },
+    {
+      "command": "update_properties",
+      "type": "mcp_tool_call"
+    },
+    {
+      "command": "update_properties",
+      "type": "mcp_tool_call"
+    },
+    {
+      "command": "update_properties",
+      "type": "mcp_tool_call"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk env FABRIC_ROOT=/Users/haewonkim/.codex-fabric R3_ROOT=/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge node --input-type=module <<'NODE'\nimport fs from 'node:fs'; import path from 'node:path'; import crypto from 'node:crypto';\nconst fabric=process.env.FABRIC_ROOT, r3=process.env.R3_ROOT;\nconst r1=path.join(fabric,'jobs','CF-582b12ff4ec95bb62d090ca4.executed','artifact-bridge');\nconst r2=path.join(fabric,'jobs','CF-2447fa57f30a3ddbce930b70.executed','artifact-bridge');\nconst h=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');\nconst same=(a,b)=>fs.readFileSync(a).equals(fs.readFileSync(b));\nconst r1m=JSON.parse(fs.readFileSync(path.join(r1,'local-artifact-manifest.json'),'utf8'));\nconst r2m=JSON.parse(fs.readFileSync(path.join(r2,'r2-prestage-manifest.json'),'utf8'));\nconst lin=JSON.parse(fs.readFileSync(path.join(r2,'r2-recovery-lineage.json'),'utf8'));\nconst m=JSON.parse(fs.readFileSync(path.join(r3,'artifact-manifest.json'),'utf8'));\nconst errors=[];\nfor(const f of r1m.files){const a=path.join(r1,f.path),b=path.join(r3,f.path);if(\"'!fs.existsSync(a)||!fs.existsSync(b)||h(a)!==f.sha256||h(b)!==f.sha256||!same(a,b))errors.push('\"'r1:'+f.path);}\nfor(const f of r2m.artifacts){const p=path.join(r3,f.path);if(\"'!fs.existsSync(p)||fs.statSync(p).size!==f.bytes||h(p)!==f.sha256)errors.push('\"'r2:'+f.path);}\nfor(const f of lin.recoveredFiles){const p=path.join(r3,f.path);if(\"'!fs.existsSync(p)||fs.statSync(p).size!==f.bytes||h(p)!==f.sha256)errors.push('\"'lineage:'+f.path);}\nfor(const a of m.retainedInventory.artifacts){const p=path.join(r3,a.path);if(\"'!fs.existsSync(p)||fs.statSync(p).size!==a.bytes||h(p)!==a.sha256)errors.push('\"'manifest:'+a.path);}\nconst bundle=path.join(r3,m.completeBundle.path);\nconst required=['proving-report.json','proving-report.md','site-ledger-final-source.tar.gz','site-ledger-baseline-to-final.patch','source-and-generation.log','initial-npm-install.log','initial-verify.log','first-pass-product-typecheck.log','first-pass-web.log','final-verify.log','final-typecheck.log','final-golden-patterns.log','final-golden-architecture.log','contract-scans.log','capture-run.log','browser-console-runtime-diagnostics.json','screenshot-state-manifest.json','screenshots/dashboard-1440x900.png','screenshots/dashboard-390x844.png','screenshots/inspections-1440x900.png','screenshots/inspections-390x844.png','screenshots/inspection-detail-1440x900.png','screenshots/inspection-detail-390x844.png','screenshots/new-inspection-validation-1440x900.png','screenshots/new-inspection-validation-390x844.png'];\nfor(const p of required)if(\"'!fs.existsSync(path.join(r3,p)))errors.push('\"'required:'+p);\nconst out={r1ManifestEntries:r1m.files.length,r2ManifestArtifacts:r2m.artifacts.length,r2LineageFiles:lin.recoveredFiles.length,r3ManifestArtifacts:m.retainedInventory.artifactCount,r3ManifestBytes:fs.statSync(path.join(r3,'artifact-manifest.json')).size,manifestSha256:h(path.join(r3,'artifact-manifest.json')),bundleSha256:h(bundle),bundleBytes:fs.statSync(bundle).size,r1BytesPreserved:errors.filter(x=>x.startsWith('r1:')).length===0,requiredFiles:required.length,errors};\nconsole.log(JSON.stringify(out,null,2)); if(errors.length)process.exit(2);\nNODE\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git rev-parse HEAD && rtk git rev-parse 43ae1b27257697093d893d504b7e22b6f25cfad7''^{tree} && rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk mkdir -p /Users/haewonkim/.codex-fabric/results/CF-717607f02dc14c00239c7fda && rtk cp -p /Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/artifact-manifest.json /Users/haewonkim/.codex-fabric/results/CF-717607f02dc14c00239c7fda/r3-artifact-manifest.json && rtk env RECEIPT_ROOT=/Users/haewonkim/.codex-fabric/results/CF-717607f02dc14c00239c7fda ARTIFACT_ROOT=/Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge node --input-type=module <<'NODE'\nimport fs from 'node:fs'; import path from 'node:path'; import crypto from 'node:crypto';\nconst outRoot=process.env.RECEIPT_ROOT, artifactRoot=process.env.ARTIFACT_ROOT;\nconst h=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');\nconst receipt={\n  schemaVersion:'project-os.artifact-stage-receipt/1',\n  kind:'project-os.artifact-stage-receipt',\n  status:'Staged',\n  stageErrorCode:null,\n  fabric:{jobId:'CF-717607f02dc14c00239c7fda',project:'expo-base',request:'chg107-artifact-stage-direct-r3',operation:'VERIFY',workBranch:'codex/expo-base-chg107-artifact-stage-direct-r3',targetBranch:'main'},\n  source:{repository:'kimhw8084/expo-base',head:'43ae1b27257697093d893d504b7e22b6f25cfad7',tree:'b20039ac26a13d1461e03d8ff79ff55040b04f9e'},\n  artifactRun:{runId:'AR-7',pageId:'3dec564c-8d04-81a8-87a8-d2ed1d4c23af',url:'https://app.notion.com/p/3dec564c8d0481a887a8d2ed1d4c23af',database:'Artifact Runs',status:'Staged'},\n  bridge:{implementation:'bounded-direct-notion-api-fallback',qualifiedHelper:'not available in this execution environment',provider:'host-managed Notion connector',uploadFlow:'Notion File Upload create -> signed multipart upload -> uploaded attachment -> Artifact Run properties/content',credentialRecorded:false},\n  manifest:{relativePath:'artifact-manifest.json',sha256:'d48628e954c9c078fb912c07a331c2f610d162f95b0b05f82b0025f65c9bec55',bytes:52811,artifactCount:29,retainedInventoryBytes:2459391},\n  bundle:{relativePath:'chg107-r2-recovered-evidence-bundle.tar.gz',sha256:'67d6f44fe95cd9dc0ed3f24c193cf02cc823976601e533f6a7f42cdc397364d3',bytes:2071770,memberCount:29,unchangedFromR2:true},\n  upload:{manifestAttachmentCount:1,artifactAttachmentCount:30,providerFileAttachmentCount:30,requiredScreenshotCount:8,uploadedBytes:4583972,bytesFormula:'52,811 manifest + 2,459,391 retained inventory + 2,071,770 complete bundle'},\n  readbackVerification:{verified:true,provider:'Notion fetch/search',checks:{exactTuple:true,projectRelation:true,sourceChangeRelation:true,statusStaged:true,stageErrorEmpty:true,artifactCountMatchesManifest:true,uploadedBytesNonzeroAndConsistent:true,manifestAttached:true,manifestShaMatches:true,bundleShaMatches:true,requiredReportsAttached:true,requiredScreenshotsDirectlyInspectable:true,diagnosticsAttached:true,decisiveLogsAttached:true,sourceSnapshotAttached:true,patchAttached:true,readerFacingContentPresent:true,exactTitleMatchCount:1,exactFabricJobMatchCount:1,noDuplicateActiveRun:true}},\n  lineage:{r1:{request:'chg107-ai-app-prove-v1',fabricJob:'CF-582b12ff4ec95bb62d090ca4',evidenceCommit:'a3ebe1f92d6b0a4e21aac14733eb5ebc903860f5',sourceBaseSha:'43ae1b27257697093d893d504b7e22b6f25cfad7',siteLedgerGeneratedBaselineCommit:'9a545b08f39741aca8b60c6f8aad51723891f99c',siteLedgerFinalCommit:'2fcc9cad34f8ffc285d1168f45cd9a107997d76e'},r2:{request:'chg107-artifact-stage-verify-r2',fabricJob:'CF-2447fa57f30a3ddbce930b70',evidenceCommit:'980b7a56356bf9731337569864fbf4c36c3c1e47',recoveryLineageSha256:'491ec28bc3f11715a77918989164f42bad78307bbd01a4ad986c6088f59dbfd6',prestageManifestSha256:'f0e04b97517016706544036a42e2edd8a04a206e005b28ff61134073855d98fc',bundleSha256:'67d6f44fe95cd9dc0ed3f24c193cf02cc823976601e533f6a7f42cdc397364d3'}},\n  integrity:{r1EvidenceBytesPreservedUnchanged:true,r2RecoveryHashesVerified:true,requiredAcceptanceFiles:25,expoBaseSourceMutated:false,siteLedgerRebuilt:false,selfAccepted:false,promoted:false},\n  durableEvidence:{receiptPath:'results/CF-717607f02dc14c00239c7fda/r3-stage-receipt.json',manifestPath:'results/CF-717607f02dc14c00239c7fda/r3-artifact-manifest.json'}\n};\nconst p=path.join(outRoot,'r3-stage-receipt.json'); fs.writeFileSync(p,JSON.stringify(receipt,null,2)+'\\\\n');\nconsole.log(JSON.stringify({path:p,receiptSha256:h(p),bytes:fs.statSync(p).size,manifestCopySha256:h(path.join(outRoot,'r3-artifact-manifest.json'))},null,2));\nNODE\nrtk jq '{schemaVersion,kind,status,stageErrorCode,fabric,source,artifactRun,manifest,bundle,upload,readbackVerification,integrity}' /Users/haewonkim/.codex-fabric/results/CF-717607f02dc14c00239c7fda/r3-stage-receipt.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk cp -p /Users/haewonkim/.codex-fabric/results/CF-717607f02dc14c00239c7fda/r3-stage-receipt.json /Users/haewonkim/.codex-fabric/jobs/CF-717607f02dc14c00239c7fda.running/artifact-bridge/r3-stage-receipt.json\nrtk shasum -a 256 /Users/haewonkim/.codex-fabric/results/CF-717607f02dc14c00239c7fda/r3-stage-receipt.json /Users/haewonkim/.codex-fabric/results/CF-717607f02dc14c00239c7fda/r3-artifact-manifest.json\nrtk jq '{schemaVersion,kind,status,stageErrorCode,artifactRun,source,manifest,bundle,upload,readbackVerification,integrity}' /Users/haewonkim/.codex-fabric/results/CF-717607f02dc14c00239c7fda/r3-stage-receipt.json >/dev/null\nrtk git status --short --branch\nrtk git rev-parse HEAD\nrtk git diff --check\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 377,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 96.2,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 4696576,
+      "fresh_input_tokens": 185550,
+      "input_tokens": 4882126,
+      "non_reasoning_output_tokens": 30379,
+      "output_tokens": 53695,
+      "reasoning_output_tokens": 23316,
+      "total_processed_tokens": 4935821
+    },
+    "warnings": []
+  },
+  "commits": [],
+  "diff": {
+    "additions": 0,
+    "changed_files": 0,
+    "commit_count": 0,
+    "deletions": 0
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 0,
+    "items": [],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-17T18:58:54Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "branch": "codex/expo-base-chg107-artifact-stage-direct-r3",
+    "head_sha": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "remote_exact_head": true,
+    "remote_head_sha": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "work_branch": "codex/expo-base-chg107-artifact-stage-direct-r3",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-717607f02dc14c00239c7fda",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg107-artifact-stage-direct-r3",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg107-artifact-stage-direct-r3"
+  },
+  "operation": "VERIFY",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg107-artifact-stage-direct-r3",
+  "schema_version": 1,
+  "started_at": "2026-09-17T18:39:43Z",
+  "status": "EXECUTED_NO_CHANGE",
+  "timing": {
+    "execution_seconds": 1151,
+    "queue_seconds": 1,
+    "total_seconds": 1152
+  },
+  "transport": {
+    "bytes": 9580,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 9250,
+    "prompt_sha256": "4ba0ee795dcc57362419725764df0710cd09c60fe6cd49e0ac82d3ca3812ad78",
+    "sha256": "717607f02dc14c00239c7fda4bbd79ef2d269b175ff9772f0437f441ca017406"
+  }
+}
