@@ -1,14 +1,17 @@
-import { ActivityIndicator, Pressable, View } from 'react-native';
+import { createElement, type MouseEvent as ReactMouseEvent } from 'react';
+import { ActivityIndicator, Platform, Pressable, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { Icon, type IconName, type IconTone } from '@expo-base/icons';
 import { Text, useInteractionState } from '@expo-base/primitives';
 
 type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 type Size = 'sm' | 'md' | 'lg';
+type ButtonType = 'button' | 'submit';
 
 export interface ButtonProps {
   label: string;
   onPress: () => void;
+  type?: ButtonType;
   variant?: Variant;
   size?: Size;
   disabled?: boolean;
@@ -21,12 +24,42 @@ export interface ButtonProps {
   responsiveWidth?: 'auto' | 'compact-full';
 }
 
-export function Button({ label, onPress, variant = 'primary', size = 'md', disabled = false, loading = false, iconStart, iconEnd, accessibilityLabel, testID, fullWidth = false, responsiveWidth = 'auto' }: ButtonProps) {
+export function Button({ label, onPress, type = 'button', variant = 'primary', size = 'md', disabled = false, loading = false, iconStart, iconEnd, accessibilityLabel, testID, fullWidth = false, responsiveWidth = 'auto' }: ButtonProps) {
   const unavailable = disabled || loading;
   const { theme } = useUnistyles();
   const { hovered, focused, interactionProps } = useInteractionState();
   const iconTone: IconTone = variant === 'primary' || variant === 'danger' ? 'onPrimary' : 'primary';
   const iconSize = size === 'lg' ? 'md' : 'sm';
+  const buttonStyle = [
+    styles.base, fullWidth && styles.fullWidth, responsiveWidth === 'compact-full' && styles.compactFull, styles[size], styles[variant],
+    hovered && !unavailable && styles[`${variant}Hover`],
+    focused && styles.focused,
+    unavailable && styles.disabled,
+  ];
+  const content = (
+    <View pointerEvents="none" style={styles.content} accessibilityElementsHidden={loading} importantForAccessibility={loading ? 'no-hide-descendants' : 'auto'}>
+      <View style={[styles.buttonContent, loading && styles.loadingContent]}>
+        {iconStart ? <View style={styles.icon}><Icon name={iconStart} size={iconSize} tone={iconTone} /></View> : null}
+        <View style={styles.label}><Text variant="label" align="center" tone={variant === 'primary' || variant === 'danger' ? 'onPrimary' : 'primary'}>{label}</Text></View>
+        {iconEnd ? <View style={styles.icon}><Icon name={iconEnd} size={iconSize} tone={iconTone} /></View> : null}
+      </View>
+      {loading ? <ActivityIndicator size={size === 'lg' ? 'large' : 'small'} style={styles.loadingIndicator} color={variant === 'primary' || variant === 'danger' ? theme.colors.interactive.onPrimary : theme.colors.text.primary} /> : null}
+    </View>
+  );
+
+  if (Platform.OS === 'web' && type === 'submit') {
+    return createElement('button', {
+      type: 'submit',
+      disabled: unavailable,
+      role: 'button',
+      'aria-label': accessibilityLabel ?? label,
+      'aria-disabled': unavailable,
+      'aria-busy': loading,
+      'data-testid': testID,
+      onClick: (event: ReactMouseEvent<HTMLButtonElement>) => { if (!event.currentTarget.form) onPress(); },
+      style: { all: 'unset', display: 'inline-flex', maxWidth: '100%', cursor: unavailable ? 'default' : 'pointer' },
+    }, <View pointerEvents="none" style={buttonStyle}>{content}</View>);
+  }
 
   return (
     <Pressable
@@ -42,22 +75,9 @@ export function Button({ label, onPress, variant = 'primary', size = 'md', disab
       testID={testID}
       hitSlop={size === 'sm' ? theme.interactionFeedback.compactHitSlop : undefined}
       {...interactionProps}
-      style={({ pressed }) => [
-        styles.base, fullWidth && styles.fullWidth, responsiveWidth === 'compact-full' && styles.compactFull, styles[size], styles[variant],
-        hovered && !unavailable && styles[`${variant}Hover`],
-        focused && styles.focused,
-        pressed && !unavailable && styles[`${variant}Pressed`],
-        unavailable && styles.disabled,
-      ]}
+      style={({ pressed }) => [...buttonStyle, pressed && !unavailable && styles[`${variant}Pressed`]]}
     >
-      <View pointerEvents="none" style={styles.content} accessibilityElementsHidden={loading} importantForAccessibility={loading ? 'no-hide-descendants' : 'auto'}>
-        <View style={[styles.buttonContent, loading && styles.loadingContent]}>
-          {iconStart ? <View style={styles.icon}><Icon name={iconStart} size={iconSize} tone={iconTone} /></View> : null}
-          <View style={styles.label}><Text variant="label" align="center" tone={variant === 'primary' || variant === 'danger' ? 'onPrimary' : 'primary'}>{label}</Text></View>
-          {iconEnd ? <View style={styles.icon}><Icon name={iconEnd} size={iconSize} tone={iconTone} /></View> : null}
-        </View>
-        {loading ? <ActivityIndicator size={size === 'lg' ? 'large' : 'small'} style={styles.loadingIndicator} color={variant === 'primary' || variant === 'danger' ? theme.colors.interactive.onPrimary : theme.colors.text.primary} /> : null}
-      </View>
+      {content}
     </Pressable>
   );
 }
