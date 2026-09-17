@@ -1,0 +1,363 @@
+{
+  "accepted_at": "2026-09-17T13:59:52Z",
+  "changed_files": [],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sed -n '1,260p' /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/browser-console-runtime-diagnostics.json\nrtk proxy sed -n '1,320p' /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshot-state-manifest.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy git status --short\nrtk proxy git diff -- tsconfig.json package-lock.json | sed -n '1,260p'\nrtk proxy git diff --stat\nrtk proxy rg -n 'node_modules|dist|\\\\.expo|\\\\.DS_Store' .gitignore 2>/dev/null || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sed -n '1,220p' .gitignore\nrtk proxy find .expo -maxdepth 2 -type f -print -exec sed -n '1,80p' {} \\\\; 2>/dev/null\nrtk proxy git status --short --untracked-files=all | sed -n '1,240p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sed -n '1,160p' .gitignore; rtk proxy find .expo -maxdepth 2 -type f -print; rtk proxy git diff -- tsconfig.json; rtk proxy git status --short --branch\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run verify'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run typecheck'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:golden-patterns'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:golden-architecture'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sed -n '1,120p' app/sign-in.tsx; rtk proxy sed -n '1,180p' routes.ts; rtk proxy sed -n '1,180p' expo-base.routes.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy rg -n \\\"consumeReturnIntent|replace\\\\(\\\" node_modules/@expo-base -g '*.d.ts' -g '*.ts' | head -80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy find node_modules/@expo-base -maxdepth 3 -type f | head -80; rtk proxy rg -n \\\"consumeReturnIntent|ReturnIntent|router.replace\\\" node_modules -g '*.d.ts' | head -120\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ls -la node_modules | head -40; rtk proxy ls -la packages | head -40; rtk proxy sed -n '1,200p' node_modules/@expo-base/navigation-router/package.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy rg -n \\\"consumeReturnIntent|replace\\\" packages/navigation-router packages/auth node_modules/@expo-base/navigation-router node_modules/@expo-base/auth -g '*.ts' -g '*.tsx' | head -120\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy rg -n \\\"consumeReturnIntent|returnIntent|href\\\" packages/auth/src node_modules/@expo-base/auth/src -g '*.ts' -g '*.tsx' | head -160; rtk proxy sed -n '1,100p' packages/navigation-router/src/index.tsx\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy rg --files packages/auth/src node_modules/@expo-base/auth/src; rtk proxy sed -n '1,120p' packages/auth/src/returnIntent.ts; rtk proxy sed -n '1,100p' packages/auth/src/index.ts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy rg -n \\\"consumeReturnIntent|choosePostAuthDestination\\\" packages/runtime packages -g '*.ts' -g '*.tsx' | head -160\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run typecheck'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:golden-patterns'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:golden-architecture'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --input-type=module -e \"import fs from '\"'node:fs'; import path from 'node:path'; const root=process.cwd(); const pkg=JSON.parse(fs.readFileSync('package.json','utf8')); const deps={...pkg.dependencies,...pkg.devDependencies}; const names=Object.keys(deps).filter((name)=>name.startsWith('@expo-base/')); for (const name of names) { const resolved=import.meta.resolve(name); const file=resolved.startsWith('file://') ? new URL(resolved).pathname : resolved; const inside=path.resolve(file).startsWith(path.resolve(root)+path.sep); console.log(JSON.stringify({name,declared:deps[name],resolved:file,insideGeneratedRepository:inside})); }\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy rg -n \\\"expo-network|expo-application|expo-device|expo-constants|expo-secure-store|@react-native|Platform|AppState|SecureStore|AsyncStorage|localStorage|fetch\\\\\\\\(\\\" app features || true; rtk proxy rg -n \\\"useExpoBaseConnectivity|runtime-signals|ExpoBaseRuntimeProvider|runtimeCapabilities|capability\\\" app features capabilities.ts expo-base.capabilities.json expo-base.routes.json routes.ts | head -160; rtk proxy rg -n \\\"(\"'^|[[:space:]'\"\\\\\\\"'])\\\\.\\\\./\\\\.\\\\./|/Users/haewonkim|/private/var|file:|workspace:|link:\\\" AGENTS.md README.md golden.catalog.json golden.patterns.json expo-base.api.json expo-base.capabilities.json expo-base.routes.json package.json tsconfig.json app.config.ts routes.ts capabilities.ts app features scripts || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --input-type=module -e \"import fs from '\"'node:fs'; import path from 'node:path'; const root=path.resolve('.'); const files=[]; const walk=(dir)=>{for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(['node_modules','.expo','dist','web-build','.git'].includes(e.name)) continue; const p=path.join(dir,e.name); if(e.isDirectory()) walk(p); else if(/\\\\\\\\.(ts|tsx|mjs|json)\"'$/.test(e.name)) files.push(p);}}; walk('\"'.'); const escapes=[]; for(const file of files){const s=fs.readFileSync(file,'utf8'); const re=/(?:from|import\\\\\\\\s*\\\\\\\\(|require\\\\\\\\s*\\\\\\\\()\\\\\\\\s*['\\\\\\\"](\\\\\\\\.{1,2}\\\\\\\\/[\"'^'\"'\\\\\\\"]+)['\\\\\\\"]/g; let m; while((m=re.exec(s))){const resolved=path.resolve(path.dirname(file),m[1]); if(\"'!(resolved===root||resolved.startsWith(root+path.sep))) escapes.push({file:path.relative(root,file),specifier:m[1],resolved});}} console.log(JSON.stringify({scannedFiles:files.length,escapingRelativeImports:escapes},null,2));\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node /var/folders/nz/6q2p_ldx3txdbw_gttbpnwjr0000gn/T/chg107-cdp-capture.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git status --short --untracked-files=all; rtk proxy git diff --stat; rtk proxy git diff -- app.config.ts app/sign-in.tsx tsconfig.json routes.ts expo-base.routes.json .gitignore'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy git add .gitignore app.config.ts app/index.tsx app/sign-in.tsx app/inspections.tsx 'app/inspections/[id].tsx' app/new-inspection.tsx features package-lock.json expo-base.routes.json routes.ts tsconfig.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git diff --cached --stat; rtk proxy git diff --cached --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy git commit -m 'feat: prove Site Ledger inspection workspace'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git status --short --branch; rtk proxy git rev-parse HEAD; rtk proxy git rev-parse HEAD''^; rtk proxy git diff --stat 9a545b08f39741aca8b60c6f8aad51723891f99c..HEAD; rtk proxy git diff --numstat 9a545b08f39741aca8b60c6f8aad51723891f99c..HEAD | tail -5'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy find /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge -maxdepth 2 -type f -print; rtk proxy sed -n '1,240p' /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshot-state-manifest.json; rtk proxy sed -n '1,240p' /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/browser-console-runtime-diagnostics.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy tar -czf /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/site-ledger-final-source.tar.gz --exclude=./node_modules --exclude=./.expo --exclude=./.git --exclude=./dist --exclude=./web-build --exclude=./coverage --exclude=./.cache --exclude=./.turbo --exclude='*.png' --exclude='*.jpg' --exclude='*.jpeg' --exclude='*.webp' --exclude='*.pem' --exclude='*.key' --exclude='*.env' --exclude='.env*' -C /var/folders/nz/6q2p_ldx3txdbw_gttbpnwjr0000gn/T/chg107-site-ledger.ADFy0Xi1DM .\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git diff --binary 9a545b08f39741aca8b60c6f8aad51723891f99c..2fcc9cad34f8ffc285d1168f45cd9a107997d76e -- . > /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/site-ledger-baseline-to-final.patch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy tar -czf /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/chg107-local-evidence-bundle.tar.gz -C /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge screenshots browser-console-runtime-diagnostics.json screenshot-state-manifest.json source-and-generation.log initial-npm-install.log initial-verify.log first-pass-product-typecheck.log first-pass-web.log final-verify.log final-typecheck.log final-golden-patterns.log final-golden-architecture.log contract-scans.log capture-run.log site-ledger-final-source.tar.gz site-ledger-baseline-to-final.patch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy shasum -a 256 /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/site-ledger-final-source.tar.gz /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/site-ledger-baseline-to-final.patch /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/chg107-local-evidence-bundle.tar.gz /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshot-state-manifest.json /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/browser-console-runtime-diagnostics.json /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/source-and-generation.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/initial-npm-install.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/initial-verify.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/first-pass-product-typecheck.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/first-pass-web.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/final-verify.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/final-typecheck.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/final-golden-patterns.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/final-golden-architecture.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/contract-scans.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/capture-run.log /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshots/dashboard-1440x900.png /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshots/dashboard-390x844.png /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshots/inspections-1440x900.png /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshots/inspections-390x844.png /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshots/inspection-detail-1440x900.png /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshots/inspection-detail-390x844.png /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshots/new-inspection-validation-1440x900.png /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/screenshots/new-inspection-validation-390x844.png'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy /Users/haewonkim/.codex-fabric/bin/projectos-integrate-stdin --help; rtk proxy /Users/haewonkim/.codex-fabric/current/fabric.py --help'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy python3 /Users/haewonkim/.codex-fabric/libexec/projectos_integrate.py --help; rtk proxy python3 /Users/haewonkim/.codex-fabric/current/fabric.py --help'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy rg -n \\\"artifact|bridge|manifest|bundle|stage|receipt|run identity|Project OS\\\" /Users/haewonkim/.codex-fabric/libexec/projectos_integrate.py /Users/haewonkim/.codex-fabric/current/fabric.py /Users/haewonkim/.codex-fabric/bin/projectos-integrate-stdin /Users/haewonkim/.codex-fabric -g '*.py' -g '*.md' | head -240\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy shasum -a 256 /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/local-artifact-manifest.json; rtk proxy du -h /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/site-ledger-final-source.tar.gz /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/site-ledger-baseline-to-final.patch /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/chg107-local-evidence-bundle.tar.gz'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --input-type=module -e \"import fs from '\"'node:fs'; const p='/Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/proving-report.json'; const v=JSON.parse(fs.readFileSync(p,'utf8')); console.log(JSON.stringify({schemaVersion:v.schemaVersion,findings:v.findings.length,source:v.source.finalHead,independent:v.independentRepository.finalCommit,artifactRun:v.artifactBridge.qualifiedMachineStage},null,2));\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run web -- --port 8081'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --remote-debugging-port=9222 --user-data-dir=/var/folders/nz/6q2p_ldx3txdbw_gttbpnwjr0000gn/T/chg107-chrome-profile --no-first-run --no-default-browser-check --disable-gpu about:blank\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git status --short --branch; rtk proxy git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git status --short --branch; rtk proxy git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy find /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge -maxdepth 2 -type f -print | sort; rtk proxy tar -tzf /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/site-ledger-final-source.tar.gz | rtk proxy rg '(\"'^|/)(node_modules|'\"\\\\.expo|dist|web-build|coverage|\\\\.cache|\\\\.git)(/|\"'$)'\"' || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --input-type=module -e \"import fs from '\"'node:fs'; for (const p of ['/Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/proving-report.json','/Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/local-artifact-manifest.json','/Users/haewonkim/.codex-fabric/results/CF-582b12ff4ec95bb62d090ca4/evidence-manifest.json']) { const v=JSON.parse(fs.readFileSync(p,'utf8')); console.log(p+': valid JSON'); }\\\"; rtk proxy shasum -a 256 /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/proving-report.json /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/proving-report.md /Users/haewonkim/.codex-fabric/results/CF-582b12ff4ec95bb62d090ca4/evidence-manifest.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy shasum -a 256 /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/proving-report.json /Users/haewonkim/.codex-fabric/results/CF-582b12ff4ec95bb62d090ca4/evidence-manifest.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy shasum -a 256 /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/proving-report.json /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/proving-report.md /Users/haewonkim/.codex-fabric/jobs/CF-582b12ff4ec95bb62d090ca4.running/artifact-bridge/local-artifact-manifest.json /Users/haewonkim/.codex-fabric/results/CF-582b12ff4ec95bb62d090ca4/evidence-manifest.json; rtk proxy git status --short --branch; rtk proxy git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --input-type=module -e \"import fs from '\"'node:fs'; const p='/Users/haewonkim/.codex-fabric/results/CF-582b12ff4ec95bb62d090ca4/evidence-manifest.json'; const v=JSON.parse(fs.readFileSync(p,'utf8')); console.log(JSON.stringify({status:v.status,sourceSha:v.sourceSha,independentFinal:v.independentFinal,localManifestSha256:v.artifactBridge.localManifestSha256,localBundleSha256:v.artifactBridge.localBundleSha256,provingReportJsonSha256:v.artifactBridge.provingReportJsonSha256,artifactRunIdentity:v.artifactBridge.artifactRunIdentity,artifactRunUrl:v.artifactBridge.artifactRunUrl,machineStageReceipt:v.artifactBridge.machineStageReceipt},null,2));\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git status --porcelain=v1 --branch; rtk proxy git rev-parse HEAD; rtk proxy git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git status --porcelain=v1 --branch; rtk proxy git rev-parse HEAD; rtk proxy git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 271,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 95.9,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 11587200,
+      "fresh_input_tokens": 495974,
+      "input_tokens": 12083174,
+      "non_reasoning_output_tokens": 52722,
+      "output_tokens": 86728,
+      "reasoning_output_tokens": 34006,
+      "total_processed_tokens": 12169902
+    },
+    "warnings": []
+  },
+  "commits": [],
+  "diff": {
+    "additions": 0,
+    "changed_files": 0,
+    "commit_count": 0,
+    "deletions": 0
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 0,
+    "items": [],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-17T14:33:10Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "branch": "codex/expo-base-chg107-ai-app-prove-v1",
+    "head_sha": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "remote_exact_head": true,
+    "remote_head_sha": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "work_branch": "codex/expo-base-chg107-ai-app-prove-v1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-582b12ff4ec95bb62d090ca4",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg107-ai-app-prove-v1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg107-ai-app-prove-v1"
+  },
+  "operation": "VERIFY",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg107-ai-app-prove-v1",
+  "schema_version": 1,
+  "started_at": "2026-09-17T13:59:52Z",
+  "status": "EXECUTED_NO_CHANGE",
+  "timing": {
+    "execution_seconds": 1998,
+    "queue_seconds": 0,
+    "total_seconds": 1998
+  },
+  "transport": {
+    "bytes": 10419,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 10106,
+    "prompt_sha256": "a0c5c0ab97938490697d71ba0995fc94bda13e0106a4a48093c41b4c4e4a6f4e",
+    "sha256": "582b12ff4ec95bb62d090ca440e2d1a68d1e668aa464936f723fdab529a4e628"
+  }
+}
