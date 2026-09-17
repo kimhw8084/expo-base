@@ -1,0 +1,298 @@
+{
+  "accepted_at": "2026-09-17T13:15:54Z",
+  "changed_files": [
+    {
+      "additions": 9,
+      "deletions": 1,
+      "path": "README.md",
+      "status": "M"
+    },
+    {
+      "additions": 39,
+      "deletions": 8,
+      "path": "docs/GENERATOR.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 1,
+      "path": "docs/PORTABILITY.md",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 2,
+      "path": "docs/SCREEN_SCAFFOLDING.md",
+      "status": "M"
+    },
+    {
+      "additions": 222,
+      "deletions": 6,
+      "path": "packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 1,
+      "path": "scripts/golden-catalog-lib.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "scripts/golden-pattern-lib.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 60,
+      "deletions": 2,
+      "path": "scripts/test-generator.mjs",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"pwd && git status --short --branch && git rev-parse --show-toplevel && git rev-parse HEAD && git branch --show-current && sed -n '1,240p' /Users/haewonkim/.codex/RTK.md && sed -n '1,240p' /Users/haewonkim/.codex/law.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git show -s --format='%H%n%P%n%s' 4e95cef5a6fd131257a68eb262156ffd52225d9d && rtk git merge-base --is-ancestor 73e48168271484db8153cfd4366ea1ffbfa4c866 4e95cef5a6fd131257a68eb262156ffd52225d9d && rtk git worktree list --porcelain && rtk git branch --show-current && rtk git status --short --branch\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git merge --ff-only 4e95cef5a6fd131257a68eb262156ffd52225d9d && rtk git rev-parse HEAD && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node --version && rtk npm --version && rtk rg --files -g 'package.json' -g 'package-lock.json' -g 'npm-shrinkwrap.json' -g 'yarn.lock' -g 'pnpm-lock.yaml' -g '.nvmrc' -g '.node-version' -g '.npmrc' -g 'AGENTS.md' | sort && rtk rg -n '\\\"quality:gate17\\\"|quality:gate17|\\\"test:generator\\\"|\\\"test:screen-scaffolder\\\"|\\\"check:package-manifests\\\"|\\\"check:public-api\\\"|\\\"api:snapshot:check\\\"|\\\"check:golden-patterns\\\"|\\\"check:golden-architecture\\\"|\\\"typecheck\\\"' package.json package-lock.json docs scripts 2>/dev/null\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,140p' package.json && rtk sed -n '1,160p' .npmrc && rtk rg -n 'npm (ci|install)|Node|node|dependencies|install' README.md docs/CONTRIBUTING.md docs/CERTIFICATION.md AGENTS.md 2>/dev/null | head -160\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk command -v node && rtk command -v npm && rtk command -v nvm || true && rtk nvm ls || true && rtk ls -ld node_modules package-lock.json 2>/dev/null || true && rtk git diff --stat 73e48168271484db8153cfd4366ea1ffbfa4c866..HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ls -1 /Users/haewonkim/.nvm/versions/node && rtk find /Users/haewonkim/.nvm/versions/node -maxdepth 2 -type f -path '*/bin/node' -print 2>/dev/null || true && rtk sed -n '1,80p' README.md && rtk sed -n '1,140p' scripts/check-node-version.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin node --version && rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm --version && rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm config get registry && rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm config get package-lock'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk mkdir -p /tmp/chg102-gate17-verify-r2 && rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm install'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git diff -- package-lock.json && rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin node --version && rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm --version'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm run quality:gate17'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm run test:screen-scaffolder'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm run check:golden-patterns'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm run check:golden-architecture'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/bin:/bin npm run typecheck'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD && rtk git branch --show-current && rtk git status --porcelain=v1 && rtk git status --short --branch && rtk git rev-parse main && rtk git diff --stat 73e48168271484db8153cfd4366ea1ffbfa4c866..HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git status --porcelain=v1 && rtk proxy git status --short --branch && rtk proxy git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 57,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 93.43,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 1375232,
+      "fresh_input_tokens": 96653,
+      "input_tokens": 1471885,
+      "non_reasoning_output_tokens": 5311,
+      "output_tokens": 9793,
+      "reasoning_output_tokens": 4482,
+      "total_processed_tokens": 1481678
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "4e95cef5a6fd131257a68eb262156ffd52225d9d",
+      "subject": "feat(generator): emit standalone product repositories"
+    }
+  ],
+  "diff": {
+    "additions": 350,
+    "changed_files": 8,
+    "commit_count": 1,
+    "deletions": 22
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 4,
+    "items": [
+      {
+        "bytes": 4167,
+        "path": "README.md",
+        "sha256": "b652416b6ace68fa1fdfc1a1ef5208367ff311a3f46fbe2cd76ca4f7f7581348"
+      },
+      {
+        "bytes": 5527,
+        "path": "docs/GENERATOR.md",
+        "sha256": "79d501b854e7196eb31a8662d46e7669027dcf1b685c4e87f84b12fcec0ff4e4"
+      },
+      {
+        "bytes": 1409,
+        "path": "docs/PORTABILITY.md",
+        "sha256": "d517b68246eff3cd0eaac67257b78355072baacd5e173a19977529c2326773aa"
+      },
+      {
+        "bytes": 2411,
+        "path": "docs/SCREEN_SCAFFOLDING.md",
+        "sha256": "63d5f8e9f9b5e510c8b93d2357bc6d82f6a13780750d63075408b53a11c170d3"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-17T13:21:52Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "73e48168271484db8153cfd4366ea1ffbfa4c866",
+    "branch": "codex/expo-base-chg102-gate17-verify-r2",
+    "head_sha": "4e95cef5a6fd131257a68eb262156ffd52225d9d",
+    "remote_exact_head": true,
+    "remote_head_sha": "4e95cef5a6fd131257a68eb262156ffd52225d9d",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "73e48168271484db8153cfd4366ea1ffbfa4c866",
+    "work_branch": "codex/expo-base-chg102-gate17-verify-r2",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-aefb3af68e4c8c19909ef7e9",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg102-gate17-verify-r2",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg102-gate17-verify-r2"
+  },
+  "operation": "VERIFY",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg102-gate17-verify-r2",
+  "schema_version": 1,
+  "started_at": "2026-09-17T13:15:54Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 358,
+    "queue_seconds": 0,
+    "total_seconds": 358
+  },
+  "transport": {
+    "bytes": 3825,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 3511,
+    "prompt_sha256": "4225186aace0545c1d88ff743f3cafc1daa2b83cc3946be3f62336e890e117cf",
+    "sha256": "aefb3af68e4c8c19909ef7e96cc0faeb58e56cb94f391d37d9945a8dc0a11fd3"
+  }
+}
