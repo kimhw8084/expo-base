@@ -31,6 +31,7 @@ export function validateGoldenPatterns(root, registry = readGoldenPatterns(root)
 }
 
 export function renderGoldenPatterns(registry) {
+  const scaffoldApp = registry.scaffoldApp ?? 'apps/your-app';
   const lines = [
     '<!-- Generated from golden.patterns.json. Do not edit by hand; run npm run golden:patterns:write. -->',
     '',
@@ -42,7 +43,7 @@ export function renderGoldenPatterns(registry) {
     '## New screen flow',
     '',
     '1. Match the request to a pattern below.',
-    '2. Run `npm run scaffold:screen -- --app apps/your-app --name route-name --pattern pattern-id` when it is scaffoldable.',
+    `2. Run \`npm run scaffold:screen -- --app ${scaffoldApp} --name route-name --pattern pattern-id\` when it is scaffoldable.`,
     '3. Replace only the explicit domain TODOs: models, service loader/mutation, copy, and unique visualization.',
     '4. Run `npm run check:golden-architecture` and focused feature tests.',
     '',

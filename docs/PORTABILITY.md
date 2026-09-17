@@ -15,7 +15,10 @@ Expo Base is designed so product applications can change product domain, backend
 
 `npm run create:app -- --name "Product" --slug product --accent blue`
 
-creates a new Expo workspace with its own brand and identifiers while retaining the same platform packages.
+creates an independent npm-workspace repository with its own brand and identifiers plus the
+manifest-derived vendored platform packages required by the product contract. It has local Golden
+tooling and can be moved completely outside the Expo Base source workspace. Use
+`--mode workspace` only for Expo Base reference/testing proving workflows.
 
 ## Native configuration
 

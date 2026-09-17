@@ -95,7 +95,10 @@ export function validateGoldenCatalog(root, catalog = readGoldenCatalog(root)) {
     challenges.add(challenge.intent);
     for (const itemId of challenge.requiredItems) if (!ids.has(itemId)) errors.push(`Discovery challenge "${challenge.intent}" references missing item ${itemId}.`);
   }
-  for (const intent of REQUIRED_DISCOVERY_INTENTS) if (!challenges.has(intent)) errors.push(`Missing required Codex discovery challenge: "${intent}".`);
+  const requiredDiscoveryIntents = Array.isArray(catalog.requiredDiscoveryIntents)
+    ? catalog.requiredDiscoveryIntents
+    : REQUIRED_DISCOVERY_INTENTS;
+  for (const intent of requiredDiscoveryIntents) if (!challenges.has(intent)) errors.push(`Missing required Codex discovery challenge: "${intent}".`);
 
   const rendered = renderGoldenCatalog(catalog);
   const guidePath = path.join(root, catalog.humanGuide ?? 'docs/GOLDEN_CATALOG.md');

@@ -6,7 +6,7 @@ Golden workflow to an existing generated application. They deliberately remain s
 ## Start a standard screen
 
 ```sh
-npm run scaffold:screen -- --app apps/acme --name customers --pattern data-workspace --protected
+npm run scaffold:screen -- --name customers --pattern data-workspace --protected
 ```
 
 The command is non-interactive and therefore suitable for Codex and CI. Available scaffoldable
@@ -28,7 +28,15 @@ The app must already have the required optional capability profile. For example:
 
 ```sh
 create-expo-base-app --name Acme --slug acme --capabilities media,runtime-signals
-npm run scaffold:screen -- --app apps/acme --name imports --pattern import-workflow
+cd apps/acme
+npm run scaffold:screen -- --name imports --pattern import-workflow
+```
+
+For Expo Base's explicit source-workspace proving mode, keep the app path and run the workspace
+scaffolder from the source repository:
+
+```sh
+npm run scaffold:screen -- --app apps/acme --name customers --pattern data-workspace --protected
 ```
 
 `import-workflow` requires `media`; `offline-workspace` requires `runtime-signals`. The scaffold
