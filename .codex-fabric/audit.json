@@ -1,0 +1,451 @@
+{
+  "accepted_at": "2026-09-18T19:44:44Z",
+  "changed_files": [
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "docs/OVERLAYS.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 3,
+      "path": "packages/components/src/Button.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "packages/layouts/src/PriorityActionBar.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "packages/navigation/src/Tabs.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 3,
+      "path": "packages/overlays/src/OverlayRootProvider.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "packages/visualization-advanced/src/AdvancedCharts.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 8,
+      "path": "packages/visualization-advanced/src/SeriesCharts.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "packages/visualization/src/BarChart.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 2,
+      "path": "packages/visualization/src/LineChart.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "packages/visualization/src/StackedBarChart.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 9,
+      "deletions": 3,
+      "path": "scripts/check-overlay-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 25,
+      "deletions": 1,
+      "path": "tests/e2e/web/reference.spec.ts",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run runtime:test:web'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n '\\\"runtime:test:web\\\"|runtime:test:web' package.json scripts packages apps | head -30 && rtk rg -n 'test:overlay|toast is bounded' package.json tests scripts | head -30\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,260p' scripts/runtime-test-web.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -ef | rg 'runtime-test-web|npm run|expo export|node|playwright' | tail -40\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -ef | rg 'haewon|codex|zsh|bash' | tail -60\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run runtime:test:web'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk type rtk; rtk which rtk; rtk rtk --help | head -40'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm --version; rtk npm run check:overlay-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk pgrep -af node || true; rtk pgrep -af expo || true; rtk lsof -nP -iTCP -sTCP:LISTEN | tail -30'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 68415,68424,68463,68466,68467,68468,68470,68568,68585,68592,70521,70522,72741,75992,75993 -o pid,ppid,stat,etime,command'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 68415,68424,68463,68466,68467,68468,68470 -o pid,stat,etime,command && rtk lsof -nP -p 68415 -a -iTCP | tail -10'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run runtime:test:web'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk mktemp -d /tmp/expo-base-chg125-r1-final.XXXXXX'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run create:app -- --name \"CHG 125 Pointer Events\" --slug chg125-pointer-events --mode standalone --accent green --capabilities runtime-signals --directory /tmp/expo-base-chg125-r1-final.xGua1w'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,160p' .expo-base/source.json && PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH rtk npm install --no-audit --no-fund'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk find . -maxdepth 2 -type f | sort && rtk sed -n '1,220p' routes.ts && rtk sed -n '1,220p' app/index.tsx\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'useOverlayManager|showToast|Toast' packages docs apps/reference/app/overlays.tsx | head -80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,220p' app/_layout.tsx && rtk sed -n '1,180p' app.config.ts && rtk sed -n '1,220p' package.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,220p' routes.ts && rtk sed -n '1,260p' app/overlay-proof.tsx && PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH rtk npm exec -- expo config --type public && PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run typecheck'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node -e \\\"const fs=require('node:fs'); const path=require('node:path'); const p=JSON.parse(fs.readFileSync('package.json','utf8')); const names=Object.keys(p.dependencies).filter((n)=>n.startsWith('@expo-base/')); const rows=names.map((n)=>{const f=require.resolve(n+'/package.json',{paths:[process.cwd()]}); return n+' -> '+path.relative(process.cwd(),f)}); if(rows.some((x)=>x.includes('..'))) process.exit(1); console.log(rows.join('\\\\\\\\n')); console.log('All declared @expo-base/* dependencies resolve inside generated root.');\\\" && (rtk rg -n 'worktrees|expo-base-chg125-r1|/Users/haewonkim' app packages *.ts *.tsx || true) && rtk rg -n \\\"from ['\\\\\\\"]@expo-base/\\\" app/*.tsx\"",
+      "exit_code": 134,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm exec -- node -e \"const fs=require('\"'node:fs'); const path=require('node:path'); const p=JSON.parse(fs.readFileSync('package.json','utf8')); const names=Object.keys(p.dependencies).filter((n)=>n.startsWith('@expo-base/')); const rows=names.map((n)=>{const f=require.resolve(n+'/package.json',{paths:[process.cwd()]}); return n+' -> '+path.relative(process.cwd(),f)}); if(rows.some((x)=>x.includes('..'))) process.exit(1); console.log(rows.join('\\\\\\\\n')); console.log('All declared @expo-base/* dependencies resolve inside generated root.');\\\" && (rtk rg -n 'worktrees|expo-base-chg125-r1|/Users/haewonkim' app packages *.ts *.tsx || true) && rtk rg -n \\\"from ['\\\\\\\"]@expo-base/\\\" app/*.tsx\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk lsof -nP -iTCP:8098 -sTCP:LISTEN || true; rtk ps -ef | rg 'expo|metro|node' | tail -20\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm exec -- node --input-type=module -e \"import { chromium } from '\"'@playwright/test';\\\\nconst browser = await chromium.launch({ headless: true });\\\\nconst page = await browser.newPage({ viewport: { width: 1280, height: 800 } });\\\\nconst diagnostics = [];\\\\npage.on('console', (message) => {\\\\n  if (message.type() === 'warning' || message.type() === 'error') diagnostics.push(message.text());\\\\n});\\\\npage.on('pageerror', (error) => diagnostics.push('pageerror: ' + error.message));\\\\nawait page.goto('http://127.0.0.1:8098/overlay-proof', { waitUntil: 'networkidle' });\\\\nawait page.getByRole('button', { name: 'Show proof toast' }).click();\\\\nconst toast = page.getByText('Generated consumer toast');\\\\nawait toast.waitFor({ state: 'visible' });\\\\nconst lifetime = page.locator('[data-testid=\\\\\\\"toast-lifetime\\\\\\\"]');\\\\nawait lifetime.waitFor({ state: 'visible' });\\\\nconst lifetimeBox = await lifetime.boundingBox();\\\\nconst lifetimeTarget = lifetimeBox ? await page.evaluate(({ x, y }) => {\\\\n  const element = document.elementFromPoint(x, y);\\\\n  return { testId: element?.getAttribute('data-testid'), role: element?.getAttribute('role') };\\\\n}, { x: lifetimeBox.x + lifetimeBox.width / 2, y: lifetimeBox.y + lifetimeBox.height / 2 }) : null;\\\\nawait page.getByRole('button', { name: 'Background action' }).click();\\\\nconst backgroundCount = await page.getByTestId('background-count').textContent();\\\\nconst dismiss = page.getByRole('button', { name: 'Dismiss notification' });\\\\nawait dismiss.click();\\\\nawait toast.waitFor({ state: 'hidden' });\\\\nconst remainingToastCount = await toast.count();\\\\nconsole.log(JSON.stringify({ diagnostics, lifetimeVisible: true, lifetimeTarget, backgroundCount, remainingToastCount }));\\\\nif (diagnostics.length || backgroundCount \"'!== '\"'Background reached: 1' || remainingToastCount \"'!== 0 || lifetimeTarget?.testId === '\"'toast-lifetime') process.exit(1);\\\\nawait browser.close();\\\"\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm exec -- node --input-type=module <<'\"'NODE'\nimport { chromium } from '@playwright/test';\nconst browser = await chromium.launch({ headless: true });\nconst page = await browser.newPage({ viewport: { width: 1280, height: 800 } });\nconst diagnostics = [];\npage.on('console', (message) => {\n  if (message.type() === 'warning' || message.type() === 'error') diagnostics.push(message.text());\n});\npage.on('pageerror', (error) => diagnostics.push('pageerror: ' + error.message));\nawait page.goto('http://127.0.0.1:8098/overlay-proof', { waitUntil: 'networkidle' });\nawait page.getByRole('button', { name: 'Show proof toast' }).click();\nconst toast = page.getByText('Generated consumer toast');\nawait toast.waitFor({ state: 'visible' });\nconst lifetime = page.locator('[data-testid=\\\"toast-lifetime\\\"]');\nawait lifetime.waitFor({ state: 'visible' });\nconst lifetimeBox = await lifetime.boundingBox();\nconst lifetimeTarget = lifetimeBox ? await page.evaluate(({ x, y }) => {\n  const element = document.elementFromPoint(x, y);\n  return { testId: element?.getAttribute('data-testid'), role: element?.getAttribute('role') };\n}, { x: lifetimeBox.x + lifetimeBox.width / 2, y: lifetimeBox.y + lifetimeBox.height / 2 }) : null;\nawait page.getByRole('button', { name: 'Background action' }).click();\nconst backgroundCount = await page.getByTestId('background-count').textContent();\nconst dismiss = page.getByRole('button', { name: 'Dismiss notification' });\nawait dismiss.click();\nawait toast.waitFor({ state: 'hidden' });\nconst remainingToastCount = await toast.count();\nconsole.log(JSON.stringify({ diagnostics, lifetimeVisible: true, lifetimeTarget, backgroundCount, remainingToastCount }));\nif (diagnostics.length || backgroundCount \"'!== '\"'Background reached: 1' || remainingToastCount \"'!== 0 || lifetimeTarget?.testId === '\"'toast-lifetime') process.exit(1);\nawait browser.close();\nNODE\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run web -- --port 8098'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:overlay-interaction-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:interaction-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:feedback-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:accessibility-motion-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:overlay-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run test:feedback-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run test:overlay-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:golden-patterns'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run check:golden-architecture'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run typecheck'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run test:screen-scaffolder'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run quality:gate17'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n '\\\"(runtime:verify|golden:structural|mobile:verify|golden:verify)\\\"' package.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run runtime:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run golden:structural'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run mobile:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH rtk npm run golden:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check 6ad4f7be61af8d41b6ebae8d6421c7a120ad8f13 HEAD && rtk git diff --stat 6ad4f7be61af8d41b6ebae8d6421c7a120ad8f13 HEAD && rtk git status --short --branch && rtk git log --oneline --decorate -3'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git rev-parse HEAD && rtk git rev-parse origin/main && rtk git merge-base --is-ancestor 6ad4f7be61af8d41b6ebae8d6421c7a120ad8f13 HEAD && rtk git status --porcelain=v1 && rtk rg -n '<(View|Animated\\\\.View)[\"'^>]*pointerEvents='\"' packages apps --glob '*.{ts,tsx}' || true && rtk rg -n 'pointerEvents\\\\s*=' packages apps --glob '*.{ts,tsx}' || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -la .codex-fabric 2>/dev/null || true; rtk git show --stat --oneline HEAD; rtk git show --stat --oneline HEAD~1'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 350,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.04,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 26159360,
+      "fresh_input_tokens": 521749,
+      "input_tokens": 26681109,
+      "non_reasoning_output_tokens": 53105,
+      "output_tokens": 80214,
+      "reasoning_output_tokens": 27109,
+      "total_processed_tokens": 26761323
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "47986b97468ed463a7dac9720841cacafb2dae51",
+      "subject": "test(web): classify upstream firefox bundle warning"
+    },
+    {
+      "sha": "323cead7e74e3607a45d6efb84878ff9dac6cddc",
+      "subject": "fix(overlays): move pointer events into styles"
+    }
+  ],
+  "diff": {
+    "additions": 68,
+    "changed_files": 12,
+    "commit_count": 2,
+    "deletions": 29
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 1,
+    "items": [
+      {
+        "bytes": 2511,
+        "path": "docs/OVERLAYS.md",
+        "sha256": "dec5e558b67bdb3e8e5a0b2bef10fbb3ad8fa9863822895c80908af3a4fe4747"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-18T20:38:06Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "6ad4f7be61af8d41b6ebae8d6421c7a120ad8f13",
+    "branch": "codex/expo-base-chg125-pointer-events-style-r1",
+    "head_sha": "47986b97468ed463a7dac9720841cacafb2dae51",
+    "remote_exact_head": true,
+    "remote_head_sha": "47986b97468ed463a7dac9720841cacafb2dae51",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "6ad4f7be61af8d41b6ebae8d6421c7a120ad8f13",
+    "work_branch": "codex/expo-base-chg125-pointer-events-style-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-778f89b39c840496c4d571d0",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg125-pointer-events-style-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg125-pointer-events-style-r1"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg125-pointer-events-style-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-18T19:44:45Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 3201,
+    "queue_seconds": 1,
+    "total_seconds": 3202
+  },
+  "transport": {
+    "bytes": 9858,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 9533,
+    "prompt_sha256": "2f76642895d729f63f0c25e39501c9b2f1b5d08cb1297ee11cde29fd1fd2afde",
+    "sha256": "778f89b39c840496c4d571d0c774e5832e208e88ad27f3057b679c1dd3d6fd36"
+  }
+}
