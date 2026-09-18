@@ -1,0 +1,454 @@
+{
+  "accepted_at": "2026-09-18T12:39:26Z",
+  "changed_files": [
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "apps/reference/app/_layout.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 43,
+      "deletions": 0,
+      "path": "apps/reference/app/chg-110-submit.tsx",
+      "status": "A"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "apps/reference/app/sign-in.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 0,
+      "path": "docs/COMPONENTS.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/FORMS.md",
+      "status": "M"
+    },
+    {
+      "additions": 44,
+      "deletions": 18,
+      "path": "packages/components/src/Button.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 5,
+      "path": "packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 31,
+      "deletions": 12,
+      "path": "packages/layouts/src/FormScreen.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 18,
+      "deletions": 0,
+      "path": "scripts/test-generator.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 126,
+      "deletions": 0,
+      "path": "tests/e2e/web/chg-110-submit-button.spec.ts",
+      "status": "A"
+    },
+    {
+      "additions": 30,
+      "deletions": 0,
+      "path": "tests/e2e/web/product-quality-p1.spec.ts",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node --input-type=module -e '\"'import { chromium } from \\\"playwright\\\"; const browser = await chromium.launch(); const page = await browser.newPage({ viewport: { width: 390, height: 568 } }); await page.goto(\\\"http://127.0.0.1:59650/forms\\\"); await page.locator(\\\"#combobox-trigger\\\").scrollIntoViewIfNeeded(); await page.locator(\\\"#combobox-trigger\\\").click(); await page.getByRole(\\\"listbox\\\", { name: \\\"Primary issuer results\\\" }).waitFor(); const result = await page.evaluate(() => { const describe = (el) => { const rect = el.getBoundingClientRect(); const style = getComputedStyle(el); return { tag: el.tagName, id: el.id, role: el.getAttribute(\\\"role\\\"), testid: el.getAttribute(\\\"data-testid\\\"), rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height, bottom: rect.bottom }, style: { display: style.display, position: style.position, flex: style.flex, flexGrow: style.flexGrow, flexShrink: style.flexShrink, flexBasis: style.flexBasis, minWidth: style.minWidth, minHeight: style.minHeight, width: style.width, height: style.height, maxHeight: style.maxHeight, overflowY: style.overflowY, margin: style.margin, padding: style.padding, boxSizing: style.boxSizing } }; }; const main = document.querySelector(\\\"main\\\"); const form = main?.querySelector(\\\"form\\\"); const scroll = form ? Array.from(form.querySelectorAll(\\\"*\\\")).find((node) => { const style = getComputedStyle(node); return (style.overflowY === \\\"auto\\\" || style.overflowY === \\\"scroll\\\") && node.contains(document.getElementById(\\\"combobox-trigger\\\")); }) : null; const navs = Array.from(document.querySelectorAll(\\\"nav\\\")).map(describe); return { main: main && describe(main), form: form && describe(form), scroll: scroll && describe(scroll), trigger: describe(document.getElementById(\\\"combobox-trigger\\\")), popup: describe(document.querySelector(\\\"[data-testid=expo-base-popover-panel]\\\")), navs, body: { scrollHeight: document.body.scrollHeight, clientHeight: document.body.clientHeight, overflow: getComputedStyle(document.body).overflow }, formContainsPassword: document.querySelector(\\\"form input[type=password]\\\") \"'!== null }; }); console.log(JSON.stringify(result, null, 2)); await browser.close();'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'EXPO_BASE_BASE_URL=http://127.0.0.1:59650 PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm exec -- playwright test tests/e2e/web/product-quality-p1.spec.ts -g '\"'GPQ-008' --config playwright.config.ts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'EXPO_BASE_BASE_URL=http://127.0.0.1:59650 PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm exec -- playwright test tests/e2e/web/product-quality-p1.spec.ts -g '\"'GPQ-008' --config playwright.config.ts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'EXPO_BASE_BASE_URL=http://127.0.0.1:59650 PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm exec -- playwright test --config playwright.mobile.config.ts tests/e2e/mobile/mobile-parity.spec.ts -g '\"'combobox stays within'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'EXPO_BASE_BASE_URL=http://127.0.0.1:59650 PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm exec -- playwright test --config playwright.golden.config.ts --grep '\"'forms-compact-dark'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node scripts/serve-static-web.mjs apps/reference/dist 0'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run runtime:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run runtime:test:web'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run golden:structural'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run mobile:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run golden:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm exec -w @expo-base/reference -- expo export --platform web --output-dir dist'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'EXPO_BASE_BASE_URL=http://127.0.0.1:51566 PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm exec -- playwright test tests/e2e/web/chg-110-submit-button.spec.ts --project=chromium --config playwright.config.ts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node scripts/serve-static-web.mjs apps/reference/dist 0'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run test:screen-scaffolder'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run check:golden-patterns'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run check:golden-architecture'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run typecheck'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run quality:gate17'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git diff --stat && rtk git diff -- packages/layouts/src/FormScreen.tsx tests/e2e/web/product-quality-p1.spec.ts && rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add packages/layouts/src/FormScreen.tsx tests/e2e/web/product-quality-p1.spec.ts && rtk git commit -m \"fix(layouts): preserve semantic form flex geometry\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --short --branch && rtk git rev-parse HEAD && rtk git show -s --format='commit=%H%nparent=%P%nsubject=%s' HEAD && rtk git merge-base --is-ancestor 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD; printf 'base_ancestor_exit=%s\\\\n' \\\"\"'$?\" && rtk git merge-base --is-ancestor 413c7314706476725eb5e22a1827c43ea46d1a6d HEAD; printf '\"'predecessor_ancestor_exit=%s\\\\n' \\\"\"'$?\" && rtk git diff --check 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD && printf '\"'%s\\\\n' 'diff_check_exit=0' && rtk git diff --stat 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,280p' packages/expo-base-create-app/bin/create-expo-base-app.mjs && rtk sed -n '1,240p' scripts/test-generator.mjs && rtk rg -n 'runtime-signals|capability-profile|source.json|create-expo-base-app|npm install --no-audit' README.md docs packages scripts tests | head -240\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg --files packages | rg 'create.*app|expo-base-create|bin/create' && rtk rg -n 'runtime-signals|capability-profile|source.json|create-expo-base-app|npm install --no-audit' README.md docs packages scripts tests | head -260\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,290p' scripts/test-generator.mjs && rtk sed -n '1,120p' docs/GENERATOR.md && rtk sed -n '1,160p' docs/RUNTIME_CAPABILITIES.md && rtk sed -n '1,160p' packages/create-expo-base-app/bin/create-expo-base-app.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -C 15 'function readSourceMetadata|sourceMetadata|function buildStandaloneFiles|gitignore|source.json|verify:' packages/create-expo-base-app/bin/create-expo-base-app.mjs scripts/test-generator.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -rf /tmp/expo-base-chg110-r4-standalone && PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node packages/create-expo-base-app/bin/create-expo-base-app.mjs --mode standalone --name \"R4 Runtime Signals Ledger\" --slug r4-runtime-signals-ledger --accent green --capabilities runtime-signals --directory /tmp/expo-base-chg110-r4-standalone'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm install --no-audit --no-fund'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npx expo config --type public'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node --input-type=module -e '\"'import { chromium } from \\\"playwright\\\"; const browser = await chromium.launch(); const page = await browser.newPage({ viewport: { width: 390, height: 844 } }); const diagnostics = []; page.on(\\\"console\\\", (message) => { if (message.type() === \\\"error\\\" || message.type() === \\\"warning\\\") diagnostics.push(\"'`${message.type()}: ${message.text()}`); }); page.on(\"pageerror\", (error) => diagnostics.push(`pageerror: ${error.message}`)); const waitForSubmit = () => page.waitForFunction(() => window.__r4SubmitCount === 1); await page.goto(\"http://127.0.0.1:18611/sign-in\", { waitUntil: \"networkidle\" }); const password = [REDACTED_SECRET]\"Password\"); const submit = page.getByRole(\"button\", { name: \"Sign in\" }); const form = page.locator(\"form\"); const semantic = await page.evaluate(() => { const password = [REDACTED_SECRET]\"input[type=password]\"); const submit = document.querySelector(\"button[type=submit]\"); const form = document.querySelector(\"form\"); return { formCount: document.querySelectorAll(\"form\").length, passwordInsideForm: password?.closest(\"form\") === form, submitInsideForm: submit?.closest(\"form\") === form, passwordDiagnostic: false }; }); await password.focus(); await page.keyboard.press(\"Tab\"); const keyboardFocus = await submit.evaluate((element) => document.activeElement === element); const surface = submit.locator(\"div\").first(); const focusRing = await surface.evaluate((element) => window.getComputedStyle(element).boxShadow !== \"none\"); await page.mouse.move(1, 1); const restBackground = await surface.evaluate((element) => window.getComputedStyle(element).backgroundColor); await submit.hover(); const hoverBackground = await surface.evaluate((element) => window.getComputedStyle(element).backgroundColor); const hoverChanged = hoverBackground !== restBackground; const installCounter = async () => page.evaluate(() => { window.__r4SubmitCount = 0; const form = document.querySelector(\"form\"); if (!form) throw new Error(\"missing form\"); form.addEventListener(\"submit\", () => { window.__r4SubmitCount = (window.__r4SubmitCount ?? 0) + 1; }); }); await installCounter(); await page.getByLabel(\"Email\").fill(\"invalid-email\"); await password.fill(\"demo\"); await password.press(\"Enter\"); await waitForSubmit(); const enterCount = await page.evaluate(() => window.__r4SubmitCount); await page.goto(\"http://127.0.0.1:18611/sign-in\", { waitUntil: \"networkidle\" }); const clickEmail = page.getByLabel(\"Email\"); const clickSubmit = page.getByRole(\"button\", { name: \"Sign in\" }); await page.evaluate(() => { window.__r4SubmitCount = 0; const form = document.querySelector(\"form\"); if (!form) throw new Error(\"missing form\"); form.addEventListener(\"submit\", () => { window.__r4SubmitCount = (window.__r4SubmitCount ?? 0) + 1; }); }); await clickEmail.fill(\"invalid-email\"); await clickSubmit.click(); await page.waitForFunction(() => window.__r4SubmitCount === 1); const clickCount = await page.evaluate(() => window.__r4SubmitCount); const favicon = await page.evaluate(async () => { const response = await fetch(\"/favicon.svg\"); return { status: response.status, contentType: response.headers.get(\"content-type\") }; }); const passwordDiagnostic = diagnostics.some((entry) => entry.includes(\"Password field is not contained in a form\")); console.log(JSON.stringify({ semantic, keyboardFocus, focusRing, hoverChanged, enterCount, clickCount, favicon, passwordDiagnostic, diagnostics }, null, 2)); await browser.close();'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run typecheck'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk find .expo -maxdepth 3 -type f | head -40 && rtk git init -q && rtk git check-ignore -v --no-index node_modules/ .expo/ build/ .cache/ runtime.log .DS_Store || true && printf '%s\\\\n' '--- trackable probes ---' && for path in .expo-base/source.json app/sign-in.tsx package-lock.json docs/GOLDEN_CATALOG.md; do if git check-ignore -q --no-index \\\"\"'$path\"; then printf '\"'%s ignored unexpectedly\\\\n' \\\"\"'$path\"; else printf '\"'%s trackable\\\\n' \\\"\"'$path\"; fi; done && printf '\"'%s\\\\n' '--- dependency resolution ---' && PATH=/opt/homebrew/opt/node@22/bin:\"'$PATH rtk proxy node --input-type=module -e '\"'import { createRequire } from \\\"node:module\\\"; const require = createRequire(import.meta.url); const names = [\\\"@expo-base/ui\\\",\\\"@expo-base/runtime-capabilities\\\",\\\"@expo-base/runtime\\\",\\\"@expo-base/form-rhf\\\",\\\"@expo-base/navigation-router\\\"]; for (const name of names) { const resolved = require.resolve(\"'`${name}/package.json`); if (!resolved.startsWith(process.cwd())) throw new Error(`${name} escaped root: ${resolved}`); console.log(`${name}: ${resolved}`); }'\"' && printf '%s\\\\n' '--- import escape probe ---' && rtk rg -n --glob '*.ts' --glob '*.tsx' --glob '*.js' --glob '*.mjs' \\\"from ['\\\\\\\"]\\\\.\\\\./\\\\.\\\\./|require\\\\(['\\\\\\\"]\\\\.\\\\./\\\\.\\\\./\\\" app packages scripts || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --ignored && rtk git check-ignore -v --no-index node_modules/ .expo/ build/ .cache/ runtime.log .DS_Store'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node --input-type=module -e '\"'import { createRequire } from \\\"node:module\\\"; const require = createRequire(import.meta.url); const names = [\\\"@expo-base/ui\\\",\\\"@expo-base/runtime-capabilities\\\",\\\"@expo-base/runtime\\\",\\\"@expo-base/form-rhf\\\",\\\"@expo-base/navigation-router\\\"]; for (const name of names) { const resolved = require.resolve(\"'`${name}/package.json`); if (!resolved.startsWith(process.cwd())) throw new Error(`${name} escaped root: ${resolved}`); console.log(`${name}: ${resolved}`); }'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n --glob '*.ts' --glob '*.tsx' --glob '*.js' --glob '*.mjs' \\\"from ['\\\\\\\"]\\\\.\\\\./\\\\.\\\\./|require\\\\(['\\\\\\\"]\\\\.\\\\./\\\\.\\\\./\\\" app packages scripts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n --glob '*.ts' --glob '*.tsx' --glob '*.js' --glob '*.mjs' \\\"from ['\\\\\\\"]\\\\.\\\\./\\\\.\\\\./|require\\\\(['\\\\\\\"]\\\\.\\\\./\\\\.\\\\./\\\" app\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node --input-type=module -e '\"'import fs from \\\"node:fs\\\"; const expected = \\\"1fe878b0e5dbea5a9a5ffb8a00cdf54a3e8922d0\\\"; const provenance = JSON.parse(fs.readFileSync(\\\".expo-base/source.json\\\", \\\"utf8\\\")); if (provenance.sourceCommit \"'!== expected) throw new Error(`sourceCommit=${provenance.sourceCommit}`); console.log(JSON.stringify(provenance, null, 2));'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,160p' .expo/start.log && PATH=/opt/homebrew/opt/node@22/bin:\"'$PATH rtk proxy curl -fsS -D - http://127.0.0.1:18611/favicon.svg -o /dev/null'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,160p' .expo/dev/logs/start.log && PATH=/opt/homebrew/opt/node@22/bin:\"'$PATH rtk proxy curl -fsS -D - http://127.0.0.1:18611/favicon.svg -o /dev/null'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node --input-type=module -e '\"'import fs from \\\"node:fs\\\"; import path from \\\"node:path\\\"; const files = []; const walk = (dir) => { for (const entry of fs.readdirSync(dir, { withFileTypes: true })) { const full = path.join(dir, entry.name); if (entry.isDirectory()) walk(full); else if (/\\\\.(ts|tsx|js|mjs)\"'$/.test(entry.name)) files.push(full); } }; walk(\"app\"); const pattern = /from [\"'\"\\\\']\\\\.\\\\.\\\\/\\\\.\\\\.\\\\/|require\\\\([\\\"\\\\']\\\\.\\\\.\\\\/\\\\.\\\\.\\\\//g; const matches = files.flatMap((file) => (fs.readFileSync(file, \\\"utf8\\\").match(pattern) ?? []).map((match) => \"'`${file}:${match}`)); if (matches.length) throw new Error(matches.join(\"'\"\\\\n\\\")); console.log(\"'`product import escape count=${matches.length}`);'\"'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node --input-type=module -e '\"'import fs from \\\"node:fs\\\"; import path from \\\"node:path\\\"; const matches = []; const walk = (dir) => { for (const entry of fs.readdirSync(dir, { withFileTypes: true })) { const full = path.join(dir, entry.name); if (entry.isDirectory()) walk(full); else if (/\\\\.(ts|tsx|js|mjs)\"'$/.test(entry.name)) { for (const line of fs.readFileSync(full, \"utf8\").split(\"'\"\\\\\\\\n\\\")) if (line.includes(\\\"../../\\\")) matches.push(\"'`${full}:${line.trim()}`); } } }; walk(\"app\"); if (matches.length) throw new Error(matches.join(\"'\"\\\\\\\\n\\\")); console.log(\"'`product import escape count=${matches.length}`);'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy node --input-type=module -e '\"'import fs from \\\"node:fs\\\"; import { createRequire } from \\\"node:module\\\"; const pkg = JSON.parse(fs.readFileSync(\\\"package.json\\\", \\\"utf8\\\")); const require = createRequire(import.meta.url); const names = Object.keys(pkg.dependencies).filter((name) => name.startsWith(\\\"@expo-base/\\\")); for (const name of names) { const resolved = require.resolve(\"'`${name}/package.json`); if (!resolved.startsWith(process.cwd())) throw new Error(`${name} escaped root: ${resolved}`); } console.log(`declared @expo-base dependencies resolved=${names.length}`);'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -ni 'config-loader|module-resolution|unable to resolve|failed|error' .expo/dev/logs/start.log\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk proxy npm run web -- --port 18611'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --short --branch && rtk git rev-parse HEAD && rtk git show -s --format='%H %P %s' HEAD && rtk git diff --check 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 188,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.43,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 17786368,
+      "fresh_input_tokens": 284425,
+      "input_tokens": 18070793,
+      "non_reasoning_output_tokens": 20857,
+      "output_tokens": 38443,
+      "reasoning_output_tokens": 17586,
+      "total_processed_tokens": 18109236
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "1fe878b0e5dbea5a9a5ffb8a00cdf54a3e8922d0",
+      "subject": "fix(layouts): preserve semantic form flex geometry"
+    },
+    {
+      "sha": "413c7314706476725eb5e22a1827c43ea46d1a6d",
+      "subject": "fix(button): preserve web submit interaction contract"
+    },
+    {
+      "sha": "d0f86a2ab3f235086a17e1a7deb6187299f91beb",
+      "subject": "fix(generator): repair standalone web auth output"
+    }
+  ],
+  "diff": {
+    "additions": 313,
+    "changed_files": 11,
+    "commit_count": 3,
+    "deletions": 40
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 2,
+    "items": [
+      {
+        "bytes": 2861,
+        "path": "docs/COMPONENTS.md",
+        "sha256": "59a18d454e3167b0e49aa46c3e7dd11829ff48da439364d1b7151ac27db66308"
+      },
+      {
+        "bytes": 7056,
+        "path": "docs/FORMS.md",
+        "sha256": "0ee24ca8b847b6c4f467b92cc410a7a8489ef9470c93e4d2b74ad47eb941e7c5"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-18T13:08:52Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "branch": "codex/expo-base-chg110-form-layout-fix-r4",
+    "head_sha": "1fe878b0e5dbea5a9a5ffb8a00cdf54a3e8922d0",
+    "remote_exact_head": true,
+    "remote_head_sha": "1fe878b0e5dbea5a9a5ffb8a00cdf54a3e8922d0",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "work_branch": "codex/expo-base-chg110-form-layout-fix-r4",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-1b2d1816af87da5a4e002985",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg110-form-layout-fix-r4",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg110-form-layout-fix-r4"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg110-form-layout-fix-r4",
+  "schema_version": 1,
+  "started_at": "2026-09-18T12:39:26Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 1766,
+    "queue_seconds": 0,
+    "total_seconds": 1766
+  },
+  "transport": {
+    "bytes": 11718,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 11402,
+    "prompt_sha256": "176fe7ffc301465bd13c72a7daca5ae700413075f200cfd58b3dfbfa6ab0ef89",
+    "sha256": "1b2d1816af87da5a4e00298513eafa0d7c469f747aa141e3071d737aad86dea4"
+  }
+}
