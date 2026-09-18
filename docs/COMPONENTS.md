@@ -39,5 +39,12 @@ the app selects clipboard capability. Sensitive values default to explicit revea
 `Divider` is the sanctioned full/inset horizontal or vertical separator. Prefer containing
 surfaces and spacing when a line does not add structural meaning.
 
+## Actions and web forms
+
+`Button type="submit"` remains a native semantic web button inside `FormScreen` while sharing
+the ordinary Button hover, keyboard-focus, disabled, loading, and responsive-width treatment.
+`FormScreen onSubmit` owns the web form event; the submit Button's press callback is reserved for
+the no-form fallback so a form action is not invoked twice.
+
 See the System Lab and Golden Plus breadth lab for normal, disabled, long-content, compact, RTL,
 and dark-mode specimens.

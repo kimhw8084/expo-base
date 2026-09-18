@@ -16,7 +16,7 @@ Expo Base forms separate **visual controls** from **form-state orchestration**.
 3. Error text is persistent and semantic; critical validation is not toast-only.
 4. Focus does not alter geometry. The focus ring uses shadow/outline treatment around the existing border.
 5. Single-line fields use React Native `submitBehavior`; deprecated `blurOnSubmit` is not part of the API.
-6. `FormScreen` is the only general-purpose multi-field vertical scroll owner.
+6. `FormScreen` is the only general-purpose multi-field vertical scroll owner and owns semantic web submission plus the native form accessibility boundary; use its `onSubmit` with a shared `Button type="submit"` for cross-platform form actions.
 7. Feature code may not import raw `TextInput`, `Switch`, `KeyboardAvoidingView`, `react-hook-form`, or `react-native-keyboard-controller`.
 8. Use the semantic field that matches the value. Do not build raw select overlays, locale parsing,
    OTP focus mechanics, or checkbox-group error anatomy in a route.
