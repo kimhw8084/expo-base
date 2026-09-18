@@ -1,0 +1,3175 @@
+{
+  "schema_version": "project-os.visual-atlas.stress-evidence/1",
+  "profiles": [
+    {
+      "id": "desktop-constrained-1366x768",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "id": "desktop-wide-1920x1080",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "id": "mobile-narrow-360x800",
+      "width": 360,
+      "height": 800
+    },
+    {
+      "id": "mobile-landscape-844x390",
+      "width": 844,
+      "height": 390
+    },
+    {
+      "id": "web-zoom-200-percent",
+      "width": 720,
+      "height": 450,
+      "zoom": 2
+    },
+    {
+      "id": "unseen-holdout-1536x864",
+      "width": 1536,
+      "height": 864,
+      "holdout": true
+    }
+  ],
+  "representative_surface_count": 15,
+  "records": [
+    {
+      "surface_key": "expo-base|home|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/",
+      "final_path": "/",
+      "headings": [
+        "Universal application foundation",
+        "Adaptive foundation",
+        "4",
+        "3",
+        "44+",
+        "Adaptive split",
+        "Master / detail transformation",
+        "Venture X",
+        "Explore Expo Base"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--home--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "5a2cf34fdfaf5e9b370b3afa4feac33fbc51d6752281a61e908542ab5cb11b85",
+        "bytes": 131686,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|forms|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/forms",
+      "final_path": "/forms",
+      "headings": [
+        "Form interaction acceptance surface",
+        "State-library-agnostic controls"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--forms--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "48999e022750de1810e12d1cfa2ad69b4e01c43ec27dd9abca9c9502a0ba69e0",
+        "bytes": 88170,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|navigation|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/navigation",
+      "final_path": "/navigation",
+      "headings": [
+        "Navigation acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--navigation--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "b643002fbb6bb82698defa4f0bd8e79581c93db0997d961eb893d3f7ac7ae745",
+        "bytes": 95950,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|overlays|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/overlays",
+      "final_path": "/overlays",
+      "headings": [
+        "Overlay Manager acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--overlays--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "7ca85334444ec24eab0c2d95c55463d762b2ac86ad6ef2c1db7e8ff32458ad12",
+        "bytes": 77963,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|lists|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/lists",
+      "final_path": "/lists",
+      "headings": [
+        "Virtualized list acceptance surface",
+        "Production list states",
+        "Small static groups"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--lists--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "965138c0c5c012617a034a7a42ccca2780cb2bd8866328989fcb14460069f51a",
+        "bytes": 99610,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|data|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/data",
+      "final_path": "/data",
+      "headings": [
+        "Adaptive data workspace",
+        "$1,215.00",
+        "$4,940.00",
+        "12.3%",
+        "Portfolio cards",
+        "Selected record",
+        "List-row content primitive"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--data--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "9f82eb7b954c4e297ea74d0be527d1fc39f0467b61c684bed2e2d2d17483415b",
+        "bytes": 118237,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/feedback",
+      "final_path": "/feedback",
+      "headings": [
+        "The unhappy path is part of the design system",
+        "Persistent semantic feedback",
+        "Loading skeleton",
+        "State playground",
+        "Stale-content preservation"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--feedback--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "7b9777cf659adf0db9cdea76de939099f645a93ece606b352432a5acd9773c97",
+        "bytes": 104319,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|server-state|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/server-state",
+      "final_path": "/server-state",
+      "headings": [
+        "Server-state lifecycle laboratory",
+        "Shared query identity",
+        "Stale-safe presentation",
+        "Mutation bookkeeping"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--server-state--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "98ae6e1417b56e14827af749144049bfda52f1f074f7329fe3166323482334dc",
+        "bytes": 81168,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/golden",
+      "final_path": "/golden",
+      "headings": [
+        "Dashboard",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Value trend"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--golden--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "db20df53e51d1c831835dbd5a86ce21f7e6896705ae9cc8f58932e0a6ba51783",
+        "bytes": 82925,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|workflows|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/workflows",
+      "final_path": "/workflows",
+      "headings": [
+        "Activity",
+        "Recent activity"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--workflows--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "a38250eb3d66b25e7eb231d89643a89bfa8470e8eef3c92b9947b86e49c38e15",
+        "bytes": 51808,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|system|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/system",
+      "final_path": "/system",
+      "headings": [
+        "System acceptance laboratory",
+        "Surface hierarchy",
+        "Theme and density invariants",
+        "Actions and identity",
+        "Disclosure, workflow progress, and media states",
+        "Forms and selection",
+        "Information and visualization",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Content and status"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--system--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "eb778fec85ca2249c8abd52edb80eadadb0410e98c9a90070d42c112499d6fb5",
+        "bytes": 139724,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|stress|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/stress",
+      "final_path": "/stress",
+      "headings": [
+        "Pathological-content acceptance",
+        "Extreme values",
+        "$9,999,999,999.99",
+        "−$8,420,293.18",
+        "123,456,789 pts",
+        "Long and multilingual text",
+        "Action overflow under label pressure",
+        "Field expansion and dense records"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--stress--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "dd801667e2401a22a9833aeaf468bb270899f2ecf2e23ac6adbdb888ecbf9890",
+        "bytes": 150388,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|analytics-showcase|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/analytics-showcase",
+      "final_path": "/analytics-showcase",
+      "headings": [
+        "A calm view of growth",
+        "18,420",
+        "$104.3k",
+        "91.4%",
+        "Recent account movement"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "438e5d34168ea8e040a38fdc03921cbddbe166282e35fe9cb0993eba16646abb",
+        "bytes": 91302,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|finance-showcase|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/finance-showcase",
+      "final_path": "/finance-showcase",
+      "headings": [
+        "Value, contribution, and control",
+        "$1.04m",
+        "+$203k",
+        "$1.00m",
+        "Account detail"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "4b7822b759d22ef1152836fe9045b075c40c108d37ad359f2cafe5f22a2f170c",
+        "bytes": 85819,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|monitoring-showcase|default|ready|reference-user|light",
+      "profile": "desktop-constrained-1366x768",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/monitoring-showcase",
+      "final_path": "/monitoring-showcase",
+      "headings": [
+        "Know what needs attention",
+        "99.98%",
+        "182ms",
+        "2",
+        "Service breakdown"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+        "sha256": "b2af289a66517117df2089d3c8c32156827c3a7ad43bcc7178ff4b74eca1c799",
+        "bytes": 90598,
+        "dimensions": {
+          "width": 1366,
+          "height": 768
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|home|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/",
+      "final_path": "/",
+      "headings": [
+        "Universal application foundation",
+        "Adaptive foundation",
+        "4",
+        "3",
+        "44+",
+        "Adaptive split",
+        "Master / detail transformation",
+        "Venture X",
+        "Explore Expo Base"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--home--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "7845899d791919b34eabc81ad329b07da72623a09e80636b656c423bcf0b0113",
+        "bytes": 169810,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|forms|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/forms",
+      "final_path": "/forms",
+      "headings": [
+        "Form interaction acceptance surface",
+        "State-library-agnostic controls"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--forms--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "dc11b1726dd6f2898fe69817ecd9f3f04c8a0bc5320e27db16d7da13ea0b8036",
+        "bytes": 119144,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|navigation|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/navigation",
+      "final_path": "/navigation",
+      "headings": [
+        "Navigation acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--navigation--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "caf1abdd0e18a1c54282df9127c9d112955b10554ad2df87f0a39c0d58fe3622",
+        "bytes": 102634,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|overlays|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/overlays",
+      "final_path": "/overlays",
+      "headings": [
+        "Overlay Manager acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--overlays--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "7c1ccd40c3326e3807bc89328017664cf87444b93a782715ac8ef3fa65281fbc",
+        "bytes": 83506,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|lists|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/lists",
+      "final_path": "/lists",
+      "headings": [
+        "Virtualized list acceptance surface",
+        "Production list states",
+        "Small static groups"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--lists--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "c001c3f9a2527ae46bd0c5023f5c59600e3c3eef69025c01c1fa54fd0e9e1369",
+        "bytes": 129677,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|data|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/data",
+      "final_path": "/data",
+      "headings": [
+        "Adaptive data workspace",
+        "$1,215.00",
+        "$4,940.00",
+        "12.3%",
+        "Portfolio cards",
+        "Selected record",
+        "List-row content primitive"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--data--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "0a92a2e393040af9fc3c2cc2c758f59a7bf47e96e7091d490cc694ba57c2bf27",
+        "bytes": 146300,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/feedback",
+      "final_path": "/feedback",
+      "headings": [
+        "The unhappy path is part of the design system",
+        "Persistent semantic feedback",
+        "Loading skeleton",
+        "State playground",
+        "Stale-content preservation"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--feedback--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "6dc827b613dd826c20765e0d62703a4ef40542b6ba020cdfa6120c4726ed895c",
+        "bytes": 122249,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|server-state|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/server-state",
+      "final_path": "/server-state",
+      "headings": [
+        "Server-state lifecycle laboratory",
+        "Shared query identity",
+        "Stale-safe presentation",
+        "Mutation bookkeeping"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--server-state--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "5d05b318d0e73693252bda32e906fbd3a1f4b2bdeea52cb39ce982c5ba518744",
+        "bytes": 105053,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/golden",
+      "final_path": "/golden",
+      "headings": [
+        "Dashboard",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Value trend"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--golden--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "e17fefb8f59022d94908d4a93427ac08e55c109affc043f88d0db00cdac837ea",
+        "bytes": 94511,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|workflows|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/workflows",
+      "final_path": "/workflows",
+      "headings": [
+        "Activity",
+        "Recent activity"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--workflows--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "601bb104d1c20581b603aacf385b681d4cd6676b3b9d745d095235712038b527",
+        "bytes": 56339,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|system|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/system",
+      "final_path": "/system",
+      "headings": [
+        "System acceptance laboratory",
+        "Surface hierarchy",
+        "Theme and density invariants",
+        "Actions and identity",
+        "Disclosure, workflow progress, and media states",
+        "Forms and selection",
+        "Information and visualization",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Content and status"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--system--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "5373251e3c97364b18e3c097977fdb70ea503171816a1b11d6cf42b8841d3f71",
+        "bytes": 178552,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|stress|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/stress",
+      "final_path": "/stress",
+      "headings": [
+        "Pathological-content acceptance",
+        "Extreme values",
+        "$9,999,999,999.99",
+        "−$8,420,293.18",
+        "123,456,789 pts",
+        "Long and multilingual text",
+        "Action overflow under label pressure",
+        "Field expansion and dense records"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--stress--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "24db1729149df18926865e8916ce66c596f30f957fb18d04783caa1f1366d721",
+        "bytes": 219001,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|analytics-showcase|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/analytics-showcase",
+      "final_path": "/analytics-showcase",
+      "headings": [
+        "A calm view of growth",
+        "18,420",
+        "$104.3k",
+        "91.4%",
+        "Recent account movement"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "607576e81debf3d1ca38f473e9d91ea6546ceb2ff6db30c56009009eed737775",
+        "bytes": 115627,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|finance-showcase|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/finance-showcase",
+      "final_path": "/finance-showcase",
+      "headings": [
+        "Value, contribution, and control",
+        "$1.04m",
+        "+$203k",
+        "$1.00m",
+        "Account detail"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "23e1d3e2ecea04e0e842d038237617e277e4e398e4be393029346d412673f6d2",
+        "bytes": 115478,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|monitoring-showcase|default|ready|reference-user|light",
+      "profile": "desktop-wide-1920x1080",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/monitoring-showcase",
+      "final_path": "/monitoring-showcase",
+      "headings": [
+        "Know what needs attention",
+        "99.98%",
+        "182ms",
+        "2",
+        "Service breakdown"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+        "sha256": "d72f8cbe5b6110c94af92c913f1a5680f06b3208bce8f429d081f73f6be6a674",
+        "bytes": 121007,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|home|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/",
+      "final_path": "/",
+      "headings": [
+        "Universal application foundation",
+        "Adaptive foundation",
+        "4",
+        "3",
+        "44+",
+        "Adaptive split",
+        "Master / detail transformation",
+        "Explore Expo Base"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--home--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "42241921fab08c017eb15432c1a0e95bdf7597a224de3c63389922066ce27b35",
+        "bytes": 61782,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|forms|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/forms",
+      "final_path": "/forms",
+      "headings": [
+        "Form interaction acceptance surface",
+        "State-library-agnostic controls"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--forms--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "090d58c556e7e59a6bcb0554b1dce2a7799f0b8f140438b9eaac5635108a74c0",
+        "bytes": 56566,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|navigation|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/navigation",
+      "final_path": "/navigation",
+      "headings": [
+        "Navigation acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--navigation--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "4613d9485a3028214c12737f2e239445607148572009cfc08e7e658a368ff894",
+        "bytes": 56421,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|overlays|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/overlays",
+      "final_path": "/overlays",
+      "headings": [
+        "Overlay Manager acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--overlays--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "525823adfc07ec616cc6dacfffc6674f5e2951c9a92025a647cfdcf766051bd6",
+        "bytes": 64147,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|lists|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/lists",
+      "final_path": "/lists",
+      "headings": [
+        "Virtualized list acceptance surface",
+        "Production list states",
+        "Small static groups"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--lists--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "4229faa9a1d1e7a69a0fac1461d391c34062dfabdc231c7df6bc0db99ce9b9c2",
+        "bytes": 66139,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|data|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/data",
+      "final_path": "/data",
+      "headings": [
+        "Adaptive data workspace",
+        "$1,215.00",
+        "$4,940.00",
+        "12.3%",
+        "Portfolio cards",
+        "Selected record",
+        "List-row content primitive"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--data--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "05a4806e37514aa59913060a1ca5b3b38718bfb19f62689b3ee4f57b25b71cc8",
+        "bytes": 63456,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/feedback",
+      "final_path": "/feedback",
+      "headings": [
+        "The unhappy path is part of the design system",
+        "Persistent semantic feedback",
+        "Loading skeleton",
+        "State playground",
+        "Stale-content preservation"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--feedback--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "0ed212e7ac10439cf3c7b09655fea23d1f1be016a161272840d031df31df24a6",
+        "bytes": 67533,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|server-state|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/server-state",
+      "final_path": "/server-state",
+      "headings": [
+        "Server-state lifecycle laboratory",
+        "Shared query identity",
+        "Stale-safe presentation",
+        "Mutation bookkeeping"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--server-state--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "285813df2610f3d1e604c92e5ab8e73fddf314348f13983dc1fa491b97dda5aa",
+        "bytes": 60167,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/golden",
+      "final_path": "/golden",
+      "headings": [
+        "Dashboard",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Value trend"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--golden--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "3374b9ed81924c6e5e29f72ff340e2d134fd125a83c4793f30ed0d31337faf5c",
+        "bytes": 42257,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|workflows|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/workflows",
+      "final_path": "/workflows",
+      "headings": [
+        "Activity",
+        "Recent activity"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--workflows--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "3c76fa719a866c9c0984050f4b60a9c9186fda85c274e6987f309b2c2eee3ba7",
+        "bytes": 41713,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|system|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/system",
+      "final_path": "/system",
+      "headings": [
+        "System acceptance laboratory",
+        "Surface hierarchy",
+        "Theme and density invariants",
+        "Actions and identity",
+        "Disclosure, workflow progress, and media states",
+        "Forms and selection",
+        "Information and visualization",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Content and status"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--system--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "336f8a03add1da8cd20b4d353bd9d0ffae96608f5bce3f481e386ea947b27feb",
+        "bytes": 59838,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|stress|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/stress",
+      "final_path": "/stress",
+      "headings": [
+        "Pathological-content acceptance",
+        "Extreme values",
+        "$9,999,999,999.99",
+        "−$8,420,293.18",
+        "123,456,789 pts",
+        "Long and multilingual text",
+        "Action overflow under label pressure",
+        "Field expansion and dense records"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--stress--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "c681efb7aa13dec4e2e96087517a5f57442e7aa05671d60e045748af4d6c014f",
+        "bytes": 63443,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|analytics-showcase|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/analytics-showcase",
+      "final_path": "/analytics-showcase",
+      "headings": [
+        "A calm view of growth",
+        "18,420",
+        "$104.3k",
+        "91.4%",
+        "Recent account movement"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "29c7fe01cd969fd9af020334350bd4acc2a665a6cac77b07ecdc76b6c81f3a66",
+        "bytes": 59363,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|finance-showcase|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/finance-showcase",
+      "final_path": "/finance-showcase",
+      "headings": [
+        "Value, contribution, and control",
+        "$1.04m",
+        "+$203k",
+        "$1.00m",
+        "Account detail"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "803caba315bc5f50abe4d5c3387fab07cc4ad1f7f36852dae7a92d16a428c8ed",
+        "bytes": 59179,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|monitoring-showcase|default|ready|reference-user|light",
+      "profile": "mobile-narrow-360x800",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/monitoring-showcase",
+      "final_path": "/monitoring-showcase",
+      "headings": [
+        "Know what needs attention",
+        "99.98%",
+        "182ms",
+        "2",
+        "Service breakdown"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--mobile-narrow-360x800.png",
+        "sha256": "e69d3918fb672993499174349e41148b54e24e2b0e1ee37b955873277e0bac35",
+        "bytes": 52642,
+        "dimensions": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|home|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/",
+      "final_path": "/",
+      "headings": [
+        "Universal application foundation",
+        "Adaptive foundation",
+        "4",
+        "3",
+        "44+",
+        "Adaptive split",
+        "Master / detail transformation",
+        "Explore Expo Base"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--home--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "5b422ae4b198de90a73348887538630e9d9fa6faae33c0c0a97cea80a7c398b0",
+        "bytes": 54067,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|forms|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/forms",
+      "final_path": "/forms",
+      "headings": [
+        "Form interaction acceptance surface",
+        "State-library-agnostic controls"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--forms--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "5652ca171e04cdd1c01cf3f52ffdee9e4cea6219a26bb22078b20eae20b74bf4",
+        "bytes": 45640,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|navigation|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/navigation",
+      "final_path": "/navigation",
+      "headings": [
+        "Navigation acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--navigation--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "936690faa940b8a0509cae784f79f560160857e4651b609f0787967e584e3929",
+        "bytes": 46770,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|overlays|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/overlays",
+      "final_path": "/overlays",
+      "headings": [
+        "Overlay Manager acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--overlays--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "12ecbad149038e0215cc2388e41b2f099ad1283d4b04e2e9a284894d54828fe5",
+        "bytes": 46758,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|lists|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/lists",
+      "final_path": "/lists",
+      "headings": [
+        "Virtualized list acceptance surface",
+        "Production list states",
+        "Small static groups"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--lists--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "3c7664918f1e9e0cb6997196d63403dd3054fbda9126f636635dbf52c7ffc88c",
+        "bytes": 46578,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|data|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/data",
+      "final_path": "/data",
+      "headings": [
+        "Adaptive data workspace",
+        "$1,215.00",
+        "$4,940.00",
+        "12.3%",
+        "Portfolio cards",
+        "Selected record",
+        "List-row content primitive"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--data--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "7de52b8501b06a8469f4dd8ae2b73f6dc783bae284a43cc9b076e2408b62ac68",
+        "bytes": 48698,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/feedback",
+      "final_path": "/feedback",
+      "headings": [
+        "The unhappy path is part of the design system",
+        "Persistent semantic feedback",
+        "Loading skeleton",
+        "State playground",
+        "Stale-content preservation"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--feedback--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "4c2565bc5d361b2757c7b2dcf026f0164fbed7c5bc6a5031dc7a219cdecdd2cb",
+        "bytes": 49221,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|server-state|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/server-state",
+      "final_path": "/server-state",
+      "headings": [
+        "Server-state lifecycle laboratory",
+        "Shared query identity",
+        "Stale-safe presentation",
+        "Mutation bookkeeping"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--server-state--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "09464cedc8864642ab41019afe655668271208230cf02e87031fc50db94ff44e",
+        "bytes": 41599,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/golden",
+      "final_path": "/golden",
+      "headings": [
+        "Dashboard",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Value trend"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--golden--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "4fae5ad9dcbef227d13fa3f456b96d90ba71aa053151e5bfbc7c00f06f20c482",
+        "bytes": 34487,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|workflows|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/workflows",
+      "final_path": "/workflows",
+      "headings": [
+        "Activity",
+        "Recent activity"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--workflows--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "563145d630d51c8d27e06300f8be1e7c241c8e9ba4298c5567396275fde2179b",
+        "bytes": 30554,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|system|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/system",
+      "final_path": "/system",
+      "headings": [
+        "System acceptance laboratory",
+        "Surface hierarchy",
+        "Theme and density invariants",
+        "Actions and identity",
+        "Disclosure, workflow progress, and media states",
+        "Forms and selection",
+        "Information and visualization",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Content and status"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--system--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "e0de3bc415099a024c5cb67601dfddb0531809fc3b8e2b0058333f7b94df8c6b",
+        "bytes": 45636,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|stress|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/stress",
+      "final_path": "/stress",
+      "headings": [
+        "Pathological-content acceptance",
+        "Extreme values",
+        "$9,999,999,999.99",
+        "−$8,420,293.18",
+        "123,456,789 pts",
+        "Long and multilingual text",
+        "Action overflow under label pressure",
+        "Field expansion and dense records"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--stress--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "1e71460aecb4ce3c1f431a97986838d8593e68a6d4457a26464ab5e100ca1358",
+        "bytes": 45485,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|analytics-showcase|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/analytics-showcase",
+      "final_path": "/analytics-showcase",
+      "headings": [
+        "A calm view of growth",
+        "18,420",
+        "$104.3k",
+        "91.4%",
+        "Recent account movement"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "98df3e5b6e25c802da8950d3a016f007b5541e1ff19e348018ed713a5e012b76",
+        "bytes": 41454,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|finance-showcase|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/finance-showcase",
+      "final_path": "/finance-showcase",
+      "headings": [
+        "Value, contribution, and control",
+        "$1.04m",
+        "+$203k",
+        "$1.00m",
+        "Account detail"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "e2ba3275b948727fa07e8d5d3ab9ce13365c2aab988474c1619816a3d6832a54",
+        "bytes": 45530,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|monitoring-showcase|default|ready|reference-user|light",
+      "profile": "mobile-landscape-844x390",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "holdout": false,
+      "zoom": 1,
+      "route": "/monitoring-showcase",
+      "final_path": "/monitoring-showcase",
+      "headings": [
+        "Know what needs attention",
+        "99.98%",
+        "182ms",
+        "2",
+        "Service breakdown"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--mobile-landscape-844x390.png",
+        "sha256": "aa2b4d73124575a65d565a28d02362900e9f601126c75eb78517c4b675249d99",
+        "bytes": 43645,
+        "dimensions": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|home|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/",
+      "final_path": "/",
+      "headings": [
+        "Universal application foundation",
+        "Adaptive foundation",
+        "4",
+        "3",
+        "44+",
+        "Adaptive split",
+        "Master / detail transformation",
+        "Explore Expo Base"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--home--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "461cc226388e8eca5599415bba01fc0f827cb8307a546bdbe0c2afedf49ca990",
+        "bytes": 46837,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|forms|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/forms",
+      "final_path": "/forms",
+      "headings": [
+        "Form interaction acceptance surface",
+        "State-library-agnostic controls"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--forms--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "8f520cf9264b55eb1bea3f63b269776690e3e73883ec215ea663a6a0e3171869",
+        "bytes": 49610,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|navigation|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/navigation",
+      "final_path": "/navigation",
+      "headings": [
+        "Navigation acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--navigation--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "14c5fe9af6aa73562564170f1cb31d80fe148bea1f09fda6e59d4cba35c61374",
+        "bytes": 51110,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|overlays|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/overlays",
+      "final_path": "/overlays",
+      "headings": [
+        "Overlay Manager acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--overlays--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "f03e6e79ece3508f7f7d2bdf13e73196492e864d10477dadf80e05904aea9672",
+        "bytes": 53298,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|lists|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/lists",
+      "final_path": "/lists",
+      "headings": [
+        "Virtualized list acceptance surface",
+        "Production list states",
+        "Small static groups"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--lists--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "80b97b907d91d7ab6d66558f64458645da91523b9db6e6219fb1ff3699108f65",
+        "bytes": 48062,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|data|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/data",
+      "final_path": "/data",
+      "headings": [
+        "Adaptive data workspace",
+        "$1,215.00",
+        "$4,940.00",
+        "12.3%",
+        "Portfolio cards",
+        "Selected record",
+        "List-row content primitive"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--data--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "5339b0c4d9af4739efe99a3c660fc20ae692fac41c2b39d24b49f94f9bc5408e",
+        "bytes": 50498,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/feedback",
+      "final_path": "/feedback",
+      "headings": [
+        "The unhappy path is part of the design system",
+        "Persistent semantic feedback",
+        "Loading skeleton",
+        "State playground",
+        "Stale-content preservation"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--feedback--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "9d81a9cc1712f0ad885aca91999b8b01b4fa482cce9066876a636fb7a185d6ad",
+        "bytes": 38385,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|server-state|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/server-state",
+      "final_path": "/server-state",
+      "headings": [
+        "Server-state lifecycle laboratory",
+        "Shared query identity",
+        "Stale-safe presentation",
+        "Mutation bookkeeping"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--server-state--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "3efde080acc0ea7b4e0ff684216af7811075f36ed075a57ecc4c72b9fc3d9c9b",
+        "bytes": 50352,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/golden",
+      "final_path": "/golden",
+      "headings": [
+        "Dashboard",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Value trend"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--golden--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "abdfaee86737a45436dbd2049c0143bff4224756972364a1722a39ec4e2a6b9d",
+        "bytes": 45150,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|workflows|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/workflows",
+      "final_path": "/workflows",
+      "headings": [
+        "Activity",
+        "Recent activity"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--workflows--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "e37c8994b18d90648b1f3ee3eda736d3dfb77c1e74d0e82dd67e8167cfe1eac1",
+        "bytes": 44208,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|system|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/system",
+      "final_path": "/system",
+      "headings": [
+        "System acceptance laboratory",
+        "Surface hierarchy",
+        "Theme and density invariants",
+        "Actions and identity",
+        "Disclosure, workflow progress, and media states",
+        "Forms and selection",
+        "Information and visualization",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Content and status"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--system--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "6c8e48c35b9420c6656708eb97468aaa6e5d504cd0bf682b0b106e22c4705bc1",
+        "bytes": 52340,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|stress|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/stress",
+      "final_path": "/stress",
+      "headings": [
+        "Pathological-content acceptance",
+        "Extreme values",
+        "$9,999,999,999.99",
+        "−$8,420,293.18",
+        "123,456,789 pts",
+        "Long and multilingual text",
+        "Action overflow under label pressure",
+        "Field expansion and dense records"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--stress--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "872078ba79224fa8323b806f71b6cf54c312febfe26028e2192057e31b5a99cc",
+        "bytes": 50544,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|analytics-showcase|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/analytics-showcase",
+      "final_path": "/analytics-showcase",
+      "headings": [
+        "A calm view of growth",
+        "18,420",
+        "$104.3k",
+        "91.4%",
+        "Recent account movement"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "4e0754be8d749bc17fd781de30aa83b632359f6094f5125edfe3f6ea18c289ab",
+        "bytes": 57371,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|finance-showcase|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/finance-showcase",
+      "final_path": "/finance-showcase",
+      "headings": [
+        "Value, contribution, and control",
+        "$1.04m",
+        "+$203k",
+        "$1.00m",
+        "Account detail"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "e67764fa73a7c83f83949c507ac72df2513df8ec9f5feb494654484864472952",
+        "bytes": 46425,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|monitoring-showcase|default|ready|reference-user|light",
+      "profile": "web-zoom-200-percent",
+      "viewport": {
+        "width": 720,
+        "height": 450
+      },
+      "holdout": false,
+      "zoom": 2,
+      "route": "/monitoring-showcase",
+      "final_path": "/monitoring-showcase",
+      "headings": [
+        "Know what needs attention",
+        "99.98%",
+        "182ms",
+        "2",
+        "Service breakdown"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--web-zoom-200-percent.png",
+        "sha256": "0088f10a2816b82c4e3bdacdeff8d3a912f8dd79db09c9c3277e9f11f7b10779",
+        "bytes": 47441,
+        "dimensions": {
+          "width": 720,
+          "height": 450
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|home|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/",
+      "final_path": "/",
+      "headings": [
+        "Universal application foundation",
+        "Adaptive foundation",
+        "4",
+        "3",
+        "44+",
+        "Adaptive split",
+        "Master / detail transformation",
+        "Venture X",
+        "Explore Expo Base"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--home--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "bcb936e18d4eca2e21e6a79ff5fd35fb3904c57bcd3d6d65d8b8067412f0e80e",
+        "bytes": 145020,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|forms|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/forms",
+      "final_path": "/forms",
+      "headings": [
+        "Form interaction acceptance surface",
+        "State-library-agnostic controls"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--forms--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "e6050e7214d938a520eb37f8b1a9db6f973187a1e16bbd1ac299e00861f286e0",
+        "bytes": 101966,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|navigation|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/navigation",
+      "final_path": "/navigation",
+      "headings": [
+        "Navigation acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--navigation--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "ce12b168d5d4e08869648fe7f429d52f0461b921458e074bb19162dd42de8561",
+        "bytes": 98613,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|overlays|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/overlays",
+      "final_path": "/overlays",
+      "headings": [
+        "Overlay Manager acceptance surface"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--overlays--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "7adbbe9a77c0f299ee324a6978f8bb44b769413149f996f85bdc6a4389c2dd43",
+        "bytes": 79890,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|lists|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/lists",
+      "final_path": "/lists",
+      "headings": [
+        "Virtualized list acceptance surface",
+        "Production list states",
+        "Small static groups"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--lists--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "e6906e4fd1ffdc6f6551a169f62ee2a19a070c5ee09f61ece9ca0bcae82e6e47",
+        "bytes": 107958,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|data|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/data",
+      "final_path": "/data",
+      "headings": [
+        "Adaptive data workspace",
+        "$1,215.00",
+        "$4,940.00",
+        "12.3%",
+        "Portfolio cards",
+        "Selected record",
+        "List-row content primitive"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--data--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "fe018fca9b4af2ed9b9388490f239517733709e148d235a9a05636b675b257ba",
+        "bytes": 133926,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/feedback",
+      "final_path": "/feedback",
+      "headings": [
+        "The unhappy path is part of the design system",
+        "Persistent semantic feedback",
+        "Loading skeleton",
+        "State playground",
+        "Stale-content preservation"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--feedback--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "1a9503780c2edf85e86a9cb68b3879c6adcce2906e4ecdde57b49830a2272ab1",
+        "bytes": 107274,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|server-state|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/server-state",
+      "final_path": "/server-state",
+      "headings": [
+        "Server-state lifecycle laboratory",
+        "Shared query identity",
+        "Stale-safe presentation",
+        "Mutation bookkeeping"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--server-state--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "9aa9b498b77f6950a0234de8c54af283c2b0353ecf66322f5b280a6a8b1da740",
+        "bytes": 90210,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/golden",
+      "final_path": "/golden",
+      "headings": [
+        "Dashboard",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Value trend"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--golden--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "ac21da8582bde4adcd3b2f8ab6d8c94be4841f90e2c44ee7c6c345dc356d6ab1",
+        "bytes": 89572,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|workflows|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/workflows",
+      "final_path": "/workflows",
+      "headings": [
+        "Activity",
+        "Recent activity"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--workflows--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "ead721093a6a681bc18058733415f49091198464d7040c8a88af009c71ddad43",
+        "bytes": 53146,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|system|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/system",
+      "final_path": "/system",
+      "headings": [
+        "System acceptance laboratory",
+        "Surface hierarchy",
+        "Theme and density invariants",
+        "Actions and identity",
+        "Disclosure, workflow progress, and media states",
+        "Forms and selection",
+        "Information and visualization",
+        "$8,420",
+        "$1,215",
+        "$1,090",
+        "Content and status"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--system--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "ef9c812bac4477554a80d662707bf60b723f06479ab0d071d52fa31ec4afd5a1",
+        "bytes": 148526,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|stress|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/stress",
+      "final_path": "/stress",
+      "headings": [
+        "Pathological-content acceptance",
+        "Extreme values",
+        "$9,999,999,999.99",
+        "−$8,420,293.18",
+        "123,456,789 pts",
+        "Long and multilingual text",
+        "Action overflow under label pressure",
+        "Field expansion and dense records"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--stress--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "bc7c1daabd09d2d0791bbcd177253694237d3b7aea7a0feb7673c484db2894ba",
+        "bytes": 160312,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|analytics-showcase|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/analytics-showcase",
+      "final_path": "/analytics-showcase",
+      "headings": [
+        "A calm view of growth",
+        "18,420",
+        "$104.3k",
+        "91.4%",
+        "Recent account movement"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "8ca611c56b046dbfa295b3d3d489f479e041acde903a110111db8f1e0e071b67",
+        "bytes": 97665,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|finance-showcase|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/finance-showcase",
+      "final_path": "/finance-showcase",
+      "headings": [
+        "Value, contribution, and control",
+        "$1.04m",
+        "+$203k",
+        "$1.00m",
+        "Account detail"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "deea0d806dd8eb913bdf314b1316cd74199584e676c83000c11c3a5dc7c8ad22",
+        "bytes": 92455,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    },
+    {
+      "surface_key": "expo-base|monitoring-showcase|default|ready|reference-user|light",
+      "profile": "unseen-holdout-1536x864",
+      "viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "holdout": true,
+      "zoom": 1,
+      "route": "/monitoring-showcase",
+      "final_path": "/monitoring-showcase",
+      "headings": [
+        "Know what needs attention",
+        "99.98%",
+        "182ms",
+        "2",
+        "Service breakdown"
+      ],
+      "readiness_result": true,
+      "exception": null,
+      "png": {
+        "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+        "sha256": "89731842ebc444f3741d3b96c291d74a84080565b18e42403b973d599484e081",
+        "bytes": 97224,
+        "dimensions": {
+          "width": 1536,
+          "height": 864
+        }
+      },
+      "diagnostics": {
+        "console": [],
+        "page_errors": [],
+        "request_failures": []
+      }
+    }
+  ]
+}

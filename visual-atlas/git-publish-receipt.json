@@ -1,0 +1,56 @@
+{
+  "schema_version": "project-os.visual-atlas.git-publish-receipt/1",
+  "kind": "project-os.visual-atlas.git-publish-receipt",
+  "status": "GIT_PUBLISHED_AWAITING_AUDIT",
+  "project": "expo-base",
+  "repository": "kimhw8084/expo-base",
+  "request": "expo-base-visual-atlas-capture-v1",
+  "operation": "VERIFY",
+  "source": {
+    "sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+    "tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+    "work_branch": "codex/expo-base-visual-atlas-capture-v1",
+    "source_changed": false
+  },
+  "carrier": {
+    "ref": "refs/heads/project-os-artifacts/expo-base/expo-base-visual-atlas-capture-v1",
+    "remote": "origin",
+    "policy": "missing ref -> one immutable carrier commit; conflicting ref is never overwritten",
+    "git_artifact_commit": null,
+    "commit_resolution": "The carrier commit is content-addressed and cannot self-embed its own id; the publication handoff records the exact commit id after push and independent remote readback."
+  },
+  "evidence": {
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/expo-base-visual-atlas-capture-v1",
+    "required_files": [
+      ".codex-fabric/audit.json",
+      "visual-atlas/surface-manifest.json",
+      "visual-atlas/capture-report.json",
+      "visual-atlas/reader-index.json",
+      "visual-atlas/review-desktop.pdf",
+      "visual-atlas/review-mobile.pdf",
+      "visual-atlas/artifact-stage-receipt.json"
+    ]
+  },
+  "package": {
+    "root": "visual-atlas/",
+    "manifest_sha256": "b74b7aa38f12d719fb143f1c43b2e67a949ea780334f05b8b88c0727c8be9226",
+    "capture_report_sha256": "49d3138465e837b0305683ccca2d7a8a8605394e3ab152062817037983c0e2e2",
+    "reader_index_sha256": "8eb45456cf32c11c4f1bb5e8bcff5719aa1384b30a63503b9cc22db45e140924",
+    "review_desktop_sha256": "380fc7354814fb892abfb32b6903ba624d2a28c46e1b9b7aad9b97e4dd413bdf",
+    "review_mobile_sha256": "d4b1283a9206ad912fb96ec286c261bbb18a91a16fee85d25c0ef96b6d8a31bf",
+    "bundle_sha256": "5ddde8206a9464ce4b2247ab6c36013e74d9957a6213e7d8478ca4948b8db9fa",
+    "surface_count": 50,
+    "canonical_screenshot_count": 100,
+    "stress_record_count": 90,
+    "receipt_excluded_from_bundle": true
+  },
+  "local_validation": {
+    "passed": true,
+    "manifest_frozen": true,
+    "required_pngs_verified": true,
+    "reader_pdfs_verified": true,
+    "bundle_contents_verified": true,
+    "notion_calls": 0
+  },
+  "published_at": "2026-09-18T23:44:36.696Z"
+}

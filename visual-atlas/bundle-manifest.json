@@ -1,0 +1,993 @@
+{
+  "schema_version": "project-os.visual-atlas.bundle-manifest/1",
+  "project": "expo-base",
+  "request": "expo-base-visual-atlas-capture-v1",
+  "operation": "VERIFY",
+  "excludes": [
+    "artifact-bundle.zip",
+    "bundle-manifest.json"
+  ],
+  "included_files": [
+    {
+      "path": "capture-report.json",
+      "bytes": 113563,
+      "sha256": "49d3138465e837b0305683ccca2d7a8a8605394e3ab152062817037983c0e2e2"
+    },
+    {
+      "path": "reader-index.json",
+      "bytes": 43880,
+      "sha256": "8eb45456cf32c11c4f1bb5e8bcff5719aa1384b30a63503b9cc22db45e140924"
+    },
+    {
+      "path": "review-desktop.pdf",
+      "bytes": 4592332,
+      "sha256": "380fc7354814fb892abfb32b6903ba624d2a28c46e1b9b7aad9b97e4dd413bdf"
+    },
+    {
+      "path": "review-mobile.pdf",
+      "bytes": 2478179,
+      "sha256": "d4b1283a9206ad912fb96ec286c261bbb18a91a16fee85d25c0ef96b6d8a31bf"
+    },
+    {
+      "path": "screenshots/expo-base--accessibility-motion--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 115645,
+      "sha256": "c1b1aacce2b6db0cb83bff208e74b9d03ff413d3e604bcc3f87a9487403461c8"
+    },
+    {
+      "path": "screenshots/expo-base--accessibility-motion--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 71628,
+      "sha256": "94d9034c5e025ef97beec2b829bacae34b191a762e312246d5657f1d0bafe83a"
+    },
+    {
+      "path": "screenshots/expo-base--analytics-showcase--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 98899,
+      "sha256": "56f29bf7dd30b41802a0a1620576fd34421e12a34a6fec6b865bf996262fd989"
+    },
+    {
+      "path": "screenshots/expo-base--analytics-showcase--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 61596,
+      "sha256": "609d9c4bd50dab272a1a5ed68945612936c4efb10781c57409dcfbd047ad73a6"
+    },
+    {
+      "path": "screenshots/expo-base--auth-session--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 47108,
+      "sha256": "d3b58d2ac86ae98283af8709b0abb682aaa94b3f28f40798d29a0026324b98d0"
+    },
+    {
+      "path": "screenshots/expo-base--auth-session--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 35067,
+      "sha256": "16caed029f6940a4876f8a8daae0bcef679ef2cd41d2ab04d5f2640879ef0cd9"
+    },
+    {
+      "path": "screenshots/expo-base--authorization--capability-protected-admin--granted--reference-user-settings-manage--light--desktop-1440x900.png",
+      "bytes": 33474,
+      "sha256": "8a76267e9ea1c18cc8eb90c4ba17340621d9442b704643231bdd526e2b764647"
+    },
+    {
+      "path": "screenshots/expo-base--authorization--capability-protected-admin--granted--reference-user-settings-manage--light--mobile-390x844.png",
+      "bytes": 22144,
+      "sha256": "90277ab2d94901ac6466a229ae1f32c28078f64cbf59e937dfda70de27ae5cf8"
+    },
+    {
+      "path": "screenshots/expo-base--authorization--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 57569,
+      "sha256": "20cbf206bc4717fd9c8f50a9773f1415a88cda2ee993b57cb3581ff7fe21bd7b"
+    },
+    {
+      "path": "screenshots/expo-base--authorization--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 44893,
+      "sha256": "d5bad1730bc3f5addf83454571dd86e7c4801dcaed0ca4d6258132fe5ba65fdf"
+    },
+    {
+      "path": "screenshots/expo-base--capabilities--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 83786,
+      "sha256": "761b99cc1fc4156bb924991d395db19109005d4743d9ef1ff15f5aa9d49ce419"
+    },
+    {
+      "path": "screenshots/expo-base--capabilities--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 66511,
+      "sha256": "d90c3e187a797a570ee219a9c1e34ec53d34da9c6bc11221cb0af8209bf9d5e4"
+    },
+    {
+      "path": "screenshots/expo-base--data--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 134269,
+      "sha256": "78a84209cc248e340a69b158c1602bcacd6433a734d5834d1a53c102841f4fe5"
+    },
+    {
+      "path": "screenshots/expo-base--data--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 67706,
+      "sha256": "4c66f7fcb65cc3d74ab57bd6fff4ee0f882b16cc4a8a5ff90d65864c7a45af15"
+    },
+    {
+      "path": "screenshots/expo-base--data--filtered-no-results--empty--reference-user--light--desktop-1440x900.png",
+      "bytes": 107432,
+      "sha256": "48425931c024cb3efe174377abfebafbac1d9b3c0ce0df3558972e57fd6c9497"
+    },
+    {
+      "path": "screenshots/expo-base--data--filtered-no-results--empty--reference-user--light--mobile-390x844.png",
+      "bytes": 66871,
+      "sha256": "d0ebef0faa0d32b848252a86d39049313838193086ef38400edf3b9dd214404b"
+    },
+    {
+      "path": "screenshots/expo-base--feedback--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 109361,
+      "sha256": "8cdb15993ed7ab0ea19a8d5340797987332df68fd3a26dcdeca7be967008ede4"
+    },
+    {
+      "path": "screenshots/expo-base--feedback--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 69302,
+      "sha256": "1e713567892a840ec6d2a5b98d9792ebff4406095eb283c0e5fdbbf246b39099"
+    },
+    {
+      "path": "screenshots/expo-base--feedback--state-error--error--reference-user--light--desktop-1440x900.png",
+      "bytes": 110806,
+      "sha256": "6870d95deb2ef220bf48455c9b68e65b5d827b1515ec905873f5acd06311fbf2"
+    },
+    {
+      "path": "screenshots/expo-base--feedback--state-error--error--reference-user--light--mobile-390x844.png",
+      "bytes": 41549,
+      "sha256": "31ac894647f97a94524cbeef4ffc71ff32f3f78ffe54b1a21c2efad3306e8edc"
+    },
+    {
+      "path": "screenshots/expo-base--feedback--state-maintenance--maintenance--reference-user--light--desktop-1440x900.png",
+      "bytes": 110930,
+      "sha256": "d3e0dbf49395cf34435359512d3ce3e913a740256508f37763204437a6903bf2"
+    },
+    {
+      "path": "screenshots/expo-base--feedback--state-maintenance--maintenance--reference-user--light--mobile-390x844.png",
+      "bytes": 40499,
+      "sha256": "e7308c0883c03aee4a3afdbceeb0b71bbbec2a492d89718fcbb145788c9fb8f5"
+    },
+    {
+      "path": "screenshots/expo-base--feedback--state-permission--permission--reference-user--light--desktop-1440x900.png",
+      "bytes": 110621,
+      "sha256": "8c8d11ed8254c37a07b33a3bb08a1ba0451e6639b8e4865f632f4f2237046971"
+    },
+    {
+      "path": "screenshots/expo-base--feedback--state-permission--permission--reference-user--light--mobile-390x844.png",
+      "bytes": 40820,
+      "sha256": "25ead1ae4428a171badc2b2902850d8da152cc96abcd5684bc2f882d71804d39"
+    },
+    {
+      "path": "screenshots/expo-base--finance-showcase--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 93369,
+      "sha256": "270c96f1634fa79b5cf92eabcebf3ed6ee449a8276918d22e9f8836368943ede"
+    },
+    {
+      "path": "screenshots/expo-base--finance-showcase--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 63147,
+      "sha256": "f01daf118cc8d304a801631ead811bca714ccecf8cbf801b00eaeb06eb7a1e4b"
+    },
+    {
+      "path": "screenshots/expo-base--forms--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 103430,
+      "sha256": "0a734e1ee734c8db7a88f93c9f5ebf76d8ea1028bc3e05a3afcca67468472bf0"
+    },
+    {
+      "path": "screenshots/expo-base--forms--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 63574,
+      "sha256": "2823214e26f10914704be3d6d5fa01b5e041d596e54fa7c2ea160310a973b7fc"
+    },
+    {
+      "path": "screenshots/expo-base--forms--server-validation--error--reference-user--light--desktop-1440x900.png",
+      "bytes": 104178,
+      "sha256": "baf136925bf15a40e156d31ade3562ff67b6c5c8d256bc1e3a0bbbbb78846aa5"
+    },
+    {
+      "path": "screenshots/expo-base--forms--server-validation--error--reference-user--light--mobile-390x844.png",
+      "bytes": 55191,
+      "sha256": "ee840a71824486508462c9ea160b58534cf407e03c298b92d8aa8c1377fa3063"
+    },
+    {
+      "path": "screenshots/expo-base--golden--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 89848,
+      "sha256": "89ee32eeaa2ec9cbabe6f22551c80e59ea8b103036945af807f2d88072153ac4"
+    },
+    {
+      "path": "screenshots/expo-base--golden--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 44180,
+      "sha256": "e1d3b489fadf563fd7e53c243508f1cc4fce20b57f8d7108b5bb0d1fc120d33a"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-analytics--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 72885,
+      "sha256": "be21d3270b9f49577c16da192d0536e10d07b4b4d3ad31c5685599bb83d93ffb"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-analytics--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 46234,
+      "sha256": "6db2984718625dd334a2f4fb900286fe0d337eb21dab31d38d5794e0008e695a"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-authentication--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 42326,
+      "sha256": "7052045608d4868617fdda13e826b0fd026e66b3889044888fb49498d56fdcc5"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-authentication--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 30182,
+      "sha256": "eb271e67606becf2ccd0563fd2343343b0a1619964231f5b15c0d8180f2ad728"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-create-edit-form--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 51090,
+      "sha256": "8b057f2e6af2282f8b1ae7b7e747117e41f23a061b811526237ec9b96aa6029c"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-create-edit-form--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 38866,
+      "sha256": "400cda05b7ee1a76cb86d3f8c6bbbb3014fd8c0444ddea5a5b1b3ab7d4113f3e"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-data-workspace--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 60928,
+      "sha256": "40e34c420d400316d6334a13012f56e5134f9c62e0ede1f6a3910a739fdf36dd"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-data-workspace--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 51502,
+      "sha256": "f6fc00c5bdac8ee445a501a07d4cbd5300b5f4e81f5ea6a92f96ff5ba347cbe1"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-detail--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 60391,
+      "sha256": "e801646fad4df8d88f4f0aaa80c053b0f10406e9b6f32e141ede19179cfc9d42"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-detail--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 43502,
+      "sha256": "8ea4d9d21dadc7e9fcf7b8e2380de078f1e1bac63de962641313c04d0269ab68"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-empty-start--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 49831,
+      "sha256": "7c0f81c056b1957480d973a358ec919df85a86187dc5c6c2657e7b668cea6151"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-empty-start--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 37678,
+      "sha256": "0f641b91309ed730af2ef867b4cb28107c5e250528c6f8311047ed4cd9ac4f5c"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-feed-list--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 57175,
+      "sha256": "8995e49d1a4598fb00eecdf7b0120ce2a1d856278fc1c03e042320091d491aaa"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-feed-list--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 44037,
+      "sha256": "06cb1989b6ad646f8306e2c9183f9892161290bd9eb13cf0cd73dd7456322e81"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-full-screen-workflow--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 54712,
+      "sha256": "9749194e855a81e966335178c35bc438aeddfa30ba01a852d04e5f724a46429c"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-full-screen-workflow--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 42216,
+      "sha256": "2a9cf2e6a10590285b60ef0032ffe88e5615778e8c6f41f97d6bc829b560ec41"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-master-detail--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 65930,
+      "sha256": "35bc8cd3274fddcc6db5b1ae084dad991327571985bbdbc6ee4eae5059065327"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-master-detail--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 40361,
+      "sha256": "eef2176c76ed4544b8b4e2002acb70bb3a9d4aed2e2d168bc8ed4250f76b97da"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-overlay-workflow--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 52421,
+      "sha256": "27ffb173e08250933cc54d934b200a63795294871fdb1299a9af4a5d694004bf"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-overlay-workflow--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 40505,
+      "sha256": "81bc3c19f9056d98f0b81b2d3ecfa4291a6fe38c51d4944cfb308c67c28c4d95"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-profile--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 54627,
+      "sha256": "9090996f9d35a37d963f2341630d977c0fe1728195ca558b4bb0483c9454eddb"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-profile--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 41059,
+      "sha256": "7549304a65351ad79f44fe59bfb66c50d48140addcab04bb96ee27cc58528882"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-search-results--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 63573,
+      "sha256": "21008ade1e2be7867470862f46b1bf06120e046848fa4d97f185f3b484c5c5b7"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-search-results--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 50282,
+      "sha256": "d59a435e84ec93f17573e39a3650128a695a3b43098fcbb3b7fec8621412cab2"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-settings--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 50814,
+      "sha256": "344d3ae3d8cc91cb26d017114160f4bbb7977895e686d7727e3fa27fdd6ad1b7"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-settings--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 39218,
+      "sha256": "4ad74d0272f754b7dac1b0690f9d7c24bb4d6b1acbe0e4bc9cb1a65eaf896bca"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-wizard--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 54951,
+      "sha256": "0df1705c6dd3ac51a9615ce5ddacc62194f60d6b387830fac4fd12ee5b8432ac"
+    },
+    {
+      "path": "screenshots/expo-base--golden--pattern-wizard--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 41209,
+      "sha256": "0f3a2ae181ebc36607084cf6de2bdd6454d1394ae2e045389dcafe8eb7f4263b"
+    },
+    {
+      "path": "screenshots/expo-base--golden-plus--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 115838,
+      "sha256": "20e578daed71d2e4dfade2a893a9d60e990780645d6090e19a057cd874c84816"
+    },
+    {
+      "path": "screenshots/expo-base--golden-plus--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 61858,
+      "sha256": "dc49905ce3ea3301646d5cd52d9626d8f0971afef911eb115f84c4037fb7b691"
+    },
+    {
+      "path": "screenshots/expo-base--home--default--ready--reference-user--dark--desktop-1440x900.png",
+      "bytes": 153182,
+      "sha256": "344b806702b202da4c33f61b754d7bdc983fec253ab8918b7f9a6871eefa7d73"
+    },
+    {
+      "path": "screenshots/expo-base--home--default--ready--reference-user--dark--mobile-390x844.png",
+      "bytes": 69823,
+      "sha256": "f9da4fab26462f2ebed2b8c9a6666ce053a18cb1b0102be6b985909af802a14a"
+    },
+    {
+      "path": "screenshots/expo-base--home--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 149457,
+      "sha256": "3604df3ff28cd0d41551ab9465dc1723fcc7f51a20fcd9671b45421c2ea42c5b"
+    },
+    {
+      "path": "screenshots/expo-base--home--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 63399,
+      "sha256": "25d119370516495f36152ace2eaba65fd9121e0e13adc69e05f35f4814697c31"
+    },
+    {
+      "path": "screenshots/expo-base--lists--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 112091,
+      "sha256": "bbd5a07b0606dcd52c462c2ed948eca4c7919818e56f9c641ac233df864e26c6"
+    },
+    {
+      "path": "screenshots/expo-base--lists--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 69666,
+      "sha256": "afb91a7a3f5adcc572c063452496f7039ea29f906370ac677ced9e5a0373f4aa"
+    },
+    {
+      "path": "screenshots/expo-base--lists--mode-empty--empty--reference-user--light--desktop-1440x900.png",
+      "bytes": 103588,
+      "sha256": "328485e5081c11ce339828dd2a94ee0b8be273bc2bf8ea5c7c8c41d399b7ec4f"
+    },
+    {
+      "path": "screenshots/expo-base--lists--mode-empty--empty--reference-user--light--mobile-390x844.png",
+      "bytes": 69997,
+      "sha256": "3c468efa38383b8618844e048c8a8e628e04e62fe1dd1d9e66c8e0d44114bf93"
+    },
+    {
+      "path": "screenshots/expo-base--lists--mode-loading--loading--reference-user--light--desktop-1440x900.png",
+      "bytes": 97350,
+      "sha256": "ae04ebc538ab58bb3250244385193a216b7a68a54214170198d65e9191df7745"
+    },
+    {
+      "path": "screenshots/expo-base--lists--mode-loading--loading--reference-user--light--mobile-390x844.png",
+      "bytes": 70099,
+      "sha256": "b23f102cfd52a574b77a5714fa748c9c6313a4b7f02145358b3b990bac1eca3f"
+    },
+    {
+      "path": "screenshots/expo-base--monitoring-showcase--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 98564,
+      "sha256": "56539c056f55767175549d3dbf1ff05833aecc4dd43c02107939a9db0b43fa36"
+    },
+    {
+      "path": "screenshots/expo-base--monitoring-showcase--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 61343,
+      "sha256": "c9f4ec3b7553fa32c355f6300eda059492da881e0421683d061bd8d65224437b"
+    },
+    {
+      "path": "screenshots/expo-base--navigation--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 98299,
+      "sha256": "d95c91984b0d740c4bdc09a5889e9d13f2abc1f63310d8f773a68136afe9569c"
+    },
+    {
+      "path": "screenshots/expo-base--navigation--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 63881,
+      "sha256": "f418085785f5470f32bb674336b2651b4475db1b53252ecc23f6bb2128cd2f01"
+    },
+    {
+      "path": "screenshots/expo-base--navigation--tab-benefits--selected--reference-user--light--desktop-1440x900.png",
+      "bytes": 98617,
+      "sha256": "6651efea176832fe9b6fb518edf9ca721696f01d50f18fb08499891aeb6387ce"
+    },
+    {
+      "path": "screenshots/expo-base--navigation--tab-benefits--selected--reference-user--light--mobile-390x844.png",
+      "bytes": 64227,
+      "sha256": "9490cf2c1cf38ac72a4b4574167be219f4cba7b8747f6cf71bef96b1247df522"
+    },
+    {
+      "path": "screenshots/expo-base--overlays--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 79661,
+      "sha256": "c941df94c95059ccc027ee907f24a4810fdd315b3611cfe50fc38f4c70423ed2"
+    },
+    {
+      "path": "screenshots/expo-base--overlays--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 65342,
+      "sha256": "90cd263f52f6911ef06117a358c333c83dcf832ac8793d1550cccad4192ce235"
+    },
+    {
+      "path": "screenshots/expo-base--overlays--destructive-alert--confirmation--reference-user--light--desktop-1440x900.png",
+      "bytes": 87610,
+      "sha256": "9db29a7eb9cd9d17f6871e1555fed61a9426e29fd5bc562c1902cec6a2dbf56d"
+    },
+    {
+      "path": "screenshots/expo-base--overlays--destructive-alert--confirmation--reference-user--light--mobile-390x844.png",
+      "bytes": 64498,
+      "sha256": "08acdd7b5d1c766802582bb03b3a4df25ea570bd4a2002d33ed76f57513481db"
+    },
+    {
+      "path": "screenshots/expo-base--server-state--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 91006,
+      "sha256": "378be8c835b21f28212f1dfcde49accae7119fd9eb300189525ed5fa2d115392"
+    },
+    {
+      "path": "screenshots/expo-base--server-state--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 62951,
+      "sha256": "b249bd459d6db9fa71f38f2e1be4cb2b33267068a75f19081633042b6ade4f1b"
+    },
+    {
+      "path": "screenshots/expo-base--server-state--refresh-error--error--reference-user--light--desktop-1440x900.png",
+      "bytes": 85243,
+      "sha256": "978244293632103b1af10ae088ea6eb8202474ffd0fc186797e8cb2570882bfc"
+    },
+    {
+      "path": "screenshots/expo-base--server-state--refresh-error--error--reference-user--light--mobile-390x844.png",
+      "bytes": 59455,
+      "sha256": "bea16f18872d99ccfef0623884609ff911ae2742920a4899866b943e6dd9b475"
+    },
+    {
+      "path": "screenshots/expo-base--services--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 70751,
+      "sha256": "28d58665a7b5fd7b80c7db50e8f9f748473d0145c3816816fc33ebf23f59af06"
+    },
+    {
+      "path": "screenshots/expo-base--services--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 56342,
+      "sha256": "b284ac743b8a3498694427e9d2289867f16d915d9da927677a042e8f1cebcf1f"
+    },
+    {
+      "path": "screenshots/expo-base--stress--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 166294,
+      "sha256": "50de0e481824c3ac7428b115781dfdae2d9addb24fa58ce39947c16bdd80da70"
+    },
+    {
+      "path": "screenshots/expo-base--stress--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 65682,
+      "sha256": "e877942b39e1f2d8000604aae7b77c57b6156faf68ef3bfe086b1bd6061daa83"
+    },
+    {
+      "path": "screenshots/expo-base--system--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 155138,
+      "sha256": "21deada9156911963aa47514e52c349b6fbdd20fed8df84713409c7e938ebcef"
+    },
+    {
+      "path": "screenshots/expo-base--system--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 66275,
+      "sha256": "976abc4a8e87cd3107eb0f6833bc15c13223bd6adc21db5885f0a9dd436d7ab9"
+    },
+    {
+      "path": "screenshots/expo-base--visualization--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 105819,
+      "sha256": "bc28733d10c3dbe98492516f35ce9b77dc6fad42d106ca480af7e532375e4f27"
+    },
+    {
+      "path": "screenshots/expo-base--visualization--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 58722,
+      "sha256": "aea91ef8fbe6d2f5fdf6877297fb7d271ec6552763f8111061fc73c628f2d2cc"
+    },
+    {
+      "path": "screenshots/expo-base--workflows--default--ready--reference-user--light--desktop-1440x900.png",
+      "bytes": 53033,
+      "sha256": "d0f6faabb581d004840ad6afc33172a8605c904fe1d6e99146858fd73ac43264"
+    },
+    {
+      "path": "screenshots/expo-base--workflows--default--ready--reference-user--light--mobile-390x844.png",
+      "bytes": 41253,
+      "sha256": "80178142ac292b04fe830df68e8d7167ca69d7c873a871513e1a6b202df211c1"
+    },
+    {
+      "path": "screenshots/expo-base--workflows--view-completion--completion--reference-user--light--desktop-1440x900.png",
+      "bytes": 49403,
+      "sha256": "c745e165d6671252f5c123fb9118970f1b9c5bee0a95da8a47c39ec0405dec27"
+    },
+    {
+      "path": "screenshots/expo-base--workflows--view-completion--completion--reference-user--light--mobile-390x844.png",
+      "bytes": 37481,
+      "sha256": "69eef7b559f316995a5dd8f22328b48567538c90d869258a404db7a60c80c8e4"
+    },
+    {
+      "path": "screenshots/expo-base--workflows--view-permission--permission--reference-user--light--desktop-1440x900.png",
+      "bytes": 53591,
+      "sha256": "d529b418f254664ada009e751eafb95fa4f3bb442302a564237a7af9ef4a5e7a"
+    },
+    {
+      "path": "screenshots/expo-base--workflows--view-permission--permission--reference-user--light--mobile-390x844.png",
+      "bytes": 39519,
+      "sha256": "21b651288a8d7526d7cd2f27ef50eb94a8d90f53cde72c6714c14e233b0f7440"
+    },
+    {
+      "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 91302,
+      "sha256": "438e5d34168ea8e040a38fdc03921cbddbe166282e35fe9cb0993eba16646abb"
+    },
+    {
+      "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 115627,
+      "sha256": "607576e81debf3d1ca38f473e9d91ea6546ceb2ff6db30c56009009eed737775"
+    },
+    {
+      "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 41454,
+      "sha256": "98df3e5b6e25c802da8950d3a016f007b5541e1ff19e348018ed713a5e012b76"
+    },
+    {
+      "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 59363,
+      "sha256": "29c7fe01cd969fd9af020334350bd4acc2a665a6cac77b07ecdc76b6c81f3a66"
+    },
+    {
+      "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 97665,
+      "sha256": "8ca611c56b046dbfa295b3d3d489f479e041acde903a110111db8f1e0e071b67"
+    },
+    {
+      "path": "stress/expo-base--analytics-showcase--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 57371,
+      "sha256": "4e0754be8d749bc17fd781de30aa83b632359f6094f5125edfe3f6ea18c289ab"
+    },
+    {
+      "path": "stress/expo-base--data--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 118237,
+      "sha256": "9f82eb7b954c4e297ea74d0be527d1fc39f0467b61c684bed2e2d2d17483415b"
+    },
+    {
+      "path": "stress/expo-base--data--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 146300,
+      "sha256": "0a92a2e393040af9fc3c2cc2c758f59a7bf47e96e7091d490cc694ba57c2bf27"
+    },
+    {
+      "path": "stress/expo-base--data--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 48698,
+      "sha256": "7de52b8501b06a8469f4dd8ae2b73f6dc783bae284a43cc9b076e2408b62ac68"
+    },
+    {
+      "path": "stress/expo-base--data--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 63456,
+      "sha256": "05a4806e37514aa59913060a1ca5b3b38718bfb19f62689b3ee4f57b25b71cc8"
+    },
+    {
+      "path": "stress/expo-base--data--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 133926,
+      "sha256": "fe018fca9b4af2ed9b9388490f239517733709e148d235a9a05636b675b257ba"
+    },
+    {
+      "path": "stress/expo-base--data--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 50498,
+      "sha256": "5339b0c4d9af4739efe99a3c660fc20ae692fac41c2b39d24b49f94f9bc5408e"
+    },
+    {
+      "path": "stress/expo-base--feedback--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 104319,
+      "sha256": "7b9777cf659adf0db9cdea76de939099f645a93ece606b352432a5acd9773c97"
+    },
+    {
+      "path": "stress/expo-base--feedback--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 122249,
+      "sha256": "6dc827b613dd826c20765e0d62703a4ef40542b6ba020cdfa6120c4726ed895c"
+    },
+    {
+      "path": "stress/expo-base--feedback--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 49221,
+      "sha256": "4c2565bc5d361b2757c7b2dcf026f0164fbed7c5bc6a5031dc7a219cdecdd2cb"
+    },
+    {
+      "path": "stress/expo-base--feedback--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 67533,
+      "sha256": "0ed212e7ac10439cf3c7b09655fea23d1f1be016a161272840d031df31df24a6"
+    },
+    {
+      "path": "stress/expo-base--feedback--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 107274,
+      "sha256": "1a9503780c2edf85e86a9cb68b3879c6adcce2906e4ecdde57b49830a2272ab1"
+    },
+    {
+      "path": "stress/expo-base--feedback--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 38385,
+      "sha256": "9d81a9cc1712f0ad885aca91999b8b01b4fa482cce9066876a636fb7a185d6ad"
+    },
+    {
+      "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 85819,
+      "sha256": "4b7822b759d22ef1152836fe9045b075c40c108d37ad359f2cafe5f22a2f170c"
+    },
+    {
+      "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 115478,
+      "sha256": "23e1d3e2ecea04e0e842d038237617e277e4e398e4be393029346d412673f6d2"
+    },
+    {
+      "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 45530,
+      "sha256": "e2ba3275b948727fa07e8d5d3ab9ce13365c2aab988474c1619816a3d6832a54"
+    },
+    {
+      "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 59179,
+      "sha256": "803caba315bc5f50abe4d5c3387fab07cc4ad1f7f36852dae7a92d16a428c8ed"
+    },
+    {
+      "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 92455,
+      "sha256": "deea0d806dd8eb913bdf314b1316cd74199584e676c83000c11c3a5dc7c8ad22"
+    },
+    {
+      "path": "stress/expo-base--finance-showcase--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 46425,
+      "sha256": "e67764fa73a7c83f83949c507ac72df2513df8ec9f5feb494654484864472952"
+    },
+    {
+      "path": "stress/expo-base--forms--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 88170,
+      "sha256": "48999e022750de1810e12d1cfa2ad69b4e01c43ec27dd9abca9c9502a0ba69e0"
+    },
+    {
+      "path": "stress/expo-base--forms--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 119144,
+      "sha256": "dc11b1726dd6f2898fe69817ecd9f3f04c8a0bc5320e27db16d7da13ea0b8036"
+    },
+    {
+      "path": "stress/expo-base--forms--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 45640,
+      "sha256": "5652ca171e04cdd1c01cf3f52ffdee9e4cea6219a26bb22078b20eae20b74bf4"
+    },
+    {
+      "path": "stress/expo-base--forms--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 56566,
+      "sha256": "090d58c556e7e59a6bcb0554b1dce2a7799f0b8f140438b9eaac5635108a74c0"
+    },
+    {
+      "path": "stress/expo-base--forms--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 101966,
+      "sha256": "e6050e7214d938a520eb37f8b1a9db6f973187a1e16bbd1ac299e00861f286e0"
+    },
+    {
+      "path": "stress/expo-base--forms--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 49610,
+      "sha256": "8f520cf9264b55eb1bea3f63b269776690e3e73883ec215ea663a6a0e3171869"
+    },
+    {
+      "path": "stress/expo-base--golden--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 82925,
+      "sha256": "db20df53e51d1c831835dbd5a86ce21f7e6896705ae9cc8f58932e0a6ba51783"
+    },
+    {
+      "path": "stress/expo-base--golden--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 94511,
+      "sha256": "e17fefb8f59022d94908d4a93427ac08e55c109affc043f88d0db00cdac837ea"
+    },
+    {
+      "path": "stress/expo-base--golden--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 34487,
+      "sha256": "4fae5ad9dcbef227d13fa3f456b96d90ba71aa053151e5bfbc7c00f06f20c482"
+    },
+    {
+      "path": "stress/expo-base--golden--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 42257,
+      "sha256": "3374b9ed81924c6e5e29f72ff340e2d134fd125a83c4793f30ed0d31337faf5c"
+    },
+    {
+      "path": "stress/expo-base--golden--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 89572,
+      "sha256": "ac21da8582bde4adcd3b2f8ab6d8c94be4841f90e2c44ee7c6c345dc356d6ab1"
+    },
+    {
+      "path": "stress/expo-base--golden--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 45150,
+      "sha256": "abdfaee86737a45436dbd2049c0143bff4224756972364a1722a39ec4e2a6b9d"
+    },
+    {
+      "path": "stress/expo-base--home--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 131686,
+      "sha256": "5a2cf34fdfaf5e9b370b3afa4feac33fbc51d6752281a61e908542ab5cb11b85"
+    },
+    {
+      "path": "stress/expo-base--home--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 169810,
+      "sha256": "7845899d791919b34eabc81ad329b07da72623a09e80636b656c423bcf0b0113"
+    },
+    {
+      "path": "stress/expo-base--home--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 54067,
+      "sha256": "5b422ae4b198de90a73348887538630e9d9fa6faae33c0c0a97cea80a7c398b0"
+    },
+    {
+      "path": "stress/expo-base--home--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 61782,
+      "sha256": "42241921fab08c017eb15432c1a0e95bdf7597a224de3c63389922066ce27b35"
+    },
+    {
+      "path": "stress/expo-base--home--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 145020,
+      "sha256": "bcb936e18d4eca2e21e6a79ff5fd35fb3904c57bcd3d6d65d8b8067412f0e80e"
+    },
+    {
+      "path": "stress/expo-base--home--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 46837,
+      "sha256": "461cc226388e8eca5599415bba01fc0f827cb8307a546bdbe0c2afedf49ca990"
+    },
+    {
+      "path": "stress/expo-base--lists--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 99610,
+      "sha256": "965138c0c5c012617a034a7a42ccca2780cb2bd8866328989fcb14460069f51a"
+    },
+    {
+      "path": "stress/expo-base--lists--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 129677,
+      "sha256": "c001c3f9a2527ae46bd0c5023f5c59600e3c3eef69025c01c1fa54fd0e9e1369"
+    },
+    {
+      "path": "stress/expo-base--lists--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 46578,
+      "sha256": "3c7664918f1e9e0cb6997196d63403dd3054fbda9126f636635dbf52c7ffc88c"
+    },
+    {
+      "path": "stress/expo-base--lists--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 66139,
+      "sha256": "4229faa9a1d1e7a69a0fac1461d391c34062dfabdc231c7df6bc0db99ce9b9c2"
+    },
+    {
+      "path": "stress/expo-base--lists--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 107958,
+      "sha256": "e6906e4fd1ffdc6f6551a169f62ee2a19a070c5ee09f61ece9ca0bcae82e6e47"
+    },
+    {
+      "path": "stress/expo-base--lists--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 48062,
+      "sha256": "80b97b907d91d7ab6d66558f64458645da91523b9db6e6219fb1ff3699108f65"
+    },
+    {
+      "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 90598,
+      "sha256": "b2af289a66517117df2089d3c8c32156827c3a7ad43bcc7178ff4b74eca1c799"
+    },
+    {
+      "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 121007,
+      "sha256": "d72f8cbe5b6110c94af92c913f1a5680f06b3208bce8f429d081f73f6be6a674"
+    },
+    {
+      "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 43645,
+      "sha256": "aa2b4d73124575a65d565a28d02362900e9f601126c75eb78517c4b675249d99"
+    },
+    {
+      "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 52642,
+      "sha256": "e69d3918fb672993499174349e41148b54e24e2b0e1ee37b955873277e0bac35"
+    },
+    {
+      "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 97224,
+      "sha256": "89731842ebc444f3741d3b96c291d74a84080565b18e42403b973d599484e081"
+    },
+    {
+      "path": "stress/expo-base--monitoring-showcase--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 47441,
+      "sha256": "0088f10a2816b82c4e3bdacdeff8d3a912f8dd79db09c9c3277e9f11f7b10779"
+    },
+    {
+      "path": "stress/expo-base--navigation--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 95950,
+      "sha256": "b643002fbb6bb82698defa4f0bd8e79581c93db0997d961eb893d3f7ac7ae745"
+    },
+    {
+      "path": "stress/expo-base--navigation--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 102634,
+      "sha256": "caf1abdd0e18a1c54282df9127c9d112955b10554ad2df87f0a39c0d58fe3622"
+    },
+    {
+      "path": "stress/expo-base--navigation--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 46770,
+      "sha256": "936690faa940b8a0509cae784f79f560160857e4651b609f0787967e584e3929"
+    },
+    {
+      "path": "stress/expo-base--navigation--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 56421,
+      "sha256": "4613d9485a3028214c12737f2e239445607148572009cfc08e7e658a368ff894"
+    },
+    {
+      "path": "stress/expo-base--navigation--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 98613,
+      "sha256": "ce12b168d5d4e08869648fe7f429d52f0461b921458e074bb19162dd42de8561"
+    },
+    {
+      "path": "stress/expo-base--navigation--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 51110,
+      "sha256": "14c5fe9af6aa73562564170f1cb31d80fe148bea1f09fda6e59d4cba35c61374"
+    },
+    {
+      "path": "stress/expo-base--overlays--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 77963,
+      "sha256": "7ca85334444ec24eab0c2d95c55463d762b2ac86ad6ef2c1db7e8ff32458ad12"
+    },
+    {
+      "path": "stress/expo-base--overlays--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 83506,
+      "sha256": "7c1ccd40c3326e3807bc89328017664cf87444b93a782715ac8ef3fa65281fbc"
+    },
+    {
+      "path": "stress/expo-base--overlays--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 46758,
+      "sha256": "12ecbad149038e0215cc2388e41b2f099ad1283d4b04e2e9a284894d54828fe5"
+    },
+    {
+      "path": "stress/expo-base--overlays--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 64147,
+      "sha256": "525823adfc07ec616cc6dacfffc6674f5e2951c9a92025a647cfdcf766051bd6"
+    },
+    {
+      "path": "stress/expo-base--overlays--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 79890,
+      "sha256": "7adbbe9a77c0f299ee324a6978f8bb44b769413149f996f85bdc6a4389c2dd43"
+    },
+    {
+      "path": "stress/expo-base--overlays--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 53298,
+      "sha256": "f03e6e79ece3508f7f7d2bdf13e73196492e864d10477dadf80e05904aea9672"
+    },
+    {
+      "path": "stress/expo-base--server-state--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 81168,
+      "sha256": "98ae6e1417b56e14827af749144049bfda52f1f074f7329fe3166323482334dc"
+    },
+    {
+      "path": "stress/expo-base--server-state--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 105053,
+      "sha256": "5d05b318d0e73693252bda32e906fbd3a1f4b2bdeea52cb39ce982c5ba518744"
+    },
+    {
+      "path": "stress/expo-base--server-state--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 41599,
+      "sha256": "09464cedc8864642ab41019afe655668271208230cf02e87031fc50db94ff44e"
+    },
+    {
+      "path": "stress/expo-base--server-state--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 60167,
+      "sha256": "285813df2610f3d1e604c92e5ab8e73fddf314348f13983dc1fa491b97dda5aa"
+    },
+    {
+      "path": "stress/expo-base--server-state--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 90210,
+      "sha256": "9aa9b498b77f6950a0234de8c54af283c2b0353ecf66322f5b280a6a8b1da740"
+    },
+    {
+      "path": "stress/expo-base--server-state--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 50352,
+      "sha256": "3efde080acc0ea7b4e0ff684216af7811075f36ed075a57ecc4c72b9fc3d9c9b"
+    },
+    {
+      "path": "stress/expo-base--stress--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 150388,
+      "sha256": "dd801667e2401a22a9833aeaf468bb270899f2ecf2e23ac6adbdb888ecbf9890"
+    },
+    {
+      "path": "stress/expo-base--stress--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 219001,
+      "sha256": "24db1729149df18926865e8916ce66c596f30f957fb18d04783caa1f1366d721"
+    },
+    {
+      "path": "stress/expo-base--stress--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 45485,
+      "sha256": "1e71460aecb4ce3c1f431a97986838d8593e68a6d4457a26464ab5e100ca1358"
+    },
+    {
+      "path": "stress/expo-base--stress--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 63443,
+      "sha256": "c681efb7aa13dec4e2e96087517a5f57442e7aa05671d60e045748af4d6c014f"
+    },
+    {
+      "path": "stress/expo-base--stress--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 160312,
+      "sha256": "bc7c1daabd09d2d0791bbcd177253694237d3b7aea7a0feb7673c484db2894ba"
+    },
+    {
+      "path": "stress/expo-base--stress--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 50544,
+      "sha256": "872078ba79224fa8323b806f71b6cf54c312febfe26028e2192057e31b5a99cc"
+    },
+    {
+      "path": "stress/expo-base--system--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 139724,
+      "sha256": "eb778fec85ca2249c8abd52edb80eadadb0410e98c9a90070d42c112499d6fb5"
+    },
+    {
+      "path": "stress/expo-base--system--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 178552,
+      "sha256": "5373251e3c97364b18e3c097977fdb70ea503171816a1b11d6cf42b8841d3f71"
+    },
+    {
+      "path": "stress/expo-base--system--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 45636,
+      "sha256": "e0de3bc415099a024c5cb67601dfddb0531809fc3b8e2b0058333f7b94df8c6b"
+    },
+    {
+      "path": "stress/expo-base--system--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 59838,
+      "sha256": "336f8a03add1da8cd20b4d353bd9d0ffae96608f5bce3f481e386ea947b27feb"
+    },
+    {
+      "path": "stress/expo-base--system--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 148526,
+      "sha256": "ef9c812bac4477554a80d662707bf60b723f06479ab0d071d52fa31ec4afd5a1"
+    },
+    {
+      "path": "stress/expo-base--system--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 52340,
+      "sha256": "6c8e48c35b9420c6656708eb97468aaa6e5d504cd0bf682b0b106e22c4705bc1"
+    },
+    {
+      "path": "stress/expo-base--workflows--default--ready--reference-user--light--desktop-constrained-1366x768.png",
+      "bytes": 51808,
+      "sha256": "a38250eb3d66b25e7eb231d89643a89bfa8470e8eef3c92b9947b86e49c38e15"
+    },
+    {
+      "path": "stress/expo-base--workflows--default--ready--reference-user--light--desktop-wide-1920x1080.png",
+      "bytes": 56339,
+      "sha256": "601bb104d1c20581b603aacf385b681d4cd6676b3b9d745d095235712038b527"
+    },
+    {
+      "path": "stress/expo-base--workflows--default--ready--reference-user--light--mobile-landscape-844x390.png",
+      "bytes": 30554,
+      "sha256": "563145d630d51c8d27e06300f8be1e7c241c8e9ba4298c5567396275fde2179b"
+    },
+    {
+      "path": "stress/expo-base--workflows--default--ready--reference-user--light--mobile-narrow-360x800.png",
+      "bytes": 41713,
+      "sha256": "3c76fa719a866c9c0984050f4b60a9c9186fda85c274e6987f309b2c2eee3ba7"
+    },
+    {
+      "path": "stress/expo-base--workflows--default--ready--reference-user--light--unseen-holdout-1536x864.png",
+      "bytes": 53146,
+      "sha256": "ead721093a6a681bc18058733415f49091198464d7040c8a88af009c71ddad43"
+    },
+    {
+      "path": "stress/expo-base--workflows--default--ready--reference-user--light--web-zoom-200-percent.png",
+      "bytes": 44208,
+      "sha256": "e37c8994b18d90648b1f3ee3eda736d3dfb77c1e74d0e82dd67e8167cfe1eac1"
+    },
+    {
+      "path": "stress/stress-diagnostics.json",
+      "bytes": 89613,
+      "sha256": "7abf906acc8489ad639f02caa23f9091d22c565c43c5e228f0dc2a6188bd7122"
+    },
+    {
+      "path": "surface-manifest.json",
+      "bytes": 53404,
+      "sha256": "b74b7aa38f12d719fb143f1c43b2e67a949ea780334f05b8b88c0727c8be9226"
+    }
+  ],
+  "file_count": 196
+}

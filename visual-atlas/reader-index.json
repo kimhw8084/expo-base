@@ -1,0 +1,1112 @@
+{
+  "schema_version": "project-os.visual-atlas.reader-index/2",
+  "project": "expo-base",
+  "request": "expo-base-visual-atlas-capture-v1",
+  "operation": "VERIFY",
+  "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+  "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+  "desktop": [
+    {
+      "page": 1,
+      "surface_key": "expo-base|home|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--home--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "3604df3ff28cd0d41551ab9465dc1723fcc7f51a20fcd9671b45421c2ea42c5b",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 2,
+      "surface_key": "expo-base|forms|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--forms--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "0a734e1ee734c8db7a88f93c9f5ebf76d8ea1028bc3e05a3afcca67468472bf0",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 3,
+      "surface_key": "expo-base|navigation|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--navigation--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "d95c91984b0d740c4bdc09a5889e9d13f2abc1f63310d8f773a68136afe9569c",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 4,
+      "surface_key": "expo-base|overlays|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--overlays--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "c941df94c95059ccc027ee907f24a4810fdd315b3611cfe50fc38f4c70423ed2",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 5,
+      "surface_key": "expo-base|lists|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--lists--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "bbd5a07b0606dcd52c462c2ed948eca4c7919818e56f9c641ac233df864e26c6",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 6,
+      "surface_key": "expo-base|data|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--data--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "78a84209cc248e340a69b158c1602bcacd6433a734d5834d1a53c102841f4fe5",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 7,
+      "surface_key": "expo-base|visualization|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--visualization--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "bc28733d10c3dbe98492516f35ce9b77dc6fad42d106ca480af7e532375e4f27",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 8,
+      "surface_key": "expo-base|feedback|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--feedback--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "8cdb15993ed7ab0ea19a8d5340797987332df68fd3a26dcdeca7be967008ede4",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 9,
+      "surface_key": "expo-base|server-state|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--server-state--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "378be8c835b21f28212f1dfcde49accae7119fd9eb300189525ed5fa2d115392",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 10,
+      "surface_key": "expo-base|accessibility-motion|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--accessibility-motion--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "c1b1aacce2b6db0cb83bff208e74b9d03ff413d3e604bcc3f87a9487403461c8",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 11,
+      "surface_key": "expo-base|golden|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "89ee32eeaa2ec9cbabe6f22551c80e59ea8b103036945af807f2d88072153ac4",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 12,
+      "surface_key": "expo-base|workflows|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--workflows--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "d0f6faabb581d004840ad6afc33172a8605c904fe1d6e99146858fd73ac43264",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 13,
+      "surface_key": "expo-base|system|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--system--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "21deada9156911963aa47514e52c349b6fbdd20fed8df84713409c7e938ebcef",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 14,
+      "surface_key": "expo-base|golden-plus|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden-plus--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "20e578daed71d2e4dfade2a893a9d60e990780645d6090e19a057cd874c84816",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 15,
+      "surface_key": "expo-base|stress|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--stress--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "50de0e481824c3ac7428b115781dfdae2d9addb24fa58ce39947c16bdd80da70",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 16,
+      "surface_key": "expo-base|services|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--services--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "28d58665a7b5fd7b80c7db50e8f9f748473d0145c3816816fc33ebf23f59af06",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 17,
+      "surface_key": "expo-base|capabilities|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--capabilities--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "761b99cc1fc4156bb924991d395db19109005d4743d9ef1ff15f5aa9d49ce419",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 18,
+      "surface_key": "expo-base|auth-session|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--auth-session--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "d3b58d2ac86ae98283af8709b0abb682aaa94b3f28f40798d29a0026324b98d0",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 19,
+      "surface_key": "expo-base|authorization|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--authorization--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "20cbf206bc4717fd9c8f50a9773f1415a88cda2ee993b57cb3581ff7fe21bd7b",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 20,
+      "surface_key": "expo-base|analytics-showcase|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--analytics-showcase--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "56f29bf7dd30b41802a0a1620576fd34421e12a34a6fec6b865bf996262fd989",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 21,
+      "surface_key": "expo-base|finance-showcase|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--finance-showcase--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "270c96f1634fa79b5cf92eabcebf3ed6ee449a8276918d22e9f8836368943ede",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 22,
+      "surface_key": "expo-base|monitoring-showcase|default|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--monitoring-showcase--default--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "56539c056f55767175549d3dbf1ff05833aecc4dd43c02107939a9db0b43fa36",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 23,
+      "surface_key": "expo-base|golden|pattern-feed-list|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-feed-list--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "8995e49d1a4598fb00eecdf7b0120ce2a1d856278fc1c03e042320091d491aaa",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 24,
+      "surface_key": "expo-base|golden|pattern-search-results|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-search-results--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "21008ade1e2be7867470862f46b1bf06120e046848fa4d97f185f3b484c5c5b7",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 25,
+      "surface_key": "expo-base|golden|pattern-data-workspace|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-data-workspace--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "40e34c420d400316d6334a13012f56e5134f9c62e0ede1f6a3910a739fdf36dd",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 26,
+      "surface_key": "expo-base|golden|pattern-detail|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-detail--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "e801646fad4df8d88f4f0aaa80c053b0f10406e9b6f32e141ede19179cfc9d42",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 27,
+      "surface_key": "expo-base|golden|pattern-master-detail|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-master-detail--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "35bc8cd3274fddcc6db5b1ae084dad991327571985bbdbc6ee4eae5059065327",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 28,
+      "surface_key": "expo-base|golden|pattern-create-edit-form|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-create-edit-form--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "8b057f2e6af2282f8b1ae7b7e747117e41f23a061b811526237ec9b96aa6029c",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 29,
+      "surface_key": "expo-base|golden|pattern-wizard|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-wizard--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "0df1705c6dd3ac51a9615ce5ddacc62194f60d6b387830fac4fd12ee5b8432ac",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 30,
+      "surface_key": "expo-base|golden|pattern-settings|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-settings--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "344d3ae3d8cc91cb26d017114160f4bbb7977895e686d7727e3fa27fdd6ad1b7",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 31,
+      "surface_key": "expo-base|golden|pattern-profile|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-profile--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "9090996f9d35a37d963f2341630d977c0fe1728195ca558b4bb0483c9454eddb",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 32,
+      "surface_key": "expo-base|golden|pattern-authentication|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-authentication--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "7052045608d4868617fdda13e826b0fd026e66b3889044888fb49498d56fdcc5",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 33,
+      "surface_key": "expo-base|golden|pattern-analytics|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-analytics--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "be21d3270b9f49577c16da192d0536e10d07b4b4d3ad31c5685599bb83d93ffb",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 34,
+      "surface_key": "expo-base|golden|pattern-empty-start|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-empty-start--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "7c0f81c056b1957480d973a358ec919df85a86187dc5c6c2657e7b668cea6151",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 35,
+      "surface_key": "expo-base|golden|pattern-full-screen-workflow|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-full-screen-workflow--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "9749194e855a81e966335178c35bc438aeddfa30ba01a852d04e5f724a46429c",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 36,
+      "surface_key": "expo-base|golden|pattern-overlay-workflow|ready|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--golden--pattern-overlay-workflow--ready--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "27ffb173e08250933cc54d934b200a63795294871fdb1299a9af4a5d694004bf",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 37,
+      "surface_key": "expo-base|workflows|view-completion|completion|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--workflows--view-completion--completion--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "c745e165d6671252f5c123fb9118970f1b9c5bee0a95da8a47c39ec0405dec27",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 38,
+      "surface_key": "expo-base|workflows|view-permission|permission|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--workflows--view-permission--permission--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "d529b418f254664ada009e751eafb95fa4f3bb442302a564237a7af9ef4a5e7a",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 39,
+      "surface_key": "expo-base|lists|mode-loading|loading|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--lists--mode-loading--loading--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "ae04ebc538ab58bb3250244385193a216b7a68a54214170198d65e9191df7745",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 40,
+      "surface_key": "expo-base|lists|mode-empty|empty|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--lists--mode-empty--empty--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "328485e5081c11ce339828dd2a94ee0b8be273bc2bf8ea5c7c8c41d399b7ec4f",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 41,
+      "surface_key": "expo-base|navigation|tab-benefits|selected|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--navigation--tab-benefits--selected--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "6651efea176832fe9b6fb518edf9ca721696f01d50f18fb08499891aeb6387ce",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 42,
+      "surface_key": "expo-base|feedback|state-error|error|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--feedback--state-error--error--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "6870d95deb2ef220bf48455c9b68e65b5d827b1515ec905873f5acd06311fbf2",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 43,
+      "surface_key": "expo-base|feedback|state-permission|permission|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--feedback--state-permission--permission--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "8c8d11ed8254c37a07b33a3bb08a1ba0451e6639b8e4865f632f4f2237046971",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 44,
+      "surface_key": "expo-base|feedback|state-maintenance|maintenance|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--feedback--state-maintenance--maintenance--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "d3e0dbf49395cf34435359512d3ce3e913a740256508f37763204437a6903bf2",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 45,
+      "surface_key": "expo-base|data|filtered-no-results|empty|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--data--filtered-no-results--empty--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "48425931c024cb3efe174377abfebafbac1d9b3c0ce0df3558972e57fd6c9497",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 46,
+      "surface_key": "expo-base|server-state|refresh-error|error|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--server-state--refresh-error--error--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "978244293632103b1af10ae088ea6eb8202474ffd0fc186797e8cb2570882bfc",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 47,
+      "surface_key": "expo-base|forms|server-validation|error|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--forms--server-validation--error--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "baf136925bf15a40e156d31ade3562ff67b6c5c8d256bc1e3a0bbbbb78846aa5",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 48,
+      "surface_key": "expo-base|overlays|destructive-alert|confirmation|reference-user|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--overlays--destructive-alert--confirmation--reference-user--light--desktop-1440x900.png",
+      "png_sha256": "9db29a7eb9cd9d17f6871e1555fed61a9426e29fd5bc562c1902cec6a2dbf56d",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 49,
+      "surface_key": "expo-base|authorization|capability-protected-admin|granted|reference-user-settings-manage|light",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--authorization--capability-protected-admin--granted--reference-user-settings-manage--light--desktop-1440x900.png",
+      "png_sha256": "8a76267e9ea1c18cc8eb90c4ba17340621d9442b704643231bdd526e2b764647",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "page": 50,
+      "surface_key": "expo-base|home|default|ready|reference-user|dark",
+      "viewport": "desktop-1440x900",
+      "png_path": "screenshots/expo-base--home--default--ready--reference-user--dark--desktop-1440x900.png",
+      "png_sha256": "344b806702b202da4c33f61b754d7bdc983fec253ab8918b7f9a6871eefa7d73",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "mobile": [
+    {
+      "page": 1,
+      "surface_key": "expo-base|home|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--home--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "25d119370516495f36152ace2eaba65fd9121e0e13adc69e05f35f4814697c31",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 2,
+      "surface_key": "expo-base|forms|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--forms--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "2823214e26f10914704be3d6d5fa01b5e041d596e54fa7c2ea160310a973b7fc",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 3,
+      "surface_key": "expo-base|navigation|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--navigation--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "f418085785f5470f32bb674336b2651b4475db1b53252ecc23f6bb2128cd2f01",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 4,
+      "surface_key": "expo-base|overlays|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--overlays--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "90cd263f52f6911ef06117a358c333c83dcf832ac8793d1550cccad4192ce235",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 5,
+      "surface_key": "expo-base|lists|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--lists--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "afb91a7a3f5adcc572c063452496f7039ea29f906370ac677ced9e5a0373f4aa",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 6,
+      "surface_key": "expo-base|data|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--data--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "4c66f7fcb65cc3d74ab57bd6fff4ee0f882b16cc4a8a5ff90d65864c7a45af15",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 7,
+      "surface_key": "expo-base|visualization|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--visualization--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "aea91ef8fbe6d2f5fdf6877297fb7d271ec6552763f8111061fc73c628f2d2cc",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 8,
+      "surface_key": "expo-base|feedback|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--feedback--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "1e713567892a840ec6d2a5b98d9792ebff4406095eb283c0e5fdbbf246b39099",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 9,
+      "surface_key": "expo-base|server-state|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--server-state--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "b249bd459d6db9fa71f38f2e1be4cb2b33267068a75f19081633042b6ade4f1b",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 10,
+      "surface_key": "expo-base|accessibility-motion|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--accessibility-motion--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "94d9034c5e025ef97beec2b829bacae34b191a762e312246d5657f1d0bafe83a",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 11,
+      "surface_key": "expo-base|golden|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "e1d3b489fadf563fd7e53c243508f1cc4fce20b57f8d7108b5bb0d1fc120d33a",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 12,
+      "surface_key": "expo-base|workflows|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--workflows--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "80178142ac292b04fe830df68e8d7167ca69d7c873a871513e1a6b202df211c1",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 13,
+      "surface_key": "expo-base|system|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--system--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "976abc4a8e87cd3107eb0f6833bc15c13223bd6adc21db5885f0a9dd436d7ab9",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 14,
+      "surface_key": "expo-base|golden-plus|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden-plus--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "dc49905ce3ea3301646d5cd52d9626d8f0971afef911eb115f84c4037fb7b691",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 15,
+      "surface_key": "expo-base|stress|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--stress--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "e877942b39e1f2d8000604aae7b77c57b6156faf68ef3bfe086b1bd6061daa83",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 16,
+      "surface_key": "expo-base|services|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--services--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "b284ac743b8a3498694427e9d2289867f16d915d9da927677a042e8f1cebcf1f",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 17,
+      "surface_key": "expo-base|capabilities|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--capabilities--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "d90c3e187a797a570ee219a9c1e34ec53d34da9c6bc11221cb0af8209bf9d5e4",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 18,
+      "surface_key": "expo-base|auth-session|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--auth-session--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "16caed029f6940a4876f8a8daae0bcef679ef2cd41d2ab04d5f2640879ef0cd9",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 19,
+      "surface_key": "expo-base|authorization|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--authorization--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "d5bad1730bc3f5addf83454571dd86e7c4801dcaed0ca4d6258132fe5ba65fdf",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 20,
+      "surface_key": "expo-base|analytics-showcase|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--analytics-showcase--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "609d9c4bd50dab272a1a5ed68945612936c4efb10781c57409dcfbd047ad73a6",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 21,
+      "surface_key": "expo-base|finance-showcase|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--finance-showcase--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "f01daf118cc8d304a801631ead811bca714ccecf8cbf801b00eaeb06eb7a1e4b",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 22,
+      "surface_key": "expo-base|monitoring-showcase|default|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--monitoring-showcase--default--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "c9f4ec3b7553fa32c355f6300eda059492da881e0421683d061bd8d65224437b",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 23,
+      "surface_key": "expo-base|golden|pattern-feed-list|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-feed-list--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "06cb1989b6ad646f8306e2c9183f9892161290bd9eb13cf0cd73dd7456322e81",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 24,
+      "surface_key": "expo-base|golden|pattern-search-results|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-search-results--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "d59a435e84ec93f17573e39a3650128a695a3b43098fcbb3b7fec8621412cab2",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 25,
+      "surface_key": "expo-base|golden|pattern-data-workspace|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-data-workspace--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "f6fc00c5bdac8ee445a501a07d4cbd5300b5f4e81f5ea6a92f96ff5ba347cbe1",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 26,
+      "surface_key": "expo-base|golden|pattern-detail|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-detail--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "8ea4d9d21dadc7e9fcf7b8e2380de078f1e1bac63de962641313c04d0269ab68",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 27,
+      "surface_key": "expo-base|golden|pattern-master-detail|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-master-detail--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "eef2176c76ed4544b8b4e2002acb70bb3a9d4aed2e2d168bc8ed4250f76b97da",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 28,
+      "surface_key": "expo-base|golden|pattern-create-edit-form|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-create-edit-form--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "400cda05b7ee1a76cb86d3f8c6bbbb3014fd8c0444ddea5a5b1b3ab7d4113f3e",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 29,
+      "surface_key": "expo-base|golden|pattern-wizard|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-wizard--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "0f3a2ae181ebc36607084cf6de2bdd6454d1394ae2e045389dcafe8eb7f4263b",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 30,
+      "surface_key": "expo-base|golden|pattern-settings|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-settings--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "4ad74d0272f754b7dac1b0690f9d7c24bb4d6b1acbe0e4bc9cb1a65eaf896bca",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 31,
+      "surface_key": "expo-base|golden|pattern-profile|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-profile--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "7549304a65351ad79f44fe59bfb66c50d48140addcab04bb96ee27cc58528882",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 32,
+      "surface_key": "expo-base|golden|pattern-authentication|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-authentication--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "eb271e67606becf2ccd0563fd2343343b0a1619964231f5b15c0d8180f2ad728",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 33,
+      "surface_key": "expo-base|golden|pattern-analytics|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-analytics--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "6db2984718625dd334a2f4fb900286fe0d337eb21dab31d38d5794e0008e695a",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 34,
+      "surface_key": "expo-base|golden|pattern-empty-start|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-empty-start--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "0f641b91309ed730af2ef867b4cb28107c5e250528c6f8311047ed4cd9ac4f5c",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 35,
+      "surface_key": "expo-base|golden|pattern-full-screen-workflow|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-full-screen-workflow--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "2a9cf2e6a10590285b60ef0032ffe88e5615778e8c6f41f97d6bc829b560ec41",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 36,
+      "surface_key": "expo-base|golden|pattern-overlay-workflow|ready|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--golden--pattern-overlay-workflow--ready--reference-user--light--mobile-390x844.png",
+      "png_sha256": "81bc3c19f9056d98f0b81b2d3ecfa4291a6fe38c51d4944cfb308c67c28c4d95",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 37,
+      "surface_key": "expo-base|workflows|view-completion|completion|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--workflows--view-completion--completion--reference-user--light--mobile-390x844.png",
+      "png_sha256": "69eef7b559f316995a5dd8f22328b48567538c90d869258a404db7a60c80c8e4",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 38,
+      "surface_key": "expo-base|workflows|view-permission|permission|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--workflows--view-permission--permission--reference-user--light--mobile-390x844.png",
+      "png_sha256": "21b651288a8d7526d7cd2f27ef50eb94a8d90f53cde72c6714c14e233b0f7440",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 39,
+      "surface_key": "expo-base|lists|mode-loading|loading|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--lists--mode-loading--loading--reference-user--light--mobile-390x844.png",
+      "png_sha256": "b23f102cfd52a574b77a5714fa748c9c6313a4b7f02145358b3b990bac1eca3f",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 40,
+      "surface_key": "expo-base|lists|mode-empty|empty|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--lists--mode-empty--empty--reference-user--light--mobile-390x844.png",
+      "png_sha256": "3c468efa38383b8618844e048c8a8e628e04e62fe1dd1d9e66c8e0d44114bf93",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 41,
+      "surface_key": "expo-base|navigation|tab-benefits|selected|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--navigation--tab-benefits--selected--reference-user--light--mobile-390x844.png",
+      "png_sha256": "9490cf2c1cf38ac72a4b4574167be219f4cba7b8747f6cf71bef96b1247df522",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 42,
+      "surface_key": "expo-base|feedback|state-error|error|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--feedback--state-error--error--reference-user--light--mobile-390x844.png",
+      "png_sha256": "31ac894647f97a94524cbeef4ffc71ff32f3f78ffe54b1a21c2efad3306e8edc",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 43,
+      "surface_key": "expo-base|feedback|state-permission|permission|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--feedback--state-permission--permission--reference-user--light--mobile-390x844.png",
+      "png_sha256": "25ead1ae4428a171badc2b2902850d8da152cc96abcd5684bc2f882d71804d39",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 44,
+      "surface_key": "expo-base|feedback|state-maintenance|maintenance|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--feedback--state-maintenance--maintenance--reference-user--light--mobile-390x844.png",
+      "png_sha256": "e7308c0883c03aee4a3afdbceeb0b71bbbec2a492d89718fcbb145788c9fb8f5",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 45,
+      "surface_key": "expo-base|data|filtered-no-results|empty|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--data--filtered-no-results--empty--reference-user--light--mobile-390x844.png",
+      "png_sha256": "d0ebef0faa0d32b848252a86d39049313838193086ef38400edf3b9dd214404b",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 46,
+      "surface_key": "expo-base|server-state|refresh-error|error|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--server-state--refresh-error--error--reference-user--light--mobile-390x844.png",
+      "png_sha256": "bea16f18872d99ccfef0623884609ff911ae2742920a4899866b943e6dd9b475",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 47,
+      "surface_key": "expo-base|forms|server-validation|error|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--forms--server-validation--error--reference-user--light--mobile-390x844.png",
+      "png_sha256": "ee840a71824486508462c9ea160b58534cf407e03c298b92d8aa8c1377fa3063",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 48,
+      "surface_key": "expo-base|overlays|destructive-alert|confirmation|reference-user|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--overlays--destructive-alert--confirmation--reference-user--light--mobile-390x844.png",
+      "png_sha256": "08acdd7b5d1c766802582bb03b3a4df25ea570bd4a2002d33ed76f57513481db",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 49,
+      "surface_key": "expo-base|authorization|capability-protected-admin|granted|reference-user-settings-manage|light",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--authorization--capability-protected-admin--granted--reference-user-settings-manage--light--mobile-390x844.png",
+      "png_sha256": "90277ab2d94901ac6466a229ae1f32c28078f64cbf59e937dfda70de27ae5cf8",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "page": 50,
+      "surface_key": "expo-base|home|default|ready|reference-user|dark",
+      "viewport": "mobile-390x844",
+      "png_path": "screenshots/expo-base--home--default--ready--reference-user--dark--mobile-390x844.png",
+      "png_sha256": "f9da4fab26462f2ebed2b8c9a6666ce053a18cb1b0102be6b985909af802a14a",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ]
+}
