@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Control, FieldArray, FieldArrayPath, FieldPath, FieldValues, RegisterOptions, UseFormProps, UseFormReturn, SubmitHandler } from 'react-hook-form';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { Checkbox, CheckboxGroup, CodeField, ComboboxField, CurrencyField, MultiSelectField, NumberField, NumberStepper, PasswordField, RadioGroup, SegmentedField, SelectField, SwitchField, TextField, useFormLeaveGuard, type CheckboxGroupProps, type CheckboxProps, type CodeFieldProps, type ComboboxFieldProps, type CurrencyFieldProps, type FormErrorSummaryItem, type FormLeaveGuard, type MultiSelectFieldProps, type NumberFieldProps, type NumberStepperProps, type RadioGroupProps, type SegmentedFieldProps, type SelectFieldProps, type SwitchFieldProps, type TextFieldProps } from '@expo-base/forms';
+import { Checkbox, CheckboxGroup, CodeField, ComboboxField, CurrencyField, DateField, MultiSelectField, NumberField, NumberStepper, PasswordField, RadioGroup, SegmentedField, SelectField, SwitchField, TextArea, TextField, useFormLeaveGuard, type CheckboxGroupProps, type CheckboxProps, type CodeFieldProps, type ComboboxFieldProps, type CurrencyFieldProps, type DateFieldProps, type FormErrorSummaryItem, type FormLeaveGuard, type MultiSelectFieldProps, type NumberFieldProps, type NumberStepperProps, type RadioGroupProps, type SegmentedFieldProps, type SelectFieldProps, type SwitchFieldProps, type TextAreaProps, type TextFieldProps } from '@expo-base/forms';
 
 export function useExpoBaseForm<TFieldValues extends FieldValues>(options?: UseFormProps<TFieldValues>) {
   return useForm<TFieldValues>({ mode: 'onBlur', reValidateMode: 'onChange', shouldFocusError: true, ...options });
@@ -357,6 +357,60 @@ export function ControlledPasswordField<T extends FieldValues, TName extends Fie
           value={String(field.value ?? '')}
           onChangeText={field.onChange}
           onBlur={field.onBlur}
+          {...(fieldState.error?.message ? { error: fieldState.error.message } : {})}
+        />
+      )}
+    />
+  );
+}
+
+type ControlledDateFieldProps<T extends FieldValues, TName extends FieldPath<T>> = {
+  control: Control<T>;
+  name: TName;
+  rules?: RegisterOptions<T, TName>;
+} & Omit<DateFieldProps, 'value' | 'onChangeText' | 'error'>;
+
+export function ControlledDateField<T extends FieldValues, TName extends FieldPath<T>>({ control, name, rules, ...props }: ControlledDateFieldProps<T, TName>) {
+  const { onBlur, ...dateProps } = props;
+  return (
+    <Controller
+      control={control}
+      name={name}
+      {...(rules ? { rules } : {})}
+      render={({ field, fieldState }) => (
+        <DateField
+          {...dateProps}
+          ref={field.ref}
+          value={String(field.value ?? '')}
+          onChangeText={field.onChange}
+          onBlur={(event) => { field.onBlur(); onBlur?.(event); }}
+          {...(fieldState.error?.message ? { error: fieldState.error.message } : {})}
+        />
+      )}
+    />
+  );
+}
+
+type ControlledTextAreaProps<T extends FieldValues, TName extends FieldPath<T>> = {
+  control: Control<T>;
+  name: TName;
+  rules?: RegisterOptions<T, TName>;
+} & Omit<TextAreaProps, 'value' | 'onChangeText' | 'error'>;
+
+export function ControlledTextArea<T extends FieldValues, TName extends FieldPath<T>>({ control, name, rules, ...props }: ControlledTextAreaProps<T, TName>) {
+  const { onBlur, ...textAreaProps } = props;
+  return (
+    <Controller
+      control={control}
+      name={name}
+      {...(rules ? { rules } : {})}
+      render={({ field, fieldState }) => (
+        <TextArea
+          {...textAreaProps}
+          ref={field.ref}
+          value={String(field.value ?? '')}
+          onChangeText={field.onChange}
+          onBlur={(event) => { field.onBlur(); onBlur?.(event); }}
           {...(fieldState.error?.message ? { error: fieldState.error.message } : {})}
         />
       )}

@@ -4,6 +4,7 @@ Expo Base forms separate **visual controls** from **form-state orchestration**.
 
 - `@expo-base/forms` owns labels, inputs, focus/error states, selection controls, semantic geometry, and accessible anatomy.
 - `@expo-base/form-rhf` is an optional React Hook Form adapter. Product UI does not import `react-hook-form` directly.
+- `ControlledDateField` and `ControlledTextArea` provide typed RHF bindings for the shared portable calendar-date and multiline text owners. Date values remain `YYYY-MM-DD` strings; the adapters compose field refs, changes, blur/touched state, validation errors, and consumer callbacks.
 - `FormScreen` owns keyboard-aware scrolling and toolbar behavior through `react-native-keyboard-controller`.
 - Finite selection uses `SelectField`, `RadioGroup`, or `SegmentedField`; searchable selection uses
   `ComboboxField` / `MultiSelectField`. These use the shared Popover/Menu ownership rather than
