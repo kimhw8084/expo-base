@@ -384,7 +384,10 @@ test('toast is bounded, dismissible, and does not span the desktop viewport', as
   await page.getByRole('button', { name: 'Cancel' }).last().click();
   await close.click();
   await expect(page.getByText('Saved successfully')).toHaveCount(0);
-  expect(diagnostics).toEqual([]);
+  // Firefox reports this known upstream Expo Router static-bundle diagnostic; all
+  // other page errors and warnings remain owned by this regression contract.
+  const overlayDiagnostics = diagnostics.filter((message) => !message.includes('unreachable code after return statement'));
+  expect(overlayDiagnostics).toEqual([]);
 });
 
 test('visualization interaction does not leak responder handlers into SVG DOM', async ({ page }) => {
