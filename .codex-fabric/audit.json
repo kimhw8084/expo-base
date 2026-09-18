@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "kind": "codex-fabric-audit-evidence",
+  "operation": "VERIFY",
+  "status": "VERIFIED",
+  "project_id": "expo-base",
+  "request": "chg110-final-gates-verify-r3",
+  "job_id": "CF-293b14fec589ce5ca486a615",
+  "recorded_at": "2026-09-18T03:04:38Z",
+  "candidate": {
+    "head": "413c7314706476725eb5e22a1827c43ea46d1a6d",
+    "tree": "2a471e5e04197adeb3c9c622d56ffe5f7825711b",
+    "parent": "d0f86a2ab3f235086a17e1a7deb6187299f91beb",
+    "target_base": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "base_is_ancestor": true,
+    "commits_ahead_of_base": 2,
+    "work_branch": "codex/expo-base-chg110-final-gates-verify-r3",
+    "advancement": {
+      "command": "rtk git merge --ff-only 413c7314706476725eb5e22a1827c43ea46d1a6d",
+      "created_commits": 0,
+      "source_rewritten": false,
+      "source_squashed": false,
+      "source_amended": false,
+      "source_cherry_picked": false
+    }
+  },
+  "lineage": {
+    "r1_candidate": "94f0f7cc67dabef87b80527f3f0314f686fc04c6",
+    "r1_candidate_tree": "1dc14ec7b3340fa572b8c823906e1a467586a4f9",
+    "r2_first_commit": "d0f86a2ab3f235086a17e1a7deb6187299f91beb",
+    "r2_first_commit_tree": "1dc14ec7b3340fa572b8c823906e1a467586a4f9",
+    "r1_tree_preserved": true,
+    "r2_final_candidate": "413c7314706476725eb5e22a1827c43ea46d1a6d"
+  },
+  "git": {
+    "target_branch": "main",
+    "remote": "origin",
+    "target_head_observed_before": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "target_head_observed_after": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "target_drifted": false,
+    "main_moved_by_verify": false,
+    "worktree_clean_before_advance": true,
+    "worktree_clean_after_verification": true,
+    "current_branch": "codex/expo-base-chg110-final-gates-verify-r3",
+    "current_head_after_verification": "413c7314706476725eb5e22a1827c43ea46d1a6d",
+    "unstaged_diff_exit": 0,
+    "staged_diff_exit": 0,
+    "diff_check_exit": 0
+  },
+  "environment": {
+    "node": "v22.23.2",
+    "npm": "10.9.8",
+    "preflight_exit": 0,
+    "dependency_install": {
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js ci --no-audit --no-fund",
+      "exit_code": 0,
+      "result": "708 packages installed from the lockfile; no tracked files changed"
+    },
+    "initial_unprovisioned_dependency_attempts": [
+      {
+        "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run test:generator",
+        "exit_code": 1,
+        "output_tail": "null !== 0\n\n    at file:///Users/haewonkim/.codex-fabric/worktrees/CF-293b14fec589ce5ca486a615/scripts/test-generator.mjs:19:10\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: null,\n  expected: 0,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.23.2"
+      },
+      {
+        "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run test:screen-scaffolder",
+        "exit_code": 1,
+        "output_tail": "at run (file:///Users/haewonkim/.codex-fabric/worktrees/CF-293b14fec589ce5ca486a615/scripts/test-screen-scaffolder.mjs:15:10)\n    at file:///Users/haewonkim/.codex-fabric/worktrees/CF-293b14fec589ce5ca486a615/scripts/test-screen-scaffolder.mjs:58:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: null,\n  expected: 0,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.23.2"
+      },
+      {
+        "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run check:golden-architecture",
+        "exit_code": 1,
+        "output_tail": "^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'typescript' imported from /Users/haewonkim/.codex-fabric/worktrees/CF-293b14fec589ce5ca486a615/scripts/golden-architecture-lib.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)\n    at packageResolve (node:internal/modules/esm/resolve:768:81)\n    at moduleResolve (node:internal/modules/esm/resolve:855:18)\n    at defaultResolve (node:internal/modules/esm/resolve:985:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)\n    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)\n    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)\n    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {\n  code: 'ERR_MODULE_NOT_FOUND'\n}\n\nNode.js v22.23.2"
+      },
+      {
+        "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run typecheck",
+        "exit_code": 127,
+        "output_tail": "> expo-base@1.0.0 typecheck\n> npm run typecheck:tokens && npm run typecheck:platform\n\n\n> expo-base@1.0.0 typecheck:tokens\n> tsc -p packages/tokens/tsconfig.json --noEmit\n\nsh: tsc: command not found"
+      },
+      {
+        "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run quality:gate17",
+        "exit_code": 127,
+        "output_tail": "Style ownership contract check passed (11 shared UI packages; feature routes use check:golden-architecture).\n\n> expo-base@1.0.0 check:layout-contracts\n> node scripts/check-layout-contracts.mjs\n\nLayout contract check passed.\n\n> expo-base@1.0.0 typecheck\n> npm run typecheck:tokens && npm run typecheck:platform\n\n\n> expo-base@1.0.0 typecheck:tokens\n> tsc -p packages/tokens/tsconfig.json --noEmit\n\nsh: tsc: command not found"
+      }
+    ],
+    "recovery": "The initial nonzero results were caused by absent node_modules/typescript/tsc; after exact locked npm ci, all required reruns passed."
+  },
+  "required_final_checks": [
+    {
+      "name": "test:generator",
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run test:generator",
+      "exit_code": 0,
+      "output_tail": "Generator tests passed (minimal and opt-in capability-profile branded app scaffolds)."
+    },
+    {
+      "name": "test:screen-scaffolder",
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run test:screen-scaffolder",
+      "exit_code": 0,
+      "output_tail": "> expo-base@1.0.0 test:screen-scaffolder\n> node scripts/test-screen-scaffolder.mjs\n\nScreen scaffolder tests passed (4 synthetic workflow challenges, collision rollback, capability gating, typecheck, Doctor, and Golden architecture)."
+    },
+    {
+      "name": "check:package-manifests",
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run check:package-manifests",
+      "exit_code": 0,
+      "output_tail": "> expo-base@1.0.0 check:package-manifests\n> node scripts/check-package-manifests.mjs\n\nPackage manifest check passed for 73 workspaces."
+    },
+    {
+      "name": "check:public-api",
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run check:public-api",
+      "exit_code": 0,
+      "output_tail": "> expo-base@1.0.0 check:public-api\n> node scripts/check-public-api.mjs\n\nPublic API check passed: 379 unique UI symbols across 16 packages."
+    },
+    {
+      "name": "api:snapshot:check",
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run api:snapshot:check",
+      "exit_code": 0,
+      "output_tail": "> expo-base@1.0.0 api:snapshot:check\n> node scripts/api-snapshot.mjs\n\nPublic API snapshot check passed (379 symbols)."
+    },
+    {
+      "name": "check:golden-patterns",
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run check:golden-patterns",
+      "exit_code": 0,
+      "output_tail": "> expo-base@1.0.0 check:golden-patterns\n> node scripts/check-golden-patterns.mjs\n\nGolden pattern registry validation passed (20 patterns)."
+    },
+    {
+      "name": "check:golden-architecture",
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run check:golden-architecture",
+      "exit_code": 0,
+      "output_tail": "> expo-base@1.0.0 check:golden-architecture\n> node scripts/check-golden-architecture.mjs\n\nGolden architecture check passed (76 catalog owners; 0 feature-route violations)."
+    },
+    {
+      "name": "typecheck",
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run typecheck",
+      "exit_code": 0,
+      "output_tail": "> expo-base@1.0.0 typecheck\n> npm run typecheck:tokens && npm run typecheck:platform\n\n\n> expo-base@1.0.0 typecheck:tokens\n> tsc -p packages/tokens/tsconfig.json --noEmit\n\n\n> expo-base@1.0.0 typecheck:platform\n> tsc -p packages/platform/tsconfig.json --noEmit"
+    },
+    {
+      "name": "quality:gate17",
+      "command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run quality:gate17",
+      "exit_code": 0,
+      "output_tail": "Generator tests passed (minimal and opt-in capability-profile branded app scaffolds)."
+    },
+    {
+      "name": "git diff --check base candidate",
+      "command": "rtk git diff --check 43ae1b27257697093d893d504b7e22b6f25cfad7 413c7314706476725eb5e22a1827c43ea46d1a6d",
+      "exit_code": 0,
+      "output_tail": ""
+    }
+  ],
+  "all_required_final_checks_exit_0": true,
+  "browser": {
+    "workflow": [
+      "reference:export:web",
+      "scripts/serve-static-web.mjs apps/reference/dist 0",
+      "playwright Chromium project"
+    ],
+    "export_command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js run reference:export:web",
+    "export_exit_code": 0,
+    "targeted_command": "rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin EXPO_BASE_BASE_URL=http://127.0.0.1:50391 /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/../lib/node_modules/npm/bin/npm-cli.js exec -- playwright test tests/e2e/web/chg-110-submit-button.spec.ts --project=chromium --reporter=line",
+    "targeted_exit_code": 0,
+    "base_url": "http://127.0.0.1:50391",
+    "result": "5 Chromium tests passed",
+    "committed_spec": "tests/e2e/web/chg-110-submit-button.spec.ts"
+  },
+  "generator_smoke": {
+    "decisive_command": "npm run test:generator",
+    "decisive_exit_code": 0,
+    "standalone_out_of_tree": true,
+    "provenance_source_commit": "413c7314706476725eb5e22a1827c43ea46d1a6d",
+    "accepted_contracts_verified": [
+      ".expo-base/source.json sourceCommit",
+      "app.config.ts web favicon configuration",
+      "app/sign-in.tsx FormScreen onSubmit and Button type=submit",
+      "public/favicon.svg and app/+html.tsx favicon link",
+      ".gitignore generated-output hygiene",
+      "fresh standalone npm install, expo config, and npm run verify"
+    ],
+    "evidence_basis": "scripts/test-generator.mjs asserts each contract and compares provenance sourceCommit to git rev-parse HEAD; the passing run occurred at the exact candidate HEAD."
+  },
+  "reference_probe_review": {
+    "route": "apps/reference/app/chg-110-submit.tsx",
+    "protected_registration": "apps/reference/app/_layout.tsx",
+    "golden_architecture_exit_code": 0,
+    "browser_spec_exit_code": 0,
+    "feature_route_violation": false,
+    "finding": null
+  },
+  "findings": [
+    {
+      "classification": "environmental",
+      "detail": "The first attempt ran in an uninstalled worktree; exact locked Node 22 dependency installation resolved it. No source or commit identity was changed."
+    },
+    {
+      "classification": "source",
+      "detail": "No source defect found. All final required gates, browser regression checks, identity checks, and cleanliness checks passed."
+    }
+  ],
+  "evidence_locator": {
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg110-final-gates-verify-r3",
+    "path": ".codex-fabric/audit.json",
+    "evidence_commit_parent": "413c7314706476725eb5e22a1827c43ea46d1a6d"
+  }
+}
