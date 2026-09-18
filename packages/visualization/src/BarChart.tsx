@@ -45,7 +45,7 @@ export function BarChart({ data, name = 'Bar chart', size = 'standard', series =
               })}
             </Svg>
             {onSelect ? (
-              <View style={RNStyleSheet.absoluteFill} pointerEvents="box-none">
+              <View style={[RNStyleSheet.absoluteFill, styles.pointerEventsBoxNone]}>
                 {rects.map((rect, index) => {
                   const datum = clean[index];
                   if (!datum) return null;
@@ -73,4 +73,5 @@ export function BarChart({ data, name = 'Bar chart', size = 'standard', series =
 const styles = StyleSheet.create(() => ({
   surface: { minWidth: 0, width: '100%', position: 'relative' },
   hitTarget: { position: 'absolute', top: 0, bottom: 0 },
+  pointerEventsBoxNone: { pointerEvents: 'box-none' },
 }));

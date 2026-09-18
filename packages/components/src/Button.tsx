@@ -37,7 +37,7 @@ export function Button({ label, onPress, type = 'button', variant = 'primary', s
     unavailable && styles.disabled,
   ];
   const content = (
-    <View pointerEvents="none" style={styles.content} accessibilityElementsHidden={loading} importantForAccessibility={loading ? 'no-hide-descendants' : 'auto'}>
+    <View style={styles.content} accessibilityElementsHidden={loading} importantForAccessibility={loading ? 'no-hide-descendants' : 'auto'}>
       <View style={[styles.buttonContent, loading && styles.loadingContent]}>
         {iconStart ? <View style={styles.icon}><Icon name={iconStart} size={iconSize} tone={iconTone} /></View> : null}
         <View style={styles.label}><Text variant="label" align="center" tone={variant === 'primary' || variant === 'danger' ? 'onPrimary' : 'primary'}>{label}</Text></View>
@@ -64,7 +64,7 @@ export function Button({ label, onPress, type = 'button', variant = 'primary', s
       onBlur: interactionProps.onBlur,
       onClick: (event: ReactMouseEvent<HTMLButtonElement>) => { if (!event.currentTarget.form) onPress(); },
       style: { all: 'unset', display: fillsWebWidth ? 'flex' : 'inline-flex', width: fillsWebWidth ? '100%' : 'auto', maxWidth: '100%', alignSelf: fillsWebWidth ? 'stretch' : 'flex-start', cursor: unavailable ? 'default' : 'pointer' },
-    }, <View pointerEvents="none" style={buttonStyle}>{content}</View>);
+    }, <View style={[buttonStyle, styles.pointerEventsNone]}>{content}</View>);
   }
 
   return (
@@ -90,7 +90,8 @@ export function Button({ label, onPress, type = 'button', variant = 'primary', s
 
 const styles = StyleSheet.create((theme) => ({
   base: { minWidth: 0, maxWidth: '100%', alignSelf: 'flex-start', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', borderWidth: theme.strokeWidths.standard },
-  content: { minWidth: 0, maxWidth: '100%', position: 'relative', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: theme.spacing.sm },
+  content: { minWidth: 0, maxWidth: '100%', position: 'relative', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: theme.spacing.sm, pointerEvents: 'none' },
+  pointerEventsNone: { pointerEvents: 'none' },
   buttonContent: { minWidth: 0, maxWidth: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: theme.spacing.sm },
   label: { minWidth: 0, flexShrink: 1 },
   icon: { flexShrink: 0, alignItems: 'center', justifyContent: 'center' },

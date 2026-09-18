@@ -19,6 +19,7 @@ Overlay behavior is centralized because popup placement, focus, layering, dismis
 5. Constrained popovers scroll internally; the underlying page does not gain popup-related scroll or overflow.
 6. Native `Modal` is used for blocking overlays to avoid arbitrary app z-index stacking. Root toasts use the centralized semantic layer token.
 7. Gesture-driven sheet behavior is deferred to the motion/gesture gate; the current sheet already owns geometry, dismissal, safe area, focus trap, long-content scrolling, reduced-motion entry/exit, and modal semantics.
+8. Root toast pass-through and lifetime-track non-interaction are expressed through the governed `style.pointerEvents` values (`box-none` and `none`) so the cross-platform interaction contract does not depend on deprecated JSX props.
 
 ## Action-menu composition
 

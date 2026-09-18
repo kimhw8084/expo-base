@@ -71,7 +71,7 @@ export function PriorityActionBar({
       </View>
 
       {!measuredAll ? (
-        <View style={[styles.measureRail, styles[`gap_${gap}`]]} pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+        <View style={[styles.measureRail, styles[`gap_${gap}`]]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
           {descriptors.map((item) => (
             <View key={item.key} onLayout={(event) => recordMeasurement(item.key, event, setMeasurements)}>
               {item.element}
@@ -131,6 +131,7 @@ const styles = StyleSheet.create((theme) => ({
     left: 0,
     top: 0,
     opacity: 0,
+    pointerEvents: 'none',
     flexDirection: 'row',
     alignItems: 'center',
   },

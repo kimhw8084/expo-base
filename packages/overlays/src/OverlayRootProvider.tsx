@@ -58,7 +58,7 @@ export function OverlayRootProvider({ children }: PropsWithChildren) {
       <View style={styles.root}>
         {children}
         {toast ? (
-          <View pointerEvents="box-none" style={styles.toastLayer}>
+          <View style={styles.toastLayer}>
             <View style={styles.toast} accessibilityLiveRegion="polite">
               <View style={styles.toastBody}>
                 <View style={styles.toastCopy}><Text variant="label" tone="inverse">{toast.message}</Text></View>
@@ -92,7 +92,7 @@ function ToastLifetime({ duration, reducedMotion }: { duration: number; reducedM
 
   const width = progress.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] });
   return (
-    <View testID="toast-lifetime" style={styles.toastLifetimeTrack} pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <View testID="toast-lifetime" style={styles.toastLifetimeTrack} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
       {!reducedMotion ? <Animated.View style={[styles.toastLifetimeValue, { width }]} /> : null}
     </View>
   );
@@ -112,6 +112,7 @@ const styles = StyleSheet.create((theme, rt) => ({
     right: 0,
     bottom: rt.insets.bottom + theme.spacing.xl,
     zIndex: theme.layers.toast,
+    pointerEvents: 'box-none',
     alignItems: 'center',
     paddingLeft: rt.insets.left + theme.spacing.lg,
     paddingRight: rt.insets.right + theme.spacing.lg,
@@ -143,6 +144,6 @@ const styles = StyleSheet.create((theme, rt) => ({
     borderRadius: theme.radii.sm,
   },
   toastClosePressed: { opacity: theme.interactionFeedback.pressedOpacity },
-  toastLifetimeTrack: { height: theme.feedbackMetrics.toastProgressHeight, width: '100%', backgroundColor: theme.colors.text.tertiary },
+  toastLifetimeTrack: { height: theme.feedbackMetrics.toastProgressHeight, width: '100%', backgroundColor: theme.colors.text.tertiary, pointerEvents: 'none' },
   toastLifetimeValue: { height: theme.feedbackMetrics.toastProgressHeight, backgroundColor: theme.colors.interactive.primary },
 }));

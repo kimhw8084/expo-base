@@ -60,7 +60,7 @@ export function Tabs({ items, activeKey, onChange, accessibilityLabel = 'Section
       >
         {items.map((item, index) => <TabButton ref={(node) => { itemRefs.current[index] = node; }} key={item.key} item={item} active={item.key === activeKey} tabIndex={index === tabStopIndex ? 0 as const : -1 as const} onKeyDown={(event) => navigate(index, event)} onPress={() => onChange(item.key)} />)}
       </ScrollView>
-      {overflow && activeIndex < items.length - 1 ? <View testID="tabs-overflow-affordance" accessible={false} pointerEvents="none" style={styles.overflowAffordance}><Icon name={direction === 'rtl' ? 'chevronLeft' : 'chevronRight'} size="sm" tone="secondary" /></View> : null}
+      {overflow && activeIndex < items.length - 1 ? <View testID="tabs-overflow-affordance" accessible={false} style={[styles.overflowAffordance, styles.pointerEventsNone]}><Icon name={direction === 'rtl' ? 'chevronLeft' : 'chevronRight'} size="sm" tone="secondary" /></View> : null}
     </View>
   );
 }
@@ -75,6 +75,7 @@ const styles = StyleSheet.create((theme) => ({
   root: { minWidth: 0, position: 'relative' },
   scroller: { gap: theme.spacing.xs, padding: theme.spacing.xs },
   overflowAffordance: { position: 'absolute', top: theme.spacing.xs, bottom: theme.spacing.xs, end: 0, width: theme.controlHeights.sm, alignItems: 'center', justifyContent: 'center', backgroundColor: theme.colors.background.surface, borderStartWidth: theme.strokeWidths.standard, borderStartColor: theme.colors.border.default },
+  pointerEventsNone: { pointerEvents: 'none' },
   tab: { minHeight: theme.controlHeights.sm, paddingHorizontal: theme.spacing.md, borderRadius: theme.radii.sm, alignItems: 'center', justifyContent: 'center', borderWidth: theme.strokeWidths.standard, borderColor: theme.colors.transparent },
   active: { backgroundColor: theme.colors.background.subtle },
   hovered: { backgroundColor: theme.colors.interactive.subtleHover },

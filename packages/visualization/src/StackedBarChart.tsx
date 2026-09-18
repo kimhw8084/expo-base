@@ -48,7 +48,7 @@ export function StackedBarChart({ data, series, name = 'Stacked bar chart', size
               <Line x1={0} x2={width} y1={height - 1} y2={height - 1} stroke={theme.colors.border.subtle} strokeWidth={theme.visualizationMetrics.gridLineWidth} />
               {rects.map((rect) => <Rect key={`${rect.categoryIndex}-${rect.seriesIndex}`} x={rect.x} y={rect.y} width={rect.width} height={rect.height} rx={theme.radii.xs} fill={theme.colors.visualization[cleanSeries[rect.seriesIndex]?.series ?? 'series1']} opacity={selected === undefined || selected === rect.categoryIndex ? 1 : theme.visualizationMetrics.mutedSeriesOpacity} />)}
             </Svg>
-            {onSelect ? <View style={RNStyleSheet.absoluteFill} pointerEvents="box-none">{cleanData.map((datum, index) => <Pressable key={datum.label} accessibilityRole="button" accessibilityLabel={`${datum.label}: ${valueFormatter(Object.values(datum.values).reduce((sum, value) => sum + value, 0))} total`} accessibilityState={{ selected: selected === index }} aria-pressed={selected === index} onPress={() => { setInternalSelected(index); onSelect(datum, index); }} style={[styles.hitTarget, { start: index * slot, width: slot }]} />)}</View> : null}
+            {onSelect ? <View style={[RNStyleSheet.absoluteFill, styles.pointerEventsBoxNone]}>{cleanData.map((datum, index) => <Pressable key={datum.label} accessibilityRole="button" accessibilityLabel={`${datum.label}: ${valueFormatter(Object.values(datum.values).reduce((sum, value) => sum + value, 0))} total`} accessibilityState={{ selected: selected === index }} aria-pressed={selected === index} onPress={() => { setInternalSelected(index); onSelect(datum, index); }} style={[styles.hitTarget, { start: index * slot, width: slot }]} />)}</View> : null}
           </View>
         );
       }}
@@ -59,4 +59,5 @@ export function StackedBarChart({ data, series, name = 'Stacked bar chart', size
 const styles = StyleSheet.create(() => ({
   surface: { width: '100%', position: 'relative', overflow: 'hidden' },
   hitTarget: { position: 'absolute', top: 0, bottom: 0 },
+  pointerEventsBoxNone: { pointerEvents: 'box-none' },
 }));
