@@ -26,7 +26,7 @@ export interface ButtonProps {
 
 export function Button({ label, onPress, type = 'button', variant = 'primary', size = 'md', disabled = false, loading = false, iconStart, iconEnd, accessibilityLabel, testID, fullWidth = false, responsiveWidth = 'auto' }: ButtonProps) {
   const unavailable = disabled || loading;
-  const { theme } = useUnistyles();
+  const { theme, rt } = useUnistyles();
   const { hovered, focused, interactionProps } = useInteractionState();
   const iconTone: IconTone = variant === 'primary' || variant === 'danger' ? 'onPrimary' : 'primary';
   const iconSize = size === 'lg' ? 'md' : 'sm';
@@ -48,16 +48,22 @@ export function Button({ label, onPress, type = 'button', variant = 'primary', s
   );
 
   if (Platform.OS === 'web' && type === 'submit') {
+    const fillsWebWidth = fullWidth || (responsiveWidth === 'compact-full' && rt.breakpoint === 'compact');
     return createElement('button', {
       type: 'submit',
       disabled: unavailable,
+      tabIndex: 0,
       role: 'button',
       'aria-label': accessibilityLabel ?? label,
       'aria-disabled': unavailable,
       'aria-busy': loading,
       'data-testid': testID,
+      onMouseEnter: interactionProps.onHoverIn,
+      onMouseLeave: interactionProps.onHoverOut,
+      onFocus: interactionProps.onFocus,
+      onBlur: interactionProps.onBlur,
       onClick: (event: ReactMouseEvent<HTMLButtonElement>) => { if (!event.currentTarget.form) onPress(); },
-      style: { all: 'unset', display: 'inline-flex', maxWidth: '100%', cursor: unavailable ? 'default' : 'pointer' },
+      style: { all: 'unset', display: fillsWebWidth ? 'flex' : 'inline-flex', width: fillsWebWidth ? '100%' : 'auto', maxWidth: '100%', alignSelf: fillsWebWidth ? 'stretch' : 'flex-start', cursor: unavailable ? 'default' : 'pointer' },
     }, <View pointerEvents="none" style={buttonStyle}>{content}</View>);
   }
 
