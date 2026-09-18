@@ -206,9 +206,39 @@ test('GPQ-008 short-height Combobox stays anchor-sized and above persistent navi
   const triggerBox = await trigger.boundingBox();
   const popupBox = await page.getByTestId('expo-base-popover-panel').boundingBox();
   const navigationBox = await page.getByRole('navigation', { name: 'Primary navigation' }).boundingBox();
+  const formLayout = await page.getByRole('main').evaluate((main) => {
+    const form = main.querySelector('form');
+    const scrollOwner = form
+      ? Array.from(form.querySelectorAll<HTMLElement>('*')).find((element) => {
+        const style = window.getComputedStyle(element);
+        return (style.overflowY === 'auto' || style.overflowY === 'scroll') && element.contains(document.getElementById('combobox-trigger'));
+      })
+      : null;
+    if (!form || !scrollOwner) return null;
+    const describe = (element: HTMLElement) => {
+      const rect = element.getBoundingClientRect();
+      const style = window.getComputedStyle(element);
+      return { rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height }, display: style.display, flex: style.flex, minWidth: style.minWidth, minHeight: style.minHeight, margin: style.margin, padding: style.padding, clientHeight: element.clientHeight, scrollHeight: element.scrollHeight };
+    };
+    return { main: describe(main), form: describe(form), scrollOwner: describe(scrollOwner) };
+  });
   expect(triggerBox).not.toBeNull();
   expect(popupBox).not.toBeNull();
   expect(navigationBox).not.toBeNull();
+  expect(formLayout).not.toBeNull();
+  expect(formLayout!.form.display).toBe('flex');
+  expect(formLayout!.form.flex).toBe('1 1 0%');
+  expect(formLayout!.form.minWidth).toBe('0px');
+  expect(formLayout!.form.minHeight).toBe('0px');
+  expect(formLayout!.form.margin).toBe('0px');
+  expect(formLayout!.form.padding).toBe('0px');
+  expect(Math.abs(formLayout!.form.rect.x - formLayout!.main.rect.x)).toBeLessThanOrEqual(1);
+  expect(Math.abs(formLayout!.form.rect.y - formLayout!.main.rect.y)).toBeLessThanOrEqual(1);
+  expect(Math.abs(formLayout!.form.rect.width - formLayout!.main.rect.width)).toBeLessThanOrEqual(1);
+  expect(Math.abs(formLayout!.form.rect.height - formLayout!.main.rect.height)).toBeLessThanOrEqual(1);
+  expect(formLayout!.scrollOwner.clientHeight).toBeGreaterThan(0);
+  expect(formLayout!.scrollOwner.scrollHeight).toBeGreaterThan(formLayout!.scrollOwner.clientHeight);
+  expect(formLayout!.scrollOwner.rect.height).toBeLessThanOrEqual(formLayout!.form.rect.height + 1);
   expect(popupBox!.width).toBeGreaterThanOrEqual(triggerBox!.width - 1);
   expect(popupBox!.y + popupBox!.height).toBeLessThanOrEqual(navigationBox!.y + 1);
   expect(Math.abs(popupBox!.x - triggerBox!.x)).toBeLessThanOrEqual(2);

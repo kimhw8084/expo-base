@@ -1,4 +1,4 @@
-import { createElement, type FormEvent, type PropsWithChildren, type ReactNode } from 'react';
+import { createElement, type CSSProperties, type FormEvent, type PropsWithChildren, type ReactNode } from 'react';
 import { Platform, View } from 'react-native';
 import { KeyboardAwareScrollView, KeyboardToolbar } from 'react-native-keyboard-controller';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
@@ -10,6 +10,18 @@ export interface FormScreenProps extends PropsWithChildren {
   /** A persistent action region, normally a StickyActionBar containing FormActions. */
   footer?: ReactNode | undefined;
 }
+
+const webFormStyle: CSSProperties = {
+  display: 'flex',
+  flex: '1 1 0%',
+  flexDirection: 'column',
+  width: '100%',
+  minWidth: 0,
+  minHeight: 0,
+  margin: 0,
+  padding: 0,
+  boxSizing: 'border-box',
+};
 
 export function FormScreen({ children, safeArea = 'all', showKeyboardToolbar = true, onSubmit, footer }: FormScreenProps) {
   const { theme, rt } = useUnistyles();
@@ -28,7 +40,7 @@ export function FormScreen({ children, safeArea = 'all', showKeyboardToolbar = t
     {footer}
   </>;
   const form = Platform.OS === 'web'
-    ? createElement('form', { onSubmit: (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); onSubmit?.(); } }, content)
+    ? createElement('form', { style: webFormStyle, onSubmit: (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); onSubmit?.(); } }, content)
     : <View role="form">{content}</View>;
   return (
     <View role="main" style={[styles.screen, styles[`safe_${safeArea}`]]}>
