@@ -1,0 +1,405 @@
+{
+  "accepted_at": "2026-09-18T14:22:02Z",
+  "changed_files": [
+    {
+      "additions": 72,
+      "deletions": 0,
+      "path": "apps/reference/app/form-rhf-adapters.tsx",
+      "status": "A"
+    },
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "docs/FORMS.md",
+      "status": "M"
+    },
+    {
+      "additions": 55,
+      "deletions": 1,
+      "path": "packages/form-rhf/src/index.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "packages/forms/src/TextArea.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 45,
+      "deletions": 0,
+      "path": "tests/e2e/web/chg-119-form-rhf-adapters.spec.ts",
+      "status": "A"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"function printUsage|--capabilities|sourceMetadata|readSourceMetadata|sourceCommit|verify\\\" packages/create-expo-base-app/bin/create-expo-base-app.mjs | head -n 120 && rtk sed -n '720,850p' packages/create-expo-base-app/bin/create-expo-base-app.mjs && rtk sed -n '1,220p' packages/create-expo-base-app/bin/create-expo-base-app.mjs | tail -n 80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '250,470p' packages/create-expo-base-app/bin/create-expo-base-app.mjs && rtk sed -n '1,180p' expo-base.compatibility.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,320p' scripts/check-public-api.mjs && rtk sed -n '1,260p' scripts/check-package-manifests.mjs && rtk git status --short --branch && rtk git remote -v\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff -- packages/forms/src/TextArea.tsx packages/form-rhf/src/index.tsx && rtk npx tsc -p packages/forms/tsconfig.json --noEmit && rtk npx tsc -p packages/form-rhf/tsconfig.json --noEmit'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"export .*FormScreen|function FormScreen|interface FormScreen\\\" packages/forms/src packages/layouts/src packages/ui/src && rtk sed -n '1,220p' packages/forms/src/FormLayout.tsx && rtk sed -n '1,160p' packages/forms/src/FormField.tsx && rtk sed -n '1,140p' packages/components/src/Button.tsx\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,120p' packages/layouts/src/FormScreen.tsx && rtk rg -n \\\"export function Page|interface PageProps|function Page\\\" packages/layouts/src packages/ui/src packages/primitives/src | head -n 80 && rtk sed -n '1,130p' packages/layouts/src/Page.tsx 2>/dev/null || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npx tsc -p apps/reference/tsconfig.json --noEmit && rtk git diff --check 83fc039e5a64e9e763f66379d0d2bec81fecce0d HEAD && rtk git status --short'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:form-contracts && rtk npm run test:form-contracts && rtk npm run check:form-keyboard-contracts && rtk npm run check:form-lifecycle-contracts && rtk npm run check:interaction-contracts'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:form-keyboard-contracts && rtk npm run check:form-lifecycle-contracts && rtk npm run check:interaction-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run reference:web -- --port 8081'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk node --version && PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm --version && PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run preflight'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk which node && rtk node --version && rtk which npm && rtk command -v nvm || true && rtk ls -1 /opt/homebrew/opt/node@22/bin/node /usr/local/opt/node@22/bin/node /opt/homebrew/bin/node /usr/local/bin/node 2>/dev/null || true && rtk find /Users/haewonkim -path '*/bin/node' -type f 2>/dev/null | head -n 80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run reference:web -- --port 8081'",
+      "exit_code": 127,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -ld node_modules apps/reference/node_modules node_modules/.bin/expo 2>/dev/null || true && rtk npm --version && rtk git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm install --no-audit --no-fund'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH EXPO_BASE_BASE_URL=http://127.0.0.1:8081 npm exec -- playwright test tests/e2e/web/chg-119-form-rhf-adapters.spec.ts --project=chromium'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH EXPO_BASE_BASE_URL=http://127.0.0.1:8081 npm exec -- playwright test tests/e2e/web/chg-119-form-rhf-adapters.spec.ts --project=chromium'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run web -w @expo-base/reference -- --port 8081'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run test:screen-scaffolder'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run check:package-manifests && rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run check:public-api && rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run api:snapshot:check && rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run check:golden-patterns && rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run check:golden-architecture'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run typecheck'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run quality:gate17'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run runtime:verify'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run runtime:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run runtime:test:web'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run golden:structural'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run mobile:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run golden:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short && rtk git diff --check 83fc039e5a64e9e763f66379d0d2bec81fecce0d HEAD && rtk git diff --stat 83fc039e5a64e9e763f66379d0d2bec81fecce0d HEAD && rtk git diff -- apps/reference/app/form-rhf-adapters.tsx tests/e2e/web/chg-119-form-rhf-adapters.spec.ts docs/FORMS.md packages/forms/src/TextArea.tsx packages/form-rhf/src/index.tsx'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add docs/FORMS.md packages/form-rhf/src/index.tsx packages/forms/src/TextArea.tsx apps/reference/app/form-rhf-adapters.tsx tests/e2e/web/chg-119-form-rhf-adapters.spec.ts && rtk git commit -m \"CHG-119: add RHF date and text area adapters\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD && rtk mktemp -d /tmp/chg119-generated.XXXXXX'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name \"CHG119 Consumer\" --slug chg119-consumer --mode standalone --capabilities runtime-signals --directory /tmp/chg119-generated.it718S'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat .expo-base/source.json && rtk cat expo-base.capabilities.json && rtk rg -n \"ControlledDateField|ControlledTextArea|DateField|TextArea\" packages/form-rhf/src/index.tsx packages/forms/src/TextArea.tsx packages/forms/src/DateTimeFields.tsx | head -n 120 && rtk cat package.json | head -n 80'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk mktemp -d /tmp/chg119-generated-final.XXXXXX'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name \"CHG119 Consumer\" --slug chg119-consumer --mode standalone --capabilities runtime-signals --directory /tmp/chg119-generated-final.El3Wd4 && rtk cat /tmp/chg119-generated-final.El3Wd4/.expo-base/source.json && rtk cat /tmp/chg119-generated-final.El3Wd4/expo-base.capabilities.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm install --no-audit --no-fund'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run typecheck && rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run check:golden-architecture && rtk rg -n \"(/Users/haewonkim|worktrees|'\"\\\\.\\\\./\\\\.\\\\./|\\\\.codex-fabric)\\\" app packages --glob '\"'!**/node_modules/**'\"' || true && rtk env PATH=/opt/homebrew/opt/node@22/bin:\"'$PATH node --input-type=module -e \"import fs from '\"'node:fs'; import { createRequire } from 'node:module'; const require=createRequire(import.meta.url); const pkg=JSON.parse(fs.readFileSync('package.json','utf8')); const names=Object.keys(pkg.dependencies).filter((name)=>name.startsWith('@expo-base/')); for (const name of names) { const resolved=require.resolve(name + '/package.json'); if (\"'!resolved.startsWith(process.cwd())) throw new Error(name + '\"' escaped to ' + resolved); } console.log('Generated @expo-base dependency resolution passed (' + names.length + ' packages inside ' + process.cwd() + ').');\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"(/Users/haewonkim|worktrees|\\\\.\\\\./\\\\.\\\\./|\\\\.codex-fabric)\\\" app routes.ts package.json || true && rtk git status --short\"",
+      "exit_code": 128,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk curl -I http://127.0.0.1:8091/chg119'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH node --input-type=module -e '\"'\nimport { chromium } from \\\"/Users/haewonkim/.codex-fabric/worktrees/CF-0fda9f753bddbca7f7264ac9/node_modules/playwright/index.mjs\\\";\nconst browser = await chromium.launch({ headless: true });\nconst page = await browser.newPage();\nconst warnings = [];\nconst pageErrors = [];\npage.on(\\\"console\\\", (message) => { if (message.type() === \\\"warning\\\" || message.type() === \\\"error\\\") warnings.push(message.text()); });\npage.on(\\\"pageerror\\\", (error) => pageErrors.push(error.message));\nawait page.goto(\\\"http://127.0.0.1:8091/chg119\\\", { waitUntil: \\\"networkidle\\\" });\nawait page.getByText(\\\"CHG-119 generated consumer\\\").waitFor();\nconst date = page.getByTestId(\\\"generated-chg119-date\\\");\nconst notes = page.getByTestId(\\\"generated-chg119-notes\\\");\nawait page.getByTestId(\\\"generated-chg119-submit\\\").click();\nif (\"'!(await date.evaluate((element) => document.activeElement === element))) throw new Error(\"RHF error focus did not reach generated date field\");\nif (await page.getByTestId(\"generated-chg119-date-error\").textContent() !== \"Effective date is required.\") throw new Error(\"Generated date error was not presented\");\nif (await page.getByTestId(\"generated-chg119-notes-error\").textContent() !== \"Notes are required.\") throw new Error(\"Generated text-area error was not presented\");\nawait date.fill(\"2026-09-18\");\nif (await page.getByTestId(\"generated-chg119-date-value\").textContent() !== \"2026-09-18\") throw new Error(\"Generated DateField did not propagate YYYY-MM-DD\");\nawait date.blur();\nif (await page.getByTestId(\"generated-chg119-date-touched\").textContent() !== \"true\") throw new Error(\"Generated DateField did not become touched\");\nif (await page.getByTestId(\"generated-chg119-date-blur-count\").textContent() !== \"1\") throw new Error(\"Generated DateField blur was not composed exactly once\");\nawait notes.fill(\"first line'\"\\\\nsecond line\\\");\nif (await page.getByTestId(\\\"generated-chg119-notes-value\\\").textContent() \"'!== \"first line'\"\\\\nsecond line\\\") throw new Error(\\\"Generated TextArea did not propagate multiline content\\\");\nawait notes.blur();\nif (await page.getByTestId(\\\"generated-chg119-notes-touched\\\").textContent() \"'!== \"true\") throw new Error(\"Generated TextArea did not become touched\");\nif (await page.getByTestId(\"generated-chg119-notes-blur-count\").textContent() !== \"1\") throw new Error(\"Generated TextArea blur was not composed exactly once\");\nif (pageErrors.length) throw new Error(\"Generated browser page errors: \" + pageErrors.join(\" | \"));\nconst adapterWarnings = warnings.filter((warning) => /ControlledDateField|ControlledTextArea|DateField|TextArea|form-rhf/i.test(warning));\nif (adapterWarnings.length) throw new Error(\"Generated adapter warnings: \" + adapterWarnings.join(\" | \"));\nconsole.log(JSON.stringify({ route: \"/chg119\", dateValue: \"2026-09-18\", multiline: \"first line'\"\\\\\\\\nsecond line\\\", dateTouched: true, notesTouched: true, dateBlurCount: 1, notesBlurCount: 1, pageErrors: pageErrors.length, adapterWarnings: adapterWarnings.length, otherWarnings: warnings }));\nawait browser.close();\n'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH node --input-type=module -e '\"'\nimport { chromium } from \\\"/Users/haewonkim/.codex-fabric/worktrees/CF-0fda9f753bddbca7f7264ac9/node_modules/playwright/index.mjs\\\";\nconst browser = await chromium.launch({ headless: true });\nconst page = await browser.newPage();\nconst warnings = [];\nconst pageErrors = [];\npage.on(\\\"console\\\", (message) => { if (message.type() === \\\"warning\\\" || message.type() === \\\"error\\\") warnings.push(message.text()); });\npage.on(\\\"pageerror\\\", (error) => pageErrors.push(error.message));\nawait page.goto(\\\"http://127.0.0.1:8091/chg119\\\", { waitUntil: \\\"domcontentloaded\\\", timeout: 60000 });\nawait page.getByText(\\\"CHG-119 generated consumer\\\").waitFor({ timeout: 60000 });\nconst date = page.getByTestId(\\\"generated-chg119-date\\\");\nconst notes = page.getByTestId(\\\"generated-chg119-notes\\\");\nawait page.getByTestId(\\\"generated-chg119-submit\\\").click();\nif (\"'!(await date.evaluate((element) => document.activeElement === element))) throw new Error(\"RHF error focus did not reach generated date field\");\nif (await page.getByTestId(\"generated-chg119-date-error\").textContent() !== \"Effective date is required.\") throw new Error(\"Generated date error was not presented\");\nif (await page.getByTestId(\"generated-chg119-notes-error\").textContent() !== \"Notes are required.\") throw new Error(\"Generated text-area error was not presented\");\nawait date.fill(\"2026-09-18\");\nif (await page.getByTestId(\"generated-chg119-date-value\").textContent() !== \"2026-09-18\") throw new Error(\"Generated DateField did not propagate YYYY-MM-DD\");\nawait date.blur();\nif (await page.getByTestId(\"generated-chg119-date-touched\").textContent() !== \"true\") throw new Error(\"Generated DateField did not become touched\");\nif (await page.getByTestId(\"generated-chg119-date-blur-count\").textContent() !== \"1\") throw new Error(\"Generated DateField blur was not composed exactly once\");\nawait notes.fill(\"first line'\"\\\\nsecond line\\\");\nif (await page.getByTestId(\\\"generated-chg119-notes-value\\\").textContent() \"'!== \"first line'\"\\\\nsecond line\\\") throw new Error(\\\"Generated TextArea did not propagate multiline content\\\");\nawait notes.blur();\nif (await page.getByTestId(\\\"generated-chg119-notes-touched\\\").textContent() \"'!== \"true\") throw new Error(\"Generated TextArea did not become touched\");\nif (await page.getByTestId(\"generated-chg119-notes-blur-count\").textContent() !== \"1\") throw new Error(\"Generated TextArea blur was not composed exactly once\");\nif (pageErrors.length) throw new Error(\"Generated browser page errors: \" + pageErrors.join(\" | \"));\nconst adapterWarnings = warnings.filter((warning) => /ControlledDateField|ControlledTextArea|DateField|TextArea|form-rhf/i.test(warning));\nif (adapterWarnings.length) throw new Error(\"Generated adapter warnings: \" + adapterWarnings.join(\" | \"));\nconsole.log(JSON.stringify({ url: page.url(), dateValue: \"2026-09-18\", multiline: \"first line'\"\\\\\\\\nsecond line\\\", dateTouched: true, notesTouched: true, dateBlurCount: 1, notesBlurCount: 1, pageErrors: pageErrors.length, adapterWarnings: adapterWarnings.length, otherWarnings: warnings }));\nawait browser.close();\n'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run quality:gate17'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run test:screen-scaffolder && rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run api:snapshot:check && rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run check:golden-patterns && rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run check:golden-architecture && rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run typecheck && rtk git diff --check 83fc039e5a64e9e763f66379d0d2bec81fecce0d HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/opt/homebrew/opt/node@22/bin:$PATH npm run web -- --port 8091'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git rev-parse HEAD && rtk git branch --show-current && rtk git remote get-url origin && rtk git diff --name-only 83fc039e5a64e9e763f66379d0d2bec81fecce0d HEAD && rtk git diff --stat 83fc039e5a64e9e763f66379d0d2bec81fecce0d HEAD && rtk git diff --check 83fc039e5a64e9e763f66379d0d2bec81fecce0d HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ls -la .codex-fabric 2>/dev/null || true && rtk git show --stat --oneline --decorate --no-renames HEAD && rtk git merge-base --is-ancestor 83fc039e5a64e9e763f66379d0d2bec81fecce0d HEAD; printf 'base_ancestor_exit=%s\\\\n' \\\"\"'$?\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git ls-remote origin HEAD refs/heads/main refs/heads/codex/expo-base-chg119-form-rhf-adapters-r1'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 164,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.79,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 25162752,
+      "fresh_input_tokens": 309226,
+      "input_tokens": 25471978,
+      "non_reasoning_output_tokens": 22326,
+      "output_tokens": 39783,
+      "reasoning_output_tokens": 17457,
+      "total_processed_tokens": 25511761
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "a04300efec4a5b37102f1acf607e191662e1dc4c",
+      "subject": "CHG-119: add RHF date and text area adapters"
+    }
+  ],
+  "diff": {
+    "additions": 177,
+    "changed_files": 5,
+    "commit_count": 1,
+    "deletions": 5
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 1,
+    "items": [
+      {
+        "bytes": 7343,
+        "path": "docs/FORMS.md",
+        "sha256": "6195f8346a29d96d763a532d7a826fe6bf2eafde82872a1492204209a7853983"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-18T14:47:30Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "83fc039e5a64e9e763f66379d0d2bec81fecce0d",
+    "branch": "codex/expo-base-chg119-form-rhf-adapters-r1",
+    "head_sha": "a04300efec4a5b37102f1acf607e191662e1dc4c",
+    "remote_exact_head": true,
+    "remote_head_sha": "a04300efec4a5b37102f1acf607e191662e1dc4c",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "83fc039e5a64e9e763f66379d0d2bec81fecce0d",
+    "work_branch": "codex/expo-base-chg119-form-rhf-adapters-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-0fda9f753bddbca7f7264ac9",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg119-form-rhf-adapters-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg119-form-rhf-adapters-r1"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg119-form-rhf-adapters-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-18T14:22:02Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 1528,
+    "queue_seconds": 0,
+    "total_seconds": 1528
+  },
+  "transport": {
+    "bytes": 11390,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 11070,
+    "prompt_sha256": "1e2d8ebf461913ba496e99e8471c93f8390e0fc88d71fe1a2d71d3cc77596692",
+    "sha256": "0fda9f753bddbca7f7264ac93c997141ec00b5cc30cc4ffa3eb24f68f9f835a7"
+  }
+}
