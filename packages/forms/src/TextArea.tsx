@@ -3,7 +3,7 @@ import { Platform, TextInput, type TextInputProps, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { FormField } from './FormField';
 
-export interface TextAreaProps extends Pick<TextInputProps, 'autoCapitalize' | 'autoCorrect' | 'maxLength'> {
+export interface TextAreaProps extends Pick<TextInputProps, 'autoCapitalize' | 'autoCorrect' | 'maxLength' | 'onFocus' | 'onBlur'> {
   id: string;
   label: string;
   value: string;
@@ -16,7 +16,7 @@ export interface TextAreaProps extends Pick<TextInputProps, 'autoCapitalize' | '
   testID?: string;
 }
 
-export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea({ id, label, value, onChangeText, placeholder, description, error, required = false, disabled = false, testID, ...inputProps }, ref) {
+export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea({ id, label, value, onChangeText, placeholder, description, error, required = false, disabled = false, testID, onFocus, onBlur, ...inputProps }, ref) {
   const [focused, setFocused] = useState(false);
   const { theme } = useUnistyles();
   const messageId = error || description ? `${id}-message` : undefined;
@@ -46,8 +46,8 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea({
           placeholderTextColor={theme.colors.text.tertiary}
           maxFontSizeMultiplier={2}
           testID={testID ?? id}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
+          onFocus={(event) => { setFocused(true); onFocus?.(event); }}
+          onBlur={(event) => { setFocused(false); onBlur?.(event); }}
           style={styles.input}
           {...inputProps}
         />
