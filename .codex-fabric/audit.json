@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "kind": "codex-fabric-audit-evidence",
+  "operation": "VERIFY",
+  "status": "VERIFIED",
+  "visual_atlas_status": "GIT_PUBLISHED_AWAITING_AUDIT",
+  "project_id": "expo-base",
+  "request": "expo-base-visual-atlas-capture-v1",
+  "recorded_at": "2026-09-18T23:47:51.604Z",
+  "source": {
+    "head": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+    "tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+    "parent_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+    "source_changed": false
+  },
+  "git": {
+    "target_branch": "main",
+    "work_branch": "codex/expo-base-visual-atlas-capture-v1",
+    "worktree_clean": true,
+    "main_unchanged": true,
+    "artifact_ref": "refs/heads/project-os-artifacts/expo-base/expo-base-visual-atlas-capture-v1",
+    "artifact_commit": "bffbaca9d6f9499650d6c487786e82a50af58609",
+    "artifact_remote_readback_verified": true,
+    "evidence_ref": "refs/heads/codex-fabric/evidence/expo-base/expo-base-visual-atlas-capture-v1",
+    "evidence_commit": null
+  },
+  "package": {
+    "manifest_sha256": "b74b7aa38f12d719fb143f1c43b2e67a949ea780334f05b8b88c0727c8be9226",
+    "capture_report_sha256": "49d3138465e837b0305683ccca2d7a8a8605394e3ab152062817037983c0e2e2",
+    "reader_index_sha256": "8eb45456cf32c11c4f1bb5e8bcff5719aa1384b30a63503b9cc22db45e140924",
+    "review_desktop_sha256": "380fc7354814fb892abfb32b6903ba624d2a28c46e1b9b7aad9b97e4dd413bdf",
+    "review_mobile_sha256": "d4b1283a9206ad912fb96ec286c261bbb18a91a16fee85d25c0ef96b6d8a31bf",
+    "bundle_sha256": "5ddde8206a9464ce4b2247ab6c36013e74d9957a6213e7d8478ca4948b8db9fa",
+    "surface_count": 50,
+    "canonical_screenshot_count": 100,
+    "stress_record_count": 90
+  },
+  "retained_evidence": [
+    {
+      "path": "visual-atlas/surface-manifest.json",
+      "sha256": "b74b7aa38f12d719fb143f1c43b2e67a949ea780334f05b8b88c0727c8be9226",
+      "bytes": 53404
+    },
+    {
+      "path": "visual-atlas/capture-report.json",
+      "sha256": "49d3138465e837b0305683ccca2d7a8a8605394e3ab152062817037983c0e2e2",
+      "bytes": 113563
+    },
+    {
+      "path": "visual-atlas/reader-index.json",
+      "sha256": "8eb45456cf32c11c4f1bb5e8bcff5719aa1384b30a63503b9cc22db45e140924",
+      "bytes": 43880
+    },
+    {
+      "path": "visual-atlas/review-desktop.pdf",
+      "sha256": "380fc7354814fb892abfb32b6903ba624d2a28c46e1b9b7aad9b97e4dd413bdf",
+      "bytes": 4592332
+    },
+    {
+      "path": "visual-atlas/review-mobile.pdf",
+      "sha256": "d4b1283a9206ad912fb96ec286c261bbb18a91a16fee85d25c0ef96b6d8a31bf",
+      "bytes": 2478179
+    },
+    {
+      "path": "visual-atlas/artifact-stage-receipt.json",
+      "sha256": "29a2af77344f05f00ed9fa7a2c7601841fb427ab96293d4fbb332e9788cfd9d7",
+      "bytes": 2864
+    }
+  ],
+  "diagnostics": {
+    "console_errors": 0,
+    "page_errors": 0,
+    "request_failures": 0,
+    "notion_calls": 0
+  },
+  "visual": {
+    "surface_count": 50,
+    "canonical_screenshot_count": 100,
+    "stress_record_count": 90,
+    "reader_desktop_pages": 50,
+    "reader_mobile_pages": 50,
+    "all_readiness_results": true,
+    "visual_acceptance": "NOT_PERFORMED",
+    "promotion": "NOT_PERFORMED"
+  },
+  "evidence_locator": {
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/expo-base-visual-atlas-capture-v1",
+    "path": ".codex-fabric/audit.json",
+    "evidence_commit": null
+  }
+}

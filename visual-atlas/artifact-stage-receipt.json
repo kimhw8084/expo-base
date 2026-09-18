@@ -1,0 +1,71 @@
+{
+  "schema_version": "project-os.visual-atlas.artifact-stage-receipt/1",
+  "kind": "project-os.visual-atlas.artifact-stage-receipt",
+  "status": "STAGED",
+  "project": "expo-base",
+  "repository": "kimhw8084/expo-base",
+  "request": "expo-base-visual-atlas-capture-v1",
+  "operation": "VERIFY",
+  "source": {
+    "sha": "4488d4f611eb01f28cc76be29f8f2da35711f52",
+    "tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+    "work_branch": "codex/expo-base-visual-atlas-capture-v1",
+    "source_changed": false
+  },
+  "carrier": {
+    "ref": "refs/heads/project-os-artifacts/expo-base/expo-base-visual-atlas-capture-v1",
+    "commit": "bffbaca9d6f9499650d6c487786e82a50af58609",
+    "remote_readback_verified": true
+  },
+  "package": {
+    "manifest_sha256": "b74b7aa38f12d719fb143f1c43b2e67a949ea780334f05b8b88c0727c8be9226",
+    "capture_report_sha256": "49d3138465e837b0305683ccca2d7a8a8605394e3ab152062817037983c0e2e2",
+    "reader_index_sha256": "8eb45456cf32c11c4f1bb5e8bcff5719aa1384b30a63503b9cc22db45e140924",
+    "review_desktop_sha256": "380fc7354814fb892abfb32b6903ba624d2a28c46e1b9b7aad9b97e4dd413bdf",
+    "review_mobile_sha256": "d4b1283a9206ad912fb96ec286c261bbb18a91a16fee85d25c0ef96b6d8a31bf",
+    "bundle_sha256": "5ddde8206a9464ce4b2247ab6c36013e74d9957a6213e7d8478ca4948b8db9fa",
+    "surface_count": 50,
+    "canonical_screenshot_count": 100,
+    "stress_record_count": 90
+  },
+  "evidence": {
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/expo-base-visual-atlas-capture-v1",
+    "evidence_commit": null,
+    "commit_resolution": "Evidence commit id is returned in the final handoff; this receipt is frozen before its content-addressed commit exists.",
+    "retained_files": [
+      {
+        "path": "visual-atlas/surface-manifest.json",
+        "sha256": "b74b7aa38f12d719fb143f1c43b2e67a949ea780334f05b8b88c0727c8be9226",
+        "bytes": 53404
+      },
+      {
+        "path": "visual-atlas/capture-report.json",
+        "sha256": "49d3138465e837b0305683ccca2d7a8a8605394e3ab152062817037983c0e2e2",
+        "bytes": 113563
+      },
+      {
+        "path": "visual-atlas/reader-index.json",
+        "sha256": "8eb45456cf32c11c4f1bb5e8bcff5719aa1384b30a63503b9cc22db45e140924",
+        "bytes": 43880
+      },
+      {
+        "path": "visual-atlas/review-desktop.pdf",
+        "sha256": "380fc7354814fb892abfb32b6903ba624d2a28c46e1b9b7aad9b97e4dd413bdf",
+        "bytes": 4592332
+      },
+      {
+        "path": "visual-atlas/review-mobile.pdf",
+        "sha256": "d4b1283a9206ad912fb96ec286c261bbb18a91a16fee85d25c0ef96b6d8a31bf",
+        "bytes": 2478179
+      }
+    ],
+    "full_png_corpus_included": false,
+    "bundle_included": false
+  },
+  "bridge": {
+    "artifact_bridge": "not invoked; Git carrier is authoritative",
+    "notion_calls": 0,
+    "visual_acceptance": "not performed",
+    "promotion": "not performed"
+  }
+}

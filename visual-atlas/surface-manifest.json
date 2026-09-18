@@ -1,0 +1,1041 @@
+{
+  "schema_version": "project-os.visual-atlas.surface-manifest/2",
+  "project": "expo-base",
+  "repository": "kimhw8084/expo-base",
+  "target_branch": "main",
+  "request": "expo-base-visual-atlas-capture-v1",
+  "operation": "VERIFY",
+  "work_branch": "codex/expo-base-visual-atlas-capture-v1",
+  "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+  "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+  "generated_at": "2026-09-18T23:34:13.063Z",
+  "discovery": {
+    "authority": "exact routed/runtime reference product",
+    "launch_path": "npm run reference:export:web -> node scripts/serve-static-web.mjs apps/reference/dist 0 -> Playwright Chromium",
+    "discovered_primary_route_count": 22,
+    "live_home_navigation_test_id_prefix": "home-route-",
+    "aliases_and_noncanonical": [
+      {
+        "alias": "/_sitemap",
+        "disposition": "non-canonical route metadata"
+      },
+      {
+        "alias": "/state-workbench",
+        "disposition": "owner-certification fixture workbench, not a production workspace"
+      },
+      {
+        "alias": "/session-security",
+        "disposition": "protected security lab not reachable from primary home navigation"
+      },
+      {
+        "alias": "/form-rhf-adapters",
+        "disposition": "adapter acceptance lab not reachable from primary home navigation"
+      },
+      {
+        "alias": "/chg-110-submit",
+        "disposition": "historical change-specific probe, not a current primary workspace"
+      },
+      {
+        "alias": "/sign-in",
+        "disposition": "signed-out auth entry; reference fixture launches authenticated and no normal user path reaches it from the primary workspace"
+      },
+      {
+        "alias": "/session-loading",
+        "disposition": "transient bootstrap state"
+      },
+      {
+        "alias": "/session-error",
+        "disposition": "failure boundary not reached by deterministic reference fixture"
+      },
+      {
+        "alias": "/link-error",
+        "disposition": "failure boundary not reached by deterministic reference fixture"
+      },
+      {
+        "alias": "/unlock",
+        "disposition": "local-lock state not active for deterministic reference fixture"
+      },
+      {
+        "alias": "/auth/callback",
+        "disposition": "callback endpoint"
+      },
+      {
+        "alias": "/+not-found",
+        "disposition": "fallback route; not a canonical product workspace"
+      },
+      {
+        "alias": "golden.patterns.json intents without a live GOLDEN_PATTERN_IDS implementation",
+        "disposition": "catalog-only intent vocabulary; not separate current runtime subviews"
+      }
+    ],
+    "ambiguity": null
+  },
+  "canonical_obligations": {
+    "desktop": {
+      "id": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "mobile": {
+      "id": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "full_page": false,
+    "device_scale_factor": 1,
+    "lossless": "PNG"
+  },
+  "surface_count": 50,
+  "surfaces": [
+    {
+      "surface_key": "expo-base|home|default|ready|reference-user|light",
+      "canonical_route": "/",
+      "navigation_intent": "Home navigation root",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--home--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--home--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|forms|default|ready|reference-user|light",
+      "canonical_route": "/forms",
+      "navigation_intent": "Live home navigation -> /forms",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--forms--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--forms--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|navigation|default|ready|reference-user|light",
+      "canonical_route": "/navigation",
+      "navigation_intent": "Live home navigation -> /navigation",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--navigation--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--navigation--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|overlays|default|ready|reference-user|light",
+      "canonical_route": "/overlays",
+      "navigation_intent": "Live home navigation -> /overlays",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--overlays--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--overlays--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|lists|default|ready|reference-user|light",
+      "canonical_route": "/lists",
+      "navigation_intent": "Live home navigation -> /lists",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--lists--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--lists--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|data|default|ready|reference-user|light",
+      "canonical_route": "/data",
+      "navigation_intent": "Live home navigation -> /data",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--data--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--data--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|visualization|default|ready|reference-user|light",
+      "canonical_route": "/visualization",
+      "navigation_intent": "Live home navigation -> /visualization",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--visualization--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--visualization--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|default|ready|reference-user|light",
+      "canonical_route": "/feedback",
+      "navigation_intent": "Live home navigation -> /feedback",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--feedback--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--feedback--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|server-state|default|ready|reference-user|light",
+      "canonical_route": "/server-state",
+      "navigation_intent": "Live home navigation -> /server-state",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--server-state--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--server-state--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|accessibility-motion|default|ready|reference-user|light",
+      "canonical_route": "/accessibility-motion",
+      "navigation_intent": "Live home navigation -> /accessibility-motion",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--accessibility-motion--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--accessibility-motion--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|default|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|workflows|default|ready|reference-user|light",
+      "canonical_route": "/workflows",
+      "navigation_intent": "Live home navigation -> /workflows",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--workflows--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--workflows--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|system|default|ready|reference-user|light",
+      "canonical_route": "/system",
+      "navigation_intent": "Live home navigation -> /system",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--system--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--system--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden-plus|default|ready|reference-user|light",
+      "canonical_route": "/golden-plus",
+      "navigation_intent": "Live home navigation -> /golden-plus",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden-plus--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden-plus--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|stress|default|ready|reference-user|light",
+      "canonical_route": "/stress",
+      "navigation_intent": "Live home navigation -> /stress",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--stress--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--stress--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|services|default|ready|reference-user|light",
+      "canonical_route": "/services",
+      "navigation_intent": "Live home navigation -> /services",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--services--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--services--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|capabilities|default|ready|reference-user|light",
+      "canonical_route": "/capabilities",
+      "navigation_intent": "Live home navigation -> /capabilities",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--capabilities--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--capabilities--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|auth-session|default|ready|reference-user|light",
+      "canonical_route": "/auth-session",
+      "navigation_intent": "Live home navigation -> /auth-session",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--auth-session--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--auth-session--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|authorization|default|ready|reference-user|light",
+      "canonical_route": "/authorization",
+      "navigation_intent": "Live home navigation -> /authorization",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--authorization--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--authorization--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|analytics-showcase|default|ready|reference-user|light",
+      "canonical_route": "/analytics-showcase",
+      "navigation_intent": "Live home navigation -> /analytics-showcase",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--analytics-showcase--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--analytics-showcase--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|finance-showcase|default|ready|reference-user|light",
+      "canonical_route": "/finance-showcase",
+      "navigation_intent": "Live home navigation -> /finance-showcase",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--finance-showcase--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--finance-showcase--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|monitoring-showcase|default|ready|reference-user|light",
+      "canonical_route": "/monitoring-showcase",
+      "navigation_intent": "Live home navigation -> /monitoring-showcase",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Primary routed workspace reachable from live home navigation.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--monitoring-showcase--default--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--monitoring-showcase--default--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-feed-list|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-feed-list",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-feed-list--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-feed-list--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-search-results|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-search-results",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-search-results--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-search-results--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-data-workspace|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-data-workspace",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-data-workspace--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-data-workspace--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-detail|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-detail",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-detail--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-detail--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-master-detail|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-master-detail",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-master-detail--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-master-detail--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-create-edit-form|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-create-edit-form",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-create-edit-form--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-create-edit-form--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-wizard|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-wizard",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-wizard--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-wizard--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-settings|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-settings",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-settings--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-settings--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-profile|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-profile",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-profile--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-profile--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-authentication|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-authentication",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-authentication--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-authentication--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-analytics|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-analytics",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-analytics--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-analytics--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-empty-start|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-empty-start",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-empty-start--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-empty-start--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-full-screen-workflow|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-full-screen-workflow",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-full-screen-workflow--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-full-screen-workflow--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|golden|pattern-overlay-workflow|ready|reference-user|light",
+      "canonical_route": "/golden",
+      "navigation_intent": "Live home navigation -> /golden",
+      "aliases": [],
+      "subview": "pattern-overlay-workflow",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent Golden pattern selector state renders a materially different page composition.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--golden--pattern-overlay-workflow--ready--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--golden--pattern-overlay-workflow--ready--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|workflows|view-completion|completion|reference-user|light",
+      "canonical_route": "/workflows",
+      "navigation_intent": "Live home navigation -> /workflows",
+      "aliases": [],
+      "subview": "view-completion",
+      "state": "completion",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent workflow lab mode changes the complete workspace anatomy.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--workflows--view-completion--completion--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--workflows--view-completion--completion--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|workflows|view-permission|permission|reference-user|light",
+      "canonical_route": "/workflows",
+      "navigation_intent": "Live home navigation -> /workflows",
+      "aliases": [],
+      "subview": "view-permission",
+      "state": "permission",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent workflow lab mode changes the complete workspace anatomy.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--workflows--view-permission--permission--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--workflows--view-permission--permission--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|lists|mode-loading|loading|reference-user|light",
+      "canonical_route": "/lists",
+      "navigation_intent": "Live home navigation -> /lists",
+      "aliases": [],
+      "subview": "mode-loading",
+      "state": "loading",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent list mode changes the list-owned state anatomy.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--lists--mode-loading--loading--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--lists--mode-loading--loading--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|lists|mode-empty|empty|reference-user|light",
+      "canonical_route": "/lists",
+      "navigation_intent": "Live home navigation -> /lists",
+      "aliases": [],
+      "subview": "mode-empty",
+      "state": "empty",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent list mode changes the list-owned state anatomy.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--lists--mode-empty--empty--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--lists--mode-empty--empty--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|navigation|tab-benefits|selected|reference-user|light",
+      "canonical_route": "/navigation",
+      "navigation_intent": "Live home navigation -> /navigation",
+      "aliases": [],
+      "subview": "tab-benefits",
+      "state": "selected",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent tab selection changes the navigation state and overflow treatment.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--navigation--tab-benefits--selected--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--navigation--tab-benefits--selected--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|state-error|error|reference-user|light",
+      "canonical_route": "/feedback",
+      "navigation_intent": "Live home navigation -> /feedback",
+      "aliases": [],
+      "subview": "state-error",
+      "state": "error",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Persistent state playground selection changes the primary feedback anatomy.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--feedback--state-error--error--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--feedback--state-error--error--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|state-permission|permission|reference-user|light",
+      "canonical_route": "/feedback",
+      "navigation_intent": "Live home navigation -> /feedback",
+      "aliases": [],
+      "subview": "state-permission",
+      "state": "permission",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Permission is a materially distinct user-blocking state in the feedback contract.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--feedback--state-permission--permission--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--feedback--state-permission--permission--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|feedback|state-maintenance|maintenance|reference-user|light",
+      "canonical_route": "/feedback",
+      "navigation_intent": "Live home navigation -> /feedback",
+      "aliases": [],
+      "subview": "state-maintenance",
+      "state": "maintenance",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "Maintenance is a materially distinct unavailable state in the feedback contract.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--feedback--state-maintenance--maintenance--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--feedback--state-maintenance--maintenance--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|data|filtered-no-results|empty|reference-user|light",
+      "canonical_route": "/data",
+      "navigation_intent": "Live home navigation -> /data",
+      "aliases": [],
+      "subview": "filtered-no-results",
+      "state": "empty",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "A deterministic filter produces a materially distinct empty data workspace.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--data--filtered-no-results--empty--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--data--filtered-no-results--empty--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|server-state|refresh-error|error|reference-user|light",
+      "canonical_route": "/server-state",
+      "navigation_intent": "Live home navigation -> /server-state",
+      "aliases": [],
+      "subview": "refresh-error",
+      "state": "error",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "The live server-state lab preserves content while surfacing a real refresh failure.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--server-state--refresh-error--error--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--server-state--refresh-error--error--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|forms|server-validation|error|reference-user|light",
+      "canonical_route": "/forms",
+      "navigation_intent": "Live home navigation -> /forms",
+      "aliases": [],
+      "subview": "server-validation",
+      "state": "error",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "The form lifecycle contract exposes a persistent error summary and field error.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--forms--server-validation--error--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--forms--server-validation--error--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|overlays|destructive-alert|confirmation|reference-user|light",
+      "canonical_route": "/overlays",
+      "navigation_intent": "Live home navigation -> /overlays",
+      "aliases": [],
+      "subview": "destructive-alert",
+      "state": "confirmation",
+      "role": "reference-user",
+      "theme": "light",
+      "rationale": "The destructive confirmation contract is materially different from the base page.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--overlays--destructive-alert--confirmation--reference-user--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--overlays--destructive-alert--confirmation--reference-user--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|authorization|capability-protected-admin|granted|reference-user-settings-manage|light",
+      "canonical_route": "/authorization",
+      "navigation_intent": "Live home navigation -> /authorization",
+      "aliases": [],
+      "subview": "capability-protected-admin",
+      "state": "granted",
+      "role": "reference-user-settings-manage",
+      "theme": "light",
+      "rationale": "A real runtime capability grants access to a distinct protected workspace.",
+      "stable_ready_assertion": "shell-visible-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--authorization--capability-protected-admin--granted--reference-user-settings-manage--light--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--authorization--capability-protected-admin--granted--reference-user-settings-manage--light--mobile-390x844.png"
+      }
+    },
+    {
+      "surface_key": "expo-base|home|default|ready|reference-user|dark",
+      "canonical_route": "/",
+      "navigation_intent": "Home navigation root",
+      "aliases": [],
+      "subview": "default",
+      "state": "ready",
+      "role": "reference-user",
+      "theme": "dark",
+      "rationale": "Runtime theme control renders a materially distinct supported theme.",
+      "stable_ready_assertion": "dark-theme-status-and-primary-heading-visible",
+      "deterministic_fixture": "reference-user:memory-services-v1:dark-runtime",
+      "exact_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "exact_source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "expected_canonical_screenshots": {
+        "desktop": "screenshots/expo-base--home--default--ready--reference-user--dark--desktop-1440x900.png",
+        "mobile": "screenshots/expo-base--home--default--ready--reference-user--dark--mobile-390x844.png"
+      }
+    }
+  ]
+}
