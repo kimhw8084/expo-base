@@ -1,0 +1,444 @@
+{
+  "accepted_at": "2026-09-18T02:11:32Z",
+  "changed_files": [
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "apps/reference/app/_layout.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 43,
+      "deletions": 0,
+      "path": "apps/reference/app/chg-110-submit.tsx",
+      "status": "A"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "apps/reference/app/sign-in.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 0,
+      "path": "docs/COMPONENTS.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "docs/FORMS.md",
+      "status": "M"
+    },
+    {
+      "additions": 44,
+      "deletions": 18,
+      "path": "packages/components/src/Button.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 8,
+      "deletions": 5,
+      "path": "packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 19,
+      "deletions": 12,
+      "path": "packages/layouts/src/FormScreen.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 18,
+      "deletions": 0,
+      "path": "scripts/test-generator.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 126,
+      "deletions": 0,
+      "path": "tests/e2e/web/chg-110-submit-button.spec.ts",
+      "status": "A"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run test:screen-scaffolder'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin EXPO_BASE_BASE_URL=http://127.0.0.1:58159 /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test tests/e2e/web/chg-110-submit-button.spec.ts --reporter=line'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/serve-static-web.mjs apps/reference/dist 0'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- expo start --web --port 8097'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- expo start --web --port 8098'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk pwd && rtk git status --short --branch && rtk git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --quiet 94f0f7cc67dabef87b80527f3f0314f686fc04c HEAD -- docs/FORMS.md packages/create-expo-base-app/bin/create-expo-base-app.mjs packages/layouts/src/FormScreen.tsx scripts/test-generator.mjs; echo unchanged_nonoverlap_r1_exit=$? && rtk git diff --quiet 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD -- packages/components/src/Button.tsx; echo button_expected_changed_exit=$?'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --stat 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD && rtk git diff --name-status 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse 94f0f7cc67dabef87b80527f3f0314f686fc04c''^ && rtk git merge-base --is-ancestor 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD; echo base_ancestor_exit=$? && rtk git log --oneline --decorate --graph -4'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,40p' .expo-base/source.json && rtk ls .expo/types/router.d.ts .expo/dev/logs/start.log && rtk git status --short --ignored | head -60\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin EXPO_BASE_BASE_URL=http://127.0.0.1:58159 /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test tests/e2e/web/chg-110-submit-button.spec.ts --reporter=line'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin EXPO_BASE_BASE_URL=http://127.0.0.1:64161 /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test tests/e2e/web/chg-110-submit-button.spec.ts --reporter=line'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add tests/e2e/web/chg-110-submit-button.spec.ts && rtk git commit --amend --no-edit'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/serve-static-web.mjs apps/reference/dist 0'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk mktemp -d /tmp/expo-base-chg110-r2-final.XXXXXX'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name \\\"Orbit Ledger\\\" --slug orbit-ledger --directory /tmp/expo-base-chg110-r2-final.yBrJ6V --capabilities runtime-signals --link-host app.example.com --accent blue && rtk sed -n '1,16p' /tmp/expo-base-chg110-r2-final.yBrJ6V/.expo-base/source.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js install --no-audit --no-fund && rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run typecheck'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test tests/e2e/web/.tmp-generated-chg110.spec.ts --project=chromium --reporter=line'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test --config=playwright.config.ts tests/e2e/web/.tmp-generated-chg110.spec.ts --project=chromium --reporter=line'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test --config=playwright.config.ts tests/e2e/web/generated-chg110-proof.spec.ts --project=chromium --reporter=line'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk pwd && rtk ls playwright.config.ts package.json tests/e2e/web/generated-chg110-proof.spec.ts && rtk git status --short --branch'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls tests/e2e/web/generated-chg110-proof.spec.ts && rtk git status --short'",
+      "exit_code": 128,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk pwd && rtk git rev-parse --show-toplevel'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test --config=/Users/haewonkim/.codex-fabric/worktrees/CF-3577906b0991da17ecb67668/playwright.config.ts tests/e2e/web/generated-chg110-proof.spec.ts --project=chromium --reporter=line'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test --config=/Users/haewonkim/.codex-fabric/worktrees/CF-3577906b0991da17ecb67668/playwright.config.ts generated-chg110-proof.spec.ts --project=chromium --reporter=line'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk head -5 generated-chg110-proof.spec.ts && rtk sed -n '1,80p' /Users/haewonkim/.codex-fabric/worktrees/CF-3577906b0991da17ec67668/playwright.config.ts && rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test --config=/Users/haewonkim/.codex-fabric/worktrees/CF-3577906b0991da17ecb67668/playwright.config.ts --list --reporter=line\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk head -5 tests/e2e/web/generated-chg110-proof.spec.ts && rtk sed -n '1,80p' playwright.config.ts && rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test --config=/Users/haewonkim/.codex-fabric/worktrees/CF-3577906b0991da17ecb67668/playwright.config.ts --list --reporter=line\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk pwd && rtk ls tests/e2e/web | tail -20 && rtk ls /Users/haewonkim/.codex-fabric/worktrees/CF-3577906b0991da17ecb67668/tests/e2e/web/generated-chg110-proof.spec.ts /Users/haewonkim/.codex-fabric/worktrees/CF-3577906b0991da17ecb67668/tests/e2e/web/.tmp-generated-chg110.spec.ts'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --input-type=module <<'NODE'\nimport assert from 'node:assert/strict';\nimport { chromium } from '@playwright/test';\n\nconst base = 'http://127.0.0.1:8099';\nconst browser = await chromium.launch();\nconst page = await browser.newPage();\nconst diagnostics = [];\npage.on('console', (message) => diagnostics.push(message.text()));\npage.on('pageerror', (error) => diagnostics.push(error.message));\nconst openSignIn = async () => {\n  await page.goto(\"'`${base}/sign-in`);\n  await page.getByRole('\"'heading', { name: 'Sign in' }).waitFor();\n};\nawait openSignIn();\nconst form = page.locator('form');\nconst email = page.getByLabel('Email');\nconst password = [REDACTED_SECRET]'Password');\nconst submit = page.getByRole('button', { name: 'Sign in' });\nconst surface = submit.locator('div').first();\nassert.equal(await form.count(), 1);\nassert.equal(await submit.getAttribute('type'), 'submit');\nassert.equal(await password.evaluate((field) => field.closest('form') \"'!== null), true);\nassert.equal(await submit.evaluate((button) => button.closest('\"'form') \"'!== null), true);\nassert.equal(await page.locator('\"'link[rel=\\\"icon\\\"]').getAttribute('href'), '/favicon.svg');\nconst favicon = await page.request.get(\"'`${base}/favicon.svg`);\nassert.equal(favicon.status(), 200);\nassert.match(favicon.headers()['\"'content-type'], /image\\\\/svg\\\\+xml/);\nawait password.focus();\nawait page.keyboard.press('Tab');\nassert.equal(await submit.evaluate((button) => document.activeElement === button), true);\nawait expectStyle(surface, 'boxShadow', (value) => value \"'!== '\"'none');\nawait page.mouse.move(1, 1);\nconst restBackground = await surface.evaluate((element) => window.getComputedStyle(element).backgroundColor);\nawait submit.hover();\nawait expectStyle(surface, 'backgroundColor', (value) => value \"'!== restBackground);\nawait page.mouse.move(0, 0);\nawait expectStyle(surface, '\"'backgroundColor', (value) => value === restBackground);\nawait page.evaluate(() => {\n  const formElement = document.querySelector('form');\n  let count = 0;\n  formElement.addEventListener('submit', () => { count += 1; window.__generatedSubmitCount = count; });\n});\nawait email.fill('invalid-email');\nawait password.press('Enter');\nawait waitFor(() => page.evaluate(() => window.__generatedSubmitCount ?? 0), 1);\nawait openSignIn();\nawait page.evaluate(() => {\n  const formElement = document.querySelector('form');\n  let count = 0;\n  formElement.addEventListener('submit', () => { count += 1; window.__generatedSubmitCount = count; });\n});\nawait page.getByLabel('Email').fill('invalid-email');\nawait page.getByRole('button', { name: 'Sign in' }).click();\nawait waitFor(() => page.evaluate(() => window.__generatedSubmitCount ?? 0), 1);\nassert.doesNotMatch(diagnostics.join('\\\\n'), /Password field is not contained in a form/);\nassert.doesNotMatch(diagnostics.join('\\\\n'), /Cannot find module|config-loader/i);\nconsole.log(\"'`generated-proof source=413c731 favicon=${favicon.status()} enter-submit=1 click-submit=1 diagnostics=${diagnostics.length}`);\nawait browser.close();\n\nasync function waitFor(read, expected) {\n  const deadline = Date.now() + 5000;\n  while (Date.now() < deadline) {\n    if (await read() === expected) return;\n    await new Promise((resolve) => setTimeout(resolve, 50));\n  }\n  assert.equal(await read(), expected);\n}\nasync function expectStyle(locator, property, predicate) {\n  await waitFor(async () => predicate(await locator.evaluate((element, key) => window.getComputedStyle(element)[key], property)), true);\n}\nNODE'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls .expo/types/router.d.ts .expo/dev/logs/start.log'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git init -q'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"\\\\.\\\\./\\\\.\\\\.\\\" app || true && rtk rg -n \\\"from ['\\\\\\\"]\\\\.\\\\./|import\\\\(['\\\\\\\"]\\\\.\\\\./\\\" app --glob '*.{ts,tsx}' | head -80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- expo config --type public'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --input-type=module -e 'import fs from \\\"node:fs\\\"; import path from \\\"node:path\\\"; import { createRequire } from \\\"node:module\\\"; import { spawnSync } from \\\"node:child_process\\\"; const root=process.cwd(); const requireFrom=createRequire(path.join(root,\\\"package.json\\\")); const pkg=JSON.parse(fs.readFileSync(\\\"package.json\\\",\\\"utf8\\\")); const names=Object.keys(pkg.dependencies).filter((name)=>name.startsWith(\\\"@expo-base/\\\")); for (const name of names) { const resolved=fs.realpathSync(requireFrom.resolve(name+\\\"/package.json\\\")); if (\"'!resolved.startsWith(root+path.sep)) throw new Error(name+\" resolved outside repository: \"+resolved); console.log(name+\" -> \"+path.relative(root,resolved)); } const ignored=[\"node_modules/\",\".expo/\",\"build/\",\".cache/\",\"npm-debug.log\",\"output.log\",\".DS_Store\"]; for (const name of ignored) { if (spawnSync(\"git\",[\"check-ignore\",\"--no-index\",\"-q\",name],{cwd:root}).status!==0) throw new Error(\"not ignored: \"+name); } console.log(\"ignored outputs: \"+ignored.join(\", \")); const trackable=[\".expo-base/source.json\",\"app/sign-in.tsx\",\"package-lock.json\",\"docs/GOLDEN_CATALOG.md\"]; for (const name of trackable) { if (spawnSync(\"git\",[\"check-ignore\",\"--no-index\",\"-q\",name],{cwd:root}).status===0) throw new Error(\"unexpectedly ignored: \"+name); } console.log(\"trackable product metadata/source/lock/docs: \"+trackable.join(\", \"));'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run quality:gate17'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- expo start --web --port 8099'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls tests/e2e/web/generated-chg110-proof.spec.ts tests/e2e/web/.tmp-generated-chg110.spec.ts || true'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --quiet 94f0f7cc67dabef87b80527f3f0314f686fc04c HEAD -- docs/FORMS.md packages/create-expo-base-app/bin/create-expo-base-app.mjs packages/layouts/src/FormScreen.tsx scripts/test-generator.mjs; echo r1_nonoverlap_preserved_exit=$?'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --stat 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD && rtk git diff --name-status 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git log --oneline --decorate --graph -4 && rtk git merge-base --is-ancestor 43ae1b27257697093d893d504b7e22b6f25cfad7 HEAD; echo base_ancestor_exit=$? && rtk git rev-parse 94f0f7cc67dabef87b80527f3f0314f686fc04c''^'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git diff --quiet && rtk git diff --cached --quiet; echo clean_diff_exit=$?'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,16p' .expo-base/source.json && rtk ls .expo/types/router.d.ts .expo/dev/logs/start.log && rtk git status --short --ignored | tail -8\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin EXPO_BASE_BASE_URL=http://127.0.0.1:51200 /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js exec -- playwright test tests/e2e/web/chg-110-submit-button.spec.ts --reporter=line'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/serve-static-web.mjs apps/reference/dist 0'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD && rtk git status --short --branch && rtk git diff --check && rtk git log --oneline --decorate -3'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run test:screen-scaffolder'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git diff --check && rtk git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 404,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.98,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 33052160,
+      "fresh_input_tokens": 340138,
+      "input_tokens": 33392298,
+      "non_reasoning_output_tokens": 41397,
+      "output_tokens": 77104,
+      "reasoning_output_tokens": 35707,
+      "total_processed_tokens": 33469402
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "413c7314706476725eb5e22a1827c43ea46d1a6d",
+      "subject": "fix(button): preserve web submit interaction contract"
+    },
+    {
+      "sha": "d0f86a2ab3f235086a17e1a7deb6187299f91beb",
+      "subject": "fix(generator): repair standalone web auth output"
+    }
+  ],
+  "diff": {
+    "additions": 271,
+    "changed_files": 10,
+    "commit_count": 2,
+    "deletions": 40
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 2,
+    "items": [
+      {
+        "bytes": 2861,
+        "path": "docs/COMPONENTS.md",
+        "sha256": "59a18d454e3167b0e49aa46c3e7dd11829ff48da439364d1b7151ac27db66308"
+      },
+      {
+        "bytes": 7056,
+        "path": "docs/FORMS.md",
+        "sha256": "0ee24ca8b847b6c4f467b92cc410a7a8489ef9470c93e4d2b74ad47eb941e7c5"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-18T02:49:28Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "branch": "codex/expo-base-chg110-submit-interaction-fix-r2",
+    "head_sha": "413c7314706476725eb5e22a1827c43ea46d1a6d",
+    "remote_exact_head": true,
+    "remote_head_sha": "413c7314706476725eb5e22a1827c43ea46d1a6d",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "43ae1b27257697093d893d504b7e22b6f25cfad7",
+    "work_branch": "codex/expo-base-chg110-submit-interaction-fix-r2",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-3577906b0991da17ecb67668",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg110-submit-interaction-fix-r2",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg110-submit-interaction-fix-r2"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg110-submit-interaction-fix-r2",
+  "schema_version": 1,
+  "started_at": "2026-09-18T02:11:32Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 2276,
+    "queue_seconds": 0,
+    "total_seconds": 2276
+  },
+  "transport": {
+    "bytes": 7991,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 7662,
+    "prompt_sha256": "5a6ed605095fb719bc8beba547781bb4d76a89f2e49df60fd48ce6341bd05fc0",
+    "sha256": "3577906b0991da17ecb67668b06c346e415a40c98ad87d3ef5f25cba6d2bfed3"
+  }
+}
