@@ -49,9 +49,9 @@ export function LineChart({ data, name = 'Line chart', size = 'standard', series
               <Path d={path} fill="none" stroke={color} strokeWidth={theme.visualizationMetrics.lineWidth} strokeLinecap="round" strokeLinejoin="round" />
               {points.map((point, index) => selected === index ? <Circle key={`selected-${index}`} cx={point.x} cy={point.y} r={theme.visualizationMetrics.pointRadius} fill={theme.colors.background.surface} stroke={color} strokeWidth={theme.visualizationMetrics.lineWidth} /> : null)}
             </Svg>
-            {showGrid && size !== 'sparkline' ? <View pointerEvents="none" style={RNStyleSheet.absoluteFill}><ChartAxes width={width} height={height} xLabels={clean.map((datum) => datum.label)} yDomain={numericDomain(clean.map((datum) => datum.value), true)} inset={inset} testID="line-chart-axes" /></View> : null}
+            {showGrid && size !== 'sparkline' ? <View style={[RNStyleSheet.absoluteFill, styles.pointerEventsNone]}><ChartAxes width={width} height={height} xLabels={clean.map((datum) => datum.label)} yDomain={numericDomain(clean.map((datum) => datum.value), true)} inset={inset} testID="line-chart-axes" /></View> : null}
             {onSelect ? (
-              <View style={RNStyleSheet.absoluteFill} pointerEvents="box-none">
+              <View style={[RNStyleSheet.absoluteFill, styles.pointerEventsBoxNone]}>
                 {points.map((point, index) => {
                   const datum = renderData[index];
                   if (!datum) return null;
@@ -81,4 +81,6 @@ export function LineChart({ data, name = 'Line chart', size = 'standard', series
 const styles = StyleSheet.create(() => ({
   surface: { minWidth: 0, width: '100%', position: 'relative' },
   hitTarget: { position: 'absolute', top: 0, bottom: 0 },
+  pointerEventsNone: { pointerEvents: 'none' },
+  pointerEventsBoxNone: { pointerEvents: 'box-none' },
 }));

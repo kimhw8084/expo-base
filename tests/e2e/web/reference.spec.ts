@@ -350,10 +350,16 @@ test('overlay keyboard dismissal honors policy and restores trigger focus', asyn
 });
 
 test('toast is bounded, dismissible, and does not span the desktop viewport', async ({ page }) => {
+  const diagnostics: string[] = [];
+  page.on('console', (message) => {
+    if (message.type() === 'error' || message.type() === 'warning') diagnostics.push(message.text());
+  });
+  page.on('pageerror', (error) => diagnostics.push(error.message));
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/overlays');
   await page.getByRole('button', { name: 'Show toast' }).click();
-  await expect(page.getByText('Saved successfully')).toBeVisible();
+  const toast = page.getByText('Saved successfully');
+  await expect(toast).toBeVisible();
   const close = page.getByRole('button', { name: 'Dismiss notification' });
   await expect(close).toBeVisible();
   await expect(page.getByTestId('toast-lifetime')).toBeVisible();
@@ -362,8 +368,26 @@ test('toast is bounded, dismissible, and does not span the desktop viewport', as
   const closeBox = await close.boundingBox();
   expect(closeBox).not.toBeNull();
   if (toastTextBox && closeBox) expect(closeBox.x).toBeGreaterThan(toastTextBox.x);
+  const lifetimeBox = await page.getByTestId('toast-lifetime').boundingBox();
+  expect(lifetimeBox).not.toBeNull();
+  if (lifetimeBox) {
+    const lifetimeHitTarget = await page.evaluate(({ x, y }) => {
+      const element = document.elementFromPoint(x, y);
+      return element ? { testId: element.getAttribute('data-testid'), role: element.getAttribute('role') } : null;
+    }, { x: lifetimeBox.x + lifetimeBox.width / 2, y: lifetimeBox.y + lifetimeBox.height / 2 });
+    expect(lifetimeHitTarget?.testId).not.toBe('toast-lifetime');
+    await page.mouse.click(lifetimeBox.x + lifetimeBox.width / 2, lifetimeBox.y + lifetimeBox.height / 2);
+    await expect(toast).toBeVisible();
+  }
+  await page.getByRole('button', { name: 'Open dialog' }).click();
+  await expect(page.getByRole('heading', { name: 'Review this recommendation' })).toBeVisible();
+  await page.getByRole('button', { name: 'Cancel' }).last().click();
   await close.click();
   await expect(page.getByText('Saved successfully')).toHaveCount(0);
+  // Firefox reports this known upstream Expo Router static-bundle diagnostic; all
+  // other page errors and warnings remain owned by this regression contract.
+  const overlayDiagnostics = diagnostics.filter((message) => !message.includes('unreachable code after return statement'));
+  expect(overlayDiagnostics).toEqual([]);
 });
 
 test('visualization interaction does not leak responder handlers into SVG DOM', async ({ page }) => {

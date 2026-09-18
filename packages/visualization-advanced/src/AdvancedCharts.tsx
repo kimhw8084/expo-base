@@ -43,7 +43,7 @@ export function ScatterPlot({ data, name = 'Scatter plot', size = 'standard', se
         <Svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
           {clean.map((datum) => <Circle key={datum.id} cx={x(datum.x)} cy={y(datum.y)} r={selected === datum.id ? theme.visualizationMetrics.pointRadius + 2 : theme.visualizationMetrics.pointRadius} fill={theme.colors.visualization[series]} opacity={selected === undefined || selected === datum.id ? 1 : theme.visualizationMetrics.mutedSeriesOpacity} />)}
         </Svg>
-        <View pointerEvents="none" style={RNStyleSheet.absoluteFill}><ChartAxes width={width} height={height} xDomain={xDomain} yDomain={yDomain} xFormatter={xFormatter} yFormatter={yFormatter} inset={inset} testID="advanced-scatter-axes" /></View>
+        <View style={[RNStyleSheet.absoluteFill, styles.pointerEventsNone]}><ChartAxes width={width} height={height} xDomain={xDomain} yDomain={yDomain} xFormatter={xFormatter} yFormatter={yFormatter} inset={inset} testID="advanced-scatter-axes" /></View>
         {selected ? <ChartInspector title={name} context={selected} values={[{ id: `${selected}-x`, label: xLabel, value: clean.find((datum) => datum.id === selected)?.x ?? 0, formatter: xFormatter }, { id: `${selected}-y`, label: yLabel, value: clean.find((datum) => datum.id === selected)?.y ?? 0, series, formatter: yFormatter }]} testID="advanced-chart-inspector" /> : null}
         {onSelect ? <ScatterInteraction clean={clean} x={x} y={y} {...(selected === undefined ? {} : { selected })} onSelect={(datum) => { setInternalSelected(datum.id); onSelect(datum); }} width={width} height={height} /> : null}
       </View>;
@@ -78,7 +78,7 @@ export function Histogram({ data, name = 'Histogram', bins = 8, size = 'standard
         <Svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
           {histogram.map((bin, index) => <Rect key={`${bin.start}-${index}`} x={band.position(index)} y={height - (bin.count / max) * (height - theme.visualizationMetrics.chartInset)} width={band.bandwidth} height={Math.max(1, (bin.count / max) * (height - theme.visualizationMetrics.chartInset))} rx={theme.radii.xs} fill={theme.colors.visualization[series]} />)}
         </Svg>
-        <View pointerEvents="none" style={RNStyleSheet.absoluteFill}><ChartAxes width={width} height={height} xDomain={xDomain} yDomain={numericDomain([0, max])} xFormatter={formatNumber} yFormatter={formatNumber} inset={theme.visualizationMetrics.chartInset} testID="advanced-histogram-axes" /></View>
+        <View style={[RNStyleSheet.absoluteFill, styles.pointerEventsNone]}><ChartAxes width={width} height={height} xDomain={xDomain} yDomain={numericDomain([0, max])} xFormatter={formatNumber} yFormatter={formatNumber} inset={theme.visualizationMetrics.chartInset} testID="advanced-histogram-axes" /></View>
       </View>;
     }}
   </ChartFrame>;
@@ -126,7 +126,7 @@ function HeatmapInteraction({ cells, datumByCell, selected, onSelect }: { cells:
     const datum = first ? datumByCell.get(`${first.row}:${first.column}`) : undefined;
     return <Pressable accessibilityRole="button" accessibilityLabel="Select heatmap cell" accessibilityHint="Use the data table for individual dense heatmap values." onPress={() => { if (datum && first) onSelect(datum, `${first.row}:${first.column}`); }} style={styles.chartInteraction} />;
   }
-  return <View style={RNStyleSheet.absoluteFill} pointerEvents="box-none">{cells.map((cell) => { const id = `${cell.row}:${cell.column}`; const datum = datumByCell.get(id); if (!datum) return null; return <Pressable key={id} accessibilityRole="button" accessibilityLabel={`${datum.row}, ${datum.column}: ${datum.value}`} accessibilityState={{ selected: selected === id }} aria-pressed={selected === id} onPress={() => onSelect(datum, id)} style={{ position: 'absolute', left: cell.x, top: cell.y, width: cell.width, height: cell.height }} />; })}</View>;
+  return <View style={[RNStyleSheet.absoluteFill, styles.pointerEventsBoxNone]}>{cells.map((cell) => { const id = `${cell.row}:${cell.column}`; const datum = datumByCell.get(id); if (!datum) return null; return <Pressable key={id} accessibilityRole="button" accessibilityLabel={`${datum.row}, ${datum.column}: ${datum.value}`} accessibilityState={{ selected: selected === id }} aria-pressed={selected === id} onPress={() => onSelect(datum, id)} style={{ position: 'absolute', left: cell.x, top: cell.y, width: cell.width, height: cell.height }} />; })}</View>;
 }
 
 function chartHeight(theme: ReturnType<typeof useUnistyles>['theme'], size: Exclude<ChartSize, 'sparkline'>): number {
@@ -140,7 +140,7 @@ function ScatterInteraction({ clean, x, y, selected, onSelect, width, height }: 
     const nearest = clean[0];
     return <Pressable accessibilityRole="button" accessibilityLabel="Select nearest scatter point" onPress={() => { if (nearest) onSelect(nearest); }} style={styles.chartInteraction} />;
   }
-  return <View style={RNStyleSheet.absoluteFill} pointerEvents="box-none">{clean.map((datum) => <Pressable key={datum.id} accessibilityRole="button" accessibilityLabel={`${datum.label ?? datum.id}: ${datum.y}`} accessibilityState={{ selected: selected === datum.id }} aria-pressed={selected === datum.id} onPress={() => onSelect(datum)} style={[styles.pointTarget, { left: Math.max(0, Math.min(width - 44, x(datum.x) - 22)), top: Math.max(0, Math.min(height - 44, y(datum.y) - 22)) }]} />)}</View>;
+  return <View style={[RNStyleSheet.absoluteFill, styles.pointerEventsBoxNone]}>{clean.map((datum) => <Pressable key={datum.id} accessibilityRole="button" accessibilityLabel={`${datum.label ?? datum.id}: ${datum.y}`} accessibilityState={{ selected: selected === datum.id }} aria-pressed={selected === datum.id} onPress={() => onSelect(datum)} style={[styles.pointTarget, { left: Math.max(0, Math.min(width - 44, x(datum.x) - 22)), top: Math.max(0, Math.min(height - 44, y(datum.y) - 22)) }]} />)}</View>;
 }
 
-const styles = StyleSheet.create(() => ({ surface: { minWidth: 0, width: '100%', position: 'relative' }, pointTarget: { position: 'absolute', width: 44, height: 44, borderRadius: 22 }, chartInteraction: { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, opacity: 0 } }));
+const styles = StyleSheet.create(() => ({ surface: { minWidth: 0, width: '100%', position: 'relative' }, pointTarget: { position: 'absolute', width: 44, height: 44, borderRadius: 22 }, chartInteraction: { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, opacity: 0 }, pointerEventsNone: { pointerEvents: 'none' }, pointerEventsBoxNone: { pointerEvents: 'box-none' } }));
