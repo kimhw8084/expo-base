@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "kind": "codex-fabric-audit-evidence",
+  "operation": "VERIFY",
+  "status": "VERIFIED",
+  "visual_atlas_status": "R1_IMMUTABLE_CARRIER_RECONCILED",
+  "project_id": "expo-base",
+  "repository": "kimhw8084/expo-base",
+  "request": "expo-base-visual-atlas-evidence-reconcile-r2",
+  "recorded_at": "2026-09-19T01:44:11.3NZ",
+  "source": {
+    "head": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+    "tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+    "parent_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+    "source_changed": false
+  },
+  "git": {
+    "target_branch": "main",
+    "target_base_ref": "refs/heads/main",
+    "target_base_remote": "origin",
+    "target_base_commit": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+    "target_base_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+    "target_base_remote_readback_verified": true,
+    "work_branch": "codex/expo-base-visual-atlas-evidence-reconcile-r2",
+    "worktree_clean": true,
+    "main_unchanged": true,
+    "artifact_ref": "refs/heads/project-os-artifacts/expo-base/expo-base-visual-atlas-capture-v1",
+    "artifact_commit": "bffbaca9d6f9499650d6c487786e82a50af58609",
+    "artifact_commit_tree": "6cb9fc0b9a95b7e79399b204429a10b8dace6ab8",
+    "artifact_remote_readback_verified": true,
+    "historical_evidence_ref": "refs/heads/codex-fabric/evidence/expo-base/expo-base-visual-atlas-capture-v1",
+    "historical_evidence_commit": "ad2209c5ee9ffc12ef9124372b417e5a6db7616a",
+    "evidence_ref": "refs/heads/codex-fabric/evidence/expo-base/expo-base-visual-atlas-evidence-reconcile-r2",
+    "evidence_commit": null
+  },
+  "carrier": {
+    "authority": "immutable R1 Git carrier",
+    "request": "expo-base-visual-atlas-capture-v1",
+    "ref": "refs/heads/project-os-artifacts/expo-base/expo-base-visual-atlas-capture-v1",
+    "commit": "bffbaca9d6f9499650d6c487786e82a50af58609",
+    "commit_tree": "6cb9fc0b9a95b7e79399b204429a10b8dace6ab8",
+    "remote": "origin",
+    "immutable": true,
+    "created_or_modified_in_r2": false
+  },
+  "package": {
+    "manifest_sha256": "b74b7aa38f12d719fb143f1c43b2e67a949ea780334f05b8b88c0727c8be9226",
+    "capture_report_sha256": "49d3138465e837b0305683ccca2d7a8a8605394e3ab152062817037983c0e2e2",
+    "reader_index_sha256": "8eb45456cf32c11c4f1bb5e8bcff5719aa1384b30a63503b9cc22db45e140924",
+    "review_desktop_sha256": "380fc7354814fb892abfb32b6903ba624d2a28c46e1b9b7aad9b97e4dd413bdf",
+    "review_mobile_sha256": "d4b1283a9206ad912fb96ec286c261bbb18a91a16fee85d25c0ef96b6d8a31bf",
+    "bundle_sha256": "5ddde8206a9464ce4b2247ab6c36013e74d9957a6213e7d8478ca4948b8db9fa",
+    "surface_count": 50,
+    "canonical_screenshot_count": 100,
+    "stress_record_count": 90
+  },
+  "reconciliation": {
+    "identity": {
+      "project": "expo-base",
+      "repository": "kimhw8084/expo-base",
+      "carrier_request": "expo-base-visual-atlas-capture-v1",
+      "source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+      "source_tree": "e0cbb7a1c019c5970c11171fcc66105d6dc81970",
+      "project_match": true,
+      "source_match": true,
+      "tree_match": true
+    },
+    "remote_readback": {
+      "carrier_ref": "refs/heads/project-os-artifacts/expo-base/expo-base-visual-atlas-capture-v1",
+      "carrier_commit": "bffbaca9d6f9499650d6c487786e82a50af58609",
+      "verified": true
+    },
+    "authoritative_package_facts": {
+      "surface_manifest_sha256_verified": true,
+      "capture_report_sha256_verified": true,
+      "reader_index_sha256_verified": true,
+      "review_desktop_sha256_verified": true,
+      "review_mobile_sha256_verified": true,
+      "artifact_bundle_sha256_verified": true,
+      "surface_count_verified": true,
+      "canonical_screenshot_count_verified": true,
+      "stress_record_count_verified": true
+    },
+    "counts": {
+      "logical_surfaces": 50,
+      "canonical_pngs": 100,
+      "stress_holdout_captures": 90
+    }
+  },
+  "prior_evidence_defect": {
+    "status": "PRESERVED_PRIOR_EVIDENCE_DEFECT",
+    "historical_ref": "refs/heads/codex-fabric/evidence/expo-base/expo-base-visual-atlas-capture-v1",
+    "historical_commit": "ad2209c5ee9ffc12ef9124372b417e5a6db7616a",
+    "wrong_source_sha": "4488d4f611eb01f28cc76be29f8f2da35711f52",
+    "correct_source_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+    "contradiction_locations": [
+      "historical R1 commit subject",
+      "visual-atlas/artifact-stage-receipt.json:/source/sha"
+    ],
+    "correct_bindings_verified_in": [
+      ".codex-fabric/audit.json:/source/head",
+      "visual-atlas/surface-manifest.json:/source/sha",
+      "visual-atlas/capture-report.json:/source/sha",
+      "visual-atlas/reader-index.json:/source/sha",
+      "immutable R1 carrier manifest/report/reader metadata"
+    ],
+    "tree_value_remains_correct": true,
+    "historical_ref_untouched": true,
+    "rewritten_or_force_updated": false
+  },
+  "no_regeneration": {
+    "browser_capture": false,
+    "playwright": false,
+    "application_rendering": false,
+    "surface_discovery": false,
+    "screenshot_generation": false,
+    "pdf_generation": false,
+    "manifest_generation": false,
+    "zip_generation": false,
+    "notion_calls": 0,
+    "artifact_run_created": false,
+    "visual_carrier_created": false
+  },
+  "diagnostics": {
+    "visual_acceptance": "NOT_PERFORMED",
+    "promotion": "NOT_PERFORMED",
+    "cf_job_id": null,
+    "cf_job_id_inferred": false
+  },
+  "evidence_locator": {
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/expo-base-visual-atlas-evidence-reconcile-r2",
+    "path": ".codex-fabric/audit.json",
+    "evidence_commit": null
+  }
+}
