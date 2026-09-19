@@ -66,13 +66,22 @@ Pass `--link-host app.example.com` to configure the native iOS associated-domain
 
 ## Validation
 
-`npm run test:generator` creates a fresh temporary application from the current generator, validates its TypeScript configuration, and removes the temporary output. `npm run runtime:verify` includes this check together with the runtime UI contracts and Expo Base Doctor.
+`npm run test:generator` creates fresh minimal and optional-capability standalone applications outside
+the source workspace, installs them, runs the fast verify loop, and exercises the complete acceptance
+entry point on each generated consumer before removing the temporary output. `npm run runtime:verify`
+includes this check together with the runtime UI contracts and Expo Base Doctor.
 
 ## Standalone Golden development contract
 
 Generated repositories receive a concise local `AGENTS.md`, `README.md`, `golden-architecture.config.json`,
 machine-readable Golden catalog/pattern registries, the catalog-referenced documentation closure,
-and local scripts for `typecheck`, `check:golden-architecture`, `scaffold:screen`, and `verify`.
+and local scripts for `typecheck`, `check:golden-architecture`, `scaffold:screen`, `verify`, and
+`verify:acceptance`. `verify` is the fast developer loop. `verify:acceptance` is a generated-repository
+foundation gate that composes locality, TypeScript, Golden, Expo public-config, static web export/runtime,
+and bounded Chromium shell checks; it writes `.expo-base/acceptance-result.json` plus concise guidance and
+logs. It does not claim that a consuming product is production-ready. The local `--claim production-ready`
+request is explicitly unsupported and fails closed even when every editable product obligation is resolved;
+stronger evidence lanes remain separate.
 The Golden catalog is filtered to the actual vendored package set; optional capability owners travel
 only when their profile is selected or a selected package transitively requires them. The local
 check validates that generated repository rather than assuming a source-workspace package exists.
@@ -89,4 +98,6 @@ The runtime supplies session-scoped server-state registration. Generated `server
 the entity/list key convention without inventing a backend or fake API; products attach those keys
 to their own service-adapter loaders.
 
-Before production use, replace the generated demo adapters with product implementations for services, authentication, session security, and linking. The generated app is a foundation, not a claim that those integrations are configured for a particular backend.
+Before production use, replace or explicitly qualify the generated demo/service/auth/session/linking adapters
+and placeholder integrations recorded in `.expo-base/acceptance-obligations.json`. Native, physical-device,
+human accessibility, provider/backend, deployment, and release evidence remain separate claim-bound lanes.

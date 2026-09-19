@@ -103,6 +103,20 @@ const sourceMetadata = readSourceMetadata(root);
 const files = args.mode === 'standalone'
   ? buildStandaloneFiles({ ...args, identifier, shortName, capabilities: selectedCapabilities, sourceMetadata }, compatibility, root)
   : buildWorkspaceFiles({ ...args, identifier, shortName, workspaceRelative, capabilities: selectedCapabilities, sourceMetadata }, compatibility);
+if (args.mode === 'standalone') files['services.ts'] = files['services.ts'].replace(
+  'export const services = createDemoServices();',
+  `const demoServices = createDemoServices();
+
+const acceptanceAuthState = () => (globalThis as { __EXPO_BASE_ACCEPTANCE_AUTH_STATE__?: 'error' }).__EXPO_BASE_ACCEPTANCE_AUTH_STATE__;
+const acceptanceAuth = {
+  getSession: async () => { if (acceptanceAuthState() === 'error') throw new Error('synthetic acceptance auth failure'); return demoServices.auth.getSession(); },
+  signIn: (input: { email: string; password: string }) => demoServices.auth.signIn(input),
+  signOut: () => demoServices.auth.signOut(),
+  subscribe: (listener: Parameters<typeof demoServices.auth.subscribe>[0]) => demoServices.auth.subscribe(listener),
+};
+
+export const services = { ...demoServices, auth: acceptanceAuth };`,
+);
 for (const [relative, content] of Object.entries(files)) {
   const target = path.join(destination, relative);
   fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -172,7 +186,7 @@ export default function NotFoundScreen() {
   return <ScrollScreen><Page width="reading" header={<PageHeader eyebrow="PAGE NOT FOUND" title="This destination does not exist" description="The link may be outdated or the address may have been entered incorrectly." />}><Section><StateView kind="error" title="We could not find that page" message="Return to the application home to continue safely." actionLabel="Return home" onAction={() => router.replace('/')} /></Section></Page></ScrollScreen>;
 }
 `,
-    'app.config.ts': `import type { ExpoConfig } from 'expo/config';\n\ntype ExpoBaseConfig = ExpoConfig & { newArchEnabled?: boolean };\nconst config: ExpoBaseConfig = {\n  name: ${JSON.stringify(config.name)}, slug: ${JSON.stringify(config.slug)}, version: '1.0.0', orientation: 'default', scheme: ${JSON.stringify(config.slug)}, userInterfaceStyle: 'automatic', newArchEnabled: true,\n  ios: { bundleIdentifier: ${JSON.stringify(config.identifier)}${config.linkHost ? `, associatedDomains: ['applinks:${config.linkHost}']` : ''} }, android: { package: ${JSON.stringify(config.identifier)}${config.linkHost ? `, intentFilters: [{ action: 'VIEW', autoVerify: true, data: [{ scheme: 'https', host: ${JSON.stringify(config.linkHost)} }], category: ['BROWSABLE', 'DEFAULT'] }]` : ''} },\n  web: { output: 'static', favicon: './public/favicon.svg' }, plugins: ${JSON.stringify(appPlugins)}, experiments: { typedRoutes: true },\n};\nexport default config;\n`,
+    'app.config.ts': `import type { ExpoConfig } from 'expo/config';\n\ntype ExpoBaseConfig = ExpoConfig & { newArchEnabled?: boolean };\nconst config: ExpoBaseConfig = {\n  name: ${JSON.stringify(config.name)}, slug: ${JSON.stringify(config.slug)}, version: '1.0.0', orientation: 'default', scheme: ${JSON.stringify(config.slug)}, userInterfaceStyle: 'automatic', newArchEnabled: true,\n  ios: { bundleIdentifier: ${JSON.stringify(config.identifier)}${config.linkHost ? `, associatedDomains: ['applinks:${config.linkHost}']` : ''} }, android: { package: ${JSON.stringify(config.identifier)}${config.linkHost ? `, intentFilters: [{ action: 'VIEW', autoVerify: true, data: [{ scheme: 'https', host: ${JSON.stringify(config.linkHost)} }], category: ['BROWSABLE', 'DEFAULT'] }]` : ''} },\n  web: { output: 'static' }, plugins: ${JSON.stringify(appPlugins)}, experiments: { typedRoutes: true },\n};\nexport default config;\n`,
     'public/favicon.svg': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="${FAVICON_COLORS[config.accent]}"/><circle cx="32" cy="32" r="17" fill="#fff"/></svg>\n`,
     'babel.config.js': `module.exports = function (api) { api.cache(true); return { presets: ['babel-preset-expo'], plugins: [['react-native-unistyles/plugin', { root: 'app', autoProcessImports: ['@expo-base/ui'] }]] }; };\n`,
     'tsconfig.json': JSON.stringify({ extends: '../../tsconfig.base.json', compilerOptions: { noEmit: true, types: ['react', 'react-native'] }, include: ['app/**/*.ts', 'app/**/*.tsx', '*.ts'] }, null, 2) + '\n',
@@ -271,11 +285,14 @@ function buildStandaloneFiles(config, versions, sourceRoot) {
       'golden:patterns:write': 'node scripts/generate-golden-pattern-docs.mjs --write',
       'scaffold:screen': 'node packages/create-expo-base-app/bin/scaffold-expo-base-screen.mjs --app .',
       verify: 'npm run typecheck && npm run check:golden-patterns && npm run check:golden-architecture',
+      'verify:acceptance': 'node scripts/verify-acceptance.mjs',
     },
+    devDependencies: { ...appPackage.devDependencies, '@playwright/test': versions['@playwright/test'] },
   };
   files['package.json'] = JSON.stringify(rootPackage, null, 2) + '\n';
-  files['README.md'] = standaloneReadme(config);
+  files['README.md'] = standaloneReadme(config).replace('## Verification and acceptance', '## Fast verify versus final acceptance');
   files['AGENTS.md'] = standaloneAgents(config);
+  files['AGENTS.md'] += '\nRun `npm run check:golden-architecture` directly when reviewing route ownership.\n';
   files['golden-architecture.config.json'] = JSON.stringify({
     schemaVersion: 1,
     catalog: 'golden.catalog.json',
@@ -288,9 +305,11 @@ function buildStandaloneFiles(config, versions, sourceRoot) {
   files['golden.catalog.json'] = JSON.stringify(catalog, null, 2) + '\n';
   files['golden.patterns.json'] = JSON.stringify(patterns, null, 2) + '\n';
   files['expo-base.api.json'] = JSON.stringify(buildStandaloneApi(sourceRoot, new Set(packageNames)), null, 2) + '\n';
+  files['.expo-base/acceptance-obligations.json'] = JSON.stringify(standaloneAcceptanceObligations(), null, 2) + '\n';
   files['docs/GOLDEN_CATALOG.md'] = renderGoldenCatalog(catalog);
   files['docs/GOLDEN_WORKFLOWS.md'] = renderGoldenPatterns(patterns);
   files['.gitignore'] = `node_modules/\n.expo/\n.expo-shared/\ndist/\nbuild/\ncoverage/\n.cache/\n.turbo/\n*.tsbuildinfo\nexpo-env.d.ts\n*.log\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\npnpm-debug.log*\n.env\n.env.*\n!.env.example\n.DS_Store\n`;
+  files['.gitignore'] += '.expo-base/acceptance-dist/\n';
   files['.expo-base/source.json'] = JSON.stringify(config.sourceMetadata, null, 2) + '\n';
 
   for (const script of [
@@ -298,6 +317,8 @@ function buildStandaloneFiles(config, versions, sourceRoot) {
     'golden-pattern-lib.mjs', 'check-golden-patterns.mjs', 'generate-golden-catalog-docs.mjs',
     'generate-golden-pattern-docs.mjs',
   ]) files[`scripts/${script}`] = fs.readFileSync(path.join(sourceRoot, 'scripts', script), 'utf8');
+  files['scripts/serve-static-web.mjs'] = fs.readFileSync(path.join(sourceRoot, 'scripts', 'serve-static-web.mjs'), 'utf8');
+  files['scripts/verify-acceptance.mjs'] = fs.readFileSync(path.join(sourceRoot, 'packages/create-expo-base-app/lib/standalone-acceptance.mjs'), 'utf8');
   for (const document of standaloneDocumentationPaths(catalog)) {
     if (!files[document]) files[document] = fs.readFileSync(path.join(sourceRoot, document), 'utf8');
   }
@@ -434,6 +455,7 @@ function readSourceMetadata(sourceRoot) {
     sourceCommit,
     sourceVersion: rootPackage?.version ?? 'unknown',
     generatorVersion: generatorPackage?.version ?? 'unknown',
+    sourceTree: execFileSync('git', ['-C', sourceRoot, 'rev-parse', 'HEAD^{tree}'], { encoding: 'utf8' }).trim(),
   };
 }
 
@@ -443,11 +465,24 @@ function normalizeRepositoryUrl(value) {
 }
 
 function standaloneReadme(config) {
-  return `# ${config.name}\n\nThis is a standalone Expo Base product repository. It contains the selected Expo Base source packages and local Golden tooling; it does not depend on the Expo Base source workspace.\n\n## Start\n\n\`\`\`sh\nnpm install\nnpm run verify\nnpm run start\n\`\`\`\n\n## Product ownership\n\nProduct code owns routes in \`app/\`, domain models and state, product copy, branding in \`brand.ts\`, backend/service adapters, authorization choices, and unique visualizations. Replace the generated demo adapters before production use.\n\nExpo Base owns semantic UI and layout, responsive composition, navigation/auth/session boundaries, server-state ownership, root capability registration, accessibility, overlays, and feedback anatomy. Compose the vendored \`@expo-base/*\` owners instead of recreating those platform rules in routes.\n\n## Local Golden workflow\n\nStart with \`golden.catalog.json\`, \`golden.patterns.json\`, \`docs/GOLDEN_CATALOG.md\`, and \`docs/GOLDEN_WORKFLOWS.md\`. For a scaffoldable route run \`npm run scaffold:screen -- --name customers --pattern data-workspace\`; add \`--capabilities runtime-signals\` only when the selected capability manifest already includes it. Replace only the scaffold's explicit product TODOs.\n\nSelected capabilities: \`${config.capabilities.join(', ') || 'none (minimal kernel profile)'}\`. Root registrations live in \`capabilities.ts\`.\n\n## Verification\n\n- \`npm run typecheck\`\n- \`npm run check:golden-architecture\`\n- \`npm run check:golden-patterns\`\n- \`npm run verify\`\n`;
+  return `# ${config.name}\n\nThis is a standalone Expo Base product repository. It contains the selected Expo Base source packages and local Golden tooling; it does not depend on the Expo Base source workspace.\n\n## Start\n\n\`\`\`sh\nnpm install\nnpm run verify\nnpm run start\n\`\`\`\n\n## Product ownership\n\nProduct code owns routes in \`app/\`, domain models and state, product copy, branding in \`brand.ts\`, backend/service adapters, authorization choices, and unique visualizations. Replace or explicitly qualify the generated demo/service/auth/session/linking adapters before production use.\n\nExpo Base owns semantic UI and layout, responsive composition, navigation/auth/session boundaries, server-state ownership, root capability registration, accessibility, overlays, and feedback anatomy. Compose the vendored \`@expo-base/*\` owners instead of recreating those platform rules in routes.\n\n## Local Golden workflow\n\nStart with \`golden.catalog.json\`, \`golden.patterns.json\`, \`docs/GOLDEN_CATALOG.md\`, and \`docs/GOLDEN_WORKFLOWS.md\`. For a scaffoldable route run \`npm run scaffold:screen -- --name customers --pattern data-workspace\`; add \`--capabilities runtime-signals\` only when the selected capability manifest already includes it. Replace only the scaffold's explicit product TODOs.\n\nSelected capabilities: \`${config.capabilities.join(', ') || 'none (minimal kernel profile)'}\`. Root registrations live in \`capabilities.ts\`.\n\n## Verification and acceptance\n\n- \`npm run verify\` is the fast repository-local developer loop: TypeScript plus Golden pattern and architecture checks.\n- \`npm run verify:acceptance\` is the final generated-repository foundation gate: locality, TypeScript, Golden checks, Expo public config, static web export/runtime startup, and a bounded real-browser shell smoke. It writes \`.expo-base/acceptance-result.json\`, \`.expo-base/acceptance-summary.md\`, and \`.expo-base/acceptance.log\`.\n\nA green acceptance result is foundation evidence only; Expo Base foundation certification does not make this consuming product production-ready. Read and resolve or explicitly qualify the product-owned obligations in \`.expo-base/acceptance-obligations.json\`. Native iOS/Android, physical-device behavior, human VoiceOver/Dynamic Type, provider/backend integration, deployment, and release certification remain separate evidence lanes and are not silently claimed by this command.\n`;
 }
 
 function standaloneAgents(config) {
-  return `# Expo Base product repository contract\n\nThis repository is standalone. Do not look for a parent Expo Base workspace or copy paths from outside this repository. The vendored \`@expo-base/*\` packages and local Golden files are the complete platform contract for this product.\n\n## Ownership\n\nProduct code owns routes, domain models and state, product copy, branding, backend/service adapters, product integrations, authorization choices, and unique visualizations.\n\nExpo Base owns semantic UI and layout, responsive composition, navigation/auth/session boundaries, server-state ownership, root capability registration, accessibility and RTL-safe behavior, overlays, and loading/error/empty/feedback anatomy. Routes should compose those owners rather than own raw geometry, platform APIs, query caches, or overlay mechanics.\n\n## Golden discovery and scaffolding\n\nRead \`golden.catalog.json\`, \`golden.patterns.json\`, \`docs/GOLDEN_CATALOG.md\`, and \`docs/GOLDEN_WORKFLOWS.md\`. For a standard route, run \`npm run scaffold:screen -- --name route-name --pattern pattern-id\`; use \`--public\` for public access and \`--capabilities capability-name\` only for capabilities selected in \`expo-base.capabilities.json\`. Keep domain TODOs in product code and preserve the root runtime/capability composition.\n\nSelected capability profile: \`${config.capabilities.join(', ') || 'minimal'}\`.\n\n## Exact local verification\n\nRun \`npm install\`, then \`npm run typecheck\`, \`npm run check:golden-architecture\`, and \`npm run verify\`. Use \`npm run check:golden-patterns\` when changing the local pattern registry.\n`;
+  return `# Expo Base product repository contract\n\nThis repository is standalone. Do not look for a parent Expo Base workspace or copy paths from outside this repository. The vendored \`@expo-base/*\` packages and local Golden files are the complete platform contract for this product.\n\n## Ownership\n\nProduct code owns routes, domain models and state, product copy, branding, backend/service adapters, product integrations, authorization choices, and unique visualizations. The generated demo/service/auth/session/linking adapters and placeholder integrations are explicit unresolved product obligations until replaced or explicitly qualified; see \`.expo-base/acceptance-obligations.json\`.\n\nExpo Base owns semantic UI and layout, responsive composition, navigation/auth/session boundaries, server-state ownership, root capability registration, accessibility and RTL-safe behavior, overlays, and loading/error/empty/feedback anatomy. Routes should compose those owners rather than own raw geometry, platform APIs, query caches, or overlay mechanics.\n\n## Golden discovery and scaffolding\n\nRead \`golden.catalog.json\`, \`golden.patterns.json\`, \`docs/GOLDEN_CATALOG.md\`, and \`docs/GOLDEN_WORKFLOWS.md\`. For a standard route, run \`npm run scaffold:screen -- --name route-name --pattern pattern-id\`; use \`--public\` for public access and \`--capabilities capability-name\` only for capabilities selected in \`expo-base.capabilities.json\`. Keep domain TODOs in product code and preserve the root runtime/capability composition.\n\nSelected capability profile: \`${config.capabilities.join(', ') || 'minimal'}\`.\n\n## Fast verify versus final acceptance\n\nRun \`npm run verify\` for the fast repository-local developer loop: TypeScript plus Golden pattern and architecture checks. Run \`npm run verify:acceptance\` for the final generated-repository foundation gate. It additionally proves package/locality boundaries, Expo public config, static web export/runtime startup, and a bounded real-browser smoke of the generated auth/session/link/error/not-found shell.\n\nAcceptance writes a compact machine result and human guidance under \`.expo-base/\`. A green Expo Base foundation result is not a production-ready product claim. The acceptance boundary does not prove backend authorization/data security, native or physical-device behavior, human VoiceOver/Dynamic Type certification, provider/backend integration, deployment, or release certification.\n`;
+}
+
+function standaloneAcceptanceObligations() {
+  return {
+    schemaVersion: 1,
+    purpose: 'Product-owned obligations remain visible until a consuming product replaces or explicitly qualifies generated integrations.',
+    obligations: [
+      { id: 'demo-service-auth-adapter', owner: 'product', status: 'unresolved', requiredForProduction: true, paths: ['services.ts'], description: 'Replace createDemoServices with product service, authentication, authorization, storage, analytics, and image adapters, or attach explicit qualification evidence.' },
+      { id: 'memory-session-security-adapter', owner: 'product', status: 'unresolved', requiredForProduction: true, paths: ['sessionSecurity.ts'], description: 'Replace MemorySessionSecurityAdapter with the product-approved local security adapter, or attach explicit qualification evidence.' },
+      { id: 'generated-linking-policy', owner: 'product', status: 'unresolved', requiredForProduction: true, paths: ['linking.ts', 'app.config.ts'], description: 'Replace or explicitly qualify generated incoming/external linking policy, verified hosts, and native association evidence.' },
+      { id: 'placeholder-product-integrations', owner: 'product', status: 'unresolved', requiredForProduction: true, paths: ['.env.example', 'app/index.tsx', 'serverState.ts'], description: 'Replace placeholder product content, environment integration, domain data, and backend/service boundaries before launch.' },
+    ],
+  };
 }
 
 function parseArgs(argv) {

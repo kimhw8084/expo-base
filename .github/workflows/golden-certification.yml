@@ -25,6 +25,12 @@ jobs:
       - name: Install workspace
         run: npm ci
 
+      - name: Remove unrelated Chrome APT source
+        run: sudo rm -f /etc/apt/sources.list.d/google-chrome.list /etc/apt/sources.list.d/google-chrome.sources
+
+      - name: Install structural browser
+        run: npx playwright install --with-deps chromium
+
       - name: Golden structural certification
         run: npm run golden:structural
 
