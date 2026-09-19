@@ -243,6 +243,8 @@ try {
     const acceptanceScript = fs.readFileSync(path.join(target, 'scripts/verify-acceptance.mjs'), 'utf8');
     assert.ok(acceptanceScript.includes('chromium.launch'));
     assert.ok(acceptanceScript.includes('browser console/page errors and warnings'));
+    assert.ok(acceptanceScript.includes("getByRole('progressbar', { name: 'Restoring secure session…' })"));
+    assert.ok(acceptanceScript.includes("getByRole('alert').getByRole('heading', { name: 'Session could not be restored' })"));
     assert.ok(fs.existsSync(path.join(target, 'scripts/serve-static-web.mjs')));
     const install = spawnSync('npm', ['install', '--no-audit', '--no-fund'], { cwd: target, encoding: 'utf8' });
     assert.equal(install.status, 0, install.stderr || install.stdout);
@@ -265,6 +267,28 @@ try {
     assert.equal(acceptanceResult.obligations.filter((obligation) => obligation.status === 'unresolved').length, acceptanceObligations.obligations.length);
     assert.ok(fs.existsSync(path.join(target, '.expo-base/acceptance-summary.md')));
     assert.ok(fs.existsSync(path.join(target, '.expo-base/acceptance.log')));
+
+    if (target === standaloneDestination) {
+      const resolvedObligations = {
+        ...acceptanceObligations,
+        obligations: acceptanceObligations.obligations.map((obligation, index) => ({
+          ...obligation,
+          status: index % 2 === 0 ? 'replaced' : 'qualified',
+          evidence: `synthetic regression evidence for ${obligation.id}`,
+        })),
+      };
+      fs.writeFileSync(path.join(target, '.expo-base/acceptance-obligations.json'), `${JSON.stringify(resolvedObligations, null, 2)}\n`);
+      const rejectedClaim = spawnSync('npm', ['run', 'verify:acceptance', '--', '--claim', 'production-ready'], { cwd: target, encoding: 'utf8' });
+      assert.notEqual(rejectedClaim.status, 0, 'production-ready request must fail closed');
+      const rejectedResult = JSON.parse(fs.readFileSync(path.join(target, '.expo-base/acceptance-result.json'), 'utf8'));
+      assert.equal(rejectedResult.status, 'failed');
+      assert.equal(rejectedResult.claimRequested, 'production-ready');
+      assert.equal(rejectedResult.productionReadiness, 'unsupported');
+      assert.notEqual(rejectedResult.productionReadiness, 'claimed');
+      assert.equal(rejectedResult.checks.find((check) => check.id === 'production-readiness-claim')?.outcome, 'fail');
+      assert.ok(rejectedResult.obligations.every((obligation) => ['replaced', 'qualified'].includes(obligation.status) && obligation.evidence));
+      assert.match(fs.readFileSync(path.join(target, '.expo-base/acceptance.log'), 'utf8'), /production-ready claims are unsupported/);
+    }
   }
   const standalonePackageDirs = fs.readdirSync(path.join(standaloneDestination, 'packages'));
   assert.equal(standalonePackageDirs.includes('secure-storage'), false, 'minimal standalone profile must omit secure-storage');

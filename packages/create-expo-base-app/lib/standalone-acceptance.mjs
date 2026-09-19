@@ -31,7 +31,7 @@ const result = {
   finishedAt: null,
   status: 'running',
   claimRequested: claim,
-  productionReadiness: claim === 'production-ready' ? 'pending-claim' : 'not-claimed',
+  productionReadiness: claim === 'production-ready' ? 'unsupported' : 'not-claimed',
   provenance: {
     source: provenance,
     generatedRepository: {
@@ -56,7 +56,7 @@ const result = {
       'human VoiceOver usability and exact Dynamic Type user-settings behavior',
       'provider/backend integration, deployment, and release certification',
     ],
-    productionReadiness: 'A green foundation acceptance does not make the consuming product production-ready.',
+    productionReadiness: 'Production-readiness claims are unsupported by this foundation acceptance and are rejected regardless of editable obligation status.',
   },
   artifacts: {
     result: '.expo-base/acceptance-result.json',
@@ -77,9 +77,7 @@ try {
 
   if (claim === 'production-ready') {
     await check('production-readiness-claim', 'pass/fail', () => {
-      const unresolved = mandatoryUnresolvedObligations();
-      assert.equal(unresolved.length, 0, `Mandatory product obligations remain unresolved: ${unresolved.map((item) => item.id).join(', ')}`);
-      result.productionReadiness = 'claimed';
+      throw new Error('production-ready claims are unsupported by standalone foundation acceptance; complete the stronger evidence lanes outside this command');
     });
   }
 } finally {
@@ -89,7 +87,7 @@ try {
   result.finishedAt = new Date().toISOString();
   result.status = failures.length ? 'failed' : unresolved.length ? 'accepted-with-unresolved-obligations' : 'accepted';
   if (claim !== 'production-ready') result.productionReadiness = 'not-claimed';
-  else if (failures.length || unresolved.length) result.productionReadiness = 'blocked';
+  else result.productionReadiness = 'unsupported';
   writeResult();
   emit(`\nAcceptance result: ${result.status}`);
   emit(`Production readiness: ${result.productionReadiness}`);
@@ -194,28 +192,44 @@ async function exportAndStartServer() {
 
 async function browserShellSmoke() {
   const browser = await chromium.launch({ headless: true });
-  const page = await browser.newPage();
   const browserFailures = [];
   let expectingNotFoundDocument = false;
-  page.on('console', (message) => {
-    const line = `console.${message.type()}: ${message.text()}`;
-    emit(line, message.type() === 'warning' || message.type() === 'error' ? 'stderr' : 'stdout');
-    const expectedNotFoundConsoleError = expectingNotFoundDocument && message.type() === 'error' && message.text() === 'Failed to load resource: the server responded with a status of 404 (Not Found)';
-    if ((message.type() === 'warning' || message.type() === 'error') && !expectedNotFoundConsoleError) browserFailures.push(line);
-  });
-  page.on('pageerror', (error) => {
-    const line = `pageerror: ${error.message}`;
-    emit(line, 'stderr');
-    browserFailures.push(line);
-  });
-  page.on('response', (response) => {
-    if (response.status() < 400) return;
-    const expectedNotFound = response.url() === `${runningServer.url}/a-route-that-does-not-exist` && response.status() === 404;
-    const line = `http-${response.status()}: ${response.url()}`;
-    emit(line, expectedNotFound ? 'stdout' : 'stderr');
-    if (!expectedNotFound) browserFailures.push(line);
-  });
+  const observeBrowserFailures = (page) => {
+    page.on('console', (message) => {
+      const line = `console.${message.type()}: ${message.text()}`;
+      emit(line, message.type() === 'warning' || message.type() === 'error' ? 'stderr' : 'stdout');
+      const expectedNotFoundConsoleError = expectingNotFoundDocument && message.type() === 'error' && message.text() === 'Failed to load resource: the server responded with a status of 404 (Not Found)';
+      if ((message.type() === 'warning' || message.type() === 'error') && !expectedNotFoundConsoleError) browserFailures.push(line);
+    });
+    page.on('pageerror', (error) => {
+      const line = `pageerror: ${error.message}`;
+      emit(line, 'stderr');
+      browserFailures.push(line);
+    });
+    page.on('response', (response) => {
+      if (response.status() < 400) return;
+      const expectedNotFound = response.url() === `${runningServer.url}/a-route-that-does-not-exist` && response.status() === 404;
+      const line = `http-${response.status()}: ${response.url()}`;
+      emit(line, expectedNotFound ? 'stdout' : 'stderr');
+      if (!expectedNotFound) browserFailures.push(line);
+    });
+  };
+  const page = await browser.newPage();
+  observeBrowserFailures(page);
   try {
+    const loadingPage = await browser.newPage({ javaScriptEnabled: false });
+    observeBrowserFailures(loadingPage);
+    await goto(loadingPage, '/session-loading', 200);
+    await loadingPage.getByRole('progressbar', { name: 'Restoring secure session…' }).waitFor();
+    await loadingPage.close();
+
+    const errorPage = await browser.newPage();
+    observeBrowserFailures(errorPage);
+    await errorPage.addInitScript(() => { globalThis.__EXPO_BASE_ACCEPTANCE_AUTH_STATE__ = 'error'; });
+    await goto(errorPage, '/session-error', 200);
+    await errorPage.getByRole('alert').getByRole('heading', { name: 'Session could not be restored' }).waitFor();
+    await errorPage.close();
+
     await goto(page, '/', 200);
     await page.getByRole('heading', { name: 'Sign in' }).waitFor();
     await page.getByLabel('Email').fill('acceptance@example.com');
@@ -225,10 +239,6 @@ async function browserShellSmoke() {
 
     await goto(page, '/link-error', 200);
     await page.getByRole('heading', { name: 'This link cannot be opened safely' }).waitFor();
-    await goto(page, '/session-loading', 200);
-    await page.locator('body').waitFor();
-    await goto(page, '/session-error', 200);
-    await page.locator('body').waitFor();
     expectingNotFoundDocument = true;
     await goto(page, '/a-route-that-does-not-exist', 404);
     await page.getByText('We could not find that page').waitFor();
@@ -295,7 +305,7 @@ function writeResult() {
     '',
     'This is generated Expo Base foundation evidence only. It does not prove backend authorization/data security, native or physical-device behavior, human VoiceOver/Dynamic Type certification, provider/backend integration, deployment, or release certification.',
     '',
-    'Resolve or explicitly qualify the product-owned obligations in `.expo-base/acceptance-obligations.json` before making a production-readiness claim. `npm run verify:acceptance -- --claim production-ready` fails closed while mandatory obligations remain unresolved.',
+    'Resolve or explicitly qualify the product-owned obligations in `.expo-base/acceptance-obligations.json` for product tracking. `npm run verify:acceptance -- --claim production-ready` is explicitly unsupported and fails closed even when every editable obligation is resolved; stronger evidence lanes remain separate.',
     '',
   ];
   fs.writeFileSync(summaryPath, `${lines.join('\n')}\n`);

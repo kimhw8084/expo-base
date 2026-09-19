@@ -79,7 +79,9 @@ and local scripts for `typecheck`, `check:golden-architecture`, `scaffold:screen
 `verify:acceptance`. `verify` is the fast developer loop. `verify:acceptance` is a generated-repository
 foundation gate that composes locality, TypeScript, Golden, Expo public-config, static web export/runtime,
 and bounded Chromium shell checks; it writes `.expo-base/acceptance-result.json` plus concise guidance and
-logs. It does not claim that a consuming product is production-ready.
+logs. It does not claim that a consuming product is production-ready. The local `--claim production-ready`
+request is explicitly unsupported and fails closed even when every editable product obligation is resolved;
+stronger evidence lanes remain separate.
 The Golden catalog is filtered to the actual vendored package set; optional capability owners travel
 only when their profile is selected or a selected package transitively requires them. The local
 check validates that generated repository rather than assuming a source-workspace package exists.

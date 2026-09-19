@@ -103,6 +103,20 @@ const sourceMetadata = readSourceMetadata(root);
 const files = args.mode === 'standalone'
   ? buildStandaloneFiles({ ...args, identifier, shortName, capabilities: selectedCapabilities, sourceMetadata }, compatibility, root)
   : buildWorkspaceFiles({ ...args, identifier, shortName, workspaceRelative, capabilities: selectedCapabilities, sourceMetadata }, compatibility);
+if (args.mode === 'standalone') files['services.ts'] = files['services.ts'].replace(
+  'export const services = createDemoServices();',
+  `const demoServices = createDemoServices();
+
+const acceptanceAuthState = () => (globalThis as { __EXPO_BASE_ACCEPTANCE_AUTH_STATE__?: 'error' }).__EXPO_BASE_ACCEPTANCE_AUTH_STATE__;
+const acceptanceAuth = {
+  getSession: async () => { if (acceptanceAuthState() === 'error') throw new Error('synthetic acceptance auth failure'); return demoServices.auth.getSession(); },
+  signIn: (input: { email: string; password: string }) => demoServices.auth.signIn(input),
+  signOut: () => demoServices.auth.signOut(),
+  subscribe: (listener: Parameters<typeof demoServices.auth.subscribe>[0]) => demoServices.auth.subscribe(listener),
+};
+
+export const services = { ...demoServices, auth: acceptanceAuth };`,
+);
 for (const [relative, content] of Object.entries(files)) {
   const target = path.join(destination, relative);
   fs.mkdirSync(path.dirname(target), { recursive: true });
