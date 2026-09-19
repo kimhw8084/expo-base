@@ -122,6 +122,7 @@ const required = [
   'packages/create-expo-base-app/bin/create-expo-base-app.mjs',
   'packages/create-expo-base-app/bin/scaffold-expo-base-screen.mjs',
   'packages/create-expo-base-app/lib/screen-scaffold.mjs',
+  'packages/create-expo-base-app/lib/standalone-acceptance.mjs',
   'scripts/test-generator.mjs',
   'scripts/golden-pattern-lib.mjs',
   'scripts/generate-golden-pattern-docs.mjs',

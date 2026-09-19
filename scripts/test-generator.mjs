@@ -30,7 +30,7 @@ try {
   assert.ok(appConfig.includes("autoVerify: true"));
   assert.ok(appConfig.includes("host: \"app.example.com\""));
   assert.ok(appConfig.includes('asyncRoutes'));
-  assert.ok(appConfig.includes("favicon: './public/favicon.svg'"));
+  assert.ok(appConfig.includes("web: { output: 'static' }"));
   assert.ok(fs.existsSync(path.join(destination, 'public/favicon.svg')));
   const generatedFaviconHtml = fs.readFileSync(path.join(destination, 'app/+html.tsx'), 'utf8');
   assert.ok(generatedFaviconHtml.includes('<link rel="icon" href="/favicon.svg" type="image/svg+xml" />'));
@@ -200,7 +200,14 @@ try {
     assert.equal(generated.status, 0, generated.stderr || generated.stdout);
     const generatedPackage = JSON.parse(fs.readFileSync(path.join(target, 'package.json'), 'utf8'));
     assert.deepEqual(generatedPackage.workspaces, ['packages/*']);
-    for (const script of ['typecheck', 'check:golden-architecture', 'scaffold:screen', 'verify']) assert.equal(typeof generatedPackage.scripts[script], 'string', script);
+    const generatedReadme = fs.readFileSync(path.join(target, 'README.md'), 'utf8');
+    assert.ok(generatedReadme.includes('verify:acceptance'));
+    assert.ok(generatedReadme.includes('does not make this consuming product production-ready'));
+    const generatedAcceptanceAgents = fs.readFileSync(path.join(target, 'AGENTS.md'), 'utf8');
+    assert.ok(generatedAcceptanceAgents.includes('Fast verify versus final acceptance'));
+    assert.ok(generatedAcceptanceAgents.includes('verify:acceptance'));
+    assert.ok(generatedAcceptanceAgents.includes('not a production-ready product claim'));
+    for (const script of ['typecheck', 'check:golden-architecture', 'scaffold:screen', 'verify', 'verify:acceptance']) assert.equal(typeof generatedPackage.scripts[script], 'string', script);
     for (const field of ['dependencies', 'devDependencies']) {
       for (const [name, version] of Object.entries(generatedPackage[field] ?? {})) {
         if (!name.startsWith('@expo-base/')) assert.equal(version, compatibility[name], `${target} ${name}`);
@@ -219,8 +226,8 @@ try {
       assert.doesNotMatch(contract, /\.\.\/\.\/(?:AGENTS|docs|scripts|packages|tsconfig\.base)/, `${contractFile} escapes the generated repository`);
     }
     const generatedGitignore = fs.readFileSync(path.join(target, '.gitignore'), 'utf8');
-    for (const pattern of ['node_modules/', '.expo/', 'dist/', 'build/', '*.log', '.DS_Store']) assert.ok(generatedGitignore.includes(pattern), `${target} .gitignore missing ${pattern}`);
-    assert.equal(generatedGitignore.includes('.expo-base/'), false);
+    for (const pattern of ['node_modules/', '.expo/', 'dist/', 'build/', '*.log', '.expo-base/acceptance-dist/', '.DS_Store']) assert.ok(generatedGitignore.includes(pattern), `${target} .gitignore missing ${pattern}`);
+    assert.equal(generatedGitignore.includes('.expo-base/\n'), false);
     assert.equal(generatedGitignore.includes('docs/'), false);
     assert.equal(generatedGitignore.includes('package-lock.json'), false);
     const provenance = JSON.parse(fs.readFileSync(path.join(target, '.expo-base/source.json'), 'utf8'));
@@ -229,6 +236,14 @@ try {
     assert.equal(provenance.sourceCommit, spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).stdout.trim());
     assert.equal(provenance.sourceVersion, '1.0.0');
     assert.equal(provenance.generatorVersion, '1.0.0');
+    assert.equal(provenance.sourceTree, spawnSync('git', ['rev-parse', 'HEAD^{tree}'], { cwd: root, encoding: 'utf8' }).stdout.trim());
+    const acceptanceObligations = JSON.parse(fs.readFileSync(path.join(target, '.expo-base/acceptance-obligations.json'), 'utf8'));
+    assert.equal(acceptanceObligations.schemaVersion, 1);
+    assert.ok(acceptanceObligations.obligations.every((obligation) => obligation.status === 'unresolved' && obligation.requiredForProduction === true));
+    const acceptanceScript = fs.readFileSync(path.join(target, 'scripts/verify-acceptance.mjs'), 'utf8');
+    assert.ok(acceptanceScript.includes('chromium.launch'));
+    assert.ok(acceptanceScript.includes('browser console/page errors and warnings'));
+    assert.ok(fs.existsSync(path.join(target, 'scripts/serve-static-web.mjs')));
     const install = spawnSync('npm', ['install', '--no-audit', '--no-fund'], { cwd: target, encoding: 'utf8' });
     assert.equal(install.status, 0, install.stderr || install.stdout);
     const expoConfig = spawnSync('npx', ['expo', 'config', '--type', 'public'], { cwd: target, encoding: 'utf8' });
@@ -238,6 +253,18 @@ try {
     assert.ok(path.resolve(resolved.stdout).startsWith(fs.realpathSync(target)), `@expo-base/ui resolved outside generated repository: ${resolved.stdout}`);
     const verify = spawnSync('npm', ['run', 'verify'], { cwd: target, encoding: 'utf8' });
     assert.equal(verify.status, 0, verify.stderr || verify.stdout);
+    const acceptance = spawnSync('npm', ['run', 'verify:acceptance'], { cwd: target, encoding: 'utf8' });
+    assert.equal(acceptance.status, 0, acceptance.stderr || acceptance.stdout);
+    const acceptanceResult = JSON.parse(fs.readFileSync(path.join(target, '.expo-base/acceptance-result.json'), 'utf8'));
+    assert.equal(acceptanceResult.status, 'accepted-with-unresolved-obligations');
+    assert.equal(acceptanceResult.productionReadiness, 'not-claimed');
+    assert.equal(acceptanceResult.claimRequested, 'foundation');
+    assert.deepEqual(acceptanceResult.provenance.source, provenance);
+    assert.deepEqual(acceptanceResult.checks.map((check) => check.id), ['package-locality', 'typecheck', 'golden-patterns', 'golden-architecture', 'expo-public-config', 'static-web-export-and-runtime', 'browser-shell-smoke']);
+    assert.ok(acceptanceResult.checks.every((check) => check.outcome === 'pass'));
+    assert.equal(acceptanceResult.obligations.filter((obligation) => obligation.status === 'unresolved').length, acceptanceObligations.obligations.length);
+    assert.ok(fs.existsSync(path.join(target, '.expo-base/acceptance-summary.md')));
+    assert.ok(fs.existsSync(path.join(target, '.expo-base/acceptance.log')));
   }
   const standalonePackageDirs = fs.readdirSync(path.join(standaloneDestination, 'packages'));
   assert.equal(standalonePackageDirs.includes('secure-storage'), false, 'minimal standalone profile must omit secure-storage');
