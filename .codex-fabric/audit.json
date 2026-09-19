@@ -1,0 +1,416 @@
+{
+  "accepted_at": "2026-09-19T19:55:55Z",
+  "changed_files": [
+    {
+      "additions": 6,
+      "deletions": 0,
+      "path": ".github/workflows/golden-certification.yml",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": ".github/workflows/runtime-web.yml",
+      "status": "M"
+    },
+    {
+      "additions": 14,
+      "deletions": 3,
+      "path": "docs/GENERATOR.md",
+      "status": "M"
+    },
+    {
+      "additions": 39,
+      "deletions": 4,
+      "path": "packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 346,
+      "deletions": 0,
+      "path": "packages/create-expo-base-app/lib/standalone-acceptance.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 55,
+      "deletions": 4,
+      "path": "scripts/test-generator.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 0,
+      "path": "scripts/validate.mjs",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"pwd && printf '%s\\\\n' '--- RTK ---' && sed -n '1,240p' /Users/haewonkim/.codex/RTK.md && printf '%s\\\\n' '--- law ---' && sed -n '1,260p' /Users/haewonkim/.codex/law.md && printf '%s\\\\n' '--- repo status ---' && git status --short --branch && printf '%s\\\\n' '--- refs ---' && git show-ref --heads --dereference | sed -n '1,160p' && printf '%s\\\\n' '--- recent ---' && git log --oneline --decorate -12\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD''^{commit} HEAD''^{tree} && rtk git rev-parse main''^{commit} main''^{tree} && rtk git rev-parse codex/expo-base-chg142-generated-app-acceptance-r2-recovery''^{commit} codex/expo-base-chg142-generated-app-acceptance-r2-recovery''^{tree} && rtk git cat-file -p 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 && printf '\"'%s\\\\n' '--- graph ---' && rtk git log --graph --oneline --decorate --all --ancestry-path 4488d4f611eb01f28cc76be29fe8f2da35711f52..5caa121a58ed7a05d0ab29f4fd19a5d36143f861 && printf '%s\\\\n' '--- merge bases ---' && rtk git merge-base 4488d4f611eb01f28cc76be29fe8f2da35711f52 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 && printf '%s\\\\n' '--- R2 first-parent ---' && rtk git log --first-parent --oneline --decorate -12 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 && printf '%s\\\\n' '--- diff stat base..R2 ---' && rtk git diff --stat 4488d4f611eb01f28cc76be29fe8f2da35711f52 5caa121a58ed7a05d0ab29f4fd19a5d36143f861\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git merge --ff-only 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 && rtk git rev-parse HEAD''^{commit} HEAD''^{tree} && rtk git merge-base --is-ancestor 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 HEAD && rtk git merge-base --is-ancestor 4488d4f611eb01f28cc76be29fe8f2da35711f52 HEAD && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -S \\\"playwright|golden:structural|runtime:verify|test:generator|runtime:test:web|verify:acceptance|chromium|firefox|webkit|apt\\\" .github package.json scripts packages docs --glob '\"'!**/node_modules/**'\"' --glob '\"'!**/.expo/**'\"' && printf '%s\\\\n' '--- workflow files ---' && rtk find .github/workflows -maxdepth 1 -type f -print | sort && printf '%s\\\\n' '--- golden certification ---' && rtk sed -n '1,280p' .github/workflows/golden-certification.yml && printf '%s\\\\n' '--- runtime web ---' && rtk sed -n '1,280p' .github/workflows/runtime-web.yml\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"printf '%s\\\\n' '--- R2 acceptance source ---' && rtk sed -n '1,420p' packages/create-expo-base-app/lib/standalone-acceptance.mjs && printf '%s\\\\n' '--- generator acceptance coverage ---' && rtk sed -n '180,330p' scripts/test-generator.mjs && printf '%s\\\\n' '--- runtime web orchestration ---' && rtk sed -n '1,180p' scripts/runtime-test-web.mjs && printf '%s\\\\n' '--- package scripts around gates ---' && rtk sed -n '60,155p' package.json && printf '%s\\\\n' '--- workflow contract references ---' && rtk rg -n -i \\\"workflow|github actions|golden-certification\\\\.yml|runtime-web\\\\.yml|yaml\\\" scripts package.json test* .github docs --glob '\"'!**/node_modules/**'\"' --glob '\"'!**/dist/**'\"' --glob '\"'!**/test-results/**'\"' || true && printf '%s\\\\n' '--- R2 source diff against R1 ---' && rtk git diff 689d910692dd886889c1555229783926d7ff6f09 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 -- packages/create-expo-base-app/lib/standalone-acceptance.mjs scripts/test-generator.mjs scripts/validate.mjs docs/GENERATOR.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git diff --check && rtk git status --short && rtk git diff -- .github/workflows/golden-certification.yml .github/workflows/runtime-web.yml && printf '%s\\\\n' '--- available validators ---' && (rtk command -v actionlint || true) && (rtk command -v ruby || true) && (rtk command -v node || true) && printf '%s\\\\n' '--- workflow key ordering ---' && rtk nl -ba .github/workflows/golden-certification.yml | sed -n '12,55p' && rtk nl -ba .github/workflows/runtime-web.yml | sed -n '12,55p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ruby -e 'require \\\"yaml\\\"; paths = [\\\".github/workflows/golden-certification.yml\\\", \\\".github/workflows/runtime-web.yml\\\"]; paths.each { |path| data = YAML.load_file(path); abort \\\"#{path}: missing jobs\\\" unless data.fetch(\\\"jobs\\\"); }; golden = YAML.load_file(paths[0]).fetch(\\\"jobs\\\").fetch(\\\"structural\\\").fetch(\\\"steps\\\").map { |step| step[\\\"name\\\"] }; abort \\\"Golden structural browser setup is not before certification\\\" unless golden.index(\\\"Install structural browser\\\") < golden.index(\\\"Golden structural certification\\\"); runtime = YAML.load_file(paths[1]).fetch(\\\"jobs\\\").fetch(\\\"runtime-web\\\").fetch(\\\"steps\\\").map { |step| step[\\\"name\\\"] }; abort \\\"Runtime browser setup is not before verification\\\" unless runtime.index(\\\"Install Playwright browsers\\\") < runtime.index(\\\"Runtime verification\\\"); abort \\\"Runtime browser setup is not after workspace install\\\" unless runtime.index(\\\"Install workspace\\\") < runtime.index(\\\"Install Playwright browsers\\\"); abort \\\"Runtime web certification is missing\\\" unless runtime.include?(\\\"Static export + browser certification\\\"); puts \\\"GitHub Actions YAML/order validation passed (2 workflows).\\\"' && rtk npx playwright install --dry-run chromium\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:generator'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk nl -ba scripts/test-generator.mjs | sed -n '1,70p' && printf '%s\\\\n' '--- workspace/dependency state ---' && rtk test -d node_modules && rtk test -x node_modules/.bin/playwright && rtk test -x node_modules/.bin/expo && rtk node --input-type=module -e 'import { chromium } from \\\"@playwright/test\\\"; console.log(chromium.executablePath());' && printf '%s\\\\n' '--- active processes ---' && rtk ps -ax | rg 'create-expo-base-app|test-generator|npm install|expo' || true && printf '%s\\\\n' '--- generator temp roots ---' && rtk find /tmp -maxdepth 2 -type d -name 'expo-base-*' 2>/dev/null | head -20 || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -l node_modules/.bin/tsc node_modules/.bin/playwright 2>&1 || true && rtk npm ls typescript @playwright/test --depth=0'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm ci'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -1 /Users/haewonkim/.nvm/versions/node && rtk command -v nvm || true && rtk command -v node && rtk node --version'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/npm ci'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js ci'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js ci'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -ax | rg 'test-generator|create-expo-base-app|npm install|expo export|playwright|serve-static-web|node scripts' || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -ef | tail -40'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -ef | rg 'test-generator|node scripts|npm run test:generator|npm install|node .*expo|npm exec' || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ls -ld apps/.tmp-generated-app apps/.tmp-generated-capability-app 2>&1 || true && rtk find /tmp -maxdepth 2 -type f -name 'acceptance-result.json' -print 2>/dev/null | tail -20 || true && rtk find /tmp -maxdepth 2 -type f -name 'acceptance.log' -print 2>/dev/null | tail -20 || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -ax | rg 'test-generator|node scripts|npm run test:generator|npm install|playwright|expo|npm-cli' || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -ax -o pid,ppid,etime,command | rg '\"'^( *79709| *79710| *79723| *[0-9]+ +79723| *[0-9]+ +79710)'\"' || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -ax -o pid,ppid,etime,command | rg 'test-generator|expo-base|npm run test|npm install|node scripts' || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --input-type=module -e 'import fs from \\\"node:fs\\\"; import { chromium } from \\\"@playwright/test\\\"; const executable = chromium.executablePath(); if (\"'!fs.existsSync(executable)) throw new Error(`Chromium executable missing: ${executable}`); console.log(`Chromium executable present before browser-backed gates: ${executable}`);'\"' && rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/npm run check:golden-certification\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/npm run validate'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/npm run runtime:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/npm run golden:structural'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --short --branch && rtk git diff --check && rtk git diff --stat && rtk git diff --name-only && printf '%s\\\\n' '--- candidate diff ---' && rtk git diff -- .github/workflows/golden-certification.yml .github/workflows/runtime-web.yml && printf '%s\\\\n' '--- evidence refs ---' && rtk git show-ref | rg 'codex-fabric/evidence/expo-base/chg142|codex-fabric/evidence' | tail -30 && printf '%s\\\\n' '--- R2 evidence commit ---' && rtk git show --stat --oneline --decorate ae322685993969de41c492a27d516e95861712f7 && printf '%s\\\\n' '--- R2 evidence tree ---' && rtk git ls-tree -r --name-only ae322685993969de41c492a27d516e95861712f7 && printf '%s\\\\n' '--- evidence contents ---' && rtk git show ae322685993969de41c492a27d516e95861712f7 --\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git show ae322685993969de41c492a27d516e95861712f7:.codex-fabric/audit.json | rtk sed -n '1,230p' && printf '%s\\\\n' '--- audit tail ---' && rtk git show ae322685993969de41c492a27d516e95861712f7:.codex-fabric/audit.json | rtk sed -n '231,460p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -S \\\"codex-fabric|audit\\\\.json|Fabric evidence|evidence branch|job_id|request.*chg\\\" /Users/haewonkim/.codex-fabric/worktrees/CF-036e608813e353f0bed10674 /Users/haewonkim/.codex-fabric --glob '\"'!**/node_modules/**'\"' --glob '\"'!**/.git/**'\"' --glob '\"'!**/test-results/**'\"' --glob '\"'!**/playwright-report/**'\"' 2>/dev/null | head -240\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,80p' /Users/haewonkim/.codex-fabric/current-target.txt 2>/dev/null || true && rtk ls -la /Users/haewonkim/.codex-fabric | sed -n '1,120p' && printf '%s\\\\n' '--- fabric commands ---' && (rtk find /Users/haewonkim/.codex-fabric -maxdepth 3 -type f -name 'fabric.py' -o -name 'fabricctl' -o -name 'codex-fabric' 2>/dev/null | head -80) && printf '%s\\\\n' '--- active jobs for expo-base ---' && rtk find /Users/haewonkim/.codex-fabric/jobs -maxdepth 2 -type f -name 'job.json' -print 2>/dev/null | while read p; do rtk rg -l '\\\"project\\\": \\\"expo-base\\\"|\\\"project_id\\\": \\\"expo-base\\\"' \\\"\"'$p\"; done | head -40'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ls -la /Users/haewonkim/.codex-fabric/current | sed -n '1,100p' && printf '%s\\\\n' '--- bin ---' && rtk ls -la /Users/haewonkim/.codex-fabric/bin | sed -n '1,120p' && printf '%s\\\\n' '--- current entrypoints ---' && rtk find -L /Users/haewonkim/.codex-fabric/current -maxdepth 2 -type f -print 2>/dev/null | head -80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,120p' /Users/haewonkim/.codex-fabric/bin/fabricctl && printf '%s\\\\n' '--- integrate ---' && rtk sed -n '1,160p' /Users/haewonkim/.codex-fabric/bin/projectos-integrate-stdin && printf '%s\\\\n' '--- release cli usage ---' && (rtk /Users/haewonkim/.codex-fabric/current/fabric.py --help 2>&1 || true) && (rtk /Users/haewonkim/.codex-fabric/current/bin/fabricctl --help 2>&1 || true)\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ls -l /Users/haewonkim/.codex-fabric/current/fabric.py /Users/haewonkim/.codex-fabric/current/bin/fabricctl 2>&1 || true && rtk find -L /Users/haewonkim/.codex-fabric/current -maxdepth 1 -type f -print | rg 'fabric|ctl|VERSION|README' || true && printf '%s\\\\n' '--- libexec ---' && rtk find /Users/haewonkim/.codex-fabric/libexec -maxdepth 2 -type f -print | head -80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk /opt/anaconda3/bin/python3.11 /Users/haewonkim/.codex-fabric/current/fabric.py --help'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk jq '{job_id,project,request,operation,work_branch,target_branch,base_sha,status,worktree}' /Users/haewonkim/.codex-fabric/jobs/CF-036e608813e353f0bed10674.running/job.json && printf '%s\\\\n' '--- Fabric status ---' && rtk /opt/anaconda3/bin/python3.11 /Users/haewonkim/.codex-fabric/current/fabric.py status CF-036e608813e353f0bed10674\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,220p' /Users/haewonkim/.codex-fabric/jobs/CF-036e608813e353f0bed10674.running/job.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add .github/workflows/golden-certification.yml .github/workflows/runtime-web.yml && rtk git commit -m \"fix(ci): install Playwright browsers before generator acceptance\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git show -s --format='%H%n%T%n%P%n%s' HEAD && printf '%s\\\\n' '--- ancestry checks ---' && rtk git merge-base --is-ancestor 4488d4f611eb01f28cc76be29fe8f2da35711f52 HEAD && rtk git merge-base --is-ancestor 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 HEAD && printf '%s\\\\n' 'base_and_r2_ancestry=pass' && printf '%s\\\\n' '--- predecessor exact refs ---' && rtk git show -s --format='r2=%H%nR2_tree=%T%nR2_parent=%P' 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 && rtk git show -s --format='base=%H%nbase_tree=%T' 4488d4f611eb01f28cc76be29fe8f2da35711f52 && printf '%s\\\\n' '--- worktree ---' && rtk git status --short --branch && rtk git diff --check\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git show-ref --verify --quiet refs/remotes/origin/codex/expo-base-chg142-generated-app-acceptance-r3-ci-browsers; printf 'remote_branch_present=%s\\\\n' \\\"\"'$?\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git push --set-upstream origin codex/expo-base-chg142-generated-app-acceptance-r3-ci-browsers'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '2528,2610p' /Users/haewonkim/.codex-fabric/current/fabric.py && printf '%s\\\\n' '--- evidence commit path ---' && rtk sed -n '2230,2355p' /Users/haewonkim/.codex-fabric/current/fabric.py && printf '%s\\\\n' '--- cli dispatch ---' && rtk rg -n \\\"publish-evidence|worker-resume|if __name__|argparse|dispatch-once\\\" /Users/haewonkim/.codex-fabric/current/fabric.py | tail -40\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '2540,2605p' /Users/haewonkim/.codex-fabric/current/fabric.py && printf '%s\\\\n' '--- result path functions ---' && rtk rg -n \\\"def _terminal_job_dir|def publish_evidence_for_job|jobdir.*executed|result_dir\\\" /Users/haewonkim/.codex-fabric/current/fabric.py | tail -30 && printf '%s\\\\n' '--- end dispatch ---' && rtk sed -n '4310,4365p' /Users/haewonkim/.codex-fabric/current/fabric.py\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '2460,2555p' /Users/haewonkim/.codex-fabric/current/fabric.py && printf '%s\\\\n' '--- terminal job helper ---' && rtk sed -n '2410,2465p' /Users/haewonkim/.codex-fabric/current/fabric.py\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '2560,2645p' /Users/haewonkim/.codex-fabric/current/fabric.py\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"def publish_evidence_for_job|def _terminal_job_dir\\\" /Users/haewonkim/.codex-fabric/current/fabric.py && rtk sed -n '2680,2785p' /Users/haewonkim/.codex-fabric/current/fabric.py\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '2788,2838p' /Users/haewonkim/.codex-fabric/current/fabric.py\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git diff --check && rtk git status --short --branch && printf '%s\\\\n' '--- candidate ---' && rtk git show -s --format='candidate=%H%ncandidate_tree=%T%nparent=%P%nsubject=%s' HEAD && printf '%s\\\\n' '--- exact changed files vs R2 ---' && rtk git diff --name-status 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 HEAD && rtk git diff --stat 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 HEAD && printf '%s\\\\n' '--- full diff vs authoritative base ---' && rtk git diff --stat 4488d4f611eb01f28cc76be29fe8f2da35711f52 HEAD && printf '%s\\\\n' '--- ancestry ---' && rtk git merge-base --is-ancestor 4488d4f611eb01f28cc76be29fe8f2da35711f52 HEAD && rtk git merge-base --is-ancestor 5caa121a58ed7a05d0ab29f4fd19a5d36143f861 HEAD && printf '%s\\\\n' 'base_and_exact_r2_ancestors=pass' && printf '%s\\\\n' '--- remote refs ---' && rtk git ls-remote origin refs/heads/main refs/heads/codex/expo-base-chg142-generated-app-acceptance-r3-ci-browsers && printf '%s\\\\n' '--- workflow lines ---' && rtk nl -ba .github/workflows/golden-certification.yml | sed -n '25,38p' && rtk nl -ba .github/workflows/runtime-web.yml | sed -n '25,40p' && printf '%s\\\\n' '--- Fabric state ---' && rtk /opt/anaconda3/bin/python3.11 /Users/haewonkim/.codex-fabric/current/fabric.py status CF-036e608813e353f0bed10674\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.154.0",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 121,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 96.78,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 4930560,
+      "fresh_input_tokens": 163883,
+      "input_tokens": 5094443,
+      "non_reasoning_output_tokens": 12523,
+      "output_tokens": 25229,
+      "reasoning_output_tokens": 12706,
+      "total_processed_tokens": 5119672
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "f930ae6e015ca52f9dc7c12c726da8e41d3a9783",
+      "subject": "fix(ci): install Playwright browsers before generator acceptance"
+    },
+    {
+      "sha": "5caa121a58ed7a05d0ab29f4fd19a5d36143f861",
+      "subject": "fix(generator): close standalone acceptance claim boundary"
+    },
+    {
+      "sha": "689d910692dd886889c1555229783926d7ff6f09",
+      "subject": "fabric: capture completed model changes [CF-4ff75393276554cece13f7ca]"
+    }
+  ],
+  "diff": {
+    "additions": 464,
+    "changed_files": 7,
+    "commit_count": 3,
+    "deletions": 14
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 1,
+    "items": [
+      {
+        "bytes": 6282,
+        "path": "docs/GENERATOR.md",
+        "sha256": "51b8ea83f40c0f351e20802f9dc6cbf064f79c6f1e4b52e3247972b7032d1918"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-19T20:08:44Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+    "branch": "codex/expo-base-chg142-generated-app-acceptance-r3-ci-browsers",
+    "detached_verify": false,
+    "head_sha": "f930ae6e015ca52f9dc7c12c726da8e41d3a9783",
+    "remote_exact_head": true,
+    "remote_head_sha": "f930ae6e015ca52f9dc7c12c726da8e41d3a9783",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "4488d4f611eb01f28cc76be29fe8f2da35711f52",
+    "work_branch": "codex/expo-base-chg142-generated-app-acceptance-r3-ci-browsers",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-036e608813e353f0bed10674",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg142-generated-app-acceptance-r3-ci-browsers",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg142-generated-app-acceptance-r3-ci-browsers"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "44756118cd7fda0c45cd23ba1d31a48a3f4f2422d687df15264ba4406f40e1f2",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg142-generated-app-acceptance-r3-ci-browsers",
+  "schema_version": 1,
+  "started_at": "2026-09-19T19:55:55Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 769,
+    "queue_seconds": 0,
+    "total_seconds": 769
+  },
+  "transport": {
+    "bytes": 4844,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 4487,
+    "prompt_sha256": "70c573703a7ff790c6117567617ac354d2b70268d89174a51201024c66c662ff",
+    "sha256": "036e608813e353f0bed10674b54e2e8c2ea61c31df4b9511f22c8a4caec428de"
+  }
+}
