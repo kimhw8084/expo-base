@@ -36,6 +36,13 @@ assert.ok(workflow.indexOf('ref: ${{') < workflow.indexOf('script: npm run andro
 assert.ok(workflow.indexOf('fetch-depth: 0') < workflow.indexOf('script: npm run android:verify'), 'Android certification must obtain full Git history before android:verify.');
 assert.ok(workflow.includes('github.event.pull_request.head.sha') && workflow.includes('github.sha'), 'Checkout must have exact pull-request-head and workflow-dispatch fallback expressions.');
 assert.match(androidJob, /timeout-minutes:\s+75[\s\S]*script: npm run android:verify/, 'Android certification must retain a bounded 75-minute timeout on the job that runs android:verify.');
+const kvmStep = workflow.indexOf('- name: Enable KVM group perms');
+const javaSetup = workflow.indexOf('- name: Java 17');
+const emulatorStep = workflow.indexOf('- name: Android emulator release certification');
+assert.ok(javaSetup >= 0 && javaSetup < kvmStep && kvmStep < emulatorStep, 'Linux KVM preparation must run after Java setup and before the emulator runner.');
+assert.match(workflow, /- name: Enable KVM group perms[\s\S]*?echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS\+="static_node=kvm"' \| sudo tee \/etc\/udev\/rules\.d\/99-kvm4all\.rules[\s\S]*?sudo udevadm control --reload-rules[\s\S]*?sudo udevadm trigger --name-match=kvm/);
+assert.match(androidJob, /uses: reactivecircus\/android-emulator-runner@v2[\s\S]*?disable-animations:\s*false[\s\S]*?script: npm run android:verify/, 'The emulator action must leave post-boot animation mutations disabled.');
+assert.equal((workflow.match(/script: npm run android:verify/g) ?? []).length, 1, 'Android certification must execute the candidate command exactly once.');
 assert.ok(runner.includes('743a8bbf8273f663503dc8dd398135806dccb386'));
 assert.ok(runner.includes('2fda05146dabea9bd44756f7c8071228166d40c8'));
 assert.ok(runner.includes("git(['rev-parse', `${authoritativeBase}^{tree}`])"), 'Android certification must resolve the authoritative base tree.');
