@@ -8,6 +8,8 @@ import { parseAdbDevices, parseGetprop, resolveAndroidProfile } from './resolve-
 const root = resolve(import.meta.dirname, '..');
 const manifest = JSON.parse(readFileSync(join(root, 'android.certification.json'), 'utf8'));
 const read = (file) => readFileSync(join(root, file), 'utf8');
+const workflow = read('.github/workflows/android-native-certification.yml');
+const runner = read('scripts/run-android-native-certification.mjs');
 
 const validFailures = validateAndroidCertification({
   manifest,
@@ -18,8 +20,12 @@ const validFailures = validateAndroidCertification({
   contract: read('scripts/check-native-ui-selector-contracts.mjs'),
 });
 assert.deepEqual(validFailures, [], 'The checked-in Android certification contract must validate.');
-assert.ok(read('scripts/run-android-native-certification.mjs').includes('743a8bbf8273f663503dc8dd398135806dccb386'));
-assert.ok(read('scripts/run-android-native-certification.mjs').includes('2fda05146dabea9bd44756f7c8071228166d40c8'));
+assert.match(workflow, /- name: Checkout candidate[\s\S]*?uses: actions\/checkout@v4[\s\S]*?with:\n\s+fetch-depth: 0/);
+assert.ok(workflow.indexOf('fetch-depth: 0') < workflow.indexOf('script: npm run android:verify'), 'Android certification must obtain full Git history before android:verify.');
+assert.ok(runner.includes('743a8bbf8273f663503dc8dd398135806dccb386'));
+assert.ok(runner.includes('2fda05146dabea9bd44756f7c8071228166d40c8'));
+assert.ok(runner.includes("git(['rev-parse', `${authoritativeBase}^{tree}`])"), 'Android certification must resolve the authoritative base tree.');
+assert.ok(runner.includes("['merge-base', '--is-ancestor', authoritativeBase, 'HEAD']"), 'Android certification must retain the authoritative-base ancestry check.');
 
 const devices = parseAdbDevices(`List of devices attached
 emulator-5554 device product:sdk_gphone_x86_64 model:Pixel_7 transport_id:1
