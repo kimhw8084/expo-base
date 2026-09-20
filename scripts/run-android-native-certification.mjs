@@ -86,6 +86,13 @@ function run(command, args, label, options = {}) {
   return result.status ?? 1;
 }
 
+export function resolveAndroidGradleInvocation(platform = process.platform) {
+  return {
+    command: platform === 'win32' ? 'gradlew.bat' : './gradlew',
+    cwd: androidRoot,
+  };
+}
+
 function commandOutput(command, args, options = {}) {
   const result = spawnSync(command, args, { cwd: root, encoding: 'utf8', ...options });
   if (result.status !== 0) throw new Error(result.stderr || `${command} ${args.join(' ')} failed.`);
@@ -279,9 +286,9 @@ function main() {
     writeFileSync(join(resultsRoot, 'provenance.json'), `${JSON.stringify(provenance, null, 2)}\n`);
     waitForAdb(resolved.serial);
     run(adb, ['-s', resolved.serial, 'logcat', '-c'], 'CLEAR ANDROID LOGCAT');
-    const gradle = process.platform === 'win32' ? 'gradlew.bat' : './gradlew';
+    const { command: gradle, cwd: gradleCwd } = resolveAndroidGradleInvocation();
     const gradleLog = join(resultsRoot, 'gradle-release.log');
-    const gradleStatus = run(gradle, [':app:connectedReleaseAndroidTest', '--no-daemon', '--stacktrace'], 'RUN ANDROID RELEASE INSTRUMENTATION', { logFile: gradleLog, env: { ANDROID_SERIAL: resolved.serial } });
+    const gradleStatus = run(gradle, [':app:connectedReleaseAndroidTest', '--no-daemon', '--stacktrace'], 'RUN ANDROID RELEASE INSTRUMENTATION', { cwd: gradleCwd, logFile: gradleLog, env: { ANDROID_SERIAL: resolved.serial } });
     const logcat = commandOutput(adb, ['-s', resolved.serial, 'logcat', '-d', '-v', 'threadtime']);
     writeFileSync(join(resultsRoot, 'logcat-release.txt'), logcat);
     const failures = detectAndroidRuntimeFailures(logcat);

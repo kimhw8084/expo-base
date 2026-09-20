@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { detectAndroidRuntimeFailures } from './android-certification-lib.mjs';
 import { validateAndroidCertification } from './check-android-certification-manifest.mjs';
+import { resolveAndroidGradleInvocation } from './run-android-native-certification.mjs';
 import { parseAdbDevices, parseGetprop, resolveAndroidProfile } from './resolve-android-emulator.mjs';
 
 const root = resolve(import.meta.dirname, '..');
@@ -26,6 +27,12 @@ assert.ok(runner.includes('743a8bbf8273f663503dc8dd398135806dccb386'));
 assert.ok(runner.includes('2fda05146dabea9bd44756f7c8071228166d40c8'));
 assert.ok(runner.includes("git(['rev-parse', `${authoritativeBase}^{tree}`])"), 'Android certification must resolve the authoritative base tree.');
 assert.ok(runner.includes("['merge-base', '--is-ancestor', authoritativeBase, 'HEAD']"), 'Android certification must retain the authoritative-base ancestry check.');
+
+const generatedAndroidRoot = join(root, 'apps', 'reference', 'android');
+assert.deepEqual(resolveAndroidGradleInvocation('linux'), { command: './gradlew', cwd: generatedAndroidRoot });
+assert.deepEqual(resolveAndroidGradleInvocation('win32'), { command: 'gradlew.bat', cwd: generatedAndroidRoot });
+assert.notEqual(resolveAndroidGradleInvocation('linux').cwd, root, 'Gradle must not run with repository-root cwd.');
+assert.ok(runner.includes("{ cwd: gradleCwd, logFile: gradleLog"), 'Release instrumentation must run the generated Android wrapper from its project directory.');
 
 const devices = parseAdbDevices(`List of devices attached
 emulator-5554 device product:sdk_gphone_x86_64 model:Pixel_7 transport_id:1
