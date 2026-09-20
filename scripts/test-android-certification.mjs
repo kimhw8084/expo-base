@@ -10,6 +10,12 @@ const root = resolve(import.meta.dirname, '..');
 const manifest = JSON.parse(readFileSync(join(root, 'android.certification.json'), 'utf8'));
 const read = (file) => readFileSync(join(root, file), 'utf8');
 const androidSource = read('tests/native/android/ExpoBaseNativeAndroidTest.java');
+const pageHeaderSource = read('packages/layouts/src/PageHeader.tsx');
+const pagePatternsSource = read('packages/patterns/src/PagePatterns.tsx');
+const goldenSource = read('apps/reference/app/golden.tsx');
+const formsSource = read('apps/reference/app/forms.tsx');
+const overlaysSource = read('apps/reference/app/overlays.tsx');
+const serverStateSource = read('apps/reference/app/server-state.tsx');
 const workflow = read('.github/workflows/android-native-certification.yml');
 const runner = read('scripts/run-android-native-certification.mjs');
 const androidJob = workflow.slice(workflow.indexOf('  android-native:'));
@@ -54,15 +60,21 @@ assert.ok(gradleInvocation >= 0 && evidenceCollection > gradleInvocation && grad
 assert.ok(runner.includes('failureArtifacts(certificationEvidence, gradleLog)'), 'Failure summaries must retain collected JUnit/APK/screenshot/logcat evidence.');
 assert.ok(runner.includes('required logcat evidence could not be collected'), 'A successful Gradle run must fail closed when required logcat evidence is missing.');
 
-const androidTextHelper = androidSource.match(/private UiObject2 findSemanticText\(String value\) \{[\s\S]*?\n  \}/)?.[0] ?? '';
-const androidWaitHelper = androidSource.match(/private UiObject2 waitForSemanticSelector\(BySelector selector, long deadline\) \{[\s\S]*?\n  \}/)?.[0] ?? '';
-const androidTextAssertion = androidSource.match(/private UiObject2 assertText\(String value\) \{[\s\S]*?\n  \}/)?.[0] ?? '';
-assert.ok(androidTextHelper.includes('By.textContains(value)'), 'Android semantic text lookup must retain native text matching.');
-assert.ok(androidTextHelper.includes('By.descContains(value)'), 'Android semantic text lookup must fall back to content descriptions.');
-assert.ok(androidTextHelper.includes('SystemClock.uptimeMillis()') && androidWaitHelper.includes('Until.findObject') && androidWaitHelper.includes('Math.min(remaining, SEMANTIC_POLL_MS)'), 'Android semantic text lookup must use bounded waits.');
-assert.ok(androidTextAssertion.includes('findSemanticText(value)'), 'Android text assertions must use the shared semantic lookup.');
-assert.ok(!androidTextAssertion.includes('By.textContains'), 'Android text assertions must not regress to text-only selection.');
-assert.ok(androidTextAssertion.includes('assertNotNull("Expected Android text was not rendered: " + value, object)'), 'Android text assertions must fail when neither semantic representation exists.');
+const stableResourceHelper = androidSource.match(/private UiObject2 scrollToStableResource\(String id\) \{[\s\S]*?\n  \}/)?.[0] ?? '';
+assert.ok(pageHeaderSource.includes("testID = 'page-header-title'") && pageHeaderSource.includes('<Text variant="h1" testID={testID}>'), 'PageHeader must own the deterministic native title selector.');
+assert.ok(pagePatternsSource.includes('testID?: string | undefined') && pagePatternsSource.includes('{ testID }'), 'Golden patterns must forward PageHeader selector ownership.');
+assert.ok(goldenSource.includes("testID:'golden-page-header-title'"), 'Golden Dashboard must receive stable PageHeader selector ownership.');
+assert.ok(androidSource.includes('launchReleaseProduct') && androidSource.includes('assertTarget("home-adaptive-section-header"'), 'Android launch must prove home through a stable resource-id landmark.');
+assert.ok(androidSource.includes('assertTarget("home-metric-group"'), 'Android home scroll must use the existing metric-group resource-id.');
+assert.ok(!androidSource.includes('assertText(') && !androidSource.includes('findSemanticText(') && !androidSource.includes('hasText('), 'Decisive Android route assertions must not use generic display-text helpers.');
+assert.ok(stableResourceHelper.includes('By.res(PACKAGE, id)') && !stableResourceHelper.includes('By.textContains') && !stableResourceHelper.includes('By.descContains'), 'Stable Android resource lookup must not contain the R5 text fallback strategy.');
+assert.ok(androidSource.includes('if (id != null) return scrollToStableResource(id);') && androidSource.includes('scrollToAccessibleTarget'), 'Only id-less convenience interactions may use the text/content-description fallback.');
+assert.ok(formsSource.includes('testID="adapter-form-error-summary"') && androidSource.includes('assertTarget("adapter-form-error-summary"') && androidSource.includes('assertTarget("demo-email-error"') && !androidSource.includes('Enter your email.'), 'Form validation must use stable summary and field ownership.');
+assert.ok(overlaysSource.includes('testID="overlay-dialog-trigger"') && overlaysSource.includes('testID="overlay-bottom-sheet-trigger"') && overlaysSource.includes('testID="overlay-dialog-review-action"'), 'Overlay reference controls must expose stable selectors.');
+assert.ok(androidSource.includes('assertTarget("card-action-menu"') && androidSource.includes('assertTarget("bottom-sheet-panel"') && androidSource.includes('assertTargetAbsent("overlay-dialog-review-action"') && androidSource.includes('assertTargetAbsent("bottom-sheet-panel"') && androidSource.includes('Until.gone(By.res(PACKAGE, id))'), 'Overlay lifecycle and dismissal must use stable target presence/disappearance.');
+assert.ok(androidSource.includes('analytics-page-header-title') && androidSource.includes('finance-page-header-title') && androidSource.includes('monitoring-page-header-title'), 'Flagship route identity must use governed PageHeader resource ids.');
+assert.ok(serverStateSource.includes('testID="server-state-refresh"') && androidSource.includes('server-state-load-count') && androidSource.includes('server-state-refresh') && androidSource.includes('server-state-mutation-count'), 'Server-state acceptance must use stable count and control selectors.');
+assert.ok(!androidSource.includes('Expected Android text was not rendered') && !androidSource.includes('SystemClock'), 'The failed R5 generic display-text strategy must not silently return.');
 
 const devices = parseAdbDevices(`List of devices attached
 emulator-5554 device product:sdk_gphone_x86_64 model:Pixel_7 transport_id:1
