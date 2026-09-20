@@ -84,7 +84,7 @@ export default function ServerStateReferenceScreen() {
               <AsyncStateView {...asyncState} onRetry={() => { void query.refresh(); }} empty={<Text>{copy('No tasks match this product filter.')}</Text>}>
                 {tasks.map((task) => <ListRow key={task.id} title={task.title} subtitle={`${task.team} · ${task.done ? 'Complete' : 'Open'}`} />)}
               </AsyncStateView>
-              <Button label={copy('Refresh tasks')} variant="secondary" onPress={() => { void query.refresh(); }} />
+              <Button testID="server-state-refresh" label={copy('Refresh tasks')} variant="secondary" onPress={() => { void query.refresh(); }} />
               <Button label={copy('Fail next refresh')} variant="outline" onPress={() => { serverStateLab.failNextLoad(); void query.refresh(); }} />
             </VStack>
           </Card>
