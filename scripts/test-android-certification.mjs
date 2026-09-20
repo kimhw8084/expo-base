@@ -12,6 +12,7 @@ const read = (file) => readFileSync(join(root, file), 'utf8');
 const androidSource = read('tests/native/android/ExpoBaseNativeAndroidTest.java');
 const workflow = read('.github/workflows/android-native-certification.yml');
 const runner = read('scripts/run-android-native-certification.mjs');
+const androidJob = workflow.slice(workflow.indexOf('  android-native:'));
 
 const validFailures = validateAndroidCertification({
   manifest,
@@ -28,6 +29,7 @@ assert.match(workflow, /ref: \$\{\{ github\.event_name == 'pull_request' && gith
 assert.ok(workflow.indexOf('ref: ${{') < workflow.indexOf('script: npm run android:verify'), 'Exact PR-head checkout must happen before android:verify.');
 assert.ok(workflow.indexOf('fetch-depth: 0') < workflow.indexOf('script: npm run android:verify'), 'Android certification must obtain full Git history before android:verify.');
 assert.ok(workflow.includes('github.event.pull_request.head.sha') && workflow.includes('github.sha'), 'Checkout must have exact pull-request-head and workflow-dispatch fallback expressions.');
+assert.match(androidJob, /timeout-minutes:\s+75[\s\S]*script: npm run android:verify/, 'Android certification must retain a bounded 75-minute timeout on the job that runs android:verify.');
 assert.ok(runner.includes('743a8bbf8273f663503dc8dd398135806dccb386'));
 assert.ok(runner.includes('2fda05146dabea9bd44756f7c8071228166d40c8'));
 assert.ok(runner.includes("git(['rev-parse', `${authoritativeBase}^{tree}`])"), 'Android certification must resolve the authoritative base tree.');

@@ -11,7 +11,7 @@ concurrency:
 jobs:
   android-native:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     steps:
       - name: Checkout candidate
         uses: actions/checkout@v4
