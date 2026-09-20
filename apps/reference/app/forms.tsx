@@ -42,7 +42,7 @@ export default function FormsReferenceScreen() {
           <ControlledCheckbox control={form.control} name="terms" id="demo-terms" rules={{ validate: (value) => value || copy('Accept the terms to continue.') }} label={copy('I agree to the terms')} description={copy('Required for the reference validation flow.')} required />
         </FormSection>
       </FormSectionGroup>
-      <FormActions testID="adapter-form-actions" secondary={<Button label={copy('Reset')} variant="ghost" responsiveWidth="compact-full" onPress={lifecycle.reset} />} primary={<Button label={copy('Validate form')} responsiveWidth="compact-full" loading={form.formState.isSubmitting} onPress={submit} />} />
+      <FormActions testID="adapter-form-actions" secondary={<Button label={copy('Reset')} variant="ghost" responsiveWidth="compact-full" onPress={lifecycle.reset} />} primary={<Button testID="adapter-form-validate" label={copy('Validate form')} responsiveWidth="compact-full" loading={form.formState.isSubmitting} onPress={submit} />} />
       <HStack gap="sm"><Button label={copy('Apply server validation')} variant="outline" responsiveWidth="compact-full" onPress={() => lifecycle.applyServerErrors({ fields: { email: copy('This email address is already in use.') }, form: copy('The profile could not be saved until the highlighted field is resolved.') })} /><Button label={copy('Leave form')} variant="ghost" responsiveWidth="compact-full" onPress={() => lifecycle.leaveGuard.requestLeave(() => router.replace('/'))} /></HStack>
     </VStack></Card></Section>
 
