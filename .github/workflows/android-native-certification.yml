@@ -1,0 +1,49 @@
+name: Expo Base Android Native Certification
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: expo-base-android-native-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install workspace
+        run: npm ci
+
+      - name: Android emulator release certification
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          script: npm run android:verify
+
+      - name: Upload Android native evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-native-certification
+          path: test-results/android-native-certification
+          if-no-files-found: ignore
+          retention-days: 14
