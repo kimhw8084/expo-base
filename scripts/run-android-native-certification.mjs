@@ -16,6 +16,7 @@ const { manifest, profile } = loadCertificationProfile(root);
 const adb = androidTool(root, 'adb');
 const authoritativeBase = '743a8bbf8273f663503dc8dd398135806dccb386';
 const authoritativeBaseTree = '2fda05146dabea9bd44756f7c8071228166d40c8';
+export const certificationGradleJvmArgs = '-Xmx2g -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=1g';
 const startedEmulatorProcesses = [];
 
 function git(args) {
@@ -91,6 +92,26 @@ export function resolveAndroidGradleInvocation(platform = process.platform) {
     command: platform === 'win32' ? 'gradlew.bat' : './gradlew',
     cwd: androidRoot,
   };
+}
+
+export function withCertificationGradleJvmArgs(contents = '') {
+  const lines = String(contents).split(/\r?\n/).filter((line, index, all) => line || index < all.length - 1);
+  let replaced = false;
+  const configured = lines.map((line) => {
+    if (!/^\s*org\.gradle\.jvmargs\s*=/.test(line)) return line;
+    replaced = true;
+    const existingArgs = line.replace(/^\s*org\.gradle\.jvmargs\s*=\s*/, '').replace(/-XX:MaxMetaspaceSize=\S+/g, '').trim();
+    return `org.gradle.jvmargs=${existingArgs || certificationGradleJvmArgs.replace(' -XX:MaxMetaspaceSize=1g', '')} -XX:MaxMetaspaceSize=1g`;
+  });
+  if (!replaced) configured.push(`org.gradle.jvmargs=${certificationGradleJvmArgs}`);
+  return `${configured.join('\n')}\n`;
+}
+
+function configureCertificationGradleResources() {
+  const gradleProperties = join(androidRoot, 'gradle.properties');
+  const existing = existsSync(gradleProperties) ? readFileSync(gradleProperties, 'utf8') : '';
+  writeFileSync(gradleProperties, withCertificationGradleJvmArgs(existing));
+  return { path: artifactRelativePath(root, gradleProperties), jvmArgs: certificationGradleJvmArgs };
 }
 
 function commandOutput(command, args, options = {}) {
@@ -238,6 +259,52 @@ function pullScreenshots(serial) {
   return artifactFiles(destination).map((file) => relative(root, file));
 }
 
+function emptyCertificationEvidence() {
+  return { junit: [], nativeBuild: [], screenshots: [], logcat: null, failureMarkers: [], collectionErrors: [] };
+}
+
+function evidenceAttempt(evidence, name, callback) {
+  try {
+    return callback();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    evidence.collectionErrors.push(`${name}: ${message}`);
+    console.error(`Android certification evidence collection failed (${name}): ${message}`);
+    return null;
+  }
+}
+
+function collectCertificationEvidence(serial, evidence = emptyCertificationEvidence()) {
+  const logcat = evidenceAttempt(evidence, 'logcat', () => {
+    const output = commandOutput(adb, ['-s', serial, 'logcat', '-d', '-v', 'threadtime']);
+    writeFileSync(join(resultsRoot, 'logcat-release.txt'), output);
+    return output;
+  });
+  if (logcat !== null) {
+    evidence.logcat = 'test-results/android-native-certification/logcat-release.txt';
+    evidence.failureMarkers = detectAndroidRuntimeFailures(logcat, { packageName: manifest.app.bundleIdentifier });
+  }
+  evidence.junit = evidenceAttempt(evidence, 'JUnit/report artifacts', collectJunitResults) ?? [];
+  evidence.nativeBuild = evidenceAttempt(evidence, 'APK artifacts', copyBuildArtifacts) ?? [];
+  evidence.screenshots = evidenceAttempt(evidence, 'screenshots', () => pullScreenshots(serial)) ?? [];
+  return evidence;
+}
+
+function failureArtifacts(evidence, gradleLog) {
+  return {
+    junit: evidence.junit,
+    nativeBuild: evidence.nativeBuild,
+    screenshots: evidence.screenshots,
+    logcat: evidence.logcat,
+    gradleLog: existsSync(gradleLog) ? artifactRelativePath(root, gradleLog) : null,
+    provenance: existsSync(join(resultsRoot, 'provenance.json')) ? 'test-results/android-native-certification/provenance.json' : null,
+  };
+}
+
+function evidenceErrorSummary(evidence) {
+  return evidence.collectionErrors.length ? ` Evidence collection incomplete: ${evidence.collectionErrors.join('; ')}` : '';
+}
+
 function stopStartedEmulators() {
   for (const child of startedEmulatorProcesses) {
     try { process.kill(-child.pid, 'SIGTERM'); } catch { /* The emulator may have exited with the test. */ }
@@ -269,6 +336,10 @@ function main() {
   const provenance = { schemaVersion: 1, candidate, project: manifest.app.project, productLane: manifest.app.productLane, generatedNative: 'pending', profile: profile.id, recordedAt: new Date().toISOString() };
   writeFileSync(join(resultsRoot, 'provenance.json'), `${JSON.stringify(provenance, null, 2)}\n`);
   let resolved;
+  let gradleStatus = null;
+  let gradleAttempted = false;
+  let certificationEvidence = emptyCertificationEvidence();
+  const gradleLog = join(resultsRoot, 'gradle-release.log');
   try {
     const npmCommand = process.env.npm_execpath ? process.execPath : 'npm';
     const npmArgs = process.env.npm_execpath
@@ -279,27 +350,24 @@ function main() {
     const generated = run(process.execPath, ['scripts/generate-android-ui-test-project.mjs'], 'GENERATE ANDROID INSTRUMENTATION TARGET');
     if (generated !== 0) throw new Error(`Android instrumentation target generation failed with exit ${generated}.`);
     if (!existsSync(join(androidRoot, 'app', 'build.gradle'))) throw new Error('Fresh CNG did not produce apps/reference/android/app/build.gradle.');
+    const gradleResources = configureCertificationGradleResources();
     const config = appConfig();
     resolved = resolveEmulator();
-    provenance.generatedNative = { applicationId: config.android?.package ?? manifest.app.bundleIdentifier, config, buildGradle: artifactRelativePath(root, join(androidRoot, 'app', 'build.gradle')), generatedAt: new Date().toISOString() };
+    provenance.generatedNative = { applicationId: config.android?.package ?? manifest.app.bundleIdentifier, config, buildGradle: artifactRelativePath(root, join(androidRoot, 'app', 'build.gradle')), gradleResources, generatedAt: new Date().toISOString() };
     provenance.resolvedEmulator = resolved;
     writeFileSync(join(resultsRoot, 'provenance.json'), `${JSON.stringify(provenance, null, 2)}\n`);
     waitForAdb(resolved.serial);
     run(adb, ['-s', resolved.serial, 'logcat', '-c'], 'CLEAR ANDROID LOGCAT');
     const { command: gradle, cwd: gradleCwd } = resolveAndroidGradleInvocation();
-    const gradleLog = join(resultsRoot, 'gradle-release.log');
-    const gradleStatus = run(gradle, [':app:connectedReleaseAndroidTest', '--no-daemon', '--stacktrace'], 'RUN ANDROID RELEASE INSTRUMENTATION', { cwd: gradleCwd, logFile: gradleLog, env: { ANDROID_SERIAL: resolved.serial } });
-    const logcat = commandOutput(adb, ['-s', resolved.serial, 'logcat', '-d', '-v', 'threadtime']);
-    writeFileSync(join(resultsRoot, 'logcat-release.txt'), logcat);
-    const failures = detectAndroidRuntimeFailures(logcat);
-    const junit = collectJunitResults();
-    const artifacts = copyBuildArtifacts();
-    const screenshots = pullScreenshots(resolved.serial);
-    if (gradleStatus !== 0) throw new Error(`Android instrumentation failed with exit ${gradleStatus}.`);
-    if (failures.length) throw new Error(`Android runtime diagnostics contain ${failures.length} crash/ANR/uncaught-error marker(s).`);
-    if (!junit.length) throw new Error('Android instrumentation produced no JUnit/report artifacts.');
-    if (!artifacts.some((file) => /app-release\.apk$/.test(file.path))) throw new Error('Android release APK artifact was not produced.');
-    const summary = { schemaVersion: 1, status: 'PASS', decisiveNativeRun: 'PASS', mode, candidate, changedFiles: candidate.changedFiles, productLane: manifest.app.productLane, renderedPixelImpact: 'NONE — certification infrastructure and source contracts only; no Product/reference pixels or visual baselines changed.', resolvedEmulator: resolved, artifacts: { junit, nativeBuild: artifacts, screenshots, logcat: 'test-results/android-native-certification/logcat-release.txt', gradleLog: 'test-results/android-native-certification/gradle-release.log', provenance: 'test-results/android-native-certification/provenance.json' }, boundaries: manifest.boundaries.map(({ id, automation, reason }) => ({ id, automation, reason })) };
+    gradleAttempted = true;
+    gradleStatus = run(gradle, [':app:connectedReleaseAndroidTest', '--no-daemon', '--stacktrace'], 'RUN ANDROID RELEASE INSTRUMENTATION', { cwd: gradleCwd, logFile: gradleLog, env: { ANDROID_SERIAL: resolved.serial } });
+    certificationEvidence = collectCertificationEvidence(resolved.serial, certificationEvidence);
+    if (gradleStatus !== 0) throw new Error(`Android instrumentation failed with exit ${gradleStatus}.${evidenceErrorSummary(certificationEvidence)}`);
+    if (!certificationEvidence.logcat) throw new Error(`Android instrumentation succeeded but required logcat evidence could not be collected.${evidenceErrorSummary(certificationEvidence)}`);
+    if (certificationEvidence.failureMarkers.length) throw new Error(`Android runtime diagnostics contain ${certificationEvidence.failureMarkers.length} target-application crash/ANR/uncaught-error marker(s).`);
+    if (!certificationEvidence.junit.length) throw new Error('Android instrumentation produced no JUnit/report artifacts.');
+    if (!certificationEvidence.nativeBuild.some((file) => /app-release\.apk$/.test(file.path))) throw new Error('Android release APK artifact was not produced.');
+    const summary = { schemaVersion: 1, status: 'PASS', decisiveNativeRun: 'PASS', mode, candidate, changedFiles: candidate.changedFiles, productLane: manifest.app.productLane, renderedPixelImpact: 'NONE — certification infrastructure and source contracts only; no Product/reference pixels or visual baselines changed.', resolvedEmulator: resolved, artifacts: failureArtifacts(certificationEvidence, gradleLog), boundaries: manifest.boundaries.map(({ id, automation, reason }) => ({ id, automation, reason })) };
     writeSummary(summary);
     console.log(`ANDROID NATIVE CERTIFICATION PASSED: ${summary.artifacts.junit.length} test/report artifacts, ${summary.artifacts.screenshots.length} screenshots.`);
   } catch (error) {
@@ -307,11 +375,12 @@ function main() {
       blocked(error.message, { generatedCngAttempted: true });
       return;
     }
-    const logcat = resolved ? spawnSync(adb, ['-s', resolved.serial, 'logcat', '-d', '-v', 'threadtime'], { cwd: root, encoding: 'utf8' }).stdout : '';
-    if (resolved) writeFileSync(join(resultsRoot, 'logcat-release.txt'), logcat);
-    const failureMarkers = detectAndroidRuntimeFailures(logcat);
-    writeSummary({ schemaVersion: 1, status: 'FAIL', decisiveNativeRun: 'FAIL', mode, candidate, changedFiles: candidate.changedFiles, productLane: manifest.app.productLane, renderedPixelImpact: 'NONE — certification infrastructure and source contracts only; no Product/reference pixels or visual baselines changed.', evidenceRegistry: manifest.evidenceRegistry, resolvedEmulator: resolved ?? null, failure: error.message, failureMarkers, boundaries: manifest.boundaries.map(({ id, automation, reason }) => ({ id, automation, reason })) });
-    console.error(`ANDROID NATIVE CERTIFICATION FAILED: ${error.message}`);
+    if (resolved && !gradleAttempted && !certificationEvidence.logcat) certificationEvidence = collectCertificationEvidence(resolved.serial, certificationEvidence);
+    const primaryFailure = gradleStatus !== null && gradleStatus !== 0
+      ? `Android instrumentation failed with exit ${gradleStatus}.${evidenceErrorSummary(certificationEvidence)}`
+      : error.message;
+    writeSummary({ schemaVersion: 1, status: 'FAIL', decisiveNativeRun: 'FAIL', mode, candidate, changedFiles: candidate.changedFiles, productLane: manifest.app.productLane, renderedPixelImpact: 'NONE — certification infrastructure and source contracts only; no Product/reference pixels or visual baselines changed.', evidenceRegistry: manifest.evidenceRegistry, resolvedEmulator: resolved ?? null, failure: primaryFailure, failureMarkers: certificationEvidence.failureMarkers, artifacts: failureArtifacts(certificationEvidence, gradleLog), evidenceCollectionErrors: certificationEvidence.collectionErrors, boundaries: manifest.boundaries.map(({ id, automation, reason }) => ({ id, automation, reason })) });
+    console.error(`ANDROID NATIVE CERTIFICATION FAILED: ${primaryFailure}`);
     process.exitCode = 1;
   } finally {
     stopStartedEmulators();
