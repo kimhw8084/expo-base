@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Environment;
+import android.os.SystemClock;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.uiautomator.By;
@@ -29,6 +30,7 @@ import java.util.List;
 public final class ExpoBaseNativeAndroidTest {
   private static final String PACKAGE = "com.expobase.reference";
   private static final long WAIT_MS = 20_000L;
+  private static final long SEMANTIC_POLL_MS = 250L;
 
   private UiDevice device;
   private Context targetContext;
@@ -211,13 +213,30 @@ public final class ExpoBaseNativeAndroidTest {
   }
 
   private UiObject2 assertText(String value) {
-    UiObject2 object = device.wait(Until.findObject(By.textContains(value)), WAIT_MS);
+    UiObject2 object = findSemanticText(value);
     assertNotNull("Expected Android text was not rendered: " + value, object);
     return object;
   }
 
   private boolean hasText(String value) {
-    return device.findObject(By.textContains(value)) != null;
+    return device.findObject(By.textContains(value)) != null || device.findObject(By.descContains(value)) != null;
+  }
+
+  private UiObject2 findSemanticText(String value) {
+    long deadline = SystemClock.uptimeMillis() + WAIT_MS;
+    while (SystemClock.uptimeMillis() < deadline) {
+      UiObject2 object = waitForSemanticSelector(By.textContains(value), deadline);
+      if (object != null) return object;
+      object = waitForSemanticSelector(By.descContains(value), deadline);
+      if (object != null) return object;
+    }
+    return null;
+  }
+
+  private UiObject2 waitForSemanticSelector(BySelector selector, long deadline) {
+    long remaining = deadline - SystemClock.uptimeMillis();
+    if (remaining <= 0) return null;
+    return device.wait(Until.findObject(selector), Math.min(remaining, SEMANTIC_POLL_MS));
   }
 
   private void screenshot(String name) {

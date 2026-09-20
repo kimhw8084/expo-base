@@ -9,12 +9,13 @@ import { parseAdbDevices, parseGetprop, resolveAndroidProfile } from './resolve-
 const root = resolve(import.meta.dirname, '..');
 const manifest = JSON.parse(readFileSync(join(root, 'android.certification.json'), 'utf8'));
 const read = (file) => readFileSync(join(root, file), 'utf8');
+const androidSource = read('tests/native/android/ExpoBaseNativeAndroidTest.java');
 const workflow = read('.github/workflows/android-native-certification.yml');
 const runner = read('scripts/run-android-native-certification.mjs');
 
 const validFailures = validateAndroidCertification({
   manifest,
-  source: read('tests/native/android/ExpoBaseNativeAndroidTest.java'),
+  source: androidSource,
   generator: read('scripts/generate-android-ui-test-project.mjs'),
   resolver: read('scripts/resolve-android-emulator.mjs'),
   runner: read('scripts/run-android-native-certification.mjs'),
@@ -50,6 +51,16 @@ const gradleFailureCheck = runner.indexOf('if (gradleStatus !== 0)', gradleInvoc
 assert.ok(gradleInvocation >= 0 && evidenceCollection > gradleInvocation && gradleFailureCheck > evidenceCollection, 'Gradle status must be checked after best-effort evidence collection.');
 assert.ok(runner.includes('failureArtifacts(certificationEvidence, gradleLog)'), 'Failure summaries must retain collected JUnit/APK/screenshot/logcat evidence.');
 assert.ok(runner.includes('required logcat evidence could not be collected'), 'A successful Gradle run must fail closed when required logcat evidence is missing.');
+
+const androidTextHelper = androidSource.match(/private UiObject2 findSemanticText\(String value\) \{[\s\S]*?\n  \}/)?.[0] ?? '';
+const androidWaitHelper = androidSource.match(/private UiObject2 waitForSemanticSelector\(BySelector selector, long deadline\) \{[\s\S]*?\n  \}/)?.[0] ?? '';
+const androidTextAssertion = androidSource.match(/private UiObject2 assertText\(String value\) \{[\s\S]*?\n  \}/)?.[0] ?? '';
+assert.ok(androidTextHelper.includes('By.textContains(value)'), 'Android semantic text lookup must retain native text matching.');
+assert.ok(androidTextHelper.includes('By.descContains(value)'), 'Android semantic text lookup must fall back to content descriptions.');
+assert.ok(androidTextHelper.includes('SystemClock.uptimeMillis()') && androidWaitHelper.includes('Until.findObject') && androidWaitHelper.includes('Math.min(remaining, SEMANTIC_POLL_MS)'), 'Android semantic text lookup must use bounded waits.');
+assert.ok(androidTextAssertion.includes('findSemanticText(value)'), 'Android text assertions must use the shared semantic lookup.');
+assert.ok(!androidTextAssertion.includes('By.textContains'), 'Android text assertions must not regress to text-only selection.');
+assert.ok(androidTextAssertion.includes('assertNotNull("Expected Android text was not rendered: " + value, object)'), 'Android text assertions must fail when neither semantic representation exists.');
 
 const devices = parseAdbDevices(`List of devices attached
 emulator-5554 device product:sdk_gphone_x86_64 model:Pixel_7 transport_id:1
@@ -95,7 +106,7 @@ const machineBoundManifest = structuredClone(manifest);
 machineBoundManifest.profiles[0].serial = 'emulator-5554';
 const machineBoundFailures = validateAndroidCertification({
   manifest: machineBoundManifest,
-  source: read('tests/native/android/ExpoBaseNativeAndroidTest.java'),
+  source: androidSource,
   generator: read('scripts/generate-android-ui-test-project.mjs'),
   resolver: read('scripts/resolve-android-emulator.mjs'),
   runner: read('scripts/run-android-native-certification.mjs'),
