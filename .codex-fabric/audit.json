@@ -1,0 +1,480 @@
+{
+  "accepted_at": "2026-09-20T13:58:55Z",
+  "changed_files": [
+    {
+      "additions": 51,
+      "deletions": 0,
+      "path": ".github/workflows/android-native-certification.yml",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": ".gitignore",
+      "status": "M"
+    },
+    {
+      "additions": 69,
+      "deletions": 0,
+      "path": "android.certification.json",
+      "status": "A"
+    },
+    {
+      "additions": 42,
+      "deletions": 0,
+      "path": "docs/ANDROID_NATIVE_CERTIFICATION.md",
+      "status": "A"
+    },
+    {
+      "additions": 5,
+      "deletions": 0,
+      "path": "package.json",
+      "status": "M"
+    },
+    {
+      "additions": 63,
+      "deletions": 0,
+      "path": "scripts/android-certification-lib.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 103,
+      "deletions": 0,
+      "path": "scripts/check-android-certification-manifest.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 11,
+      "deletions": 0,
+      "path": "scripts/check-native-ui-selector-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 46,
+      "deletions": 0,
+      "path": "scripts/generate-android-ui-test-project.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 60,
+      "deletions": 0,
+      "path": "scripts/resolve-android-emulator.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 390,
+      "deletions": 0,
+      "path": "scripts/run-android-native-certification.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 117,
+      "deletions": 0,
+      "path": "scripts/test-android-certification.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 250,
+      "deletions": 0,
+      "path": "tests/native/android/ExpoBaseNativeAndroidTest.java",
+      "status": "A"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"rtk rg --files packages | rtk rg 'PageHeader|Text\\\\.tsx|Text\\\\.ts|Page\\\\.tsx' | head -120\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -l \"function Text|const Text|export .*Text\" packages/components packages/primitives packages/layouts | head -60'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,140p' apps/reference/app/index.tsx && rtk sed -n '1,180p' apps/reference/app/ReferenceCopy.tsx 2>/dev/null || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,240p' packages/layouts/src/PageHeader.tsx && rtk sed -n '1,260p' packages/primitives/src/Text.tsx\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -n -C 6 \"accessibilityRole|role=|accessibilityLabel|testID\" packages/layouts/src packages/primitives/src | head -320'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,180p' scripts/check-android-certification-manifest.mjs && rtk sed -n '1,260p' android.certification.json && rtk sed -n '1,220p' docs/ANDROID_NATIVE_CERTIFICATION.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git log --oneline --decorate --max-count=8 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4 && rtk git show --stat --oneline --decorate 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4 && rtk git show --format=fuller --no-ext-diff 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4 -- tests/native/android/ExpoBaseNativeAndroidTest.java scripts/test-android-certification.mjs scripts/check-native-ui-selector-contracts.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,150p' scripts/check-android-certification-manifest.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"By\\\\.textContains|By\\\\.descContains|SystemClock|Until\\\\.findObject|findSemantic\\\" tests scripts --glob '*.java' --glob '*.mjs'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '120,175p' package.json && rtk rg -n 'test:android-certification|check:android-certification|check:ios-certification|workflow|certification' package.json scripts .github/workflows --glob '*.mjs' --glob '*.json' --glob '*.yml' | head -260\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git merge-base --is-ancestor 743a8bbf8273f663503dc8dd398135806dccb386 HEAD; echo authoritative_base_ancestor:$?; rtk git merge-base --is-ancestor 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4 HEAD; echo r4_ancestor:$?'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --name-only && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git diff --stat && rtk git diff -- tests/native/android/ExpoBaseNativeAndroidTest.java scripts/check-native-ui-selector-contracts.mjs scripts/test-android-certification.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node --check scripts/check-native-ui-selector-contracts.mjs && rtk node --check scripts/test-android-certification.mjs && rtk sed -n '1,30p' tests/native/android/ExpoBaseNativeAndroidTest.java && rtk sed -n '200,260p' tests/native/android/ExpoBaseNativeAndroidTest.java\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:ios-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:native-ui-contracts'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:android-certification'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk node --check scripts/check-native-ui-selector-contracts.mjs && rtk node --check scripts/test-android-certification.mjs && rtk npm run check:native-ui-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:android-certification && rtk npm run check:ios-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk printenv ANDROID_HOME ANDROID_SDK_ROOT ANDROID_SERIAL JAVA_HOME CI 2>/dev/null || true'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,180p' scripts/check-node-version.mjs && rtk sed -n '1,100p' package.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk node --version && rtk command -v adb || true && rtk command -v emulator || true && rtk command -v sdkmanager || true && rtk adb devices -l 2>&1 || true'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git diff --name-status && rtk git log --oneline --decorate --max-count=8'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,130p' scripts/run-android-native-certification.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git show-ref --verify refs/remotes/origin/main && rtk git rev-parse refs/remotes/origin/main''^{tree} && rtk git show-ref --verify refs/remotes/origin/codex-fabric/evidence/expo-base/chg149-android-native-certification-r4-ci-runtime-stability && rtk git rev-parse refs/remotes/origin/codex-fabric/evidence/expo-base/chg149-android-native-certification-r4-ci-runtime-stability''^{tree} && rtk git merge-base --is-ancestor 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4 HEAD; echo r4_ancestor:$?'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:workflow-hardening-contracts 2>&1 || true'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:certification-contracts && rtk npm run test:certification-matrix'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -C 8 \\\"unavailableHostTools|Node|preflight|blocked\\\\(\\\" scripts/run-android-native-certification.mjs | head -220\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run android:verify'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,180p' test-results/android-native-certification/summary-release.json 2>/dev/null || true\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk node --check scripts/check-native-ui-selector-contracts.mjs && rtk node --check scripts/test-android-certification.mjs && rtk git diff --check && rtk git diff --stat && rtk git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:certification-contracts && rtk npm run test:certification-matrix && rtk npm run check:workflow-hardening-contracts'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:android-certification && rtk npm run test:android-certification && rtk npm run check:native-ui-contracts && rtk npm run check:ios-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add -- scripts/check-native-ui-selector-contracts.mjs scripts/test-android-certification.mjs tests/native/android/ExpoBaseNativeAndroidTest.java && rtk git diff --cached --check && rtk git commit -m \"test(android): honor semantic landmark selectors\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git diff --check && rtk git status --short --branch && rtk git log -1 --format='%H%n%T%n%P%n%s' && rtk git diff --stat 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4..HEAD && rtk git diff --name-status 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4..HEAD\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:certification-contracts && rtk npm run test:certification-matrix && rtk npm run check:workflow-hardening-contracts'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run android:verify'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:android-certification && rtk npm run test:android-certification && rtk npm run check:native-ui-contracts && rtk npm run check:ios-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,220p' test-results/android-native-certification/summary-release.json | head -80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,280p' scripts/test-certification-matrix.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:workflow-hardening-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:certification-matrix'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -la node_modules/.bin/tsc 2>/dev/null || true && rtk git status --short --ignored | head -80'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node -e \\\"const {spawnSync}=require('node:child_process'); const r=spawnSync('tsc',['-p','packages/testing/tsconfig.json','--noEmit','false','--outDir','.tmp-certification-debug'],{encoding:'utf8'}); console.log(JSON.stringify({status:r.status,error:r.error?.message,stdout:r.stdout,stderr:r.stderr}))\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run typecheck:testing'",
+      "exit_code": 127,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm exec -- tsc --version'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree} && rtk git rev-parse HEAD''^ && rtk git rev-parse refs/remotes/origin/main && rtk git rev-parse refs/remotes/origin/main''^{tree} && rtk git rev-parse refs/remotes/origin/codex-fabric/evidence/expo-base/chg149-android-native-certification-r4-ci-runtime-stability && rtk git rev-parse refs/remotes/origin/codex-fabric/evidence/expo-base/chg149-android-native-certification-r4-ci-runtime-stability''^{tree} && rtk git show -s --format='\"'%H%n%T%n%P%n%s' refs/remotes/origin/codex-fabric/evidence/expo-base/chg149-android-native-certification-r4-ci-runtime-stability && rtk git merge-base --is-ancestor 743a8bbf8273f663503dc8dd398135806dccb386 HEAD; echo authoritative_base_ancestor:\"'$?; rtk git merge-base --is-ancestor 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4 HEAD; echo r4_predecessor_ancestor:$?; rtk git merge-base --is-ancestor 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4 fad5636dcf59b2be5e85d8f07db99ac7522595ee; echo r4_evidence_carries_candidate:$?; rtk git diff --name-only 8ae5efd84c3fb5a6ae7b9860a15725199ea034c4..HEAD; rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.155.1",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 152,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 93.84,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 1541120,
+      "fresh_input_tokens": 101234,
+      "input_tokens": 1642354,
+      "non_reasoning_output_tokens": 11414,
+      "output_tokens": 22425,
+      "reasoning_output_tokens": 11011,
+      "total_processed_tokens": 1664779
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "89ed600398db4088582f5160deeddcc27c7cba4a",
+      "subject": "test(android): honor semantic landmark selectors"
+    },
+    {
+      "sha": "8ae5efd84c3fb5a6ae7b9860a15725199ea034c4",
+      "subject": "fix: stabilize Android native certification runtime lane"
+    },
+    {
+      "sha": "91de03219b80fbf1cdcb29cc84978ee42f0b50f0",
+      "subject": "fix: run Android certification Gradle wrapper in project"
+    },
+    {
+      "sha": "8adfc98b4af2b2d1de6bf9c6061f052f4a52ed74",
+      "subject": "fix: make Android certification checkout history-complete"
+    },
+    {
+      "sha": "8ecf109606b9457f3283ff0108e0a1de0da22f47",
+      "subject": "feat: add Android native certification lane"
+    }
+  ],
+  "diff": {
+    "additions": 1209,
+    "changed_files": 13,
+    "commit_count": 5,
+    "deletions": 0
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 3,
+    "items": [
+      {
+        "bytes": 7565,
+        "path": "android.certification.json",
+        "sha256": "4dce1e2b7d7cfc91c8e227f0755ca63e2123b8be870b7fb2b454a2f584d7654e"
+      },
+      {
+        "bytes": 2695,
+        "path": "docs/ANDROID_NATIVE_CERTIFICATION.md",
+        "sha256": "0a6ab17d3dc6db9442fb9e0601f5895e4df7982c2efe1b5ce1bf7d19f639f907"
+      },
+      {
+        "bytes": 16562,
+        "path": "package.json",
+        "sha256": "0e27d7ade802dbb32ae4c26a13ced259fbbac1a6da6428e4c4a7581f7bff24d1"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.3-resume-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.3-resume-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-20T14:06:25Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "branch": "codex/expo-base-chg149-android-native-certification-r5-home-landmark-selector",
+    "detached_verify": false,
+    "head_sha": "89ed600398db4088582f5160deeddcc27c7cba4a",
+    "remote_exact_head": true,
+    "remote_head_sha": "89ed600398db4088582f5160deeddcc27c7cba4a",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "work_branch": "codex/expo-base-chg149-android-native-certification-r5-home-landmark-selector",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-63db3355b07407aaa6a4f500",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg149-android-native-certification-r5-home-landmark-selector",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg149-android-native-certification-r5-home-landmark-selector"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.3-resume-candidate",
+    "policy_sha256": "a642c9f63bab2cb555704bdb0b9d1f28222591f133f934c1d0f93cc5a25ab8a1",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg149-android-native-certification-r5-home-landmark-selector",
+  "schema_version": 1,
+  "started_at": "2026-09-20T13:58:56Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 449,
+    "queue_seconds": 1,
+    "total_seconds": 450
+  },
+  "transport": {
+    "bytes": 6949,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 6562,
+    "prompt_sha256": "a910318ef04c64e2286bf3e3dfd50b863261e24b513525d30785f68762211c5c",
+    "sha256": "63db3355b07407aaa6a4f5007327378555bc7b5507dda74558ec6e810dc6f8bc"
+  }
+}
