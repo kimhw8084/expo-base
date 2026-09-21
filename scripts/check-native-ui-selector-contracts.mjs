@@ -15,6 +15,12 @@ const swift = [
   readFileSync(join(root, 'tests', 'native', 'ios', 'NativeRobots.swift'), 'utf8'),
 ].join('\n');
 const android = readFileSync(join(root, 'tests', 'native', 'android', 'ExpoBaseNativeAndroidTest.java'), 'utf8');
+const identityMatcherStart = android.indexOf('private Matcher<View> testIdMatcher');
+const actionReadyMatcherStart = android.indexOf('private Matcher<View> actionableTestIdMatcher');
+const testIdIdentity = android.slice(identityMatcherStart, actionReadyMatcherStart);
+const testIdHelperStart = android.indexOf('private ViewInteraction scrollToTestId');
+const accessibleHelperStart = android.indexOf('private void clickAccessibleTarget');
+const testIdReachabilityHelper = android.slice(testIdHelperStart, accessibleHelperStart);
 const appOwnedTestIds = [
   'home-adaptive-section-header',
   'home-metric-group',
@@ -63,9 +69,11 @@ const checks = [
   ['Android launch still requires the stable home testID', android.includes('launchReleaseProduct') && android.includes('assertTestIdVisible("home-adaptive-section-header"')],
   ['Android home scroll still requires the stable metric-group testID', android.includes('touchScrollReachesHomeContent') && android.includes('assertTestIdVisible("home-metric-group"')],
   ['Android decisive target helpers are Espresso-owned', android.includes('assertTestIdVisible') && android.includes('clickTestId') && android.includes('replaceTextTestId') && android.includes('assertTestIdTextContains')],
-  ['Android testID matching excludes hidden duplicate views', android.includes('allOf(testIdMatcher(id), isDisplayed(), isEnabled())')],
-  ['Android testID reachability scrolls the owning React Native surface', android.includes('hasDescendant(testIdMatcher(id))') && android.includes('isAssignableFrom(ScrollView.class)') && android.includes('perform(swipeUp())')],
+  ['Android testID identity excludes hidden zero-size duplicates without screen-state matching', testIdIdentity.includes('view.isShown()') && testIdIdentity.includes('getWidth() > 0') && testIdIdentity.includes('getHeight() > 0') && !testIdIdentity.includes('isDisplayed()') && !testIdIdentity.includes('isEnabled()')],
+  ['Android testID action readiness is asserted separately after discovery', android.includes('allOf(testIdMatcher(id), isDisplayed(), isEnabled())') && android.includes('target.check(matches(actionableTestIdMatcher(id)))')],
+  ['Android testID reachability requests the exact target rectangle through its React Native ScrollView', testIdReachabilityHelper.includes('onView(testIdMatcher(id))') && android.includes('requestRectangleOnScreen') && android.includes('instanceof ScrollView')],
   ['Android testID reachability has bounded no-progress failure', android.includes('MAX_NO_PROGRESS_ATTEMPTS') && android.includes('noProgressAttempts')],
+  ['Android testID reachability has no generic coordinate-swipe fallback', !testIdReachabilityHelper.includes('swipeUp') && !testIdReachabilityHelper.includes('device.swipe(')],
   ['decisive Android route assertions avoid display-text helpers', !android.includes('assertText(') && !android.includes('findSemanticText(') && !android.includes('hasText(')],
   ['Android testID selectors fail closed without text or resource fallback', android.includes('Missing Android testID target') && !android.includes('By.res(') && !android.includes('Missing Android resource-id target') && !android.includes('clickTarget(')],
   ['Android convenience fallback remains separate from decisive testIDs', android.includes('clickAccessibleTarget') && android.includes('scrollToAccessibleTarget') && android.includes('By.descContains(description)') && android.includes('By.textContains(text)')],

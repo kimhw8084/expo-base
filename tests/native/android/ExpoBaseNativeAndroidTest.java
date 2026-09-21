@@ -5,12 +5,10 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.action.ViewActions.swipeUp;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static org.hamcrest.Matchers.allOf;
 import static androidx.test.espresso.matcher.ViewMatchers.hasFocus;
-import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
@@ -26,6 +24,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Environment;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.ScrollView;
 
 import androidx.test.espresso.AmbiguousViewMatcherException;
@@ -43,7 +42,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -235,9 +236,18 @@ public final class ExpoBaseNativeAndroidTest {
     Throwable lastFailure = null;
     int noProgressAttempts = 0;
     for (int attempt = 0; attempt < MAX_SCROLL_ATTEMPTS; attempt += 1) {
+      ViewInteraction target;
       try {
-        ViewInteraction target = onView(actionableTestIdMatcher(id));
-        target.check(matches(isDisplayed()));
+        target = onView(testIdMatcher(id));
+      } catch (AmbiguousViewMatcherException failure) {
+        throw failure;
+      } catch (RuntimeException failure) {
+        lastFailure = failure;
+        device.waitForIdle(POLL_MS);
+        continue;
+      }
+      try {
+        target.check(matches(actionableTestIdMatcher(id)));
         return target;
       } catch (AmbiguousViewMatcherException failure) {
         throw failure;
@@ -246,7 +256,7 @@ public final class ExpoBaseNativeAndroidTest {
         device.waitForIdle(POLL_MS);
         if (attempt + 1 < MAX_SCROLL_ATTEMPTS) {
           try {
-            if (scrollReactNativeSurface(id)) {
+            if (requestTestIdRectangleOnScreen(id)) {
               noProgressAttempts = 0;
             } else {
               noProgressAttempts += 1;
@@ -261,49 +271,68 @@ public final class ExpoBaseNativeAndroidTest {
         }
       }
     }
-    AssertionError failure = new AssertionError("Missing Android testID target: " + id + " / " + description);
+    AssertionError failure = new AssertionError("Missing Android testID target or action-ready state: " + id + " / " + description);
     if (lastFailure != null) failure.initCause(lastFailure);
     throw failure;
   }
 
   private Matcher<View> testIdMatcher(String id) {
-    return withTagValue(is((Object) id));
+    return allOf(
+        withTagValue(is((Object) id)),
+        new TypeSafeMatcher<View>() {
+          @Override
+          protected boolean matchesSafely(View view) {
+            return view.isShown()
+                && view.getAlpha() > 0f
+                && view.getWidth() > 0
+                && view.getHeight() > 0;
+          }
+
+          @Override
+          public void describeTo(Description description) {
+            description.appendText("an active positive-size React Native testID view");
+          }
+        });
   }
 
   private Matcher<View> actionableTestIdMatcher(String id) {
     return allOf(testIdMatcher(id), isDisplayed(), isEnabled());
   }
 
-  private Matcher<View> scrollSurfaceMatcher(String id) {
-    return allOf(isAssignableFrom(ScrollView.class), isDisplayed(), hasDescendant(testIdMatcher(id)));
-  }
-
-  private boolean scrollReactNativeSurface(String id) {
-    int before = scrollPosition(id);
-    onView(scrollSurfaceMatcher(id)).perform(swipeUp());
-    int after = scrollPosition(id);
-    return after > before;
-  }
-
-  private int scrollPosition(String id) {
-    final int[] position = { Integer.MIN_VALUE };
-    onView(scrollSurfaceMatcher(id)).perform(new ViewAction() {
+  private boolean requestTestIdRectangleOnScreen(String id) {
+    final boolean[] requested = { false };
+    onView(testIdMatcher(id)).perform(new ViewAction() {
       @Override
       public Matcher<View> getConstraints() {
-        return isAssignableFrom(ScrollView.class);
+        return isAssignableFrom(View.class);
       }
 
       @Override
       public String getDescription() {
-        return "read the React Native ScrollView position";
+        return "request the exact testID rectangle on screen through its React Native ScrollView";
       }
 
       @Override
       public void perform(UiController controller, View view) {
-        position[0] = ((ScrollView) view).getScrollY();
+        if (!hasReactNativeScrollSurface(view)) {
+          throw new IllegalStateException("Android testID target is not owned by a React Native ScrollView.");
+        }
+        requested[0] = view.requestRectangleOnScreen(new Rect(0, 0, view.getWidth(), view.getHeight()), false);
+        controller.loopMainThreadUntilIdle();
       }
     });
-    return position[0];
+    device.waitForIdle(POLL_MS);
+    return requested[0];
+  }
+
+  private boolean hasReactNativeScrollSurface(View view) {
+    if (view instanceof ScrollView) return true;
+    ViewParent parent = view.getParent();
+    while (parent != null) {
+      if (parent instanceof ScrollView) return true;
+      parent = parent.getParent();
+    }
+    return false;
   }
 
   private void clickAccessibleTarget(String description, String text) {
