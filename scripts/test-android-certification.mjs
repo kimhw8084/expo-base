@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { detectAndroidRuntimeFailures } from './android-certification-lib.mjs';
+import { detectAndroidRuntimeFailures, primaryAndroidCertificationFailure } from './android-certification-lib.mjs';
 import { validateAndroidCertification } from './check-android-certification-manifest.mjs';
 import { certificationGradleJvmArgs, resolveAndroidGradleInvocation, withCertificationGradleJvmArgs } from './run-android-native-certification.mjs';
 import { parseAdbDevices, parseGetprop, resolveAndroidProfile } from './resolve-android-emulator.mjs';
@@ -67,6 +67,7 @@ const gradleFailureCheck = runner.indexOf('if (gradleStatus !== 0)', gradleInvoc
 assert.ok(gradleInvocation >= 0 && evidenceCollection > gradleInvocation && gradleFailureCheck > evidenceCollection, 'Gradle status must be checked after best-effort evidence collection.');
 assert.ok(runner.includes('failureArtifacts(certificationEvidence, gradleLog)'), 'Failure summaries must retain collected JUnit/APK/screenshot/logcat evidence.');
 assert.ok(runner.includes('required logcat evidence could not be collected'), 'A successful Gradle run must fail closed when required logcat evidence is missing.');
+assert.ok(runner.includes('primaryAndroidCertificationFailure') && runner.includes('evidenceCollectionErrors') && runner.includes('if (result.status !== 0) throw new Error'), 'Evidence collection failures must remain separate from the primary instrumentation result.');
 
 const appOwnedTestIds = [
   'home-adaptive-section-header',
@@ -111,9 +112,18 @@ assert.ok(androidSource.includes('assertTestIdVisible("home-metric-group"'), 'An
 assert.ok(appOwnedTestIds.every((id) => androidSource.includes(id)), 'Every decisive app-owned Android target must retain its existing testID.');
 assert.ok(!androidSource.includes('assertText(') && !androidSource.includes('findSemanticText(') && !androidSource.includes('hasText('), 'Decisive Android route assertions must not use generic display-text helpers.');
 assert.ok(androidSource.includes('assertTestIdVisible') && androidSource.includes('clickTestId') && androidSource.includes('replaceTextTestId') && androidSource.includes('assertTestIdTextContains'), 'Decisive Android interactions must use Espresso testID helpers.');
+assert.ok(androidSource.includes('allOf(testIdMatcher(id), isDisplayed(), isEnabled())'), 'Decisive testID matching must exclude hidden and disabled duplicate views.');
+assert.ok(androidSource.includes('hasDescendant(testIdMatcher(id))') && androidSource.includes('isAssignableFrom(ScrollView.class)') && androidSource.includes('perform(swipeUp())'), 'Off-screen testID reachability must scroll the owning React Native ScrollView.');
+assert.ok(androidSource.includes('MAX_NO_PROGRESS_ATTEMPTS') && androidSource.includes('noProgressAttempts'), 'TestID reachability must fail closed on bounded no-progress attempts.');
 assert.ok(!androidSource.includes('By.res(') && !androidSource.includes('Missing Android resource-id target') && !androidSource.includes('scrollToStableResource'), 'React Native testIDs must not return to Android resource-id lookup.');
 assert.ok(androidSource.includes('clickAccessibleTarget') && androidSource.includes('scrollToAccessibleTarget') && androidSource.includes('By.descContains(description)') && androidSource.includes('By.textContains(text)'), 'Only id-less convenience interactions may use the text/content-description fallback.');
+assert.ok(androidSource.includes('By.scrollable(true)') && androidSource.includes('Direction.DOWN') && androidSource.includes('surface.scroll('), 'Id-less accessibility reachability must scroll a discovered native scroll surface.');
 assert.ok(androidSource.includes('device.setOrientationLeft()') && androidSource.includes('device.pressBack()') && androidSource.includes('device.swipe(') && androidSource.includes('device.takeScreenshot('), 'UI Automator must remain for device/system behavior and evidence.');
+const touchScenarioStart = androidSource.indexOf('public void touchScrollReachesHomeContent');
+const touchScenarioEnd = androidSource.indexOf('public void orientationRoundTripPreservesHome');
+const touchScenario = androidSource.slice(touchScenarioStart, touchScenarioEnd);
+const helperStart = androidSource.indexOf('private ViewInteraction scrollToTestId');
+assert.ok(touchScenario.includes('device.swipe(') && !androidSource.slice(helperStart).includes('device.swipe('), 'Coordinate swipes must remain limited to the explicit touch certification scenario.');
 assert.ok(formsSource.includes('testID="adapter-form-error-summary"') && androidSource.includes('assertTestIdVisible("adapter-form-error-summary"') && androidSource.includes('assertTestIdVisible("demo-email-error"') && androidSource.includes('replaceTextTestId("demo-name"') && !androidSource.includes('Enter your email.'), 'Form input and validation must use stable testID ownership.');
 assert.ok(overlaysSource.includes('testID="overlay-dialog-trigger"') && overlaysSource.includes('testID="overlay-bottom-sheet-trigger"') && overlaysSource.includes('testID="overlay-dialog-review-action"'), 'Overlay reference controls must expose stable selectors.');
 assert.ok(androidSource.includes('assertTestIdVisible("card-action-menu"') && androidSource.includes('assertTestIdVisible("bottom-sheet-panel"') && androidSource.includes('assertTestIdAbsent("overlay-dialog-review-action"') && androidSource.includes('assertTestIdAbsent("bottom-sheet-panel"') && androidSource.includes('doesNotExist()') && !androidSource.includes('Until.gone'), 'Overlay lifecycle and dismissal must fail closed on testID presence/disappearance.');
@@ -161,6 +171,16 @@ assert.equal(detectAndroidRuntimeFailures([
 assert.equal(detectAndroidRuntimeFailures('E com.expobase.reference: uncaught exception in release runtime').length, 1);
 assert.equal(detectAndroidRuntimeFailures('E Instrumentation: instrumentation failed: target crashed').length, 1);
 assert.deepEqual(detectAndroidRuntimeFailures('I ExpoBase: clean release run'), []);
+assert.equal(
+  primaryAndroidCertificationFailure({ gradleStatus: 17, fallbackFailure: 'secondary failure', evidenceCollectionErrors: ['logcat: adb unavailable'] }),
+  'Android instrumentation failed with exit 17. Evidence collection incomplete: logcat: adb unavailable',
+  'A Gradle/instrumentation failure must remain primary when evidence collection also fails.',
+);
+assert.equal(
+  primaryAndroidCertificationFailure({ gradleStatus: 0, fallbackFailure: 'required logcat evidence could not be collected.', evidenceCollectionErrors: ['logcat: adb unavailable'] }),
+  'required logcat evidence could not be collected. Evidence collection incomplete: logcat: adb unavailable',
+  'A successful Gradle run must still fail closed when required evidence is missing.',
+);
 
 const machineBoundManifest = structuredClone(manifest);
 machineBoundManifest.profiles[0].serial = 'emulator-5554';

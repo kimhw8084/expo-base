@@ -61,3 +61,14 @@ export function artifactRelativePath(root, file) {
   const normalizedRoot = root.endsWith('/') ? root : `${root}/`;
   return file.startsWith(normalizedRoot) ? file.slice(normalizedRoot.length) : file;
 }
+
+export function formatAndroidEvidenceCollectionErrors(errors = []) {
+  return errors.length ? ` Evidence collection incomplete: ${errors.join('; ')}` : '';
+}
+
+export function primaryAndroidCertificationFailure({ gradleStatus, fallbackFailure, evidenceCollectionErrors = [] }) {
+  const evidenceSummary = formatAndroidEvidenceCollectionErrors(evidenceCollectionErrors);
+  return gradleStatus !== null && gradleStatus !== 0
+    ? `Android instrumentation failed with exit ${gradleStatus}.${evidenceSummary}`
+    : `${fallbackFailure}${evidenceSummary}`;
+}

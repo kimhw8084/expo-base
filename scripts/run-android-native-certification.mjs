@@ -3,7 +3,7 @@ import { closeSync, copyFileSync, existsSync, mkdirSync, openSync, readFileSync,
 import { spawn, spawnSync } from 'node:child_process';
 import { basename, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { artifactRelativePath, detectAndroidRuntimeFailures, isCertificationReleaseMode } from './android-certification-lib.mjs';
+import { artifactRelativePath, detectAndroidRuntimeFailures, isCertificationReleaseMode, primaryAndroidCertificationFailure } from './android-certification-lib.mjs';
 import { androidTool, loadCertificationProfile, parseAdbDevices, parseGetprop, resolveAndroidProfile } from './resolve-android-emulator.mjs';
 
 const root = resolve(import.meta.dirname, '..');
@@ -255,7 +255,7 @@ function pullScreenshots(serial) {
   mkdirSync(destination, { recursive: true });
   const remote = `/sdcard/Android/data/${manifest.app.bundleIdentifier}/files/Pictures/expo-base-android-certification`;
   const result = spawnSync(adb, ['-s', serial, 'pull', remote, destination], { cwd: root, encoding: 'utf8' });
-  if (result.status !== 0) return [];
+  if (result.status !== 0) throw new Error(result.stderr || result.stdout || `adb pull exited with ${result.status ?? 'unknown status'}.`);
   return artifactFiles(destination).map((file) => relative(root, file));
 }
 
@@ -299,10 +299,6 @@ function failureArtifacts(evidence, gradleLog) {
     gradleLog: existsSync(gradleLog) ? artifactRelativePath(root, gradleLog) : null,
     provenance: existsSync(join(resultsRoot, 'provenance.json')) ? 'test-results/android-native-certification/provenance.json' : null,
   };
-}
-
-function evidenceErrorSummary(evidence) {
-  return evidence.collectionErrors.length ? ` Evidence collection incomplete: ${evidence.collectionErrors.join('; ')}` : '';
 }
 
 function stopStartedEmulators() {
@@ -362,8 +358,8 @@ function main() {
     gradleAttempted = true;
     gradleStatus = run(gradle, [':app:connectedReleaseAndroidTest', '--no-daemon', '--stacktrace'], 'RUN ANDROID RELEASE INSTRUMENTATION', { cwd: gradleCwd, logFile: gradleLog, env: { ANDROID_SERIAL: resolved.serial } });
     certificationEvidence = collectCertificationEvidence(resolved.serial, certificationEvidence);
-    if (gradleStatus !== 0) throw new Error(`Android instrumentation failed with exit ${gradleStatus}.${evidenceErrorSummary(certificationEvidence)}`);
-    if (!certificationEvidence.logcat) throw new Error(`Android instrumentation succeeded but required logcat evidence could not be collected.${evidenceErrorSummary(certificationEvidence)}`);
+    if (gradleStatus !== 0) throw new Error(`Android instrumentation failed with exit ${gradleStatus}.`);
+    if (!certificationEvidence.logcat) throw new Error('Android instrumentation succeeded but required logcat evidence could not be collected.');
     if (certificationEvidence.failureMarkers.length) throw new Error(`Android runtime diagnostics contain ${certificationEvidence.failureMarkers.length} target-application crash/ANR/uncaught-error marker(s).`);
     if (!certificationEvidence.junit.length) throw new Error('Android instrumentation produced no JUnit/report artifacts.');
     if (!certificationEvidence.nativeBuild.some((file) => /app-release\.apk$/.test(file.path))) throw new Error('Android release APK artifact was not produced.');
@@ -376,9 +372,7 @@ function main() {
       return;
     }
     if (resolved && !gradleAttempted && !certificationEvidence.logcat) certificationEvidence = collectCertificationEvidence(resolved.serial, certificationEvidence);
-    const primaryFailure = gradleStatus !== null && gradleStatus !== 0
-      ? `Android instrumentation failed with exit ${gradleStatus}.${evidenceErrorSummary(certificationEvidence)}`
-      : error.message;
+    const primaryFailure = primaryAndroidCertificationFailure({ gradleStatus, fallbackFailure: error.message, evidenceCollectionErrors: certificationEvidence.collectionErrors });
     writeSummary({ schemaVersion: 1, status: 'FAIL', decisiveNativeRun: 'FAIL', mode, candidate, changedFiles: candidate.changedFiles, productLane: manifest.app.productLane, renderedPixelImpact: 'NONE — certification infrastructure and source contracts only; no Product/reference pixels or visual baselines changed.', evidenceRegistry: manifest.evidenceRegistry, resolvedEmulator: resolved ?? null, failure: primaryFailure, failureMarkers: certificationEvidence.failureMarkers, artifacts: failureArtifacts(certificationEvidence, gradleLog), evidenceCollectionErrors: certificationEvidence.collectionErrors, boundaries: manifest.boundaries.map(({ id, automation, reason }) => ({ id, automation, reason })) });
     console.error(`ANDROID NATIVE CERTIFICATION FAILED: ${primaryFailure}`);
     process.exitCode = 1;
