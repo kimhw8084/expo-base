@@ -35,7 +35,7 @@ export default function GoldenPatternsReferenceScreen(){
 
 type RenderContext={actions:React.ReactNode;overlayOpen:boolean;setOverlayOpen:(open:boolean)=>void;name:string;setName:(value:string)=>void;copy:(fallback:string)=>string};
 function renderPattern(id:GoldenPatternId,ctx:RenderContext){
-  const common={eyebrow:ctx.copy(`GOLDEN PATTERN / ${id.toUpperCase()}`),actions:ctx.actions};
+  const common={eyebrow:ctx.copy(`GOLDEN PATTERN / ${id.toUpperCase()}`),actions:ctx.actions,testID:'golden-page-header-title'};
   const metric=<MetricGroup><Metric label="Tracked value" value="$8,420" trend="+14.2% YTD" trendTone="positive"/><Metric label="Annual fees" value="$1,215" trend="6 active products"/><Metric label="Upcoming value" value="$1,090" trend="3 benefits"/></MetricGroup>;
   const list=<Card><VStack gap="sm"><ListRow title="Venture X" subtitle="Capital One · Updated 4 min ago" leadingIcon="creditCard" trailing={<Badge label="Active" tone="positive"/>}/><ListRow title="Gold Card" subtitle="American Express · Review annual fee" leadingIcon="creditCard" trailing={<Badge label="Review" tone="warning"/>}/><ListRow title="Sapphire Preferred" subtitle="Chase · Travel category" leadingIcon="creditCard"/></VStack></Card>;
   switch(id){
