@@ -1,0 +1,558 @@
+{
+  "accepted_at": "2026-09-21T13:10:28Z",
+  "changed_files": [
+    {
+      "additions": 58,
+      "deletions": 0,
+      "path": ".github/workflows/android-native-certification.yml",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": ".gitignore",
+      "status": "M"
+    },
+    {
+      "additions": 69,
+      "deletions": 0,
+      "path": "android.certification.json",
+      "status": "A"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/analytics-showcase.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/finance-showcase.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/forms.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/golden.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/monitoring-showcase.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "apps/reference/app/overlays.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/server-state.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 42,
+      "deletions": 0,
+      "path": "docs/ANDROID_NATIVE_CERTIFICATION.md",
+      "status": "A"
+    },
+    {
+      "additions": 5,
+      "deletions": 0,
+      "path": "package.json",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 2,
+      "path": "packages/layouts/src/PageHeader.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "packages/patterns/src/PagePatterns.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 74,
+      "deletions": 0,
+      "path": "scripts/android-certification-lib.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 103,
+      "deletions": 0,
+      "path": "scripts/check-android-certification-manifest.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 64,
+      "deletions": 0,
+      "path": "scripts/check-native-ui-selector-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 49,
+      "deletions": 0,
+      "path": "scripts/generate-android-ui-test-project.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 60,
+      "deletions": 0,
+      "path": "scripts/resolve-android-emulator.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 384,
+      "deletions": 0,
+      "path": "scripts/run-android-native-certification.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 197,
+      "deletions": 0,
+      "path": "scripts/test-android-certification.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 394,
+      "deletions": 0,
+      "path": "tests/native/android/ExpoBaseNativeAndroidTest.java",
+      "status": "A"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"class UiObject2|enum Direction|boolean scroll\\\\(Direction\\\" ~/.gradle/caches ~/.m2 2>/dev/null | sed -n '1,100p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk find /Users/haewonkim/.gradle -type f -iname '*uiautomator*.jar' -o -iname 'monitor*.jar' 2>/dev/null | sed -n '1,80p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git diff --check && rtk git diff -- tests/native/android/ExpoBaseNativeAndroidTest.java | sed -n '1,320p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:native-ui-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node -e \\\"const p=require('./package.json'); console.log(JSON.stringify(p.scripts,null,2))\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk test -d apps/reference/android && rtk ls apps/reference/android 2>/dev/null | sed -n '1,40p' || true; rtk command -v java || true; rtk command -v adb || true; rtk printenv ANDROID_HOME; rtk printenv ANDROID_SDK_ROOT; rtk java -version 2>&1 | sed -n '1,10p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run preflight:certification'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:ios-certification && rtk npm run check:workflow-hardening-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk nl -ba packages/components/src/Chip.tsx | sed -n '1,120p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-architecture && rtk npm run check:workflow-hardening-contracts'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk node --check scripts/android-certification-lib.mjs && rtk node --check scripts/run-android-native-certification.mjs && rtk node --check scripts/test-android-certification.mjs && rtk node --check scripts/check-native-ui-selector-contracts.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-catalog && rtk npm run check:golden-patterns && rtk npm run check:certification-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node -e \\\"import('./scripts/android-certification-lib.mjs').then(({primaryAndroidCertificationFailure}) => console.log(primaryAndroidCertificationFailure({gradleStatus:7, fallbackFailure:'fallback', evidenceCollectionErrors:['logcat: denied']})))\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git diff --stat && rtk git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:native-ui-contracts && rtk npm run test:android-certification && rtk npm run check:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git diff -- scripts/android-certification-lib.mjs scripts/run-android-native-certification.mjs scripts/test-android-certification.mjs scripts/check-native-ui-selector-contracts.mjs | sed -n '1,360p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:native-ui-contracts && rtk npm run test:android-certification && rtk npm run check:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git add scripts/android-certification-lib.mjs scripts/check-native-ui-selector-contracts.mjs scripts/run-android-native-certification.mjs scripts/test-android-certification.mjs tests/native/android/ExpoBaseNativeAndroidTest.java && rtk git commit -m \"fix(android): scroll native certification targets deterministically\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --short --branch && rtk git show -s --format='%H%n%T%n%P%n%s' HEAD && rtk git merge-base --is-ancestor cf1772ed09e4200bd48e4cb9cd2f89433ff2ea31 HEAD; printf 'predecessor-ancestor=%s\\\\n' \"'$? && rtk git merge-base --is-ancestor 743a8bbf8273f663503dc8dd398135806dccb386 HEAD; printf '\"'base-ancestor=%s\\\\n' \"'$? && rtk git diff --name-only 743a8bbf8273f663503dc8dd398135806dccb386..HEAD && rtk git diff --stat cf1772ed09e4200bd48e4cb9cd2f89433ff2ea31..HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run android:verify; status=$?; printf '\"'COMMAND_EXIT=%s\\\\n' \\\"\"'$status\"; exit 0'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run android:verify; result_code=$?; printf '\"'COMMAND_EXIT=%s\\\\n' \\\"\"'$result_code\"; exit 0'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,240p' test-results/android-native-certification/summary-release.json && rtk git status --short --branch\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run runtime:verify'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run mobile:verify'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk node -v; rtk npm -v; rtk command -v adb || true; rtk command -v emulator || true; rtk command -v gradle || true; rtk command -v ./apps/reference/android/gradlew || true; rtk ls -d /Users/haewonkim/Library/Android/sdk 2>/dev/null || true; rtk ls -d /opt/android-sdk 2>/dev/null || true'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:generator'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:ios-certification && rtk npm run check:workflow-hardening-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run golden:verify'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sh -c 'command -v adb || true; command -v emulator || true; command -v java || true; command -v gradle || true; printf \\\"ANDROID_HOME=%s\\\\n\\\" \\\"\"'${ANDROID_HOME-}\"; printf \"ANDROID_SDK_ROOT=%s'\"\\\\n\\\" \\\"\"'${ANDROID_SDK_ROOT-}\"; test -d /Users/haewonkim/Library/Android/sdk && echo SDK_DIR_PRESENT || true'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git log -2 --oneline --decorate'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-architecture'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:golden-plus'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk nl -ba scripts/test-golden-plus.mjs | sed -n '1,260p'; rtk nl -ba scripts/test-generator.mjs | sed -n '1,120p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git diff --stat'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:native-ui-contracts && rtk npm run test:android-certification && rtk npm run check:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git add scripts/test-android-certification.mjs tests/native/android/ExpoBaseNativeAndroidTest.java && rtk git commit --amend --no-edit && rtk git status --short --branch && rtk git show -s --format='%H%n%T%n%P%n%s' HEAD\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run android:verify; result_code=$?; printf '\"'COMMAND_EXIT=%s\\\\n' \\\"\"'$result_code\"; exit 0'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node -e \\\"const s=require('./test-results/android-native-certification/summary-release.json'); console.log(JSON.stringify({status:s.status, decisiveNativeRun:s.decisiveNativeRun, reason:s.reason, candidate:s.candidate, authoritativeBase:s.authoritativeBase, renderedPixelImpact:s.renderedPixelImpact},null,2))\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git diff --check && rtk git status --short --branch && rtk git show -s --format='%H%n%T%n%P%n%s' HEAD && rtk git merge-base --is-ancestor cf1772ed09e4200bd48e4cb9cd2f89433ff2ea31 HEAD; printf 'predecessor-ancestor=%s\\\\n' \"'$?'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run typecheck'",
+      "exit_code": 127,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:ios-certification && rtk npm run check:workflow-hardening-contracts && rtk npm run check:golden-catalog && rtk npm run check:golden-patterns && rtk npm run check:certification-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -n \"actionableTestIdMatcher|scrollSurfaceMatcher|scrollReactNativeSurface|MAX_NO_PROGRESS|scrollAccessibleSurface|By.scrollable|primaryAndroidCertificationFailure|pullScreenshots|evidenceCollectionErrors\" tests/native/android/ExpoBaseNativeAndroidTest.java scripts/android-certification-lib.mjs scripts/run-android-native-certification.mjs scripts/test-android-certification.mjs scripts/check-native-ui-selector-contracts.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --stat cf1772ed09e4200bd48e4cb9cd2f89433ff2ea31..HEAD && rtk git diff --name-only cf1772ed09e4200bd48e4cb9cd2f89433ff2ea31..HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree} && rtk git rev-parse HEAD''^ && rtk git rev-parse cf1772ed09e4200bd48e4cb9cd2f89433ff2ea31''^{tree} && rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse origin/main && rtk git rev-parse 743a8bbf8273f663503dc8dd398135806dccb386'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.155.1",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 202,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 96.51,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 4719360,
+      "fresh_input_tokens": 170596,
+      "input_tokens": 4889956,
+      "non_reasoning_output_tokens": 16931,
+      "output_tokens": 41479,
+      "reasoning_output_tokens": 24548,
+      "total_processed_tokens": 4931435
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "f679a6a4a67b7b677798e66a60d038738bf1ba3b",
+      "subject": "fix(android): scroll native certification targets deterministically"
+    },
+    {
+      "sha": "cf1772ed09e4200bd48e4cb9cd2f89433ff2ea31",
+      "subject": "fix(android): import Espresso disappearance assertion correctly"
+    },
+    {
+      "sha": "d876eea443fee925a0ffc6c7947ca1e210046aa9",
+      "subject": "fix(android): select React Native testIDs through Espresso tags"
+    },
+    {
+      "sha": "d6dcf39a539bd402d97f2396d206530b2f9707e8",
+      "subject": "fix(ci): stabilize Android emulator post-boot setup"
+    },
+    {
+      "sha": "44ae9be600bd62017d3d9bb7ea0e1df137ef1b99",
+      "subject": "fix(android): use resource-id certification landmarks"
+    },
+    {
+      "sha": "d6c6fe4497578824838f5b422a24b0da108c96d5",
+      "subject": "fix(ci): extend Android native certification budget"
+    },
+    {
+      "sha": "89ed600398db4088582f5160deeddcc27c7cba4a",
+      "subject": "test(android): honor semantic landmark selectors"
+    },
+    {
+      "sha": "8ae5efd84c3fb5a6ae7b9860a15725199ea034c4",
+      "subject": "fix: stabilize Android native certification runtime lane"
+    },
+    {
+      "sha": "91de03219b80fbf1cdcb29cc84978ee42f0b50f0",
+      "subject": "fix: run Android certification Gradle wrapper in project"
+    },
+    {
+      "sha": "8adfc98b4af2b2d1de6bf9c6061f052f4a52ed74",
+      "subject": "fix: make Android certification checkout history-complete"
+    },
+    {
+      "sha": "8ecf109606b9457f3283ff0108e0a1de0da22f47",
+      "subject": "feat: add Android native certification lane"
+    }
+  ],
+  "diff": {
+    "additions": 1515,
+    "changed_files": 22,
+    "commit_count": 11,
+    "deletions": 12
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 3,
+    "items": [
+      {
+        "bytes": 7565,
+        "path": "android.certification.json",
+        "sha256": "4dce1e2b7d7cfc91c8e227f0755ca63e2123b8be870b7fb2b454a2f584d7654e"
+      },
+      {
+        "bytes": 2695,
+        "path": "docs/ANDROID_NATIVE_CERTIFICATION.md",
+        "sha256": "0a6ab17d3dc6db9442fb9e0601f5895e4df7982c2efe1b5ce1bf7d19f639f907"
+      },
+      {
+        "bytes": 16562,
+        "path": "package.json",
+        "sha256": "0e27d7ade802dbb32ae4c26a13ced259fbbac1a6da6428e4c4a7581f7bff24d1"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.4-quota-recovery-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.4-quota-recovery-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-21T13:37:13Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "branch": "codex/expo-base-chg149-android-native-certification-r11-native-scroll-selector",
+    "detached_verify": false,
+    "head_sha": "f679a6a4a67b7b677798e66a60d038738bf1ba3b",
+    "remote_exact_head": true,
+    "remote_head_sha": "f679a6a4a67b7b677798e66a60d038738bf1ba3b",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "work_branch": "codex/expo-base-chg149-android-native-certification-r11-native-scroll-selector",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-d2ba726e8aa5c0d1e5f40ca0",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg149-android-native-certification-r11-native-scroll-selector",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg149-android-native-certification-r11-native-scroll-selector"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.4-quota-recovery-candidate",
+    "policy_sha256": "a642c9f63bab2cb555704bdb0b9d1f28222591f133f934c1d0f93cc5a25ab8a1",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg149-android-native-certification-r11-native-scroll-selector",
+  "schema_version": 1,
+  "started_at": "2026-09-21T13:10:29Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 1604,
+    "queue_seconds": 1,
+    "total_seconds": 1605
+  },
+  "transport": {
+    "bytes": 8680,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 8291,
+    "prompt_sha256": "b5093bbb9d3c0e122494e44681a5f307a683be45c56109057e98c6bfd1dd867a",
+    "sha256": "d2ba726e8aa5c0d1e5f40ca04e8307df09a9b2d327e7e3e73508721dbbb2291d"
+  }
+}
