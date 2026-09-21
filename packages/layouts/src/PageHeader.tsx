@@ -9,15 +9,16 @@ export interface PageHeaderProps {
   eyebrow?: string;
   actions?: ReactNode;
   metadata?: ReactNode;
+  testID?: string;
 }
 
-export function PageHeader({ title, description, eyebrow, actions, metadata }: PageHeaderProps) {
+export function PageHeader({ title, description, eyebrow, actions, metadata, testID = 'page-header-title' }: PageHeaderProps) {
   return (
     <View style={styles.root}>
       <View style={styles.copy}>
         <VStack gap="xs">
           {eyebrow ? <Text variant="micro" tone="secondary">{eyebrow}</Text> : null}
-          <Text variant="h1">{title}</Text>
+          <Text variant="h1" testID={testID}>{title}</Text>
           {description ? <Text tone="secondary">{description}</Text> : null}
           {metadata ? <View style={styles.metadata}>{metadata}</View> : null}
         </VStack>
