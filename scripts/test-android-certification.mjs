@@ -105,6 +105,7 @@ assert.ok(pageHeaderSource.includes("testID = 'page-header-title'") && pageHeade
 assert.ok(pagePatternsSource.includes('testID?: string | undefined') && pagePatternsSource.includes('{ testID }'), 'Golden patterns must forward PageHeader selector ownership.');
 assert.ok(goldenSource.includes("testID:'golden-page-header-title'"), 'Golden Dashboard must receive stable PageHeader selector ownership.');
 assert.ok(androidGenerator.includes("androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'"), 'Generated Android instrumentation must include the aligned Espresso dependency.');
+assert.ok(androidSource.includes('import static org.hamcrest.Matchers.allOf;') && !androidSource.includes('import static androidx.test.espresso.matcher.ViewMatchers.allOf;'), 'Android allOf must import the Hamcrest matcher combinator.');
 assert.ok(androidSource.includes('import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;') && !androidSource.includes('import static androidx.test.espresso.matcher.ViewMatchers.doesNotExist;'), 'Android disappearance assertions must import doesNotExist from Espresso ViewAssertions.');
 assert.ok(androidSource.includes('withTagValue') && androidSource.includes('is((Object) id)') && androidSource.includes('testIdMatcher'), 'Android app-owned testIDs must match the ordinary React Native View tag.');
 assert.ok(androidSource.includes('launchReleaseProduct') && androidSource.includes('assertTestIdVisible("home-adaptive-section-header"'), 'Android launch must prove home through a stable testID landmark.');
