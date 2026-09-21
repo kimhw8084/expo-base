@@ -1,6 +1,18 @@
 package com.expobase.reference;
 
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.doesNotExist;
+import static androidx.test.espresso.matcher.ViewMatchers.hasFocus;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withTagValue;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -8,18 +20,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Environment;
+import android.view.View;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.espresso.ViewInteraction;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.BySelector;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
-import androidx.test.uiautomator.Until;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.hamcrest.Matcher;
 
 import java.io.File;
 import java.util.Arrays;
@@ -29,6 +43,7 @@ import java.util.List;
 public final class ExpoBaseNativeAndroidTest {
   private static final String PACKAGE = "com.expobase.reference";
   private static final long WAIT_MS = 20_000L;
+  private static final long POLL_MS = 500L;
 
   private UiDevice device;
   private Context targetContext;
@@ -42,7 +57,7 @@ public final class ExpoBaseNativeAndroidTest {
     assertNotNull("The release application launch intent was not found.", intent);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
     targetContext.startActivity(intent);
-    assertTarget("home-adaptive-section-header", "Home adaptive section");
+    assertTestIdVisible("home-adaptive-section-header", "Home adaptive section");
   }
 
   @After
@@ -53,32 +68,32 @@ public final class ExpoBaseNativeAndroidTest {
   @Test
   public void launchHomeAndPrimaryNavigation() {
     screenshot("home");
-    clickTarget("navigation-item-build", "Build", "Build");
-    assertTarget("adapter-form-sections", "Build form sections");
-    clickTarget("navigation-item-data", "Data", "Data");
-    assertTarget("card-data-toolbar", "Data workspace toolbar");
-    clickTarget("navigation-item-patterns", "Patterns", "Patterns");
-    assertTarget("golden-page-header-title", "Golden patterns page header");
-    clickTarget("navigation-item-system", "System", "System");
-    assertTarget("surface-card-default", "System default surface");
-    clickTarget("navigation-item-home", "Home", "Home");
-    assertTarget("home-adaptive-section-header", "Home adaptive section");
+    clickTestId("navigation-item-build", "Build");
+    assertTestIdVisible("adapter-form-sections", "Build form sections");
+    clickTestId("navigation-item-data", "Data");
+    assertTestIdVisible("card-data-toolbar", "Data workspace toolbar");
+    clickTestId("navigation-item-patterns", "Patterns");
+    assertTestIdVisible("golden-page-header-title", "Golden patterns page header");
+    clickTestId("navigation-item-system", "System");
+    assertTestIdVisible("surface-card-default", "System default surface");
+    clickTestId("navigation-item-home", "Home");
+    assertTestIdVisible("home-adaptive-section-header", "Home adaptive section");
     screenshot("navigation");
   }
 
   @Test
   public void formInputKeyboardAndValidation() {
     clickHomeRoute("forms", "Forms");
-    UiObject2 name = assertTarget("demo-name", "Full name field");
-    name.click();
-    assertTrue("The Android text field did not receive focus.", name.isFocused());
-    name.setText("Native Test User");
-    assertTrue("The Android text field did not retain typed text.", "Native Test User".equals(name.getText()));
+    ViewInteraction name = assertTestIdVisible("demo-name", "Full name field");
+    name.perform(click());
+    name.check(matches(hasFocus()));
+    replaceTextTestId("demo-name", "Native Test User");
+    assertTestIdTextContains("demo-name", "Native Test User", "Full name field");
     device.pressBack();
-    assertTarget("adapter-form-sections", "Build form sections");
-    clickTarget("adapter-form-validate", "Validate form", "Validate form");
-    assertTarget("adapter-form-error-summary", "Form error summary");
-    assertTarget("demo-email-error", "Email validation error");
+    assertTestIdVisible("adapter-form-sections", "Build form sections");
+    clickTestId("adapter-form-validate", "Validate form");
+    assertTestIdVisible("adapter-form-error-summary", "Form error summary");
+    assertTestIdVisible("demo-email-error", "Email validation error");
     screenshot("forms");
   }
 
@@ -87,73 +102,72 @@ public final class ExpoBaseNativeAndroidTest {
     int width = device.getDisplayWidth();
     int height = device.getDisplayHeight();
     device.swipe(width / 2, (int) (height * 0.35), width / 2, (int) (height * 0.75), 20);
-    assertTarget("home-metric-group", "Home metrics");
+    assertTestIdVisible("home-metric-group", "Home metrics");
     screenshot("scroll");
   }
 
   @Test
   public void orientationRoundTripPreservesHome() throws Exception {
     device.setOrientationLeft();
-    assertTarget("home-adaptive-section-header", "Home adaptive section");
+    assertTestIdVisible("home-adaptive-section-header", "Home adaptive section");
     device.setOrientationNatural();
-    assertTarget("home-adaptive-section-header", "Home adaptive section");
+    assertTestIdVisible("home-adaptive-section-header", "Home adaptive section");
     screenshot("orientation");
   }
 
   @Test
   public void overlayLifecycleAndSystemBack() {
     clickHomeRoute("overlays", "Overlays");
-    clickTarget("overlay-action-menu-trigger", "Open action menu", "Open action menu");
-    assertTarget("card-action-menu", "Card action menu");
-    clickTarget(null, "Edit card", "Edit card");
-    assertTargetAbsent("card-action-menu", "Card action menu");
-    clickTarget("overlay-dialog-trigger", "Open dialog", "Open dialog");
-    assertTarget("overlay-dialog-review-action", "Dialog review action");
+    clickTestId("overlay-action-menu-trigger", "Open action menu");
+    assertTestIdVisible("card-action-menu", "Card action menu");
+    clickAccessibleTarget("Edit card", "Edit card");
+    assertTestIdAbsent("card-action-menu", "Card action menu");
+    clickTestId("overlay-dialog-trigger", "Open dialog");
+    assertTestIdVisible("overlay-dialog-review-action", "Dialog review action");
     device.pressBack();
-    assertTargetAbsent("overlay-dialog-review-action", "Dialog review action");
-    clickTarget("overlay-bottom-sheet-trigger", "Open bottom sheet", "Open bottom sheet");
-    assertTarget("bottom-sheet-panel", "Bottom sheet panel");
+    assertTestIdAbsent("overlay-dialog-review-action", "Dialog review action");
+    clickTestId("overlay-bottom-sheet-trigger", "Open bottom sheet");
+    assertTestIdVisible("bottom-sheet-panel", "Bottom sheet panel");
     device.pressBack();
-    assertTargetAbsent("bottom-sheet-panel", "Bottom sheet panel");
+    assertTestIdAbsent("bottom-sheet-panel", "Bottom sheet panel");
     screenshot("overlays");
   }
 
   @Test
   public void flagshipDataAndServerStateRoutes() {
     clickHomeRoute("analytics-showcase", "Analytics showcase");
-    assertTarget("analytics-page-header-title", "Analytics page header");
-    clickTarget(null, "Home", "Home");
+    assertTestIdVisible("analytics-page-header-title", "Analytics page header");
+    clickTestId("navigation-item-home", "Home");
     clickHomeRoute("finance-showcase", "Finance showcase");
-    assertTarget("finance-page-header-title", "Finance page header");
-    clickTarget(null, "Home", "Home");
+    assertTestIdVisible("finance-page-header-title", "Finance page header");
+    clickTestId("navigation-item-home", "Home");
     clickHomeRoute("monitoring-showcase", "Monitoring showcase");
-    assertTarget("monitoring-page-header-title", "Monitoring page header");
-    clickTarget(null, "Home", "Home");
-    clickTarget("navigation-item-data", "Data", "Data");
-    assertTarget("card-data-toolbar", "Data workspace toolbar");
-    UiObject2 row = assertTarget("card-data-table-compact-row-venture-x", "Venture X row");
-    row.click();
-    assertTarget("selected-record-details", "Selected record");
-    clickTarget("navigation-item-data", "Data", "Data");
-    clickTarget("navigation-item-home", "Home", "Home");
+    assertTestIdVisible("monitoring-page-header-title", "Monitoring page header");
+    clickTestId("navigation-item-home", "Home");
+    clickTestId("navigation-item-data", "Data");
+    assertTestIdVisible("card-data-toolbar", "Data workspace toolbar");
+    clickTestId("card-data-table-compact-row-venture-x", "Venture X row");
+    assertTestIdVisible("selected-record-details", "Selected record");
+    clickTestId("navigation-item-data", "Data");
+    clickTestId("navigation-item-home", "Home");
     clickHomeRoute("server-state", "Server state");
-    assertTarget("server-state-load-count", "Service requests:");
-    clickTarget("server-state-refresh", "Refresh tasks", "Refresh tasks");
-    assertTarget("server-state-mutation-count", "Mutation requests");
+    assertTestIdTextContains("server-state-load-count", "Service requests:", "Server state load count");
+    clickTestId("server-state-refresh", "Refresh tasks");
+    assertTestIdTextContains("server-state-mutation-count", "Mutation requests", "Server state mutation count");
     screenshot("flagship-data");
   }
 
   @Test
   public void runtimeThemeDensityLocaleAndMotionControls() {
-    clickTarget(null, "Theme: Dark", "Theme: Dark");
-    clickTarget(null, "Density: Compact", "Density: Compact");
-    clickTarget(null, "Locale: Pseudo LTR", "Locale: Pseudo LTR");
-    clickTarget(null, "Locale: Pseudo RTL", "Locale: Pseudo RTL");
-    clickTarget(null, "Motion: Reduced", "Motion: Reduced");
-    UiObject2 settings = assertTarget("runtime-settings-status", "Runtime settings status");
-    assertTrue("Runtime settings did not retain dark/compact/reduced controls.", settings.getText().contains("Dark") && settings.getText().contains("Compact") && settings.getText().contains("reduced"));
-    UiObject2 locale = assertTarget("runtime-locale-status", "Direction:");
-    assertTrue("Runtime locale did not enter RTL mode.", locale.getText().contains("RTL"));
+    clickAccessibleTarget("Theme: Dark", "Theme: Dark");
+    clickAccessibleTarget("Density: Compact", "Density: Compact");
+    clickAccessibleTarget("Locale: Pseudo LTR", "Locale: Pseudo LTR");
+    clickAccessibleTarget("Locale: Pseudo RTL", "Locale: Pseudo RTL");
+    clickAccessibleTarget("Motion: Reduced", "Motion: Reduced");
+    assertTestIdTextContains("runtime-settings-status", "Dark", "Runtime settings status");
+    assertTestIdTextContains("runtime-settings-status", "Compact", "Runtime settings status");
+    assertTestIdTextContains("runtime-settings-status", "reduced", "Runtime settings status");
+    assertTestIdTextContains("runtime-locale-status", "RTL", "Runtime locale status");
     screenshot("runtime-modes");
   }
 
@@ -164,60 +178,85 @@ public final class ExpoBaseNativeAndroidTest {
     assertNotNull(intent);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
     targetContext.startActivity(intent);
-    assertTarget("home-adaptive-section-header", "Home adaptive section");
+    assertTestIdVisible("home-adaptive-section-header", "Home adaptive section");
     screenshot("lifecycle");
   }
 
-  private UiObject2 assertTarget(String id, String description) {
-    UiObject2 object = scrollToStableResource(id);
-    assertNotNull("Missing Android resource-id target: " + id + " / " + description, object);
-    assertTrue("Android resource-id target was not visible: " + id + " / " + description, visible(object));
-    return object;
+  private ViewInteraction assertTestIdVisible(String id, String description) {
+    return scrollToTestId(id, description);
   }
 
-  private void assertTargetAbsent(String id, String description) {
-    assertTrue(
-      "Android resource-id target remained after dismissal: " + id + " / " + description,
-      device.wait(Until.gone(By.res(PACKAGE, id)), WAIT_MS)
-    );
+  private void assertTestIdAbsent(String id, String description) {
+    Throwable lastFailure = null;
+    for (int attempt = 0; attempt < WAIT_MS / POLL_MS; attempt += 1) {
+      try {
+        onView(testIdMatcher(id)).check(doesNotExist());
+        return;
+      } catch (AssertionError | RuntimeException failure) {
+        lastFailure = failure;
+        device.waitForIdle(POLL_MS);
+      }
+    }
+    AssertionError failure = new AssertionError("Android testID target remained after dismissal: " + id + " / " + description);
+    if (lastFailure != null) failure.initCause(lastFailure);
+    throw failure;
   }
 
   private void clickHomeRoute(String route, String label) {
-    clickTarget("home-route-" + route, label, label);
+    clickTestId("home-route-" + route, label);
   }
 
-  private void clickTarget(String id, String description, String text) {
-    UiObject2 object = scrollTo(id, description, text);
-    assertNotNull("Android target was not reachable: " + id + " / " + description, object);
+  private void clickTestId(String id, String description) {
+    assertTestIdVisible(id, description).perform(click());
+  }
+
+  private void replaceTextTestId(String id, String value) {
+    assertTestIdVisible(id, "Text input " + id).perform(click(), replaceText(value), closeSoftKeyboard());
+  }
+
+  private void assertTestIdTextContains(String id, String expected, String description) {
+    assertTestIdVisible(id, description).check(matches(withText(containsString(expected))));
+  }
+
+  private ViewInteraction scrollToTestId(String id, String description) {
+    Throwable lastFailure = null;
+    for (int attempt = 0; attempt < WAIT_MS / POLL_MS; attempt += 1) {
+      try {
+        ViewInteraction target = onView(testIdMatcher(id));
+        target.check(matches(isDisplayed()));
+        return target;
+      } catch (AssertionError | RuntimeException failure) {
+        lastFailure = failure;
+        device.waitForIdle(POLL_MS);
+        if (attempt + 1 < WAIT_MS / POLL_MS) swipeUp();
+      }
+    }
+    AssertionError failure = new AssertionError("Missing Android testID target: " + id + " / " + description);
+    if (lastFailure != null) failure.initCause(lastFailure);
+    throw failure;
+  }
+
+  private Matcher<View> testIdMatcher(String id) {
+    return withTagValue(is((Object) id));
+  }
+
+  private void swipeUp() {
+    int width = device.getDisplayWidth();
+    int height = device.getDisplayHeight();
+    device.swipe(width / 2, (int) (height * 0.78), width / 2, (int) (height * 0.28), 20);
+  }
+
+  private void clickAccessibleTarget(String description, String text) {
+    UiObject2 object = scrollToAccessibleTarget(description, text);
+    assertNotNull("Android id-less accessibility target was not reachable: " + description, object);
     object.click();
   }
 
-  private UiObject2 scrollTo(String id, String description, String text) {
-    if (id != null) return scrollToStableResource(id);
-    return scrollToAccessibleTarget(description, text);
-  }
-
-  private UiObject2 scrollToStableResource(String id) {
-    BySelector selector = By.res(PACKAGE, id);
-    UiObject2 initial = device.wait(Until.findObject(selector), WAIT_MS);
-    if (initial != null && visible(initial)) return initial;
-    for (int attempt = 0; attempt < 20; attempt += 1) {
-      UiObject2 object = device.findObject(selector);
-      if (object != null && visible(object)) return object;
-      int width = device.getDisplayWidth();
-      int height = device.getDisplayHeight();
-      device.swipe(width / 2, (int) (height * 0.78), width / 2, (int) (height * 0.28), 20);
-    }
-    return null;
-  }
-
   private UiObject2 scrollToAccessibleTarget(String description, String text) {
-    for (int attempt = 0; attempt < 20; attempt += 1) {
+    for (int attempt = 0; attempt < WAIT_MS / POLL_MS; attempt += 1) {
       UiObject2 object = locateAccessibleTarget(description, text);
       if (object != null && visible(object)) return object;
-      int width = device.getDisplayWidth();
-      int height = device.getDisplayHeight();
-      device.swipe(width / 2, (int) (height * 0.78), width / 2, (int) (height * 0.28), 20);
+      swipeUp();
     }
     return null;
   }

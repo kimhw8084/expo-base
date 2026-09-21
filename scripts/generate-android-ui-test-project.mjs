@@ -7,6 +7,7 @@ const appGradle = join(androidRoot, 'app', 'build.gradle');
 const sourceDir = join(root, 'tests', 'native', 'android');
 const packagePath = join(androidRoot, 'app', 'src', 'androidTest', 'java', 'com', 'expobase', 'reference');
 const dependencyMarker = '// Expo Base Android native certification dependencies';
+const espressoDependency = "  androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'";
 const runnerMarker = '// Expo Base Android native certification runner';
 const releaseBuildMarker = '// Expo Base Android native certification release test build';
 
@@ -21,11 +22,13 @@ for (const sourceFile of sourceFiles) copyFileSync(join(sourceDir, sourceFile), 
 
 let gradle = readFileSync(appGradle, 'utf8');
 if (!gradle.includes(dependencyMarker)) {
-  const dependencies = `${dependencyMarker}\n  androidTestImplementation 'androidx.test.ext:junit:1.2.1'\n  androidTestImplementation 'androidx.test:runner:1.6.2'\n  androidTestImplementation 'androidx.test:rules:1.6.1'\n  androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'\n`;
+  const dependencies = `${dependencyMarker}\n  androidTestImplementation 'androidx.test.ext:junit:1.2.1'\n  androidTestImplementation 'androidx.test:runner:1.6.2'\n  androidTestImplementation 'androidx.test:rules:1.6.1'\n  androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'\n  androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'\n`;
   const dependencyIndex = gradle.indexOf('dependencies {');
   if (dependencyIndex === -1) throw new Error(`Could not find dependencies block in ${appGradle}.`);
   const insertionPoint = dependencyIndex + 'dependencies {'.length;
   gradle = `${gradle.slice(0, insertionPoint)}\n${dependencies}${gradle.slice(insertionPoint)}`;
+} else if (!gradle.includes(espressoDependency)) {
+  gradle = gradle.replace(`${dependencyMarker}\n`, `${dependencyMarker}\n${espressoDependency}\n`);
 }
 if (!gradle.includes(runnerMarker)) {
   const runnerConfig = `${runnerMarker}\n    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"\n`;

@@ -9,11 +9,44 @@ const golden = readFileSync(join(root, 'apps', 'reference', 'app', 'golden.tsx')
 const forms = readFileSync(join(root, 'apps', 'reference', 'app', 'forms.tsx'), 'utf8');
 const overlays = readFileSync(join(root, 'apps', 'reference', 'app', 'overlays.tsx'), 'utf8');
 const serverState = readFileSync(join(root, 'apps', 'reference', 'app', 'server-state.tsx'), 'utf8');
+const generator = readFileSync(join(root, 'scripts', 'generate-android-ui-test-project.mjs'), 'utf8');
 const swift = [
   readFileSync(join(root, 'tests', 'native', 'ios', 'ExpoBaseNativeUITests.swift'), 'utf8'),
   readFileSync(join(root, 'tests', 'native', 'ios', 'NativeRobots.swift'), 'utf8'),
 ].join('\n');
 const android = readFileSync(join(root, 'tests', 'native', 'android', 'ExpoBaseNativeAndroidTest.java'), 'utf8');
+const appOwnedTestIds = [
+  'home-adaptive-section-header',
+  'home-metric-group',
+  'navigation-item-build',
+  'navigation-item-data',
+  'navigation-item-patterns',
+  'navigation-item-system',
+  'navigation-item-home',
+  'adapter-form-sections',
+  'demo-name',
+  'adapter-form-validate',
+  'adapter-form-error-summary',
+  'demo-email-error',
+  'card-data-toolbar',
+  'golden-page-header-title',
+  'surface-card-default',
+  'card-action-menu',
+  'overlay-dialog-trigger',
+  'overlay-dialog-review-action',
+  'overlay-bottom-sheet-trigger',
+  'bottom-sheet-panel',
+  'analytics-page-header-title',
+  'finance-page-header-title',
+  'monitoring-page-header-title',
+  'card-data-table-compact-row-venture-x',
+  'selected-record-details',
+  'server-state-load-count',
+  'server-state-refresh',
+  'server-state-mutation-count',
+  'runtime-settings-status',
+  'runtime-locale-status',
+];
 const checks = [
   ['navigation route targets', navigation.includes('testID={`navigation-item-${item.key}`}')],
   ['home landmark', swift.includes('Universal application foundation')],
@@ -23,20 +56,22 @@ const checks = [
   ['form name selector', swift.includes('demo-name')],
   ['geometry assertion', swift.includes('frame.width') && swift.includes('frame.height')],
   ['hittability assertion', swift.includes('isHittable')],
-  ['android navigation semantic target', android.includes('navigation-item-') && android.includes('By.descContains')],
-  ['android form semantic target', android.includes('demo-name') && android.includes('Full name')],
-  ['android native target fallback', android.includes('By.res(PACKAGE, id)') && android.includes('By.textContains')],
-  ['Android launch uses a stable home resource-id', android.includes('launchReleaseProduct') && android.includes('assertTarget("home-adaptive-section-header"')],
-  ['Android home scroll uses the existing metric-group resource-id', android.includes('touchScrollReachesHomeContent') && android.includes('assertTarget("home-metric-group"')],
+  ['generated Android instrumentation includes Espresso', generator.includes("androidx.test.espresso:espresso-core:3.6.1") && generator.includes('androidTestImplementation')],
+  ['Android app-owned selectors use React Native View tags', android.includes('withTagValue') && android.includes('is((Object) id)') && android.includes('testIdMatcher')],
+  ['Android launch still requires the stable home testID', android.includes('launchReleaseProduct') && android.includes('assertTestIdVisible("home-adaptive-section-header"')],
+  ['Android home scroll still requires the stable metric-group testID', android.includes('touchScrollReachesHomeContent') && android.includes('assertTestIdVisible("home-metric-group"')],
+  ['Android decisive target helpers are Espresso-owned', android.includes('assertTestIdVisible') && android.includes('clickTestId') && android.includes('replaceTextTestId') && android.includes('assertTestIdTextContains')],
   ['decisive Android route assertions avoid display-text helpers', !android.includes('assertText(') && !android.includes('findSemanticText(') && !android.includes('hasText(')],
-  ['decisive Android targets fail closed on resource-id ownership', android.includes('scrollToStableResource(id)') && android.includes('Missing Android resource-id target') && android.includes('if (id != null) return scrollToStableResource(id);')],
-  ['Android convenience fallback remains separate from decisive targets', android.includes('scrollToAccessibleTarget') && android.includes('By.descContains(description)') && android.includes('By.textContains(text)')],
+  ['Android testID selectors fail closed without text or resource fallback', android.includes('Missing Android testID target') && !android.includes('By.res(') && !android.includes('Missing Android resource-id target') && !android.includes('clickTarget(')],
+  ['Android convenience fallback remains separate from decisive testIDs', android.includes('clickAccessibleTarget') && android.includes('scrollToAccessibleTarget') && android.includes('By.descContains(description)') && android.includes('By.textContains(text)')],
+  ['UI Automator remains device/system-only', android.includes('device.setOrientationLeft()') && android.includes('device.pressBack()') && android.includes('device.swipe(') && android.includes('device.takeScreenshot(')],
+  ['every decisive Android target remains in the testID ownership surface', appOwnedTestIds.every((id) => android.includes(id))],
   ['form validation uses stable summary and field ownership', forms.includes('testID="adapter-form-error-summary"') && forms.includes('id="demo-email"') && android.includes('adapter-form-error-summary') && android.includes('demo-email-error') && !android.includes('Enter your email.')],
   ['overlay opening uses stable reference controls', overlays.includes('testID="overlay-dialog-trigger"') && overlays.includes('testID="overlay-bottom-sheet-trigger"') && overlays.includes('testID="overlay-dialog-review-action"') && android.includes('card-action-menu')],
-  ['overlay dismissal checks stable target disappearance', android.includes('assertTargetAbsent("overlay-dialog-review-action"') && android.includes('assertTargetAbsent("bottom-sheet-panel"') && android.includes('Until.gone(By.res(PACKAGE, id))') && !android.includes('did not dismiss the dialog')],
-  ['flagship route identity uses PageHeader resource ids', android.includes('analytics-page-header-title') && android.includes('finance-page-header-title') && android.includes('monitoring-page-header-title')],
+  ['overlay dismissal fails closed on testID disappearance', android.includes('assertTestIdAbsent("overlay-dialog-review-action"') && android.includes('assertTestIdAbsent("bottom-sheet-panel"') && android.includes('doesNotExist()') && !android.includes('Until.gone')],
+  ['flagship route identity uses PageHeader testIDs', android.includes('analytics-page-header-title') && android.includes('finance-page-header-title') && android.includes('monitoring-page-header-title')],
   ['server-state uses stable count and control ownership', serverState.includes('testID="server-state-refresh"') && android.includes('server-state-load-count') && android.includes('server-state-refresh') && android.includes('server-state-mutation-count')],
-  ['R5 generic display-text strategy cannot return as decisive path', !android.includes('Expected Android text was not rendered') && !android.includes('findSemanticText') && !android.includes('SystemClock')],
+  ['R5 text heuristics and R7 resource-id assumptions cannot return', !android.includes('Expected Android text was not rendered') && !android.includes('findSemanticText') && !android.includes('SystemClock') && !android.includes('By.res(') && !android.includes('Missing Android resource-id')],
 ];
 const failures = checks.filter(([, passed]) => !passed).map(([name]) => name);
 if (failures.length) {
