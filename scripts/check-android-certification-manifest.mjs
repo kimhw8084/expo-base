@@ -77,7 +77,7 @@ export function validateAndroidCertification({ manifest, source, generator, reso
   if (!runner.includes('743a8bbf8273f663503dc8dd398135806dccb386') || !runner.includes('2fda05146dabea9bd44756f7c8071228166d40c8')) failures.push('Android runner must enforce the exact authoritative candidate base commit/tree.');
   if (!runner.includes('logcat') || !runner.includes('detectAndroidRuntimeFailures')) failures.push('Android runner must capture diagnostics and fail on runtime markers.');
   if (!resolver.includes('ANDROID_SERIAL') || !resolver.includes('apiLevel')) failures.push('Android profile resolution must be semantic and allow only an environment override.');
-  if (!contract.includes("tests', 'native', 'android'") || !source.includes('navigation-item-') || !source.includes('demo-name') || !source.includes('By.descContains')) failures.push('Shared native selector contract must cover Android semantic targets.');
+  if (!contract.includes("tests', 'native', 'android'") || !source.includes('navigation-item-') || !source.includes('demo-name') || !source.includes('withContentDescription') || !source.includes('withText(containsString(text))') || source.includes('By.scrollable(true)')) failures.push('Shared native selector contract must cover Android semantic targets.');
   return failures;
 }
 

@@ -10,10 +10,13 @@ import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static org.hamcrest.Matchers.allOf;
 import static androidx.test.espresso.matcher.ViewMatchers.hasFocus;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withTagValue;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
@@ -28,15 +31,12 @@ import android.view.ViewParent;
 import android.widget.ScrollView;
 
 import androidx.test.espresso.AmbiguousViewMatcherException;
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewInteraction;
-import androidx.test.uiautomator.By;
-import androidx.test.uiautomator.BySelector;
-import androidx.test.uiautomator.Direction;
 import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.UiObject2;
 
 import org.junit.After;
 import org.junit.Before;
@@ -47,9 +47,6 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 @RunWith(AndroidJUnit4.class)
 public final class ExpoBaseNativeAndroidTest {
   private static final String PACKAGE = "com.expobase.reference";
@@ -57,7 +54,6 @@ public final class ExpoBaseNativeAndroidTest {
   private static final long POLL_MS = 500L;
   private static final int MAX_SCROLL_ATTEMPTS = (int) (WAIT_MS / POLL_MS);
   private static final int MAX_NO_PROGRESS_ATTEMPTS = 3;
-  private static final float UI_AUTOMATOR_SCROLL_PERCENT = 0.8f;
 
   private UiDevice device;
   private Context targetContext;
@@ -221,11 +217,11 @@ public final class ExpoBaseNativeAndroidTest {
   }
 
   private void clickTestId(String id, String description) {
-    assertTestIdVisible(id, description).perform(click());
+    scrollToTestId(id, description, clickReadyTestIdMatcher(id)).perform(click());
   }
 
   private void replaceTextTestId(String id, String value) {
-    assertTestIdVisible(id, "Text input " + id).perform(click(), replaceText(value), closeSoftKeyboard());
+    scrollToTestId(id, "Text input " + id, clickReadyTestIdMatcher(id)).perform(click(), replaceText(value), closeSoftKeyboard());
   }
 
   private void assertTestIdTextContains(String id, String expected, String description) {
@@ -233,6 +229,10 @@ public final class ExpoBaseNativeAndroidTest {
   }
 
   private ViewInteraction scrollToTestId(String id, String description) {
+    return scrollToTestId(id, description, visibleTestIdMatcher(id));
+  }
+
+  private ViewInteraction scrollToTestId(String id, String description, Matcher<View> readinessMatcher) {
     Throwable lastFailure = null;
     int noProgressAttempts = 0;
     for (int attempt = 0; attempt < MAX_SCROLL_ATTEMPTS; attempt += 1) {
@@ -247,13 +247,25 @@ public final class ExpoBaseNativeAndroidTest {
         continue;
       }
       try {
-        target.check(matches(actionableTestIdMatcher(id)));
+        target.check(matches(testIdMatcher(id)));
+      } catch (AmbiguousViewMatcherException failure) {
+        throw failure;
+      } catch (NoMatchingViewException | AssertionError failure) {
+        lastFailure = failure;
+        device.waitForIdle(POLL_MS);
+        continue;
+      }
+      try {
+        target.check(matches(readinessMatcher));
         return target;
       } catch (AmbiguousViewMatcherException failure) {
         throw failure;
-      } catch (AssertionError | RuntimeException failure) {
+      } catch (NoMatchingViewException failure) {
         lastFailure = failure;
         device.waitForIdle(POLL_MS);
+        continue;
+      } catch (AssertionError | RuntimeException failure) {
+        lastFailure = failure;
         if (attempt + 1 < MAX_SCROLL_ATTEMPTS) {
           try {
             if (requestTestIdRectangleOnScreen(id)) {
@@ -261,17 +273,22 @@ public final class ExpoBaseNativeAndroidTest {
             } else {
               noProgressAttempts += 1;
             }
+          } catch (NoMatchingViewException absent) {
+            lastFailure = absent;
+            device.waitForIdle(POLL_MS);
+            continue;
           } catch (AmbiguousViewMatcherException ambiguousSurface) {
             throw ambiguousSurface;
           } catch (AssertionError | RuntimeException scrollFailure) {
             lastFailure = scrollFailure;
             noProgressAttempts += 1;
           }
+          device.waitForIdle(POLL_MS);
           if (noProgressAttempts >= MAX_NO_PROGRESS_ATTEMPTS) break;
         }
       }
     }
-    AssertionError failure = new AssertionError("Missing Android testID target or action-ready state: " + id + " / " + description);
+    AssertionError failure = new AssertionError("Missing Android testID target or requested readiness state: " + id + " / " + description);
     if (lastFailure != null) failure.initCause(lastFailure);
     throw failure;
   }
@@ -295,13 +312,25 @@ public final class ExpoBaseNativeAndroidTest {
         });
   }
 
-  private Matcher<View> actionableTestIdMatcher(String id) {
-    return allOf(testIdMatcher(id), isDisplayed(), isEnabled());
+  private Matcher<View> visibleTestIdMatcher(String id) {
+    return allOf(testIdMatcher(id), isDisplayed());
+  }
+
+  private Matcher<View> clickReadyTestIdMatcher(String id) {
+    return allOf(testIdMatcher(id), isDisplayingAtLeast(90), isEnabled());
   }
 
   private boolean requestTestIdRectangleOnScreen(String id) {
+    return requestRectangleOnScreen(testIdMatcher(id), "testID target " + id);
+  }
+
+  private boolean requestAccessibleRectangleOnScreen(String description, String text) {
+    return requestRectangleOnScreen(accessibleTargetMatcher(description, text), "id-less accessibility target " + description);
+  }
+
+  private boolean requestRectangleOnScreen(Matcher<View> targetMatcher, String description) {
     final boolean[] requested = { false };
-    onView(testIdMatcher(id)).perform(new ViewAction() {
+    onView(targetMatcher).perform(new ViewAction() {
       @Override
       public Matcher<View> getConstraints() {
         return isAssignableFrom(View.class);
@@ -309,19 +338,18 @@ public final class ExpoBaseNativeAndroidTest {
 
       @Override
       public String getDescription() {
-        return "request the exact testID rectangle on screen through its React Native ScrollView";
+        return "request the exact " + description + " rectangle on screen through its React Native ScrollView";
       }
 
       @Override
       public void perform(UiController controller, View view) {
         if (!hasReactNativeScrollSurface(view)) {
-          throw new IllegalStateException("Android testID target is not owned by a React Native ScrollView.");
+          throw new IllegalStateException("Android target is not owned by a React Native ScrollView.");
         }
         requested[0] = view.requestRectangleOnScreen(new Rect(0, 0, view.getWidth(), view.getHeight()), false);
         controller.loopMainThreadUntilIdle();
       }
     });
-    device.waitForIdle(POLL_MS);
     return requested[0];
   }
 
@@ -336,80 +364,82 @@ public final class ExpoBaseNativeAndroidTest {
   }
 
   private void clickAccessibleTarget(String description, String text) {
-    UiObject2 object = scrollToAccessibleTarget(description, text);
-    assertNotNull("Android id-less accessibility target was not reachable: " + description, object);
-    object.click();
+    scrollToAccessibleTarget(description, text).perform(click());
   }
 
-  private UiObject2 scrollToAccessibleTarget(String description, String text) {
+  private ViewInteraction scrollToAccessibleTarget(String description, String text) {
     Throwable lastFailure = null;
     int noProgressAttempts = 0;
+    Matcher<View> targetMatcher = accessibleTargetMatcher(description, text);
     for (int attempt = 0; attempt < MAX_SCROLL_ATTEMPTS; attempt += 1) {
-      UiObject2 object = locateAccessibleTarget(description, text);
-      if (object != null && visible(object)) return object;
-      if (attempt + 1 == MAX_SCROLL_ATTEMPTS) break;
+      ViewInteraction target;
       try {
-        if (scrollAccessibleSurface(description, text)) {
-          noProgressAttempts = 0;
-        } else {
-          noProgressAttempts += 1;
-        }
+        target = onView(targetMatcher);
+      } catch (AmbiguousViewMatcherException failure) {
+        throw failure;
+      } catch (RuntimeException failure) {
+        lastFailure = failure;
+        device.waitForIdle(POLL_MS);
+        continue;
+      }
+      try {
+        target.check(matches(targetMatcher));
+      } catch (AmbiguousViewMatcherException failure) {
+        throw failure;
+      } catch (NoMatchingViewException | AssertionError failure) {
+        lastFailure = failure;
+        device.waitForIdle(POLL_MS);
+        continue;
+      }
+      try {
+        target.check(matches(clickReadyAccessibleTargetMatcher(description, text)));
+        return target;
+      } catch (AmbiguousViewMatcherException failure) {
+        throw failure;
+      } catch (NoMatchingViewException failure) {
+        lastFailure = failure;
+        device.waitForIdle(POLL_MS);
+        continue;
       } catch (AssertionError | RuntimeException failure) {
         lastFailure = failure;
-        noProgressAttempts += 1;
+        if (attempt + 1 < MAX_SCROLL_ATTEMPTS) {
+          try {
+            if (requestAccessibleRectangleOnScreen(description, text)) {
+              noProgressAttempts = 0;
+            } else {
+              noProgressAttempts += 1;
+            }
+          } catch (NoMatchingViewException absent) {
+            lastFailure = absent;
+            device.waitForIdle(POLL_MS);
+            continue;
+          } catch (AmbiguousViewMatcherException ambiguousTarget) {
+            throw ambiguousTarget;
+          } catch (AssertionError | RuntimeException scrollFailure) {
+            lastFailure = scrollFailure;
+            noProgressAttempts += 1;
+          }
+          device.waitForIdle(POLL_MS);
+          if (noProgressAttempts >= MAX_NO_PROGRESS_ATTEMPTS) break;
+        }
       }
-      if (noProgressAttempts >= MAX_NO_PROGRESS_ATTEMPTS) break;
     }
-    AssertionError failure = new AssertionError("Android id-less accessibility target was not reachable: " + description);
+    AssertionError failure = new AssertionError("Android id-less accessibility target was not action-ready: " + description);
     if (lastFailure != null) failure.initCause(lastFailure);
     throw failure;
   }
 
-  private UiObject2 locateAccessibleTarget(String description, String text) {
-    for (BySelector selector : accessibleSelectors(description, text)) {
-      List<UiObject2> objects = device.findObjects(selector);
-      if (objects.size() > 1) {
-        throw new AssertionError("Ambiguous Android id-less accessibility target: " + description);
-      }
-      if (objects.size() == 1) return objects.get(0);
+  private Matcher<View> accessibleTargetMatcher(String description, String text) {
+    if (description != null && text != null) {
+      return anyOf(withContentDescription(containsString(description)), withText(containsString(text)));
     }
-    return null;
+    if (description != null) return withContentDescription(containsString(description));
+    if (text != null) return withText(containsString(text));
+    throw new IllegalArgumentException("An id-less accessibility target requires content description or text.");
   }
 
-  private boolean scrollAccessibleSurface(String description, String text) {
-    UiObject2 surface = locateAccessibleScrollSurface(description, text);
-    boolean progressed = surface.scroll(Direction.DOWN, UI_AUTOMATOR_SCROLL_PERCENT);
-    device.waitForIdle(POLL_MS);
-    return progressed;
-  }
-
-  private UiObject2 locateAccessibleScrollSurface(String description, String text) {
-    for (BySelector selector : accessibleSelectors(description, text)) {
-      UiObject2 match = null;
-      for (UiObject2 surface : device.findObjects(By.scrollable(true))) {
-        if (!visible(surface)) continue;
-        if (surface.findObject(selector) == null) continue;
-        if (match != null) {
-          throw new AssertionError("Ambiguous Android scroll surface for id-less target: " + description);
-        }
-        match = surface;
-      }
-      if (match != null) return match;
-    }
-    throw new AssertionError("Android React Native scroll surface was not found for: " + description);
-  }
-
-  private List<BySelector> accessibleSelectors(String description, String text) {
-    List<BySelector> selectors = new ArrayList<>();
-    if (description != null) selectors.add(By.descContains(description));
-    if (text != null) selectors.add(By.textContains(text));
-    return selectors;
-  }
-
-  private boolean visible(UiObject2 object) {
-    Rect bounds = object.getVisibleBounds();
-    Rect display = new Rect(0, 0, device.getDisplayWidth(), device.getDisplayHeight());
-    return object.isEnabled() && bounds.width() > 0 && bounds.height() > 0 && Rect.intersects(bounds, display);
+  private Matcher<View> clickReadyAccessibleTargetMatcher(String description, String text) {
+    return allOf(accessibleTargetMatcher(description, text), isDisplayingAtLeast(90), isEnabled());
   }
 
   private void screenshot(String name) {
