@@ -57,6 +57,7 @@ const checks = [
   ['geometry assertion', swift.includes('frame.width') && swift.includes('frame.height')],
   ['hittability assertion', swift.includes('isHittable')],
   ['generated Android instrumentation includes Espresso', generator.includes("androidx.test.espresso:espresso-core:3.6.1") && generator.includes('androidTestImplementation')],
+  ['Android disappearance assertion uses Espresso ViewAssertions', android.includes('import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;') && !android.includes('import static androidx.test.espresso.matcher.ViewMatchers.doesNotExist;')],
   ['Android app-owned selectors use React Native View tags', android.includes('withTagValue') && android.includes('is((Object) id)') && android.includes('testIdMatcher')],
   ['Android launch still requires the stable home testID', android.includes('launchReleaseProduct') && android.includes('assertTestIdVisible("home-adaptive-section-header"')],
   ['Android home scroll still requires the stable metric-group testID', android.includes('touchScrollReachesHomeContent') && android.includes('assertTestIdVisible("home-metric-group"')],
