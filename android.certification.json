@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "app": {
+    "bundleIdentifier": "com.expobase.reference",
+    "project": "apps/reference",
+    "instrumentationRunner": "androidx.test.runner.AndroidJUnitRunner",
+    "productLane": "Release bundled JavaScript",
+    "smokeLane": "runtime:android development build",
+    "resultRoot": "test-results/android-native-certification"
+  },
+  "profiles": [
+    {
+      "id": "standard-phone-api-35",
+      "platform": "Android Emulator",
+      "deviceClass": "standard phone",
+      "apiLevel": 35,
+      "abi": "x86_64",
+      "orientation": ["portrait", "landscape"],
+      "appearance": ["light", "dark"],
+      "locales": ["en-US", "en-XA", "en-XB"],
+      "densityModes": ["comfortable", "compact"],
+      "motionModes": ["system", "reduced"],
+      "headlessPreferred": true,
+      "reason": "A semantic API/device-class target keeps the source contract portable while exercising a representative native phone window. The runner resolves the actual emulator at execution time."
+    }
+  ],
+  "evidenceRegistry": {
+    "candidate-provenance": { "kind": "candidate-bound-json", "path": "test-results/android-native-certification/provenance.json" },
+    "resolved-emulator": { "kind": "resolved-emulator-profile-json", "path": "test-results/android-native-certification/resolved-profile.json" },
+    "junit-release": { "kind": "android-junit-results", "path": "test-results/android-native-certification/junit" },
+    "gradle-release-log": { "kind": "gradle-build-test-log", "path": "test-results/android-native-certification/gradle-release.log" },
+    "logcat-release": { "kind": "filtered-logcat", "path": "test-results/android-native-certification/logcat-release.txt" },
+    "release-apk": { "kind": "native-build-artifact", "path": "test-results/android-native-certification/artifacts/app-release.apk" },
+    "release-android-test-apk": { "kind": "native-test-artifact", "path": "test-results/android-native-certification/artifacts/app-release-androidTest.apk" },
+    "home": { "kind": "uiautomator-screenshot", "test": "launchHomeAndPrimaryNavigation", "attachment": "home.png" },
+    "navigation": { "kind": "uiautomator-navigation-and-landmarks", "test": "launchHomeAndPrimaryNavigation", "attachment": "navigation.png" },
+    "forms": { "kind": "uiautomator-keyboard-and-validation", "test": "formInputKeyboardAndValidation", "attachment": "forms.png" },
+    "scroll": { "kind": "uiautomator-touch-scroll", "test": "touchScrollReachesHomeContent", "attachment": "scroll.png" },
+    "orientation": { "kind": "uiautomator-orientation-round-trip", "test": "orientationRoundTripPreservesHome", "attachment": "orientation.png" },
+    "overlays": { "kind": "uiautomator-overlay-and-system-back", "test": "overlayLifecycleAndSystemBack", "attachment": "overlays.png" },
+    "flagship-and-data": { "kind": "uiautomator-flagship-data-server-state", "test": "flagshipDataAndServerStateRoutes", "attachment": "flagship-data.png" },
+    "runtime-modes": { "kind": "uiautomator-runtime-controls", "test": "runtimeThemeDensityLocaleAndMotionControls", "attachment": "runtime-modes.png" },
+    "lifecycle": { "kind": "uiautomator-lifecycle-relaunch", "test": "lifecycleRelaunchRecoversHome", "attachment": "lifecycle.png" },
+    "selector-contract": { "kind": "automated-source-contract", "command": "npm run check:native-ui-contracts" }
+  },
+  "scenarios": [
+    { "id": "ANDROID-POC-01", "category": "release-bundled-launch-home", "route": "/", "automation": "AUTOMATED_ANDROID_INSTRUMENTATION", "test": "launchHomeAndPrimaryNavigation", "evidence": ["candidate-provenance", "resolved-emulator", "junit-release", "home"] },
+    { "id": "ANDROID-NAV-01", "category": "primary-navigation", "route": "all-primary-destinations", "automation": "AUTOMATED_ANDROID_INSTRUMENTATION", "test": "launchHomeAndPrimaryNavigation", "evidence": ["navigation"] },
+    { "id": "ANDROID-FORM-01", "category": "text-input-keyboard-validation", "route": "/forms", "automation": "AUTOMATED_ANDROID_INSTRUMENTATION", "test": "formInputKeyboardAndValidation", "evidence": ["forms"] },
+    { "id": "ANDROID-TOUCH-01", "category": "touch-scroll", "route": "/", "automation": "AUTOMATED_ANDROID_INSTRUMENTATION", "test": "touchScrollReachesHomeContent", "evidence": ["scroll"] },
+    { "id": "ANDROID-ORI-01", "category": "orientation-round-trip", "route": "/", "automation": "AUTOMATED_ANDROID_INSTRUMENTATION", "test": "orientationRoundTripPreservesHome", "evidence": ["orientation"] },
+    { "id": "ANDROID-OVERLAY-01", "category": "menu-dialog-sheet-system-back", "route": "/overlays", "automation": "AUTOMATED_ANDROID_INSTRUMENTATION", "test": "overlayLifecycleAndSystemBack", "evidence": ["overlays"] },
+    { "id": "ANDROID-FLAGSHIP-01", "category": "flagship-data-server-state", "route": "showcase-routes and /data and /server-state", "automation": "AUTOMATED_ANDROID_INSTRUMENTATION", "test": "flagshipDataAndServerStateRoutes", "evidence": ["flagship-and-data"] },
+    { "id": "ANDROID-RUNTIME-01", "category": "theme-density-pseudo-locale-rtl-motion", "route": "/", "automation": "AUTOMATED_ANDROID_INSTRUMENTATION", "test": "runtimeThemeDensityLocaleAndMotionControls", "evidence": ["runtime-modes"] },
+    { "id": "ANDROID-LIFE-01", "category": "lifecycle-relaunch-recovery", "route": "/", "automation": "AUTOMATED_ANDROID_INSTRUMENTATION", "test": "lifecycleRelaunchRecoversHome", "evidence": ["lifecycle"] },
+    { "id": "ANDROID-SELECTOR-01", "category": "shared-native-selector-contract", "route": "shared owners", "automation": "AUTOMATED_CONTRACT", "command": "npm run check:native-ui-contracts", "evidence": ["selector-contract"] },
+    { "id": "ANDROID-RELEASE-01", "category": "release-bundled-javascript", "route": "apps/reference", "automation": "AUTOMATED_CONTRACT", "command": "npm run android:verify", "evidence": ["candidate-provenance", "release-apk", "junit-release"] },
+    { "id": "ANDROID-PROFILE-01", "category": "semantic-emulator-profile", "route": "standard-phone-api-35", "automation": "AUTOMATED_CONTRACT", "command": "npm run check:android-certification", "evidence": ["resolved-emulator"] }
+  ],
+  "boundaries": [
+    { "id": "ANDROID-PHYSICAL-HARDWARE", "automation": "PHYSICAL_DEVICE_REQUIRED", "reason": "Emulator evidence does not establish physical-device haptics, camera fidelity, biometric fidelity, or real-device safe-area variance." },
+    { "id": "ANDROID-TALKBACK-USABILITY", "automation": "SUBJECTIVE_HUMAN_REVIEW", "reason": "UI Automator target reachability and source semantics do not replace accountable human TalkBack usability certification." },
+    { "id": "ANDROID-FONT-SCALING", "automation": "DEVICE_SETTING_REQUIRED", "reason": "Exact user font-scale and device accessibility-setting behavior are not claimed by this emulator profile." },
+    { "id": "ANDROID-SIGNING-PLAY", "automation": "SIGNING_AND_COMMERCIAL_COMPLIANCE_REQUIRED", "reason": "Unsigned local native artifacts do not establish Play Store, signing, distribution, or commercial compliance." },
+    { "id": "ANDROID-PROVIDERS", "automation": "PROVIDER_BACKEND_REQUIRED", "reason": "Reference adapters and deterministic fixtures do not establish provider or backend integration." },
+    { "id": "ANDROID-DEPLOYMENT", "automation": "DEPLOYMENT_REQUIRED", "reason": "This lane does not deploy EAS, an artifact, or a service." },
+    { "id": "ANDROID-DOWNSTREAM-PRODUCTS", "automation": "DOWNSTREAM_PRODUCT_REQUIRED", "reason": "Certification is bounded to the exact apps/reference source and does not certify generated downstream products." }
+  ]
+}
