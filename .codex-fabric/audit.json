@@ -1,0 +1,570 @@
+{
+  "accepted_at": "2026-09-21T19:54:26Z",
+  "changed_files": [
+    {
+      "additions": 58,
+      "deletions": 0,
+      "path": ".github/workflows/android-native-certification.yml",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": ".gitignore",
+      "status": "M"
+    },
+    {
+      "additions": 69,
+      "deletions": 0,
+      "path": "android.certification.json",
+      "status": "A"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/analytics-showcase.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/finance-showcase.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/forms.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/golden.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/monitoring-showcase.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 3,
+      "path": "apps/reference/app/overlays.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/server-state.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 42,
+      "deletions": 0,
+      "path": "docs/ANDROID_NATIVE_CERTIFICATION.md",
+      "status": "A"
+    },
+    {
+      "additions": 5,
+      "deletions": 0,
+      "path": "package.json",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 2,
+      "path": "packages/layouts/src/PageHeader.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "packages/patterns/src/PagePatterns.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 74,
+      "deletions": 0,
+      "path": "scripts/android-certification-lib.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 103,
+      "deletions": 0,
+      "path": "scripts/check-android-certification-manifest.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 73,
+      "deletions": 0,
+      "path": "scripts/check-native-ui-selector-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 49,
+      "deletions": 0,
+      "path": "scripts/generate-android-ui-test-project.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 60,
+      "deletions": 0,
+      "path": "scripts/resolve-android-emulator.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 384,
+      "deletions": 0,
+      "path": "scripts/run-android-native-certification.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 207,
+      "deletions": 0,
+      "path": "scripts/test-android-certification.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 423,
+      "deletions": 0,
+      "path": "tests/native/android/ExpoBaseNativeAndroidTest.java",
+      "status": "A"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:native-ui-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --stat 81c849cdb34a2c1896894e1dd8b87b8ede93e489..HEAD\nrtk git diff -- tests/native/android/ExpoBaseNativeAndroidTest.java scripts/check-native-ui-selector-contracts.mjs scripts/test-android-certification.mjs\nrtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:workflow-hardening-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:ios-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:mobile-certification'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:runtime-stabilization'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-architecture'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run check:golden-patterns'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run test:generator'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node --version\nrtk npm --version\nrtk command -v node\nrtk command -v npm\nrtk command -v java || true\nrtk command -v adb || true\nrtk command -v emulator || true\nrtk ls -ld node_modules 2>/dev/null || true\nrtk find /opt /usr/local /Users/haewonkim -maxdepth 5 -type f -name node 2>/dev/null | head -50\nrtk find /Users/haewonkim/Library/Android/sdk /opt/android-sdk /opt/homebrew -maxdepth 4 -type f \\\\( -name adb -o -name emulator \\\\) 2>/dev/null | head -50\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -la /Users/haewonkim/.nvm/versions/node\nrtk ls -la /Users/haewonkim/Library/Android/sdk 2>/dev/null || true\nrtk npm run preflight:certification\nrtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -l package-lock.json npm-shrinkwrap.json yarn.lock pnpm-lock.yaml 2>/dev/null || true\n/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --version\n/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/npm --version\n/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/npm config get cache\nrtk find /Users/haewonkim/.codex-fabric/worktrees -maxdepth 2 -type d -name node_modules 2>/dev/null | head -20'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc '/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/npm ci --ignore-scripts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc '/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run preflight:certification'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc '/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run check:runtime-stabilization'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc '/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run check:golden-architecture'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc '/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run check:mobile-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc '/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run typecheck:runtime-ui'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -ef | rg 'test-generator|npm-cli|node scripts/test-generator' || true\nPATH=\\\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/check-node-version.mjs --certification\nPATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/test-generator.mjs'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,180p' scripts/test-generator.mjs\nrtk sed -n '1,240p' scripts/check-node-version.mjs\nrtk git status --short --branch\nrtk git diff --stat\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name '\"'Orbit Ledger' --slug orbit-ledger --accent violet --link-host app.example.com --mode workspace --directory /tmp/expo-base-generator-check\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node packages/create-expo-base-app/bin/create-expo-base-app.mjs --name '\"'Orbit Ledger' --slug orbit-ledger --accent violet --link-host app.example.com --mode workspace --directory apps/.tmp-generated-app\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc '/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node /Users/haewonkim/.nvm/versions/node/v22.23.2/lib/node_modules/npm/bin/npm-cli.js run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --input-type=module -e \"import { spawnSync } from '\"'node:child_process'; import process from 'node:process'; const run=spawnSync(process.execPath,['packages/create-expo-base-app/bin/create-expo-base-app.mjs','--name','Orbit Ledger','--slug','orbit-ledger','--accent','violet','--link-host','app.example.com','--mode','workspace','--directory','apps/.tmp-generated-app'],{cwd:process.cwd(),encoding:'utf8'}); console.log(JSON.stringify({status:run.status,signal:run.signal,error:run.error?.message,stdout:run.stdout,stderr:run.stderr}));\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -rf apps/.tmp-generated-app apps/.tmp-generated-capability-app\nPATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/test-generator.mjs'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -ld apps/.tmp-generated-app apps/.tmp-generated-capability-app 2>/dev/null || true\nPATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --input-type=module -e \"import { spawnSync } from '\"'node:child_process'; import process from 'node:process'; const run=spawnSync(process.execPath,['packages/create-expo-base-app/bin/create-expo-base-app.mjs','--name','Orbit Ledger','--slug','orbit-ledger','--accent','violet','--link-host','app.example.com','--mode','workspace','--directory','apps/.tmp-generated-app'],{cwd:process.cwd(),encoding:'utf8'}); console.log(JSON.stringify({status:run.status,signal:run.signal,error:run.error?.message,stdout:run.stdout,stderr:run.stderr}));\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -ef | rg 'test-generator|create-expo-base-app|tsc' || true\nrtk ls -la apps/.tmp-generated-app | head -40\nrtk rm -rf apps/.tmp-generated-app apps/.tmp-generated-capability-app\nPATH=\\\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/test-generator.mjs'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --input-type=module -e \"import assert from '\"'node:assert/strict'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import process from 'node:process'; import { spawnSync } from 'node:child_process'; const root=process.cwd(); const destination=path.join(root,'apps','.tmp-generated-app'); const capabilityDestination=path.join(root,'apps','.tmp-generated-capability-app'); const standaloneDestination=fs.mkdtempSync(path.join(os.tmpdir(),'expo-base-chg102-minimal-')); const standaloneCapabilityDestination=fs.mkdtempSync(path.join(os.tmpdir(),'expo-base-chg102-capability-')); fs.rmSync(destination,{recursive:true,force:true}); fs.rmSync(capabilityDestination,{recursive:true,force:true}); const run=spawnSync(process.execPath,['packages/create-expo-base-app/bin/create-expo-base-app.mjs','--name','Orbit Ledger','--slug','orbit-ledger','--accent','violet','--link-host','app.example.com','--mode','workspace','--directory',destination],{cwd:root,encoding:'utf8'}); console.log(JSON.stringify({status:run.status,signal:run.signal,error:run.error?.message,stdout:run.stdout,stderr:run.stderr,standaloneDestination,standaloneCapabilityDestination}));\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk env | rg '\"'^(ANDROID|JAVA|PATH)='\"' || true\nrtk ls -ld /Users/haewonkim/Library/Android /Users/haewonkim/Library/Android/sdk /opt/android-sdk /opt/homebrew/share/android-commandlinetools 2>/dev/null || true\nrtk find /Users/haewonkim /opt /usr/local -maxdepth 6 -type f \\\\( -name adb -o -name emulator \\\\) 2>/dev/null | head -100\nrtk java -version\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:native-ui-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:golden-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:ios-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run preflight:certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:golden-patterns'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run test:android-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:workflow-hardening-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:mobile-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:runtime-stabilization'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:golden-architecture'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run typecheck:runtime-ui'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -rf apps/.tmp-generated-app apps/.tmp-generated-capability-app\nPATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" NODE_DEBUG=child_process /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/test-generator.mjs'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git diff --check && rtk git add scripts/check-native-ui-selector-contracts.mjs scripts/test-android-certification.mjs tests/native/android/ExpoBaseNativeAndroidTest.java && rtk git commit -m \\\"fix(android): target-directed testID reachability\\\" && rtk git status --short --branch && rtk git show -s --format='%H%n%T%n%P%n%D%n%s' HEAD\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,120p' scripts/run-android-native-certification.mjs\nrtk git status --short --branch\nrtk git log --oneline --decorate -3\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run android:verify'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,220p' test-results/android-native-certification/summary-release.json\nrtk git status --short --branch\nrtk git show -s --format='candidate=%H%ntree=%T%nparent=%P%nsubject=%s' HEAD\nrtk git show -s --format='main=%H%ntree=%T%nsubject=%s' origin/main\nrtk git merge-base --is-ancestor 81c849cdb34a2c1896894e1dd8b87b8ede93e489 HEAD && rtk git merge-base --is-ancestor 743a8bbf8273f663503dc8dd398135806dccb386 HEAD\nrtk git diff --stat 81c849cdb34a2c1896894e1dd8b87b8ede93e489..HEAD\nrtk git diff --check 81c849cdb34a2c1896894e1dd8b87b8ede93e489..HEAD\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -rf apps/.tmp-generated-app apps/.tmp-generated-capability-app\nenv -u CODEX_CI -u CODEX_MANAGED_BY_NPM -u CODEX_MANAGED_PACKAGE_ROOT PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/test-generator.mjs'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --check scripts/check-native-ui-selector-contracts.mjs && PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --check scripts/test-android-certification.mjs\nrtk git diff --check 81c849cdb34a2c1896894e1dd8b87b8ede93e489..HEAD\nrtk git status --porcelain --untracked-files=all\nrtk git branch --show-current\nrtk git rev-parse HEAD HEAD''^{tree} HEAD''^ 81c849cdb34a2c1896894e1dd8b87b8ede93e489''^{tree} origin/main origin/main''^{tree}\nrtk git diff --name-only 81c849cdb34a2c1896894e1dd8b87b8ede93e489..HEAD\nrtk git diff --stat 81c849cdb34a2c1896894e1dd8b87b8ede93e489..HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.155.1",
+    "configured_model": "gpt-5.6-luna",
+    "event_count": 163,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 95.94,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 3417856,
+      "fresh_input_tokens": 144478,
+      "input_tokens": 3562334,
+      "non_reasoning_output_tokens": 13175,
+      "output_tokens": 33780,
+      "reasoning_output_tokens": 20605,
+      "total_processed_tokens": 3596114
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "4fb79dc611d36a8b398e236b17181297153691de",
+      "subject": "fix(android): target-directed testID reachability"
+    },
+    {
+      "sha": "81c849cdb34a2c1896894e1dd8b87b8ede93e489",
+      "subject": "fix(android): import Hamcrest allOf matcher"
+    },
+    {
+      "sha": "c12bbf6af5226794b8d3141e1ef87afc61b8b250",
+      "subject": "Merge commit 'f679a6a4a67b7b677798e66a60d038738bf1ba3b' into codex/expo-base-chg149-android-native-certification-r12-hamcrest-allof-import"
+    },
+    {
+      "sha": "f679a6a4a67b7b677798e66a60d038738bf1ba3b",
+      "subject": "fix(android): scroll native certification targets deterministically"
+    },
+    {
+      "sha": "cf1772ed09e4200bd48e4cb9cd2f89433ff2ea31",
+      "subject": "fix(android): import Espresso disappearance assertion correctly"
+    },
+    {
+      "sha": "d876eea443fee925a0ffc6c7947ca1e210046aa9",
+      "subject": "fix(android): select React Native testIDs through Espresso tags"
+    },
+    {
+      "sha": "d6dcf39a539bd402d97f2396d206530b2f9707e8",
+      "subject": "fix(ci): stabilize Android emulator post-boot setup"
+    },
+    {
+      "sha": "44ae9be600bd62017d3d9bb7ea0e1df137ef1b99",
+      "subject": "fix(android): use resource-id certification landmarks"
+    },
+    {
+      "sha": "d6c6fe4497578824838f5b422a24b0da108c96d5",
+      "subject": "fix(ci): extend Android native certification budget"
+    },
+    {
+      "sha": "89ed600398db4088582f5160deeddcc27c7cba4a",
+      "subject": "test(android): honor semantic landmark selectors"
+    },
+    {
+      "sha": "8ae5efd84c3fb5a6ae7b9860a15725199ea034c4",
+      "subject": "fix: stabilize Android native certification runtime lane"
+    },
+    {
+      "sha": "91de03219b80fbf1cdcb29cc84978ee42f0b50f0",
+      "subject": "fix: run Android certification Gradle wrapper in project"
+    },
+    {
+      "sha": "8adfc98b4af2b2d1de6bf9c6061f052f4a52ed74",
+      "subject": "fix: make Android certification checkout history-complete"
+    },
+    {
+      "sha": "8ecf109606b9457f3283ff0108e0a1de0da22f47",
+      "subject": "feat: add Android native certification lane"
+    }
+  ],
+  "diff": {
+    "additions": 1563,
+    "changed_files": 22,
+    "commit_count": 14,
+    "deletions": 12
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 3,
+    "items": [
+      {
+        "bytes": 7565,
+        "path": "android.certification.json",
+        "sha256": "4dce1e2b7d7cfc91c8e227f0755ca63e2123b8be870b7fb2b454a2f584d7654e"
+      },
+      {
+        "bytes": 2695,
+        "path": "docs/ANDROID_NATIVE_CERTIFICATION.md",
+        "sha256": "0a6ab17d3dc6db9442fb9e0601f5895e4df7982c2efe1b5ce1bf7d19f639f907"
+      },
+      {
+        "bytes": 16562,
+        "path": "package.json",
+        "sha256": "0e27d7ade802dbb32ae4c26a13ced259fbbac1a6da6428e4c4a7581f7bff24d1"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.4-quota-recovery-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.4-quota-recovery-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-21T20:10:51Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "branch": "codex/expo-base-chg149-android-native-certification-r13-target-directed-scroll",
+    "detached_verify": false,
+    "head_sha": "4fb79dc611d36a8b398e236b17181297153691de",
+    "remote_exact_head": true,
+    "remote_head_sha": "4fb79dc611d36a8b398e236b17181297153691de",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "work_branch": "codex/expo-base-chg149-android-native-certification-r13-target-directed-scroll",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-ae48f6c48d2ff92306ee4ee0",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg149-android-native-certification-r13-target-directed-scroll",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg149-android-native-certification-r13-target-directed-scroll"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.4-quota-recovery-candidate",
+    "policy_sha256": "a642c9f63bab2cb555704bdb0b9d1f28222591f133f934c1d0f93cc5a25ab8a1",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg149-android-native-certification-r13-target-directed-scroll",
+  "schema_version": 1,
+  "started_at": "2026-09-21T19:54:26Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 985,
+    "queue_seconds": 0,
+    "total_seconds": 985
+  },
+  "transport": {
+    "bytes": 8789,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 8400,
+    "prompt_sha256": "f201d8b764099cd6f0c58999e443d6e0d9300c6e0a65af454daafea59f95c992",
+    "sha256": "ae48f6c48d2ff92306ee4ee007460ad2a73693b6b2cf589394e7bf0a0235c895"
+  }
+}
