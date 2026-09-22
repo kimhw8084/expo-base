@@ -131,19 +131,19 @@ public final class ExpoBaseNativeAndroidTest {
   public void overlayLifecycleAndSystemBack() {
     clickHomeRoute("overlays", "Overlays");
     clickTestId("overlay-action-menu-trigger", "Open action menu");
-    assertModalAccessibilityVisible("card-action-menu", "Card actions", null, "Card action menu");
-    clickModalAccessibilityTarget("Edit card", null, "Edit card");
-    assertModalAccessibilityAbsent("card-action-menu", "Card actions", null, "Card action menu");
+    UiObject2 editCardAction = assertModalAccessibilityVisible("card-action-menu", "Edit card", null, "Edit card action");
+    editCardAction.click();
+    assertModalAccessibilityAbsent("card-action-menu", "Edit card", null, "Edit card action");
     assertTestIdVisible("overlay-action-menu-trigger", "Open action menu");
     clickTestId("overlay-dialog-trigger", "Open dialog");
-    assertModalAccessibilityVisible("overlay-dialog-review-action", "Review", "Review", "Dialog review action");
+    assertModalAccessibilityVisible("overlay-dialog-review-action", "Review", null, "Dialog Review action");
     device.pressBack();
-    assertModalAccessibilityAbsent("overlay-dialog-review-action", "Review", "Review", "Dialog review action");
+    assertModalAccessibilityAbsent("overlay-dialog-review-action", "Review", null, "Dialog Review action");
     assertTestIdVisible("overlay-dialog-trigger", "Open dialog");
     clickTestId("overlay-bottom-sheet-trigger", "Open bottom sheet");
-    assertModalAccessibilityVisible("bottom-sheet-panel", "Quick actions", "Quick actions", "Bottom sheet panel");
+    assertModalAccessibilityVisible("bottom-sheet-panel", "Compare cards", null, "BottomSheet Compare cards action");
     device.pressBack();
-    assertModalAccessibilityAbsent("bottom-sheet-panel", "Quick actions", "Quick actions", "Bottom sheet panel");
+    assertModalAccessibilityAbsent("bottom-sheet-panel", "Compare cards", null, "BottomSheet Compare cards action");
     assertTestIdVisible("overlay-bottom-sheet-trigger", "Open bottom sheet");
     screenshot("overlays");
   }
@@ -488,10 +488,6 @@ public final class ExpoBaseNativeAndroidTest {
       if (visibleBounds.width() > 0 && visibleBounds.height() > 0 && candidate.isEnabled()) active.add(candidate);
     }
     return active;
-  }
-
-  private void clickModalAccessibilityTarget(String contentDescription, String text, String description) {
-    requireUniqueModalAccessibilityTarget(contentDescription, text, description).click();
   }
 
   private Matcher<View> accessibleTargetMatcher(String description, String text) {
