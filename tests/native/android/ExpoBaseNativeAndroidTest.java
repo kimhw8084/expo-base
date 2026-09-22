@@ -484,7 +484,8 @@ public final class ExpoBaseNativeAndroidTest {
   private List<UiObject2> visibleEnabledModalAccessibilityTargets(List<UiObject2> candidates) {
     List<UiObject2> active = new ArrayList<>();
     for (UiObject2 candidate : candidates) {
-      if (candidate.isVisible() && candidate.isEnabled()) active.add(candidate);
+      Rect visibleBounds = candidate.getVisibleBounds();
+      if (visibleBounds.width() > 0 && visibleBounds.height() > 0 && candidate.isEnabled()) active.add(candidate);
     }
     return active;
   }
