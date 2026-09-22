@@ -11,8 +11,9 @@ export interface PatternHeaderProps {
   description?: string | undefined;
   eyebrow?: string | undefined;
   actions?: ReactNode | undefined;
+  testID?: string | undefined;
 }
-const header = ({ title, description, eyebrow, actions }: PatternHeaderProps) => <PageHeader title={title} {...(description !== undefined ? { description } : {})} {...(eyebrow !== undefined ? { eyebrow } : {})} {...(actions !== undefined ? { actions } : {})} />;
+const header = ({ title, description, eyebrow, actions, testID }: PatternHeaderProps) => <PageHeader title={title} {...(description !== undefined ? { description } : {})} {...(eyebrow !== undefined ? { eyebrow } : {})} {...(actions !== undefined ? { actions } : {})} {...(testID !== undefined ? { testID } : {})} />;
 
 export interface DashboardLayoutProps extends PatternHeaderProps { metrics:ReactNode; primary:ReactNode; secondary:ReactNode; activity?:ReactNode | undefined; }
 export function DashboardLayout({metrics,primary,secondary,activity,...head}:DashboardLayoutProps){return <Page width="dashboard" header={header(head)}><Section>{metrics}</Section><Section><AdaptiveSplit primary={primary} secondary={secondary}/></Section>{activity?<Section>{activity}</Section>:null}</Page>}
