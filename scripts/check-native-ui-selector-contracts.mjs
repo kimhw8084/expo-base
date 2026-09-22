@@ -22,6 +22,16 @@ const testIdHelperStart = android.indexOf('private ViewInteraction scrollToTestI
 const accessibleHelperStart = android.indexOf('private void clickAccessibleTarget');
 const testIdReachabilityHelper = android.slice(testIdHelperStart, accessibleHelperStart);
 const accessibleReachabilityHelper = android.slice(accessibleHelperStart);
+const formScenarioStart = android.indexOf('public void formInputKeyboardAndValidation');
+const formScenarioEnd = android.indexOf('public void touchScrollReachesHomeContent');
+const formScenario = android.slice(formScenarioStart, formScenarioEnd);
+const replaceTextHelperStart = android.indexOf('private void replaceTextTestId');
+const replaceTextHelperEnd = android.indexOf('private void assertTestIdTextContains');
+const replaceTextHelper = android.slice(replaceTextHelperStart, replaceTextHelperEnd);
+const overlayScenarioStart = android.indexOf('public void overlayLifecycleAndSystemBack');
+const overlayScenarioEnd = android.indexOf('public void flagshipDataAndServerStateRoutes');
+const overlayScenario = android.slice(overlayScenarioStart, overlayScenarioEnd);
+const activityRootHelper = android.slice(android.indexOf('private ViewInteraction scrollToTestId'), android.indexOf('private ViewInteraction scrollToModalTestId'));
 const absentTargetBranchStart = testIdReachabilityHelper.indexOf('catch (NoMatchingViewException | AssertionError failure)');
 const absentTargetBranchEnd = testIdReachabilityHelper.indexOf('      try {', absentTargetBranchStart);
 const absentTargetBranch = testIdReachabilityHelper.slice(absentTargetBranchStart, absentTargetBranchEnd);
@@ -76,6 +86,7 @@ const checks = [
   ['Android testID identity excludes hidden zero-size duplicates without screen-state matching', testIdIdentity.includes('view.isShown()') && testIdIdentity.includes('getWidth() > 0') && testIdIdentity.includes('getHeight() > 0') && !testIdIdentity.includes('isDisplayed()') && !testIdIdentity.includes('isEnabled()')],
   ['Android ordinary visibility stays distinct from click readiness', android.includes('visibleTestIdMatcher') && android.includes('allOf(testIdMatcher(id), isDisplayed())') && !testIdIdentity.includes('isDisplayed()') && !testIdIdentity.includes('isEnabled()')],
   ['Android Espresso click readiness matches the 90-percent enabled constraint', android.includes('allOf(testIdMatcher(id), isDisplayingAtLeast(90), isEnabled())') && android.includes('scrollToTestId(id, description, clickReadyTestIdMatcher(id)).perform(click())') && android.includes('target.check(matches(readinessMatcher))')],
+  ['Forms closes the IME through replaceTextTestId without a redundant system Back', replaceTextHelper.includes('replaceText(value), closeSoftKeyboard()') && formScenario.includes('replaceTextTestId("demo-name"') && formScenario.includes('assertTestIdVisible("adapter-form-sections"') && !formScenario.includes('device.pressBack()')],
   ['Android testID reachability distinguishes absent targets from present targets', testIdReachabilityHelper.includes('target.check(matches(testIdMatcher(id)))') && absentTargetBranch.includes('device.waitForIdle(POLL_MS);') && absentTargetBranch.includes('continue;') && !absentTargetBranch.includes('noProgressAttempts')],
   ['Android testID reachability requests the exact target rectangle through its React Native ScrollView', testIdReachabilityHelper.includes('requestTestIdRectangleOnScreen(id)') && android.includes('requestRectangleOnScreen(new Rect(0, 0, view.getWidth(), view.getHeight()), false)') && android.includes('instanceof ScrollView')],
   ['Android testID reachability has bounded no-progress only after present-target scrolling', testIdReachabilityHelper.indexOf('target.check(matches(readinessMatcher))') < testIdReachabilityHelper.indexOf('requestTestIdRectangleOnScreen(id)') && android.includes('MAX_NO_PROGRESS_ATTEMPTS') && android.includes('noProgressAttempts')],
@@ -88,8 +99,12 @@ const checks = [
   ['UI Automator remains device/system-only', android.includes('UiDevice') && android.includes('device.setOrientationLeft()') && android.includes('device.pressBack()') && android.includes('device.swipe(') && android.includes('device.takeScreenshot(')],
   ['every decisive Android target remains in the testID ownership surface', appOwnedTestIds.every((id) => android.includes(id))],
   ['form validation uses stable summary and field ownership', forms.includes('testID="adapter-form-error-summary"') && forms.includes('id="demo-email"') && android.includes('adapter-form-error-summary') && android.includes('demo-email-error') && !android.includes('Enter your email.')],
+  ['Android modal-hosted targets use an explicit Espresso dialog root', android.includes('import static androidx.test.espresso.matcher.RootMatchers.isDialog;') && android.includes('import androidx.test.espresso.NoMatchingRootException;') && android.includes('return scrollToTestId(id, description, visibleTestIdMatcher(id), isDialog())') && android.includes('onViewInRoot(testIdMatcher(id), isDialog()).check(doesNotExist())')],
+  ['ActionMenu id-less Edit interaction is scoped to the modal root', overlayScenario.includes('assertModalTestIdVisible("card-action-menu"') && overlayScenario.includes('clickAccessibleTargetInModal("Edit card", "Edit card")') && android.includes('scrollToAccessibleTarget(description, text, isDialog())')],
+  ['Dialog and BottomSheet Back dismissal handles a disappearing modal root', overlayScenario.includes('device.pressBack();') && (overlayScenario.match(/device\.pressBack\(\);/g) ?? []).length === 2 && overlayScenario.includes('assertModalTestIdAbsent("overlay-dialog-review-action"') && overlayScenario.includes('assertModalTestIdAbsent("bottom-sheet-panel"') && android.includes('catch (NoMatchingRootException dismissedRoot)') && android.includes('doesNotExist()')],
+  ['Activity-root route targets remain on the ordinary Espresso root', activityRootHelper.includes('visibleTestIdMatcher(id), null') && !activityRootHelper.includes('isDialog()') && android.includes('private void clickHomeRoute') && android.includes('clickTestId("home-route-" + route, label)')],
   ['overlay opening uses stable reference controls', overlays.includes('testID="overlay-dialog-trigger"') && overlays.includes('testID="overlay-bottom-sheet-trigger"') && overlays.includes('testID="overlay-dialog-review-action"') && android.includes('card-action-menu')],
-  ['overlay dismissal fails closed on testID disappearance', android.includes('assertTestIdAbsent("overlay-dialog-review-action"') && android.includes('assertTestIdAbsent("bottom-sheet-panel"') && android.includes('doesNotExist()') && !android.includes('Until.gone')],
+  ['overlay dismissal fails closed on modal testID disappearance', android.includes('assertModalTestIdAbsent("overlay-dialog-review-action"') && android.includes('assertModalTestIdAbsent("bottom-sheet-panel"') && android.includes('doesNotExist()') && !android.includes('Until.gone')],
   ['flagship route identity uses PageHeader testIDs', android.includes('analytics-page-header-title') && android.includes('finance-page-header-title') && android.includes('monitoring-page-header-title')],
   ['server-state uses stable count and control ownership', serverState.includes('testID="server-state-refresh"') && android.includes('server-state-load-count') && android.includes('server-state-refresh') && android.includes('server-state-mutation-count')],
   ['R5 text heuristics and R7 resource-id assumptions cannot return', !android.includes('Expected Android text was not rendered') && !android.includes('findSemanticText') && !android.includes('SystemClock') && !android.includes('By.res(') && !android.includes('Missing Android resource-id')],

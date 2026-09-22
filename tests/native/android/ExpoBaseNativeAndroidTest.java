@@ -16,6 +16,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withTagValue;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
@@ -32,6 +33,8 @@ import android.widget.ScrollView;
 
 import androidx.test.espresso.AmbiguousViewMatcherException;
 import androidx.test.espresso.NoMatchingViewException;
+import androidx.test.espresso.NoMatchingRootException;
+import androidx.test.espresso.Root;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
@@ -99,7 +102,6 @@ public final class ExpoBaseNativeAndroidTest {
     name.check(matches(hasFocus()));
     replaceTextTestId("demo-name", "Native Test User");
     assertTestIdTextContains("demo-name", "Native Test User", "Full name field");
-    device.pressBack();
     assertTestIdVisible("adapter-form-sections", "Build form sections");
     clickTestId("adapter-form-validate", "Validate form");
     assertTestIdVisible("adapter-form-error-summary", "Form error summary");
@@ -129,17 +131,17 @@ public final class ExpoBaseNativeAndroidTest {
   public void overlayLifecycleAndSystemBack() {
     clickHomeRoute("overlays", "Overlays");
     clickTestId("overlay-action-menu-trigger", "Open action menu");
-    assertTestIdVisible("card-action-menu", "Card action menu");
-    clickAccessibleTarget("Edit card", "Edit card");
-    assertTestIdAbsent("card-action-menu", "Card action menu");
+    assertModalTestIdVisible("card-action-menu", "Card action menu");
+    clickAccessibleTargetInModal("Edit card", "Edit card");
+    assertModalTestIdAbsent("card-action-menu", "Card action menu", "overlay-action-menu-trigger", "Open action menu");
     clickTestId("overlay-dialog-trigger", "Open dialog");
-    assertTestIdVisible("overlay-dialog-review-action", "Dialog review action");
+    assertModalTestIdVisible("overlay-dialog-review-action", "Dialog review action");
     device.pressBack();
-    assertTestIdAbsent("overlay-dialog-review-action", "Dialog review action");
+    assertModalTestIdAbsent("overlay-dialog-review-action", "Dialog review action", "overlay-dialog-trigger", "Open dialog");
     clickTestId("overlay-bottom-sheet-trigger", "Open bottom sheet");
-    assertTestIdVisible("bottom-sheet-panel", "Bottom sheet panel");
+    assertModalTestIdVisible("bottom-sheet-panel", "Bottom sheet panel");
     device.pressBack();
-    assertTestIdAbsent("bottom-sheet-panel", "Bottom sheet panel");
+    assertModalTestIdAbsent("bottom-sheet-panel", "Bottom sheet panel", "overlay-bottom-sheet-trigger", "Open bottom sheet");
     screenshot("overlays");
   }
 
@@ -196,20 +198,32 @@ public final class ExpoBaseNativeAndroidTest {
     return scrollToTestId(id, description);
   }
 
-  private void assertTestIdAbsent(String id, String description) {
+  private ViewInteraction assertModalTestIdVisible(String id, String description) {
+    return scrollToModalTestId(id, description);
+  }
+
+  private void assertModalTestIdAbsent(String id, String description, String restoredId, String restoredDescription) {
     Throwable lastFailure = null;
+    boolean dismissed = false;
     for (int attempt = 0; attempt < WAIT_MS / POLL_MS; attempt += 1) {
       try {
-        onView(testIdMatcher(id)).check(doesNotExist());
-        return;
+        onViewInRoot(testIdMatcher(id), isDialog()).check(doesNotExist());
+        dismissed = true;
+        break;
+      } catch (NoMatchingRootException dismissedRoot) {
+        dismissed = true;
+        break;
       } catch (AssertionError | RuntimeException failure) {
         lastFailure = failure;
         device.waitForIdle(POLL_MS);
       }
     }
-    AssertionError failure = new AssertionError("Android testID target remained after dismissal: " + id + " / " + description);
-    if (lastFailure != null) failure.initCause(lastFailure);
-    throw failure;
+    if (!dismissed) {
+      AssertionError failure = new AssertionError("Android modal testID target remained after dismissal: " + id + " / " + description);
+      if (lastFailure != null) failure.initCause(lastFailure);
+      throw failure;
+    }
+    assertTestIdVisible(restoredId, restoredDescription);
   }
 
   private void clickHomeRoute(String route, String label) {
@@ -229,16 +243,24 @@ public final class ExpoBaseNativeAndroidTest {
   }
 
   private ViewInteraction scrollToTestId(String id, String description) {
-    return scrollToTestId(id, description, visibleTestIdMatcher(id));
+    return scrollToTestId(id, description, visibleTestIdMatcher(id), null);
   }
 
   private ViewInteraction scrollToTestId(String id, String description, Matcher<View> readinessMatcher) {
+    return scrollToTestId(id, description, readinessMatcher, null);
+  }
+
+  private ViewInteraction scrollToModalTestId(String id, String description) {
+    return scrollToTestId(id, description, visibleTestIdMatcher(id), isDialog());
+  }
+
+  private ViewInteraction scrollToTestId(String id, String description, Matcher<View> readinessMatcher, Matcher<Root> rootMatcher) {
     Throwable lastFailure = null;
     int noProgressAttempts = 0;
     for (int attempt = 0; attempt < MAX_SCROLL_ATTEMPTS; attempt += 1) {
       ViewInteraction target;
       try {
-        target = onView(testIdMatcher(id));
+        target = onViewInRoot(testIdMatcher(id), rootMatcher);
       } catch (AmbiguousViewMatcherException failure) {
         throw failure;
       } catch (RuntimeException failure) {
@@ -268,7 +290,7 @@ public final class ExpoBaseNativeAndroidTest {
         lastFailure = failure;
         if (attempt + 1 < MAX_SCROLL_ATTEMPTS) {
           try {
-            if (requestTestIdRectangleOnScreen(id)) {
+            if (rootMatcher == null ? requestTestIdRectangleOnScreen(id) : requestTestIdRectangleOnScreen(id, rootMatcher)) {
               noProgressAttempts = 0;
             } else {
               noProgressAttempts += 1;
@@ -291,6 +313,11 @@ public final class ExpoBaseNativeAndroidTest {
     AssertionError failure = new AssertionError("Missing Android testID target or requested readiness state: " + id + " / " + description);
     if (lastFailure != null) failure.initCause(lastFailure);
     throw failure;
+  }
+
+  private ViewInteraction onViewInRoot(Matcher<View> targetMatcher, Matcher<Root> rootMatcher) {
+    ViewInteraction target = onView(targetMatcher);
+    return rootMatcher == null ? target : target.inRoot(rootMatcher);
   }
 
   private Matcher<View> testIdMatcher(String id) {
@@ -321,16 +348,24 @@ public final class ExpoBaseNativeAndroidTest {
   }
 
   private boolean requestTestIdRectangleOnScreen(String id) {
-    return requestRectangleOnScreen(testIdMatcher(id), "testID target " + id);
+    return requestTestIdRectangleOnScreen(id, null);
+  }
+
+  private boolean requestTestIdRectangleOnScreen(String id, Matcher<Root> rootMatcher) {
+    return requestRectangleOnScreen(testIdMatcher(id), "testID target " + id, rootMatcher);
   }
 
   private boolean requestAccessibleRectangleOnScreen(String description, String text) {
-    return requestRectangleOnScreen(accessibleTargetMatcher(description, text), "id-less accessibility target " + description);
+    return requestAccessibleRectangleOnScreen(description, text, null);
   }
 
-  private boolean requestRectangleOnScreen(Matcher<View> targetMatcher, String description) {
+  private boolean requestAccessibleRectangleOnScreen(String description, String text, Matcher<Root> rootMatcher) {
+    return requestRectangleOnScreen(accessibleTargetMatcher(description, text), "id-less accessibility target " + description, rootMatcher);
+  }
+
+  private boolean requestRectangleOnScreen(Matcher<View> targetMatcher, String description, Matcher<Root> rootMatcher) {
     final boolean[] requested = { false };
-    onView(targetMatcher).perform(new ViewAction() {
+    onViewInRoot(targetMatcher, rootMatcher).perform(new ViewAction() {
       @Override
       public Matcher<View> getConstraints() {
         return isAssignableFrom(View.class);
@@ -367,14 +402,22 @@ public final class ExpoBaseNativeAndroidTest {
     scrollToAccessibleTarget(description, text).perform(click());
   }
 
+  private void clickAccessibleTargetInModal(String description, String text) {
+    scrollToAccessibleTarget(description, text, isDialog()).perform(click());
+  }
+
   private ViewInteraction scrollToAccessibleTarget(String description, String text) {
+    return scrollToAccessibleTarget(description, text, null);
+  }
+
+  private ViewInteraction scrollToAccessibleTarget(String description, String text, Matcher<Root> rootMatcher) {
     Throwable lastFailure = null;
     int noProgressAttempts = 0;
     Matcher<View> targetMatcher = accessibleTargetMatcher(description, text);
     for (int attempt = 0; attempt < MAX_SCROLL_ATTEMPTS; attempt += 1) {
       ViewInteraction target;
       try {
-        target = onView(targetMatcher);
+        target = onViewInRoot(targetMatcher, rootMatcher);
       } catch (AmbiguousViewMatcherException failure) {
         throw failure;
       } catch (RuntimeException failure) {
@@ -404,7 +447,7 @@ public final class ExpoBaseNativeAndroidTest {
         lastFailure = failure;
         if (attempt + 1 < MAX_SCROLL_ATTEMPTS) {
           try {
-            if (requestAccessibleRectangleOnScreen(description, text)) {
+            if (rootMatcher == null ? requestAccessibleRectangleOnScreen(description, text) : requestAccessibleRectangleOnScreen(description, text, rootMatcher)) {
               noProgressAttempts = 0;
             } else {
               noProgressAttempts += 1;
