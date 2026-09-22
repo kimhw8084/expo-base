@@ -6,7 +6,6 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static org.hamcrest.Matchers.allOf;
 import static androidx.test.espresso.matcher.ViewMatchers.hasFocus;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -16,7 +15,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withTagValue;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
@@ -33,13 +31,13 @@ import android.widget.ScrollView;
 
 import androidx.test.espresso.AmbiguousViewMatcherException;
 import androidx.test.espresso.NoMatchingViewException;
-import androidx.test.espresso.NoMatchingRootException;
-import androidx.test.espresso.Root;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject2;
 
 import org.junit.After;
 import org.junit.Before;
@@ -49,6 +47,8 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
 @RunWith(AndroidJUnit4.class)
 public final class ExpoBaseNativeAndroidTest {
@@ -131,17 +131,20 @@ public final class ExpoBaseNativeAndroidTest {
   public void overlayLifecycleAndSystemBack() {
     clickHomeRoute("overlays", "Overlays");
     clickTestId("overlay-action-menu-trigger", "Open action menu");
-    assertModalTestIdVisible("card-action-menu", "Card action menu");
-    clickAccessibleTargetInModal("Edit card", "Edit card");
-    assertModalTestIdAbsent("card-action-menu", "Card action menu", "overlay-action-menu-trigger", "Open action menu");
+    assertModalAccessibilityVisible("card-action-menu", "Card actions", null, "Card action menu");
+    clickModalAccessibilityTarget("Edit card", null, "Edit card");
+    assertModalAccessibilityAbsent("card-action-menu", "Card actions", null, "Card action menu");
+    assertTestIdVisible("overlay-action-menu-trigger", "Open action menu");
     clickTestId("overlay-dialog-trigger", "Open dialog");
-    assertModalTestIdVisible("overlay-dialog-review-action", "Dialog review action");
+    assertModalAccessibilityVisible("overlay-dialog-review-action", "Review", "Review", "Dialog review action");
     device.pressBack();
-    assertModalTestIdAbsent("overlay-dialog-review-action", "Dialog review action", "overlay-dialog-trigger", "Open dialog");
+    assertModalAccessibilityAbsent("overlay-dialog-review-action", "Review", "Review", "Dialog review action");
+    assertTestIdVisible("overlay-dialog-trigger", "Open dialog");
     clickTestId("overlay-bottom-sheet-trigger", "Open bottom sheet");
-    assertModalTestIdVisible("bottom-sheet-panel", "Bottom sheet panel");
+    assertModalAccessibilityVisible("bottom-sheet-panel", "Quick actions", "Quick actions", "Bottom sheet panel");
     device.pressBack();
-    assertModalTestIdAbsent("bottom-sheet-panel", "Bottom sheet panel", "overlay-bottom-sheet-trigger", "Open bottom sheet");
+    assertModalAccessibilityAbsent("bottom-sheet-panel", "Quick actions", "Quick actions", "Bottom sheet panel");
+    assertTestIdVisible("overlay-bottom-sheet-trigger", "Open bottom sheet");
     screenshot("overlays");
   }
 
@@ -198,32 +201,29 @@ public final class ExpoBaseNativeAndroidTest {
     return scrollToTestId(id, description);
   }
 
-  private ViewInteraction assertModalTestIdVisible(String id, String description) {
-    return scrollToModalTestId(id, description);
+  private UiObject2 assertModalAccessibilityVisible(String productTestId, String contentDescription, String text, String description) {
+    return requireUniqueModalAccessibilityTarget(contentDescription, text, productTestId + " / " + description);
   }
 
-  private void assertModalTestIdAbsent(String id, String description, String restoredId, String restoredDescription) {
+  private void assertModalAccessibilityAbsent(String productTestId, String contentDescription, String text, String description) {
     Throwable lastFailure = null;
-    boolean dismissed = false;
     for (int attempt = 0; attempt < WAIT_MS / POLL_MS; attempt += 1) {
       try {
-        onViewInRoot(testIdMatcher(id), isDialog()).check(doesNotExist());
-        dismissed = true;
-        break;
-      } catch (NoMatchingRootException dismissedRoot) {
-        dismissed = true;
-        break;
-      } catch (AssertionError | RuntimeException failure) {
+        List<UiObject2> matches = findVisibleEnabledModalAccessibilityTargets(contentDescription, text);
+        if (matches.size() > 1) {
+          throw new AssertionError("Ambiguous Android modal accessibility target after dismissal: " + productTestId + " / " + description);
+        }
+        if (matches.isEmpty()) return;
+      } catch (AssertionError failure) {
+        throw failure;
+      } catch (RuntimeException failure) {
         lastFailure = failure;
-        device.waitForIdle(POLL_MS);
       }
+      device.waitForIdle(POLL_MS);
     }
-    if (!dismissed) {
-      AssertionError failure = new AssertionError("Android modal testID target remained after dismissal: " + id + " / " + description);
-      if (lastFailure != null) failure.initCause(lastFailure);
-      throw failure;
-    }
-    assertTestIdVisible(restoredId, restoredDescription);
+    AssertionError failure = new AssertionError("Android modal accessibility target remained after dismissal: " + productTestId + " / " + description);
+    if (lastFailure != null) failure.initCause(lastFailure);
+    throw failure;
   }
 
   private void clickHomeRoute(String route, String label) {
@@ -243,24 +243,16 @@ public final class ExpoBaseNativeAndroidTest {
   }
 
   private ViewInteraction scrollToTestId(String id, String description) {
-    return scrollToTestId(id, description, visibleTestIdMatcher(id), null);
+    return scrollToTestId(id, description, visibleTestIdMatcher(id));
   }
 
   private ViewInteraction scrollToTestId(String id, String description, Matcher<View> readinessMatcher) {
-    return scrollToTestId(id, description, readinessMatcher, null);
-  }
-
-  private ViewInteraction scrollToModalTestId(String id, String description) {
-    return scrollToTestId(id, description, visibleTestIdMatcher(id), isDialog());
-  }
-
-  private ViewInteraction scrollToTestId(String id, String description, Matcher<View> readinessMatcher, Matcher<Root> rootMatcher) {
     Throwable lastFailure = null;
     int noProgressAttempts = 0;
     for (int attempt = 0; attempt < MAX_SCROLL_ATTEMPTS; attempt += 1) {
       ViewInteraction target;
       try {
-        target = onViewInRoot(testIdMatcher(id), rootMatcher);
+        target = onViewInActivityRoot(testIdMatcher(id));
       } catch (AmbiguousViewMatcherException failure) {
         throw failure;
       } catch (RuntimeException failure) {
@@ -290,7 +282,7 @@ public final class ExpoBaseNativeAndroidTest {
         lastFailure = failure;
         if (attempt + 1 < MAX_SCROLL_ATTEMPTS) {
           try {
-            if (rootMatcher == null ? requestTestIdRectangleOnScreen(id) : requestTestIdRectangleOnScreen(id, rootMatcher)) {
+            if (requestTestIdRectangleOnScreen(id)) {
               noProgressAttempts = 0;
             } else {
               noProgressAttempts += 1;
@@ -315,9 +307,8 @@ public final class ExpoBaseNativeAndroidTest {
     throw failure;
   }
 
-  private ViewInteraction onViewInRoot(Matcher<View> targetMatcher, Matcher<Root> rootMatcher) {
-    ViewInteraction target = onView(targetMatcher);
-    return rootMatcher == null ? target : target.inRoot(rootMatcher);
+  private ViewInteraction onViewInActivityRoot(Matcher<View> targetMatcher) {
+    return onView(targetMatcher);
   }
 
   private Matcher<View> testIdMatcher(String id) {
@@ -348,24 +339,16 @@ public final class ExpoBaseNativeAndroidTest {
   }
 
   private boolean requestTestIdRectangleOnScreen(String id) {
-    return requestTestIdRectangleOnScreen(id, null);
-  }
-
-  private boolean requestTestIdRectangleOnScreen(String id, Matcher<Root> rootMatcher) {
-    return requestRectangleOnScreen(testIdMatcher(id), "testID target " + id, rootMatcher);
+    return requestRectangleOnScreen(testIdMatcher(id), "testID target " + id);
   }
 
   private boolean requestAccessibleRectangleOnScreen(String description, String text) {
-    return requestAccessibleRectangleOnScreen(description, text, null);
+    return requestRectangleOnScreen(accessibleTargetMatcher(description, text), "id-less accessibility target " + description);
   }
 
-  private boolean requestAccessibleRectangleOnScreen(String description, String text, Matcher<Root> rootMatcher) {
-    return requestRectangleOnScreen(accessibleTargetMatcher(description, text), "id-less accessibility target " + description, rootMatcher);
-  }
-
-  private boolean requestRectangleOnScreen(Matcher<View> targetMatcher, String description, Matcher<Root> rootMatcher) {
+  private boolean requestRectangleOnScreen(Matcher<View> targetMatcher, String description) {
     final boolean[] requested = { false };
-    onViewInRoot(targetMatcher, rootMatcher).perform(new ViewAction() {
+    onViewInActivityRoot(targetMatcher).perform(new ViewAction() {
       @Override
       public Matcher<View> getConstraints() {
         return isAssignableFrom(View.class);
@@ -402,22 +385,14 @@ public final class ExpoBaseNativeAndroidTest {
     scrollToAccessibleTarget(description, text).perform(click());
   }
 
-  private void clickAccessibleTargetInModal(String description, String text) {
-    scrollToAccessibleTarget(description, text, isDialog()).perform(click());
-  }
-
   private ViewInteraction scrollToAccessibleTarget(String description, String text) {
-    return scrollToAccessibleTarget(description, text, null);
-  }
-
-  private ViewInteraction scrollToAccessibleTarget(String description, String text, Matcher<Root> rootMatcher) {
     Throwable lastFailure = null;
     int noProgressAttempts = 0;
     Matcher<View> targetMatcher = accessibleTargetMatcher(description, text);
     for (int attempt = 0; attempt < MAX_SCROLL_ATTEMPTS; attempt += 1) {
       ViewInteraction target;
       try {
-        target = onViewInRoot(targetMatcher, rootMatcher);
+        target = onViewInActivityRoot(targetMatcher);
       } catch (AmbiguousViewMatcherException failure) {
         throw failure;
       } catch (RuntimeException failure) {
@@ -447,7 +422,7 @@ public final class ExpoBaseNativeAndroidTest {
         lastFailure = failure;
         if (attempt + 1 < MAX_SCROLL_ATTEMPTS) {
           try {
-            if (rootMatcher == null ? requestAccessibleRectangleOnScreen(description, text) : requestAccessibleRectangleOnScreen(description, text, rootMatcher)) {
+            if (requestAccessibleRectangleOnScreen(description, text)) {
               noProgressAttempts = 0;
             } else {
               noProgressAttempts += 1;
@@ -470,6 +445,52 @@ public final class ExpoBaseNativeAndroidTest {
     AssertionError failure = new AssertionError("Android id-less accessibility target was not action-ready: " + description);
     if (lastFailure != null) failure.initCause(lastFailure);
     throw failure;
+  }
+
+  private UiObject2 requireUniqueModalAccessibilityTarget(String contentDescription, String text, String description) {
+    Throwable lastFailure = null;
+    for (int attempt = 0; attempt < WAIT_MS / POLL_MS; attempt += 1) {
+      try {
+        List<UiObject2> matches = findVisibleEnabledModalAccessibilityTargets(contentDescription, text);
+        if (matches.size() > 1) {
+          throw new AssertionError("Ambiguous Android modal accessibility target: " + description);
+        }
+        if (matches.size() == 1) return matches.get(0);
+      } catch (AssertionError failure) {
+        throw failure;
+      } catch (RuntimeException failure) {
+        lastFailure = failure;
+      }
+      device.waitForIdle(POLL_MS);
+    }
+    AssertionError failure = new AssertionError("Missing Android modal accessibility target: " + description);
+    if (lastFailure != null) failure.initCause(lastFailure);
+    throw failure;
+  }
+
+  private List<UiObject2> findVisibleEnabledModalAccessibilityTargets(String contentDescription, String text) {
+    if (contentDescription == null && text == null) {
+      throw new IllegalArgumentException("A modal accessibility target requires content description or text.");
+    }
+    // UiDevice.findObjects searches the currently active accessibility window.
+    List<UiObject2> candidates = contentDescription == null
+        ? new ArrayList<>()
+        : device.findObjects(By.descContains(contentDescription));
+    List<UiObject2> active = visibleEnabledModalAccessibilityTargets(candidates);
+    if (active.isEmpty() && text != null) return visibleEnabledModalAccessibilityTargets(device.findObjects(By.textContains(text)));
+    return active;
+  }
+
+  private List<UiObject2> visibleEnabledModalAccessibilityTargets(List<UiObject2> candidates) {
+    List<UiObject2> active = new ArrayList<>();
+    for (UiObject2 candidate : candidates) {
+      if (candidate.isVisible() && candidate.isEnabled()) active.add(candidate);
+    }
+    return active;
+  }
+
+  private void clickModalAccessibilityTarget(String contentDescription, String text, String description) {
+    requireUniqueModalAccessibilityTarget(contentDescription, text, description).click();
   }
 
   private Matcher<View> accessibleTargetMatcher(String description, String text) {
