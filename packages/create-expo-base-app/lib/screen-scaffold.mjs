@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { validateTaskEffectBindings, validateTaskEffectDocument } from './task-effects.mjs';
 
 export function scaffoldScreen({ root, app, name, patternId, access = 'protected', capabilities = [] }) {
   const target = path.resolve(root, app);
@@ -37,10 +38,83 @@ export function scaffoldScreen({ root, app, name, patternId, access = 'protected
   };
   nextManifest[access === 'protected' ? 'authenticated' : 'public'].push(...routes);
   const staged = new Map(files);
+  const taskEffectsPath = path.join(target, '.expo-base', 'task-effects.json');
+  const existingTaskEffects = fs.existsSync(taskEffectsPath) ? readJson(taskEffectsPath) : { schemaVersion: 1, actions: [] };
+  const taskEffectIssues = validateTaskEffectDocument(existingTaskEffects);
+  if (taskEffectIssues.length) throw new Error(`Invalid .expo-base/task-effects.json: ${taskEffectIssues.join('; ')}.`);
+  const scaffoldablePatterns = registry.patterns.filter((candidate) => candidate.scaffold).map((candidate) => candidate.id);
+  const existingBindings = validateTaskEffectBindings(existingTaskEffects, { routes: [...existingRoutes], patterns: scaffoldablePatterns });
+  if (existingBindings.length) throw new Error(`Invalid .expo-base/task-effects.json bindings: ${existingBindings.join('; ')}.`);
+  const taskEffects = {
+    schemaVersion: 1,
+    actions: [...existingTaskEffects.actions, ...taskEffectsForPattern(name, patternId)].sort((left, right) => left.actionKey < right.actionKey ? -1 : left.actionKey > right.actionKey ? 1 : 0),
+  };
+  const nextTaskEffectIssues = validateTaskEffectDocument(taskEffects);
+  if (nextTaskEffectIssues.length) throw new Error(`Generated task-effect contract is invalid: ${nextTaskEffectIssues.join('; ')}.`);
+  const nextBindings = validateTaskEffectBindings(taskEffects, { routes: [...existingRoutes, ...routes], patterns: scaffoldablePatterns });
+  if (nextBindings.length) throw new Error(`Generated task-effect contract has invalid bindings: ${nextBindings.join('; ')}.`);
+  staged.set('.expo-base/task-effects.json', `${JSON.stringify(taskEffects, null, 2)}\n`);
   staged.set('expo-base.routes.json', JSON.stringify(nextManifest, null, 2) + '\n');
   staged.set('routes.ts', renderRouteModule(nextManifest));
   transactionalWrite(target, staged);
   return { target, patternId, access, routes, files: [...files.keys()] };
+}
+
+function taskEffectsForPattern(route, patternId) {
+  const action = (key, label, intendedEffect, prohibitedEffects, recoveryExpectation, nextAction) => ({
+    actionKey: `${route}:${key}`,
+    route,
+    pattern: patternId,
+    label,
+    status: 'unresolved',
+    intendedEffect,
+    prohibitedEffects,
+    recoveryExpectation,
+    nextAction,
+  });
+  if (patternId === 'import-workflow') return [action(
+    'cancel',
+    'Cancel',
+    'TODO(product): leave the import workflow through its approved product route.',
+    ['Do not navigate to an invented route or submit/discard the selected document.'],
+    'Keep the import route and selected document available until a safe exit is bound.',
+    'Bind Cancel to the approved product route and attach evidence before resolving this entry.',
+  )];
+  if (patternId === 'review-approval') return [
+    action(
+      'back',
+      'Back',
+      'TODO(product): return to the approved prior workflow step.',
+      ['Do not invent a destination or discard the reviewed change set.'],
+      'Keep the current review and its data available until a safe prior step is bound.',
+      'Bind Back to the product workflow and attach evidence before resolving this entry.',
+    ),
+    action(
+      'confirm',
+      'Confirm',
+      'TODO(product): implement and describe the domain consequence of this confirmation.',
+      ['Do not report success, dismiss as completed, or perform an unauthorized/destructive effect.'],
+      'Keep the confirmation and review data available until the domain operation succeeds or returns an actionable error.',
+      'Bind Confirm to product validation and the authorized mutation; close only on its defined success result, then attach evidence.',
+    ),
+  ];
+  if (patternId === 'completion') return [action(
+    'continue',
+    'Continue',
+    'TODO(product): continue to the approved next workflow destination.',
+    ['Do not navigate to an invented destination or claim additional work is complete.'],
+    'Keep the completion summary available until the next destination is defined.',
+    'Bind Continue to the approved product destination and attach evidence before resolving this entry.',
+  )];
+  if (patternId === 'permission-rationale') return [action(
+    'continue',
+    'Continue',
+    'TODO(product): begin the approved capability request through the selected capability owner.',
+    ['Do not claim permission was granted or invoke a capability that is not selected and registered.'],
+    'Keep the rationale visible and allow the user to remain on this route until a real request is bound.',
+    'Bind Continue to the selected capability flow and attach evidence before resolving this entry.',
+  )];
+  return [];
 }
 
 function screenRoutes(name, patternId) {
@@ -78,6 +152,12 @@ function screenFiles({ name, patternId, requestedCapabilities }) {
   } else if (patternId === 'permission-rationale') {
     files.set(`app/${name}.tsx`, permissionTemplate({ title }));
   } else throw new Error(`No scaffold template is registered for ${patternId}.`);
+  const taskEffects = taskEffectsForPattern(name, patternId);
+  if (taskEffects.length) {
+    const routeFile = `app/${name}.tsx`;
+    const sourceTODOs = taskEffects.map((effect) => `// TODO(product): ${effect.nextAction}`).join('\n');
+    files.set(routeFile, `${sourceTODOs}\n${files.get(routeFile)}`);
+  }
   return files;
 }
 
@@ -106,7 +186,7 @@ function formTemplate({ name, title, singular, stem, preferences }) {
 }
 
 function importTemplate({ name, title, singular, stem }) {
-  return `import { useState } from 'react';\nimport { useExpoBaseDocumentPicker, type ExpoBaseAcquiredResource } from '@expo-base/media';\nimport { useExpoBaseMutation } from '@expo-base/server-state';\nimport { Button, ImportWorkflowLayout, KeyValueList, StateView, Text, VStack } from '@expo-base/ui';\nimport { ${stem}Service } from '../features/${name}/${name}.service';\nimport type { ${singular}Record } from '../features/${name}/${name}.model';\n\nexport default function ${singular}ImportScreen() {\n  const documents = useExpoBaseDocumentPicker();\n  const [resource, setResource] = useState<ExpoBaseAcquiredResource | null>(null);\n  const upload = useExpoBaseMutation<ExpoBaseAcquiredResource, ${singular}Record>({ mutation: ({ variables, signal }) => ${stem}Service.save({ id: variables.uri, label: variables.name ?? 'Selected item', description: variables.mimeType ?? 'Unknown type' }, signal) });\n  const choose = async () => { const result = await documents.pick(); if (result.status === 'success') setResource(result.value[0] ?? null); };\n  return <ImportWorkflowLayout title="${title}" description="Choose a file, validate it in product logic, then send it through a service mutation." acquisition={<VStack gap="lg">{resource ? <KeyValueList items={[{ key: 'name', label: 'File', value: resource.name ?? 'Unnamed file' }, { key: 'type', label: 'Type', value: resource.mimeType ?? 'Unknown' }]} /> : <StateView kind="empty" title="No file selected" message="Choose a document to begin." />}<Button label="Choose document" variant="secondary" responsiveWidth="compact-full" onPress={() => { void choose(); }} /></VStack>} status={upload.state.status === 'error' ? <Text tone="negative">{upload.state.error.message}</Text> : undefined} primaryAction={<Button label="Upload" disabled={!resource} loading={upload.state.status === 'pending'} responsiveWidth="compact-full" onPress={() => { if (resource) void upload.execute(resource); }} />} secondaryAction={<Button label="Cancel" variant="ghost" responsiveWidth="compact-full" onPress={() => {}} />} />;\n}\n`;
+  return `import { useState } from 'react';\nimport { useExpoBaseDocumentPicker, type ExpoBaseAcquiredResource } from '@expo-base/media';\nimport { useExpoBaseMutation } from '@expo-base/server-state';\nimport { Button, ImportWorkflowLayout, KeyValueList, StateView, Text, VStack } from '@expo-base/ui';\nimport { ${stem}Service } from '../features/${name}/${name}.service';\nimport type { ${singular}Record } from '../features/${name}/${name}.model';\n\nexport default function ${singular}ImportScreen() {\n  const documents = useExpoBaseDocumentPicker();\n  const [resource, setResource] = useState<ExpoBaseAcquiredResource | null>(null);\n  const upload = useExpoBaseMutation<ExpoBaseAcquiredResource, ${singular}Record>({ mutation: ({ variables, signal }) => ${stem}Service.save({ id: variables.uri, label: variables.name ?? 'Selected item', description: variables.mimeType ?? 'Unknown type' }, signal) });\n  const choose = async () => { const result = await documents.pick(); if (result.status === 'success') setResource(result.value[0] ?? null); };\n  return <ImportWorkflowLayout title="${title}" description="Choose a file, validate it in product logic, then send it through a service mutation." acquisition={<VStack gap="lg">{resource ? <KeyValueList items={[{ key: 'name', label: 'File', value: resource.name ?? 'Unnamed file' }, { key: 'type', label: 'Type', value: resource.mimeType ?? 'Unknown' }]} /> : <StateView kind="empty" title="No file selected" message="Choose a document to begin." />}<Button label="Choose document" variant="secondary" responsiveWidth="compact-full" onPress={() => { void choose(); }} /></VStack>} status={upload.state.status === 'error' ? <Text tone="negative">{upload.state.error.message}</Text> : undefined} primaryAction={<Button label="Upload" disabled={!resource} loading={upload.state.status === 'pending'} responsiveWidth="compact-full" onPress={() => { if (resource) void upload.execute(resource); }} />} secondaryAction={<Button label="Cancel" variant="ghost" disabled onPress={() => {}} responsiveWidth="compact-full" />} />;\n}\n`;
 }
 
 function offlineTemplate({ name, title, singular, stem }) {
@@ -114,15 +194,15 @@ function offlineTemplate({ name, title, singular, stem }) {
 }
 
 function reviewTemplate({ title, singular }) {
-  return `import { useState } from 'react';\nimport { Button, Dialog, KeyValueList, ReviewWorkflowLayout } from '@expo-base/ui';\n\nexport default function ${singular}ReviewScreen() {\n  const [confirming, setConfirming] = useState(false);\n  return <>\n    <ReviewWorkflowLayout title="${title}" description="TODO(product): present the domain change set." review={<KeyValueList items={[{ key: 'review', label: 'Review', value: 'TODO(product): domain summary' }]} />} primaryAction={<Button label="Continue" responsiveWidth="compact-full" onPress={() => setConfirming(true)} />} secondaryAction={<Button label="Back" variant="secondary" responsiveWidth="compact-full" onPress={() => {}} />} />\n    <Dialog open={confirming} onOpenChange={setConfirming} title="Confirm action" description="TODO(product): explain the consequence." kind="alert" actions={<Button label="Confirm" variant="danger" onPress={() => setConfirming(false)} />} />\n  </>;\n}\n`;
+  return `import { useState } from 'react';\nimport { Button, Dialog, KeyValueList, ReviewWorkflowLayout } from '@expo-base/ui';\n\nexport default function ${singular}ReviewScreen() {\n  const [confirming, setConfirming] = useState(false);\n  return <>\n    <ReviewWorkflowLayout title="${title}" description="TODO(product): present the domain change set." review={<KeyValueList items={[{ key: 'review', label: 'Review', value: 'TODO(product): domain summary' }]} />} primaryAction={<Button label="Continue" responsiveWidth="compact-full" onPress={() => setConfirming(true)} />} secondaryAction={<Button label="Back" variant="secondary" disabled onPress={() => {}} responsiveWidth="compact-full" />} />\n    <Dialog open={confirming} onOpenChange={setConfirming} title="Confirm action" description="TODO(product): explain the consequence." kind="alert" actions={<>{/* TODO(product): bind the domain operation; keep Confirm disabled until it can report its real outcome. */}<Button label="Confirm" variant="danger" disabled onPress={() => {}} /></>} />\n  </>;\n}\n`;
 }
 
 function completionTemplate({ title }) {
-  return `import { Button, CompletionLayout, ScrollScreen } from '@expo-base/ui';\n\nexport default function ${camelCase(title)}CompletionScreen() {\n  return <ScrollScreen><CompletionLayout title="${title}" message="TODO(product): describe the completed workflow." primaryAction={<Button label="Continue" responsiveWidth="compact-full" onPress={() => {}} />} /></ScrollScreen>;\n}\n`;
+  return `import { Button, CompletionLayout, ScrollScreen } from '@expo-base/ui';\n\nexport default function ${camelCase(title)}CompletionScreen() {\n  return <ScrollScreen><CompletionLayout title="${title}" message="TODO(product): describe the completed workflow." primaryAction={<>{/* TODO(product): bind Continue to the approved next destination before enabling it. */}<Button label="Continue" disabled responsiveWidth="compact-full" onPress={() => {}} /></>} /></ScrollScreen>;\n}\n`;
 }
 
 function permissionTemplate({ title }) {
-  return `import { Button, PermissionRationaleLayout, ScrollScreen } from '@expo-base/ui';\n\nexport default function ${camelCase(title)}PermissionScreen() {\n  return <ScrollScreen><PermissionRationaleLayout title="${title}" message="TODO(product): explain why this optional capability is useful." primaryAction={<Button label="Continue" responsiveWidth="compact-full" onPress={() => {}} />} /></ScrollScreen>;\n}\n`;
+  return `import { Button, PermissionRationaleLayout, ScrollScreen } from '@expo-base/ui';\n\nexport default function ${camelCase(title)}PermissionScreen() {\n  return <ScrollScreen><PermissionRationaleLayout title="${title}" message="TODO(product): explain why this optional capability is useful." primaryAction={<>{/* TODO(product): bind Continue to the selected capability request before enabling it. */}<Button label="Continue" disabled responsiveWidth="compact-full" onPress={() => {}} /></>} /></ScrollScreen>;\n}\n`;
 }
 
 function renderRouteModule(manifest) {

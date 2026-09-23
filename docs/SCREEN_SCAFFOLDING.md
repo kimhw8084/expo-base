@@ -16,11 +16,22 @@ The scaffold creates only:
 
 - protected/public route registration in `expo-base.routes.json` and `routes.ts`;
 - a route composed from sanctioned owners;
-- a neutral domain model and service-adapter TODO boundary.
+- a neutral domain model and service-adapter TODO boundary;
+- `.expo-base/task-effects.json` entries for consequential placeholders that still need a Product binding.
 
 It never adds `fetch`, a backend SDK, fake records, route-local cache/retry state, raw geometry,
 or a native capability dependency. Replace the explicit TODO model, service loader/mutation, copy,
 and unique visualization before enabling the generated query.
+
+Consequential actions without an honest local effect remain disabled and carry a source TODO. Review
+`.expo-base/task-effects.json`, bind or explicitly qualify its unresolved entries before Product
+launch, and run `npm run check:task-effects`. This editable contract supplements
+`.expo-base/acceptance-obligations.json`; Doctor and acceptance guidance show unresolved entries
+without turning foundation verification into a production-ready claim.
+
+Each action records its stable key, registered route, Golden pattern, visible label, intended effect,
+prohibited effects, recovery expectation, next action, and status. Resolved and qualified actions
+must include a non-empty evidence reference.
 
 ## Capability-aware workflows
 
@@ -55,7 +66,9 @@ rerun the scaffold with a new name or make a conscious manual Golden composition
 
 ```sh
 npm run check:golden-architecture
+npm run check:task-effects
 npm run doctor -- --path apps/acme --fail
 ```
 
-Doctor verifies scaffold route-manifest validity, route files, and root protected-route consumption.
+Doctor verifies scaffold route-manifest validity, route files, root protected-route consumption,
+and task-effect record validity. Unresolved task effects appear as product-owned warnings.

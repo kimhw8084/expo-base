@@ -16,9 +16,10 @@ export interface PopoverProps {
   accessibilityLabel?: string;
   matchAnchorWidth?: boolean;
   restoreFocusId?: string;
+  restoreFocusFallbackId?: string | undefined;
 }
 
-export function Popover({ open, onOpenChange, anchor, children, placement = 'bottom-start', accessibilityLabel = 'Popover', matchAnchorWidth = false, restoreFocusId }: PopoverProps) {
+export function Popover({ open, onOpenChange, anchor, children, placement = 'bottom-start', accessibilityLabel = 'Popover', matchAnchorWidth = false, restoreFocusId, restoreFocusFallbackId }: PopoverProps) {
   const anchorRef = useRef<ComponentRef<typeof View>>(null);
   const anchorId = `expo-base-popover-anchor-${useId().replaceAll(':', '')}`;
   const [anchorRect, setAnchorRect] = useState<Rect | null>(null);
@@ -29,7 +30,7 @@ export function Popover({ open, onOpenChange, anchor, children, placement = 'bot
   const { theme, rt } = useUnistyles();
   const direction = useExpoBaseDirection();
   const close = useCallback(() => onOpenChange(false), [onOpenChange]);
-  useOverlayLifecycle(open, close, { restoreFocusRef: anchorRef, restoreFocusId: restoreFocusId ?? anchorId });
+  useOverlayLifecycle(open, close, { restoreFocusRef: anchorRef, restoreFocusId: restoreFocusId ?? anchorId, restoreFocusFallbackId });
 
   useLayoutEffect(() => {
     if (Platform.OS === 'web') return undefined;

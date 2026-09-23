@@ -15,9 +15,10 @@ export interface BottomSheetProps {
   footer?: ReactNode;
   dismissOnBackdrop?: boolean;
   dismissOnEscape?: boolean;
+  restoreFocusFallbackId?: string | undefined;
 }
 
-export function BottomSheet({ open, onOpenChange, title, children, footer, dismissOnBackdrop = true, dismissOnEscape = true }: BottomSheetProps) {
+export function BottomSheet({ open, onOpenChange, title, children, footer, dismissOnBackdrop = true, dismissOnEscape = true, restoreFocusFallbackId }: BottomSheetProps) {
   const { theme } = useUnistyles();
   const reduceMotion = useExpoBaseReducedMotion();
   const [present, setPresent] = useState(open);
@@ -25,7 +26,7 @@ export function BottomSheet({ open, onOpenChange, title, children, footer, dismi
   const translateY = useRef(new Animated.Value(open ? 1000 : 0)).current;
   const panelRef = useRef<ComponentRef<typeof View>>(null);
   const close = useCallback(() => onOpenChange(false), [onOpenChange]);
-  useOverlayLifecycle(present, close, { dismissOnEscape, trapFocus: true, containerRef: panelRef });
+  useOverlayLifecycle(present, close, { dismissOnEscape, trapFocus: true, containerRef: panelRef, restoreFocusFallbackId });
 
   useEffect(() => {
     if (open) {

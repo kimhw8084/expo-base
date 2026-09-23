@@ -10,6 +10,9 @@ const destination = path.join(root, 'apps', '.tmp-generated-app');
 const capabilityDestination = path.join(root, 'apps', '.tmp-generated-capability-app');
 const standaloneDestination = fs.mkdtempSync(path.join(os.tmpdir(), 'expo-base-chg102-minimal-'));
 const standaloneCapabilityDestination = fs.mkdtempSync(path.join(os.tmpdir(), 'expo-base-chg102-capability-'));
+const builtInBrand = fs.readFileSync(path.join(root, 'packages/tokens/src/brand.ts'), 'utf8');
+const expoBasePresetNames = [...builtInBrand.matchAll(/name: 'Expo Base', shortName: '([^']+)'/g)].map((match) => match[1]);
+assert.deepEqual(expoBasePresetNames, ['E', 'E', 'E', 'E'], 'all built-in Expo Base brand presets use the Expo Base short name');
 fs.rmSync(destination, { recursive: true, force: true });
 fs.rmSync(capabilityDestination, { recursive: true, force: true });
 try {
@@ -17,10 +20,11 @@ try {
   assert.equal(run.status, 0, run.stderr || run.stdout);
   const typecheck = spawnSync('tsc', ['-p', path.join(destination, 'tsconfig.json'), '--noEmit'], { cwd: root, encoding: 'utf8' });
   assert.equal(typecheck.status, 0, typecheck.stderr || typecheck.stdout);
-  for (const file of ['package.json','brand.ts','unistyles.ts','ThemeRuntimeSync.tsx','app/+html.tsx','app/+not-found.tsx','app.config.ts','babel.config.js','tsconfig.json','app/_layout.tsx','app/index.tsx','app/sign-in.tsx','app/session-loading.tsx','app/session-error.tsx','app/+native-intent.tsx','app/link-error.tsx','services.ts','serverState.ts','capabilities.ts','linking.ts','auth.ts','sessionSecurity.ts','routes.ts','expo-base.routes.json','app/unlock.tsx','AGENTS.md','golden-architecture.config.json','expo-base.capabilities.json','.env.example']) assert.ok(fs.existsSync(path.join(destination, file)), file);
+  for (const file of ['package.json','brand.ts','unistyles.ts','ThemeRuntimeSync.tsx','app/+html.tsx','app/+not-found.tsx','app.config.ts','babel.config.js','tsconfig.json','app/_layout.tsx','app/index.tsx','app/sign-in.tsx','app/session-loading.tsx','app/session-error.tsx','app/+native-intent.tsx','app/link-error.tsx','services.ts','serverState.ts','capabilities.ts','linking.ts','auth.ts','sessionSecurity.ts','routes.ts','expo-base.routes.json','.expo-base/task-effects.json','app/unlock.tsx','AGENTS.md','golden-architecture.config.json','expo-base.capabilities.json','.env.example']) assert.ok(fs.existsSync(path.join(destination, file)), file);
   const brand = fs.readFileSync(path.join(destination, 'brand.ts'), 'utf8');
   assert.ok(brand.includes('brandPresets.violet'));
   assert.ok(brand.includes("name: \"Orbit Ledger\""));
+  assert.ok(brand.includes('shortName: "O"'), 'generated product brand keeps its product-derived short name override');
   const appConfig = fs.readFileSync(path.join(destination, 'app.config.ts'), 'utf8');
   assert.equal(appConfig.includes("import { appBrand } from './brand';"), false, 'Expo config must not depend on runtime TypeScript brand loading');
   assert.ok(appConfig.includes('name: "Orbit Ledger"'));
@@ -58,12 +62,17 @@ try {
   assert.equal(generatedPackage.dependencies['expo-haptics'], undefined, 'minimal apps must not install optional haptics');
   for (const dependency of ['@expo-base/visualization-advanced', 'expo-secure-store', 'expo-network', 'expo-clipboard', 'expo-sharing', 'expo-document-picker', 'expo-image-picker', 'expo-camera', 'expo-local-authentication', 'expo-notifications', 'expo-updates', 'expo-device']) assert.equal(generatedPackage.dependencies[dependency], undefined, `minimal app must not install ${dependency}`);
   assert.equal(generatedPackage.scripts['check:golden-architecture'], 'node ../../scripts/check-golden-architecture.mjs --config golden-architecture.config.json');
+  assert.equal(generatedPackage.scripts['check:task-effects'], 'node ../../scripts/check-task-effects.mjs --path .');
+  const emptyTaskEffectCheck = spawnSync(process.execPath, ['../../scripts/check-task-effects.mjs', '--path', '.'], { cwd: destination, encoding: 'utf8' });
+  assert.equal(emptyTaskEffectCheck.status, 0, emptyTaskEffectCheck.stderr || emptyTaskEffectCheck.stdout);
+  assert.match(emptyTaskEffectCheck.stdout, /0 actions \(0 unresolved/);
   const generatedAgentContract = fs.readFileSync(path.join(destination, 'AGENTS.md'), 'utf8');
   assert.ok(generatedAgentContract.includes('../../AGENTS.md'));
   assert.ok(generatedAgentContract.includes('../../golden.catalog.json'));
   assert.ok(generatedAgentContract.includes('../../golden.patterns.json'));
   assert.ok(generatedAgentContract.includes('scaffold:screen'));
   assert.ok(generatedAgentContract.includes('check:golden-architecture'));
+  assert.ok(generatedAgentContract.includes('.expo-base/task-effects.json'));
   assert.ok(generatedAgentContract.includes('@expo-base/server-state'));
   const generatedGoldenConfig = JSON.parse(fs.readFileSync(path.join(destination, 'golden-architecture.config.json'), 'utf8'));
   assert.equal(generatedGoldenConfig.extends, '../../golden-architecture.config.json');
@@ -75,6 +84,7 @@ try {
   assert.ok(generatedReadme.includes('Golden development contract'));
   assert.ok(generatedReadme.includes('check:golden-architecture'));
   assert.ok(generatedReadme.includes('scaffold:screen'));
+  assert.ok(generatedReadme.includes('.expo-base/task-effects.json'));
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(destination, 'expo-base.routes.json'), 'utf8')), { schemaVersion: 1, authenticated: [], public: [] });
   const generatedRoutes = fs.readFileSync(path.join(destination, 'routes.ts'), 'utf8');
   assert.ok(generatedRoutes.includes('expoBaseRoutes'));
@@ -207,7 +217,8 @@ try {
     assert.ok(generatedAcceptanceAgents.includes('Fast verify versus final acceptance'));
     assert.ok(generatedAcceptanceAgents.includes('verify:acceptance'));
     assert.ok(generatedAcceptanceAgents.includes('not a production-ready product claim'));
-    for (const script of ['typecheck', 'check:golden-architecture', 'scaffold:screen', 'verify', 'verify:acceptance']) assert.equal(typeof generatedPackage.scripts[script], 'string', script);
+    assert.ok(generatedAcceptanceAgents.includes('task-effects.json'));
+    for (const script of ['typecheck', 'check:golden-architecture', 'check:task-effects', 'scaffold:screen', 'verify', 'verify:acceptance']) assert.equal(typeof generatedPackage.scripts[script], 'string', script);
     for (const field of ['dependencies', 'devDependencies']) {
       for (const [name, version] of Object.entries(generatedPackage[field] ?? {})) {
         if (!name.startsWith('@expo-base/')) assert.equal(version, compatibility[name], `${target} ${name}`);
@@ -242,6 +253,7 @@ try {
     assert.ok(acceptanceObligations.obligations.every((obligation) => obligation.status === 'unresolved' && obligation.requiredForProduction === true));
     const acceptanceScript = fs.readFileSync(path.join(target, 'scripts/verify-acceptance.mjs'), 'utf8');
     assert.ok(acceptanceScript.includes('chromium.launch'));
+    assert.ok(acceptanceScript.includes("checkCommand('task-effects'"));
     assert.ok(acceptanceScript.includes('browser console/page errors and warnings'));
     assert.ok(acceptanceScript.includes("getByRole('progressbar', { name: 'Restoring secure session…' })"));
     assert.ok(acceptanceScript.includes("getByRole('alert').getByRole('heading', { name: 'Session could not be restored' })"));
@@ -262,7 +274,8 @@ try {
     assert.equal(acceptanceResult.productionReadiness, 'not-claimed');
     assert.equal(acceptanceResult.claimRequested, 'foundation');
     assert.deepEqual(acceptanceResult.provenance.source, provenance);
-    assert.deepEqual(acceptanceResult.checks.map((check) => check.id), ['package-locality', 'typecheck', 'golden-patterns', 'golden-architecture', 'expo-public-config', 'static-web-export-and-runtime', 'browser-shell-smoke']);
+    assert.deepEqual(acceptanceResult.checks.map((check) => check.id), ['package-locality', 'typecheck', 'golden-patterns', 'golden-architecture', 'task-effects', 'expo-public-config', 'static-web-export-and-runtime', 'browser-shell-smoke']);
+    assert.deepEqual(acceptanceResult.taskEffects, { total: 0, unresolved: [] });
     assert.ok(acceptanceResult.checks.every((check) => check.outcome === 'pass'));
     assert.equal(acceptanceResult.obligations.filter((obligation) => obligation.status === 'unresolved').length, acceptanceObligations.obligations.length);
     assert.ok(fs.existsSync(path.join(target, '.expo-base/acceptance-summary.md')));
@@ -300,6 +313,17 @@ try {
   assert.equal(localScaffold.status, 0, localScaffold.stderr || localScaffold.stdout);
   const localScaffoldVerify = spawnSync('npm', ['run', 'verify'], { cwd: standaloneCapabilityDestination, encoding: 'utf8' });
   assert.equal(localScaffoldVerify.status, 0, localScaffoldVerify.stderr || localScaffoldVerify.stdout);
+  const importedEffects = JSON.parse(fs.readFileSync(path.join(standaloneCapabilityDestination, '.expo-base/task-effects.json'), 'utf8'));
+  assert.equal(importedEffects.actions.length, 1);
+  assert.equal(importedEffects.actions[0].route, 'imports');
+  assert.equal(importedEffects.actions[0].pattern, 'import-workflow');
+  assert.equal(importedEffects.actions[0].status, 'unresolved');
+  const importedAcceptance = spawnSync('npm', ['run', 'verify:acceptance'], { cwd: standaloneCapabilityDestination, encoding: 'utf8' });
+  assert.equal(importedAcceptance.status, 0, importedAcceptance.stderr || importedAcceptance.stdout);
+  const importedAcceptanceResult = JSON.parse(fs.readFileSync(path.join(standaloneCapabilityDestination, '.expo-base/acceptance-result.json'), 'utf8'));
+  assert.equal(importedAcceptanceResult.taskEffects.total, 1);
+  assert.equal(importedAcceptanceResult.taskEffects.unresolved[0].actionKey, 'imports:cancel');
+  assert.match(fs.readFileSync(path.join(standaloneCapabilityDestination, '.expo-base/acceptance-summary.md'), 'utf8'), /imports \/ Cancel/);
   console.log('Generator tests passed (minimal and opt-in capability-profile branded app scaffolds).');
 } finally {
   fs.rmSync(destination, { recursive: true, force: true });

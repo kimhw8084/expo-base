@@ -4,6 +4,7 @@ const read = (file) => fs.readFileSync(file, 'utf8');
 const failures = [];
 
 const lifecycle = read('packages/overlays/src/useOverlayLifecycle.ts');
+const eligibility = read('packages/overlays/internal/web-focus-eligibility.ts');
 if (!lifecycle.includes('dismissOnEscape?: boolean')) failures.push('Overlay lifecycle must expose explicit Escape-dismiss policy.');
 if (!lifecycle.includes('restoreFocus?: boolean')) failures.push('Overlay lifecycle must expose focus-restoration policy.');
 if (!lifecycle.includes('trapFocus?: boolean')) failures.push('Overlay lifecycle must expose an explicit focus-trap policy.');
@@ -16,6 +17,27 @@ if (!lifecycle.includes('targetToRestore.focus();')) failures.push('Overlay life
 if (!lifecycle.includes("querySelectorAll('button")) failures.push('Overlay lifecycle must enumerate focusable elements structurally when trapping focus.');
 if (!lifecycle.includes("querySelector?.('[aria-modal=\"true\"]')")) failures.push('Overlay lifecycle must resolve the rendered web modal when a native view ref is not focusable.');
 if (!lifecycle.includes('mayRestoreFocus')) failures.push('Overlay lifecycle must not restore stale focus while another overlay is active.');
+if (!lifecycle.includes("import { isWebFocusEligible, type WebFocusTarget") || !eligibility.includes('export function isWebFocusEligible')) failures.push('Focus-trap enumeration and restoration must share one web eligibility predicate.');
+if (!lifecycle.includes('filter((target) => isWebFocusEligible(target, lifecycleTarget))')) failures.push('Focus-trap enumeration must dynamically omit ineligible controls.');
+if (!lifecycle.includes('previousTarget && isWebFocusEligible(previousTarget, target)') || !lifecycle.includes('resolveRestorationTarget(restoreFocusFallbackRef, restoreFocusFallbackId, target)')) failures.push('Restoration must validate the captured target and use only the explicitly owned fallback when needed.');
+if (!lifecycle.includes('isWebFocusEligible(targetToRestore, target)')) failures.push('Fallback targets must pass the shared web eligibility predicate before focus.');
+for (const [source, name] of [['packages/overlays/src/Dialog.tsx', 'Dialog'], ['packages/overlays/src/BottomSheet.tsx', 'BottomSheet'], ['packages/overlays/src/Popover.tsx', 'Popover']]) {
+  const component = read(source);
+  if (!component.includes('restoreFocusFallbackId?: string')) failures.push(`${name} must expose an optional explicit focus-restoration fallback.`);
+  if (!component.includes('restoreFocusFallbackId')) failures.push(`${name} must forward explicit fallback ownership to the shared overlay lifecycle.`);
+}
+for (const [needle, description] of [
+  ['target.isConnected !== true', 'connected web targets'],
+  ["target.disabled === true", 'disabled targets'],
+  ["':disabled'", 'native disabled state'],
+  ['current.hidden === true', 'hidden targets and ancestors'],
+  ['current.inert === true', 'inert targets and ancestors'],
+  ["'aria-disabled'", 'aria-disabled targets and ancestors'],
+  ["'aria-hidden'", 'aria-hidden targets and ancestors'],
+  ["display === 'none'", 'display:none targets and ancestors'],
+  ["visibility === 'hidden'", 'visibility:hidden targets and ancestors'],
+  ["opacity === 0", 'fully transparent targets and ancestors'],
+]) if (!eligibility.includes(needle)) failures.push(`Shared web focus eligibility must reject ${description}.`);
 if (!lifecycle.includes('if (!open || !dismissOnEscape) return;')) failures.push('Escape listener must respect the overlay dismiss policy.');
 
 const dialog = read('packages/overlays/src/Dialog.tsx');
