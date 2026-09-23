@@ -23,7 +23,7 @@ export type BrandPresetName = 'blue' | 'violet' | 'green' | 'orange';
 
 export const brandPresets: Record<BrandPresetName, ExpoBaseBrand> = {
   blue: {
-    name: 'Expo Base', shortName: 'P',
+    name: 'Expo Base', shortName: 'E',
     light: { primary: '#165DFF', primaryHover: '#0F52E5', primaryPressed: '#0A43C2', onPrimary: '#FFFFFF', subtle: '#EAF0FF', subtleHover: '#E2EAFF', subtlePressed: '#D7E2FF', focus: '#165DFF', visualizationPrimary: '#165DFF' },
     dark: { primary: '#6F98F7', primaryHover: '#82A7FA', primaryPressed: '#9AB8FA', onPrimary: '#09111F', subtle: '#142447', subtleHover: '#192D57', subtlePressed: '#203765', focus: '#7EA6FF', visualizationPrimary: '#7EA6FF' },
   },

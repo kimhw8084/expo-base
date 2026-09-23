@@ -17,14 +17,15 @@ export interface DialogProps {
   dismissOnBackdrop?: boolean;
   dismissOnEscape?: boolean;
   kind?: 'dialog' | 'alert';
+  restoreFocusFallbackId?: string | undefined;
 }
-export function Dialog({ open, onOpenChange, title, description, children, actions, dismissOnBackdrop = true, dismissOnEscape = dismissOnBackdrop, kind = 'dialog' }: DialogProps) {
+export function Dialog({ open, onOpenChange, title, description, children, actions, dismissOnBackdrop = true, dismissOnEscape = dismissOnBackdrop, kind = 'dialog', restoreFocusFallbackId }: DialogProps) {
   const close = useCallback(() => onOpenChange(false), [onOpenChange]);
   const panelRef = useRef<ComponentRef<typeof View>>(null);
   const titleId = useId();
   const descriptionId = useId();
   const reducedMotion = useExpoBaseReducedMotion();
-  useOverlayLifecycle(open, close, { dismissOnEscape, trapFocus: true, containerRef: panelRef });
+  useOverlayLifecycle(open, close, { dismissOnEscape, trapFocus: true, containerRef: panelRef, restoreFocusFallbackId });
   return (
     <ModalSurface visible={open} lockBackground animationType={reducedMotion ? 'none' : 'fade'} onRequestClose={() => { if (dismissOnEscape) close(); }}>
       <View style={styles.root}>

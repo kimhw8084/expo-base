@@ -24,6 +24,9 @@ const packageJson = readJson('package.json');
 const provenance = readJson('.expo-base/source.json');
 const obligationDocument = readJson('.expo-base/acceptance-obligations.json');
 const obligations = obligationDocument.obligations ?? [];
+const taskEffectDocument = readJson('.expo-base/task-effects.json');
+const taskEffectActions = Array.isArray(taskEffectDocument?.actions) ? taskEffectDocument.actions : [];
+const unresolvedTaskEffects = taskEffectActions.filter((action) => action && typeof action === 'object' && action.status === 'unresolved');
 const result = {
   schemaVersion: 1,
   acceptance: 'standalone-generated-app-foundation',
@@ -42,10 +45,15 @@ const result = {
   },
   checks,
   obligations,
+  taskEffects: {
+    total: taskEffectActions.length,
+    unresolved: unresolvedTaskEffects.map(({ actionKey, route, pattern, label, nextAction }) => ({ actionKey, route, pattern, label, nextAction })),
+  },
   claimBoundary: {
     automated: [
       'standalone package and vendored @expo-base locality',
       'TypeScript and local Golden pattern/architecture checks',
+      'generated task-effect contract shape and evidence requirements',
       'Expo public configuration',
       'static web export and local runtime startup',
       'bounded Chromium auth/session/link/error/not-found shell smoke',
@@ -70,6 +78,7 @@ try {
   await checkCommand('typecheck', ['run', 'typecheck']);
   await checkCommand('golden-patterns', ['run', 'check:golden-patterns']);
   await checkCommand('golden-architecture', ['run', 'check:golden-architecture']);
+  await checkCommand('task-effects', ['run', 'check:task-effects']);
   await checkExpoConfig();
   const exportPassed = await check('static-web-export-and-runtime', 'pass/fail', exportAndStartServer);
   if (exportPassed) await check('browser-shell-smoke', 'pass/fail', browserShellSmoke);
@@ -85,13 +94,14 @@ try {
   const failures = checks.filter((check) => check.outcome === 'fail');
   const unresolved = mandatoryUnresolvedObligations();
   result.finishedAt = new Date().toISOString();
-  result.status = failures.length ? 'failed' : unresolved.length ? 'accepted-with-unresolved-obligations' : 'accepted';
+  result.status = failures.length ? 'failed' : unresolved.length || unresolvedTaskEffects.length ? 'accepted-with-unresolved-obligations' : 'accepted';
   if (claim !== 'production-ready') result.productionReadiness = 'not-claimed';
   else result.productionReadiness = 'unsupported';
   writeResult();
   emit(`\nAcceptance result: ${result.status}`);
   emit(`Production readiness: ${result.productionReadiness}`);
   emit(`Unresolved mandatory product obligations: ${unresolved.length}`);
+  emit(`Unresolved generated task effects: ${unresolvedTaskEffects.length}`);
   emit(`Machine result: ${result.artifacts.result}`);
   emit(`Guidance: ${result.artifacts.summary}`);
   process.exitCode = failures.length ? 1 : 0;
@@ -302,10 +312,12 @@ function writeResult() {
     `- Source: ${provenance.sourceRepository}@${provenance.sourceCommit} (tree ${provenance.sourceTree})`,
     `- Automated checks: ${checks.filter((check) => check.outcome === 'pass').length} passed, ${checks.filter((check) => check.outcome === 'fail').length} failed.`,
     `- Mandatory product obligations unresolved: ${unresolved.length}.`,
+    `- Consequential generated UI actions unresolved: ${unresolvedTaskEffects.length}. See .expo-base/task-effects.json; these entries supplement and do not replace the acceptance obligations.`,
+    ...unresolvedTaskEffects.map((action) => `  - ${action.route} / ${action.label}: ${action.nextAction}`),
     '',
     'This is generated Expo Base foundation evidence only. It does not prove backend authorization/data security, native or physical-device behavior, human VoiceOver/Dynamic Type certification, provider/backend integration, deployment, or release certification.',
     '',
-    'Resolve or explicitly qualify the product-owned obligations in `.expo-base/acceptance-obligations.json` for product tracking. `npm run verify:acceptance -- --claim production-ready` is explicitly unsupported and fails closed even when every editable obligation is resolved; stronger evidence lanes remain separate.',
+    'Resolve or explicitly qualify product-owned obligations in `.expo-base/acceptance-obligations.json` and unresolved generated actions in `.expo-base/task-effects.json` before Product launch. `npm run verify:acceptance -- --claim production-ready` is explicitly unsupported and fails closed even when every editable obligation is resolved; stronger evidence lanes remain separate.',
     '',
   ];
   fs.writeFileSync(summaryPath, `${lines.join('\n')}\n`);

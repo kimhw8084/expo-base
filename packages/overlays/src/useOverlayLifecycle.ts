@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, type RefObject } from 'react';
 import { useOverlayManager } from './OverlayRootProvider';
+import { isWebFocusEligible, type WebFocusTarget, type WebFocusWindow } from '../internal/web-focus-eligibility';
 
 export interface OverlayLifecycleOptions {
   dismissOnEscape?: boolean;
@@ -8,17 +9,18 @@ export interface OverlayLifecycleOptions {
   containerRef?: RefObject<unknown>;
   restoreFocusRef?: RefObject<unknown>;
   restoreFocusId?: string;
+  restoreFocusFallbackRef?: RefObject<unknown> | undefined;
+  restoreFocusFallbackId?: string | undefined;
 }
 
-export type OverlayFocusTarget = {
+export type OverlayFocusTarget = WebFocusTarget & {
   focus: () => void;
-  isConnected?: boolean;
   contains?: (target: OverlayFocusTarget | null) => boolean;
   querySelectorAll?: (selectors: string) => ArrayLike<OverlayFocusTarget>;
 };
 
 type WebLifecycleTarget = {
-  document?: { activeElement?: OverlayFocusTarget | null; querySelector?: (selectors: string) => OverlayFocusTarget | null; getElementById?: (id: string) => OverlayFocusTarget | null };
+  document?: { activeElement?: OverlayFocusTarget | null; querySelector?: (selectors: string) => OverlayFocusTarget | null; getElementById?: (id: string) => OverlayFocusTarget | null; defaultView?: WebFocusWindow | null };
   requestAnimationFrame?: (callback: () => void) => number;
   cancelAnimationFrame?: (handle: number) => void;
   addEventListener?: (type: string, listener: (event: { key?: string; shiftKey?: boolean; preventDefault?: () => void }) => void) => void;
@@ -28,7 +30,7 @@ type WebLifecycleTarget = {
 export function useOverlayLifecycle(
   open: boolean,
   onClose: () => void,
-  { dismissOnEscape = true, restoreFocus = true, trapFocus = false, containerRef, restoreFocusRef, restoreFocusId }: OverlayLifecycleOptions = {},
+  { dismissOnEscape = true, restoreFocus = true, trapFocus = false, containerRef, restoreFocusRef, restoreFocusId, restoreFocusFallbackRef, restoreFocusFallbackId }: OverlayLifecycleOptions = {},
 ) {
   const id = useId();
   const manager = useOverlayManager();
@@ -75,8 +77,8 @@ export function useOverlayLifecycle(
     if (open && !wasOpen.current) {
       cancelPendingRestore();
       const activeElement = target.document.activeElement;
-      restoreTarget.current = resolveRestorationTarget(restoreFocusRef, restoreFocusId, target)
-        ?? (activeElement && typeof activeElement.focus === 'function' ? activeElement : null);
+      restoreTarget.current = resolveRestorationCandidate(restoreFocusRef, restoreFocusId, target)
+        ?? (activeElement && typeof activeElement.focus === 'function' && activeElement.isConnected !== false ? activeElement : null);
       if (trapFocus) {
         schedule(() => focusOverlayContainer(containerRef, target));
       }
@@ -85,20 +87,19 @@ export function useOverlayLifecycle(
     if (!open && wasOpen.current && restoreFocus) {
       const previousTarget = restoreTarget.current;
       restoreTarget.current = null;
-      if (previousTarget?.isConnected !== false) {
-        const restore = () => {
-          const targetToRestore = previousTarget;
-          if (manager.mayRestoreFocus(id) && targetToRestore && targetToRestore.isConnected !== false) {
-            targetToRestore.focus();
-          }
-        };
-        schedule(restore);
-      }
+      const restore = () => {
+        if (!manager.mayRestoreFocus(id)) return;
+        const targetToRestore = previousTarget && isWebFocusEligible(previousTarget, target)
+          ? previousTarget
+          : resolveRestorationTarget(restoreFocusFallbackRef, restoreFocusFallbackId, target);
+        if (targetToRestore && isWebFocusEligible(targetToRestore, target)) targetToRestore.focus();
+      };
+      schedule(restore);
     }
 
     wasOpen.current = open;
     return cancelPendingRestore;
-  }, [containerRef, id, manager, open, restoreFocus, restoreFocusId, restoreFocusRef, trapFocus]);
+  }, [containerRef, id, manager, open, restoreFocus, restoreFocusFallbackId, restoreFocusFallbackRef, restoreFocusId, restoreFocusRef, trapFocus]);
 
   useEffect(() => () => {
     const target = globalThis as unknown as WebLifecycleTarget;
@@ -124,8 +125,8 @@ export function useOverlayLifecycle(
     const listener = (event: { key?: string; shiftKey?: boolean; preventDefault?: () => void }) => {
       if (event.key !== 'Tab') return;
       const container = resolveFocusContainer(containerRef, target);
-      if (!container) return;
-      const focusable = findFocusable(container);
+      if (!container || !isWebFocusEligible(container, target)) return;
+      const focusable = findFocusable(container, target);
       if (focusable.length === 0) {
         event.preventDefault?.();
         container.focus();
@@ -133,8 +134,13 @@ export function useOverlayLifecycle(
       }
       const active = target.document?.activeElement;
       const index = active ? focusable.indexOf(active) : -1;
+      if (index < 0) {
+        event.preventDefault?.();
+        focusable[event.shiftKey ? focusable.length - 1 : 0]?.focus();
+        return;
+      }
       const next = event.shiftKey ? index <= 0 ? focusable.length - 1 : index - 1 : index === focusable.length - 1 ? 0 : Math.max(0, index + 1);
-      if (!container.contains?.(active ?? null) || next !== index + (event.shiftKey ? -1 : 1)) {
+      if (next !== index + (event.shiftKey ? -1 : 1)) {
         event.preventDefault?.();
         focusable[next]?.focus();
       }
@@ -146,8 +152,8 @@ export function useOverlayLifecycle(
 
 function focusOverlayContainer(containerRef: RefObject<unknown> | undefined, target: WebLifecycleTarget) {
   const container = resolveFocusContainer(containerRef, target);
-  if (!container) return;
-  const first = findFocusable(container)[0];
+  if (!container || !isWebFocusEligible(container, target)) return;
+  const first = findFocusable(container, target)[0];
   if (first) first.focus();
   else container.focus();
 }
@@ -162,16 +168,30 @@ function resolveRestorationTarget(restoreFocusRef: RefObject<unknown> | undefine
   const target = (restoreFocusId ? lifecycleTarget.document?.getElementById?.(restoreFocusId) : null)
     ?? asFocusTarget(restoreFocusRef?.current);
   if (!target) return null;
-  if (!target.querySelectorAll) return target;
-  return findFocusable(target)[0] ?? target;
+  if (target.querySelectorAll) {
+    const first = findFocusable(target, lifecycleTarget)[0];
+    if (first) return first;
+  }
+  return isWebFocusEligible(target, lifecycleTarget) ? target : null;
+}
+
+function resolveRestorationCandidate(restoreFocusRef: RefObject<unknown> | undefined, restoreFocusId: string | undefined, lifecycleTarget: WebLifecycleTarget): OverlayFocusTarget | null {
+  const target = (restoreFocusId ? lifecycleTarget.document?.getElementById?.(restoreFocusId) : null)
+    ?? asFocusTarget(restoreFocusRef?.current);
+  if (!target) return null;
+  if (target.querySelectorAll) {
+    const firstEligibleDescendant = findFocusable(target, lifecycleTarget)[0];
+    if (firstEligibleDescendant) return firstEligibleDescendant;
+  }
+  return target.isConnected === false ? null : target;
 }
 
 function asFocusTarget(value: unknown): OverlayFocusTarget | null {
   return value && typeof (value as OverlayFocusTarget).focus === 'function' ? value as OverlayFocusTarget : null;
 }
 
-function findFocusable(container: OverlayFocusTarget): OverlayFocusTarget[] {
+function findFocusable(container: OverlayFocusTarget, lifecycleTarget: WebLifecycleTarget): OverlayFocusTarget[] {
   return container.querySelectorAll
-    ? Array.from(container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter((target) => target.isConnected !== false)
+    ? Array.from(container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter((target) => isWebFocusEligible(target, lifecycleTarget))
     : [];
 }
