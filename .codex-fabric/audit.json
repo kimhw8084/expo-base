@@ -1,0 +1,382 @@
+{
+  "accepted_at": "2026-09-23T01:31:58Z",
+  "changed_files": [
+    {
+      "additions": 4,
+      "deletions": 0,
+      "path": "scripts/check-native-ui-selector-contracts.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 10,
+      "deletions": 6,
+      "path": "tests/native/ios/NativeRobots.swift",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 8 && rtk tail -n 4 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 6 && rtk tail -n 3 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 6 && rtk tail -n 3 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 6 && rtk tail -n 3 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -c \"Test Case .* passed\" test-results/ios-native-certification/xcodebuild-release.log && rtk tail -n 3 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -c \"Test Case .* passed\" test-results/ios-native-certification/xcodebuild-release.log && rtk tail -n 4 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -c \"Test Case .* passed\" test-results/ios-native-certification/xcodebuild-release.log && rtk tail -n 4 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -c \"Test Case .* passed\" test-results/ios-native-certification/xcodebuild-release.log && rtk tail -n 6 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -c \"Test Case .* passed\" test-results/ios-native-certification/xcodebuild-release.log && rtk tail -n 4 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 6 && rtk tail -n 3 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 7 && rtk tail -n 3 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 6 && rtk tail -n 3 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 6 && rtk tail -n 3 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -c \"Test Case .* passed\" test-results/ios-native-certification/xcodebuild-release.log && rtk tail -n 4 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -c \"Test Case .* passed\" test-results/ios-native-certification/xcodebuild-release.log && rtk tail -n 4 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 6 && rtk tail -n 4 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 8 && rtk tail -n 3 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -c \\\"Test Case .* passed\\\" test-results/ios-native-certification/xcodebuild-release.log && rtk rg -n 'Test Case .* (started|passed|failed)|error:|Assertion Failure|TEST SUCCEEDED|TEST FAILED' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 8 && rtk tail -n 4 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk pgrep -alf 'npm run ios:verify|run-ios-native-certification|xcrun xcresulttool|compare-ios-native-visuals|xcodebuild test' \"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk tail -n 30 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-420 && rtk find test-results/ios-native-certification -maxdepth 2 -type d'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -p 74792 -o pid,etime,%cpu,%mem,state,command && rtk pgrep -alf 'xcresulttool|compare-ios-native-visuals|xcodebuild test|run-ios-native-certification' \"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -Ao pid,ppid,etime,%cpu,state,command | rtk rg '(\"'^ *74792|''^ *73318|''^ *73156|''^ *[0-9]+ *74792)'\"' && rtk tail -n 20 test-results/ios-native-certification/xcodebuild-release.log | rtk cut -c 1-450 && rtk ls -ld test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 74792 -o pid,ppid,etime,%cpu,%mem,state,command'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk tail -n 20 test-results/ios-native-certification/xcodebuild-release.log'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk pgrep -P 74792 -alf . && rtk pgrep -P 73318 -alf . && rtk ls -ld test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,ppid,etime,%cpu,%mem,state,command && rtk ls -ld test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult/Staging/1_Test/Diagnostics/simctl_diagnostics'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk find test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult/Staging/1_Test/Diagnostics/simctl_diagnostics -maxdepth 2 -type f'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk shasum -a 256 tests/native/ios/baselines/*/*.png && rtk git status --short && rtk git diff --name-only'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk pgrep -P 74792 -alf . && rtk ls -ld test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult/Staging/1_Test/Diagnostics/simctl_diagnostics'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk du -sh test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult/Staging/1_Test/Diagnostics/simctl_diagnostics && rtk find test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult/Staging/1_Test/Diagnostics/simctl_diagnostics -type f | rtk wc -l'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk du -sh test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult/Staging/1_Test/Diagnostics/simctl_diagnostics'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk ps -p 74792 -o pid,etime,%cpu,state && rtk du -sh test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult/Staging/1_Test/Diagnostics/simctl_diagnostics'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk du -sh test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult/Staging/1_Test/Diagnostics/simctl_diagnostics'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk pgrep -P 38379 -alf . && rtk ps -p 74792 -o pid,etime,%cpu,state'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk ls -lt test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult/Staging/1_Test/Diagnostics/simctl_diagnostics'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk pgrep -P 74792 -alf . && rtk find test-results/ios-native-certification/visual-release -type f'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk ps -p 74792 -o pid,etime,%cpu,state'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk pgrep -P 74792 -alf .'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ps -p 38379 -o pid,etime,%cpu,state && rtk pgrep -P 74792 -alf .'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npx --yes --package=node@22 --package=npm@10 -- npm run ios:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat test-results/ios-native-certification/summary-release.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff -- scripts/check-native-ui-selector-contracts.mjs tests/native/ios/NativeRobots.swift'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk shasum -a 256 tests/native/ios/baselines/*/*.png'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git status --short && rtk git diff --name-only && rtk git diff --stat'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npx --yes --package=node@22 --package=npm@10 -- npm run check:ios-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npx --yes --package=node@22 --package=npm@10 -- npm run check:native-ui-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add tests/native/ios/NativeRobots.swift scripts/check-native-ui-selector-contracts.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git branch --show-current && rtk git rev-parse HEAD && rtk git diff --cached --check && rtk git diff --cached --stat && rtk git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git commit -m \"Fix iOS controlled field typing robot\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --short --branch && rtk git show -s --format='%H%n%T%n%P%n%s' HEAD && rtk git diff-tree --no-commit-id --name-only -r HEAD && rtk git rev-parse HEAD\"'^ && rtk git rev-parse HEAD''^{tree} && rtk git diff --check HEAD''^ HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.155.1",
+    "configured_model": "gpt-6-luna",
+    "event_count": 267,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.62,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 18012928,
+      "fresh_input_tokens": 251926,
+      "input_tokens": 18264854,
+      "non_reasoning_output_tokens": 20905,
+      "output_tokens": 36976,
+      "reasoning_output_tokens": 16071,
+      "total_processed_tokens": 18301830
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "c28060f2710f706d60c3c9b4e4ec1ae2e48d3a7e",
+      "subject": "Fix iOS controlled field typing robot"
+    }
+  ],
+  "diff": {
+    "additions": 14,
+    "changed_files": 2,
+    "commit_count": 1,
+    "deletions": 6
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 0,
+    "items": [],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.4-quota-recovery-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.4-quota-recovery-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-23T02:26:02Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "branch": "codex/expo-base-chg176-ios-controlled-field-certification-robot-r1",
+    "detached_verify": false,
+    "head_sha": "c28060f2710f706d60c3c9b4e4ec1ae2e48d3a7e",
+    "remote_exact_head": true,
+    "remote_head_sha": "c28060f2710f706d60c3c9b4e4ec1ae2e48d3a7e",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "work_branch": "codex/expo-base-chg176-ios-controlled-field-certification-robot-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-b9bb392d058f562790bd07d0",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg176-ios-controlled-field-certification-robot-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg176-ios-controlled-field-certification-robot-r1"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.4-quota-recovery-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg176-ios-controlled-field-certification-robot-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-23T01:31:58Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 3244,
+    "queue_seconds": 0,
+    "total_seconds": 3244
+  },
+  "transport": {
+    "bytes": 6048,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 5683,
+    "prompt_sha256": "0f136caf2ee4113da8ce39d6d66e6a5470f93c2370c9f014e3be7df580a35051",
+    "sha256": "b9bb392d058f562790bd07d04ac002ed93e680496ace745e8e756ba322c24240"
+  }
+}
