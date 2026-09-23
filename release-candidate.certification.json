@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "project": "expo-base",
   "version": "1.0.0",
-  "certifiedCommit": "e1dd7b588c6200fb25afd378ead2eabf71161c1d",
+  "certifiedCommit": "ea9ac98786ae60ee8c2a9e378455770d0bdac05e",
   "certifiedBranch": "main",
   "certifiedCommitRole": "protected-main-provenance",
-  "certifiedAt": "2026-09-10T03:21:34.270Z",
-  "sourceTreeHash": "6ab58a15e98e6d9008a80e2a4f562fd0ec771d38bc3439e4a8722f9d991069bc",
+  "certifiedAt": "2026-09-23T03:19:36.000Z",
+  "sourceTreeHash": "528ff014e0abd8158587e59deb975c507d97ff47c5131ff4b927f185c6d28312",
   "sourceTreeHashPolicy": "SHA-256 of tracked repository files excluding this metadata record; metadata-only commits preserve the certified executable source identity.",
   "hostedChecks": [
     {
@@ -51,7 +51,7 @@
   "android": {
     "policy": "B",
     "status": "deferred/waived",
-    "reason": "Android native acceptance is not required by the 1.0 Policy B decision."
+    "reason": "Android native certification remains deferred/waived and uncertified under 1.0 Policy B after canceled CHG-149; no Android PASS is claimed."
   },
   "boundaries": {
     "voiceOver": "VoiceOver subjective human review not executed",
