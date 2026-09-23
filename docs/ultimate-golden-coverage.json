@@ -7,16 +7,17 @@
     "explicitExemptionGroups": 4,
     "stateCertified": 21,
     "declaredStates": 140,
-    "mappedStates": 140,
-    "unmappedStates": 0,
+    "executedStates": 21,
+    "deferredStates": 119,
+    "unresolvedStates": 0,
     "fixtureFamilies": 21,
     "responsiveCertified": 21,
-    "accessibleCertified": 21,
+    "accessibleCertified": 3,
     "mobileCertified": 21,
     "keyboardEvidenceOwners": 21,
     "touchEvidenceOwners": 18,
-    "forcedColorEvidenceOwners": 21,
-    "largeTextEvidenceOwners": 21,
+    "forcedColorEvidenceOwners": 6,
+    "largeTextEvidenceOwners": 5,
     "visualBaselineRelevant": 21,
     "generatorAwareCatalogItems": 76
   },
@@ -30,15 +31,16 @@
   ],
   "evidencePolicy": {
     "declaredStates": 140,
-    "mappedStates": 140,
-    "unmappedStates": 0,
+    "executedStates": 21,
+    "deferredStates": 119,
+    "unresolvedStates": 0,
     "fixtureFamilies": 21,
     "evidenceKinds": {
       "browser": 21,
       "mobile": 18,
       "semantic": 21,
-      "forcedColors": 21,
-      "largeText": 21,
+      "forcedColors": 6,
+      "largeText": 5,
       "visual": 21
     }
   }

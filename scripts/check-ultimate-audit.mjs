@@ -24,7 +24,10 @@ assert.equal(audit.metrics.stateOwners, cert.stateMatrix.length, 'Ultimate audit
 assert.equal(audit.metrics.ownerCertificationRecords, ownerCert.owners.length, 'Ultimate audit owner-certification count is stale.');
 assert.equal(coverage.metrics.catalogOwners, catalog.items.length, 'Ultimate coverage catalog count is stale.');
 assert.equal(audit.metrics.declaredOwnerStates, coverage.metrics.declaredStates, 'Ultimate owner-state count is stale.');
-assert.equal(audit.metrics.mappedOwnerStates, coverage.metrics.mappedStates, 'Ultimate mapped-state count is stale.');
-assert.equal(coverage.metrics.unmappedStates, 0, 'Ultimate owner certification has unmapped declared states.');
+assert.equal(audit.metrics.executedOwnerStates, coverage.metrics.executedStates, 'Ultimate executed owner-state count is stale.');
+assert.equal(audit.metrics.deferredOwnerStates, coverage.metrics.deferredStates, 'Ultimate deferred owner-state count is stale.');
+assert.equal(audit.metrics.unresolvedOwnerStates, coverage.metrics.unresolvedStates, 'Ultimate unresolved owner-state count is stale.');
+assert.equal(coverage.metrics.executedStates + coverage.metrics.deferredStates + coverage.metrics.unresolvedStates, coverage.metrics.declaredStates, 'Every declared owner state must be executed, explicitly deferred, or unresolved.');
+assert.equal(coverage.metrics.unresolvedStates, 0, 'Ultimate owner certification must account for every declared state.');
 assert.equal(coverage.metrics.fixtureFamilies, ownerCert.owners.length, 'Every owner certification must have a typed fixture family.');
 console.log(`Ultimate audit passed (${workspaceCount} workspaces / ${catalog.items.length} owners / ${api.symbolCount} API symbols / ${ownerCert.owners.length} owner records).`);

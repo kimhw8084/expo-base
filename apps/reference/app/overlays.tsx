@@ -63,7 +63,7 @@ export default function OverlayReferenceScreen() {
                 <Button label={copy('Open dialog')} onPress={() => setDialogOpen(true)} />
                 <Button label={copy('Open destructive alert')} variant="danger" onPress={() => setAlertOpen(true)} />
                 <Button label={copy('Open bottom sheet')} variant="secondary" onPress={() => setSheetOpen(true)} />
-                <Button label={copy('Open long sheet')} variant="outline" onPress={() => setLongSheetOpen(true)} />
+                <Button testID="text-pressure-sheet-open" label={copy('Open long sheet')} variant="outline" onPress={() => setLongSheetOpen(true)} />
                 <Button label={copy('Show toast')} variant="outline" onPress={() => manager.showToast(copy('Saved successfully'))} />
               </HStack>
             </VStack>
@@ -83,7 +83,7 @@ export default function OverlayReferenceScreen() {
             </VStack>
           </Card>
         ))}
-        <Button label="Finish long-sheet review" fullWidth onPress={() => setLongSheetOpen(false)} />
+        <Button testID="text-pressure-sheet-finish" label="Finish long-sheet review" fullWidth onPress={() => setLongSheetOpen(false)} />
       </BottomSheet>
     </ScrollScreen>
   );

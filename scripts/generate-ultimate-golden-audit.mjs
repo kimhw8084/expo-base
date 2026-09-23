@@ -21,7 +21,9 @@ const ownerCert = fs.existsSync(ownerCertPath) ? readJson('golden.owner-certific
 const evidence = readJson('golden.evidence.json');
 const fixtureSource = fs.readFileSync(path.join(root, 'apps/reference/workbenchFixtures.ts'), 'utf8');
 const declaredStates = ownerCert.owners.reduce((total, owner) => total + owner.states.length, 0);
-const mappedStates = ownerCert.owners.reduce((total, owner) => total + Object.values(owner.stateEvidence ?? {}).filter((ids) => Array.isArray(ids) && ids.length > 0).length, 0);
+const executedStates = ownerCert.owners.reduce((total, owner) => total + Object.values(owner.stateEvidence ?? {}).filter((ids) => Array.isArray(ids) && ids.length > 0).length, 0);
+const deferredStates = ownerCert.owners.reduce((total, owner) => total + Object.keys(owner.deferredStates ?? {}).length, 0);
+const unresolvedStates = declaredStates - executedStates - deferredStates;
 const evidenceCount = (kind) => ownerCert.owners.filter((owner) => Array.isArray(owner.evidence?.[kind]) && owner.evidence[kind].length > 0).length;
 const routes = fs.readdirSync(path.join(root, 'apps/reference/app'), { withFileTypes: true }).flatMap((entry) => {
   if (!entry.isFile() || !/\.(tsx|ts)$/.test(entry.name) || entry.name.startsWith('_') || entry.name.startsWith('+')) return [];
@@ -62,7 +64,7 @@ const audit = {
   schemaVersion: 2,
   generatedBy: 'scripts/generate-ultimate-golden-audit.mjs',
   source: 'live checkout',
-  metrics: { workspaces: packageDirs.length, catalogOwners: catalog.items.length, ownershipRecords: catalog.ownership.length, discoveryChallenges: catalog.discoveryChallenges.length, publicApiSymbols: api.symbolCount, stateOwners: cert.stateMatrix.length, visualBaselines: cert.visualBaselines.length, pseudoRoutes: cert.pseudoCoverage.routes.length, ownerCertificationRecords: ownerCert.owners.length, declaredOwnerStates: declaredStates, mappedOwnerStates: mappedStates, unmappedOwnerStates: declaredStates - mappedStates, fixtureFamilies: (fixtureSource.match(/\{ ownerId:/g) ?? []).length, keyboardEvidenceOwners: evidenceCount('browser'), touchEvidenceOwners: evidenceCount('mobile'), forcedColorEvidenceOwners: evidenceCount('forcedColors'), largeTextEvidenceOwners: evidenceCount('largeText'), visualEvidenceOwners: evidenceCount('visual') },
+  metrics: { workspaces: packageDirs.length, catalogOwners: catalog.items.length, ownershipRecords: catalog.ownership.length, discoveryChallenges: catalog.discoveryChallenges.length, publicApiSymbols: api.symbolCount, stateOwners: cert.stateMatrix.length, visualBaselines: cert.visualBaselines.length, pseudoRoutes: cert.pseudoCoverage.routes.length, ownerCertificationRecords: ownerCert.owners.length, declaredOwnerStates: declaredStates, executedOwnerStates: executedStates, deferredOwnerStates: deferredStates, unresolvedOwnerStates: unresolvedStates, fixtureFamilies: (fixtureSource.match(/\{ ownerId:/g) ?? []).length, keyboardEvidenceOwners: evidenceCount('browser'), touchEvidenceOwners: evidenceCount('mobile'), forcedColorEvidenceOwners: evidenceCount('forcedColors'), largeTextEvidenceOwners: evidenceCount('largeText'), visualEvidenceOwners: evidenceCount('visual') },
   inventories: { workspaces: packageDirs.map(({ dir, manifest }) => ({ dir, name: manifest.name, dependencies: Object.keys({ ...(manifest.dependencies ?? {}), ...(manifest.peerDependencies ?? {}) }).sort() })), packageGraph: graph, catalogOwnership: catalog.ownership, publicExports: api.packages, sourceInventory },
   certificationLanes: ['structural', 'semantic/accessibility', 'visual', 'performance', 'desktop browser', 'mobile browser', 'generator/scaffolder', 'runtime/native source contracts', 'owner certification'],
   layerModel: { kernel: ['tokens', 'primitives', 'components', 'layouts', 'forms', 'navigation', 'overlays', 'feedback', 'data-display', 'core visualization', 'i18n', 'accessibility', 'motion', 'runtime boundaries'], modules: ['visualization-advanced', 'advanced analytics compositions when independently justified'], optionalAdapters: ['native pickers', 'specialist grids', 'maps/geospatial', 'rich editors', 'GPU/realtime rendering', 'specialist media engines'] },
@@ -90,8 +92,9 @@ const md = [
   `| Owner-certification records | ${ownerCert.owners.length} |`,
   `| Executable fixture families | ${(fixtureSource.match(/\{ ownerId:/g) ?? []).length} |`,
   `| Declared owner states | ${declaredStates} |`,
-  `| States mapped to evidence | ${mappedStates} |`,
-  `| States missing evidence | ${declaredStates - mappedStates} |`,
+  `| States with executed case evidence | ${executedStates} |`,
+  `| States explicitly deferred | ${deferredStates} |`,
+  `| Unresolved state declarations | ${unresolvedStates} |`,
   '',
   '## Layer decision',
   '',
@@ -114,10 +117,10 @@ fs.writeFileSync(path.join(root, 'docs/ULTIMATE_GOLDEN_AUDIT.md'), md);
 const coverage = {
   schemaVersion: 2,
   generatedBy: 'scripts/generate-ultimate-golden-audit.mjs',
-  metrics: { catalogOwners: catalog.items.length, ownerCertificationRecords: ownerCert.owners.length, explicitExemptionGroups: ownerCert.exemptions?.length ?? 0, stateCertified: ownerCert.owners.length, declaredStates, mappedStates, unmappedStates: declaredStates - mappedStates, fixtureFamilies: (fixtureSource.match(/\{ ownerId:/g) ?? []).length, responsiveCertified: ownerCert.owners.filter((owner) => owner.responsive).length, accessibleCertified: ownerCert.owners.filter((owner) => owner.forcedColors && owner.largeText).length, mobileCertified: ownerCert.owners.filter((owner) => owner.touch || !owner.interactive).length, keyboardEvidenceOwners: evidenceCount('browser'), touchEvidenceOwners: evidenceCount('mobile'), forcedColorEvidenceOwners: evidenceCount('forcedColors'), largeTextEvidenceOwners: evidenceCount('largeText'), visualBaselineRelevant: ownerCert.owners.filter((owner) => owner.visualBaseline).length, generatorAwareCatalogItems: catalog.items.filter((item) => item.generatorAvailability && item.generatorAvailability !== 'not-applicable').length },
+  metrics: { catalogOwners: catalog.items.length, ownerCertificationRecords: ownerCert.owners.length, explicitExemptionGroups: ownerCert.exemptions?.length ?? 0, stateCertified: ownerCert.owners.length, declaredStates, executedStates, deferredStates, unresolvedStates, fixtureFamilies: (fixtureSource.match(/\{ ownerId:/g) ?? []).length, responsiveCertified: ownerCert.owners.filter((owner) => owner.responsive).length, accessibleCertified: ownerCert.owners.filter((owner) => owner.forcedColors && owner.largeText).length, mobileCertified: ownerCert.owners.filter((owner) => owner.touch || !owner.interactive).length, keyboardEvidenceOwners: evidenceCount('browser'), touchEvidenceOwners: evidenceCount('mobile'), forcedColorEvidenceOwners: evidenceCount('forcedColors'), largeTextEvidenceOwners: evidenceCount('largeText'), visualBaselineRelevant: ownerCert.owners.filter((owner) => owner.visualBaseline).length, generatorAwareCatalogItems: catalog.items.filter((item) => item.generatorAvailability && item.generatorAvailability !== 'not-applicable').length },
   uncoveredStableOwnerPolicy: 'Every nonvisual, recipe, runtime, capability, generator, or native-only concern is documented as an explicit boundary in ultimate-golden-capabilities.json or golden.owner-certification.json.',
   nativeOnly: ['physical safe-area values', 'native keyboard/controller behavior', 'UIKit Modal behavior', 'VoiceOver rotor/announcement behavior', 'OS permissions/biometrics/camera/notifications'],
-  evidencePolicy: { declaredStates, mappedStates, unmappedStates: declaredStates - mappedStates, fixtureFamilies: (fixtureSource.match(/\{ ownerId:/g) ?? []).length, evidenceKinds: Object.fromEntries(['browser', 'mobile', 'semantic', 'forcedColors', 'largeText', 'visual'].map((kind) => [kind, evidenceCount(kind)])) },
+  evidencePolicy: { declaredStates, executedStates, deferredStates, unresolvedStates, fixtureFamilies: (fixtureSource.match(/\{ ownerId:/g) ?? []).length, evidenceKinds: Object.fromEntries(['browser', 'mobile', 'semantic', 'forcedColors', 'largeText', 'visual'].map((kind) => [kind, evidenceCount(kind)])) },
 };
 fs.writeFileSync(path.join(root, 'docs/ultimate-golden-coverage.json'), JSON.stringify(coverage, null, 2) + '\n');
 fs.writeFileSync(path.join(root, 'docs/ULTIMATE_GOLDEN_COVERAGE.md'), [
@@ -129,6 +132,10 @@ fs.writeFileSync(path.join(root, 'docs/ULTIMATE_GOLDEN_COVERAGE.md'), [
   '| --- | ---: |',
   `| Catalog owners | ${coverage.metrics.catalogOwners} |`,
   `| Certified visual owners | ${coverage.metrics.stateCertified} |`,
+  `| Declared owner states | ${coverage.metrics.declaredStates} |`,
+  `| States with executed case evidence | ${coverage.metrics.executedStates} |`,
+  `| Explicitly deferred owner states | ${coverage.metrics.deferredStates} |`,
+  `| Unresolved owner states | ${coverage.metrics.unresolvedStates} |`,
   `| Responsive-certified owners | ${coverage.metrics.responsiveCertified} |`,
   `| Accessibility stress-certified owners | ${coverage.metrics.accessibleCertified} |`,
   `| Mobile/touch-certified or noninteractive owners | ${coverage.metrics.mobileCertified} |`,

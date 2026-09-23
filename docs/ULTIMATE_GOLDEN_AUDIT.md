@@ -17,8 +17,9 @@ This document is generated from the live checkout by `scripts/generate-ultimate-
 | Owner-certification records | 21 |
 | Executable fixture families | 21 |
 | Declared owner states | 140 |
-| States mapped to evidence | 140 |
-| States missing evidence | 0 |
+| States with executed case evidence | 21 |
+| States explicitly deferred | 119 |
+| Unresolved state declarations | 0 |
 
 ## Layer decision
 
