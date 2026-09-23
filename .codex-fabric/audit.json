@@ -1,0 +1,294 @@
+{
+  "accepted_at": "2026-09-23T03:14:50Z",
+  "changed_files": [
+    {
+      "additions": 68,
+      "deletions": 26,
+      "path": "docs/RELEASE_READINESS.md",
+      "status": "M"
+    },
+    {
+      "additions": 70,
+      "deletions": 32,
+      "path": "docs/STATUS.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "release-candidate.certification.json",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'pwd && git status --short --branch && git rev-parse HEAD && git rev-parse HEAD''^{tree} && node --version && cat /Users/haewonkim/.codex/RTK.md && cat /Users/haewonkim/.codex/law.md'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --porcelain=v1 && rtk sed -n '1,240p' release-candidate.certification.json && rtk sed -n '1,280p' scripts/release-readiness.mjs && rtk sed -n '1,240p' ios.certification.json && rtk sed -n '1,280p' docs/STATUS.md && rtk sed -n '1,320p' docs/RELEASE_READINESS.md && rtk cat package.json && rtk ls -a | head -60\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat scripts/write-release-certification-record.mjs && rtk cat docs/STATUS.md && rtk cat docs/RELEASE_READINESS.md && rtk rg -n -i \"CHG-24|intentionally uncertified|remains intentionally blocked|not a release promotion|current checkout|current source|uncertified\" docs README.md release-candidate.certification.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk which node && rtk which npm && rtk command -v nvm && rtk command -v fnm && rtk command -v n && rtk ls -d /Users/haewonkim/.nvm/versions/node/* /opt/homebrew/opt/node@22 /usr/local/opt/node@22 /opt/homebrew/Cellar/node@22/* 2>/dev/null'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -al /Users/haewonkim/.nvm/versions/node && rtk ls -al /opt/homebrew/opt/node@22/bin && rtk ls -al /usr/local/bin/node'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n \\\"certifiedAt|certifiedCommit|sourceTreeHashPolicy|release-candidate.certification\\\" scripts docs README.md .github && rtk sed -n '1,220p' docs/RELEASE_CANDIDATE_1_0.md && rtk git log -8 --format='%h %cI %s' && rtk git log -1 --format='%H %cI %s' -- release-candidate.certification.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -al test-results/ios-native-certification && rtk git check-ignore -v test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult && rtk xcrun xcresulttool get test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult --format json'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --version && rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm --version'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm ci'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --stat && rtk git diff -- release-candidate.certification.json docs/STATUS.md docs/RELEASE_READINESS.md && rtk git status --short && rtk rg -n -i \"CHG-24|current checkout|intentionally blocked|remain intentionally|must remain uncertified|does not inherit certification\" docs/STATUS.md docs/RELEASE_READINESS.md'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --input-type=module -e '\"'import { createHash } from \\\"node:crypto\\\"; import { execFileSync } from \\\"node:child_process\\\"; import { readFileSync } from \\\"node:fs\\\"; const files = execFileSync(\\\"git\\\", [\\\"ls-files\\\", \\\"-z\\\"], { encoding: \\\"utf8\\\" }).split(\\\"\\\\0\\\").filter(Boolean).filter((file) => file \"'!== \"release-candidate.certification.json\"); const hash = createHash(\"sha256\"); for (const file of files) { hash.update(file); hash.update(\"'\"\\\\0\\\"); hash.update(createHash(\\\"sha256\\\").update(readFileSync(file)).digest(\\\"hex\\\")); hash.update(\\\"\\\\n\\\"); } process.stdout.write(hash.digest(\\\"hex\\\") + \\\"\\\\n\\\");' && rtk git diff --check\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:cng-freshness'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:ios-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run test:node-version-policy'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:native-ui-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run test:ios-simulator-resolution'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:dependency-graph'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -i 'markdown|docs/|documentation|release.readiness|release:verify' scripts package.json .github/workflows && rtk diff --check && rtk git status --short\"",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,280p' scripts/validate.mjs && rtk git diff --check && rtk git status --short\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat docs/STATUS.md && rtk cat docs/RELEASE_READINESS.md && rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --input-type=module -e '\"'import { createHash } from \\\"node:crypto\\\"; import { execFileSync } from \\\"node:child_process\\\"; import { readFileSync } from \\\"node:fs\\\"; const files = execFileSync(\\\"git\\\", [\\\"ls-files\\\", \\\"-z\\\"], { encoding: \\\"utf8\\\" }).split(\\\"\\\\0\\\").filter(Boolean).filter((file) => file \"'!== \"release-candidate.certification.json\"); const hash = createHash(\"sha256\"); for (const file of files) { hash.update(file); hash.update(\"'\"\\\\0\\\"); hash.update(createHash(\\\"sha256\\\").update(readFileSync(file)).digest(\\\"hex\\\")); hash.update(\\\"\\\\n\\\"); } const digest = hash.digest(\\\"hex\\\"); const record = JSON.parse(readFileSync(\\\"release-candidate.certification.json\\\", \\\"utf8\\\")); console.log(JSON.stringify({ digest, recorded: record.sourceTreeHash, matches: digest === record.sourceTreeHash, certifiedCommit: record.certifiedCommit, certifiedAt: record.certifiedAt, android: record.android }, null, 2));' && rtk git diff --name-only && rtk git diff --check\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add -- release-candidate.certification.json docs/STATUS.md docs/RELEASE_READINESS.md && rtk git diff --cached --check && rtk git diff --cached --stat && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git commit -m \"fix: refresh current-main release governance\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --porcelain=v1 && rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree} && rtk git show --stat --oneline --summary HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run release:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree} && rtk git diff-tree --no-commit-id --name-only -r HEAD && rtk cat release-candidate.certification.json && rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --input-type=module -e '\"'import { createHash } from \\\"node:crypto\\\"; import { execFileSync } from \\\"node:child_process\\\"; import { readFileSync } from \\\"node:fs\\\"; const files = execFileSync(\\\"git\\\", [\\\"ls-files\\\", \\\"-z\\\"], { encoding: \\\"utf8\\\" }).split(\\\"\\\\0\\\").filter(Boolean).filter((file) => file \"'!== \"release-candidate.certification.json\"); const hash = createHash(\"sha256\"); for (const file of files) { hash.update(file); hash.update(\"'\"\\\\0\\\"); hash.update(createHash(\\\"sha256\\\").update(readFileSync(file)).digest(\\\"hex\\\")); hash.update(\\\"\\\\n\\\"); } const actual = hash.digest(\\\"hex\\\"); const expected = JSON.parse(readFileSync(\\\"release-candidate.certification.json\\\", \\\"utf8\\\")).sourceTreeHash; console.log(\"'`sourceTreeHash=${expected}; recomputed=${actual}; match=${actual === expected}`);'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.155.1",
+    "configured_model": "gpt-6-luna",
+    "event_count": 78,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 94.79,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 1505536,
+      "fresh_input_tokens": 82687,
+      "input_tokens": 1588223,
+      "non_reasoning_output_tokens": 7198,
+      "output_tokens": 21387,
+      "reasoning_output_tokens": 14189,
+      "total_processed_tokens": 1609610
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "19e63125ea894cc9fbe93608c2715dcb27a21014",
+      "subject": "fix: refresh current-main release governance"
+    }
+  ],
+  "diff": {
+    "additions": 142,
+    "changed_files": 3,
+    "commit_count": 1,
+    "deletions": 62
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 3,
+    "items": [
+      {
+        "bytes": 6287,
+        "path": "docs/RELEASE_READINESS.md",
+        "sha256": "184a725f75f5e686f7e0a51d042e9b93d8713f0734a0cd8b6daad88d38e0bc9f"
+      },
+      {
+        "bytes": 5692,
+        "path": "docs/STATUS.md",
+        "sha256": "208333b09fc2ff68ca065c422fd2e8983f5e484fddb6ca9ea7824d8a6441ee42"
+      },
+      {
+        "bytes": 2231,
+        "path": "release-candidate.certification.json",
+        "sha256": "05d215ed8b47a2710117ba1059da33a19edbdeefa0fc608fec1538d05fc7afd1"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.5-dashboard-controls-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.5-dashboard-controls-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-23T03:22:22Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "ea9ac98786ae60ee8c2a9e378455770d0bdac05e",
+    "branch": "codex/expo-base-chg177-current-main-certification-record-r1",
+    "detached_verify": false,
+    "head_sha": "19e63125ea894cc9fbe93608c2715dcb27a21014",
+    "remote_exact_head": true,
+    "remote_head_sha": "19e63125ea894cc9fbe93608c2715dcb27a21014",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "ea9ac98786ae60ee8c2a9e378455770d0bdac05e",
+    "work_branch": "codex/expo-base-chg177-current-main-certification-record-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-55e5114b4f25b2af31f7f6aa",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg177-current-main-certification-record-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg177-current-main-certification-record-r1"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.5-dashboard-controls-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg177-current-main-certification-record-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-23T03:14:51Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 451,
+    "queue_seconds": 1,
+    "total_seconds": 452
+  },
+  "transport": {
+    "bytes": 7275,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 6924,
+    "prompt_sha256": "0ded1cd218808c4a1ece5a4253b7a5e4a3d1936e9f4ce3a4093518a5fe6ef6b3",
+    "sha256": "55e5114b4f25b2af31f7f6aa7beb0d063f78e72b48b5ede0b2e9c8ed3b7ef3d4"
+  }
+}
