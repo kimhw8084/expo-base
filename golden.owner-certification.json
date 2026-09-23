@@ -1,10 +1,10 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "policy": {
     "purpose": "Every stable visual or interactive owner declares the states and environments that its certification must cover.",
     "nonVisualBoundary": "Catalog items that describe runtime, generator, transport, authorization, or recipes are explicitly exempt rather than silently omitted.",
     "visualBaselinePolicy": "Curated baselines protect language and composition; structural and semantic tests provide the broader matrix.",
-    "evidence": "Every declared owner state and environment requirement resolves to checked-in evidence in golden.evidence.json; owner fixtures remain typed in apps/reference/workbenchFixtures.ts."
+    "evidence": "Owner fixtures list declared state names only. Each declared owner state is either bound to one exact executed Playwright case with a checked outcome or explicitly deferred; environment evidence resolves to exact qualification cases in golden.evidence.json."
   },
   "owners": [
     {
@@ -68,10 +68,11 @@
           "mobile-owner-parity"
         ],
         "forcedColors": [
-          "forced-colors-certification"
+          "forced-colors-label-task",
+          "forced-colors-focus-state-semantics"
         ],
         "largeText": [
-          "large-text-certification"
+          "large-text-page-header-actions"
         ],
         "visual": [
           "actions-wide"
@@ -79,29 +80,25 @@
       },
       "stateEvidence": {
         "enabled": [
-          "owner-workbench-fixtures"
-        ],
-        "hover": [
-          "owner-workbench-fixtures"
-        ],
-        "focus-visible": [
-          "owner-workbench-fixtures"
-        ],
-        "pressed": [
-          "owner-workbench-fixtures"
+          "owner-state-components-actions-enabled"
         ],
         "disabled": [
-          "owner-workbench-fixtures"
+          "owner-state-components-actions-disabled"
         ],
         "loading": [
-          "owner-workbench-fixtures"
+          "owner-state-components-actions-loading"
         ],
         "destructive": [
-          "owner-workbench-fixtures"
+          "owner-state-components-actions-destructive"
         ],
-        "long-content": [
-          "owner-workbench-fixtures"
+        "focus-visible": [
+          "owner-state-components-actions-focus-visible"
         ]
+      },
+      "deferredStates": {
+        "hover": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "pressed": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -143,8 +140,8 @@
       "pseudo": true,
       "keyboard": false,
       "touch": false,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -159,35 +156,20 @@
         "semantic": [
           "golden-semantic-certification"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "actions-wide"
         ]
       },
-      "stateEvidence": {
-        "image": [
-          "owner-workbench-fixtures"
-        ],
-        "initials": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "decorative": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "image": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "initials": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "decorative": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -229,8 +211,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -248,35 +230,20 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "actions-wide"
         ]
       },
-      "stateEvidence": {
-        "collapsed": [
-          "owner-workbench-fixtures"
-        ],
-        "expanded": [
-          "owner-workbench-fixtures"
-        ],
-        "focus-visible": [
-          "owner-workbench-fixtures"
-        ],
-        "disabled": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ],
-        "reduced-motion": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "collapsed": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "expanded": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "focus-visible": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "disabled": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "reduced-motion": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -339,10 +306,10 @@
           "mobile-owner-parity"
         ],
         "forcedColors": [
-          "forced-colors-certification"
+          "forced-colors-label-task"
         ],
         "largeText": [
-          "large-text-certification"
+          "large-text-multi-section-form"
         ],
         "visual": [
           "forms-wide"
@@ -350,26 +317,18 @@
       },
       "stateEvidence": {
         "enabled": [
-          "owner-workbench-fixtures"
-        ],
-        "focus-visible": [
-          "owner-workbench-fixtures"
-        ],
-        "disabled": [
-          "owner-workbench-fixtures"
-        ],
-        "read-only": [
-          "owner-workbench-fixtures"
+          "owner-state-forms-text-entry-enabled"
         ],
         "error": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
+          "owner-state-forms-text-entry-error"
         ]
+      },
+      "deferredStates": {
+        "focus-visible": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "disabled": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "read-only": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -431,34 +390,27 @@
           "mobile-owner-parity"
         ],
         "forcedColors": [
-          "forced-colors-certification"
+          "forced-colors-label-task",
+          "forced-colors-focus-state-semantics"
         ],
         "largeText": [
-          "large-text-certification"
+          "large-text-multi-section-form"
         ],
         "visual": [
           "forms-wide"
         ]
       },
       "stateEvidence": {
-        "enabled": [
-          "owner-workbench-fixtures"
-        ],
-        "focus-visible": [
-          "owner-workbench-fixtures"
-        ],
         "selected": [
-          "owner-workbench-fixtures"
-        ],
-        "disabled": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
+          "owner-state-forms-static-choice-selected"
         ]
+      },
+      "deferredStates": {
+        "enabled": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "focus-visible": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "disabled": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -502,7 +454,7 @@
       "keyboard": true,
       "touch": true,
       "forcedColors": true,
-      "largeText": true,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -521,37 +473,25 @@
           "mobile-owner-parity"
         ],
         "forcedColors": [
-          "forced-colors-certification"
+          "forced-colors-focus-state-semantics"
         ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "largeText": [],
         "visual": [
           "forms-wide"
         ]
       },
       "stateEvidence": {
         "enabled": [
-          "owner-workbench-fixtures"
-        ],
-        "focus-visible": [
-          "owner-workbench-fixtures"
-        ],
-        "disabled": [
-          "owner-workbench-fixtures"
-        ],
-        "read-only": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "locale-format": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
+          "owner-state-forms-semantic-input-enabled"
         ]
+      },
+      "deferredStates": {
+        "focus-visible": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "disabled": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "read-only": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "locale-format": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -595,8 +535,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -614,41 +554,25 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "forms-wide"
         ]
       },
       "stateEvidence": {
-        "closed": [
-          "owner-workbench-fixtures"
-        ],
         "open": [
-          "owner-workbench-fixtures"
-        ],
-        "search": [
-          "owner-workbench-fixtures"
-        ],
-        "active-option": [
-          "owner-workbench-fixtures"
-        ],
-        "selected": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
+          "owner-state-forms-searchable-choice-open"
         ]
+      },
+      "deferredStates": {
+        "closed": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "search": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "active-option": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "selected": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -692,8 +616,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -711,41 +635,22 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "forms-wide"
         ]
       },
-      "stateEvidence": {
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "partial": [
-          "owner-workbench-fixtures"
-        ],
-        "complete": [
-          "owner-workbench-fixtures"
-        ],
-        "paste": [
-          "owner-workbench-fixtures"
-        ],
-        "backspace": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "disabled": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "partial": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "complete": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "paste": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "backspace": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "disabled": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -787,8 +692,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -806,35 +711,25 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "actions-wide"
         ]
       },
       "stateEvidence": {
         "open": [
-          "owner-workbench-fixtures"
+          "owner-state-overlays-dialog-alert-open"
         ],
         "focus-visible": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "destructive": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ],
-        "reduced-motion": [
-          "owner-workbench-fixtures"
+          "owner-state-overlays-dialog-alert-focus-visible"
         ]
+      },
+      "deferredStates": {
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "destructive": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "reduced-motion": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -875,7 +770,7 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
+      "forcedColors": false,
       "largeText": true,
       "visualBaseline": true,
       "evidence": {
@@ -894,11 +789,9 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
+        "forcedColors": [],
         "largeText": [
-          "large-text-certification"
+          "large-text-long-sheet-final-action"
         ],
         "visual": [
           "actions-wide"
@@ -906,20 +799,16 @@
       },
       "stateEvidence": {
         "open": [
-          "owner-workbench-fixtures"
-        ],
-        "focus-visible": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
+          "owner-state-overlays-sheet-open"
         ],
         "scrolling": [
-          "owner-workbench-fixtures"
-        ],
-        "reduced-motion": [
-          "owner-workbench-fixtures"
+          "owner-state-overlays-sheet-scrolling"
         ]
+      },
+      "deferredStates": {
+        "focus-visible": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "reduced-motion": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -962,8 +851,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -981,38 +870,26 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "actions-wide"
         ]
       },
       "stateEvidence": {
-        "collapsed": [
-          "owner-workbench-fixtures"
-        ],
         "expanded": [
-          "owner-workbench-fixtures"
+          "owner-state-overlays-menu-expanded"
         ],
         "focus-visible": [
-          "owner-workbench-fixtures"
-        ],
-        "selected": [
-          "owner-workbench-fixtures"
-        ],
-        "disabled": [
-          "owner-workbench-fixtures"
-        ],
-        "destructive": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
+          "owner-state-overlays-menu-focus-visible"
         ]
+      },
+      "deferredStates": {
+        "collapsed": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "selected": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "disabled": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "destructive": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1058,7 +935,7 @@
       "keyboard": true,
       "touch": true,
       "forcedColors": true,
-      "largeText": true,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -1077,40 +954,30 @@
           "mobile-owner-parity"
         ],
         "forcedColors": [
-          "forced-colors-certification"
+          "forced-colors-label-task"
         ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "largeText": [],
         "visual": [
           "actions-wide"
         ]
       },
       "stateEvidence": {
-        "loading": [
-          "owner-workbench-fixtures"
+        "empty": [
+          "owner-state-feedback-async-empty"
         ],
         "error": [
-          "owner-workbench-fixtures"
+          "owner-state-feedback-async-error"
         ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "success": [
-          "owner-workbench-fixtures"
-        ],
-        "offline": [
-          "owner-workbench-fixtures"
-        ],
-        "stale": [
-          "owner-workbench-fixtures"
-        ],
-        "retry": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
+        "loading": [
+          "owner-state-feedback-async-loading"
         ]
+      },
+      "deferredStates": {
+        "success": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "offline": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "stale": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "retry": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1155,7 +1022,7 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
+      "forcedColors": false,
       "largeText": true,
       "visualBaseline": true,
       "evidence": {
@@ -1174,41 +1041,29 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
+        "forcedColors": [],
         "largeText": [
-          "large-text-certification"
+          "large-text-data-workspace"
         ],
         "visual": [
           "data-workspace-wide"
         ]
       },
       "stateEvidence": {
-        "enabled": [
-          "owner-workbench-fixtures"
-        ],
-        "focus-visible": [
-          "owner-workbench-fixtures"
+        "mixed": [
+          "owner-state-data-table-mixed"
         ],
         "selected": [
-          "owner-workbench-fixtures"
-        ],
-        "mixed": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
+          "owner-state-data-table-selected"
         ]
+      },
+      "deferredStates": {
+        "enabled": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "focus-visible": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1248,8 +1103,8 @@
       "pseudo": true,
       "keyboard": false,
       "touch": false,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -1264,29 +1119,18 @@
         "semantic": [
           "golden-semantic-certification"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "data-workspace-wide"
         ]
       },
-      "stateEvidence": {
-        "ready": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ],
-        "compact": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "ready": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "compact": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1326,8 +1170,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -1345,29 +1189,18 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "data-workspace-wide"
         ]
       },
-      "stateEvidence": {
-        "ready": [
-          "owner-workbench-fixtures"
-        ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ],
-        "compact": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "ready": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "compact": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1408,8 +1241,8 @@
       "pseudo": true,
       "keyboard": false,
       "touch": false,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -1424,32 +1257,19 @@
         "semantic": [
           "golden-semantic-certification"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "actions-wide"
         ]
       },
-      "stateEvidence": {
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "success": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "success": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1493,8 +1313,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -1512,41 +1332,22 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "visualization-wide"
         ]
       },
-      "stateEvidence": {
-        "ready": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "refreshing": [
-          "owner-workbench-fixtures"
-        ],
-        "stale": [
-          "owner-workbench-fixtures"
-        ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ],
-        "reduced-motion": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "ready": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "refreshing": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "stale": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "reduced-motion": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1589,8 +1390,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -1608,38 +1409,21 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "visualization-wide"
         ]
       },
-      "stateEvidence": {
-        "ready": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "selected": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ],
-        "reduced-motion": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "ready": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "selected": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "reduced-motion": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1683,8 +1467,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -1702,41 +1486,22 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "visualization-wide"
         ]
       },
-      "stateEvidence": {
-        "ready": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "selected": [
-          "owner-workbench-fixtures"
-        ],
-        "legend": [
-          "owner-workbench-fixtures"
-        ],
-        "data-table": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "ready": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "selected": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "legend": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "data-table": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1780,8 +1545,8 @@
       "pseudo": true,
       "keyboard": true,
       "touch": true,
-      "forcedColors": true,
-      "largeText": true,
+      "forcedColors": false,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -1799,41 +1564,22 @@
         "mobile": [
           "mobile-owner-parity"
         ],
-        "forcedColors": [
-          "forced-colors-certification"
-        ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "forcedColors": [],
+        "largeText": [],
         "visual": [
           "visualization-wide"
         ]
       },
-      "stateEvidence": {
-        "ready": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "selected": [
-          "owner-workbench-fixtures"
-        ],
-        "legend": [
-          "owner-workbench-fixtures"
-        ],
-        "data-table": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "ready": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "selected": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "legend": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "data-table": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     },
     {
@@ -1876,7 +1622,7 @@
       "keyboard": true,
       "touch": true,
       "forcedColors": true,
-      "largeText": true,
+      "largeText": false,
       "visualBaseline": true,
       "evidence": {
         "fixtures": [
@@ -1895,34 +1641,21 @@
           "mobile-owner-parity"
         ],
         "forcedColors": [
-          "forced-colors-certification"
+          "forced-colors-advanced-chart-fallbacks"
         ],
-        "largeText": [
-          "large-text-certification"
-        ],
+        "largeText": [],
         "visual": [
           "golden-plus-advanced-wide"
         ]
       },
-      "stateEvidence": {
-        "ready": [
-          "owner-workbench-fixtures"
-        ],
-        "loading": [
-          "owner-workbench-fixtures"
-        ],
-        "empty": [
-          "owner-workbench-fixtures"
-        ],
-        "error": [
-          "owner-workbench-fixtures"
-        ],
-        "selected": [
-          "owner-workbench-fixtures"
-        ],
-        "long-content": [
-          "owner-workbench-fixtures"
-        ]
+      "stateEvidence": {},
+      "deferredStates": {
+        "ready": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "loading": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "empty": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "error": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "selected": "No distinct executable case currently establishes this declared state with a semantic or task assertion.",
+        "long-content": "No distinct executable case currently establishes this declared state with a semantic or task assertion."
       }
     }
   ],

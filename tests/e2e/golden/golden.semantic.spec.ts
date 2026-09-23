@@ -29,13 +29,14 @@ test('@semantic validation summary is assertive and focuses the first invalid fi
   await expect(page.getByRole('textbox', { name: 'Full name' })).toBeFocused();
 });
 
-test('@semantic dialog and action menu preserve names, states, and focus restoration', async ({ page }) => {
+test('@semantic @owner-state overlays.dialog-alert/focus-visible @owner-state overlays.menu/focus-visible dialog and action menu preserve names, states, and focus restoration', async ({ page }) => {
   await page.goto('/overlays');
   const trigger = page.getByRole('button', { name: 'Open dialog' });
   await trigger.focus();
   await trigger.press('Enter');
   const dialog = page.getByRole('dialog', { name: 'Review this recommendation' });
   await expect(page.locator('[aria-modal="true"]')).toHaveCount(1);
+  await expect(dialog.getByRole('button', { name: 'Cancel' })).toBeFocused();
   await expect(dialog).toMatchAriaSnapshot(`
     - dialog "Review this recommendation":
       - heading "Review this recommendation" [level=3]
@@ -81,7 +82,7 @@ test('@semantic dialog and action menu preserve names, states, and focus restora
   await expect(page.locator('[aria-modal="true"]')).toHaveCount(1);
 });
 
-test('@semantic data workspace exposes toolbar, mixed selection, and retained feedback', async ({ page }) => {
+test('@semantic @owner-state data.table/mixed data workspace exposes toolbar, mixed selection, and retained feedback', async ({ page }) => {
   await page.goto('/data');
   await expect(page.getByRole('toolbar', { name: 'Data controls' })).toBeVisible();
   const table = page.getByRole('table', { name: 'Data table' });
@@ -127,14 +128,16 @@ test('@semantic keyboard-only command, combobox, form, and overlay path remains 
   await expect(combobox).toBeFocused();
 });
 
-test('@semantic forced colors retain focus and non-color state indicators', async ({ page }) => {
+test('@semantic @qualification forcedColors/focus-state-semantics @owner-state components.actions/focus-visible @owner-state forms.semantic-input/enabled forced colors retain focus and non-color state indicators', async ({ page }) => {
   await page.emulateMedia({ forcedColors: 'active' });
   await page.goto('/system');
   const button = page.getByRole('button', { name: 'Primary', exact: true });
   await button.focus();
   expect(await button.evaluate((node) => getComputedStyle(node).outlineStyle)).not.toBe('none');
   await expect(page.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByRole('combobox', { name: 'Institution' })).toHaveAttribute('aria-expanded', 'false');
+  const select = page.getByRole('combobox', { name: 'Institution' });
+  await expect(select).toBeEnabled();
+  await expect(select).toHaveAttribute('aria-expanded', 'false');
 });
 
 test('@semantic zoom, RTL, and reduced motion preserve usable geometry', async ({ page }) => {
@@ -178,7 +181,7 @@ test('@semantic optional advanced charts retain named surfaces and data fallback
   await expect(page.getByRole('table', { name: 'Cohort retention data' })).toBeVisible();
 });
 
-test('@semantic advanced chart fallbacks remain understandable in forced colors and large text', async ({ page }) => {
+test('@semantic @qualification forcedColors/advanced-chart-fallbacks advanced chart fallbacks remain understandable in forced colors and large text', async ({ page }) => {
   await page.emulateMedia({ forcedColors: 'active' });
   await page.goto('/golden-plus');
   await expect(page.getByTestId('advanced-scatter-axes')).toBeVisible();

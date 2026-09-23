@@ -1,19 +1,27 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { validateOwnerStateEvidence } from './owner-state-evidence.mjs';
 
 const root = process.cwd();
 const certification = JSON.parse(fs.readFileSync(path.join(root, 'golden.owner-certification.json'), 'utf8'));
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'golden.catalog.json'), 'utf8'));
 const evidence = JSON.parse(fs.readFileSync(path.join(root, 'golden.evidence.json'), 'utf8'));
-assert.ok(certification.schemaVersion >= 2);
+assert.ok(certification.schemaVersion >= 3);
 assert.ok(Array.isArray(certification.owners) && certification.owners.length >= 12);
 const catalogIds = new Set(catalog.items.map((item) => item.id));
 const evidenceKinds = ['fixtures', 'contracts', 'browser', 'mobile', 'semantic', 'visual', 'forcedColors', 'largeText'];
 const evidenceByKind = new Map(evidenceKinds.map((kind) => [kind, new Set((evidence[kind] ?? []).map((entry) => entry.id))]));
-const evidenceEntries = new Map(evidenceKinds.flatMap((kind) => (evidence[kind] ?? []).map((entry) => [entry.id, entry])));
+const evidenceEntries = new Map();
+for (const kind of evidenceKinds) {
+  for (const entry of evidence[kind] ?? []) {
+    assert.ok(!evidenceEntries.has(entry.id), `Duplicate evidence ID: ${entry.id}`);
+    evidenceEntries.set(entry.id, entry);
+  }
+}
 const baselineIds = new Set(JSON.parse(fs.readFileSync(path.join(root, 'golden.certification.json'), 'utf8')).visualBaselines.map((baseline) => baseline.id));
 const fixtureSource = fs.readFileSync(path.join(root, 'apps/reference/workbenchFixtures.ts'), 'utf8');
+const ownerStateCoverage = validateOwnerStateEvidence(certification, evidence, (file) => fs.readFileSync(path.join(root, file), 'utf8'));
 for (const kind of evidenceKinds) {
   for (const entry of evidence[kind] ?? []) {
     if (!entry.file) continue;
@@ -39,9 +47,9 @@ for (const owner of certification.owners) {
   assert.ok(owner.evidence && owner.stateEvidence, `${owner.id} needs executable evidence links.`);
   assert.ok(fixtureSource.includes(owner.id), `${owner.id} has no typed workbench fixture.`);
   for (const state of owner.states) {
-    const stateEvidence = owner.stateEvidence[state];
-    assert.ok(Array.isArray(stateEvidence) && stateEvidence.length > 0, `${owner.id} state ${state} has no evidence.`);
-    for (const evidenceId of stateEvidence) assert.ok(evidenceByKind.get('fixtures')?.has(evidenceId), `${owner.id} state ${state} references missing fixture evidence ${evidenceId}.`);
+    if (owner.stateEvidence[state]) {
+      for (const evidenceId of owner.stateEvidence[state]) assert.ok(evidenceByKind.get('browser')?.has(evidenceId), `${owner.id} state ${state} references missing browser case ${evidenceId}.`);
+    }
   }
   for (const kind of evidenceKinds) {
     if (kind === 'mobile' && !owner.interactive) continue;
@@ -74,4 +82,4 @@ for (const exemption of exemptions) {
 const uncovered = [...catalogIds].filter((id) => !covered.has(id) && !exempted.has(id));
 assert.deepEqual(uncovered, [], `Catalog items need an owner certification or explicit exemption: ${uncovered.join(', ')}`);
 assert.equal(covered.size + exempted.size, catalogIds.size, 'Owner certification coverage must account for every catalog item exactly once.');
-console.log(`Owner certification passed (${certification.owners.length} stable visual owners, ${covered.size} linked catalog items, ${exempted.size} explicit nonvisual/recipe items).`);
+console.log(`Owner certification passed (${certification.owners.length} stable visual owners, ${ownerStateCoverage.executedStates} executed states, ${ownerStateCoverage.deferredStates} explicitly deferred states, ${covered.size} linked catalog items, ${exempted.size} explicit nonvisual/recipe items).`);

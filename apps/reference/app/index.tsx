@@ -81,7 +81,7 @@ export default function FoundationReferenceScreen() {
             )}
             actions={(
               <HStack gap="sm" justify="end">
-                <Button label={copy('System lab')} variant="secondary" iconStart="command" onPress={() => router.push('/system')} responsiveWidth="compact-full" />
+                <Button testID="home-header-system-lab" label={copy('System lab')} variant="secondary" iconStart="command" onPress={() => router.push('/system')} responsiveWidth="compact-full" />
                 <Button label={copy('Stress test')} variant="outline" iconStart="warning" onPress={() => router.push('/stress')} responsiveWidth="compact-full" />
               </HStack>
             )}

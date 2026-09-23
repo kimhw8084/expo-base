@@ -43,17 +43,17 @@ export default function StateWorkbenchScreen() {
     <ScrollScreen>
       <Page
         width="dashboard"
-        header={<PageHeader eyebrow={copy('CERTIFICATION WORKBENCH')} title={copy('Owner state workbench')} description={copy('Deterministic fixtures for the stable visual owners declared in golden.owner-certification.json. Use the shell theme, density, locale, and direction controls to exercise the same surface without a backend.')} />}
+        header={<PageHeader eyebrow={copy('CERTIFICATION WORKBENCH')} title={copy('Owner state workbench')} description={copy('Deterministic fixtures list declared states for stable visual owners. Executed state proof is linked to exact browser cases in golden.owner-certification.json.')} />}
       >
         <Section>
-          <AlertBanner tone="info" title={copy('Certification surface')} message={copy('Each fixture is queryable by owner and exercises a meaningful state family. Product routes should compose these owners rather than copy their geometry.')} />
+          <AlertBanner tone="info" title={copy('Certification surface')} message={copy('Fixture cards list declared states; exact executed cases provide state proof. Product routes should compose these owners rather than copy their geometry.')} />
         </Section>
 
         <Section>
           <Card testID="owner-workbench-fixture-registry">
             <VStack gap="sm">
               <Text variant="h3">{copy('Registered owner fixture families')}</Text>
-              {ownerFixtures.map((fixture) => <View key={fixture.ownerId} testID={`${fixture.testID}-registry`} accessibilityLabel={`${fixture.ownerId} fixture; ${fixture.states.length} declared states`}><Text variant="caption">{fixture.ownerId}</Text><Text testID={`${fixture.testID}-states`} variant="micro" tone="secondary">{fixture.states.join(' · ')}</Text></View>)}
+              {ownerFixtures.map((fixture) => <View key={fixture.ownerId} testID={`${fixture.testID}-registry`} accessibilityLabel={`${fixture.ownerId} fixture; ${fixture.declaredStates.length} declared states`}><Text variant="caption">{fixture.ownerId}</Text><Text testID={`${fixture.testID}-states`} variant="micro" tone="secondary">{fixture.declaredStates.join(' · ')}</Text></View>)}
             </VStack>
           </Card>
         </Section>
@@ -65,8 +65,8 @@ export default function StateWorkbenchScreen() {
                 <Card testID={fixture.testID}>
                   <VStack gap="sm">
                     <Text variant="h3">{fixture.ownerId}</Text>
-                    <Text variant="caption" tone="secondary">{copy('Certified state family')}</Text>
-                    <Text variant="micro" tone="secondary">{fixture.states.join(' · ')}</Text>
+                    <Text variant="caption" tone="secondary">{copy('Declared state family')}</Text>
+                    <Text variant="micro" tone="secondary">{fixture.declaredStates.join(' · ')}</Text>
                   </VStack>
                 </Card>
               </AdaptiveGridItem>
