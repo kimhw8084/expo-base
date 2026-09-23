@@ -1,0 +1,364 @@
+{
+  "accepted_at": "2026-09-22T23:58:46Z",
+  "changed_files": [],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"rtk node --version && rtk npm --version && rtk proxy uname -a && rtk proxy sw_vers && rtk proxy xcodebuild -version && rtk proxy xcrun simctl list devices available && rtk proxy command -v fabric && rtk git remote -v && rtk git tag --list && rtk git status --porcelain=v2 && rtk cat ios.certification.json && rtk git rev-list --left-right --count v1.0.0...HEAD && rtk git log -1 --format='%H%n%T%n%P%n%D%n%s' HEAD\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'command -v nvm; nvm ls' && rtk ls -d ~/.nvm/versions/node/* /opt/homebrew/opt/node@22/bin/node /usr/local/opt/node@22/bin/node && rtk proxy command -v fnm && rtk proxy command -v volta && rtk git remote -v && rtk git tag --list && rtk git status --porcelain=v2 && rtk git rev-list --left-right --count v1.0.0...HEAD && rtk git log -1 --format='%H%n%T%n%P%n%D%n%s' HEAD\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git remote -v; rtk git config --get remote.origin.url; rtk git tag --list; rtk git show-ref --tags; rtk git rev-list --left-right --count v1.0.0...HEAD; rtk git merge-base --is-ancestor v1.0.0 HEAD; rtk git log -1 --format='%H%n%T%n%P%n%D%n%s' HEAD; rtk git log -1 --format='%H %cs %s' -- docs/STATUS.md docs/RELEASE_READINESS.md docs/CERTIFICATION.md release-candidate.certification.json; rtk git status --porcelain=v2\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -lc 'nvm use 22.23.2 >/dev/null && rtk node --version && rtk npm --version && rtk npm ci'\"",
+      "exit_code": 127,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk node --version && rtk npm --version && rtk npm ci'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk npm run release:verify'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk npm run runtime:verify'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk npm exec -- playwright install --list'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy ps -Ao pid,etime,command'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rtk rg 'runtime-test-web|runtime:verify|expo export|playwright test'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk npm run runtime:test:web'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,90p' docs/STATUS.md && rtk sed -n '1,90p' docs/CERTIFICATION.md && rtk sed -n '1,90p' docs/IOS_NATIVE_ACCEPTANCE.md && rtk sed -n '270,365p' docs/IOS_NATIVE_ACCEPTANCE.md && rtk rg -n 'Current phase|CHG-24|current main|tagged|universal native|Android.*(certif|acceptance)|iOS.*certif|production-ready|sourceTreeHash' README.md docs/STATUS.md docs/CERTIFICATION.md docs/IOS_NATIVE_ACCEPTANCE.md docs/RELEASE_READINESS.md docs/RELEASE_CANDIDATE_1_0.md docs/DEPENDENCIES.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rtk rg 'golden:verify|run-golden-web|benchmark-visualization|playwright test|expo export'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk npm run golden:verify'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk npm run mobile:verify'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rtk rg 'ios:verify|run-ios-native-certification|prebuild|xcodebuild|ExpoBaseNativeCertification'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk tail -n 25 test-results/ios-native-certification/xcodebuild-release.log'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk tail -n 20 test-results/ios-native-certification/xcodebuild-release.log'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git show -s --format='tag peeled commit=%H%ntree=%T%nparents=%P%nsubject=%s' 'v1.0.0\"'^{}'\"'; rtk git tag -n99 v1.0.0; rtk git log --first-parent --format='%h %cs %s' v1.0.0..HEAD; rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk python3 -c \\\"import hashlib,subprocess,pathlib; fs=[f for f in subprocess.check_output([\\\\\\\"git\\\\\\\",\\\\\\\"ls-files\\\\\\\",\\\\\\\"-z\\\\\\\"]).split(bytes([0])) if f and f\"'!=b'\"\\\\\\\"release-candidate.certification.json\\\\\\\"]; h=hashlib.sha256(); [(h.update(f),h.update(bytes([0])),h.update(hashlib.sha256(pathlib.Path(f.decode()).read_bytes()).hexdigest().encode()),h.update(bytes([10]))) for f in fs]; print(h.hexdigest())\\\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk tail -n 8 test-results/ios-native-certification/xcodebuild-release.log'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n '\"'^Test (Suite|Case)|error:|TEST SUCCEEDED|TEST FAILED|BUILD FAILED'\"' test-results/ios-native-certification/xcodebuild-release.log\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,160p' scripts/write-release-certification-record.mjs && rtk sed -n '1,140p' docs/RELEASE_READINESS.md && rtk cat .gitignore\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk npm ls --depth=0 expo react-native react' && rtk git status --short --branch && rtk git ls-files .github/workflows && rtk git ls-files apps/reference/ios apps/reference/android\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,%cpu,command | rtk rg 'xcodebuild|Simulator.app|ExpoBaseNativeCertification' && rtk rg -n '\"'^Test (Suite|Case)|error:|warning:|TEST SUCCEEDED|TEST FAILED|BUILD FAILED|Build description signature'\"' test-results/ios-native-certification/xcodebuild-release.log\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg 'Test Case .*(passed|failed|started)' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 14\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg 'Test Case .*(passed|failed|started)' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 10\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -C 14 'testFormSpecimenFamiliesRespond.*(failed|XCTAssert|error)|Assertion Failure|XCTAssert' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 70\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '80,140p' tests/native/ios/NativeRobots.swift && rtk rg -n -C 8 'testFormSpecimenFamiliesRespond|Searchable choice|searchable choice|Search for|placeholder.*search|label.*Search' tests/native/ios/ExpoBaseNativeUITests.swift apps/reference/app packages/forms packages/components packages/ui packages/overlays\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '120,190p' tests/native/ios/ExpoBaseNativeUITests.swift && rtk sed -n '115,190p' packages/forms/src/ChoiceFields.tsx && rtk rg -n 'testID=\\\"search\\\"|id=\\\"search\\\"|testID=\\\".*search|accessibilityLabel=.*Search|TextField id=\\\"search' apps/reference/app/forms.tsx\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -d /Applications/Xcode* && rtk xcode-select -p && rtk xcodebuild -version'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -C 5 'function SearchField|const SearchField|export .*SearchField|inputMode|returnKeyType' packages/forms/src\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,200p' packages/forms/src/TextField.tsx && rtk rg -n -C 2 'updateQuery|const \\\\[searchValue|setSearchValue' apps/reference/app/forms.tsx\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg 'Test Case .*(passed|failed|started)' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 12\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg 'Test Case .*(passed|failed|started)' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 15\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg 'Test Case .*(passed|failed|started)' test-results/ios-native-certification/xcodebuild-release.log | rtk tail -n 12\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk npm run ios:verify'\"",
+      "exit_code": 65,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat test-results/ios-native-certification/summary-release.json && rtk xcrun xcresulttool export attachments --help'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk xcrun xcresulttool export attachments --path test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult --output-path test-results/ios-native-certification/failure-attachments --only-failures && rtk cat test-results/ios-native-certification/failure-attachments/manifest.json && rtk rg --files test-results/ios-native-certification/failure-attachments'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk xcrun xcresulttool get test-results --help'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk xcrun xcresulttool get test-results activities --help && rtk xcrun xcresulttool get test-results test-details --help'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy /usr/bin/xcrun xcresulttool get test-results activities --path test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult --test-id 'test://com.apple.xcode/ExpoBaseReference/ExpoBaseReferenceUITests/ExpoBaseNativeUITests/testFormSpecimenFamiliesRespond' > /tmp/chg175-ios-activities.json && rtk wc -c /tmp/chg175-ios-activities.json && rtk rg -n -C 3 'failure-screenshot|failure-accessibility-hierarchy|attachment|search' /tmp/chg175-ios-activities.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk xcrun xcresulttool export object --help'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk xcrun xcresulttool get attachments --help'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk xcrun xcresulttool export attachments --path test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult --output-path test-results/ios-native-certification/failure-attachments-specific --test-id 'test://com.apple.xcode/ExpoBaseReference/ExpoBaseReferenceUITests/ExpoBaseNativeUITests/testFormSpecimenFamiliesRespond' && rtk cat test-results/ios-native-certification/failure-attachments-specific/manifest.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat test-results/ios-native-certification/failure-attachments-specific/3DD3DD21-19F6-4F4A-BBD2-337F4A917FCB.txt'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -C 2 \\\"identifier: 'search'|label: 'Search'|value: 'c'|placeholderValue: 'Search cards\\\" test-results/ios-native-certification/failure-attachments-specific/3DD3DD21-19F6-4F4A-BBD2-337F4A917FCB.txt\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --stat v1.0.0..HEAD -- packages/forms/src/TextField.tsx packages/forms/src/SpecializedFields.tsx apps/reference/app/forms.tsx tests/native/ios/NativeRobots.swift tests/native/ios/ExpoBaseNativeUITests.swift && rtk git log --oneline --first-parent v1.0.0..HEAD -- packages/forms/src/TextField.tsx packages/forms/src/SpecializedFields.tsx apps/reference/app/forms.tsx tests/native/ios/NativeRobots.swift tests/native/ios/ExpoBaseNativeUITests.swift'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff v1.0.0..HEAD -- packages/forms/src/TextField.tsx packages/forms/src/SpecializedFields.tsx apps/reference/app/forms.tsx'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy zsh -ic 'nvm use 22.23.2 >/dev/null && rtk npm run release:verify'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree} && rtk git diff --name-only && rtk git status --porcelain=v1 && rtk git rev-parse --is-shallow-repository'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.155.1",
+    "configured_model": "gpt-6-luna",
+    "event_count": 161,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.09,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 16078464,
+      "fresh_input_tokens": 313057,
+      "input_tokens": 16391521,
+      "non_reasoning_output_tokens": 14053,
+      "output_tokens": 54631,
+      "reasoning_output_tokens": 40578,
+      "total_processed_tokens": 16446152
+    },
+    "warnings": []
+  },
+  "commits": [],
+  "diff": {
+    "additions": 0,
+    "changed_files": 0,
+    "commit_count": 0,
+    "deletions": 0
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 0,
+    "items": [],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.4-quota-recovery-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.4-quota-recovery-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-23T00:37:52Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "branch": "codex/expo-base-chg175-production-readiness-reconcile-r1",
+    "detached_verify": false,
+    "head_sha": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "remote_exact_head": true,
+    "remote_head_sha": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "743a8bbf8273f663503dc8dd398135806dccb386",
+    "work_branch": "codex/expo-base-chg175-production-readiness-reconcile-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-783a428ef829d591a9e32828",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg175-production-readiness-reconcile-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg175-production-readiness-reconcile-r1"
+  },
+  "operation": "VERIFY",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.4-quota-recovery-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg175-production-readiness-reconcile-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-22T23:58:46Z",
+  "status": "EXECUTED_NO_CHANGE",
+  "timing": {
+    "execution_seconds": 2346,
+    "queue_seconds": 0,
+    "total_seconds": 2346
+  },
+  "transport": {
+    "bytes": 8406,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 8058,
+    "prompt_sha256": "f168547713dca60aa6e91e128e5234dc78b5a7bf0ff0f238ea7f54952cd9fa85",
+    "sha256": "783a428ef829d591a9e32828f2b26ae5f157ac6428b93c8331d19edaf0a705e8"
+  }
+}
