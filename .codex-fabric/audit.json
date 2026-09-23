@@ -1,0 +1,538 @@
+{
+  "accepted_at": "2026-09-23T18:27:16Z",
+  "changed_files": [
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/forms.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app/index.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "apps/reference/app/overlays.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 5,
+      "path": "apps/reference/app/state-workbench.tsx",
+      "status": "M"
+    },
+    {
+      "additions": 23,
+      "deletions": 23,
+      "path": "apps/reference/workbenchFixtures.ts",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 2,
+      "path": "docs/ULTIMATE_GOLDEN_AUDIT.md",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 3,
+      "path": "docs/ULTIMATE_GOLDEN_COVERAGE.md",
+      "status": "M"
+    },
+    {
+      "additions": 7,
+      "deletions": 4,
+      "path": "docs/ultimate-golden-capabilities.json",
+      "status": "M"
+    },
+    {
+      "additions": 11,
+      "deletions": 9,
+      "path": "docs/ultimate-golden-coverage.json",
+      "status": "M"
+    },
+    {
+      "additions": 419,
+      "deletions": 14,
+      "path": "golden.evidence.json",
+      "status": "M"
+    },
+    {
+      "additions": 263,
+      "deletions": 530,
+      "path": "golden.owner-certification.json",
+      "status": "M"
+    },
+    {
+      "additions": 14,
+      "deletions": 6,
+      "path": "scripts/check-owner-certification.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 5,
+      "deletions": 2,
+      "path": "scripts/check-ultimate-audit.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 27,
+      "deletions": 5,
+      "path": "scripts/enrich-owner-certification.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 13,
+      "deletions": 6,
+      "path": "scripts/generate-ultimate-golden-audit.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 81,
+      "deletions": 0,
+      "path": "scripts/owner-state-evidence.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 71,
+      "deletions": 12,
+      "path": "scripts/test-owner-certification.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 56,
+      "deletions": 0,
+      "path": "tests/e2e/golden/golden.forced-colors.spec.ts",
+      "status": "A"
+    },
+    {
+      "additions": 8,
+      "deletions": 5,
+      "path": "tests/e2e/golden/golden.semantic.spec.ts",
+      "status": "M"
+    },
+    {
+      "additions": 172,
+      "deletions": 0,
+      "path": "tests/e2e/golden/golden.text-pressure.spec.ts",
+      "status": "A"
+    },
+    {
+      "additions": 40,
+      "deletions": 0,
+      "path": "tests/e2e/golden/label-pixels.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 95,
+      "deletions": 1,
+      "path": "tests/e2e/web/ultimate-workbench.spec.ts",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:command-form-dashboard-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:golden-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:accessibility-motion-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:ultimate-audit'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:layout-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:workspace-composition-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:owner-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run test:owner-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run typecheck:runtime-ui'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD''^{tree}'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --stat'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --name-status'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff -- golden.owner-certification.json golden.evidence.json scripts/check-owner-certification.mjs scripts/owner-state-evidence.mjs scripts/test-owner-certification.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff -- scripts/check-owner-certification.mjs scripts/owner-state-evidence.mjs scripts/test-owner-certification.mjs scripts/enrich-owner-certification.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'owner-workbench-fixtures' golden.owner-certification.json scripts/enrich-owner-certification.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff -- tests/e2e/golden/golden.semantic.spec.ts tests/e2e/web/ultimate-workbench.spec.ts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff -- apps/reference/app/forms.tsx apps/reference/app/index.tsx apps/reference/app/overlays.tsx apps/reference/app/state-workbench.tsx apps/reference/workbenchFixtures.ts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,230p' tests/e2e/golden/golden.forced-colors.spec.ts && rtk sed -n '1,240p' tests/e2e/golden/golden.text-pressure.spec.ts && rtk sed -n '1,200p' tests/e2e/golden/label-pixels.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH node --input-type=module -e \"import fs from '\"'node:fs';const c=JSON.parse(fs.readFileSync('golden.owner-certification.json'));const e=JSON.parse(fs.readFileSync('golden.evidence.json'));const states=c.owners.flatMap(o=>o.states.map(s=>({owner:o.id,state:s,status:o.stateEvidence[s]?'executed':'deferred'})));console.log(JSON.stringify({owners:c.owners.length,states:states.length,executed:states.filter(s=>s.status==='executed').length,deferred:states.filter(s=>s.status==='deferred').length,forcedOwners:c.owners.filter(o=>o.forcedColors).map(o=>o.id),largeTextOwners:c.owners.filter(o=>o.largeText).map(o=>o.id),forcedCases:e.forcedColors.map(x=>x.caseId),largeTextCases:e.largeText.map(x=>x.caseId),ownerStateCases:e.browser.filter(x=>x.caseType==='owner-state').length},null,2))\\\"\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -A16 -B2 'large-text-(page-header|multi-section|data-workspace|long-sheet)' golden.evidence.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:ultimate-audit'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run test:owner-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:owner-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:ultimate-audit'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run test:owner-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH npm run check:owner-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.13.0/bin:$PATH node scripts/run-golden-web.mjs semantic'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --stat'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git branch --show-current'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --name-only'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git add apps/reference/app/forms.tsx apps/reference/app/index.tsx apps/reference/app/overlays.tsx apps/reference/app/state-workbench.tsx apps/reference/workbenchFixtures.ts docs/ULTIMATE_GOLDEN_AUDIT.md docs/ULTIMATE_GOLDEN_COVERAGE.md docs/ultimate-golden-capabilities.json docs/ultimate-golden-coverage.json golden.evidence.json golden.owner-certification.json scripts/check-owner-certification.mjs scripts/check-ultimate-audit.mjs scripts/enrich-owner-certification.mjs scripts/generate-ultimate-golden-audit.mjs scripts/test-owner-certification.mjs scripts/owner-state-evidence.mjs tests/e2e/golden/golden.semantic.spec.ts tests/e2e/golden/golden.forced-colors.spec.ts tests/e2e/golden/golden.text-pressure.spec.ts tests/e2e/golden/label-pixels.mjs tests/e2e/web/ultimate-workbench.spec.ts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --cached --stat'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --cached --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git commit -m \"CHG-187 qualify Golden UI evidence\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git rev-parse HEAD''^{tree}'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git show --stat --oneline --summary HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node -e 'const j=require(\\\"./golden.owner-certification.json\\\"); console.log(JSON.stringify({keys:Object.keys(j), owners:Array.isArray(j.owners)?j.owners.length:Object.keys(j.owners||{}).length, sample:Array.isArray(j.owners)?j.owners[0]:Object.entries(j.owners||{})[0]},null,2))'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node -e 'const j=require(\\\"./golden.owner-certification.json\\\"); for (const o of j.owners) for (const [s,ids] of Object.entries(o.stateEvidence||{})) for (const id of ids) console.log(\"'`${o.id}/${s} ${id}`)'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.155.1",
+    "configured_model": "gpt-6-luna",
+    "event_count": 351,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.07,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 17122560,
+      "fresh_input_tokens": 336791,
+      "input_tokens": 17459351,
+      "non_reasoning_output_tokens": 43938,
+      "output_tokens": 112602,
+      "reasoning_output_tokens": 68664,
+      "total_processed_tokens": 17571953
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "0e763f247bc300e375cb279ab6bb577bcd6c89d7",
+      "subject": "CHG-187 qualify Golden UI evidence"
+    }
+  ],
+  "diff": {
+    "additions": 1324,
+    "changed_files": 22,
+    "commit_count": 1,
+    "deletions": 631
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 7,
+    "items": [
+      {
+        "bytes": 4928,
+        "path": "docs/ULTIMATE_GOLDEN_AUDIT.md",
+        "sha256": "13faa529610cb19c58f343712f930ebf1446fe1f0f6d10da1bd3099fbd20c84e"
+      },
+      {
+        "bytes": 898,
+        "path": "docs/ULTIMATE_GOLDEN_COVERAGE.md",
+        "sha256": "f60565dfbd661b7807da73caa6bbb428a0096e546cc9d3ea9ce86ec6db4283be"
+      },
+      {
+        "bytes": 49209,
+        "path": "docs/ultimate-golden-capabilities.json",
+        "sha256": "5da1bd11cf73f4b607d520b43814ede55303c1b95b3fc821fb55903f339a75a8"
+      },
+      {
+        "bytes": 1428,
+        "path": "docs/ultimate-golden-coverage.json",
+        "sha256": "405a6c70996a6126ddae6c4c3e12d73620bad3cde747b3c3d716e4278ce48f87"
+      },
+      {
+        "bytes": 15574,
+        "path": "golden.evidence.json",
+        "sha256": "eb4a6ac62eb36e300dd8771aeeee8bbff94cbde27dbb9d0ee46373d8a3ec6c86"
+      },
+      {
+        "bytes": 51816,
+        "path": "golden.owner-certification.json",
+        "sha256": "543228d95cbe776ef1d20026d5930e2d80cb33d64f3d39337ccbccd229881f76"
+      },
+      {
+        "bytes": 4672,
+        "path": "scripts/owner-state-evidence.mjs",
+        "sha256": "17275e6a132bcdebd90f483af3a0a8e8a7b7569837b23cbbe9f16e81be1b6208"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.5-dashboard-controls-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.5-dashboard-controls-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-23T19:06:30Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "dc82968f3d82f8f76020eb765598030e95611195",
+    "branch": "codex/expo-base-chg187-ui-qualification-evidence-positive-r1",
+    "detached_verify": false,
+    "head_sha": "0e763f247bc300e375cb279ab6bb577bcd6c89d7",
+    "remote_exact_head": true,
+    "remote_head_sha": "0e763f247bc300e375cb279ab6bb577bcd6c89d7",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "dc82968f3d82f8f76020eb765598030e95611195",
+    "work_branch": "codex/expo-base-chg187-ui-qualification-evidence-positive-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-393c49b16bb1e6f3ea644772",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg187-ui-qualification-evidence-positive-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg187-ui-qualification-evidence-positive-r1"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.5-dashboard-controls-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "cfc765f3211c37c7967a138f3b2d89a99341939b15b2623f92744d007f625d6f"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg187-ui-qualification-evidence-positive-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-23T18:27:16Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 2354,
+    "queue_seconds": 0,
+    "total_seconds": 2354
+  },
+  "transport": {
+    "bytes": 11825,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 11471,
+    "prompt_sha256": "d44febf7c4b52de02c00a86a6fa7357d9e6b2e87a0cd1a30681a4101734e0aa4",
+    "sha256": "393c49b16bb1e6f3ea644772748d908955aaae5b6c9756d5b3ef7d761be8b0ec"
+  }
+}
