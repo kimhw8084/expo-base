@@ -95,26 +95,30 @@ final class FormRobot {
         self.app = app
     }
 
-    func textField(_ id: String) -> XCUIElement {
+    func textField(_ id: String, timeout: TimeInterval = 10) -> XCUIElement {
         let field = app.descendants(matching: .any)[id]
-        XCTAssertTrue(field.waitForExistence(timeout: 10), "Form field \(id) was not found.")
+        XCTAssertTrue(field.waitForExistence(timeout: timeout), "Form field \(id) was not found.")
         XCTAssertTrue(AppRobot(app: app).scrollUntilVisible(field), "Form field \(id) is not reachable.")
         return field
     }
 
     func type(_ value: String, into id: String) {
-        let field = textField(id)
-        field.tap()
+        let initialField = textField(id)
+        initialField.tap()
         XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5), "The native keyboard did not appear for field \(id).")
         var expectedValue = ""
         for character in value {
+            XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 2), "The native keyboard disappeared while typing into field \(id).")
+            let fieldForCharacter = textField(id, timeout: 2)
             expectedValue.append(character)
-            field.typeText(String(character))
+            fieldForCharacter.typeText(String(character))
+            let fieldAfterUpdate = textField(id, timeout: 2)
             let valueExpectation = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "value == %@", expectedValue),
-                object: field
+                object: fieldAfterUpdate
             )
             XCTAssertEqual(XCTWaiter.wait(for: [valueExpectation], timeout: 2), .completed, "Field \(id) did not retain typed character \(character).")
+            XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 2), "The native keyboard disappeared after typing into field \(id).")
         }
     }
 
