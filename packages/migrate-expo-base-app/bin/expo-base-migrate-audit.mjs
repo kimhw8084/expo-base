@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { auditDependencies } from '../lib/dependency-audit.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 if (args.help) { usage(); process.exit(0); }
@@ -71,15 +72,6 @@ function sourceFiles(dir){
   walk(dir); return out;
 }
 function lineAt(text,index){ return text.slice(0,index).split('\n').length; }
-function auditDependencies(root,compat){
-  const file=path.join(root,'package.json'); if(!fs.existsSync(file)) return [];
-  const pkg=JSON.parse(fs.readFileSync(file,'utf8')); const deps={...(pkg.dependencies??{}),...(pkg.devDependencies??{})}; const out=[];
-  for(const [name,expected] of Object.entries(compat)){
-    if(name==='schemaVersion'||deps[name]===undefined) continue;
-    if(deps[name]!==expected) out.push({id:'DEPS-001',severity:'high',wave:'foundation',title:'Compatibility version drift',file:'package.json',line:1,sample:`${name}: ${deps[name]}`,recommendation:`Align ${name} to Expo Base compatibility version ${expected}.`});
-  }
-  return out;
-}
 function summarize(items){
   const bySeverity={high:0,medium:0,low:0},byWave={foundation:0,behavior:0,data:0,integration:0};
   for(const item of items){bySeverity[item.severity]=(bySeverity[item.severity]??0)+1;byWave[item.wave]=(byWave[item.wave]??0)+1;}

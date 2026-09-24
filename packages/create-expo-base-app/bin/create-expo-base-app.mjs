@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { renderGoldenCatalog } from '../../../scripts/golden-catalog-lib.mjs';
 import { renderGoldenPatterns } from '../../../scripts/golden-pattern-lib.mjs';
 
@@ -117,6 +118,9 @@ const acceptanceAuth = {
 
 export const services = { ...demoServices, auth: acceptanceAuth };`,
 );
+if (args.mode === 'standalone') {
+  files['.expo-base/generated-files.json'] = JSON.stringify(buildGeneratedFilesManifest(files, { ...args, capabilities: selectedCapabilities }), null, 2) + '\n';
+}
 for (const [relative, content] of Object.entries(files)) {
   const target = path.join(destination, relative);
   fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -293,10 +297,12 @@ function buildStandaloneFiles(config, versions, sourceRoot) {
   };
   files['package.json'] = JSON.stringify(rootPackage, null, 2) + '\n';
   files['README.md'] = standaloneReadme(config).replace('## Verification and acceptance', '## Fast verify versus final acceptance');
-  files['README.md'] += '\n\nUnresolved consequential actions are listed in `.expo-base/task-effects.json`; bind or explicitly qualify them before Product launch. `npm run check:task-effects` validates the editable records. A passing foundation check does not claim product readiness.\n';
-  files['AGENTS.md'] = standaloneAgents(config);
-  files['AGENTS.md'] += '\nRun `npm run check:golden-architecture` directly when reviewing route ownership.\n';
-  files['AGENTS.md'] += 'Resolve or explicitly qualify unresolved consequential actions in `.expo-base/task-effects.json` before Product launch; this supplements `.expo-base/acceptance-obligations.json`. Run `npm run check:task-effects` after editing those records.\n';
+files['README.md'] += '\n\nUnresolved consequential actions are listed in `.expo-base/task-effects.json`; bind or explicitly qualify them before Product launch. `npm run check:task-effects` validates the editable records. A passing foundation check does not claim product readiness.\n';
+files['README.md'] += '\n\n## Planning an Expo Base upgrade\n\nFrom a newer Expo Base source checkout, run `npm run migrate:upgrade-plan -- --path /path/to/this/repository --json`. The plan is advisory and read-only; review it before asking an AI to make a manual migration. Never regenerate over this product repository.\n';
+files['AGENTS.md'] = standaloneAgents(config);
+files['AGENTS.md'] += '\nRun `npm run check:golden-architecture` directly when reviewing route ownership.\n';
+files['AGENTS.md'] += 'Resolve or explicitly qualify unresolved consequential actions in `.expo-base/task-effects.json` before Product launch; this supplements `.expo-base/acceptance-obligations.json`. Run `npm run check:task-effects` after editing those records.\n';
+files['AGENTS.md'] += '\nFor an Expo Base upgrade, use a newer Expo Base source checkout: `npm run migrate:upgrade-plan -- --path /path/to/this/repository --json`. Require exact `.expo-base/source.json` provenance, treat the result as advisory and read-only, and make reviewed manual edits only; never regenerate over this product.\n';
   files['golden-architecture.config.json'] = JSON.stringify({
     schemaVersion: 1,
     catalog: 'golden.catalog.json',
@@ -331,6 +337,56 @@ function buildStandaloneFiles(config, versions, sourceRoot) {
   for (const packageName of packageNames) addVendoredPackage(files, sourceRoot, packageName, packageNames, versions);
   addScaffolderPackage(files, sourceRoot);
   return files;
+}
+
+function buildGeneratedFilesManifest(files, config) {
+  const entries = Object.entries(files)
+    .filter(([file]) => file !== '.expo-base/generated-files.json')
+    .map(([file, content]) => {
+      const sourceOrigin = generatedFileSourceOrigin(file);
+      return {
+        path: file.split(path.sep).join('/'),
+        ownership: generatedFileOwnership(file),
+        contentHash: createHash('sha256').update(Buffer.isBuffer(content) ? content : Buffer.from(content)).digest('hex'),
+        sourceOrigin,
+      };
+    })
+    .sort((left, right) => left.path < right.path ? -1 : left.path > right.path ? 1 : 0);
+  return {
+    schemaVersion: 1,
+    generationProfile: {
+      mode: 'standalone',
+      name: config.name,
+      slug: config.slug,
+      accent: config.accent,
+      capabilities: [...(config.capabilities ?? [])].sort(),
+      linkHost: config.linkHost ?? null,
+    },
+    files: entries,
+  };
+}
+
+function generatedFileSourceOrigin(file) {
+  if (file.startsWith('packages/')) return file;
+  if (file === 'tsconfig.base.json') return file;
+  if (file === 'scripts/verify-acceptance.mjs') return 'packages/create-expo-base-app/lib/standalone-acceptance.mjs';
+  if (file.startsWith('scripts/') || (file.startsWith('docs/') && !['docs/GOLDEN_CATALOG.md', 'docs/GOLDEN_WORKFLOWS.md'].includes(file))) return file;
+  if (file === 'golden.catalog.json' || file === 'docs/GOLDEN_CATALOG.md') return 'golden.catalog.json';
+  if (file === 'golden.patterns.json' || file === 'docs/GOLDEN_WORKFLOWS.md') return 'golden.patterns.json';
+  if (file === 'expo-base.api.json') return 'expo-base.api.json';
+  return 'packages/create-expo-base-app/bin/create-expo-base-app.mjs';
+}
+
+function generatedFileOwnership(file) {
+  if (file.startsWith('app/') || [
+    'brand.ts', 'services.ts', 'serverState.ts', 'auth.ts', 'sessionSecurity.ts',
+    'linking.ts', 'routes.ts', '.env.example', 'public/favicon.svg',
+  ].includes(file)) return 'product-seed';
+  const directPackageSource = file.startsWith('packages/') && !file.endsWith('/package.json');
+  const directPlatformTooling = file.startsWith('scripts/') || (file.startsWith('docs/') && ![
+    'docs/GOLDEN_CATALOG.md', 'docs/GOLDEN_WORKFLOWS.md',
+  ].includes(file));
+  return directPackageSource || directPlatformTooling ? 'platform-owned' : 'platform-generated';
 }
 
 function collectInternalPackageNames(sourceRoot, roots) {

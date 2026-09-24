@@ -45,6 +45,12 @@ const LEGACY_PACKAGE_SHIMS = [
 ];
 
 const LEGACY_IDENTITY_PATTERN = /@precision-calm\/|Precision Calm|precision-calm|\bPrecision[A-Z][A-Za-z0-9]*|\busePrecision[A-Z]|\bcreatePrecision[A-Z]|\bprecision[A-Z]|create-precision|migrate-precision|precision-doctor|precision\.(?:api|compatibility|capabilities|routes)/;
+const GENERATED_LEGACY_COMPATIBILITY_FILES = new Set([
+  'docs/GOLDEN_TEMPLATE_AUDIT.md',
+  'docs/PUBLIC_API.md',
+  'packages/runtime/src/legacy-compat.ts',
+  'packages/ui/src/legacy-compat.ts',
+]);
 const LEGACY_COMPAT_PATHS = new Set(LEGACY_PACKAGE_SHIMS.flatMap(({ directory, source }) => [
   `packages/${directory}/package.json`,
   `packages/${directory}/${source}`,
@@ -134,8 +140,12 @@ function assertFreshGeneratorOutput() {
     assert.equal(result.status, 0, result.stderr || result.stdout);
     const generatedFiles = walkFiles(destination);
     assert.ok(generatedFiles.length > 0, 'generator must produce files');
-    const generatedText = generatedFiles.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
-    assert.doesNotMatch(generatedText, LEGACY_IDENTITY_PATTERN, 'fresh generator output contains legacy identity');
+    const generatedCompatibilityFiles = generatedFiles.filter((file) => GENERATED_LEGACY_COMPATIBILITY_FILES.has(path.relative(destination, file).split(path.sep).join('/')));
+    const generatedText = generatedFiles
+      .filter((file) => !GENERATED_LEGACY_COMPATIBILITY_FILES.has(path.relative(destination, file).split(path.sep).join('/')))
+      .map((file) => fs.readFileSync(file, 'utf8')).join('\n');
+    assert.doesNotMatch(generatedText, LEGACY_IDENTITY_PATTERN, 'fresh product and platform output contains no legacy identity outside established compatibility shims and historical/API documentation');
+    assert.deepEqual(generatedCompatibilityFiles.map((file) => path.relative(destination, file).split(path.sep).join('/')).sort(), [...GENERATED_LEGACY_COMPATIBILITY_FILES].sort(), 'only the exact 1.x compatibility shims and historical/API documents may retain legacy names in generated output');
     assert.match(generatedText, /@expo-base\/ui/);
     assert.match(generatedText, /@expo-base\/runtime/);
   } finally {
@@ -151,4 +161,4 @@ assertLegacyIdentityAllowlist();
 assertShimManifestsAndForwarders();
 assertTypecheckedImportFixture();
 assertFreshGeneratorOutput();
-console.log(`Migration compatibility passed: ${LEGACY_PACKAGE_SHIMS.length} legacy package paths resolve through canonical Expo Base implementations; generator output is legacy-free.`);
+console.log(`Migration compatibility passed: ${LEGACY_PACKAGE_SHIMS.length} legacy package paths resolve through canonical Expo Base implementations; no legacy identity escapes the explicit generated compatibility/documentation allowlist.`);

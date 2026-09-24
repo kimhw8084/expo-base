@@ -213,11 +213,15 @@ try {
     const generatedReadme = fs.readFileSync(path.join(target, 'README.md'), 'utf8');
     assert.ok(generatedReadme.includes('verify:acceptance'));
     assert.ok(generatedReadme.includes('does not make this consuming product production-ready'));
+    assert.ok(generatedReadme.includes('migrate:upgrade-plan'));
+    assert.ok(generatedReadme.includes('Never regenerate over this product repository'));
     const generatedAcceptanceAgents = fs.readFileSync(path.join(target, 'AGENTS.md'), 'utf8');
     assert.ok(generatedAcceptanceAgents.includes('Fast verify versus final acceptance'));
     assert.ok(generatedAcceptanceAgents.includes('verify:acceptance'));
     assert.ok(generatedAcceptanceAgents.includes('not a production-ready product claim'));
     assert.ok(generatedAcceptanceAgents.includes('task-effects.json'));
+    assert.ok(generatedAcceptanceAgents.includes('migrate:upgrade-plan'));
+    assert.ok(generatedAcceptanceAgents.includes('never regenerate over this product'));
     for (const script of ['typecheck', 'check:golden-architecture', 'check:task-effects', 'scaffold:screen', 'verify', 'verify:acceptance']) assert.equal(typeof generatedPackage.scripts[script], 'string', script);
     for (const field of ['dependencies', 'devDependencies']) {
       for (const [name, version] of Object.entries(generatedPackage[field] ?? {})) {
