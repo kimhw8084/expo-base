@@ -6,22 +6,38 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const root = process.cwd();
-const historicalCommit = '43ae1b27257697093d893d504b7e22b6f25cfad7';
-const targetCommit = 'd8ca9e65a0dea3a0a8a381d22428524787de0aa9';
+const historicalGeneratorCommit = '43ae1b27257697093d893d504b7e22b6f25cfad7';
+const targetBaselineCommit = 'd8ca9e65a0dea3a0a8a381d22428524787de0aa9';
+const targetBaselineTree = 'fdedb4330662eca5936324b19e3271e7e45ca056';
+const executingCommit = gitText(root, ['rev-parse', 'HEAD']);
+const executingTree = gitText(root, ['rev-parse', `${executingCommit}^{tree}`]);
 const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'expo-base-chg201-'));
 const historicalRoot = path.join(temporaryRoot, 'historical-source');
+const targetRoot = path.join(temporaryRoot, 'target-baseline');
+const generatedSourceRoot = path.join(temporaryRoot, 'generated-source');
 const siteLedger = path.join(temporaryRoot, 'site-ledger');
 const freshOne = path.join(temporaryRoot, 'fresh-one');
 const freshTwo = path.join(temporaryRoot, 'fresh-two');
 const planner = path.join(root, 'packages/migrate-expo-base-app/bin/expo-base-migrate-upgrade-plan.mjs');
 let historicalWorktreeAdded = false;
+let targetWorktreeAdded = false;
+let generatedSourceWorktreeAdded = false;
 
 try {
-  assert.equal(gitText(root, ['rev-parse', 'HEAD']), targetCommit, 'test must run on the bound target commit');
-  const expectedTargetTree = 'fdedb4330662eca5936324b19e3271e7e45ca056';
-  assert.equal(gitText(root, ['rev-parse', 'HEAD^{tree}']), expectedTargetTree, 'test target tree must match the bound source tree');
+  const targetWorktree = git(root, ['worktree', 'add', '--detach', targetRoot, targetBaselineCommit]);
+  assert.equal(targetWorktree.status, 0, targetWorktree.stderr || targetWorktree.stdout);
+  targetWorktreeAdded = true;
+  assert.equal(gitText(targetRoot, ['rev-parse', 'HEAD']), targetBaselineCommit);
+  assert.equal(gitText(targetRoot, ['rev-parse', 'HEAD^{tree}']), targetBaselineTree, 'historical-to-current target baseline tree must remain exact');
 
-  const worktree = git(root, ['worktree', 'add', '--detach', historicalRoot, historicalCommit]);
+  const generatedSourceWorktree = git(root, ['worktree', 'add', '--detach', generatedSourceRoot, executingCommit]);
+  assert.equal(generatedSourceWorktree.status, 0, generatedSourceWorktree.stderr || generatedSourceWorktree.stdout);
+  generatedSourceWorktreeAdded = true;
+  assert.equal(gitText(generatedSourceRoot, ['rev-parse', 'HEAD']), executingCommit);
+  assert.equal(gitText(generatedSourceRoot, ['rev-parse', 'HEAD^{tree}']), executingTree);
+  assert.equal(gitText(generatedSourceRoot, ['status', '--porcelain']), '', 'generated fixtures must use a clean committed source worktree');
+
+  const worktree = git(root, ['worktree', 'add', '--detach', historicalRoot, historicalGeneratorCommit]);
   assert.equal(worktree.status, 0, worktree.stderr || worktree.stdout);
   historicalWorktreeAdded = true;
   const historicalGeneration = run(process.execPath, [
@@ -32,8 +48,8 @@ try {
   assert.equal(historicalGeneration.status, 0, historicalGeneration.stderr || historicalGeneration.stdout);
   const historicalProvenancePath = path.join(siteLedger, '.expo-base/source.json');
   const historicalProvenance = readJson(historicalProvenancePath);
-  assert.equal(historicalProvenance.sourceCommit, historicalCommit);
-  const historicalTree = gitText(root, ['rev-parse', `${historicalCommit}^{tree}`]);
+  assert.equal(historicalProvenance.sourceCommit, historicalGeneratorCommit);
+  const historicalTree = gitText(root, ['rev-parse', `${historicalGeneratorCommit}^{tree}`]);
   assert.equal(historicalProvenance.sourceTree, undefined, 'the exact historical generator predates the sourceTree field');
   assert.equal(fs.existsSync(path.join(siteLedger, '.expo-base/generated-files.json')), false, 'the historical Site Ledger baseline must remain pre-manifest');
 
@@ -44,7 +60,7 @@ try {
   siteLedgerPackage.dependencies.expo = '0.0.0-chg201-fixture';
   fs.writeFileSync(path.join(siteLedger, 'package.json'), `${JSON.stringify(siteLedgerPackage, null, 2)}\n`);
 
-  const historicalChangedPaths = gitText(root, ['diff', '--name-only', `${historicalCommit}..${targetCommit}`, '--', 'packages'])
+  const historicalChangedPaths = gitText(targetRoot, ['diff', '--name-only', `${historicalGeneratorCommit}..${targetBaselineCommit}`, '--', 'packages'])
     .split('\n').filter(Boolean).sort();
   const vendoredPackageDirectories = new Set(fs.readdirSync(path.join(siteLedger, 'packages')));
   const platformEditSourcePath = historicalChangedPaths.find((sourcePath) => {
@@ -58,21 +74,21 @@ try {
   fs.appendFileSync(platformEditPath, '\n// Deterministic Site Ledger platform customization fixture.\n');
 
   const beforeFirstPlan = fingerprint(siteLedger);
-  const first = runPlan(siteLedger);
+  const first = runPlan(siteLedger, targetRoot);
   assert.equal(first.status, 0, first.stderr || first.stdout);
   const afterFirstPlan = fingerprint(siteLedger);
   assert.deepEqual(afterFirstPlan, beforeFirstPlan, 'planner must leave the historical consumer tree and all file bytes unchanged');
-  const second = runPlan(siteLedger);
+  const second = runPlan(siteLedger, targetRoot);
   assert.equal(second.status, 0, second.stderr || second.stdout);
   assert.equal(second.stdout, first.stdout, 'same source/consumer/target tuple must produce byte-identical semantic JSON');
   assert.deepEqual(fingerprint(siteLedger), beforeFirstPlan, 'second planner execution must also be read-only');
   const historicalPlan = JSON.parse(first.stdout);
   assert.equal(historicalPlan.mode, 'advisory-read-only');
   assert.equal(historicalPlan.consumerMutations, 'none');
-  assert.equal(historicalPlan.provenance.historicalSource.commit, historicalCommit);
+  assert.equal(historicalPlan.provenance.historicalSource.commit, historicalGeneratorCommit);
   assert.equal(historicalPlan.provenance.historicalSource.tree, historicalTree);
   assert.equal(historicalPlan.provenance.historicalSource.treeEvidence, 'derived-from-exact-recorded-commit; historical generator has no sourceTree field');
-  assert.equal(historicalPlan.provenance.targetSource.commit, targetCommit);
+  assert.equal(historicalPlan.provenance.targetSource.commit, targetBaselineCommit);
   assert.ok(historicalPlan.sections.safePlatformCarryForward.length > 0, 'untouched vendored platform files must be safe carry-forward candidates');
   assert.ok(historicalPlan.sections.manualAndConcurrentReview.some((file) => file.path === platformEditSourcePath && file.classification === 'concurrent-change'));
   assert.ok(historicalPlan.sections.productOwnedPreserved.some((file) => file.path === 'app/index.tsx'));
@@ -82,13 +98,13 @@ try {
 
   const reportPath = path.join(temporaryRoot, 'site-ledger-upgrade-plan.json');
   const reportBefore = fingerprint(siteLedger);
-  const reportWrite = run(process.execPath, [planner, '--path', siteLedger, '--source-root', root, '--json', '--output', reportPath], root);
+  const reportWrite = run(process.execPath, [planner, '--path', siteLedger, '--source-root', targetRoot, '--json', '--output', reportPath], root);
   assert.equal(reportWrite.status, 0, reportWrite.stderr || reportWrite.stdout);
   assert.equal(reportWrite.stdout, '');
   assert.deepEqual(JSON.parse(fs.readFileSync(reportPath, 'utf8')), historicalPlan);
   assert.deepEqual(fingerprint(siteLedger), reportBefore, 'explicit report output must not write into the consumer');
   const reportBytes = fs.readFileSync(reportPath);
-  const overwrite = run(process.execPath, [planner, '--path', siteLedger, '--source-root', root, '--json', '--output', reportPath], root);
+  const overwrite = run(process.execPath, [planner, '--path', siteLedger, '--source-root', targetRoot, '--json', '--output', reportPath], root);
   assert.notEqual(overwrite.status, 0, 'report output must refuse to overwrite an existing file');
   assert.deepEqual(fs.readFileSync(reportPath), reportBytes);
 
@@ -98,11 +114,18 @@ try {
   ];
   for (const destination of [freshOne, freshTwo]) {
     const generated = run(process.execPath, [
-      path.join(root, 'packages/create-expo-base-app/bin/create-expo-base-app.mjs'),
+      path.join(generatedSourceRoot, 'packages/create-expo-base-app/bin/create-expo-base-app.mjs'),
       ...freshArgs, '--directory', destination,
-    ], root);
+    ], generatedSourceRoot);
     assert.equal(generated.status, 0, generated.stderr || generated.stdout);
   }
+
+  const freshProvenance = readJson(path.join(freshOne, '.expo-base/source.json'));
+  assert.equal(freshProvenance.sourceCommit, executingCommit, 'fresh manifest provenance must name the committed generator source');
+  assert.equal(freshProvenance.sourceTree, executingTree, 'fresh manifest provenance must name the committed generator source tree');
+  const freshTwoProvenance = readJson(path.join(freshTwo, '.expo-base/source.json'));
+  assert.equal(freshTwoProvenance.sourceCommit, executingCommit);
+  assert.equal(freshTwoProvenance.sourceTree, executingTree);
 
   const manifestOneBytes = fs.readFileSync(path.join(freshOne, '.expo-base/generated-files.json'));
   const manifestTwoBytes = fs.readFileSync(path.join(freshTwo, '.expo-base/generated-files.json'));
@@ -136,7 +159,7 @@ try {
   assert.ok(freshPlan.sections.alreadyCurrent.length > 0, 'same-source current app must report already-current platform output');
   assert.ok(freshPlan.sections.productOwnedPreserved.some((file) => file.path === 'app/index.tsx'));
   assert.deepEqual(fingerprint(freshOne), freshBefore, 'same-source planner must not write consumer files');
-  const humanPlan = run(process.execPath, [planner, '--path', freshOne, '--source-root', root], root);
+  const humanPlan = run(process.execPath, [planner, '--path', freshOne, '--source-root', generatedSourceRoot], root);
   assert.equal(humanPlan.status, 0, humanPlan.stderr || humanPlan.stdout);
   for (const heading of ['1. Exact source and provenance identity', '2. Safe platform carry-forward candidates', '3. Dependency alignment', '4. Manual or concurrent review', '5. Product-owned files explicitly preserved', '7. Required post-migration verification']) assert.ok(humanPlan.stdout.includes(heading), heading);
   assert.equal(humanPlan.stdout.includes(freshOne), false, 'human report should not embed unstable absolute consumer paths');
@@ -144,7 +167,7 @@ try {
 
   fs.appendFileSync(path.join(freshOne, 'app/index.tsx'), '\n// Product-owned route edit.\n');
   fs.appendFileSync(path.join(freshOne, ...platformEntry.path.split('/')), '\n// Intentional platform-owned file edit.\n');
-  const changedFresh = JSON.parse(runPlan(freshOne).stdout);
+  const changedFresh = JSON.parse(runPlan(freshOne, generatedSourceRoot).stdout);
   assert.ok(changedFresh.sections.productOwnedPreserved.some((file) => file.path === 'app/index.tsx'));
   assert.ok(changedFresh.sections.manualAndConcurrentReview.some((file) => file.path === platformEntry.path && file.classification === 'consumer-modified'));
 
@@ -191,10 +214,18 @@ try {
     const remove = git(root, ['worktree', 'remove', '--force', historicalRoot]);
     if (remove.status !== 0) process.stderr.write(`Unable to remove temporary historical worktree: ${remove.stderr || remove.stdout}`);
   }
+  if (targetWorktreeAdded) {
+    const remove = git(root, ['worktree', 'remove', '--force', targetRoot]);
+    if (remove.status !== 0) process.stderr.write(`Unable to remove temporary target worktree: ${remove.stderr || remove.stdout}`);
+  }
+  if (generatedSourceWorktreeAdded) {
+    const remove = git(root, ['worktree', 'remove', '--force', generatedSourceRoot]);
+    if (remove.status !== 0) process.stderr.write(`Unable to remove temporary generated-source worktree: ${remove.stderr || remove.stdout}`);
+  }
   fs.rmSync(temporaryRoot, { recursive: true, force: true });
 }
 
-function runPlan(consumer, sourceRoot = root) {
+function runPlan(consumer, sourceRoot = generatedSourceRoot) {
   return run(process.execPath, [planner, '--path', consumer, '--source-root', sourceRoot, '--json'], root);
 }
 
