@@ -1,0 +1,466 @@
+{
+  "accepted_at": "2026-09-24T01:05:48Z",
+  "changed_files": [
+    {
+      "additions": 45,
+      "deletions": 0,
+      "path": "docs/MIGRATION.md",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 0,
+      "path": "package.json",
+      "status": "M"
+    },
+    {
+      "additions": 60,
+      "deletions": 4,
+      "path": "packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 9,
+      "path": "packages/migrate-expo-base-app/bin/expo-base-migrate-audit.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 53,
+      "deletions": 0,
+      "path": "packages/migrate-expo-base-app/bin/expo-base-migrate-upgrade-plan.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 32,
+      "deletions": 0,
+      "path": "packages/migrate-expo-base-app/lib/dependency-audit.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 668,
+      "deletions": 0,
+      "path": "packages/migrate-expo-base-app/lib/upgrade-plan.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "packages/migrate-expo-base-app/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 0,
+      "path": "scripts/test-generator.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 13,
+      "deletions": 3,
+      "path": "scripts/test-migration-compatibility.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 241,
+      "deletions": 0,
+      "path": "scripts/test-migration-upgrade-plan.mjs",
+      "status": "A"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run test:migration-upgrade-plan'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg --files --hidden -g '*fabric*' -g '*CHG-201*' -g '\"'!node_modules/**'\"' -g '\"'!.git/**'\"' -g '\"'!dist/**'\"'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --stat && rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree}'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -rf /tmp/expo-base-chg201-compat-review && rtk git worktree list && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git worktree remove --force /private/var/folders/nz/6q2p_ldx3txdbw_gttbpnwjr0000gn/T/com.apple.shortcuts.mac-helper/expo-base-chg201-2h5eEO/historical-source && rtk git worktree prune && rtk git worktree list'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git show 43ae1b27257697093d893d504b7e22b6f25cfad7:packages/create-expo-base-app/bin/create-expo-base-app.mjs | rg -n -C 5 'check-golden-architecture|check-task-effects|serve-static-web|verify-acceptance|for \\\\(const script' && rtk git show d8ca9e65a0dea3a0a8a381d22428524787de0aa9:packages/create-expo-base-app/bin/create-expo-base-app.mjs | rg -n -C 5 'check-golden-architecture|check-task-effects|serve-static-web|verify-acceptance|for \\\\(const script'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run check:public-api'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk node --check packages/create-expo-base-app/bin/create-expo-base-app.mjs && PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk node --check packages/migrate-expo-base-app/bin/expo-base-migrate-upgrade-plan.mjs && PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk node --check packages/migrate-expo-base-app/lib/upgrade-plan.mjs && rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run test:migration-audit'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run test:migration-compatibility'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run test:migration-upgrade-plan'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm ci'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,260p' packages/migrate-expo-base-app/lib/upgrade-plan.mjs && rtk sed -n '260,560p' packages/migrate-expo-base-app/lib/upgrade-plan.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk nl -ba packages/migrate-expo-base-app/lib/upgrade-plan.mjs | sed -n '248,280p' && rtk sed -n '560,760p' packages/migrate-expo-base-app/lib/upgrade-plan.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rg 'scripts/test-generator|verify-acceptance|expo export|chromium|expo-base-chg'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rg 'scripts/test-generator|verify-acceptance|expo export|chromium|expo-base-chg'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rg 'scripts/test-generator|verify-acceptance|serve-static-web|chrome-headless-shell|expo export'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rg 'scripts/test-generator|verify-acceptance|serve-static-web|chrome-headless-shell|expo export'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rg 'scripts/test-generator|verify-acceptance|serve-static-web|chrome-headless-shell|expo export|standalone-media-ledger|expo-base-chg102'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rg 'scripts/test-generator|verify-acceptance|serve-static-web|chrome-headless-shell|expo export'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -Ao pid,etime,command | rg 'scripts/test-generator|verify-acceptance|serve-static-web|chrome-headless-shell|expo export'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk mktemp /tmp/chg201-index.XXXXXX'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.dWJM2R rtk git read-tree HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.dWJM2R rtk git add -A'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.dWJM2R rtk git write-tree'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -f /tmp/chg201-index.dWJM2R'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git status --short --branch && rtk git worktree list && rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree}'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run migrate:audit -- --path apps/reference --fail-on high'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run test:migration-upgrade-plan'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk mktemp /tmp/chg201-index.XXXXXX'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.eOs5Df rtk git read-tree HEAD && GIT_INDEX_FILE=/tmp/chg201-index.eOs5Df rtk git add -A && GIT_INDEX_FILE=/tmp/chg201-index.eOs5Df rtk git write-tree'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -f /tmp/chg201-index.eOs5Df && rtk git status --short --branch && rtk git worktree list && rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run test:migration-upgrade-plan'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk mktemp /tmp/chg201-index.XXXXXX'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.2pw5XB rtk git read-tree HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.2pw5XB rtk git add -A'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.2pw5XB rtk git write-tree'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -f /tmp/chg201-index.2pw5XB'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git status --short --branch && rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree} && rtk git worktree list'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run test:migration-upgrade-plan'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'PATH=/opt/homebrew/opt/node@22/bin:$PATH rtk npm run test:migration-upgrade-plan'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk mktemp /tmp/chg201-index.XXXXXX'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.ml2bc9 rtk git read-tree HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.ml2bc9 rtk git add -A'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'GIT_INDEX_FILE=/tmp/chg201-index.ml2bc9 rtk git write-tree'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rm -f /tmp/chg201-index.ml2bc9'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git diff --check && rtk git status --short --branch && rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree} && rtk git worktree list'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.155.1",
+    "configured_model": "gpt-6-luna",
+    "event_count": 283,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.94,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 31259904,
+      "fresh_input_tokens": 334547,
+      "input_tokens": 31594451,
+      "non_reasoning_output_tokens": 38529,
+      "output_tokens": 112684,
+      "reasoning_output_tokens": 74155,
+      "total_processed_tokens": 31707135
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "8a32ce2a785774bcf9395c8e1917a6f5b39289a3",
+      "subject": "fabric: capture completed model changes [CF-beaca9bde5e3d0b69bd513fe]"
+    }
+  ],
+  "diff": {
+    "additions": 1121,
+    "changed_files": 11,
+    "commit_count": 1,
+    "deletions": 17
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 3,
+    "items": [
+      {
+        "bytes": 5154,
+        "path": "docs/MIGRATION.md",
+        "sha256": "79fe47652c2a1dc95acc0d2bed28f9b72f7fb0ce06cab36bf77c76cd275c5e90"
+      },
+      {
+        "bytes": 16285,
+        "path": "package.json",
+        "sha256": "f481e5e3a48dc816e7c549dac42b109aa9dcc2ffb247560e702e8135ec9c03ba"
+      },
+      {
+        "bytes": 261,
+        "path": "packages/migrate-expo-base-app/package.json",
+        "sha256": "724839fab813bec3be4718a8f6fe22d2cc44aa509c9f750e25d281085b438efe"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.5-dashboard-controls-candidate",
+  "fabric_capture": {
+    "applied": true,
+    "commit_message": "fabric: capture completed model changes [CF-beaca9bde5e3d0b69bd513fe]",
+    "commit_sha": "8a32ce2a785774bcf9395c8e1917a6f5b39289a3",
+    "paths_before": 10,
+    "status_before": [
+      " M docs/MIGRATION.md",
+      " M package.json",
+      " M packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      " M packages/migrate-expo-base-app/bin/expo-base-migrate-audit.mjs",
+      " M packages/migrate-expo-base-app/package.json",
+      " M scripts/test-generator.mjs",
+      " M scripts/test-migration-compatibility.mjs",
+      "?? packages/migrate-expo-base-app/bin/expo-base-migrate-upgrade-plan.mjs",
+      "?? packages/migrate-expo-base-app/lib/",
+      "?? scripts/test-migration-upgrade-plan.mjs"
+    ],
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.5-dashboard-controls-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-24T01:52:08Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "d8ca9e65a0dea3a0a8a381d22428524787de0aa9",
+    "branch": "codex/expo-base-chg201-nondestructive-upgrade-plan-r1",
+    "detached_verify": false,
+    "head_sha": "8a32ce2a785774bcf9395c8e1917a6f5b39289a3",
+    "remote_exact_head": true,
+    "remote_head_sha": "8a32ce2a785774bcf9395c8e1917a6f5b39289a3",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "d8ca9e65a0dea3a0a8a381d22428524787de0aa9",
+    "work_branch": "codex/expo-base-chg201-nondestructive-upgrade-plan-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-beaca9bde5e3d0b69bd513fe",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg201-nondestructive-upgrade-plan-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg201-nondestructive-upgrade-plan-r1"
+  },
+  "operation": "BUILD",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.5-dashboard-controls-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "af81b8552f9d6a33847310e3c6bcd2d48401782b963a58efd2993e93570cb4aa"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg201-nondestructive-upgrade-plan-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-24T01:05:48Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 2780,
+    "queue_seconds": 0,
+    "total_seconds": 2780
+  },
+  "transport": {
+    "bytes": 11768,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 11426,
+    "prompt_sha256": "a22f82dad40bd569b93f8ad3017694c3cab20eab716f68cd08b1347d28df4066",
+    "sha256": "beaca9bde5e3d0b69bd513fedb2f4befcbcab09ff28c723d43e0e3a7ef08b798"
+  }
+}
