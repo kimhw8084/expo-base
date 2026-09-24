@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "bin": {
-    "expo-base-migrate-audit": "bin/expo-base-migrate-audit.mjs"
+    "expo-base-migrate-audit": "bin/expo-base-migrate-audit.mjs",
+    "expo-base-migrate-upgrade-plan": "bin/expo-base-migrate-upgrade-plan.mjs"
   }
 }
