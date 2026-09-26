@@ -1,0 +1,307 @@
+{
+  "accepted_at": "2026-09-26T18:45:48Z",
+  "changed_files": [],
+  "checks": [
+    {
+      "type": "source_identity",
+      "command": "git rev-parse HEAD && git rev-parse HEAD^{tree} && git status --porcelain=v1 --untracked-files=all",
+      "exit_code": 0,
+      "output": "HEAD 0470d0edd4306e3134da5f1a15816793e1955352; tree 665c2f82f9e04928d55eadd4d9d7de566eb998f1; worktree clean"
+    },
+    {
+      "type": "xcode_candidate_enumeration",
+      "command": "print -rl -- /Applications/Xcode*.app",
+      "exit_code": 0,
+      "output": "/Applications/Xcode.app"
+    },
+    {
+      "type": "xcode_version",
+      "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /usr/bin/xcodebuild -version",
+      "exit_code": 0,
+      "output": "Xcode 27.0\nBuild version 27A266a"
+    },
+    {
+      "type": "simulator_inventory",
+      "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /usr/bin/xcrun simctl list runtimes --json; /usr/bin/xcrun simctl list devices available --json",
+      "exit_code": 0,
+      "runtimes": [
+        {
+          "name": "iOS 26.5",
+          "version": "26.5",
+          "isAvailable": true,
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-26-5"
+        }
+      ],
+      "devices": [
+        {
+          "name": "iPhone 17 Pro",
+          "udid": "E97BB776-234F-41F5-8544-5E3924121C1F",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPhone 17 Pro Max",
+          "udid": "FA007CC5-8917-4C9B-8242-5A3ED3D16C4D",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPhone 17e",
+          "udid": "6E62E99B-1CA2-4D77-B923-A3EB9980B3CD",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPhone Air",
+          "udid": "68FB89CB-FCF4-4801-8DDD-A2C5FABCC4C6",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPhone 17",
+          "udid": "64F1605B-6FB2-4EA5-BB17-D32566510E2E",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad Pro 13-inch (M5)",
+          "udid": "464F01C2-591B-4498-8C15-F8B88B8ED29E",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad Pro 11-inch (M5)",
+          "udid": "4581FEA3-09CE-48BE-A98E-8316A45E73F3",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad mini (A17 Pro)",
+          "udid": "288DD353-657C-4D03-867B-C3A73FE9FD45",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad Air 13-inch (M4)",
+          "udid": "C1151CAA-C60D-4E96-BABC-AA223D434F50",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad Air 11-inch (M4)",
+          "udid": "0AD48DC7-5C06-490C-8352-2631DB87206A",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad (A16)",
+          "udid": "310B1053-9AFC-49D2-B02D-62A6431B16E9",
+          "state": "Shutdown",
+          "isAvailable": true
+        }
+      ]
+    },
+    {
+      "type": "simulator_profile_resolution",
+      "command": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --input-type=module -e 'loadCertificationProfile + parseAvailableDevices + resolveSimulatorProfile'",
+      "exit_code": 0,
+      "profile": "iphone-17-pro-ios-26.5",
+      "result": {
+        "name": "iPhone 17 Pro",
+        "runtime": "iOS 26.5",
+        "udid": "E97BB776-234F-41F5-8544-5E3924121C1F",
+        "state": "Shutdown",
+        "selection": "semantic profile"
+      }
+    },
+    {
+      "type": "node_version",
+      "command": "/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --version",
+      "exit_code": 0,
+      "output": "v22.23.2"
+    },
+    {
+      "type": "selected_developer_directory",
+      "command": "xcode-select -p",
+      "exit_code": 0,
+      "output": "/Applications/Xcode.app/Contents/Developer"
+    },
+    {
+      "type": "DEVELOPER_DIR_environment",
+      "command": "printenv DEVELOPER_DIR",
+      "exit_code": 1,
+      "output": "unset"
+    }
+  ],
+  "commits": [],
+  "diff": {
+    "additions": 0,
+    "changed_files": 0,
+    "commit_count": 0,
+    "deletions": 0
+  },
+  "environment": {
+    "host": {
+      "product": "macOS",
+      "version": "26.6.2",
+      "build": "25G83"
+    },
+    "xcode_candidates": [
+      {
+        "app_path": "/Applications/Xcode.app",
+        "developer_directory": "/Applications/Xcode.app/Contents/Developer",
+        "version": "27.0",
+        "build": "27A266a"
+      }
+    ],
+    "selected_developer_directory": "/Applications/Xcode.app/Contents/Developer",
+    "global_developer_dir_override": false,
+    "node": {
+      "path": "/Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node",
+      "version": "v22.23.2"
+    },
+    "simulator_inventory": {
+      "developer_directory": "/Applications/Xcode.app/Contents/Developer",
+      "runtimes": [
+        {
+          "name": "iOS 26.5",
+          "version": "26.5",
+          "isAvailable": true,
+          "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-26-5"
+        }
+      ],
+      "available_devices": [
+        {
+          "name": "iPhone 17 Pro",
+          "udid": "E97BB776-234F-41F5-8544-5E3924121C1F",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPhone 17 Pro Max",
+          "udid": "FA007CC5-8917-4C9B-8242-5A3ED3D16C4D",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPhone 17e",
+          "udid": "6E62E99B-1CA2-4D77-B923-A3EB9980B3CD",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPhone Air",
+          "udid": "68FB89CB-FCF4-4801-8DDD-A2C5FABCC4C6",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPhone 17",
+          "udid": "64F1605B-6FB2-4EA5-BB17-D32566510E2E",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad Pro 13-inch (M5)",
+          "udid": "464F01C2-591B-4498-8C15-F8B88B8ED29E",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad Pro 11-inch (M5)",
+          "udid": "4581FEA3-09CE-48BE-A98E-8316A45E73F3",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad mini (A17 Pro)",
+          "udid": "288DD353-657C-4D03-867B-C3A73FE9FD45",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad Air 13-inch (M4)",
+          "udid": "C1151CAA-C60D-4E96-BABC-AA223D434F50",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad Air 11-inch (M4)",
+          "udid": "0AD48DC7-5C06-490C-8352-2631DB87206A",
+          "state": "Shutdown",
+          "isAvailable": true
+        },
+        {
+          "name": "iPad (A16)",
+          "udid": "310B1053-9AFC-49D2-B02D-62A6431B16E9",
+          "state": "Shutdown",
+          "isAvailable": true
+        }
+      ],
+      "certification_profile": {
+        "id": "iphone-17-pro-ios-26.5",
+        "platform": "iOS Simulator",
+        "device": "iPhone 17 Pro",
+        "runtime": "iOS 26.5"
+      },
+      "profile_resolves": true,
+      "selection": {
+        "name": "iPhone 17 Pro",
+        "runtime": "iOS 26.5",
+        "udid": "E97BB776-234F-41F5-8544-5E3924121C1F",
+        "state": "Shutdown",
+        "method": "semantic profile"
+      }
+    }
+  },
+  "error_code": "XCODE_26_6_NOT_INSTALLED",
+  "evidence_manifest": {
+    "count": 0,
+    "items": [],
+    "version": 1
+  },
+  "failure_class": "environment_prerequisite",
+  "finished_at": "2026-09-26T18:45:48Z",
+  "git": {
+    "base_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "base_tree": "665c2f82f9e04928d55eadd4d9d7de566eb998f1",
+    "branch": "codex/expo-base-chg261-ios-prerequisite-verify-r3",
+    "head_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "remote_head_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "target_branch": "main",
+    "target_head_observed_after_execution": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "worktree_clean": true,
+    "source_changed_files": 0,
+    "evidence_commit_parent": "0470d0edd4306e3134da5f1a15816793e1955352"
+  },
+  "ios_verification": {
+    "command": "npm run ios:verify",
+    "status": "NOT_RUN",
+    "exit_code": null,
+    "reason": "The only installed Xcode candidate is 27.0; the required Xcode 26.6 installation is absent. Do not retry under a materially different environment.",
+    "npm_ci": "NOT_RUN",
+    "cng_generation": "NOT_RUN",
+    "expected_if_run": {
+      "release_test_count": 17,
+      "native_visual_baseline_count": 9
+    },
+    "actual_test_counts": null,
+    "failures": null,
+    "actual_visual_baseline_count": null,
+    "visual_baseline_result": null,
+    "result_bundle_path": null
+  },
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r3",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r3"
+  },
+  "operation": "VERIFY",
+  "project_id": "expo-base",
+  "request": "chg261-current-main-certification-refresh-r3",
+  "result": "BLOCKED_PREREQUISITE",
+  "schema_version": 1,
+  "status": "BLOCKED_PREREQUISITE",
+  "summary": "iOS 26.5 and the exact iPhone 17 Pro Simulator profile are available under the sole installed Xcode 27.0, but no installed Xcode 26.6 candidate exists. Native verification was not run; this is an environment prerequisite block, not a Product defect."
+}
