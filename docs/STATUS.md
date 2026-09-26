@@ -1,32 +1,30 @@
-# Expo Base implementation status — 2026-09-22
+# Expo Base implementation status — 2026-09-26
 
 ## Current source baseline
 
-Protected `main` is at `ea9ac98786ae60ee8c2a9e378455770d0bdac05e` with tree
-`5121ddd1b1b806a95386ca4f235afd0616d01233`. CHG-176 was integrated through PR #28. Its accepted
-head, `c28060f2710f706d60c3c9b4e4ec1ae2e48d3a7e`, has the same tree as current `main`. CHG-176
-changed only two iOS certification-harness files; it changed no Product/runtime code. The current
-work updates release-governance metadata and status documentation for this qualified source
-baseline. It does not promote or publish a release. The `v1.0.0` tag remains historical evidence.
+Protected `main` is at `0470d0edd4306e3134da5f1a15816793e1955352` with tree
+`665c2f82f9e04928d55eadd4d9d7de566eb998f1`, after CHG-186, CHG-187, and CHG-201. This is the
+executable source baseline qualified below. The `v1.0.0` tag remains immutable historical evidence;
+this governance refresh does not create or promote a release.
 
 ## Current-main qualification evidence
 
-- Full `npm run ios:verify` passed on the exact CHG-176 accepted tree, which equals the current-main
-  tree: 17 Release tests and 9 existing visual baselines on the iPhone 17 Pro / iOS 26.5 Simulator
-  profile. This record carries forward that execution; it does not claim a new iOS run or result
-  bundle.
-- On that exact accepted head, Runtime Web run `35811032437` passed and Golden Certification run
-  `35811032442` passed. Golden Certification includes structural, mobile, and golden jobs. The
-  refreshed record keeps `runtime-web`, `structural`, `mobile`, and `golden` as required hosted
-  checks; protected integration reruns those workflows for the candidate.
-- CHG-175 R1 had also passed `runtime:verify`, `runtime:test:web`, `golden:verify`, and
-  `mobile:verify` before the CHG-176 harness-only repair. Those runs are earlier validation, not
-  new executions on the current-main tree.
+- Runtime Web run `35949677933` succeeded on exact-current `main`. Golden Certification run
+  `35949678010` succeeded on the same source for structural, mobile, and golden jobs.
+- R4 current-source `npm run ios:verify` passed on exact `main` under Node `v22.23.2` and Xcode
+  `27.0`, using the iPhone 17 Pro / iOS 26.5 Simulator profile: 17 Release tests and 9 existing
+  native visual baselines passed. The Release xcresult, summary, xcodebuild log, and visual evidence
+  were present after execution. R4 evidence is recorded at
+  `refs/heads/codex-fabric/evidence/expo-base/chg261-ios-current-source-verify-r4@923d177831f5c17541b5155a5872bb101850c1f6:.codex-fabric/audit.json`;
+  its tested `main` commit was the sole parent, with zero source changes and a clean worktree.
+- R5 changes only release-governance documentation and certification metadata. They are non-runtime
+  changes; R4 did not execute these documentation bytes. The new record binds the final tracked
+  candidate contents, excluding only the record itself. `npm run release:verify` validates that
+  governance identity and repository contracts; it is not a new native or hosted execution.
 
 The certification record uses the exact protected-main provenance SHA above and binds the final
-candidate's tracked source tree with the repository's documented source-tree hash. Its `certifiedAt`
-records this governance-record refresh; native evidence remains the CHG-176 execution described
-above.
+candidate's tracked contents with the repository's source-tree hash. Its `certifiedAt` records this
+governance refresh; the iOS evidence remains the R4 execution described above.
 
 ## Development foundation
 
@@ -67,14 +65,14 @@ replace the tag or represent a new published release.
 
 ## Support and release boundaries
 
-- Android native certification remains deferred/waived and uncertified under Policy B after canceled
-  CHG-149. No Android PASS or universal-native support is claimed.
+- Android native certification remains deferred/waived and uncertified after canceled CHG-149. No
+  Android PASS, TalkBack usability acceptance, or universal-native support is claimed.
 - Human VoiceOver usability traversal has not been performed. Dynamic Type audit coverage is
-  simulator-limited on the installed iOS 26.5 runtime. Physical-device hardware, haptics, camera,
-  biometrics, and device-specific safe-area behavior are not certified.
-- Generated products must provide product-specific backend, authentication, session-security, and
-  linking adapters. Backend authorization is also product-owned and remains outside framework
-  certification.
+  simulator-limited on the installed iOS 26.5 runtime. Physical-device behavior, including hardware,
+  haptics, camera, biometrics, and device-specific safe-area behavior, is not certified.
+- Npm publication and EAS/store deployment are not claimed. Generated products must provide
+  product-specific backend, authentication, session-security, and linking adapters; these downstream
+  integrations remain outside framework certification.
 
 ## Canonical commands
 
