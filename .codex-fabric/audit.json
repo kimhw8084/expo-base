@@ -1,0 +1,364 @@
+{
+  "accepted_at": "2026-09-26T15:55:52Z",
+  "changed_files": [],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -axo pid,ppid,state,etime,command | rtk rg 'test-migration-compatibility|compatibility-proof|tsc -p tsconfig.runtime-ui|create-expo-base-app.mjs'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy ps -o pid,ppid,state,time,etime,command -p 94968'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy ps -o pid,ppid,state,%cpu,%mem,etime,command -p 94968'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -axo pid,ppid,state,%cpu,etime,command | rtk rg 'test-migration-compatibility|tsc|compatibility-proof|create-expo-base-app'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,180p' scripts/test-migration-compatibility.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run test:migration-compatibility'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy find apps/reference/ios -type f | wc -l'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy du -sh apps/reference/ios'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy test ! -e /tmp/chg261-ios-derived-data-release'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy du -sh test-results/ios-native-certification/derived-data-release'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy df -h . /tmp'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy mv test-results/ios-native-certification/derived-data-release /tmp/chg261-ios-derived-data-release'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run test:migration-compatibility'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy mv /tmp/chg261-ios-derived-data-release test-results/ios-native-certification/derived-data-release'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run test:migration-upgrade-plan'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy ps -axo pid,ppid,state,%cpu,etime,command | rtk rg 'test-migration-upgrade-plan|git worktree add|expo-base-chg201|create-expo-base-app'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run migrate:audit -- --path apps/reference --fail-on low'",
+      "exit_code": 3,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,180p' packages/migrate-expo-base-app/lib/architecture-audit.mjs\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,100p' apps/reference/ThemeRuntimeSync.tsx apps/reference/unistyles.ts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git blame -L 1,60 -- apps/reference/ThemeRuntimeSync.tsx apps/reference/unistyles.ts'",
+      "exit_code": 128,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -n \"LAYOUT-002|Viewport/platform branching|ThemeRuntimeSync|unistyles\" docs scripts packages apps/reference/ThemeRuntimeSync.tsx apps/reference/unistyles.ts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '20,42p' docs/GATES_21_33_RECONCILIATION.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,100p' scripts/check-native-shell-contracts.mjs scripts/test-unistyles-bootstrap.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,115p' docs/MIGRATION.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,130p' packages/migrate-expo-base-app/bin/expo-base-migrate-audit.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy test ! -e /tmp/chg261-standalone-proof'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run create:app -- --name \"CHG-261 Proof\" --slug chg-261-proof --directory /tmp/chg261-standalone-proof'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm install'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run verify:acceptance'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat .expo-base/acceptance-obligations.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat .expo-base/source.json .expo-base/acceptance-result.json .expo-base/acceptance-summary.md'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sh -lc 'wc -l .expo-base/generated-files.json; du -sh .expo-base/acceptance-dist packages app scripts docs'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run release:verify'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,220p' scripts/release-readiness.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg -n \"sourceTreeHash|certifiedCommit|clean worktree|issues|Release readiness blocked|tracked\" scripts/release-readiness.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git status --porcelain=v1; rtk git rev-parse HEAD; rtk git rev-parse HEAD\\\\\"'^'\"\\\\{tree\\\\}\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --input-type=module -e '\"'import { createHash } from \\\"node:crypto\\\"; import { readFileSync } from \\\"node:fs\\\"; import { spawnSync } from \\\"node:child_process\\\"; const files = spawnSync(\\\"git\\\", [\\\"ls-files\\\", \\\"-z\\\"], { encoding: \\\"utf8\\\" }).stdout.split(\\\"\\\\0\\\").filter((file) => file && file \"'!== \"release-candidate.certification.json\"); const hash = createHash(\"sha256\"); for (const file of files) { hash.update(file); hash.update(\"'\"\\\\0\\\"); hash.update(createHash(\\\"sha256\\\").update(readFileSync(file)).digest(\\\"hex\\\")); hash.update(\\\"\\\\n\\\"); } process.stdout.write(\"'`${files.length} tracked files; SHA-256 ${hash.digest(\"hex\")}'\"\\\\n\"'`);'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git rev-parse HEAD; rtk git rev-parse HEAD\\\\\"'^'\"\\\\{tree\\\\}\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git worktree list --porcelain'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy test -f /tmp/chg261-standalone-proof/.expo-base/acceptance-result.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy sw_vers'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy uname -m'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy test -d test-results/ios-native-certification/derived-data-release'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH node --version'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm --version'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy xcodebuild -version'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy pod --version'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.157.0",
+    "configured_model": "gpt-6-luna",
+    "event_count": 359,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 98.96,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 35284736,
+      "fresh_input_tokens": 372239,
+      "input_tokens": 35656975,
+      "non_reasoning_output_tokens": 22078,
+      "output_tokens": 55261,
+      "reasoning_output_tokens": 33183,
+      "total_processed_tokens": 35712236
+    },
+    "warnings": []
+  },
+  "commits": [],
+  "diff": {
+    "additions": 0,
+    "changed_files": 0,
+    "commit_count": 0,
+    "deletions": 0
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 0,
+    "items": [],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.5-dashboard-controls-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.5-dashboard-controls-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-26T16:59:22Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "branch": "codex/expo-base-chg261-current-main-production-requalification-r1",
+    "detached_verify": false,
+    "head_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "remote_exact_head": true,
+    "remote_head_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "work_branch": "codex/expo-base-chg261-current-main-production-requalification-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-9ba7c7820ea020e15870f326",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg261-current-main-production-requalification-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-production-requalification-r1"
+  },
+  "operation": "VERIFY",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.5-dashboard-controls-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "af81b8552f9d6a33847310e3c6bcd2d48401782b963a58efd2993e93570cb4aa"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg261-current-main-production-requalification-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-26T15:55:53Z",
+  "status": "EXECUTED_NO_CHANGE",
+  "timing": {
+    "execution_seconds": 3809,
+    "queue_seconds": 1,
+    "total_seconds": 3810
+  },
+  "transport": {
+    "bytes": 4402,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 4036,
+    "prompt_sha256": "1627be76562b92c2ed1e8bf3be16f99c8752f5f9bb2913bbae39993312ea207d",
+    "sha256": "9ba7c7820ea020e15870f32679ee14453d413eacd02cb382813155e4f9d22207"
+  }
+}
