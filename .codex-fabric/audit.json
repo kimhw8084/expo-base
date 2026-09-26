@@ -1,0 +1,289 @@
+{
+  "accepted_at": "2026-09-26T18:40:13Z",
+  "changed_files": [],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'cat /Users/haewonkim/.codex/RTK.md && cat /Users/haewonkim/.codex/law.md'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rg -n 'ios:verify|iphone-17-pro-ios-26\\\\.5|Xcode 26\\\\.6|iOS 26\\\\.5|Release tests|native visual baselines' package.json apps packages scripts docs .codex-fabric 2>/dev/null\"",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'git status --short --branch && git rev-parse HEAD && git rev-parse HEAD''^{tree} && git show -s --format='\"'commit=%H%nparents=%P%nsubject=%s' HEAD && git status --porcelain=v1\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat .codex-fabric/audit.json && rtk proxy cat golden.catalog.json'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk --version && rtk proxy which rtk && rtk proxy zsh -c 'print -rl -- /Applications/Xcode*.app'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sed -n '180,225p' docs/IOS_NATIVE_ACCEPTANCE.md && rtk proxy sed -n '140,155p' package.json && rtk proxy sed -n '1,240p' scripts/run-ios-native-certification.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy xcode-select -p && rtk proxy sw_vers && rtk git status --porcelain=v1 && rtk git branch --show-current && rtk git show-ref --verify refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r2'",
+      "exit_code": 128,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy cat ios.certification.json && rtk proxy sed -n '1,240p' scripts/resolve-ios-simulator.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git branch -a --no-color && rtk git cat-file -t 46d9aa020f4af1972c4227ae0c5b55bf2c5268e2 && rtk git status --porcelain=v1'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /usr/bin/xcodebuild -version'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /usr/bin/xcrun simctl list runtimes --json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /usr/bin/xcrun simctl list devices available --json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --version && rtk proxy printenv DEVELOPER_DIR && rtk proxy xcode-select -p'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git branch -avv --no-color --list '*chg261*' && rtk git show-ref | rg 'chg261|main' && rtk git status --porcelain=v1\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git show 46d9aa020f4af1972c4227ae0c5b55bf2c5268e2:.codex-fabric/audit.json && rtk git show --no-patch --format='commit=%H%nparents=%P%nsubject=%s' 46d9aa020f4af1972c4227ae0c5b55bf2c5268e2 && rtk git remote -v && rtk git config --get-regexp '\"'^remote'\"\\\\.'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /usr/bin/xcrun simctl list runtimes --json | jq -r '.runtimes[] | [.name, .version, (.isAvailable|tostring), .identifier] | @tsv' && rtk proxy env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /usr/bin/xcrun simctl list devices available --json | jq -r '.devices | to_entries[] | .key as \"'$runtime | .value[] | select(.isAvailable) | [$runtime, .name, .udid, .state] | @tsv'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy printenv DEVELOPER_DIR'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk xcode-select -p'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git rev-parse HEAD && rtk git rev-parse HEAD''^{tree} && rtk git status --porcelain=v1 --untracked-files=all && rtk git rev-parse refs/remotes/origin/main'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy env DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node --input-type=module -e 'import { spawnSync } from \\\"node:child_process\\\"; import { loadCertificationProfile, parseAvailableDevices, resolveSimulatorProfile } from \\\"./scripts/resolve-ios-simulator.mjs\\\"; const { profile } = loadCertificationProfile(process.cwd()); const result = spawnSync(\\\"/usr/bin/xcrun\\\", [\\\"simctl\\\", \\\"list\\\", \\\"devices\\\", \\\"available\\\"], { encoding: \\\"utf8\\\" }); if (result.status \"'!== 0) { process.stderr.write(result.stderr); process.exit(result.status ?? 1); } console.log(JSON.stringify({ profile, resolved: resolveSimulatorProfile(profile, parseAvailableDevices(result.stdout)) }, null, 2));'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git ls-remote --heads origin refs/heads/codex-fabric/evidence/expo-base/chg261-ios-prerequisite-verify-r3'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git config user.email'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git config user.name'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git ls-tree HEAD .codex-fabric && rtk git status --porcelain=v1 --untracked-files=all'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git ls-remote --heads origin refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r3'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import base64,sys; sys.stdout.buffer.write(base64.b64decode(\\\"ewogICJhY2NlcHRlZF9hdCI6ICIyMDI2LTA5LTI2VDE4OjQ1OjQ4WiIsCiAgImNoYW5nZWRfZmlsZXMiOiBbXSwKICAiY2hlY2tzIjogWwogICAgewogICAgICAidHlwZSI6ICJzb3VyY2VfaWRlbnRpdHkiLAogICAgICAiY29tbWFuZCI6ICJnaXQgcmV2LXBhcnNlIEhFQUQgJiYgZ2l0IHJldi1wYXJzZSBIRUFEXnt0cmVlfSAmJiBnaXQgc3RhdHVzIC0tcG9yY2VsYWluPXYxIC0tdW50cmFja2VkLWZpbGVzPWFsbCIsCiAgICAgICJleGl0X2NvZGUiOiAwLAogICAgICAib3V0cHV0IjogIkhFQUQgMDQ3MGQwZWRkNDMwNmUzMTM0ZGE1ZjFhMTU4MTY3OTNlMTk1NTM1MjsgdHJlZSA2NjVjMmY4MmY5ZTA0OTI4ZDU1ZWFkZDRkOWQ3ZGU1NjZlYjk5OGYxOyB3b3JrdHJlZSBjbGVhbiIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogInhjb2RlX2NhbmRpZGF0ZV9lbnVtZXJhdGlvbiIsCiAgICAgICJjb21tYW5kIjogInByaW50IC1ybCAtLSAvQXBwbGljYXRpb25zL1hjb2RlKi5hcHAiLAogICAgICAiZXhpdF9jb2RlIjogMCwKICAgICAgIm91dHB1dCI6ICIvQXBwbGljYXRpb25zL1hjb2RlLmFwcCIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogInhjb2RlX3ZlcnNpb24iLAogICAgICAiY29tbWFuZCI6ICJERVZFTE9QRVJfRElSPS9BcHBsaWNhdGlvbnMvWGNvZGUuYXBwL0NvbnRlbnRzL0RldmVsb3BlciAvdXNyL2Jpbi94Y29kZWJ1aWxkIC12ZXJzaW9uIiwKICAgICAgImV4aXRfY29kZSI6IDAsCiAgICAgICJvdXRwdXQiOiAiWGNvZGUgMjcuMFxuQnVpbGQgdmVyc2lvbiAyN0EyNjZhIgogICAgfSwKICAgIHsKICAgICAgInR5cGUiOiAic2ltdWxhdG9yX2ludmVudG9yeSIsCiAgICAgICJjb21tYW5kIjogIkRFVkVMT1BFUl9ESVI9L0FwcGxpY2F0aW9ucy9YY29kZS5hcHAvQ29udGVudHMvRGV2ZWxvcGVyIC91c3IvYmluL3hjcnVuIHNpbWN0bCBsaXN0IHJ1bnRpbWVzIC0tanNvbjsgL3Vzci9iaW4veGNydW4gc2ltY3RsIGxpc3QgZGV2aWNlcyBhdmFpbGFibGUgLS1qc29uIiwKICAgICAgImV4aXRfY29kZSI6IDAsCiAgICAgICJydW50aW1lcyI6IFsKICAgICAgICB7CiAgICAgICAgICAibmFtZSI6ICJpT1MgMjYuNSIsCiAgICAgICAgICAidmVyc2lvbiI6ICIyNi41IiwKICAgICAgICAgICJpc0F2YWlsYWJsZSI6IHRydWUsCiAgICAgICAgICAiaWRlbnRpZmllciI6ICJjb20uYXBwbGUuQ29yZVNpbXVsYXRvci5TaW1SdW50aW1lLmlPUy0yNi01IgogICAgICAgIH0KICAgICAgXSwKICAgICAgImRldmljZXMiOiBbCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBob25lIDE3IFBybyIsCiAgICAgICAgICAidWRpZCI6ICJFOTdCQjc3Ni0yMzRGLTQxRjUtODU0NC01RTM5MjQxMjFDMUYiLAogICAgICAgICAgInN0YXRlIjogIlNodXRkb3duIiwKICAgICAgICAgICJpc0F2YWlsYWJsZSI6IHRydWUKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJuYW1lIjogImlQaG9uZSAxNyBQcm8gTWF4IiwKICAgICAgICAgICJ1ZGlkIjogIkZBMDA3Q0M1LTg5MTctNEM5Qi04MjQyLTVBM0VEM0QxNkM0RCIsCiAgICAgICAgICAic3RhdGUiOiAiU2h1dGRvd24iLAogICAgICAgICAgImlzQXZhaWxhYmxlIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBob25lIDE3ZSIsCiAgICAgICAgICAidWRpZCI6ICI2RTYyRTk5Qi0xQ0EyLTRENzctQjkyMy1BM0VCOTk4MEIzQ0QiLAogICAgICAgICAgInN0YXRlIjogIlNodXRkb3duIiwKICAgICAgICAgICJpc0F2YWlsYWJsZSI6IHRydWUKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJuYW1lIjogImlQaG9uZSBBaXIiLAogICAgICAgICAgInVkaWQiOiAiNjhGQjg5Q0ItRkNGNC00ODAxLThEREQtQTJDNUZBQkNDNEM2IiwKICAgICAgICAgICJzdGF0ZSI6ICJTaHV0ZG93biIsCiAgICAgICAgICAiaXNBdmFpbGFibGUiOiB0cnVlCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAibmFtZSI6ICJpUGhvbmUgMTciLAogICAgICAgICAgInVkaWQiOiAiNjRGMTYwNUItNkZCMi00RUE1LUJCMTctRDMyNTY2NTEwRTJFIiwKICAgICAgICAgICJzdGF0ZSI6ICJTaHV0ZG93biIsCiAgICAgICAgICAiaXNBdmFpbGFibGUiOiB0cnVlCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAibmFtZSI6ICJpUGFkIFBybyAxMy1pbmNoIChNNSkiLAogICAgICAgICAgInVkaWQiOiAiNDY0RjAxQzItNTkxQi00NDk4LThDMTUtRjhCODhCOEVEMjlFIiwKICAgICAgICAgICJzdGF0ZSI6ICJTaHV0ZG93biIsCiAgICAgICAgICAiaXNBdmFpbGFibGUiOiB0cnVlCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAibmFtZSI6ICJpUGFkIFBybyAxMS1pbmNoIChNNSkiLAogICAgICAgICAgInVkaWQiOiAiNDU4MUZFQTMtMDlDRS00OEJFLUE5OEUtODMxNkE0NUU3M0YzIiwKICAgICAgICAgICJzdGF0ZSI6ICJTaHV0ZG93biIsCiAgICAgICAgICAiaXNBdmFpbGFibGUiOiB0cnVlCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAibmFtZSI6ICJpUGFkIG1pbmkgKEExNyBQcm8pIiwKICAgICAgICAgICJ1ZGlkIjogIjI4OEREMzUzLTY1N0MtNEQwMy04NjdCLUMzQTczRkU5RkQ0NSIsCiAgICAgICAgICAic3RhdGUiOiAiU2h1dGRvd24iLAogICAgICAgICAgImlzQXZhaWxhYmxlIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBhZCBBaXIgMTMtaW5jaCAoTTQpIiwKICAgICAgICAgICJ1ZGlkIjogIkMxMTUxQ0FBLUM2MEQtNEU5Ni1CQUJDLUFBMjIzRDQzNEY1MCIsCiAgICAgICAgICAic3RhdGUiOiAiU2h1dGRvd24iLAogICAgICAgICAgImlzQXZhaWxhYmxlIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBhZCBBaXIgMTEtaW5jaCAoTTQpIiwKICAgICAgICAgICJ1ZGlkIjogIjBBRDQ4REM3LTVDMDYtNDkwQy04MzUyLTI2MzFEQjg3MjA2QSIsCiAgICAgICAgICAic3RhdGUiOiAiU2h1dGRvd24iLAogICAgICAgICAgImlzQXZhaWxhYmxlIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBhZCAoQTE2KSIsCiAgICAgICAgICAidWRpZCI6ICIzMTBCMTA1My05QUZDLTQ5RDItQjAyRC02MkE2NDMxQjE2RTkiLAogICAgICAgICAgInN0YXRlIjogIlNodXRkb3duIiwKICAgICAgICAgICJpc0F2YWlsYWJsZSI6IHRydWUKICAgICAgICB9CiAgICAgIF0KICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogInNpbXVsYXRvcl9wcm9maWxlX3Jlc29sdXRpb24iLAogICAgICAiY29tbWFuZCI6ICJERVZFTE9QRVJfRElSPS9BcHBsaWNhdGlvbnMvWGNvZGUuYXBwL0NvbnRlbnRzL0RldmVsb3BlciAvVXNlcnMvaGFld29ua2ltLy5udm0vdmVyc2lvbnMvbm9kZS92MjIuMjMuMi9iaW4vbm9kZSAtLWlucHV0LXR5cGU9bW9kdWxlIC1lICdsb2FkQ2VydGlmaWNhdGlvblByb2ZpbGUgKyBwYXJzZUF2YWlsYWJsZURldmljZXMgKyByZXNvbHZlU2ltdWxhdG9yUHJvZmlsZSciLAogICAgICAiZXhpdF9jb2RlIjogMCwKICAgICAgInByb2ZpbGUiOiAiaXBob25lLTE3LXByby1pb3MtMjYuNSIsCiAgICAgICJyZXN1bHQiOiB7CiAgICAgICAgIm5hbWUiOiAiaVBob25lIDE3IFBybyIsCiAgICAgICAgInJ1bnRpbWUiOiAiaU9TIDI2LjUiLAogICAgICAgICJ1ZGlkIjogIkU5N0JCNzc2LTIzNEYtNDFGNS04NTQ0LTVFMzkyNDEyMUMxRiIsCiAgICAgICAgInN0YXRlIjogIlNodXRkb3duIiwKICAgICAgICAic2VsZWN0aW9uIjogInNlbWFudGljIHByb2ZpbGUiCiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogIm5vZGVfdmVyc2lvbiIsCiAgICAgICJjb21tYW5kIjogIi9Vc2Vycy9oYWV3b25raW0vLm52bS92ZXJzaW9ucy9ub2RlL3YyMi4yMy4yL2Jpbi9ub2RlIC0tdmVyc2lvbiIsCiAgICAgICJleGl0X2NvZGUiOiAwLAogICAgICAib3V0cHV0IjogInYyMi4yMy4yIgogICAgfSwKICAgIHsKICAgICAgInR5cGUiOiAic2VsZWN0ZWRfZGV2ZWxvcGVyX2RpcmVjdG9yeSIsCiAgICAgICJjb21tYW5kIjogInhjb2RlLXNlbGVjdCAtcCIsCiAgICAgICJleGl0X2NvZGUiOiAwLAogICAgICAib3V0cHV0IjogIi9BcHBsaWNhdGlvbnMvWGNvZGUuYXBwL0NvbnRlbnRzL0RldmVsb3BlciIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogIkRFVkVMT1BFUl9ESVJfZW52aXJvbm1lbnQiLAogICAgICAiY29tbWFuZCI6ICJwcmludGVudiBERVZFTE9QRVJfRElSIiwKICAgICAgImV4aXRfY29kZSI6IDEsCiAgICAgICJvdXRwdXQiOiAidW5zZXQiCiAgICB9CiAgXSwKICAiY29tbWl0cyI6IFtdLAogICJkaWZmIjogewogICAgImFkZGl0aW9ucyI6IDAsCiAgICAiY2hhbmdlZF9maWxlcyI6IDAsCiAgICAiY29tbWl0X2NvdW50IjogMCwKICAgICJkZWxldGlvbnMiOiAwCiAgfSwKICAiZW52aXJvbm1lbnQiOiB7CiAgICAiaG9zdCI6IHsKICAgICAgInByb2R1Y3QiOiAibWFjT1MiLAogICAgICAidmVyc2lvbiI6ICIyNi42LjIiLAogICAgICAiYnVpbGQiOiAiMjVHODMiCiAgICB9LAogICAgInhjb2RlX2NhbmRpZGF0ZXMiOiBbCiAgICAgIHsKICAgICAgICAiYXBwX3BhdGgiOiAiL0FwcGxpY2F0aW9ucy9YY29kZS5hcHAiLAogICAgICAgICJkZXZlbG9wZXJfZGlyZWN0b3J5IjogIi9BcHBsaWNhdGlvbnMvWGNvZGUuYXBwL0NvbnRlbnRzL0RldmVsb3BlciIsCiAgICAgICAgInZlcnNpb24iOiAiMjcuMCIsCiAgICAgICAgImJ1aWxkIjogIjI3QTI2NmEiCiAgICAgIH0KICAgIF0sCiAgICAic2VsZWN0ZWRfZGV2ZWxvcGVyX2RpcmVjdG9yeSI6ICIvQXBwbGljYXRpb25zL1hjb2RlLmFwcC9Db250ZW50cy9EZXZlbG9wZXIiLAogICAgImdsb2JhbF9kZXZlbG9wZXJfZGlyX292ZXJyaWRlIjogZmFsc2UsCiAgICAibm9kZSI6IHsKICAgICAgInBhdGgiOiAiL1VzZXJzL2hhZXdvbmtpbS8ubnZtL3ZlcnNpb25zL25vZGUvdjIyLjIzLjIvYmluL25vZGUiLAogICAgICAidmVyc2lvbiI6ICJ2MjIuMjMuMiIKICAgIH0sCiAgICAic2ltdWxhdG9yX2ludmVudG9yeSI6IHsKICAgICAgImRldmVsb3Blcl9kaXJlY3RvcnkiOiAiL0FwcGxpY2F0aW9ucy9YY29kZS5hcHAvQ29udGVudHMvRGV2ZWxvcGVyIiwKICAgICAgInJ1bnRpbWVzIjogWwogICAgICAgIHsKICAgICAgICAgICJuYW1lIjogImlPUyAyNi41IiwKICAgICAgICAgICJ2ZXJzaW9uIjogIjI2LjUiLAogICAgICAgICAgImlzQXZhaWxhYmxlIjogdHJ1ZSwKICAgICAgICAgICJpZGVudGlmaWVyIjogImNvbS5hcHBsZS5Db3JlU2ltdWxhdG9yLlNpbVJ1bnRpbWUuaU9TLTI2LTUiCiAgICAgICAgfQogICAgICBdLAogICAgICAiYXZhaWxhYmxlX2RldmljZXMiOiBbCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBob25lIDE3IFBybyIsCiAgICAgICAgICAidWRpZCI6ICJFOTdCQjc3Ni0yMzRGLTQxRjUtODU0NC01RTM5MjQxMjFDMUYiLAogICAgICAgICAgInN0YXRlIjogIlNodXRkb3duIiwKICAgICAgICAgICJpc0F2YWlsYWJsZSI6IHRydWUKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJuYW1lIjogImlQaG9uZSAxNyBQcm8gTWF4IiwKICAgICAgICAgICJ1ZGlkIjogIkZBMDA3Q0M1LTg5MTctNEM5Qi04MjQyLTVBM0VEM0QxNkM0RCIsCiAgICAgICAgICAic3RhdGUiOiAiU2h1dGRvd24iLAogICAgICAgICAgImlzQXZhaWxhYmxlIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBob25lIDE3ZSIsCiAgICAgICAgICAidWRpZCI6ICI2RTYyRTk5Qi0xQ0EyLTRENzctQjkyMy1BM0VCOTk4MEIzQ0QiLAogICAgICAgICAgInN0YXRlIjogIlNodXRkb3duIiwKICAgICAgICAgICJpc0F2YWlsYWJsZSI6IHRydWUKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJuYW1lIjogImlQaG9uZSBBaXIiLAogICAgICAgICAgInVkaWQiOiAiNjhGQjg5Q0ItRkNGNC00ODAxLThEREQtQTJDNUZBQkNDNEM2IiwKICAgICAgICAgICJzdGF0ZSI6ICJTaHV0ZG93biIsCiAgICAgICAgICAiaXNBdmFpbGFibGUiOiB0cnVlCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAibmFtZSI6ICJpUGhvbmUgMTciLAogICAgICAgICAgInVkaWQiOiAiNjRGMTYwNUItNkZCMi00RUE1LUJCMTctRDMyNTY2NTEwRTJFIiwKICAgICAgICAgICJzdGF0ZSI6ICJTaHV0ZG93biIsCiAgICAgICAgICAiaXNBdmFpbGFibGUiOiB0cnVlCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAibmFtZSI6ICJpUGFkIFBybyAxMy1pbmNoIChNNSkiLAogICAgICAgICAgInVkaWQiOiAiNDY0RjAxQzItNTkxQi00NDk4LThDMTUtRjhCODhCOEVEMjlFIiwKICAgICAgICAgICJzdGF0ZSI6ICJTaHV0ZG93biIsCiAgICAgICAgICAiaXNBdmFpbGFibGUiOiB0cnVlCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAibmFtZSI6ICJpUGFkIFBybyAxMS1pbmNoIChNNSkiLAogICAgICAgICAgInVkaWQiOiAiNDU4MUZFQTMtMDlDRS00OEJFLUE5OEUtODMxNkE0NUU3M0YzIiwKICAgICAgICAgICJzdGF0ZSI6ICJTaHV0ZG93biIsCiAgICAgICAgICAiaXNBdmFpbGFibGUiOiB0cnVlCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAibmFtZSI6ICJpUGFkIG1pbmkgKEExNyBQcm8pIiwKICAgICAgICAgICJ1ZGlkIjogIjI4OEREMzUzLTY1N0MtNEQwMy04NjdCLUMzQTczRkU5RkQ0NSIsCiAgICAgICAgICAic3RhdGUiOiAiU2h1dGRvd24iLAogICAgICAgICAgImlzQXZhaWxhYmxlIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBhZCBBaXIgMTMtaW5jaCAoTTQpIiwKICAgICAgICAgICJ1ZGlkIjogIkMxMTUxQ0FBLUM2MEQtNEU5Ni1CQUJDLUFBMjIzRDQzNEY1MCIsCiAgICAgICAgICAic3RhdGUiOiAiU2h1dGRvd24iLAogICAgICAgICAgImlzQXZhaWxhYmxlIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBhZCBBaXIgMTEtaW5jaCAoTTQpIiwKICAgICAgICAgICJ1ZGlkIjogIjBBRDQ4REM3LTVDMDYtNDkwQy04MzUyLTI2MzFEQjg3MjA2QSIsCiAgICAgICAgICAic3RhdGUiOiAiU2h1dGRvd24iLAogICAgICAgICAgImlzQXZhaWxhYmxlIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAiaVBhZCAoQTE2KSIsCiAgICAgICAgICAidWRpZCI6ICIzMTBCMTA1My05QUZDLTQ5RDItQjAyRC02MkE2NDMxQjE2RTkiLAogICAgICAgICAgInN0YXRlIjogIlNodXRkb3duIiwKICAgICAgICAgICJpc0F2YWlsYWJsZSI6IHRydWUKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJjZXJ0aWZpY2F0aW9uX3Byb2ZpbGUiOiB7CiAgICAgICAgImlkIjogImlwaG9uZS0xNy1wcm8taW9zLTI2LjUiLAogICAgICAgICJwbGF0Zm9ybSI6ICJpT1MgU2ltdWxhdG9yIiwKICAgICAgICAiZGV2aWNlIjogImlQaG9uZSAxNyBQcm8iLAogICAgICAgICJydW50aW1lIjogImlPUyAyNi41IgogICAgICB9LAogICAgICAicHJvZmlsZV9yZXNvbHZlcyI6IHRydWUsCiAgICAgICJzZWxlY3Rpb24iOiB7CiAgICAgICAgIm5hbWUiOiAiaVBob25lIDE3IFBybyIsCiAgICAgICAgInJ1bnRpbWUiOiAiaU9TIDI2LjUiLAogICAgICAgICJ1ZGlkIjogIkU5N0JCNzc2LTIzNEYtNDFGNS04NTQ0LTVFMzkyNDEyMUMxRiIsCiAgICAgICAgInN0YXRlIjogIlNodXRkb3duIiwKICAgICAgICAibWV0aG9kIjogInNlbWFudGljIHByb2ZpbGUiCiAgICAgIH0KICAgIH0KICB9LAogICJlcnJvcl9jb2RlIjogIlhDT0RFXzI2XzZfTk9UX0lOU1RBTExFRCIsCiAgImV2aWRlbmNlX21hbmlmZXN0IjogewogICAgImNvdW50IjogMCwKICAgICJpdGVtcyI6IFtdLAogICAgInZlcnNpb24iOiAxCiAgfSwKICAiZmFpbHVyZV9jbGFzcyI6ICJlbnZpcm9ubWVudF9wcmVyZXF1aXNpdGUiLAogICJmaW5pc2hlZF9hdCI6ICIyMDI2LTA5LTI2VDE4OjQ1OjQ4WiIsCiAgImdpdCI6IHsKICAgICJiYXNlX3NoYSI6ICIwNDcwZDBlZGQ0MzA2ZTMxMzRkYTVmMWExNTgxNjc5M2UxOTU1MzUyIiwKICAgICJiYXNlX3RyZWUiOiAiNjY1YzJmODJmOWUwNDkyOGQ1NWVhZGQ0ZDlkN2RlNTY2ZWI5OThmMSIsCiAgICAiYnJhbmNoIjogImNvZGV4L2V4cG8tYmFzZS1jaGcyNjEtaW9zLXByZXJlcXVpc2l0ZS12ZXJpZnktcjMiLAogICAgImhlYWRfc2hhIjogIjA0NzBkMGVkZDQzMDZlMzEzNGRhNWYxYTE1ODE2NzkzZTE5NTUzNTIiLAogICAgInJlbW90ZV9oZWFkX3NoYSI6ICIwNDcwZDBlZGQ0MzA2ZTMxMzRkYTVmMWExNTgxNjc5M2UxOTU1MzUyIiwKICAgICJ0YXJnZXRfYnJhbmNoIjogIm1haW4iLAogICAgInRhcmdldF9oZWFkX29ic2VydmVkX2FmdGVyX2V4ZWN1dGlvbiI6ICIwNDcwZDBlZGQ0MzA2ZTMxMzRkYTVmMWExNTgxNjc5M2UxOTU1MzUyIiwKICAgICJ3b3JrdHJlZV9jbGVhbiI6IHRydWUsCiAgICAic291cmNlX2NoYW5nZWRfZmlsZXMiOiAwLAogICAgImV2aWRlbmNlX2NvbW1pdF9wYXJlbnQiOiAiMDQ3MGQwZWRkNDMwNmUzMTM0ZGE1ZjFhMTU4MTY3OTNlMTk1NTM1MiIKICB9LAogICJpb3NfdmVyaWZpY2F0aW9uIjogewogICAgImNvbW1hbmQiOiAibnBtIHJ1biBpb3M6dmVyaWZ5IiwKICAgICJzdGF0dXMiOiAiTk9UX1JVTiIsCiAgICAiZXhpdF9jb2RlIjogbnVsbCwKICAgICJyZWFzb24iOiAiVGhlIG9ubHkgaW5zdGFsbGVkIFhjb2RlIGNhbmRpZGF0ZSBpcyAyNy4wOyB0aGUgcmVxdWlyZWQgWGNvZGUgMjYuNiBpbnN0YWxsYXRpb24gaXMgYWJzZW50LiBEbyBub3QgcmV0cnkgdW5kZXIgYSBtYXRlcmlhbGx5IGRpZmZlcmVudCBlbnZpcm9ubWVudC4iLAogICAgIm5wbV9jaSI6ICJOT1RfUlVOIiwKICAgICJjbmdfZ2VuZXJhdGlvbiI6ICJOT1RfUlVOIiwKICAgICJleHBlY3RlZF9pZl9ydW4iOiB7CiAgICAgICJyZWxlYXNlX3Rlc3RfY291bnQiOiAxNywKICAgICAgIm5hdGl2ZV92aXN1YWxfYmFzZWxpbmVfY291bnQiOiA5CiAgICB9LAogICAgImFjdHVhbF90ZXN0X2NvdW50cyI6IG51bGwsCiAgICAiZmFpbHVyZXMiOiBudWxsLAogICAgImFjdHVhbF92aXN1YWxfYmFzZWxpbmVfY291bnQiOiBudWxsLAogICAgInZpc3VhbF9iYXNlbGluZV9yZXN1bHQiOiBudWxsLAogICAgInJlc3VsdF9idW5kbGVfcGF0aCI6IG51bGwKICB9LAogICJraW5kIjogImNvZGV4LWZhYnJpYy1hdWRpdC1ldmlkZW5jZSIsCiAgImxvY2F0b3IiOiB7CiAgICAiYnJhbmNoIjogImNvZGV4LWZhYnJpYy9ldmlkZW5jZS9leHBvLWJhc2UvY2hnMjYxLWN1cnJlbnQtbWFpbi1jZXJ0aWZpY2F0aW9uLXJlZnJlc2gtcjMiLAogICAgInBhdGgiOiAiLmNvZGV4LWZhYnJpYy9hdWRpdC5qc29uIiwKICAgICJyZWYiOiAicmVmcy9oZWFkcy9jb2RleC1mYWJyaWMvZXZpZGVuY2UvZXhwby1iYXNlL2NoZzI2MS1jdXJyZW50LW1haW4tY2VydGlmaWNhdGlvbi1yZWZyZXNoLXIzIgogIH0sCiAgIm9wZXJhdGlvbiI6ICJWRVJJRlkiLAogICJwcm9qZWN0X2lkIjogImV4cG8tYmFzZSIsCiAgInJlcXVlc3QiOiAiY2hnMjYxLWN1cnJlbnQtbWFpbi1jZXJ0aWZpY2F0aW9uLXJlZnJlc2gtcjMiLAogICJyZXN1bHQiOiAiQkxPQ0tFRF9QUkVSRVFVSVNJVEUiLAogICJzY2hlbWFfdmVyc2lvbiI6IDEsCiAgInN0YXR1cyI6ICJCTE9DS0VEX1BSRVJFUVVJU0lURSIsCiAgInN1bW1hcnkiOiAiaU9TIDI2LjUgYW5kIHRoZSBleGFjdCBpUGhvbmUgMTcgUHJvIFNpbXVsYXRvciBwcm9maWxlIGFyZSBhdmFpbGFibGUgdW5kZXIgdGhlIHNvbGUgaW5zdGFsbGVkIFhjb2RlIDI3LjAsIGJ1dCBubyBpbnN0YWxsZWQgWGNvZGUgMjYuNiBjYW5kaWRhdGUgZXhpc3RzLiBOYXRpdmUgdmVyaWZpY2F0aW9uIHdhcyBub3QgcnVuOyB0aGlzIGlzIGFuIGVudmlyb25tZW50IHByZXJlcXVpc2l0ZSBibG9jaywgbm90IGEgUHJvZHVjdCBkZWZlY3QuIgp9Cg==\\\"))' | rtk proxy git hash-object -w --stdin\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy git cat-file blob 74e9ab92ad71ac2968592d1a76653d867fce3447 | rtk proxy jq -e '.status == \\\"BLOCKED_PREREQUISITE\\\" and .environment.xcode_candidates[0].version == \\\"27.0\\\" and (.environment.simulator_inventory.profile_resolves == true)'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env GIT_INDEX_FILE=/tmp/expo-base-chg261-r3-184548.index git read-tree 0470d0edd4306e3134da5f1a15816793e1955352'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env GIT_INDEX_FILE=/tmp/expo-base-chg261-r3-184548.index git update-index --add --cacheinfo 100644,74e9ab92ad71ac2968592d1a76653d867fce3447,.codex-fabric/audit.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env GIT_INDEX_FILE=/tmp/expo-base-chg261-r3-184548.index git write-tree'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git commit-tree daa97a5c5377676f2eff4d1571d551f57610842f -p 0470d0edd4306e3134da5f1a15816793e1955352 -m 'chore(fabric): publish audit evidence CHG-261 R3 VERIFY'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git update-ref refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r3 4eabb229fc0497e4431af9da7f7d300432c034e7'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git push origin refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r3:refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r3'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk git show --no-patch --format='commit=%H%nparents=%P%ntree=%T%nsubject=%s' 4eabb229fc0497e4431af9da7f7d300432c034e7 && rtk git diff-tree --no-commit-id --name-status -r 4eabb229fc0497e4431af9da7f7d300432c034e7 && rtk git ls-remote --heads origin refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r3 && rtk git status --short --branch && rtk git rev-parse HEAD && rtk git rev-parse HEAD\"'^{tree} && rtk git status --porcelain=v1 --untracked-files=all'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy rm -f /tmp/expo-base-chg261-r3-184548.index'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.157.0",
+    "configured_model": "gpt-6-luna",
+    "event_count": 77,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 90.19,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 601600,
+      "fresh_input_tokens": 65401,
+      "input_tokens": 667001,
+      "non_reasoning_output_tokens": 8239,
+      "output_tokens": 22218,
+      "reasoning_output_tokens": 13979,
+      "total_processed_tokens": 689219
+    },
+    "warnings": []
+  },
+  "commits": [],
+  "diff": {
+    "additions": 0,
+    "changed_files": 0,
+    "commit_count": 0,
+    "deletions": 0
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 0,
+    "items": [],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.5-dashboard-controls-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.5-dashboard-controls-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-26T18:47:27Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "branch": "codex/expo-base-chg261-ios-prerequisite-verify-r3",
+    "detached_verify": false,
+    "head_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "remote_exact_head": true,
+    "remote_head_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "work_branch": "codex/expo-base-chg261-ios-prerequisite-verify-r3",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-e59218c7f1bd47fe04cc7be4",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg261-ios-prerequisite-verify-r3",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg261-ios-prerequisite-verify-r3"
+  },
+  "operation": "VERIFY",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.5-dashboard-controls-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "af81b8552f9d6a33847310e3c6bcd2d48401782b963a58efd2993e93570cb4aa"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg261-ios-prerequisite-verify-r3",
+  "schema_version": 1,
+  "started_at": "2026-09-26T18:40:13Z",
+  "status": "EXECUTED_NO_CHANGE",
+  "timing": {
+    "execution_seconds": 434,
+    "queue_seconds": 0,
+    "total_seconds": 434
+  },
+  "transport": {
+    "bytes": 4584,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 4250,
+    "prompt_sha256": "a360374eea08443142237a737840795c669dcaa65af2df9d9cbcfe0af8c390af",
+    "sha256": "e59218c7f1bd47fe04cc7be4d851117f402f9a99c834ea1a783a2421cedb097c"
+  }
+}
