@@ -1,0 +1,394 @@
+{
+  "accepted_at": "2026-09-26T23:14:23Z",
+  "changed_files": [
+    {
+      "additions": 31,
+      "deletions": 31,
+      "path": "docs/RELEASE_READINESS.md",
+      "status": "M"
+    },
+    {
+      "additions": 26,
+      "deletions": 28,
+      "path": "docs/STATUS.md",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 4,
+      "path": "release-candidate.certification.json",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'cat /Users/haewonkim/.codex/RTK.md && cat /Users/haewonkim/.codex/law.md && git status --short --branch && git rev-parse HEAD && git rev-parse HEAD''^{tree} && git rev-parse main && git rev-parse main''^{tree} && cat golden.catalog.json && cat docs/GOLDEN_CATALOG.md'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat scripts/write-release-certification-record.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat docs/STATUS.md'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat scripts/release-readiness.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat docs/RELEASE_READINESS.md'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat docs/CERTIFICATION.md'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat release-candidate.certification.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat docs/RELEASE_CANDIDATE_1_0.md'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat ios.certification.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy rg -n \"35949677933|35949678010|923d177831f5c17541b5155a5872bb101850c1f6|CHG-186|CHG-187|CHG-201|0470d0edd4306e3134da5f1a15816793e1955352\" .codex-fabric docs release-candidate.certification.json'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sed -n '1,240p' docs/RELEASE_READINESS.md && rtk proxy sed -n '1,220p' docs/STATUS.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy git status --porcelain=v1 && rtk proxy git log -1 --format='%H%n%T%n%P%n%s' && rtk proxy git diff --name-only 0470d0edd4306e3134da5f1a15816793e1955352\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy ls -la'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy git for-each-ref --format='%(refname) %(objectname) %(subject)' refs/heads/codex-fabric/evidence/expo-base\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git show 923d177831f5c17541b5155a5872bb101850c1f6:.codex-fabric/audit.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy find .. -maxdepth 3 -name .codex-fabric -print'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy node --version && rtk proxy xcodebuild -version && rtk proxy git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git show 4eabb229fc0497e4431af9da7f7d300432c034e7:.codex-fabric/audit.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git show 4eabb229fc0497e4431af9da7f7d300432c034e7 --stat --oneline && rtk proxy git show 4eabb229fc0497e4431af9da7f7d300432c034e7''^:.codex-fabric/audit.json | rtk proxy sed -n '\"'1,80p'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git diff -- docs/STATUS.md docs/RELEASE_READINESS.md && rtk proxy git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy rm release-candidate.certification.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer EXPO_BASE_CERTIFIED_COMMIT=0470d0edd4306e3134da5f1a15816793e1955352 /Users/haewonkim/.nvm/versions/node/v22.23.2/bin/node scripts/write-release-certification-record.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat release-candidate.certification.json && rtk proxy git diff --check && rtk proxy git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git add docs/STATUS.md docs/RELEASE_READINESS.md release-candidate.certification.json && rtk proxy git diff --cached --check && rtk proxy git diff --cached --name-only && rtk proxy git diff --cached --stat && rtk proxy git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git commit -m \"chore(release): refresh CHG-261 current-source certification\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git diff --name-only 0470d0edd4306e3134da5f1a15816793e1955352 HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git diff --check 0470d0edd4306e3134da5f1a15816793e1955352 HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import json,pathlib; r=json.loads(pathlib.Path(\\\"release-candidate.certification.json\\\").read_text()); m=json.loads(pathlib.Path(\\\"ios.certification.json\\\").read_text()); p=m[\\\"profiles\\\"][0]; n=r[\\\"native\\\"]; count=len(list((pathlib.Path(\\\"tests/native/ios/baselines\\\")/p[\\\"id\\\"]).glob(\\\"*.png\\\"))); print(\\\"profile=\\\"+n[\\\"profileId\\\"]+\\\" / \\\"+n[\\\"device\\\"]+\\\" / \\\"+n[\\\"runtime\\\"]+\\\" / \\\"+n[\\\"xcode\\\"]); print(\\\"release_tests=\\\"+str(n[\\\"releaseTestsPassed\\\"])+\\\" visual_baselines=\\\"+str(n[\\\"visualBaselinesPassed\\\"])+\\\" files=\\\"+str(count)); print(\\\"voiceOver=\\\"+r[\\\"boundaries\\\"][\\\"voiceOver\\\"]); print(\\\"dynamicType=\\\"+r[\\\"boundaries\\\"][\\\"dynamicType\\\"]); print(\\\"physicalDevice=\\\"+r[\\\"boundaries\\\"][\\\"physicalDevice\\\"]); print(\\\"android=\\\"+r[\\\"android\\\"][\\\"status\\\"]+\\\"; \\\"+r[\\\"android\\\"][\\\"reason\\\"]); ok=n[\\\"profileId\\\"]==p[\\\"id\\\"] and n[\\\"device\\\"]==p[\\\"device\\\"] and n[\\\"runtime\\\"]==p[\\\"runtime\\\"] and n[\\\"releaseTestsPassed\\\"]==17 and n[\\\"visualBaselinesPassed\\\"]==count==9 and n[\\\"node\\\"]==\\\"v22.23.2\\\" and n[\\\"xcode\\\"]==\\\"Xcode 27.0\\\" and r[\\\"certifiedCommit\\\"]==\\\"0470d0edd4306e3134da5f1a15816793e1955352\\\" and r[\\\"android\\\"][\\\"status\\\"]==\\\"deferred/waived\\\" and all(r[\\\"boundaries\\\"].values()); print(\\\"match=\\\"+str(ok).lower()); raise SystemExit(0 if ok else 1)'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import subprocess; fs=subprocess.check_output([\\\"git\\\",\\\"diff\\\",\\\"--name-only\\\",\\\"0470d0edd4306e3134da5f1a15816793e1955352\\\",\\\"HEAD\\\"],text=True).splitlines(); blocked=(\\\"apps/\\\",\\\"packages/\\\",\\\"tests/\\\",\\\"scripts/\\\"); forbidden=[p for p in fs if p.startswith(blocked) or p in {\\\"package.json\\\",\\\"package-lock.json\\\",\\\"ios.certification.json\\\",\\\"expo-base.api.json\\\",\\\"expo-base.compatibility.json\\\"}]; print(\\\"changed_files:\\\"); print(\\\"\\\\n\\\".join(fs)); print(\\\"scope=governance-only\\\" if not forbidden else \\\"forbidden=\\\"+repr(forbidden)); raise SystemExit(0 if fs==[\\\"docs/RELEASE_READINESS.md\\\",\\\"docs/STATUS.md\\\",\\\"release-candidate.certification.json\\\"] and not forbidden else 1)'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git rev-parse HEAD && rtk proxy git rev-parse HEAD''^{tree} && rtk proxy git status --porcelain=v1'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import hashlib,json,pathlib,subprocess; files=[p for p in subprocess.check_output([\\\"git\\\",\\\"ls-files\\\",\\\"-z\\\"]).split(b\\\"\\\\0\\\") if p and p \"'!= b\"release-candidate.certification.json\"]; h=hashlib.sha256(); [h.update(p+b\"'\"\\\\0\\\"+hashlib.sha256(pathlib.Path(p.decode()).read_bytes()).hexdigest().encode()+b\\\"\\\\n\\\") for p in files]; actual=h.hexdigest(); recorded=json.loads(pathlib.Path(\\\"release-candidate.certification.json\\\").read_text())[\\\"sourceTreeHash\\\"]; print(\\\"computed=\\\"+actual); print(\\\"recorded=\\\"+recorded); print(\\\"match=\\\"+str(actual==recorded).lower()); raise SystemExit(0 if actual==recorded else 1)'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer npm run release:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git rev-list --parents -n 1 HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git diff --numstat 0470d0edd4306e3134da5f1a15816793e1955352 HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git status --porcelain=v1 --untracked-files=all'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import base64,pathlib; pathlib.Path(\\\"/tmp/expo-base-chg261-r5-audit.json\\\").write_bytes(base64.b64decode(\\\"ewogICJzY2hlbWFfdmVyc2lvbiI6IDEsCiAgImtpbmQiOiAiY29kZXgtZmFicmljLWF1ZGl0LWV2aWRlbmNlIiwKICAicHJvamVjdF9pZCI6ICJleHBvLWJhc2UiLAogICJyZXF1ZXN0IjogImNoZzI2MS1jdXJyZW50LW1haW4tY2VydGlmaWNhdGlvbi1yZWZyZXNoLXI1IiwKICAib3BlcmF0aW9uIjogIkZJWCIsCiAgInN0YXR1cyI6ICJFWEVDVVRFRF9XSVRIX0NIQU5HRSIsCiAgInJlc3VsdCI6ICJQQVNTIiwKICAiYWNjZXB0ZWRfYXQiOiAiMjAyNi0wOS0yNlQyMzoyMTowOVoiLAogICJjaGFuZ2VkX2ZpbGVzIjogWwogICAgImRvY3MvUkVMRUFTRV9SRUFESU5FU1MubWQiLAogICAgImRvY3MvU1RBVFVTLm1kIiwKICAgICJyZWxlYXNlLWNhbmRpZGF0ZS5jZXJ0aWZpY2F0aW9uLmpzb24iCiAgXSwKICAiY2hlY2tzIjogWwogICAgewogICAgICAidHlwZSI6ICJzb3VyY2VfaWRlbnRpdHkiLAogICAgICAiY29tbWFuZCI6ICJnaXQgcmV2LXBhcnNlIEhFQUQgJiYgZ2l0IHJldi1wYXJzZSBIRUFEXnt0cmVlfSAmJiBnaXQgc3RhdHVzIC0tcG9yY2VsYWluPXYxIC0tdW50cmFja2VkLWZpbGVzPWFsbCIsCiAgICAgICJleGl0X2NvZGUiOiAwLAogICAgICAib3V0cHV0IjogIkhFQUQgZjkyNjU1OTYwODVkMTdlYTgzYjBjMWRmYTdhNmNlYmFiOTMxM2IxYzsgdHJlZSBkODA0OTU0YTg1ZGEwMzU1M2ZkY2FlM2FlOThlODZhNTczM2FjYWQ5OyB3b3JrdHJlZSBjbGVhbiIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogInJlbGVhc2VfdmVyaWZ5IiwKICAgICAgImNvbW1hbmQiOiAiUEFUSD0vVXNlcnMvaGFld29ua2ltLy5udm0vdmVyc2lvbnMvbm9kZS92MjIuMjMuMi9iaW46JFBBVEggREVWRUxPUEVSX0RJUj0vQXBwbGljYXRpb25zL1hjb2RlLmFwcC9Db250ZW50cy9EZXZlbG9wZXIgbnBtIHJ1biByZWxlYXNlOnZlcmlmeSIsCiAgICAgICJleGl0X2NvZGUiOiAwLAogICAgICAib3V0cHV0IjogIkV4cG8gQmFzZSByZWxlYXNlIHJlYWRpbmVzcyBwYXNzZWQ6IHZlcnNpb24sIHNvdXJjZSBpZGVudGl0eSwgbmF0aXZlIGdvdmVybmFuY2UsIG1hbmlmZXN0cywgQVBJL2RlcGVuZGVuY3kgYm91bmRhcmllcywgYW5kIGNlcnRpZmljYXRpb24gcmVjb3JkIGFyZSBjb25zaXN0ZW50LiIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogImRpZmZfY2hlY2siLAogICAgICAiY29tbWFuZCI6ICJnaXQgZGlmZiAtLWNoZWNrIDA0NzBkMGVkZDQzMDZlMzEzNGRhNWYxYTE1ODE2NzkzZTE5NTUzNTIgSEVBRCIsCiAgICAgICJleGl0X2NvZGUiOiAwLAogICAgICAib3V0cHV0IjogInBhc3NlZCIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogImNoYW5nZWRfZmlsZV9zY29wZSIsCiAgICAgICJjb21tYW5kIjogImdpdCBkaWZmIC0tbmFtZS1vbmx5IDA0NzBkMGVkZDQzMDZlMzEzNGRhNWYxYTE1ODE2NzkzZTE5NTUzNTIgSEVBRCIsCiAgICAgICJleGl0X2NvZGUiOiAwLAogICAgICAib3V0cHV0IjogImRvY3MvUkVMRUFTRV9SRUFESU5FU1MubWQ7IGRvY3MvU1RBVFVTLm1kOyByZWxlYXNlLWNhbmRpZGF0ZS5jZXJ0aWZpY2F0aW9uLmpzb24uIE5vIFByb2R1Y3QvcnVudGltZS90ZXN0L25hdGl2ZS1iYXNlbGluZS9kZXBlbmRlbmN5L3BhY2thZ2UvQVBJL2dlbmVyYXRvciBmaWxlcyBjaGFuZ2VkLiIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogInNvdXJjZV90cmVlX2hhc2giLAogICAgICAiY29tbWFuZCI6ICJTSEEtMjU2IG92ZXIgZ2l0IGxzLWZpbGVzIHBhdGhzIGFuZCBlYWNoIHRyYWNrZWQgZmlsZSBTSEEtMjU2LCBleGNsdWRpbmcgb25seSByZWxlYXNlLWNhbmRpZGF0ZS5jZXJ0aWZpY2F0aW9uLmpzb24iLAogICAgICAiZXhpdF9jb2RlIjogMCwKICAgICAgImNvbXB1dGVkIjogImJjMTNmMjVlZmQ5Y2Y1OTE2OTdlMmU4ZWFmNzg1MGM3ZjcyYmE0MzkyYTBiNDYzODM5ZGU4MTFjZGE1ZmE0NDAiLAogICAgICAicmVjb3JkZWQiOiAiYmMxM2YyNWVmZDljZjU5MTY5N2UyZThlYWY3ODUwYzdmNzJiYTQzOTJhMGI0NjM4MzlkZTgxMWNkYTVmYTQ0MCIsCiAgICAgICJtYXRjaCI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogIm5hdGl2ZV9wcm9maWxlX2FuZF9ib3VuZGFyeV9jb25zaXN0ZW5jeSIsCiAgICAgICJjb21tYW5kIjogIkNvbXBhcmUgcmVsZWFzZS1jYW5kaWRhdGUuY2VydGlmaWNhdGlvbi5qc29uIHdpdGggaW9zLmNlcnRpZmljYXRpb24uanNvbiBhbmQgdGhlIHByb2ZpbGUgUE5HIGludmVudG9yeSIsCiAgICAgICJleGl0X2NvZGUiOiAwLAogICAgICAib3V0cHV0IjogImlwaG9uZS0xNy1wcm8taW9zLTI2LjUgbWF0Y2hlczsgMTcgUmVsZWFzZSB0ZXN0czsgOSBwYXNzZWQgdmlzdWFsIGJhc2VsaW5lcyBhbmQgOSBwcm9maWxlIFBOR3M7IE5vZGUgdjIyLjIzLjI7IFhjb2RlIDI3LjA7IEFuZHJvaWQgZGVmZXJyZWQvd2FpdmVkOyBWb2ljZU92ZXIsIER5bmFtaWMgVHlwZSwgYW5kIHBoeXNpY2FsLWRldmljZSBib3VuZGFyaWVzIHByZXNlcnZlZC4iCiAgICB9CiAgXSwKICAiY29tbWl0cyI6IFsKICAgIHsKICAgICAgInNoYSI6ICJmOTI2NTU5NjA4NWQxN2VhODNiMGMxZGZhN2E2Y2ViYWI5MzEzYjFjIiwKICAgICAgInBhcmVudCI6ICIwNDcwZDBlZGQ0MzA2ZTMxMzRkYTVmMWExNTgxNjc5M2UxOTU1MzUyIiwKICAgICAgImJyYW5jaCI6ICJjb2RleC9leHBvLWJhc2UtY2hnMjYxLWN1cnJlbnQtbWFpbi1jZXJ0aWZpY2F0aW9uLXJlZnJlc2gtcjUiLAogICAgICAiZmlsZXMiOiBbCiAgICAgICAgImRvY3MvUkVMRUFTRV9SRUFESU5FU1MubWQiLAogICAgICAgICJkb2NzL1NUQVRVUy5tZCIsCiAgICAgICAgInJlbGVhc2UtY2FuZGlkYXRlLmNlcnRpZmljYXRpb24uanNvbiIKICAgICAgXQogICAgfQogIF0sCiAgImRpZmYiOiB7CiAgICAiYWRkaXRpb25zIjogNjEsCiAgICAiY2hhbmdlZF9maWxlcyI6IDMsCiAgICAiY29tbWl0X2NvdW50IjogMSwKICAgICJkZWxldGlvbnMiOiA2MwogIH0sCiAgImdpdCI6IHsKICAgICJiYXNlX3NoYSI6ICIwNDcwZDBlZGQ0MzA2ZTMxMzRkYTVmMWExNTgxNjc5M2UxOTU1MzUyIiwKICAgICJiYXNlX3RyZWUiOiAiNjY1YzJmODJmOWUwNDkyOGQ1NWVhZGQ0ZDlkN2RlNTY2ZWI5OThmMSIsCiAgICAiYnJhbmNoIjogImNvZGV4L2V4cG8tYmFzZS1jaGcyNjEtY3VycmVudC1tYWluLWNlcnRpZmljYXRpb24tcmVmcmVzaC1yNSIsCiAgICAiaGVhZF9zaGEiOiAiZjkyNjU1OTYwODVkMTdlYTgzYjBjMWRmYTdhNmNlYmFiOTMxM2IxYyIsCiAgICAiaGVhZF90cmVlIjogImQ4MDQ5NTRhODVkYTAzNTUzZmRjYWUzYWU5OGU4NmE1NzMzYWNhZDkiLAogICAgInRhcmdldF9icmFuY2giOiAibWFpbiIsCiAgICAidGFyZ2V0X2hlYWRfc2hhIjogIjA0NzBkMGVkZDQzMDZlMzEzNGRhNWYxYTE1ODE2NzkzZTE5NTUzNTIiLAogICAgIndvcmt0cmVlX2NsZWFuIjogdHJ1ZSwKICAgICJldmlkZW5jZV9jb21taXRfcGFyZW50IjogImY5MjY1NTk2MDg1ZDE3ZWE4M2IwYzFkZmE3YTZjZWJhYjkzMTNiMWMiLAogICAgImdvdmVybmFuY2VfY2hhbmdlZF9maWxlcyI6IDMsCiAgICAicHJvZHVjdF9ydW50aW1lX3Rlc3RfbmF0aXZlX2Jhc2VsaW5lX2RlcGVuZGVuY3lfcGFja2FnZV9hcGlfZ2VuZXJhdG9yX2NoYW5nZXMiOiAwCiAgfSwKICAiY2VydGlmaWNhdGlvbiI6IHsKICAgICJwYXRoIjogInJlbGVhc2UtY2FuZGlkYXRlLmNlcnRpZmljYXRpb24uanNvbiIsCiAgICAidmVyc2lvbiI6ICIxLjAuMCIsCiAgICAiY2VydGlmaWVkX2NvbW1pdCI6ICIwNDcwZDBlZGQ0MzA2ZTMxMzRkYTVmMWExNTgxNjc5M2UxOTU1MzUyIiwKICAgICJjZXJ0aWZpZWRfYnJhbmNoIjogIm1haW4iLAogICAgImNlcnRpZmllZF9jb21taXRfcm9sZSI6ICJwcm90ZWN0ZWQtbWFpbi1wcm92ZW5hbmNlIiwKICAgICJjZXJ0aWZpZWRfYXQiOiAiMjAyNi0wOS0yNlQyMzoxODozMy44ODFaIiwKICAgICJzb3VyY2VfdHJlZV9oYXNoIjogImJjMTNmMjVlZmQ5Y2Y1OTE2OTdlMmU4ZWFmNzg1MGM3ZjcyYmE0MzkyYTBiNDYzODM5ZGU4MTFjZGE1ZmE0NDAiCiAgfSwKICAiaG9zdGVkX2V2aWRlbmNlIjogWwogICAgewogICAgICAid29ya2Zsb3ciOiAiRXhwbyBCYXNlIFJ1bnRpbWUgV2ViIiwKICAgICAgInJ1bl9pZCI6ICIzNTk0OTY3NzkzMyIsCiAgICAgICJzdGF0dXMiOiAic3VjY2VzcyIsCiAgICAgICJjb21taXQiOiAiMDQ3MGQwZWRkNDMwNmUzMTM0ZGE1ZjFhMTU4MTY3OTNlMTk1NTM1MiIKICAgIH0sCiAgICB7CiAgICAgICJ3b3JrZmxvdyI6ICJFeHBvIEJhc2UgR29sZGVuIENlcnRpZmljYXRpb24iLAogICAgICAicnVuX2lkIjogIjM1OTQ5Njc4MDEwIiwKICAgICAgInN0YXR1cyI6ICJzdWNjZXNzIiwKICAgICAgImpvYnMiOiBbCiAgICAgICAgInN0cnVjdHVyYWwiLAogICAgICAgICJtb2JpbGUiLAogICAgICAgICJnb2xkZW4iCiAgICAgIF0sCiAgICAgICJjb21taXQiOiAiMDQ3MGQwZWRkNDMwNmUzMTM0ZGE1ZjFhMTU4MTY3OTNlMTk1NTM1MiIKICAgIH0KICBdLAogICJuYXRpdmVfZXZpZGVuY2UiOiB7CiAgICAiY2hhbmdlIjogIkNIRy0yNjEgUjQgY3VycmVudC1zb3VyY2UgcHJvb2YiLAogICAgImpvYl9pZCI6ICJDRi1iOTNhYjU0MjZlMTBkMjYwNWY0YWZhYzUiLAogICAgImV2aWRlbmNlX3JlZiI6ICJyZWZzL2hlYWRzL2NvZGV4LWZhYnJpYy9ldmlkZW5jZS9leHBvLWJhc2UvY2hnMjYxLWlvcy1jdXJyZW50LXNvdXJjZS12ZXJpZnktcjRAOTIzZDE3NzgzMWY1YzE3NTQxYjUxNTVhNTg3MmJiMTAxODUwYzFmNjouY29kZXgtZmFicmljL2F1ZGl0Lmpzb24iLAogICAgInRlc3RlZF9jb21taXQiOiAiMDQ3MGQwZWRkNDMwNmUzMTM0ZGE1ZjFhMTU4MTY3OTNlMTk1NTM1MiIsCiAgICAidGVzdGVkX3RyZWUiOiAiNjY1YzJmODJmOWUwNDkyOGQ1NWVhZGQ0ZDlkN2RlNTY2ZWI5OThmMSIsCiAgICAiY29tbWFuZCI6ICJucG0gcnVuIGlvczp2ZXJpZnkiLAogICAgImV4aXRfY29kZSI6IDAsCiAgICAibm9kZSI6ICJ2MjIuMjMuMiIsCiAgICAieGNvZGUiOiAiWGNvZGUgMjcuMCIsCiAgICAicHJvZmlsZV9pZCI6ICJpcGhvbmUtMTctcHJvLWlvcy0yNi41IiwKICAgICJwbGF0Zm9ybSI6ICJpT1MgU2ltdWxhdG9yIiwKICAgICJkZXZpY2UiOiAiaVBob25lIDE3IFBybyIsCiAgICAicnVudGltZSI6ICJpT1MgMjYuNSIsCiAgICAicmVsZWFzZV90ZXN0c19wYXNzZWQiOiAxNywKICAgICJ2aXN1YWxfYmFzZWxpbmVzX3Bhc3NlZCI6IDksCiAgICAiYXJ0aWZhY3RzX3ByZXNlbnRfYWZ0ZXJfZXhlY3V0aW9uIjogWwogICAgICAidGVzdC1yZXN1bHRzL2lvcy1uYXRpdmUtY2VydGlmaWNhdGlvbi9FeHBvQmFzZU5hdGl2ZUNlcnRpZmljYXRpb24tcmVsZWFzZS54Y3Jlc3VsdCIsCiAgICAgICJ0ZXN0LXJlc3VsdHMvaW9zLW5hdGl2ZS1jZXJ0aWZpY2F0aW9uL3N1bW1hcnktcmVsZWFzZS5qc29uIiwKICAgICAgInRlc3QtcmVzdWx0cy9pb3MtbmF0aXZlLWNlcnRpZmljYXRpb24veGNvZGVidWlsZC1yZWxlYXNlLmxvZyIsCiAgICAgICJ0ZXN0LXJlc3VsdHMvaW9zLW5hdGl2ZS1jZXJ0aWZpY2F0aW9uL3Zpc3VhbC1yZWxlYXNlIgogICAgXSwKICAgICJ0ZXN0ZWRfbWFpbl93YXNfc29sZV9wYXJlbnQiOiB0cnVlLAogICAgInNvdXJjZV9jaGFuZ2VzIjogMCwKICAgICJ3b3JrdHJlZV9jbGVhbiI6IHRydWUsCiAgICAicjVfbmF0aXZlX2V4ZWN1dGlvbiI6ICJOT1RfUlVOOyBSNCBldmlkZW5jZSBhcHBsaWVzIHRvIHVuY2hhbmdlZCBleGVjdXRhYmxlIFByb2R1Y3QvcnVudGltZSBzb3VyY2UgYW5kIGRvZXMgbm90IHJlcHJlc2VudCBleGVjdXRpb24gb2YgUjUgZG9jdW1lbnRhdGlvbiBieXRlcy4iCiAgfSwKICAic3VwcG9ydF9ib3VuZGFyaWVzIjogewogICAgImFuZHJvaWRfbmF0aXZlIjogIkRlZmVycmVkL3dhaXZlZCBhbmQgdW5jZXJ0aWZpZWQgYWZ0ZXIgY2FuY2VsZWQgQ0hHLTE0OTsgbm8gQW5kcm9pZCBQQVNTIG9yIHVuaXZlcnNhbC1uYXRpdmUgY2xhaW0uIiwKICAgICJ2b2ljZW92ZXIiOiAiSHVtYW4gVm9pY2VPdmVyIHVzYWJpbGl0eSB0cmF2ZXJzYWwgbm90IGV4ZWN1dGVkLiIsCiAgICAidGFsa2JhY2siOiAiTm8gaHVtYW4gVGFsa0JhY2sgdXNhYmlsaXR5IGFjY2VwdGFuY2UgaXMgY2xhaW1lZC4iLAogICAgImR5bmFtaWNfdHlwZSI6ICJTaW11bGF0b3ItbGltaXRlZCBvbiB0aGUgaW5zdGFsbGVkIGlPUyAyNi41IHJ1bnRpbWUuIiwKICAgICJwaHlzaWNhbF9kZXZpY2UiOiAiTm90IGNlcnRpZmllZDsgaGFyZHdhcmUsIGhhcHRpY3MsIGNhbWVyYSwgYmlvbWV0cmljcywgYW5kIGRldmljZS1zcGVjaWZpYyBzYWZlLWFyZWEgYmVoYXZpb3IgcmVtYWluIGJvdW5kZWQuIiwKICAgICJucG1fcHVibGljYXRpb24iOiAiTm90IGNsYWltZWQgb3IgcGVyZm9ybWVkLiIsCiAgICAiZWFzX3N0b3JlX2RlcGxveW1lbnQiOiAiTm90IGNsYWltZWQgb3IgcGVyZm9ybWVkLiIsCiAgICAiZG93bnN0cmVhbV9wcm9kdWN0X2ludGVncmF0aW9ucyI6ICJCYWNrZW5kLCBhdXRoZW50aWNhdGlvbiwgc2Vzc2lvbi1zZWN1cml0eSwgYW5kIGxpbmtpbmcgcmVtYWluIHByb2R1Y3Qtb3duZWQgYW5kIG91dHNpZGUgZnJhbWV3b3JrIGNlcnRpZmljYXRpb24uIgogIH0sCiAgInJlbGVhc2VfYWN0aW9ucyI6IHsKICAgICJuZXdfdGFnIjogZmFsc2UsCiAgICAiZ2l0aHViX3JlbGVhc2UiOiBmYWxzZSwKICAgICJucG1fcHVibGljYXRpb24iOiBmYWxzZSwKICAgICJlYXNfZGVwbG95bWVudCI6IGZhbHNlLAogICAgInN0b3JlX2RlcGxveW1lbnQiOiBmYWxzZSwKICAgICJkb3duc3RyZWFtX3Byb2R1Y3RfcmVsZWFzZSI6IGZhbHNlLAogICAgIm1haW5fbW92ZWQiOiBmYWxzZQogIH0sCiAgImxvY2F0b3IiOiB7CiAgICAiYnJhbmNoIjogImNvZGV4LWZhYnJpYy9ldmlkZW5jZS9leHBvLWJhc2UvY2hnMjYxLWN1cnJlbnQtbWFpbi1jZXJ0aWZpY2F0aW9uLXJlZnJlc2gtcjUiLAogICAgInBhdGgiOiAiLmNvZGV4LWZhYnJpYy9hdWRpdC5qc29uIiwKICAgICJyZWYiOiAicmVmcy9oZWFkcy9jb2RleC1mYWJyaWMvZXZpZGVuY2UvZXhwby1iYXNlL2NoZzI2MS1jdXJyZW50LW1haW4tY2VydGlmaWNhdGlvbi1yZWZyZXNoLXI1IgogIH0sCiAgInN1bW1hcnkiOiAiUjUgY29tbWl0dGVkIG9ubHkgY3VycmVudC1zdGF0dXMvcmVhZGluZXNzIGRvY3VtZW50YXRpb24gYW5kIHJlbGVhc2UgY2VydGlmaWNhdGlvbiBtZXRhZGF0YS4gUmVwb3NpdG9yeS1vd25lZCByZWxlYXNlOnZlcmlmeSBwYXNzZWQgYW5kIHRoZSBmaW5hbCB0cmFja2VkIGNhbmRpZGF0ZSBoYXNoIG1hdGNoZXM7IHRoZSBSNCBjdXJyZW50LXNvdXJjZSBuYXRpdmUgcHJvb2YgYW5kIHN1cHBvcnQgYm91bmRhcmllcyBhcmUgcHJlc2VydmVkLiIKfQo=\\\"))'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git hash-object -w /tmp/expo-base-chg261-r5-audit.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env GIT_INDEX_FILE=/tmp/expo-base-chg261-r5-evidence.index git read-tree HEAD'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env GIT_INDEX_FILE=/tmp/expo-base-chg261-r5-evidence.index git update-index --add --cacheinfo 100644,d42636d1edb359a4cd8fa1350535e369253e4c07,.codex-fabric/audit.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy env GIT_INDEX_FILE=/tmp/expo-base-chg261-r5-evidence.index git write-tree'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git commit-tree a653204ce07b1c4fb6ec2ae0c6250a7c82f81733 -p HEAD -m \"chore(fabric): publish audit evidence CHG-261 R5 FIX\"'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git update-ref refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r5 cc078187ca8fe7a6557265035f89aa8da2a92306'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git rev-list --parents -n 1 refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r5'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git diff-tree --no-commit-id --name-only -r refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r5'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git rev-parse refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r5'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import json,subprocess; r=\\\"refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r5:.codex-fabric/audit.json\\\"; x=json.loads(subprocess.check_output([\\\"git\\\",\\\"show\\\",r])); print(\\\"status=\\\"+x[\\\"status\\\"]+\\\" result=\\\"+x[\\\"result\\\"]); print(\\\"candidate=\\\"+x[\\\"git\\\"][\\\"head_sha\\\"]+\\\" tree=\\\"+x[\\\"git\\\"][\\\"head_tree\\\"]); print(\\\"changed_files=\\\"+\\\", \\\".join(x[\\\"changed_files\\\"])); print(\\\"sourceTreeHash=\\\"+x[\\\"certification\\\"][\\\"source_tree_hash\\\"]); print(\\\"release_verify_exit=\\\"+str(next(c[\\\"exit_code\\\"] for c in x[\\\"checks\\\"] if c[\\\"type\\\"]==\\\"release_verify\\\"))); print(\\\"native=\\\"+x[\\\"native_evidence\\\"][\\\"node\\\"]+\\\", \\\"+x[\\\"native_evidence\\\"][\\\"xcode\\\"]+\\\", \\\"+x[\\\"native_evidence\\\"][\\\"profile_id\\\"]+\\\", 17/17 tests, 9/9 baselines\\\"); print(\\\"boundaries=\\\"+\\\", \\\".join(x[\\\"support_boundaries\\\"].keys()))'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy git status --short --branch && rtk proxy git rev-parse HEAD && rtk proxy git rev-parse HEAD''^{tree}'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy rm /tmp/expo-base-chg261-r5-audit.json /tmp/expo-base-chg261-r5-evidence.index'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.157.0",
+    "configured_model": "gpt-6-luna",
+    "event_count": 109,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 94.07,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 1435904,
+      "fresh_input_tokens": 90439,
+      "input_tokens": 1526343,
+      "non_reasoning_output_tokens": 13467,
+      "output_tokens": 34701,
+      "reasoning_output_tokens": 21234,
+      "total_processed_tokens": 1561044
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "f9265596085d17ea83b0c1dfa7a6cebab9313b1c",
+      "subject": "chore(release): refresh CHG-261 current-source certification"
+    }
+  ],
+  "diff": {
+    "additions": 61,
+    "changed_files": 3,
+    "commit_count": 1,
+    "deletions": 63
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 3,
+    "items": [
+      {
+        "bytes": 6578,
+        "path": "docs/RELEASE_READINESS.md",
+        "sha256": "e9fe7b223ec8463192d94dbcfc63785e79e7789539e18f3a8648a57d066b331b"
+      },
+      {
+        "bytes": 5781,
+        "path": "docs/STATUS.md",
+        "sha256": "b57c5fb42e5cc7025711cd3cf3c7091294f356633c707b84f703f483cdbc4105"
+      },
+      {
+        "bytes": 2231,
+        "path": "release-candidate.certification.json",
+        "sha256": "9dc10542055fa4b642d5081cd2c900e857aafee765865f7b92c69bd0c327bc20"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.5-dashboard-controls-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.5-dashboard-controls-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-26T23:26:32Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "branch": "codex/expo-base-chg261-current-main-certification-refresh-r5",
+    "detached_verify": false,
+    "head_sha": "f9265596085d17ea83b0c1dfa7a6cebab9313b1c",
+    "remote_exact_head": true,
+    "remote_head_sha": "f9265596085d17ea83b0c1dfa7a6cebab9313b1c",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "0470d0edd4306e3134da5f1a15816793e1955352",
+    "work_branch": "codex/expo-base-chg261-current-main-certification-refresh-r5",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-efc2c6f3b174ee45fd1b099f",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r5",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg261-current-main-certification-refresh-r5"
+  },
+  "operation": "FIX",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.5-dashboard-controls-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "af81b8552f9d6a33847310e3c6bcd2d48401782b963a58efd2993e93570cb4aa"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg261-current-main-certification-refresh-r5",
+  "schema_version": 1,
+  "started_at": "2026-09-26T23:14:24Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 728,
+    "queue_seconds": 1,
+    "total_seconds": 729
+  },
+  "transport": {
+    "bytes": 6172,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 5819,
+    "prompt_sha256": "9e25baf2bf3faafd59793884f60169a30037a1e41ad040d94728ed19da3e35c8",
+    "sha256": "efc2c6f3b174ee45fd1b099f5475af3ab11248f8e606f39b85fc4f881a5bcf45"
+  }
+}
