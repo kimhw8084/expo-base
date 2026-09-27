@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { releaseArtifactPaths } from './release-version.mjs';
 
 const root = process.cwd();
+const releaseArtifacts = releaseArtifactPaths(JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')).version);
 const required = [
   'package.json',
   'AGENTS.md',
@@ -144,7 +146,8 @@ const required = [
   'scripts/test-golden-architecture.mjs',
   'scripts/test-i18n-kernel.mjs',
   'docs/RELEASE_READINESS.md',
-  'docs/RELEASE_NOTES_1.0.0.md',
+  releaseArtifacts.governance,
+  releaseArtifacts.notes,
   'packages/tokens/src/brand.ts',
   'apps/reference/brand.ts',
   'docs/CERTIFICATION.md',

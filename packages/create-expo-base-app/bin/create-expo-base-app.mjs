@@ -424,8 +424,9 @@ function addVendoredPackage(files, sourceRoot, packageName, packageNames, versio
 
 function addScaffolderPackage(files, sourceRoot) {
   const sourceDirectory = path.join(sourceRoot, 'packages', 'create-expo-base-app');
+  const sourceManifest = readJsonFile(path.join(sourceDirectory, 'package.json'));
   files['packages/create-expo-base-app/package.json'] = JSON.stringify({
-    name: '@expo-base/create-app', version: '1.0.0', private: true, type: 'module',
+    name: '@expo-base/create-app', version: sourceManifest.version, private: true, type: 'module',
     bin: { 'scaffold-expo-base-screen': 'bin/scaffold-expo-base-screen.mjs' },
   }, null, 2) + '\n';
   for (const relative of ['bin/scaffold-expo-base-screen.mjs', 'lib/screen-scaffold.mjs', 'lib/task-effects.mjs']) {

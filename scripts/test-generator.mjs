@@ -6,6 +6,8 @@ import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 
 const root = process.cwd();
+const sourceVersion = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')).version;
+const generatorVersion = JSON.parse(fs.readFileSync(path.join(root, 'packages/create-expo-base-app/package.json'), 'utf8')).version;
 const destination = path.join(root, 'apps', '.tmp-generated-app');
 const capabilityDestination = path.join(root, 'apps', '.tmp-generated-capability-app');
 const standaloneDestination = fs.mkdtempSync(path.join(os.tmpdir(), 'expo-base-chg102-minimal-'));
@@ -28,7 +30,7 @@ try {
   const appConfig = fs.readFileSync(path.join(destination, 'app.config.ts'), 'utf8');
   assert.equal(appConfig.includes("import { appBrand } from './brand';"), false, 'Expo config must not depend on runtime TypeScript brand loading');
   assert.ok(appConfig.includes('name: "Orbit Ledger"'));
-  assert.ok(appConfig.includes("version: '1.0.0'"));
+  assert.ok(appConfig.includes("version: '1.0.0'"), 'generated product app keeps its product-owned starting version');
   assert.ok(appConfig.includes('com.expobase.orbitledger'));
   assert.ok(appConfig.includes("associatedDomains: ['applinks:app.example.com']"));
   assert.ok(appConfig.includes("autoVerify: true"));
@@ -47,7 +49,7 @@ try {
   assert.ok(services.includes('createDemoServices'));
   const compatibility = JSON.parse(fs.readFileSync(path.join(root, 'expo-base.compatibility.json'), 'utf8'));
   const generatedPackage = JSON.parse(fs.readFileSync(path.join(destination, 'package.json'), 'utf8'));
-  assert.equal(generatedPackage.version, '1.0.0');
+  assert.equal(generatedPackage.version, '1.0.0', 'generated product package keeps its product-owned starting version');
   assert.equal(generatedPackage.devDependencies.xcode, undefined, 'native certification tooling must not leak into generated apps');
   for (const dep of ['expo','expo-router','react','react-dom','react-native','react-native-unistyles','react-native-reanimated','react-native-svg','react-native-web','expo-linking']) assert.equal(generatedPackage.dependencies[dep], compatibility[dep], dep);
   assert.equal(generatedPackage.devDependencies.typescript, compatibility.typescript);
@@ -249,8 +251,8 @@ try {
     assert.equal(provenance.schemaVersion, 1);
     assert.equal(provenance.sourceRepository, 'https://github.com/kimhw8084/expo-base');
     assert.equal(provenance.sourceCommit, spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).stdout.trim());
-    assert.equal(provenance.sourceVersion, '1.0.0');
-    assert.equal(provenance.generatorVersion, '1.0.0');
+    assert.equal(provenance.sourceVersion, sourceVersion);
+    assert.equal(provenance.generatorVersion, generatorVersion);
     assert.equal(provenance.sourceTree, spawnSync('git', ['rev-parse', 'HEAD^{tree}'], { cwd: root, encoding: 'utf8' }).stdout.trim());
     const acceptanceObligations = JSON.parse(fs.readFileSync(path.join(target, '.expo-base/acceptance-obligations.json'), 'utf8'));
     assert.equal(acceptanceObligations.schemaVersion, 1);
@@ -286,6 +288,10 @@ try {
     assert.ok(fs.existsSync(path.join(target, '.expo-base/acceptance.log')));
 
     if (target === standaloneDestination) {
+      for (const packageName of fs.readdirSync(path.join(target, 'packages'))) {
+        const manifest = JSON.parse(fs.readFileSync(path.join(target, 'packages', packageName, 'package.json'), 'utf8'));
+        assert.equal(manifest.version, sourceVersion, `${target}/packages/${packageName} Expo Base version`);
+      }
       const resolvedObligations = {
         ...acceptanceObligations,
         obligations: acceptanceObligations.obligations.map((obligation, index) => ({

@@ -2,11 +2,13 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { releaseArtifactPaths } from './release-version.mjs';
 
 const root = process.cwd();
 const output = join(root, 'release-candidate.certification.json');
 const manifest = JSON.parse(readFileSync(join(root, 'ios.certification.json'), 'utf8'));
 const packageJson = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+const releaseArtifacts = releaseArtifactPaths(packageJson.version);
 const profile = manifest.profiles[0];
 const certifiedCommit = process.env.EXPO_BASE_CERTIFIED_COMMIT;
 
@@ -63,7 +65,7 @@ const record = {
     resultBundle: 'test-results/ios-native-certification/ExpoBaseNativeCertification-release.xcresult',
   },
   openSeverityCounts: { P0: 0, P1: 0, P2: 0, P3: 0 },
-  android: { policy: 'B', status: 'deferred/waived', reason: 'Android native acceptance is not required by the 1.0 Policy B decision.' },
+  android: { policy: 'B', status: 'deferred/waived', reason: `Android native acceptance remains deferred/uncertified for ${packageJson.version}. The historical waiver is context only, not new release evidence. No Android PASS, TalkBack usability acceptance, or universal-native support is claimed.` },
   boundaries: {
     voiceOver: 'VoiceOver subjective human review not executed',
     dynamicType: 'Dynamic Type SIMULATOR_LIMITED on the installed iOS 26.5 runtime',
@@ -72,7 +74,7 @@ const record = {
   evidence: {
     manifest: 'ios.certification.json',
     nativeAcceptance: 'docs/IOS_NATIVE_ACCEPTANCE.md',
-    governance: 'docs/RELEASE_CANDIDATE_1_0.md',
+    governance: releaseArtifacts.governance,
   },
 };
 if (existsSync(output)) throw new Error('Certification record already exists; deliberate replacement is required.');

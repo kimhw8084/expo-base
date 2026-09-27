@@ -1,7 +1,7 @@
 export default {
   name: 'Expo Base Reference',
   slug: 'expo-base-reference',
-  version: '1.0.0',
+  version: '1.1.0',
   orientation: 'default',
   scheme: 'expo-base',
   userInterfaceStyle: 'automatic',

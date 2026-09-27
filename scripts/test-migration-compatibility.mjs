@@ -5,10 +5,12 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
+import { releaseArtifactPaths } from './release-version.mjs';
 
 const root = process.cwd();
 const require = createRequire(import.meta.url);
 const generator = path.join(root, 'packages/create-expo-base-app/bin/create-expo-base-app.mjs');
+const currentReleaseNotes = releaseArtifactPaths(JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')).version).notes;
 
 // These are the only v1 package paths that were application-facing in the exact 1.0.0
 // documentation, reference app, generator, or screen-scaffolder contract. Internal package
@@ -61,6 +63,7 @@ const ALLOWED_LEGACY_PATHS = new Set([
   'docs/PUBLIC_API.md',
   'docs/MIGRATION.md',
   'docs/IDENTITY_CONVERGENCE_CHG24.md',
+  currentReleaseNotes,
   'docs/GOLDEN_TEMPLATE_AUDIT.md',
   'docs/golden-template-capabilities.json',
   'docs/GOLDEN_PRODUCT_QUALITY_AUDIT.md',

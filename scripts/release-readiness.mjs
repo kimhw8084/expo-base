@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { releaseArtifactPaths } from './release-version.mjs';
 
 const root = process.cwd();
 const failures = [];
@@ -40,13 +41,37 @@ if (!process.argv.includes('--check')) {
 const packageJson = readJson('package.json');
 const compatibility = readJson('expo-base.compatibility.json');
 const manifest = readJson('ios.certification.json');
+const goldenCertification = readJson('golden.certification.json');
 const recordPath = 'release-candidate.certification.json';
-if (packageJson.version !== '1.0.0') fail('Root package version must be 1.0.0.');
+let releaseArtifacts;
+try { releaseArtifacts = releaseArtifactPaths(packageJson.version); }
+catch (error) { fail(error.message); }
+const lock = readJson('package-lock.json');
+if (packageJson.private !== true) fail('The Expo Base source workspace must remain private; npm publication is outside this release.');
+if (lock.version !== packageJson.version || lock.packages?.['']?.version !== packageJson.version) fail('Root package-lock version entries must match the Expo Base release version.');
+for (const scope of ['apps', 'packages']) {
+  const scopePath = join(root, scope);
+  if (!existsSync(scopePath)) continue;
+  for (const entry of readdirSync(scopePath, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const manifestPath = `${scope}/${entry.name}/package.json`;
+    if (!existsSync(join(root, manifestPath))) continue;
+    const workspace = readJson(manifestPath);
+    if (workspace.version !== packageJson.version) fail(`${manifestPath} version must match Expo Base ${packageJson.version}.`);
+    if (workspace.private !== true) fail(`${manifestPath} must remain private; npm publication is outside this release.`);
+    if (lock.packages?.[`${scope}/${entry.name}`]?.version !== packageJson.version) fail(`package-lock workspace version for ${manifestPath} must match Expo Base ${packageJson.version}.`);
+  }
+}
+const referenceConfig = readFileSync(join(root, 'apps/reference/app.config.ts'), 'utf8');
+if (referenceConfig.match(/\bversion:\s*['"]([^'"]+)['"]/)?.[1] !== packageJson.version) fail('Reference Expo app semantic version must match the Expo Base release version.');
+const androidRuntimePolicy = String(goldenCertification.nativeValidation?.androidRuntime ?? '').toLowerCase();
+if (!androidRuntimePolicy.includes('deferred') || !androidRuntimePolicy.includes('uncertified') || !androidRuntimePolicy.includes('no-pass-claimed')) fail('Golden certification must keep Android deferred, uncertified, and without a PASS claim.');
 if (normalizeVersion(compatibility.expo) !== normalizeVersion(packageJson.dependencies.expo) || normalizeVersion(compatibility.react) !== normalizeVersion(packageJson.dependencies.react) || normalizeVersion(compatibility['react-native']) !== normalizeVersion(packageJson.dependencies['react-native'])) fail('Compatibility manifest does not match root runtime versions.');
 if (packageJson.devDependencies?.xcode !== '3.0.1') fail('The first-party xcode tooling dependency must be a direct exact devDependency at 3.0.1.');
 for (const file of [
-  'docs/RELEASE_CANDIDATE_1_0.md', 'docs/IOS_NATIVE_ACCEPTANCE.md', 'docs/RELEASE_READINESS.md',
-  'ios.certification.json', 'golden.certification.json', 'mobile.certification.json',
+  ...(releaseArtifacts ? [releaseArtifacts.governance, releaseArtifacts.notes] : []),
+  'docs/IOS_NATIVE_ACCEPTANCE.md', 'docs/RELEASE_READINESS.md', 'ios.certification.json',
+  'golden.certification.json', 'mobile.certification.json',
 ]) if (!existsSync(join(root, file))) fail(`Required release governance artifact is missing: ${file}`);
 if (git(['ls-files', 'apps/reference/ios', 'apps/reference/android'])) fail('Generated apps/reference native directories must remain untracked under CNG.');
 
@@ -77,7 +102,9 @@ if (!existsSync(join(root, recordPath))) {
   const hostedNames = new Set((record.hostedChecks ?? []).filter((check) => check.required).map((check) => check.name));
   for (const required of ['runtime-web', 'structural', 'mobile', 'golden']) if (!hostedNames.has(required)) fail(`Certification record is missing required hosted check ${required}.`);
   for (const severity of ['P0', 'P1', 'P2']) if (record.openSeverityCounts?.[severity] !== 0) fail(`Open ${severity} count must be zero.`);
-  if (record.android?.policy !== 'B' || record.android.status !== 'deferred/waived') fail('Android Policy B waiver must be explicit.');
+  if (record.android?.policy !== 'B' || record.android.status !== 'deferred/waived') fail('Android native deferral must remain explicit under Policy B.');
+  if (!/deferred\/uncertified/i.test(record.android?.reason ?? '') || !/historical waiver/i.test(record.android?.reason ?? '') || !/no android pass/i.test(record.android?.reason ?? '') || !/universal-native support/i.test(record.android?.reason ?? '')) fail('Android boundary must state current uncertified status, historical waiver limits, and nonclaims.');
+  if (releaseArtifacts && record.evidence?.governance !== releaseArtifacts.governance) fail('Certification record must identify the governance document derived from the current release version.');
   if (!record.boundaries?.voiceOver || !record.boundaries?.dynamicType || !record.boundaries?.physicalDevice) fail('VoiceOver, Dynamic Type, and physical-device boundaries must be explicit.');
 }
 
@@ -88,4 +115,4 @@ if (failures.length) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
-console.log('Expo Base release readiness passed: version, source identity, native governance, manifests, API/dependency boundaries, and certification record are consistent.');
+console.log(`Expo Base ${packageJson.version} release readiness passed: coordinated versions, source identity, native governance, manifests, API/dependency boundaries, and certification record are consistent.`);
