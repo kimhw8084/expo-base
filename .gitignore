@@ -24,4 +24,6 @@ DerivedData/
 !tests/native/ios/baselines/
 !tests/native/ios/baselines/**/*.png
 android/
+!tests/native/android/
+!tests/native/android/**
 .DS_Store
