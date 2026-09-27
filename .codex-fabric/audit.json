@@ -1,0 +1,1172 @@
+{
+  "accepted_at": "2026-09-27T14:17:38Z",
+  "changed_files": [
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/app.config.ts",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "apps/reference/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "docs/CERTIFICATION.md",
+      "status": "M"
+    },
+    {
+      "additions": 78,
+      "deletions": 0,
+      "path": "docs/RELEASE_CANDIDATE_1_1.md",
+      "status": "A"
+    },
+    {
+      "additions": 52,
+      "deletions": 0,
+      "path": "docs/RELEASE_NOTES_1.1.0.md",
+      "status": "A"
+    },
+    {
+      "additions": 76,
+      "deletions": 66,
+      "path": "docs/RELEASE_READINESS.md",
+      "status": "M"
+    },
+    {
+      "additions": 42,
+      "deletions": 48,
+      "path": "docs/STATUS.md",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "golden.certification.json",
+      "status": "M"
+    },
+    {
+      "additions": 75,
+      "deletions": 75,
+      "path": "package-lock.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/accessibility/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/adapters/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/auth/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/authorization/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/capabilities/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/components/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 1,
+      "path": "packages/create-expo-base-app/bin/create-expo-base-app.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/create-expo-base-app/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/data-display/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/device/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/expo-base-doctor/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/feedback/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/form-rhf/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/forms/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/haptics/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/i18n/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/icons/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/layouts/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-adapters/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-auth/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-authorization/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-capabilities/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-device/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-form-rhf/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-haptics/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-linking-expo/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-linking/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-local-auth/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-media/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-navigation-router/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-notifications/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-observability/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-platform/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-preferences/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-runtime-capabilities/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-runtime/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-secure-storage/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-server-state/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-session-security/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-sharing/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-tokens/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-ui/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-updates/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/legacy-compat-visualization-advanced/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/linking-expo/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/linking/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/lists/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/local-auth/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/media-presentation/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/media/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/migrate-expo-base-app/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/motion/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/navigation-router/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/navigation/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/notifications/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/observability/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/overlays/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/patterns/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/platform/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/preferences/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/primitives/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/runtime-capabilities/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/runtime/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/secure-storage/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/server-state/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/session-security/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/sharing/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/testing/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/tokens/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/ui/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/updates/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/visualization-advanced/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 1,
+      "deletions": 1,
+      "path": "packages/visualization/package.json",
+      "status": "M"
+    },
+    {
+      "additions": 6,
+      "deletions": 6,
+      "path": "release-candidate.certification.json",
+      "status": "M"
+    },
+    {
+      "additions": 2,
+      "deletions": 2,
+      "path": "scripts/check-node-version.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 32,
+      "deletions": 5,
+      "path": "scripts/release-readiness.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 11,
+      "deletions": 0,
+      "path": "scripts/release-version.mjs",
+      "status": "A"
+    },
+    {
+      "additions": 10,
+      "deletions": 4,
+      "path": "scripts/test-generator.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 3,
+      "deletions": 0,
+      "path": "scripts/test-migration-compatibility.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 1,
+      "path": "scripts/validate.mjs",
+      "status": "M"
+    },
+    {
+      "additions": 4,
+      "deletions": 2,
+      "path": "scripts/write-release-certification-record.mjs",
+      "status": "M"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'git status --short --branch && git rev-parse HEAD HEAD''^{tree} main main''^{tree} ba1b6161a61ae53cef0db461ad30f6279a147ed7 ba1b6161a61ae53cef0db461ad30f6279a147ed7''^{tree} && git merge-base --is-ancestor main ba1b6161a61ae53cef0db461ad30f6279a147ed7; printf '\"'ancestry_exit=%s\\\\n' \\\"\"'$?\" && git branch --show-current && git status --porcelain=v1'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"cat /Users/haewonkim/.codex/RTK.md /Users/haewonkim/.codex/law.md && git show -s --format='HEAD %H%nHEAD parent %P%nHEAD subject %s' HEAD && git show -s --format='candidate %H%ncandidate parent %P%ncandidate subject %s' ba1b6161a61ae53cef0db461ad30f6279a147ed7 && git branch -avv --no-abbrev\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk git status --short --branch && rtk git rev-parse HEAD HEAD''^{tree} origin/main origin/main''^{tree} ba1b6161a61ae53cef0db461ad30f6279a147ed7''^ && rtk git diff --quiet && rtk git merge --ff-only ba1b6161a61ae53cef0db461ad30f6279a147ed7 && rtk git rev-parse HEAD HEAD''^{tree} origin/main && rtk git status --short --branch'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'export PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH; rtk node --version; printf \"node_exit=%s'\"\\\\n\\\" \\\"\"'$?\"; rtk npm ci; rc=$?; printf \"npm_ci_exit=%s'\"\\\\n\\\" \\\"\"'$rc\"; exit \"$rc\"'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'export PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH; rtk proxy npm run golden:verify > /tmp/expo-base-chg282-r2-golden.log 2>&1; rc=$?; rtk proxy tail -n 80 /tmp/expo-base-chg282-r2-golden.log; printf \"golden_verify_exit=%s'\"\\\\n\\\" \\\"\"'$rc\"; exit \"$rc\"'\"'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'export PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH; rtk proxy npm run mobile:verify > /tmp/expo-base-chg282-r2-mobile.log 2>&1; rc=$?; rtk proxy tail -n 100 /tmp/expo-base-chg282-r2-mobile.log; printf \"mobile_verify_exit=%s'\"\\\\n\\\" \\\"\"'$rc\"; exit \"$rc\"'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'export PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH; rtk proxy npm run test:generator > /tmp/expo-base-chg282-r2-generator.log 2>&1; rc=$?; rtk proxy tail -n 80 /tmp/expo-base-chg282-r2-generator.log; printf \"test_generator_exit=%s'\"\\\\n\\\" \\\"\"'$rc\"; exit \"$rc\"'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'export PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH; failed=0; gate() { name=$1; script=$2; log=/tmp/expo-base-chg282-r2-$name.log; rtk proxy npm run \"$script\" > \"$log\" 2>&1; rc=$?; rtk proxy tail -n 35 \"$log\"; printf \"%s_exit=%s'\"\\\\n\\\" \\\"\"'$name\" \"$rc\"; if [ \"$rc\" -ne 0 ]; then failed=1; fi; }; gate migration_upgrade_plan test:migration-upgrade-plan; gate migration_compatibility test:migration-compatibility; exit \"$failed\"'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'export PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH; failed=0; gate() { name=$1; script=$2; log=/tmp/expo-base-chg282-r2-$name.log; rtk proxy npm run \"$script\" > \"$log\" 2>&1; rc=$?; rtk proxy tail -n 30 \"$log\"; printf \"%s_exit=%s'\"\\\\n\\\" \\\"\"'$name\" \"$rc\"; if [ \"$rc\" -ne 0 ]; then failed=1; fi; }; gate check_package_manifests check:package-manifests; gate check_public_api check:public-api; gate check_dependency_graph check:dependency-graph; gate check_cng_freshness check:cng-freshness; gate test_node_version_policy test:node-version-policy; exit \"$failed\"'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'export PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH; rtk proxy npm run release:verify > /tmp/expo-base-chg282-r2-release-verify.log 2>&1; rc=$?; rtk proxy tail -n 120 /tmp/expo-base-chg282-r2-release-verify.log; printf \"release_verify_exit=%s'\"\\\\n\\\" \\\"\"'$rc\"; exit \"$rc\"'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy cat release-candidate.certification.json'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n -C 5 'sourceTreeHash|sourceTree' scripts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sed -n '1,45p' scripts/release-readiness.mjs && rtk proxy sed -n '92,138p' scripts/release-readiness.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'export PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH; rtk node --input-type=module -e \"import { createHash } from '\"\\\\\\\"node:crypto\\\\\\\"; import { readFileSync } from \\\\\\\"node:fs\\\\\\\"; import { spawnSync } from \\\\\\\"node:child_process\\\\\\\"; const record = JSON.parse(readFileSync(\\\\\\\"release-candidate.certification.json\\\\\\\", \\\\\\\"utf8\\\\\\\")); const files = spawnSync(\\\\\\\"git\\\\\\\", [\\\\\\\"ls-files\\\\\\\", \\\\\\\"-z\\\\\\\"], { encoding: \\\\\\\"utf8\\\\\\\" }).stdout.split(\\\\\\\"\\\\\\\\0\\\\\\\").filter(Boolean).filter((file) => file \"'!== '\"\\\\\\\"release-candidate.certification.json\\\\\\\"); const hash = createHash(\\\\\\\"sha256\\\\\\\"); for (const file of files) { hash.update(file); hash.update(\\\\\\\"\\\\\\\\0\\\\\\\"); hash.update(createHash(\\\\\\\"sha256\\\\\\\").update(readFileSync(file)).digest(\\\\\\\"hex\\\\\\\")); hash.update(\\\\\\\"\\\\\\\\n\\\\\\\"); } const computed = hash.digest(\\\\\\\"hex\\\\\\\"); const required = [\\\\\\\"runtime-web\\\\\\\", \\\\\\\"structural\\\\\\\", \\\\\\\"mobile\\\\\\\", \\\\\\\"golden\\\\\\\"]; const requiredPresent = required.every((name) => record.hostedChecks.some((check) => check.name === name && check.required)); const tag = spawnSync(\\\\\\\"git\\\\\\\", [\\\\\\\"show-ref\\\\\\\", \\\\\\\"--verify\\\\\\\", \\\\\\\"--quiet\\\\\\\", \\\\\\\"refs/tags/v1.1.0\\\\\\\"]); const checks = { sourceTreeHashMatches: computed === record.sourceTreeHash, recordVersion: record.version, certifiedCommit: record.certifiedCommit, governance: record.evidence.governance, requiredHostedChecks: requiredPresent, native: { node: record.native.node, xcode: record.native.xcode, profileId: record.native.profileId, releaseTestsPassed: record.native.releaseTestsPassed, visualBaselinesPassed: record.native.visualBaselinesPassed }, android: { policy: record.android.policy, status: record.android.status, reason: record.android.reason }, boundaries: record.boundaries, v1_1_0TagAbsent: tag.status \"'!== 0 }; if (computed !== record.sourceTreeHash || record.version !== '\"\\\\\\\"1.1.0\\\\\\\" || record.certifiedCommit \"'!== '\"\\\\\\\"9895d04052bb8aac98300d8d208f18614ae52b73\\\\\\\" || record.evidence.governance \"'!== '\"\\\\\\\"docs/RELEASE_CANDIDATE_1_1.md\\\\\\\" || \"'!requiredPresent || record.native.node !== '\"\\\\\\\"v22.23.2\\\\\\\" || record.native.xcode \"'!== '\"\\\\\\\"Xcode 27.0\\\\\\\" || record.native.profileId \"'!== '\"\\\\\\\"iphone-17-pro-ios-26.5\\\\\\\" || record.native.releaseTestsPassed \"'!== 17 || record.native.visualBaselinesPassed !== 9 || record.android.policy !== '\"\\\\\\\"B\\\\\\\" || record.android.status \"'!== '\"\\\\\\\"deferred/waived\\\\\\\" || \"'!/deferred'\"\\\\\\\\/uncertified/i.test(record.android.reason) || \"'!/historical waiver/i.test(record.android.reason) || !/no android pass/i.test(record.android.reason) || !/universal-native support/i.test(record.android.reason) || !record.boundaries.voiceOver || !record.boundaries.dynamicType || !record.boundaries.physicalDevice || tag.status === 0) { console.error(JSON.stringify({ computedSourceTreeHash: computed, checks }, null, 2)); process.exit(1); } console.log(JSON.stringify({ computedSourceTreeHash: computed, trackedFilesHashed: files.length, checks }, null, 2));\"'\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sed -n '1,60p' scripts/check-ultimate-audit.mjs && rtk rg -n 'workspace count|workspaces|47|49' docs/ULTIMATE_GOLDEN_AUDIT.md docs/ULTIMATE_GOLDEN_COVERAGE.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy sed -n '1,180p' scripts/check-dependency-graph.mjs && rtk proxy sed -n '1,35p' docs/ULTIMATE_GOLDEN_AUDIT.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'head=\"'$(rtk proxy git rev-parse HEAD); tree=$(rtk proxy git rev-parse HEAD''^{tree}); rtk proxy git diff --quiet ba1b6161a61ae53cef0db461ad30f6279a147ed7..HEAD; range_rc=$?; rtk proxy git diff --check; check_rc=$?; status=$(rtk proxy git status --porcelain=v1); printf \"HEAD=%s'\"\\\\nTREE=%s\\\\ndiff_candidate_to_HEAD_exit=%s\\\\ndiff_check_exit=%s\\\\nporcelain=%s\\\\n\\\" \\\"\"'$head\" \"$tree\" \"$range_rc\" \"$check_rc\" \"$status\"; if [ \"$head\" != ba1b6161a61ae53cef0db461ad30f6279a147ed7 ] || [ \"$tree\" != 23a3a6ba2511cd97fb7940b581feea0d52b55625 ] || [ \"$range_rc\" -ne 0 ] || [ \"$check_rc\" -ne 0 ] || [ -n \"$status\" ]; then exit 1; fi; printf \"final_state=clean_exact_candidate'\"\\\\n\\\"'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy rm -rf -- apps/.tmp-generated-app apps/.tmp-generated-capability-app && rtk proxy bash -c 'head=\"'$(rtk proxy git rev-parse HEAD); tree=$(rtk proxy git rev-parse HEAD''^{tree}); rtk proxy git diff --quiet ba1b6161a61ae53cef0db461ad30f6279a147ed7..HEAD; range_rc=$?; rtk proxy git diff --check; check_rc=$?; status=$(rtk proxy git status --porcelain=v1); printf \"HEAD=%s'\"\\\\nTREE=%s\\\\ndiff_candidate_to_HEAD_exit=%s\\\\ndiff_check_exit=%s\\\\nporcelain=%s\\\\n\\\" \\\"\"'$head\" \"$tree\" \"$range_rc\" \"$check_rc\" \"$status\"; if [ \"$head\" != ba1b6161a61ae53cef0db461ad30f6279a147ed7 ] || [ \"$tree\" != 23a3a6ba2511cd97fb7940b581feea0d52b55625 ] || [ \"$range_rc\" -ne 0 ] || [ \"$check_rc\" -ne 0 ] || [ -n \"$status\" ]; then exit 1; fi; printf \"final_state=clean_exact_candidate'\"\\\\n\\\"'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy bash -c 'export PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:\"'$PATH; failed=0; gate() { name=$1; shift; printf \"'\"\\\\n=== %s ===\\\\n\\\" \\\"\"'$name\"; \"$@\"; rc=$?; printf \"%s_exit=%s'\"\\\\n\\\" \\\"\"'$name\" \"$rc\"; if [ \"$rc\" -ne 0 ]; then failed=1; fi; }; gate runtime_verify rtk npm run runtime:verify; gate runtime_test_web rtk npm run runtime:test:web; gate golden_verify rtk npm run golden:verify; gate mobile_verify rtk npm run mobile:verify; gate test_generator rtk npm run test:generator; gate test_migration_upgrade_plan rtk npm run test:migration-upgrade-plan; gate test_migration_compatibility rtk npm run test:migration-compatibility; gate check_package_manifests rtk npm run check:package-manifests; gate check_public_api rtk npm run check:public-api; gate check_dependency_graph rtk npm run check:dependency-graph; gate check_cng_freshness rtk npm run check:cng-freshness; gate test_node_version_policy rtk npm run test:node-version-policy; exit \"$failed\"'\"'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.157.0",
+    "configured_model": "gpt-6-luna",
+    "event_count": 54,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 95.38,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 1872896,
+      "fresh_input_tokens": 90793,
+      "input_tokens": 1963689,
+      "non_reasoning_output_tokens": 7215,
+      "output_tokens": 33168,
+      "reasoning_output_tokens": 25953,
+      "total_processed_tokens": 1996857
+    },
+    "warnings": []
+  },
+  "commits": [
+    {
+      "sha": "ba1b6161a61ae53cef0db461ad30f6279a147ed7",
+      "subject": "chore(release): prepare Expo Base 1.1.0 candidate"
+    }
+  ],
+  "diff": {
+    "additions": 475,
+    "changed_files": 91,
+    "commit_count": 1,
+    "deletions": 288
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 82,
+    "items": [
+      {
+        "bytes": 1972,
+        "path": "apps/reference/package.json",
+        "sha256": "d4e9cffbe62af7e741eb2d0fc96ce31548ed2bef619182bb827ccdbd1e816e6a"
+      },
+      {
+        "bytes": 6425,
+        "path": "docs/CERTIFICATION.md",
+        "sha256": "2e785e28e67f12835031a263f03eebc4e7b7b8d63eb0afb8afc941d05465cda3"
+      },
+      {
+        "bytes": 4139,
+        "path": "docs/RELEASE_CANDIDATE_1_1.md",
+        "sha256": "8c221c2392c28410dfaf2c3d862ea696d5d41cc442730dbc9a0f2f47bf6e1cdb"
+      },
+      {
+        "bytes": 3427,
+        "path": "docs/RELEASE_NOTES_1.1.0.md",
+        "sha256": "0311df1e8b4a050c4552e06298bc879f76f9809985e69af35479e69a90a6832a"
+      },
+      {
+        "bytes": 6085,
+        "path": "docs/RELEASE_READINESS.md",
+        "sha256": "644395ed4b6dc08c2dbc8ba9920d71aaf0a3decc0c9afec8c36d94aa28dbd921"
+      },
+      {
+        "bytes": 5165,
+        "path": "docs/STATUS.md",
+        "sha256": "173574731ecf81b3706b404a8d547b0b985834d85e7d474a64d86cab705b1daa"
+      },
+      {
+        "bytes": 18766,
+        "path": "golden.certification.json",
+        "sha256": "950d349d27c9702727073a9ca01ed1045d89f22cf1c56ee2142621d3ce5beb60"
+      },
+      {
+        "bytes": 345774,
+        "path": "package-lock.json",
+        "sha256": "9f5c4de8df36dda030ee94030b1c242cb4f92ca934017b6429e3ab8beb76bd6e"
+      },
+      {
+        "bytes": 16285,
+        "path": "package.json",
+        "sha256": "5476b0234d6347bcd533b5e79117521acd7241a5f870c8f6a908ebe19f68bc07"
+      },
+      {
+        "bytes": 330,
+        "path": "packages/accessibility/package.json",
+        "sha256": "7c8d6c468229ad1560cbdbd3f0b473085ca9fb10fc46c3840a144890c71559ed"
+      },
+      {
+        "bytes": 150,
+        "path": "packages/adapters/package.json",
+        "sha256": "c65bafddf21908bfcaa3dd3b0fb618d5a1c01849b7504474ea4dcbc62105360c"
+      },
+      {
+        "bytes": 146,
+        "path": "packages/auth/package.json",
+        "sha256": "50ed0890707b9082cace567c524a3dda2a9ed152984685399d519eb09b946c57"
+      },
+      {
+        "bytes": 155,
+        "path": "packages/authorization/package.json",
+        "sha256": "94a269e745f21af093ed95fbfa01ad3eb36341fae423b47fb23523fc14b66b22"
+      },
+      {
+        "bytes": 205,
+        "path": "packages/capabilities/package.json",
+        "sha256": "257ee70d887391ca629993c4b4cfe740b26dd87f1003f3d1ee15213cf0ee89c7"
+      },
+      {
+        "bytes": 491,
+        "path": "packages/components/package.json",
+        "sha256": "dd4295e68e1c8f27211f6b8250a6bce5520b71930afb015208fb5c3851a25eb6"
+      },
+      {
+        "bytes": 244,
+        "path": "packages/create-expo-base-app/package.json",
+        "sha256": "b43ccffd9ca07f36966aad476596a283e79513c53479a8dbf9acfb02abbeab1e"
+      },
+      {
+        "bytes": 457,
+        "path": "packages/data-display/package.json",
+        "sha256": "1b506b84bcf7b76ba60544b4a39f7c8248d0d055b541e37786c8269de517bd2d"
+      },
+      {
+        "bytes": 354,
+        "path": "packages/device/package.json",
+        "sha256": "94fce3821e92e6c9ac1c8e7ea70f6ddf3cd9a17d053c46e034fc5f168cca7150"
+      },
+      {
+        "bytes": 148,
+        "path": "packages/expo-base-doctor/package.json",
+        "sha256": "d16dfd06e21f728f0bb44240162617b52204da363cf02584eae27abe03a8a1f3"
+      },
+      {
+        "bytes": 453,
+        "path": "packages/feedback/package.json",
+        "sha256": "15a4c12533affab8c2e61b87b2586c09df628c36191fa50f5b10f4ad6494f406"
+      },
+      {
+        "bytes": 319,
+        "path": "packages/form-rhf/package.json",
+        "sha256": "a6629c129098ac19edb584646e45df9109d596f28d919363ff830ab4d6eda186"
+      },
+      {
+        "bytes": 510,
+        "path": "packages/forms/package.json",
+        "sha256": "68a882cac4988421f56724f33d91a5d3f4fe08e1ff5c937873cca06d8fca6698"
+      },
+      {
+        "bytes": 321,
+        "path": "packages/haptics/package.json",
+        "sha256": "99324014d12cca0d659eedffed92d675e6b32ab67a7203500958f3c62171e34d"
+      },
+      {
+        "bytes": 227,
+        "path": "packages/i18n/package.json",
+        "sha256": "07ed3ef7106ed2387d3acde3e728fb3240a358594c2b7c4d2a9fc835fdd94ecc"
+      },
+      {
+        "bytes": 421,
+        "path": "packages/icons/package.json",
+        "sha256": "0b6e6ccb0cdf88c5d62d928f1f06e2bf74186e84dbf1956b72347ce44655718f"
+      },
+      {
+        "bytes": 439,
+        "path": "packages/layouts/package.json",
+        "sha256": "6549cec483e964f094badb63667c5e266ccba84b8ad58c9d1c44a8743b31e5e3"
+      },
+      {
+        "bytes": 397,
+        "path": "packages/legacy-compat-adapters/package.json",
+        "sha256": "5ef95152413951338c3675fe5d669603cee0eaf50385398fcf38b9f4c3c30176"
+      },
+      {
+        "bytes": 381,
+        "path": "packages/legacy-compat-auth/package.json",
+        "sha256": "e983390b9bf654916fee429dbf3e2cf767750eed8f2bcafb122420a2e6007340"
+      },
+      {
+        "bytes": 417,
+        "path": "packages/legacy-compat-authorization/package.json",
+        "sha256": "3b56602adb6227e6f444493671d00c72cae2a895b68b2526da8dd5c8282f14ee"
+      },
+      {
+        "bytes": 413,
+        "path": "packages/legacy-compat-capabilities/package.json",
+        "sha256": "5daf84f7307b926548fc8d3bf2006ca861aa44dd531f2710aae635115864a862"
+      },
+      {
+        "bytes": 389,
+        "path": "packages/legacy-compat-device/package.json",
+        "sha256": "402724d5b7143a07fe6951ff6f64306f1579753c25c8d189b5f1b377783296fc"
+      },
+      {
+        "bytes": 399,
+        "path": "packages/legacy-compat-form-rhf/package.json",
+        "sha256": "61779a604fab529ac0c8c35fc197e54cad635c76925480c1cd036270c35861fa"
+      },
+      {
+        "bytes": 393,
+        "path": "packages/legacy-compat-haptics/package.json",
+        "sha256": "87a282d94541212e64ec3f68a07296974cce4064c108fe74188c5b2774cc88f4"
+      },
+      {
+        "bytes": 413,
+        "path": "packages/legacy-compat-linking-expo/package.json",
+        "sha256": "a7f0ecb23e3cd0a451f632802c3d598fa0edf42dee3a84573b62e120a14b9261"
+      },
+      {
+        "bytes": 393,
+        "path": "packages/legacy-compat-linking/package.json",
+        "sha256": "65ba4fdba947abb8f107c7a5aa6c9de23b04f79c9867faffae423f7b36a33b8b"
+      },
+      {
+        "bytes": 405,
+        "path": "packages/legacy-compat-local-auth/package.json",
+        "sha256": "fc8068a227fa2e8a5e490edc882e005ef41ae0060b1711c16a8b714f11936d65"
+      },
+      {
+        "bytes": 385,
+        "path": "packages/legacy-compat-media/package.json",
+        "sha256": "4c6cce57c8c85060532b8bbc6cab07b82447f3b20c5890cfd4f6820cfc47af24"
+      },
+      {
+        "bytes": 435,
+        "path": "packages/legacy-compat-navigation-router/package.json",
+        "sha256": "09faa13bb733e396de30b41faa02185df295588c853df2482aaec0efe4c8cbf6"
+      },
+      {
+        "bytes": 417,
+        "path": "packages/legacy-compat-notifications/package.json",
+        "sha256": "5b72779d3be3fb9461f5c4f4e0ed4a18aa236294088bfbeee3bc05507f526db5"
+      },
+      {
+        "bytes": 417,
+        "path": "packages/legacy-compat-observability/package.json",
+        "sha256": "e19e03bcb33d44f8217a3d3c9320f339e40cb3f4ca6c64ab3426f4a554b7dfcd"
+      },
+      {
+        "bytes": 397,
+        "path": "packages/legacy-compat-platform/package.json",
+        "sha256": "9294e2bdc39de40eba274a6e5547b381aca892180f27cb9d3b12903e194657ed"
+      },
+      {
+        "bytes": 409,
+        "path": "packages/legacy-compat-preferences/package.json",
+        "sha256": "42399a3b7cb5428c85a279718d79cd7198883ee5cff3723a920a5b592e3d6744"
+      },
+      {
+        "bytes": 445,
+        "path": "packages/legacy-compat-runtime-capabilities/package.json",
+        "sha256": "2bb9f2465990ec34a4be332a02089983f3e463651a1bcfb76b923a0b6ba6a7cb"
+      },
+      {
+        "bytes": 393,
+        "path": "packages/legacy-compat-runtime/package.json",
+        "sha256": "2a9691e505aa2af44c1dd723a3fe533c35e95f0cac8dbbfca1c72297f4ad2a84"
+      },
+      {
+        "bytes": 421,
+        "path": "packages/legacy-compat-secure-storage/package.json",
+        "sha256": "a0d8459b606cdadc954d883f24e8fa9f8610ad6bf5adde8958a58e5c10e86382"
+      },
+      {
+        "bytes": 413,
+        "path": "packages/legacy-compat-server-state/package.json",
+        "sha256": "004472b03d875e601daacaf8a523fc5fc58b0ac6f4e65df0a7bd96d908c96a3f"
+      },
+      {
+        "bytes": 429,
+        "path": "packages/legacy-compat-session-security/package.json",
+        "sha256": "8994252db3ccc7726a011b68624160d112d57950f176f5bcc881f1b012a55a5d"
+      },
+      {
+        "bytes": 503,
+        "path": "packages/legacy-compat-sharing/package.json",
+        "sha256": "a672d58aed88ac6c1c462839325ba73452e5b60b60255a3db202bb8b40aaf62a"
+      },
+      {
+        "bytes": 389,
+        "path": "packages/legacy-compat-tokens/package.json",
+        "sha256": "72760421b70148e7700d157e7149c071d1969df4425c6cb0bf66974981e1768f"
+      },
+      {
+        "bytes": 373,
+        "path": "packages/legacy-compat-ui/package.json",
+        "sha256": "4cc89b6513eb5c500d6c474c6c4d02f709e628b9e114d0fb694f306d0358cb0a"
+      },
+      {
+        "bytes": 393,
+        "path": "packages/legacy-compat-updates/package.json",
+        "sha256": "924da5d4d446b62760e083c7905a69c84da32dec35092a772c7d73f521be604c"
+      },
+      {
+        "bytes": 453,
+        "path": "packages/legacy-compat-visualization-advanced/package.json",
+        "sha256": "72c8f410dc8d5ea7cccd5489cb984b0217bc1f317e75724cb40421154353374e"
+      },
+      {
+        "bytes": 240,
+        "path": "packages/linking-expo/package.json",
+        "sha256": "25fa5f694d9f0443619e020380a6882efeb6ad940e2f8e43fafd7810289746f5"
+      },
+      {
+        "bytes": 149,
+        "path": "packages/linking/package.json",
+        "sha256": "19c9fcb446685174a5c083cff8d20be34248a968f731bd6ac336ddd786bb159e"
+      },
+      {
+        "bytes": 353,
+        "path": "packages/lists/package.json",
+        "sha256": "ca46b055028afe7acdff9c2c99cd7e30324a08e6f1e09d7db9a6c32f4a39d6bc"
+      },
+      {
+        "bytes": 377,
+        "path": "packages/local-auth/package.json",
+        "sha256": "a9a243bf1399fd14466bed16bdaf9501efa338057d6bbad0e8e8fe242cb9e601"
+      },
+      {
+        "bytes": 397,
+        "path": "packages/media-presentation/package.json",
+        "sha256": "c24354e6daaea19126f6acd995bb94abe1be4a2dc22b8c82a7b75e362e4e549b"
+      },
+      {
+        "bytes": 394,
+        "path": "packages/media/package.json",
+        "sha256": "365d4a402ca4cfa00b0167e3287802ca86df197bb8c8d3377945d4459494da8c"
+      },
+      {
+        "bytes": 261,
+        "path": "packages/migrate-expo-base-app/package.json",
+        "sha256": "16eded4c808db2538202378c79c38ccc9c1a02e801b32a073ab32e948bcbf6b2"
+      },
+      {
+        "bytes": 336,
+        "path": "packages/motion/package.json",
+        "sha256": "b29b15c80af966e597c18adf157438155b3c27b76b6c529f09f2feaa2221a24b"
+      },
+      {
+        "bytes": 390,
+        "path": "packages/navigation-router/package.json",
+        "sha256": "ded393f6326e11644c64377e96249b13474e79680e0e57adc6cb10e148b981e7"
+      },
+      {
+        "bytes": 514,
+        "path": "packages/navigation/package.json",
+        "sha256": "70cc803ff4c00ba8a6536cca98771de49fad44fb767c617e678958eaeddbfbdb"
+      },
+      {
+        "bytes": 334,
+        "path": "packages/notifications/package.json",
+        "sha256": "200359c9be08f6a72e118bd720b703085d583fc7390dfd86672b62eab3af06ce"
+      },
+      {
+        "bytes": 266,
+        "path": "packages/observability/package.json",
+        "sha256": "e07892c033eba3e54f56b6f48aa6e4a5531ab54c235c2d3ecba869723cb3e484"
+      },
+      {
+        "bytes": 538,
+        "path": "packages/overlays/package.json",
+        "sha256": "d2f0567706ef3e36fcf10899b6bc7a3ac58cc9d97d437121d3ed3be69f56ba77"
+      },
+      {
+        "bytes": 528,
+        "path": "packages/patterns/package.json",
+        "sha256": "a427a56be45eb03aa2f4f349d1cb51e0383d6c61d82db0058a80d4b9cce8c5d4"
+      },
+      {
+        "bytes": 204,
+        "path": "packages/platform/package.json",
+        "sha256": "f182db5e1b727c23a626f4a64534cf9ce6eb542b83b2b59418c00122480bfd57"
+      },
+      {
+        "bytes": 352,
+        "path": "packages/preferences/package.json",
+        "sha256": "94ccb9e5a54f17b4103de58a0120636095e77a413a2c6c4d7ed625aedb212040"
+      },
+      {
+        "bytes": 354,
+        "path": "packages/primitives/package.json",
+        "sha256": "ecf1d622c246cab56bf565aa45354fa2d3fd5c3cf11510d564e0a6949e619f97"
+      },
+      {
+        "bytes": 370,
+        "path": "packages/runtime-capabilities/package.json",
+        "sha256": "c7f7b57ee442d32a2e7c5b21e5b58ed90b44ebea012946c2fc040cc44d8921fd"
+      },
+      {
+        "bytes": 619,
+        "path": "packages/runtime/package.json",
+        "sha256": "5b7f1b73d96793fae5e29c4eb20510e0f677d5f54cbabadb8044f50cfd537373"
+      },
+      {
+        "bytes": 365,
+        "path": "packages/secure-storage/package.json",
+        "sha256": "e48164bf4033bafe5f8d56833d0feb7a98eff65a35b4a0f3ce47e671269ae4de"
+      },
+      {
+        "bytes": 269,
+        "path": "packages/server-state/package.json",
+        "sha256": "e43091d3f8d88ea1135615a7d24bff2f8fae1ac8b27e28ffe0ecd37bccad4ef8"
+      },
+      {
+        "bytes": 158,
+        "path": "packages/session-security/package.json",
+        "sha256": "c8227b61889f78fcdd260005ebd35d3d8db621814825a4dded35edbd569adfcb"
+      },
+      {
+        "bytes": 533,
+        "path": "packages/sharing/package.json",
+        "sha256": "ed4106aee21020ab36f73cca8244a51a1e9b973a48d895ff0199d7831b87e35b"
+      },
+      {
+        "bytes": 203,
+        "path": "packages/testing/package.json",
+        "sha256": "801bf4f284aa43a76209e6641a97543e94df3494a8ab654f5b43e3b7bdfb3707"
+      },
+      {
+        "bytes": 148,
+        "path": "packages/tokens/package.json",
+        "sha256": "7f95a4f79a06aa27ee4043fae22393d7e902e9d5a32fb8743b748662ecfd5aa1"
+      },
+      {
+        "bytes": 694,
+        "path": "packages/ui/package.json",
+        "sha256": "4520eb665a0e270273ce8d4a3f2fa8bbf92c0abc240831fb2c2ba020bfa74c04"
+      },
+      {
+        "bytes": 322,
+        "path": "packages/updates/package.json",
+        "sha256": "5c830dbaeeac0a3f22f4ef345b982113fbdcdf14a2270555fdeccbba6b87b32f"
+      },
+      {
+        "bytes": 476,
+        "path": "packages/visualization-advanced/package.json",
+        "sha256": "068f6bcd47f52d17d66f18f3c6d7a2d5210204fde97c82dc09ca9c57dc599cea"
+      },
+      {
+        "bytes": 430,
+        "path": "packages/visualization/package.json",
+        "sha256": "8f864dd9f6629a0a5ac5fc83edcea68a741c8e68bb5e052c2d11fd06e6f79a1f"
+      },
+      {
+        "bytes": 2310,
+        "path": "release-candidate.certification.json",
+        "sha256": "e1e2aa9389e25be3fbf063783db0b24b3785a6c8a1b1a3be54e22be0cd004bdc"
+      }
+    ],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.5-dashboard-controls-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.5-dashboard-controls-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-27T14:42:01Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "9895d04052bb8aac98300d8d208f18614ae52b73",
+    "branch": "codex/expo-base-chg282-release-candidate-evidence-r2",
+    "detached_verify": false,
+    "head_sha": "ba1b6161a61ae53cef0db461ad30f6279a147ed7",
+    "remote_exact_head": true,
+    "remote_head_sha": "ba1b6161a61ae53cef0db461ad30f6279a147ed7",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "9895d04052bb8aac98300d8d208f18614ae52b73",
+    "work_branch": "codex/expo-base-chg282-release-candidate-evidence-r2",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-afd7b828c8e06f1fb7ac3f88",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg282-release-candidate-evidence-r2",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg282-release-candidate-evidence-r2"
+  },
+  "operation": "VERIFY",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.5-dashboard-controls-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "af81b8552f9d6a33847310e3c6bcd2d48401782b963a58efd2993e93570cb4aa"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg282-release-candidate-evidence-r2",
+  "schema_version": 1,
+  "started_at": "2026-09-27T14:17:39Z",
+  "status": "EXECUTED_CHANGE",
+  "timing": {
+    "execution_seconds": 1462,
+    "queue_seconds": 1,
+    "total_seconds": 1463
+  },
+  "transport": {
+    "bytes": 5149,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 4809,
+    "prompt_sha256": "47d8d5b50544d0902d33c1cf8fbf488841f4863de0e64b96387f11dc614b6b98",
+    "sha256": "afd7b828c8e06f1fb7ac3f885fb99dec59f7df20ed8a73a4dcfd2a35f917b76c"
+  }
+}
