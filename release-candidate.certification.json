@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "project": "expo-base",
-  "version": "1.0.0",
-  "certifiedCommit": "0470d0edd4306e3134da5f1a15816793e1955352",
+  "version": "1.1.0",
+  "certifiedCommit": "9895d04052bb8aac98300d8d208f18614ae52b73",
   "certifiedBranch": "main",
   "certifiedCommitRole": "protected-main-provenance",
-  "certifiedAt": "2026-09-26T23:18:33.881Z",
-  "sourceTreeHash": "bc13f25efd9cf591697e2e8eaf7850c7f72ba4392a0b463839de811cda5fa440",
+  "certifiedAt": "2026-09-27T04:33:40.117Z",
+  "sourceTreeHash": "442a4d9658dfcda3b7664d412b335dcacd631a1db4d15faa72cbac1d12354f4e",
   "sourceTreeHashPolicy": "SHA-256 of tracked repository files excluding this metadata record; metadata-only commits preserve the certified executable source identity.",
   "hostedChecks": [
     {
@@ -51,7 +51,7 @@
   "android": {
     "policy": "B",
     "status": "deferred/waived",
-    "reason": "Android native certification remains deferred/waived and uncertified under 1.0 Policy B after canceled CHG-149; no Android PASS is claimed."
+    "reason": "Android native acceptance remains deferred/uncertified for 1.1.0. The historical waiver is context only, not new release evidence. No Android PASS, TalkBack usability acceptance, or universal-native support is claimed."
   },
   "boundaries": {
     "voiceOver": "VoiceOver subjective human review not executed",
@@ -61,6 +61,6 @@
   "evidence": {
     "manifest": "ios.certification.json",
     "nativeAcceptance": "docs/IOS_NATIVE_ACCEPTANCE.md",
-    "governance": "docs/RELEASE_CANDIDATE_1_0.md"
+    "governance": "docs/RELEASE_CANDIDATE_1_1.md"
   }
 }

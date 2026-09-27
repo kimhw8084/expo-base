@@ -263,7 +263,7 @@
   },
   "nativeValidation": {
     "iosRuntime": "required-before-release-not-executed",
-    "androidRuntime": "waived-policy-b-until-pm-change",
+    "androidRuntime": "deferred-uncertified-no-pass-claimed",
     "sourceContracts": ["safe-area", "status-bar", "keyboard", "back-handling", "overlay-close", "orientation", "touch-targets", "theme-bootstrap", "optional-capabilities"]
   }
 }

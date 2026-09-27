@@ -6,7 +6,7 @@ const supported = isSupportedNodeVersion(process.version, { certification });
 if (!supported) {
   console.error('');
   console.error(certification
-    ? `Expo Base 1.0 certification requires Node.js ${certificationNodeMajor}.x >= ${minimumNodeVersion.join('.')}.`
+    ? `Expo Base release certification requires Node.js ${certificationNodeMajor}.x >= ${minimumNodeVersion.join('.')}.`
     : `Expo Base requires Node.js >= ${minimumNodeVersion.join('.')}.`);
   console.error(`Current Node.js: ${process.versions.node}`);
   console.error('Switch to Node 22 LTS, then reinstall dependencies.');
@@ -15,5 +15,5 @@ if (!supported) {
 }
 
 console.log(certification
-  ? `Node.js ${process.versions.node} satisfies Expo Base 1.0 certification Node.js ${certificationNodeMajor}.x >= ${minimumNodeVersion.join('.')}`
+  ? `Node.js ${process.versions.node} satisfies Expo Base release certification Node.js ${certificationNodeMajor}.x >= ${minimumNodeVersion.join('.')}`
   : `Node.js ${process.versions.node} satisfies Expo Base >= ${minimumNodeVersion.join('.')}`);

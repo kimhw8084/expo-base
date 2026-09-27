@@ -1,60 +1,67 @@
-# 1.0 release-readiness checklist
+# Expo Base 1.1.0 release-candidate readiness
 
-This document preserves the immutable tagged Expo Base `v1.0.0` release evidence and records the
-qualified current-main source baseline separately. The current governance refresh does not create a
-new tag, GitHub Release, npm publication, EAS/store deployment, or downstream-product release.
+This document governs the `v1.1.0` source-release candidate and preserves the tagged `v1.0.0`
+evidence below as history. Preparing this candidate does not authorize a tag, GitHub Release, npm
+publication, EAS/store deployment, merge, move of `main`, or downstream-product release.
 
-The repository is a public source/template workspace, not a configured multi-package npm
-publication. The root MIT license governs the repository source; all 47 workspace packages remain
-private, and any future package publication requires a separate package-release plan.
+Expo Base is a source/template repository, not a configured multi-package npm publication. Workspace
+packages remain private; any package publication requires a separate release plan.
 
-## Current-main source qualification
+## `v1.1.0` candidate lineage and scope
 
-- Protected `main` provenance and executable source baseline: `0470d0edd4306e3134da5f1a15816793e1955352`,
-  tree `665c2f82f9e04928d55eadd4d9d7de566eb998f1`, after CHG-186, CHG-187, and CHG-201.
-- Runtime Web run `35949677933` succeeded on exact-current `main`. Golden Certification run
-  `35949678010` succeeded on the same source for structural, mobile, and golden jobs.
-- R4 current-source `npm run ios:verify` passed under Node `v22.23.2` and Xcode `27.0` on the
-  iPhone 17 Pro / iOS 26.5 Simulator profile: 17 Release tests and 9 existing native visual
-  baselines passed. The Release xcresult, summary, xcodebuild log, and visual evidence were present
-  after execution. The exact tested `main` commit was the sole parent; there were zero source
-  changes and the worktree was clean. Evidence:
-  `refs/heads/codex-fabric/evidence/expo-base/chg261-ios-current-source-verify-r4@923d177831f5c17541b5155a5872bb101850c1f6:.codex-fabric/audit.json`.
-- R5 consists of documentation and certification-metadata changes only. These are non-runtime
-  governance changes; R4 did not execute the R5 documentation bytes. The refreshed record binds the
-  final tracked candidate contents, excluding only that record. `npm run release:verify` checks this
-  identity and release-governance contracts; it is not a new native or hosted execution.
+- Exact protected pre-release `main` provenance: commit
+  `9895d04052bb8aac98300d8d208f18614ae52b73`, tree
+  `d804954a85da03553fdcae3ae98e86a5733acad9`.
+- CHG-261 independently certified and integrated the source/framework baseline at that provenance.
+  The `v1.1.0` version and native app metadata are new candidate bytes, so CHG-261 evidence is not
+  substituted for fresh candidate-bound gates.
+- SemVer classification: minor. The `v1.0.0` to `v1.1.0` delta adds capabilities and compatibility
+  support while retaining 1.x application-facing APIs. No intentional breaking change or major
+  migration is part of this candidate.
+- Coordinated version owners are the root Expo Base manifest, the reference app package and Expo
+  config, private workspace packages, root/workspace package-lock entries, and generated Expo Base
+  package/provenance metadata. Product apps' own starting version remains product-owned.
+- `release-candidate.certification.json` records the protected-main provenance and the exact
+  candidate source-tree hash separately. The hash excludes only the certification record itself.
 
-The refreshed `release-candidate.certification.json` binds the final candidate's tracked contents
-using the repository algorithm, which excludes only that metadata file. `certifiedCommit` records
-protected-main provenance; the source-tree hash identifies the final candidate contents. The
-record's `certifiedAt` is the governance-record refresh time, while native execution evidence remains
-the R4 run stated above. Passing local `npm run release:verify` validates deterministic governance
-and source invariants; it does not create a tag or publication or declare a release.
+## Candidate-bound evidence
 
-## Development gates — complete
+Run under Node `22.23.2`, Xcode `27.0`, and the semantic iPhone 17 Pro / iOS 26.5 Simulator profile:
 
-- [x] Shared architecture and package ownership are coherent.
-- [x] Expo Base tokens, themes, density, layouts, and reusable compositions are contract-checked.
-- [x] Forms, keyboard/focus behavior, overlays, navigation, feedback, data workflows, and async
-  action ownership are hardened.
-- [x] Auth, authorization, session security, linking, and service boundaries have stale-response and
-  failure-path protection.
-- [x] Reference-app showcase and generated-app foundation remain aligned.
-- [x] Generator tests pass and a fresh generated application type-checks.
-- [x] Expo Base Doctor passes with 94 checks, 0 failures, and 0 warnings.
-- [x] Runtime UI typecheck and repository/package/API contracts pass.
-- [x] Fresh static web export and Chromium/Firefox/WebKit certification pass: 385 passed / 2
-  intentional skips.
-- [x] Mobile-browser parity certification passes: 53 passed / 17 intentional visual-profile skips
-  across touch Chromium and mobile WebKit contexts.
-- [x] Certification server uses an OS-assigned port and deterministic cleanup.
-- [x] Documentation, configuration, dependency, and repository-hygiene review is complete.
-- [x] Release-candidate metadata is aligned to the coordinated `1.0.0` version plan.
+```text
+npm ci
+npm run runtime:verify
+npm run runtime:test:web
+npm run golden:verify
+npm run mobile:verify
+npm run ios:verify
+npm run test:migration-upgrade-plan
+npm run test:migration-compatibility
+npm run test:generator
+npm run check:package-manifests
+npm run check:public-api
+npm run check:dependency-graph
+npm run check:cng-freshness
+npm run test:node-version-policy
+npm run release:verify
+```
+
+The certification record names the required hosted checks: `runtime-web`, `structural`, `mobile`,
+and `golden`. Fresh local web, Golden, mobile, and iOS results are recorded as candidate evidence;
+the record does not claim a new hosted workflow run. The iOS record must contain the actual fresh
+native result and visual-baseline counts from the required profile. `release:verify` additionally
+requires zero open P0/P1/P2 findings, current source-tree identity, clean worktree, CNG and manifest
+checks, and API/dependency boundaries.
+
+Android native acceptance remains deferred/waived and uncertified for this candidate. The historical
+`v1.0.0` Policy B waiver is context only, not new `v1.1.0` Android evidence. No Android PASS,
+TalkBack usability acceptance, or universal-native support is claimed. Human VoiceOver usability,
+exact real-device Dynamic Type behavior, physical-device hardware behavior, npm publication,
+EAS/store deployment, and downstream-product production readiness remain outside this candidate.
 
 ## Tagged `v1.0.0` certification baseline
 
-These items describe the immutable tagged baseline; current-main evidence is listed above.
+These items describe the immutable tagged baseline; they do not certify the `v1.1.0` candidate.
 
 - [x] Owner-approved MIT licensing and root `LICENSE`/manifest metadata are present.
 - [x] iOS Simulator Release XCUITest acceptance: 17/17, with 9/9 reviewed native visual comparisons.
@@ -65,18 +72,6 @@ These items describe the immutable tagged baseline; current-main evidence is lis
   protected-main provenance without requiring historical PR objects.
 - [x] Final PM authorization for the release commit, tag, and repository release execution is
   recorded by that release operation.
-
-## Explicit support boundaries
-
-- Android native certification remains deferred/waived and uncertified after canceled CHG-149. No
-  Android PASS, TalkBack usability acceptance, or universal-native support is claimed.
-- VoiceOver subjective human review was not executed. Dynamic Type audit coverage is simulator-limited
-  on the installed iOS 26.5 runtime. Physical-device behavior, including hardware, haptics, camera,
-  biometrics, and device-specific safe-area behavior, is not certified.
-- Npm publication and EAS/store deployment are not claimed. Backend-integrated smoke validation is
-  outside framework certification. Generated products must provide product-specific backend,
-  authentication, session-security, and linking adapters; downstream-product integrations remain
-  product-owned.
 
 ## `v1.0.0` historical release facts
 
@@ -92,12 +87,27 @@ These items describe the immutable tagged baseline; current-main evidence is lis
   checkout.
 - [x] Complete the final 1.0 release review.
 
+## Native and product support boundaries
+
+- Android native certification remains deferred/waived and uncertified. The historical `v1.0.0`
+  Policy B waiver is not new evidence for `v1.1.0`; no Android PASS, TalkBack usability acceptance,
+  or universal-native support is claimed.
+- VoiceOver subjective human review was not executed. Dynamic Type audit coverage is simulator-limited
+  on the installed iOS 26.5 runtime. Physical-device behavior, including hardware, haptics, camera,
+  biometrics, and device-specific safe-area behavior, is not certified.
+- Npm publication and EAS/store deployment are not claimed. Backend-integrated smoke validation is
+  outside framework certification. Generated products must provide product-specific backend,
+  authentication, session-security, and linking adapters; downstream-product integrations remain
+  product-owned.
+
 ## Canonical commands
 
 ```bash
 npm ci
 npm run runtime:verify
 npm run runtime:test:web
+npm run golden:verify
+npm run mobile:verify
 npm run ios:verify
 npm run release:verify
 npm run create:app -- --name "Orbit Ledger" --slug orbit-ledger --accent violet
