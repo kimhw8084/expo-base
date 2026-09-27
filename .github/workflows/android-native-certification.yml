@@ -140,8 +140,6 @@ jobs:
   android-native:
     runs-on: ubuntu-latest
     timeout-minutes: 75
-    env:
-      ANDROID_AVD_HOME: ${{ runner.temp }}/android-avd
     steps:
       - name: Checkout candidate
         uses: actions/checkout@v4
@@ -166,22 +164,25 @@ jobs:
         run: sdkmanager "platform-tools" "emulator" "platforms;android-35" "build-tools;35.0.0" "system-images;android-35;google_apis;x86_64" "platforms;android-36" "build-tools;36.0.0"
 
       - name: Create Pixel 6 API 35 profile
+        env:
+          ANDROID_AVD_HOME: ${{ runner.temp }}/android-avd
         run: |
           mkdir -p "$ANDROID_AVD_HOME"
-          printf 'no\\n' | avdmanager create avd --force --name Pixel_6_API_35 --package "system-images;android-35;google_apis;x86_64" --device pixel_6
+          printf 'no\n' | avdmanager create avd --force --name Pixel_6_API_35 --package "system-images;android-35;google_apis;x86_64" --device pixel_6
 
       - name: Start and qualify emulator
         shell: bash
+        env:
+          ANDROID_AVD_HOME: ${{ runner.temp }}/android-avd
         run: |
           nohup emulator -avd Pixel_6_API_35 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -accel on > "$RUNNER_TEMP/android-emulator.log" 2>&1 &
           adb wait-for-device
           booted=""
-          for attempt in $(seq 1 120); do
-            booted="$(adb -e shell getprop sys.boot_completed | tr -d '\\r')"
-            if [ "$booted" = "1" ]; then
-              break
-            fi
-            sleep 3
+          attempt=0
+          while [ "$booted" != "1" ] && [ "$attempt" -lt 120 ]; do
+            booted="$(adb -e shell getprop sys.boot_completed | tr -d '\r')"
+            attempt=$((attempt + 1))
+            if [ "$booted" != "1" ]; then sleep 3; fi
           done
           if [ "$booted" != "1" ]; then
             cat "$RUNNER_TEMP/android-emulator.log"
@@ -194,6 +195,8 @@ jobs:
         run: npm ci
 
       - name: Build release APK and run Android native instrumentation
+        env:
+          ANDROID_AVD_HOME: ${{ runner.temp }}/android-avd
         run: npm run android:verify
 
       - name: Upload Android certification evidence
@@ -206,4 +209,3 @@ jobs:
             ${{ runner.temp }}/android-emulator.log
           if-no-files-found: warn
           retention-days: 30
-
