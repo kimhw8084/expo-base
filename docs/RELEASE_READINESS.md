@@ -1,8 +1,8 @@
 # 1.0 release-readiness checklist
 
-This document preserves the tagged Expo Base `v1.0.0` release evidence and records the qualified
-current-main source baseline separately. Refreshing the source certification record does not create
-a new tag, GitHub release, package publication, EAS deployment, or downstream-product release.
+This document preserves the immutable tagged Expo Base `v1.0.0` release evidence and records the
+qualified current-main source baseline separately. The current governance refresh does not create a
+new tag, GitHub Release, npm publication, EAS/store deployment, or downstream-product release.
 
 The repository is a public source/template workspace, not a configured multi-package npm
 publication. The root MIT license governs the repository source; all 47 workspace packages remain
@@ -10,28 +10,27 @@ private, and any future package publication requires a separate package-release 
 
 ## Current-main source qualification
 
-- Protected `main` provenance: `ea9ac98786ae60ee8c2a9e378455770d0bdac05e`, tree
-  `5121ddd1b1b806a95386ca4f235afd0616d01233`.
-- CHG-176 was integrated through PR #28. Accepted head
-  `c28060f2710f706d60c3c9b4e4ec1ae2e48d3a7e` has the exact current-main tree. Full
-  `npm run ios:verify` passed on that executable tree: 17 Release tests and 9 existing visual
-  baselines on the iPhone 17 Pro / iOS 26.5 Simulator profile. The refreshed record carries this
-  forward; it does not claim a new iOS execution or result bundle.
-- Runtime Web run `35811032437` and Golden Certification run `35811032442` passed on the accepted
-  head. The Golden workflow includes structural, mobile, and golden jobs. The candidate record
-  retains `runtime-web`, `structural`, `mobile`, and `golden` as required hosted checks; protected
-  integration reruns current hosted workflows for the candidate.
-- CHG-175 R1 also passed `runtime:verify`, `runtime:test:web`, `golden:verify`, and `mobile:verify`
-  before the CHG-176 harness-only repair. These remain earlier validation evidence, not new runs on
-  the current-main tree.
+- Protected `main` provenance and executable source baseline: `0470d0edd4306e3134da5f1a15816793e1955352`,
+  tree `665c2f82f9e04928d55eadd4d9d7de566eb998f1`, after CHG-186, CHG-187, and CHG-201.
+- Runtime Web run `35949677933` succeeded on exact-current `main`. Golden Certification run
+  `35949678010` succeeded on the same source for structural, mobile, and golden jobs.
+- R4 current-source `npm run ios:verify` passed under Node `v22.23.2` and Xcode `27.0` on the
+  iPhone 17 Pro / iOS 26.5 Simulator profile: 17 Release tests and 9 existing native visual
+  baselines passed. The Release xcresult, summary, xcodebuild log, and visual evidence were present
+  after execution. The exact tested `main` commit was the sole parent; there were zero source
+  changes and the worktree was clean. Evidence:
+  `refs/heads/codex-fabric/evidence/expo-base/chg261-ios-current-source-verify-r4@923d177831f5c17541b5155a5872bb101850c1f6:.codex-fabric/audit.json`.
+- R5 consists of documentation and certification-metadata changes only. These are non-runtime
+  governance changes; R4 did not execute the R5 documentation bytes. The refreshed record binds the
+  final tracked candidate contents, excluding only that record. `npm run release:verify` checks this
+  identity and release-governance contracts; it is not a new native or hosted execution.
 
-The refreshed `release-candidate.certification.json` binds the final candidate's tracked source
-tree using the repository algorithm, which excludes only that metadata file. `certifiedCommit`
-records protected-main provenance; the source-tree hash identifies the candidate contents. The
+The refreshed `release-candidate.certification.json` binds the final candidate's tracked contents
+using the repository algorithm, which excludes only that metadata file. `certifiedCommit` records
+protected-main provenance; the source-tree hash identifies the final candidate contents. The
 record's `certifiedAt` is the governance-record refresh time, while native execution evidence remains
-the CHG-176 run stated above. Passing local `npm run release:verify` validates deterministic
-governance and source invariants; it does not replace the required hosted candidate checks or
-declare a release.
+the R4 run stated above. Passing local `npm run release:verify` validates deterministic governance
+and source invariants; it does not create a tag or publication or declare a release.
 
 ## Development gates — complete
 
@@ -69,14 +68,15 @@ These items describe the immutable tagged baseline; current-main evidence is lis
 
 ## Explicit support boundaries
 
-- Android native certification remains deferred/waived and uncertified under Policy B after canceled
-  CHG-149. No Android PASS or universal-native support is claimed.
+- Android native certification remains deferred/waived and uncertified after canceled CHG-149. No
+  Android PASS, TalkBack usability acceptance, or universal-native support is claimed.
 - VoiceOver subjective human review was not executed. Dynamic Type audit coverage is simulator-limited
-  on the installed iOS 26.5 runtime. Physical-device hardware, haptics, camera, biometrics, and
-  device-specific safe-area behavior are not certified.
-- Backend-integrated smoke validation is outside framework certification. Generated products must
-  replace demo backend, authentication, session-security, and linking adapters with product-specific
-  implementations; backend authorization remains product-owned.
+  on the installed iOS 26.5 runtime. Physical-device behavior, including hardware, haptics, camera,
+  biometrics, and device-specific safe-area behavior, is not certified.
+- Npm publication and EAS/store deployment are not claimed. Backend-integrated smoke validation is
+  outside framework certification. Generated products must provide product-specific backend,
+  authentication, session-security, and linking adapters; downstream-product integrations remain
+  product-owned.
 
 ## `v1.0.0` historical release facts
 
