@@ -162,7 +162,8 @@
     "home-screenshot": { "kind": "emulator-screenshot", "path": "test-results/android-native-certification/screenshots/home.png" },
     "modal-screenshot": { "kind": "emulator-screenshot", "path": "test-results/android-native-certification/screenshots/dialog-open.png" },
     "release-apk": { "kind": "release-like-bundled-javascript-apk", "path": "test-results/android-native-certification/app-release.apk" },
-    "native-identity": { "kind": "fresh-generated-android-source-and-config-identity", "path": "test-results/android-native-certification/generated-native-identity.json" }
+    "native-identity": { "kind": "fresh-generated-android-source-and-config-identity", "path": "test-results/android-native-certification/generated-native-identity.json" },
+    "avd-profile-config": { "kind": "raw-emulator-profile-config-with-sha256-in-summary", "path": "test-results/android-native-certification/avd-config.ini" }
   },
   "boundaries": [
     { "id": "talkback-review", "status": "human-review-required", "claim": "No accountable human TalkBack review is included." },

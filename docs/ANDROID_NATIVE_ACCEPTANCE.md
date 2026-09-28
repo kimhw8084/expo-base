@@ -28,7 +28,9 @@ The `android:verify` output is written to `test-results/android-native-certifica
 the exact commit/tree and protected base identity, generated Android source/config digest,
 application ID and dependency versions, API/device/emulator profile, release APK SHA-256 and
 bundled-JavaScript check, JUnit test counts/failures, complete raw logcat, crash/ANR disposition,
-workflow IDs, and home/modal screenshots. The GitHub Actions workflow uploads this directory after
+workflow IDs, the raw AVD profile configuration and its SHA-256, and home/modal screenshots. The
+profile resolver reads Android's persisted locale property first, then the configured system locale
+setting and product locale as explicit fallbacks; each raw probe is retained. The GitHub Actions workflow uploads this directory after
 success or failure and runs for relevant `codex/**` pushes and pull requests to `main`.
 The hosted x86_64 profile requires the runner's `/dev/kvm`; the workflow grants the job user access
 and reports a prerequisite failure if the runner does not expose that device.

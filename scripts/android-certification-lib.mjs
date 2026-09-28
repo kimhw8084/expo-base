@@ -24,6 +24,24 @@ export function validateAndroidDevice(profile, device) {
   return failures;
 }
 
+export function parseAvdConfigIdentity(configText) {
+  return {
+    configuredDeviceProfile: readAvdProperty(configText, 'hw.device.name'),
+    configuredSystemImage: readAvdProperty(configText, 'image.sysdir.1'),
+  };
+}
+
+export function resolveAndroidLocale({ persistedLocale, systemLocales, productLocale }) {
+  const candidates = [persistedLocale, systemLocales, productLocale];
+  for (const candidate of candidates) {
+    const value = String(candidate ?? '').trim();
+    if (!value || value.toLowerCase() === 'null') continue;
+    const firstLocale = value.split(',').map((locale) => locale.trim()).find(Boolean);
+    if (firstLocale) return firstLocale;
+  }
+  return '';
+}
+
 export function parseJUnitReports(reports) {
   const totals = { tests: 0, failures: 0, errors: 0, skipped: 0, cases: [], failureDetails: [], errorDetails: [], skippedCases: [], reportCount: reports.length };
   for (const report of reports) {
@@ -90,4 +108,10 @@ function readAttribute(attributes, name) {
 
 function normalizeProfileName(value) {
   return String(value ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function readAvdProperty(configText, name) {
+  const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const match = configText.match(new RegExp(`^\\s*${escapedName}\\s*[=:]\\s*(.*?)\\s*$`, 'm'));
+  return match?.[1]?.trim() || null;
 }

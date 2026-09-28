@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { classifyAndroidRun, parseJUnitReports, resolveAndroidProfile, validateAndroidDevice } from './android-certification-lib.mjs';
+import { classifyAndroidRun, parseAvdConfigIdentity, parseJUnitReports, resolveAndroidLocale, resolveAndroidProfile, validateAndroidDevice } from './android-certification-lib.mjs';
 import { prepareAndroidNativeTests } from './generate-android-native-tests.mjs';
 
 const manifest = JSON.parse(readFileSync(new URL('../android.certification.json', import.meta.url), 'utf8'));
@@ -13,6 +13,17 @@ assert.deepEqual(resolveAndroidProfile(manifest, defaultProfile.id), defaultProf
 assert.throws(() => resolveAndroidProfile(manifest, 'missing-profile'), /Unknown Android certification profile/);
 assert.throws(() => resolveAndroidProfile({ profiles: [{ id: 'duplicate' }, { id: 'duplicate' }] }), /unique/);
 assert.throws(() => resolveAndroidProfile({ profiles: [] }), /no emulator profiles/);
+assert.deepEqual(parseAvdConfigIdentity(`avd.ini.encoding=UTF-8\nhw.device.name = pixel_6\nimage.sysdir.1 = system-images/android-35/google_apis/x86_64/\n`), {
+  configuredDeviceProfile: 'pixel_6',
+  configuredSystemImage: 'system-images/android-35/google_apis/x86_64/',
+});
+assert.deepEqual(parseAvdConfigIdentity(`hw.device.name: pixel_6\nimage.sysdir.1: system-images/android-35/google_apis/x86_64/\n`), {
+  configuredDeviceProfile: 'pixel_6',
+  configuredSystemImage: 'system-images/android-35/google_apis/x86_64/',
+});
+assert.equal(resolveAndroidLocale({ persistedLocale: 'null', systemLocales: 'null', productLocale: 'en-US' }), 'en-US');
+assert.equal(resolveAndroidLocale({ persistedLocale: 'fr-FR,en-US', systemLocales: 'en-US', productLocale: 'en-US' }), 'fr-FR');
+assert.equal(resolveAndroidLocale({ persistedLocale: 'null', systemLocales: '', productLocale: '' }), '');
 const validDevice = {
   apiLevel: String(defaultProfile.apiLevel),
   avdName: defaultProfile.avdName,

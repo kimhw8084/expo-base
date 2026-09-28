@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import process from 'node:process';
-import { classifyAndroidRun, resolveAndroidProfile, validateAndroidDevice } from './android-certification-lib.mjs';
+import { classifyAndroidRun, parseAvdConfigIdentity, resolveAndroidLocale, resolveAndroidProfile, validateAndroidDevice } from './android-certification-lib.mjs';
 import { prepareAndroidNativeTests } from './generate-android-native-tests.mjs';
 
 const root = resolve(import.meta.dirname, '..');
@@ -48,6 +48,10 @@ try {
 
   stage = 'emulator-profile';
   state.device = inspectEmulator(profile);
+  state.evidence.avdProfileConfig = {
+    path: relative(root, join(outputDir, 'avd-config.ini')),
+    sha256: state.device.avdConfigSha256,
+  };
   const profileErrors = validateAndroidDevice(profile, state.device);
   if (profileErrors.length) throw new Error(profileErrors.join(' '));
 
@@ -197,11 +201,15 @@ function inspectEmulator(selectedProfile) {
   const avdConfigPath = join(avdHome, `${values.avdName}.avd`, 'config.ini');
   if (!existsSync(avdConfigPath)) throw new Error(`Emulator AVD configuration was not found at ${avdConfigPath}.`);
   const avdConfig = readFileSync(avdConfigPath, 'utf8');
-  values.configuredDeviceProfile = avdConfig.match(/^hw\.device\.name=(.+)$/m)?.[1]?.trim() ?? null;
-  values.configuredSystemImage = avdConfig.match(/^image\.sysdir\.1=(.+)$/m)?.[1]?.trim() ?? null;
+  copyFileSync(avdConfigPath, join(outputDir, 'avd-config.ini'));
+  Object.assign(values, parseAvdConfigIdentity(avdConfig));
   values.avdConfigSha256 = createHash('sha256').update(avdConfig).digest('hex');
   values.profileId = selectedProfile.id;
-  values.locale = runAdb(['shell', 'settings', 'get', 'system', 'system_locales'], 'device-locale.log').stdout.trim();
+  const persistedLocale = runAdb(['shell', 'getprop', 'persist.sys.locale'], 'device-locale-persisted.log').stdout.trim();
+  const systemLocales = runAdb(['shell', 'settings', 'get', 'system', 'system_locales'], 'device-locale-system-settings.log').stdout.trim();
+  const productLocale = runAdb(['shell', 'getprop', 'ro.product.locale'], 'device-locale-product-default.log').stdout.trim();
+  values.localeProbe = { persistedLocale, systemLocales, productLocale };
+  values.locale = resolveAndroidLocale(values.localeProbe);
   return values;
 }
 
