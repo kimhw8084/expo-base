@@ -83,6 +83,7 @@ for (const required of ["'--clean'", "'--platform', 'android'", ':app:connectedR
 if (packageJson.scripts?.['runtime:android'] !== 'node scripts/runtime-native.mjs android') failures.push('runtime:android must remain a distinct development-build command.');
 if (!workflow.includes("'codex/**'") || !workflow.includes('pull_request:') || !workflow.includes('branches: [main]') || !workflow.includes('workflow_dispatch:')) failures.push('Android workflow must run on codex/** pushes, PRs to main, and support optional manual maintenance runs.');
 if (!/uses:\s*actions\/checkout@v4[\s\S]*?fetch-depth:\s*0/.test(workflow)) failures.push('Android workflow must fetch full Git history to verify the protected base and release tag identity.');
+if (!/uses:\s*android-actions\/setup-android@v3\s*\n\s*with:\s*\n\s*packages:\s*''/.test(workflow)) failures.push('Android SDK setup must skip the removed legacy tools package; the workflow installs the pinned SDK set explicitly.');
 const requiredWorkflowPaths = [
   'android.certification.json', 'package.json', 'package-lock.json', 'apps/reference/**', 'tests/native/android/**',
   'scripts/android-certification-lib.mjs', 'scripts/check-android-certification.mjs', 'scripts/check-node-version.mjs',
