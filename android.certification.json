@@ -93,11 +93,11 @@
     },
     {
       "id": "form-validation-error-action",
-      "kind": "accessible-native-summary-action",
-      "value": "Go to Email address: Enter your email.",
+      "kind": "react-native-testID-resource-id",
+      "value": "form-error-summary-action-form-error-email",
       "owner": "packages/forms/src/FormLifecycle.tsx",
       "positiveControl": "testTextInputKeyboardValidationAndReachability",
-      "negativeControl": "the email validation action is absent before submitting the invalid form"
+      "negativeControl": "the email validation action is absent before submitting the invalid form; activation focuses the associated email field"
     },
     {
       "id": "lifecycle-data-route-landmark",

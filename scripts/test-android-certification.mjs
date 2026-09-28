@@ -15,7 +15,8 @@ assert.throws(() => resolveAndroidProfile(manifest, 'missing-profile'), /Unknown
 assert.throws(() => resolveAndroidProfile({ profiles: [{ id: 'duplicate' }, { id: 'duplicate' }] }), /unique/);
 assert.throws(() => resolveAndroidProfile({ profiles: [] }), /no emulator profiles/);
 const formErrorSelector = manifest.selectors.find(({ id }) => id === 'form-validation-error-action');
-assert.ok(formErrorSelector && androidSuite.includes(`By.desc(${JSON.stringify(formErrorSelector.value)})`), 'Form selector manifest must identify the runtime accessibility action exercised by the suite.');
+assert.ok(formErrorSelector && androidSuite.includes(`id(${JSON.stringify(formErrorSelector.value)})`), 'Form selector manifest must identify the actionable summary testID exercised by the suite.');
+assert.match(readFileSync('packages/forms/src/FormLifecycle.tsx', 'utf8'), /testID=\{`form-error-summary-action-\$\{error\.id\}`\}/, 'Form summary actions must expose an automation ID derived from their stable semantic item IDs.');
 const lifecycleRouteSelector = manifest.selectors.find(({ id }) => id === 'lifecycle-data-route-landmark');
 assert.ok(lifecycleRouteSelector && androidSuite.includes(`By.text(${JSON.stringify(lifecycleRouteSelector.value)})`), 'Lifecycle selector manifest must identify the route landmark exercised by the suite.');
 assert.deepEqual(parseAvdConfigIdentity(`avd.ini.encoding=UTF-8\nhw.device.name = pixel_6\nimage.sysdir.1 = system-images/android-35/google_apis/x86_64/\n`), {

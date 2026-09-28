@@ -87,7 +87,7 @@ public final class ExpoBaseAndroidNativeTest {
         device.pressBack();
         assertTrue("Android system Back did not dismiss the active input method", device.wait(Until.gone(By.pkg(imePackage)), DISMISS_TIMEOUT_MS));
 
-        BySelector emailSummaryAction = By.desc("Go to Email address: Enter your email.");
+        BySelector emailSummaryAction = id("form-error-summary-action-form-error-email");
         assertNull("The email validation action must be absent before invalid form submission", device.findObject(emailSummaryAction));
         scrollUntilVisible("text-pressure-form-submit").click();
         UiObject2 emailErrorAction = waitFor(emailSummaryAction, SCREEN_TIMEOUT_MS);

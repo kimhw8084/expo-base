@@ -45,6 +45,11 @@ success or failure and runs for relevant `codex/**` pushes and pull requests to 
 The hosted x86_64 profile requires the runner's `/dev/kvm`; the workflow grants the job user access
 and reports a prerequisite failure if the runner does not expose that device.
 
+Form validation checks the actionable error-summary Button through a native resource ID derived
+from the stable `FormErrorSummaryItem.id`. The shared owner retains its accessible name and action;
+the native test proves the target is absent before invalid submission, then visible and actionable
+after submission, with activation moving focus to the associated field.
+
 The automated claim covers the current reference app on the declared emulator only. Human TalkBack
 review, physical-device font scaling and safe-area variance, camera, biometrics, permissions,
 haptics, store signing/upload, publication, deployment, provider behavior, and downstream product

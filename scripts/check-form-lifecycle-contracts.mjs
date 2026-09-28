@@ -7,7 +7,7 @@ const reference = read('apps/reference/app/forms.tsx');
 const webTests = read('tests/e2e/web/reference.spec.ts');
 const failures = [];
 
-for (const marker of ['FormErrorSummary', 'accessibilityRole="alert"', 'FormDiscardDialog', 'dismissOnBackdrop={false}', 'useFormLeaveGuard', 'pendingLeave']) {
+for (const marker of ['FormErrorSummary', 'accessibilityRole="alert"', 'testID={`form-error-summary-action-${error.id}`}', 'FormDiscardDialog', 'dismissOnBackdrop={false}', 'useFormLeaveGuard', 'pendingLeave']) {
   if (!forms.includes(marker)) failures.push(`Form lifecycle owner must include ${marker}.`);
 }
 for (const marker of ['applyExpoBaseFormServerErrors', "'root.server'", 'useExpoBaseFormErrorSummary', 'useExpoBaseFormLifecycle', 'form.formState.isDirty']) {
