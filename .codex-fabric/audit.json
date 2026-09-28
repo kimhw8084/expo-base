@@ -1,0 +1,386 @@
+{
+  "accepted_at": "2026-09-27T23:00:30Z",
+  "changed_files": [],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run api:snapshot:check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:dependency-graph'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:boundaries'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:package-manifests'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run check:owner-certification'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run test:form-contracts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run test:generator'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run runtime:verify'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=\"/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH\" npm run runtime:test:web'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,headSha,jobs,workflowName,url && rtk git status --short && rtk git rev-parse HEAD && rtk git diff --check'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -eo pid,etime,command | rg 'playwright|npm run runtime:test:web|runtime-test|web-test' ; rtk rg --files test-results | rtk head -60\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -eo pid,etime,command | rtk rg 'node|npm|playwright|vite' | rtk head -60 && rtk cat test-results/product-quality-p2-GPQ-015-bdc38-ile-preserving-literal-data-chromium/error-context.md && rtk cat test-results/reference-semantic-card-su-7b590-rve-hierarchy-across-themes-webkit/error-context.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -eo pid,etime,command | rtk rg 'node|npm|playwright|vite' | rtk head -30; rtk ls -lt test-results; rtk ls -lt playwright-report\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat test-results/.last-run.json; rtk cat test-results/product-quality-p2-GPQ-015-bdc38-ile-preserving-literal-data-chromium/error-context.md | rtk head -75; rtk git status --short'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk node -e \\\"const p=require('./package.json'); console.log(JSON.stringify({scripts:p.scripts},null,2))\\\"; rtk git status --short; rtk gh run view 36374569012 --json status,conclusion,jobs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,240p' scripts/runtime-test-web.mjs; rtk sed -n '1,220p' playwright.config.ts; rtk git show 3eb76c5ea0bee26881326fc8f87c12f0cbc8ce73:package.json | rtk rg -n 'runtime:test:web|test:web' \"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk test -d apps/reference/dist && rtk node scripts/serve-static-web.mjs apps/reference/dist 0'",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk ls -l apps/reference/dist/index.html'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env EXPO_BASE_BASE_URL=http://127.0.0.1:58995 npm run test:web -- --project=chromium --grep=GPQ-015'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk env EXPO_BASE_BASE_URL=http://127.0.0.1:58995 npm run test:web -- --project=webkit --grep='semantic card surfaces preserve hierarchy across themes'\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk node scripts/serve-static-web.mjs apps/reference/dist 0'",
+      "exit_code": 130,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk npm run runtime:test:web'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk command -v node; rtk node -v; rtk printenv PATH; rtk ls /Users/haewonkim/.nvm/versions/node'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'workflow|runId|run_id|job|GITHUB_|summary.json|candidateSha|tree|generatedNative|artifact|screenshot|JUNIT' scripts/run-android-native-certification.mjs scripts/android-certification-lib.mjs android.certification.json .github/workflows/android-native-certification.yml docs/ANDROID_NATIVE_ACCEPTANCE.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,270p' .github/workflows/android-native-certification.yml; rtk sed -n '1,230p' scripts/run-android-native-certification.mjs; rtk sed -n '25,65p' docs/ANDROID_NATIVE_ACCEPTANCE.md\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk env PATH=/Users/haewonkim/.nvm/versions/node/v22.23.2/bin:$PATH npm run runtime:test:web'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk cat test-results/.last-run.json; rtk rg --files test-results | rtk rg '(error-context|test-failed)' | rtk head -40; rtk cat test-results/reference-form-li-.../error-context.md\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat test-results/reference-form-lifecycle-s-795b8-d-protects-dirty-navigation-webkit/error-context.md | rtk head -55; rtk cat test-results/ultimate-workbench--owner--90192-opens-as-modal-alert-dialog-webkit/error-context.md | rtk head -55'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --log --job 108777648771 | rtk tail -80'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk ps -eo pid,etime,command | rtk rg 'runtime-test-web|test-generator|create-expo-base|expo-base-doctor|expo export|npm run' | rtk head -20\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'PLAYWRIGHT.*WORKER|PW_TEST.*WORKER|process\\\\.env\\\\.CI|workers' node_modules/playwright node_modules/playwright-core | rtk head -80\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'process\\\\.env\\\\.[A-Z0-9_]*WORK|env\\\\.[A-Z0-9_]*WORK|PLAYWRIGHT_WORKERS|PW_TEST_WORKERS|workers.*env' node_modules/playwright/lib node_modules/playwright-core/lib | rtk head -60\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36374569012 --json status,conclusion,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run download 36374569012 --dir /tmp/chg292-371ecd3-evidence'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk rg --files /tmp/chg292-371ecd3-evidence | rtk head -100; rtk cat /tmp/chg292-371ecd3-evidence/expo-base/expo-base/test-results/android-native-certification/summary.json'",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk gh run view 36374569012 --json artifacts,status,conclusion; rtk ls -la /tmp | rtk rg 'chg292|android-native|expo-base'\"",
+      "exit_code": 1,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh api repos/kimhw8084/expo-base/actions/runs/36374569012/artifacts'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh api repos/kimhw8084/expo-base/actions/runs/36374569012/artifacts'",
+      "exit_code": 1,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.157.0",
+    "configured_model": "gpt-6-luna",
+    "event_count": 1673,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.failed",
+    "usage": {},
+    "warnings": [
+      {
+        "message": "Reconnecting... 2/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 3/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 4/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 5/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 2/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 3/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 4/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 5/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 1/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 2/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 3/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 4/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "Reconnecting... 5/5 (workspace routing discovery timed out)",
+        "type": "error"
+      },
+      {
+        "message": "workspace routing discovery timed out",
+        "type": "error"
+      }
+    ]
+  },
+  "commits": [],
+  "diff": null,
+  "error_code": "CODEX_EXIT_NONZERO",
+  "evidence_manifest": {
+    "count": 0,
+    "items": [],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.5-dashboard-controls-candidate",
+  "fabric_capture": null,
+  "fabric_release": "1.2.5-dashboard-controls-candidate",
+  "failure_class": "CODEX_EXECUTION",
+  "finished_at": "2026-09-28T04:44:50Z",
+  "git": {},
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-aa84718965eb9f4c22802424",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg292-android-native-certification-v2-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg292-android-native-certification-v2-r1"
+  },
+  "operation": "BUILD",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.5-dashboard-controls-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "af81b8552f9d6a33847310e3c6bcd2d48401782b963a58efd2993e93570cb4aa"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": true,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg292-android-native-certification-v2-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-27T23:00:30Z",
+  "status": "FAILED_MODEL",
+  "timing": {
+    "execution_seconds": 20660,
+    "queue_seconds": 0,
+    "total_seconds": 20660
+  },
+  "transport": {
+    "bytes": 9741,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 9392,
+    "prompt_sha256": "da20f7e03704130a13a20aa1a33c5b93cc9115fecb81da6fd49f6269c0bc33db",
+    "sha256": "aa84718965eb9f4c22802424bbeaa2a7b3e235a4c5b07dd1da80b78f9dc708d5"
+  }
+}
