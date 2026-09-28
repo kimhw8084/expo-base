@@ -19,11 +19,13 @@ if (manifest.claim?.releaseVersionClaim !== null) failures.push('The Android can
 if (manifest.app?.applicationId !== 'com.expobase.reference' || manifest.app?.workspace !== 'apps/reference') failures.push('Android certification app identity is not the first-party reference application.');
 if (manifest.app?.nativeProject !== 'fresh-clean-expo-cng' || manifest.app?.buildVariant !== 'release' || manifest.app?.javascript !== 'bundled-in-release-apk') failures.push('Android certification must build a fresh CNG release APK with bundled JavaScript.');
 if (referencePackage.dependencies?.expo !== manifest.app.expoVersion || referencePackage.dependencies?.['react-native'] !== manifest.app.reactNativeVersion) failures.push('Android manifest Expo/RN versions do not match the current reference app.');
-for (const evidenceId of ['summary', 'junit', 'logcat', 'home-screenshot', 'modal-screenshot', 'release-apk', 'native-identity', 'avd-profile-config']) {
+for (const evidenceId of ['summary', 'junit', 'logcat', 'home-screenshot', 'modal-screenshot', 'release-apk', 'native-identity', 'avd-profile-config', 'gradle-config']) {
   if (!manifest.evidenceRegistry?.[evidenceId]) failures.push(`Android evidence registry is missing required evidence ${evidenceId}.`);
 }
 
 if (!Array.isArray(manifest.profiles) || manifest.profiles.length === 0) failures.push('At least one semantic Android emulator profile is required.');
+if (!Number.isInteger(manifest.buildExecution?.maxGradleWorkers) || manifest.buildExecution.maxGradleWorkers < 1 || manifest.buildExecution.maxGradleWorkers > 2) failures.push('Android Gradle worker concurrency must be explicitly bounded to one or two workers.');
+if (!Number.isInteger(manifest.buildExecution?.minimumMetaspaceMb) || manifest.buildExecution.minimumMetaspaceMb < 1024) failures.push('Android Gradle must retain at least 1024 MB metaspace for release analysis.');
 const profileIds = new Set();
 for (const profile of manifest.profiles ?? []) {
   if (!profile.id || profileIds.has(profile.id)) failures.push(`Android profile IDs must be unique: ${profile.id ?? '<missing>'}.`);
@@ -77,7 +79,7 @@ if (!suite.includes('device.pressBack()') || !suite.includes('UiDevice.getInstan
 
 const androidVerify = packageJson.scripts?.['android:verify'] ?? '';
 if (!androidVerify.includes('check:android-certification') || !androidVerify.includes('test:android-certification') || !androidVerify.includes('run-android-native-certification.mjs')) failures.push('android:verify must run manifest validation, deterministic tests, and native certification.');
-for (const required of ["'--clean'", "'--platform', 'android'", ':app:connectedReleaseAndroidTest', 'candidateIdentity()', 'generatedAndroidIdentity()', 'classifyAndroidRun(', 'parseAvdConfigIdentity(', 'resolveAndroidLocale(']) {
+for (const required of ["'--clean'", "'--platform', 'android'", ':app:connectedReleaseAndroidTest', '`--max-workers=${manifest.buildExecution.maxGradleWorkers}`', 'ensureGradleMetaspace(', 'candidateIdentity()', 'generatedAndroidIdentity()', 'classifyAndroidRun(', 'parseAvdConfigIdentity(', 'resolveAndroidLocale(']) {
   if (!androidRunner.includes(required)) failures.push(`Android runner is missing required clean-generation/build/evidence behavior: ${required}.`);
 }
 if (packageJson.scripts?.['runtime:android'] !== 'node scripts/runtime-native.mjs android') failures.push('runtime:android must remain a distinct development-build command.');

@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import process from 'node:process';
-import { classifyAndroidRun, parseAvdConfigIdentity, resolveAndroidLocale, resolveAndroidProfile, validateAndroidDevice } from './android-certification-lib.mjs';
+import { classifyAndroidRun, ensureGradleMetaspace, parseAvdConfigIdentity, resolveAndroidLocale, resolveAndroidProfile, validateAndroidDevice } from './android-certification-lib.mjs';
 import { prepareAndroidNativeTests } from './generate-android-native-tests.mjs';
 
 const root = resolve(import.meta.dirname, '..');
@@ -19,7 +19,7 @@ const state = {
   status: 'FAIL',
   candidate: {},
   profile: { ...profile },
-  build: { variant: 'release', javascript: 'bundled-in-release-apk' },
+  build: { variant: 'release', javascript: 'bundled-in-release-apk', maxGradleWorkers: manifest.buildExecution.maxGradleWorkers, minimumMetaspaceMb: manifest.buildExecution.minimumMetaspaceMb },
   instrumentation: { runner: manifest.instrumentation.runner, expectedTests: manifest.instrumentation.expectedTests },
   evidence: {},
   workflow: {},
@@ -62,6 +62,18 @@ try {
     env: process.env,
   });
   if (cng.status !== 0) throw new Error(`Fresh Expo CNG generation failed with status ${cng.status}.`);
+  const gradlePropertiesPath = join(androidDir, 'gradle.properties');
+  const configuredGradleProperties = ensureGradleMetaspace(readFileSync(gradlePropertiesPath, 'utf8'), manifest.buildExecution.minimumMetaspaceMb);
+  writeFileSync(gradlePropertiesPath, configuredGradleProperties.properties);
+  state.build.configuredMetaspaceMb = configuredGradleProperties.metaspaceMb;
+  const gradleEvidencePath = join(outputDir, 'generated-gradle.properties');
+  copyFileSync(gradlePropertiesPath, gradleEvidencePath);
+  state.evidence.gradleConfiguration = {
+    path: relative(root, gradleEvidencePath),
+    sha256: createHash('sha256').update(readFileSync(gradlePropertiesPath)).digest('hex'),
+    maxWorkers: manifest.buildExecution.maxGradleWorkers,
+    metaspaceMb: configuredGradleProperties.metaspaceMb,
+  };
   const generatedTests = prepareAndroidNativeTests(androidDir);
   const generatedIdentity = generatedAndroidIdentity();
   state.evidence.generatedNative = generatedIdentity;
@@ -77,7 +89,7 @@ try {
   stage = 'release-build-and-instrumentation';
   runAdb(['logcat', '-c'], 'logcat-clear.log');
   const gradle = run('./gradlew', [
-    '--no-daemon', '--stacktrace', '--console=plain',
+    '--no-daemon', '--stacktrace', '--console=plain', `--max-workers=${manifest.buildExecution.maxGradleWorkers}`,
     `-PreactNativeArchitectures=${profile.architecture}`,
     ':app:connectedReleaseAndroidTest',
   ], {
@@ -115,6 +127,7 @@ try {
     missingEvidence.push('apps/reference/android/app/build/outputs/apk/release/app-release.apk');
   }
   if (!state.evidence.generatedNative || !existsSync(join(outputDir, 'generated-native-identity.json'))) missingEvidence.push('generated-native-identity.json');
+  if (!state.evidence.gradleConfiguration || !existsSync(join(outputDir, 'generated-gradle.properties'))) missingEvidence.push('generated-gradle.properties');
   if (junitReports.length === 0) missingEvidence.push('junit/TEST-*.xml');
 
   const analysis = classifyAndroidRun({

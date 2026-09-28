@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { classifyAndroidRun, parseAvdConfigIdentity, parseJUnitReports, resolveAndroidLocale, resolveAndroidProfile, validateAndroidDevice } from './android-certification-lib.mjs';
+import { classifyAndroidRun, ensureGradleMetaspace, parseAvdConfigIdentity, parseJUnitReports, resolveAndroidLocale, resolveAndroidProfile, validateAndroidDevice } from './android-certification-lib.mjs';
 import { prepareAndroidNativeTests } from './generate-android-native-tests.mjs';
 
 const manifest = JSON.parse(readFileSync(new URL('../android.certification.json', import.meta.url), 'utf8'));
@@ -24,6 +24,15 @@ assert.deepEqual(parseAvdConfigIdentity(`hw.device.name: pixel_6\nimage.sysdir.1
 assert.equal(resolveAndroidLocale({ persistedLocale: 'null', systemLocales: 'null', productLocale: 'en-US' }), 'en-US');
 assert.equal(resolveAndroidLocale({ persistedLocale: 'fr-FR,en-US', systemLocales: 'en-US', productLocale: 'en-US' }), 'fr-FR');
 assert.equal(resolveAndroidLocale({ persistedLocale: 'null', systemLocales: '', productLocale: '' }), '');
+const cngGradleProperties = 'org.gradle.jvmargs=-Xmx2048m -XX:MaxMetaspaceSize=512m\norg.gradle.parallel=true\n';
+const boundedGradle = ensureGradleMetaspace(cngGradleProperties, 1024);
+assert.equal(boundedGradle.metaspaceMb, 1024);
+assert.match(boundedGradle.properties, /-XX:MaxMetaspaceSize=1024m/);
+assert.equal(ensureGradleMetaspace(boundedGradle.properties, 1024).properties, boundedGradle.properties, 'Gradle memory setup must be deterministic and idempotent.');
+assert.equal(ensureGradleMetaspace('org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=1536m\n', 1024).metaspaceMb, 1536, 'A larger generated limit must be retained.');
+assert.throws(() => ensureGradleMetaspace('org.gradle.parallel=true\n', 1024), /no org.gradle.jvmargs/);
+assert.throws(() => ensureGradleMetaspace('org.gradle.jvmargs=-Xmx2048m\n', 1024), /no explicit MaxMetaspaceSize/);
+assert.throws(() => ensureGradleMetaspace(cngGradleProperties, 0), /positive integer/);
 const validDevice = {
   apiLevel: String(defaultProfile.apiLevel),
   avdName: defaultProfile.avdName,
@@ -113,4 +122,4 @@ try {
   rmSync(fixture, { recursive: true, force: true });
 }
 
-console.log(`Android certification tests passed: manifest/profile resolution, generator idempotency, JUnit extraction, and 11 fail-closed evidence controls.`);
+console.log(`Android certification tests passed: manifest/profile resolution, Gradle resource configuration, generator idempotency, JUnit extraction, and 11 fail-closed evidence controls.`);

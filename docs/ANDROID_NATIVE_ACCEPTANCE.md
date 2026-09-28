@@ -11,6 +11,12 @@ bundled JavaScript, and execute the repository-owned Android instrumentation sui
 `apps/reference/android` directory is disposable and ignored. `npm run runtime:android` remains the
 development-build command and does not certify a native runtime.
 
+The certification runner applies the manifest's bounded Gradle execution profile after each clean
+CNG pass: no more than two Gradle workers and at least 1024 MB of metaspace. It retains Android's
+release lint tasks and archives the effective generated `gradle.properties` plus its SHA-256. This
+keeps the source-to-build configuration visible while avoiding the 512 MB CNG default that exhausted
+the hosted runner during parallel release lint analysis.
+
 The release lane uses AndroidX UI Automator 2.3.0 against the emulator's accessibility window roots.
 React Native 0.86.3's `ReactModalHostView` renders Modal children in a `ComponentDialog` backed by a
 `DialogRootViewGroup`; React Native forwards the Modal `testID` as that root's resource ID, and
@@ -28,7 +34,8 @@ The `android:verify` output is written to `test-results/android-native-certifica
 the exact commit/tree and protected base identity, generated Android source/config digest,
 application ID and dependency versions, API/device/emulator profile, release APK SHA-256 and
 bundled-JavaScript check, JUnit test counts/failures, complete raw logcat, crash/ANR disposition,
-workflow IDs, the raw AVD profile configuration and its SHA-256, and home/modal screenshots. The
+workflow IDs, the raw AVD profile configuration and its SHA-256, the effective Gradle properties and
+their SHA-256, and home/modal screenshots. The
 profile resolver reads Android's persisted locale property first, then the configured system locale
 setting and product locale as explicit fallbacks; each raw probe is retained. The GitHub Actions workflow uploads this directory after
 success or failure and runs for relevant `codex/**` pushes and pull requests to `main`.

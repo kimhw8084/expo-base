@@ -42,6 +42,23 @@ export function resolveAndroidLocale({ persistedLocale, systemLocales, productLo
   return '';
 }
 
+export function ensureGradleMetaspace(properties, minimumMetaspaceMb) {
+  if (!Number.isInteger(minimumMetaspaceMb) || minimumMetaspaceMb < 1) throw new Error('Gradle minimum metaspace must be a positive integer in megabytes.');
+  const jvmArgs = properties.match(/^org\.gradle\.jvmargs=(.*)$/m);
+  if (!jvmArgs) throw new Error('Fresh CNG gradle.properties has no org.gradle.jvmargs setting.');
+  const size = jvmArgs[1].match(/(?:^|\s)-XX:MaxMetaspaceSize=(\d+)([kmg])(?=\s|$)/i);
+  if (!size) throw new Error('Fresh CNG org.gradle.jvmargs has no explicit MaxMetaspaceSize limit.');
+  const value = Number(size[1]);
+  const unit = size[2].toLowerCase();
+  const currentMetaspaceMb = unit === 'g' ? value * 1024 : unit === 'k' ? value / 1024 : value;
+  if (currentMetaspaceMb >= minimumMetaspaceMb) return { properties, metaspaceMb: currentMetaspaceMb };
+  const configuredArgs = jvmArgs[1].replace(size[0].trim(), `-XX:MaxMetaspaceSize=${minimumMetaspaceMb}m`);
+  return {
+    properties: properties.replace(jvmArgs[0], `org.gradle.jvmargs=${configuredArgs}`),
+    metaspaceMb: minimumMetaspaceMb,
+  };
+}
+
 export function parseJUnitReports(reports) {
   const totals = { tests: 0, failures: 0, errors: 0, skipped: 0, cases: [], failureDetails: [], errorDetails: [], skippedCases: [], reportCount: reports.length };
   for (const report of reports) {
