@@ -177,17 +177,28 @@ jobs:
         env:
           ANDROID_AVD_HOME: ${{ runner.temp }}/android-avd
         run: |
-          nohup emulator -avd Pixel_6_API_35 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -accel on > "$RUNNER_TEMP/android-emulator.log" 2>&1 &
-          adb wait-for-device
+          set -euo pipefail
+          emulator_log="$RUNNER_TEMP/android-emulator.log"
+          emulator_binary="$ANDROID_SDK_ROOT/emulator/emulator"
+          if [ ! -x "$emulator_binary" ]; then
+            echo "Android emulator executable is missing at $emulator_binary"
+            exit 1
+          fi
+          nohup "$emulator_binary" -avd Pixel_6_API_35 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -accel on > "$emulator_log" 2>&1 &
+          if ! timeout 120s adb -e wait-for-device; then
+            cat "$emulator_log"
+            adb devices -l
+            exit 1
+          fi
           booted=""
-          attempt=0
-          while [ "$booted" != "1" ] && [ "$attempt" -lt 120 ]; do
-            booted="$(adb -e shell getprop sys.boot_completed | tr -d '\r')"
-            attempt=$((attempt + 1))
+          deadline=$((SECONDS + 360))
+          while [ "$booted" != "1" ] && [ "$SECONDS" -lt "$deadline" ]; do
+            booted="$(timeout 10s adb -e shell getprop sys.boot_completed 2>/dev/null | tr -d '\r' || true)"
             if [ "$booted" != "1" ]; then sleep 3; fi
           done
           if [ "$booted" != "1" ]; then
-            cat "$RUNNER_TEMP/android-emulator.log"
+            cat "$emulator_log"
+            adb devices -l
             exit 1
           fi
           adb -e shell wm dismiss-keyguard
