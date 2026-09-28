@@ -21,6 +21,7 @@ assert.match(readFileSync('packages/forms/src/FormLifecycle.tsx', 'utf8'), /test
 assert.ok(androidSuite.includes('scrollTowardTopUntilVisible(emailSummaryAction, "email validation action")'), 'Form validation must scroll toward the summary before observing its actionable target.');
 assert.ok(manifest.evidenceRegistry['form-invalid-screenshot'] && androidSuite.includes('expo-base-android-form-invalid.png'), 'The invalid form state must retain its representative runtime screenshot.');
 assert.ok(androidSuite.includes('Showing previously loaded data because the latest refresh failed.') && androidSuite.includes('Publish Golden Catalog'), 'Server-state refresh must positively observe the shared failure presentation and retained task content.');
+assert.match(androidSuite, /public void testDataServerStateAndGoldenPlusRoutes\(\) throws Exception/, 'The server-state scenario must declare checked shell-command failures.');
 assert.ok(manifest.evidenceRegistry['server-state-error-screenshot'] && androidSuite.includes('expo-base-android-server-state-refresh-error.png') && androidRunner.includes('server-state-refresh-error.png'), 'The server-state error and retained-content state must be retained as a runtime screenshot.');
 const lifecycleRouteSelector = manifest.selectors.find(({ id }) => id === 'lifecycle-data-route-landmark');
 assert.ok(lifecycleRouteSelector && androidSuite.includes(`By.text(${JSON.stringify(lifecycleRouteSelector.value)})`), 'Lifecycle selector manifest must identify the route landmark exercised by the suite.');

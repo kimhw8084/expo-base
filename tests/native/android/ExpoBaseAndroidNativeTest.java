@@ -149,7 +149,7 @@ public final class ExpoBaseAndroidNativeTest {
     }
 
     @Test
-    public void testDataServerStateAndGoldenPlusRoutes() {
+    public void testDataServerStateAndGoldenPlusRoutes() throws Exception {
         tapId("navigation-item-data");
         UiObject2 row = scrollUntilVisible("card-data-table-compact-row-venture-x");
         assertNull("Record details must be absent before row selection", device.findObject(id("selected-record-details")));
