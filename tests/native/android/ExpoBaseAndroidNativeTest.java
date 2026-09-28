@@ -43,7 +43,6 @@ public final class ExpoBaseAndroidNativeTest {
         device.wakeUp();
         device.setOrientationNatural();
         device.executeShellCommand("mkdir -p /sdcard/Download");
-        device.executeShellCommand("am force-stop " + appPackage);
         launchApp();
         requireText(HOME_LANDMARK, SCREEN_TIMEOUT_MS);
     }
@@ -211,13 +210,20 @@ public final class ExpoBaseAndroidNativeTest {
     @Test
     public void testLifecycleRelaunchAndRecovery() throws Exception {
         requireText(HOME_LANDMARK, SCREEN_TIMEOUT_MS);
+        tapId("navigation-item-data");
+        requireText("Adaptive data workspace", SCREEN_TIMEOUT_MS);
         device.pressHome();
         launchApp();
         requireText(HOME_LANDMARK, SCREEN_TIMEOUT_MS);
+        assertNull("The cleared task retained its previous data route", device.findObject(id("navigation-item-data")));
+        requireId("navigation-item-home");
 
-        device.executeShellCommand("am force-stop " + appPackage);
+        tapId("navigation-item-build");
+        requireId("demo-name");
+        device.pressHome();
         launchApp();
         requireText(HOME_LANDMARK, SCREEN_TIMEOUT_MS);
+        assertNull("The relaunched task retained its previous form route", device.findObject(id("demo-name")));
         requireId("navigation-item-home");
     }
 

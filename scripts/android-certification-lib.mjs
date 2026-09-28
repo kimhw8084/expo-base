@@ -107,14 +107,18 @@ export function classifyAndroidRun({
     failures.push({ layer: 'instrumentation', reason: `JUnit failures=${junit.failures}, errors=${junit.errors}, skipped=${junit.skipped}.` });
   }
   const crashMarkers = logcat.match(/FATAL EXCEPTION|ANR in |Application Not Responding|(?:^|\s)E\s+ReactNativeJS:\s*[^\n]*(?:Error|Unhandled|Exception|Invariant Violation)|ReactNativeJS:\s*Unhandled JS Exception/gi) ?? [];
+  const instrumentationProcessCrash = junitReports.some((report) => /Test run failed to complete|Instrumentation run failed due to Process crashed|Instrumentation process.*(?:crash|died|killed)/i.test(report));
   if (crashMarkers.length) failures.push({ layer: 'runtime-crash-or-anr', reason: `Logcat contains ${crashMarkers.length} fatal, ANR, or uncaught React Native error marker(s).` });
+  if (instrumentationProcessCrash) failures.push({ layer: 'runtime-crash-or-anr', reason: 'Android instrumentation reported that its test process crashed before completing the run.' });
   if (identityErrors.length) failures.push(...identityErrors.map((reason) => ({ layer: 'evidence-identity', reason })));
   if (missingEvidence.length) failures.push(...missingEvidence.map((path) => ({ layer: 'evidence-extraction', reason: `Required evidence is missing: ${path}.` })));
   return {
     passed: failures.length === 0,
     failures,
     junit,
-    crashDisposition: crashMarkers.length ? 'failed-fatal-or-anr-marker-present' : 'no-fatal-exception-anr-or-uncaught-js-marker',
+    crashDisposition: instrumentationProcessCrash
+      ? 'failed-instrumentation-process-crash'
+      : crashMarkers.length ? 'failed-fatal-or-anr-marker-present' : 'no-fatal-exception-anr-or-uncaught-js-marker',
   };
 }
 

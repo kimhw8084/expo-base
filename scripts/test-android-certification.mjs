@@ -77,6 +77,11 @@ assert.equal(passing.crashDisposition, 'no-fatal-exception-anr-or-uncaught-js-ma
 
 const failedReport = goodReport.replace('failures="0"', 'failures="1"').replace('<testcase classname="Native" name="' + expectedTests[0] + '"/>', `<testcase classname="Native" name="${expectedTests[0]}"><failure message="selector missing"/></testcase>`);
 assert.deepEqual(parseJUnitReports([failedReport]).failureDetails, [{ name: expectedTests[0], className: 'Native', message: 'selector missing', details: '' }]);
+const crashedInstrumentationReport = `${goodReport}<system-err>Test run failed to complete. Instrumentation run failed due to Process crashed.</system-err>`;
+const crashedInstrumentation = classifyAndroidRun({ buildExitCode: 0, junitReports: [crashedInstrumentationReport], expectedTests });
+assert.equal(crashedInstrumentation.passed, false, 'JUnit runner process crash must fail even if no testcase failure or fatal logcat marker was extracted.');
+assert.equal(crashedInstrumentation.crashDisposition, 'failed-instrumentation-process-crash');
+assert.ok(crashedInstrumentation.failures.some(({ layer }) => layer === 'runtime-crash-or-anr'));
 for (const input of [
   { buildExitCode: 1, junitReports: [goodReport] },
   { buildExitCode: 0, junitReports: [] },
