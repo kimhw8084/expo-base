@@ -38,6 +38,7 @@ export function FormErrorSummary({
               key={error.id}
               label={`${error.label}: ${error.message}`}
               accessibilityLabel={`Go to ${error.label}: ${error.message}`}
+              testID={`form-error-summary-action-${error.id}`}
               variant="ghost"
               responsiveWidth="compact-full"
               onPress={error.onPress ?? (() => undefined)}

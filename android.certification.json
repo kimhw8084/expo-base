@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "claim": {
+    "sourceLine": "post-v1.1.0 candidate",
+    "releaseVersionClaim": null,
+    "baseCommit": "3eb76c5ea0bee26881326fc8f87c12f0cbc8ce73",
+    "baseTree": "23a3a6ba2511cd97fb7940b581feea0d52b55625",
+    "purpose": "First-party Android native runtime evidence for the exact candidate SHA and tree in the generated result summary."
+  },
+  "app": {
+    "workspace": "apps/reference",
+    "applicationId": "com.expobase.reference",
+    "expoVersion": "57.0.18",
+    "reactNativeVersion": "0.86.3",
+    "nativeProject": "fresh-clean-expo-cng",
+    "buildVariant": "release",
+    "javascript": "bundled-in-release-apk"
+  },
+  "buildExecution": {
+    "maxGradleWorkers": 2,
+    "minimumMetaspaceMb": 1024
+  },
+  "profiles": [
+    {
+      "id": "pixel-6-api-35-google-apis-x86_64",
+      "avdName": "Pixel_6_API_35",
+      "deviceProfile": "pixel_6",
+      "manufacturer": "Google",
+      "apiLevel": 35,
+      "systemImage": "system-images;android-35;google_apis;x86_64",
+      "architecture": "x86_64",
+      "locale": "en-US",
+      "orientations": ["portrait", "landscape"]
+    }
+  ],
+  "instrumentation": {
+    "runner": "androidx.test.runner.AndroidJUnitRunner",
+    "testClass": "com.expobase.reference.certification.ExpoBaseAndroidNativeTest",
+    "testBuildType": "release",
+    "uiautomatorVersion": "2.3.0",
+    "expectedTests": [
+      "testColdLaunchFindsHomeAndCapturesEvidence",
+      "testPrimaryNavigationAndOrdinaryScrolling",
+      "testTextInputKeyboardValidationAndReachability",
+      "testMenuDialogSheetAndSystemBackLifecycle",
+      "testDataServerStateAndGoldenPlusRoutes",
+      "testFlagshipRoutesRender",
+      "testRuntimeThemeDensityLocaleRtlAndMotionControls",
+      "testOrientationRoundTrip",
+      "testLifecycleRelaunchAndRecovery"
+    ]
+  },
+  "selectors": [
+    {
+      "id": "home-landmark",
+      "kind": "visible-text",
+      "value": "Universal application foundation",
+      "owner": "apps/reference/app/index.tsx",
+      "positiveControl": "testColdLaunchFindsHomeAndCapturesEvidence",
+      "negativeControl": "unknown testID sentinel is absent while home is rendered"
+    },
+    {
+      "id": "primary-navigation",
+      "kind": "react-native-testID-resource-id",
+      "value": "navigation-item-data",
+      "owner": "packages/navigation/src/NavigationItemButton.tsx",
+      "positiveControl": "testPrimaryNavigationAndOrdinaryScrolling",
+      "negativeControl": "demo-name is absent on home and present after navigating to forms"
+    },
+    {
+      "id": "modal-action",
+      "kind": "react-native-testID-resource-id-across-accessibility-window-roots",
+      "value": "overlay-dialog-review",
+      "owner": "apps/reference/app/overlays.tsx",
+      "positiveControl": "testMenuDialogSheetAndSystemBackLifecycle",
+      "negativeControl": "the dialog action is absent before opening and after action or Android Back dismissal"
+    },
+    {
+      "id": "form-input",
+      "kind": "react-native-testID-resource-id",
+      "value": "demo-name",
+      "owner": "packages/forms/src/TextField.tsx",
+      "positiveControl": "testTextInputKeyboardValidationAndReachability",
+      "negativeControl": "demo-name is absent on home before the form route opens"
+    },
+    {
+      "id": "action-menu-item",
+      "kind": "visible-user-facing-menu-action",
+      "value": "Edit card",
+      "owner": "packages/overlays/src/Menu.tsx",
+      "positiveControl": "testMenuDialogSheetAndSystemBackLifecycle",
+      "negativeControl": "Edit card is absent before opening the menu and after its action dismisses the menu"
+    },
+    {
+      "id": "form-validation-error-action",
+      "kind": "react-native-testID-resource-id",
+      "value": "form-error-summary-action-form-error-email",
+      "owner": "packages/forms/src/FormLifecycle.tsx",
+      "positiveControl": "testTextInputKeyboardValidationAndReachability",
+      "negativeControl": "the email validation action is absent before submitting the invalid form; activation focuses the associated email field"
+    },
+    {
+      "id": "lifecycle-data-route-landmark",
+      "kind": "visible-user-facing-route-landmark",
+      "value": "Adaptive data workspace",
+      "owner": "apps/reference/app/data.tsx",
+      "positiveControl": "testLifecycleRelaunchAndRecovery",
+      "negativeControl": "the data route landmark is absent after launcher relaunch returns to home"
+    },
+    {
+      "id": "sheet-action",
+      "kind": "react-native-testID-resource-id-across-accessibility-window-roots",
+      "value": "overlay-sheet-compare",
+      "owner": "apps/reference/app/overlays.tsx",
+      "positiveControl": "testMenuDialogSheetAndSystemBackLifecycle",
+      "negativeControl": "the sheet action is absent before opening and after action or Android Back dismissal"
+    },
+    {
+      "id": "runtime-settings-state",
+      "kind": "react-native-testID-resource-id",
+      "value": "runtime-settings-status",
+      "owner": "apps/reference/ReferenceRuntimeControls.tsx",
+      "positiveControl": "testRuntimeThemeDensityLocaleRtlAndMotionControls",
+      "negativeControl": "status text is checked against the selected theme, density, pseudo locale, direction, and motion settings"
+    },
+    {
+      "id": "android-input-method-window",
+      "kind": "active-android-ime-accessibility-window-root",
+      "value": "Settings.Secure.DEFAULT_INPUT_METHOD package",
+      "owner": "tests/native/android/ExpoBaseAndroidNativeTest.java",
+      "positiveControl": "testTextInputKeyboardValidationAndReachability",
+      "negativeControl": "the active IME package is absent from UI Automator roots after Android Back"
+    },
+    {
+      "id": "data-table-row-selection",
+      "kind": "react-native-testID-resource-id",
+      "value": "card-data-table-compact-row-venture-x",
+      "owner": "packages/data-display/src/AdaptiveDataTable.tsx",
+      "positiveControl": "testDataServerStateAndGoldenPlusRoutes",
+      "negativeControl": "selected-record-details is absent before the native row is activated"
+    },
+    {
+      "id": "server-state-refresh",
+      "kind": "visible-fault-injected-refresh-error-with-retained-content",
+      "value": "Fail next refresh -> Update failed while previously loaded task content remains visible",
+      "owner": "apps/reference/app/server-state.tsx",
+      "positiveControl": "testDataServerStateAndGoldenPlusRoutes",
+      "negativeControl": "the refresh error is absent before activation; the error presentation and retained task content are observed after the injected refresh failure"
+    },
+    {
+      "id": "flagship-route-landmarks",
+      "kind": "visible-user-facing-route-landmarks",
+      "value": ["A calm view of growth", "Value, contribution, and control", "Know what needs attention"],
+      "owner": "apps/reference/app/analytics-showcase.tsx",
+      "positiveControl": "testFlagshipRoutesRender",
+      "negativeControl": "each route returns through primary Home navigation before the next route is opened"
+    }
+  ],
+  "scenarios": [
+    { "id": "cold-launch", "test": "testColdLaunchFindsHomeAndCapturesEvidence", "evidence": ["summary", "junit", "home-screenshot", "logcat"] },
+    { "id": "navigation-scroll-orientation", "test": "testPrimaryNavigationAndOrdinaryScrolling", "evidence": ["summary", "junit", "logcat"] },
+    { "id": "forms-ime-validation", "test": "testTextInputKeyboardValidationAndReachability", "evidence": ["summary", "junit", "form-invalid-screenshot", "logcat"] },
+    { "id": "menu-dialog-sheet-back", "test": "testMenuDialogSheetAndSystemBackLifecycle", "evidence": ["summary", "junit", "modal-screenshot", "logcat"] },
+    { "id": "data-server-state-golden-plus", "test": "testDataServerStateAndGoldenPlusRoutes", "evidence": ["summary", "junit", "server-state-error-screenshot", "logcat"] },
+    { "id": "flagship-routes", "test": "testFlagshipRoutesRender", "evidence": ["summary", "junit", "logcat"] },
+    { "id": "runtime-settings", "test": "testRuntimeThemeDensityLocaleRtlAndMotionControls", "evidence": ["summary", "junit", "logcat"] },
+    { "id": "orientation-round-trip", "test": "testOrientationRoundTrip", "evidence": ["summary", "junit", "logcat"] },
+    { "id": "lifecycle-recovery", "test": "testLifecycleRelaunchAndRecovery", "evidence": ["summary", "junit", "logcat"] }
+  ],
+  "evidenceRegistry": {
+    "summary": { "kind": "machine-readable-run-summary", "path": "test-results/android-native-certification/summary.json" },
+    "junit": { "kind": "android-instrumentation-junit-xml", "path": "test-results/android-native-certification/junit/" },
+    "logcat": { "kind": "raw-device-logcat-and-crash-disposition", "path": "test-results/android-native-certification/logcat.txt" },
+    "home-screenshot": { "kind": "emulator-screenshot", "path": "test-results/android-native-certification/screenshots/home.png" },
+    "modal-screenshot": { "kind": "emulator-screenshot", "path": "test-results/android-native-certification/screenshots/dialog-open.png" },
+    "form-invalid-screenshot": { "kind": "emulator-screenshot-of-validation-summary-and-reachable-error-action", "path": "test-results/android-native-certification/screenshots/form-invalid.png" },
+    "server-state-error-screenshot": { "kind": "emulator-screenshot-of-refresh-error-with-retained-content", "path": "test-results/android-native-certification/screenshots/server-state-refresh-error.png" },
+    "release-apk": { "kind": "release-like-bundled-javascript-apk", "path": "test-results/android-native-certification/app-release.apk" },
+    "native-identity": { "kind": "fresh-generated-android-source-and-config-identity", "path": "test-results/android-native-certification/generated-native-identity.json" },
+    "avd-profile-config": { "kind": "raw-emulator-profile-config-with-sha256-in-summary", "path": "test-results/android-native-certification/avd-config.ini" },
+    "gradle-config": { "kind": "post-CNG-build-JVM-and-worker-settings-with-sha256-in-summary", "path": "test-results/android-native-certification/generated-gradle.properties" }
+  },
+  "boundaries": [
+    { "id": "talkback-review", "status": "human-review-required", "claim": "No accountable human TalkBack review is included." },
+    { "id": "physical-device-variance", "status": "outside-claim", "claim": "No physical-device certification, exact real-device font scaling, haptics, camera, biometrics, permission variance, or safe-area variance is included." },
+    { "id": "release-and-production", "status": "outside-claim", "claim": "No Play Store signing/upload, npm/EAS/store deployment, commercial compliance, backend/provider, downstream-product, or production-readiness claim is included." },
+    { "id": "v1.1.0", "status": "outside-claim", "claim": "This evidence does not retroactively qualify or alter the published Expo Base v1.1.0 release evidence." }
+  ]
+}
