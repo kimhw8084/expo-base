@@ -7,6 +7,8 @@ on:
       - android.certification.json
       - package.json
       - package-lock.json
+      - docs/ANDROID_NATIVE_ACCEPTANCE.md
+      - docs/CERTIFICATION.md
       - apps/reference/**
       - packages/accessibility/**
       - packages/adapters/**
@@ -70,6 +72,8 @@ on:
       - android.certification.json
       - package.json
       - package-lock.json
+      - docs/ANDROID_NATIVE_ACCEPTANCE.md
+      - docs/CERTIFICATION.md
       - apps/reference/**
       - packages/accessibility/**
       - packages/adapters/**
