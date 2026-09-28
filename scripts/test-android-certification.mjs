@@ -7,12 +7,17 @@ import { prepareAndroidNativeTests } from './generate-android-native-tests.mjs';
 
 const manifest = JSON.parse(readFileSync(new URL('../android.certification.json', import.meta.url), 'utf8'));
 const expectedTests = manifest.instrumentation.expectedTests;
+const androidSuite = readFileSync(new URL('../tests/native/android/ExpoBaseAndroidNativeTest.java', import.meta.url), 'utf8');
 const defaultProfile = resolveAndroidProfile(manifest);
 assert.equal(defaultProfile.id, 'pixel-6-api-35-google-apis-x86_64');
 assert.deepEqual(resolveAndroidProfile(manifest, defaultProfile.id), defaultProfile);
 assert.throws(() => resolveAndroidProfile(manifest, 'missing-profile'), /Unknown Android certification profile/);
 assert.throws(() => resolveAndroidProfile({ profiles: [{ id: 'duplicate' }, { id: 'duplicate' }] }), /unique/);
 assert.throws(() => resolveAndroidProfile({ profiles: [] }), /no emulator profiles/);
+const formErrorSelector = manifest.selectors.find(({ id }) => id === 'form-validation-error-action');
+assert.ok(formErrorSelector && androidSuite.includes(`By.desc(${JSON.stringify(formErrorSelector.value)})`), 'Form selector manifest must identify the runtime accessibility action exercised by the suite.');
+const lifecycleRouteSelector = manifest.selectors.find(({ id }) => id === 'lifecycle-data-route-landmark');
+assert.ok(lifecycleRouteSelector && androidSuite.includes(`By.text(${JSON.stringify(lifecycleRouteSelector.value)})`), 'Lifecycle selector manifest must identify the route landmark exercised by the suite.');
 assert.deepEqual(parseAvdConfigIdentity(`avd.ini.encoding=UTF-8\nhw.device.name = pixel_6\nimage.sysdir.1 = system-images/android-35/google_apis/x86_64/\n`), {
   configuredDeviceProfile: 'pixel_6',
   configuredSystemImage: 'system-images/android-35/google_apis/x86_64/',

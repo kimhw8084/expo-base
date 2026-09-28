@@ -87,9 +87,12 @@ public final class ExpoBaseAndroidNativeTest {
         device.pressBack();
         assertTrue("Android system Back did not dismiss the active input method", device.wait(Until.gone(By.pkg(imePackage)), DISMISS_TIMEOUT_MS));
 
+        BySelector emailSummaryAction = By.desc("Go to Email address: Enter your email.");
+        assertNull("The email validation action must be absent before invalid form submission", device.findObject(emailSummaryAction));
         scrollUntilVisible("text-pressure-form-submit").click();
-        requireId("adapter-form-error-summary");
-        requireId("demo-email-error");
+        UiObject2 emailErrorAction = waitFor(emailSummaryAction, SCREEN_TIMEOUT_MS);
+        assertFalse("The email validation action has no visible native bounds", emailErrorAction.getVisibleBounds().isEmpty());
+        emailErrorAction.click();
         assertTrue("Validation did not focus the first invalid native field", waitForFocused("demo-email", 5_000));
     }
 
@@ -215,7 +218,7 @@ public final class ExpoBaseAndroidNativeTest {
         device.pressHome();
         launchApp();
         requireText(HOME_LANDMARK, SCREEN_TIMEOUT_MS);
-        assertNull("The cleared task retained its previous data route", device.findObject(id("navigation-item-data")));
+        assertNull("The cleared task retained its previous data route", device.findObject(By.text("Adaptive data workspace")));
         requireId("navigation-item-home");
 
         tapId("navigation-item-build");

@@ -92,12 +92,20 @@
       "negativeControl": "Edit card is absent before opening the menu and after its action dismisses the menu"
     },
     {
-      "id": "form-validation-error",
-      "kind": "react-native-testID-resource-id",
-      "value": "demo-email-error",
-      "owner": "packages/forms/src/FormField.tsx",
+      "id": "form-validation-error-action",
+      "kind": "accessible-native-summary-action",
+      "value": "Go to Email address: Enter your email.",
+      "owner": "packages/forms/src/FormLifecycle.tsx",
       "positiveControl": "testTextInputKeyboardValidationAndReachability",
-      "negativeControl": "demo-email-error is absent before submitting the invalid form"
+      "negativeControl": "the email validation action is absent before submitting the invalid form"
+    },
+    {
+      "id": "lifecycle-data-route-landmark",
+      "kind": "visible-user-facing-route-landmark",
+      "value": "Adaptive data workspace",
+      "owner": "apps/reference/app/data.tsx",
+      "positiveControl": "testLifecycleRelaunchAndRecovery",
+      "negativeControl": "the data route landmark is absent after launcher relaunch returns to home"
     },
     {
       "id": "sheet-action",

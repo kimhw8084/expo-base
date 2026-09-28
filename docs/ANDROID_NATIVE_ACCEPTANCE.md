@@ -21,9 +21,12 @@ The release lane uses AndroidX UI Automator 2.3.0 against the emulator's accessi
 React Native 0.86.3's `ReactModalHostView` renders Modal children in a `ComponentDialog` backed by a
 `DialogRootViewGroup`; React Native forwards the Modal `testID` as that root's resource ID, and
 `ReactAccessibilityDelegate` exposes child `testID` values as resource IDs. The suite selects
-visible actionable children by those current native resource IDs, proves they are absent before
-opening and after dismissal, activates them, and checks Android system Back restoration. It does not
-use Espresso dialog roots or infer runtime observability from source text.
+visible actionable Modal children by those current native resource IDs, proves they are absent before
+opening and after dismissal, activates them, and checks Android system Back restoration. Form
+validation uses the shared summary's accessible error action and confirms that activating it focuses
+the first invalid field. It selects that actionable item by its accessibility label instead of
+depending on a wrapper view's test ID. It does not use Espresso dialog roots or infer runtime
+observability from source text.
 
 Historical CHG-149 contributes failure classifications only. The current lane was built from the
 current reference app and shared owners; no R18 candidate code or selector set was restored. It
