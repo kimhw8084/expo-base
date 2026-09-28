@@ -86,6 +86,7 @@ if (!/uses:\s*actions\/checkout@v4[\s\S]*?fetch-depth:\s*0/.test(workflow)) fail
 if (!/uses:\s*android-actions\/setup-android@v3\s*\n\s*with:\s*\n\s*packages:\s*''/.test(workflow)) failures.push('Android SDK setup must skip the removed legacy tools package; the workflow installs the pinned SDK set explicitly.');
 if (!workflow.includes('"$ANDROID_SDK_ROOT/emulator/emulator"')) failures.push('Android workflow must invoke the emulator from the installed SDK root, not assume it is on PATH.');
 if (!workflow.includes('timeout 120s adb -e wait-for-device') || !workflow.includes('deadline=$((SECONDS + 360))')) failures.push('Android workflow must bound device connection and boot polling and collect startup diagnostics on timeout.');
+if (!workflow.includes('sudo chown "$USER" /dev/kvm') || !workflow.includes('GitHub runner does not expose /dev/kvm')) failures.push('Android workflow must establish job-user KVM access and fail with a clear prerequisite diagnostic when KVM is absent.');
 const requiredWorkflowPaths = [
   'android.certification.json', 'package.json', 'package-lock.json', 'apps/reference/**', 'tests/native/android/**',
   'scripts/android-certification-lib.mjs', 'scripts/check-android-certification.mjs', 'scripts/check-node-version.mjs',

@@ -30,6 +30,8 @@ application ID and dependency versions, API/device/emulator profile, release APK
 bundled-JavaScript check, JUnit test counts/failures, complete raw logcat, crash/ANR disposition,
 workflow IDs, and home/modal screenshots. The GitHub Actions workflow uploads this directory after
 success or failure and runs for relevant `codex/**` pushes and pull requests to `main`.
+The hosted x86_64 profile requires the runner's `/dev/kvm`; the workflow grants the job user access
+and reports a prerequisite failure if the runner does not expose that device.
 
 The automated claim covers the current reference app on the declared emulator only. Human TalkBack
 review, physical-device font scaling and safe-area variance, camera, biometrics, permissions,

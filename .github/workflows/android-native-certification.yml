@@ -172,6 +172,16 @@ jobs:
           mkdir -p "$ANDROID_AVD_HOME"
           printf 'no\n' | avdmanager create avd --force --name Pixel_6_API_35 --package "system-images;android-35;google_apis;x86_64" --device pixel_6
 
+      - name: Enable hardware acceleration for the job user
+        run: |
+          if [ ! -e /dev/kvm ]; then
+            echo 'GitHub runner does not expose /dev/kvm for the x86_64 Android emulator profile.'
+            exit 1
+          fi
+          sudo chown "$USER" /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
       - name: Start and qualify emulator
         shell: bash
         env:
