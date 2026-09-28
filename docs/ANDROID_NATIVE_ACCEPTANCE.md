@@ -38,7 +38,7 @@ the exact commit/tree and protected base identity, generated Android source/conf
 application ID and dependency versions, API/device/emulator profile, release APK SHA-256 and
 bundled-JavaScript check, JUnit test counts/failures, complete raw logcat, crash/ANR disposition,
 workflow IDs, the raw AVD profile configuration and its SHA-256, the effective Gradle properties and
-their SHA-256, and home/modal screenshots. The
+their SHA-256, and home, modal, invalid-form, and retained-data refresh-error screenshots. The
 profile resolver reads Android's persisted locale property first, then the configured system locale
 setting and product locale as explicit fallbacks; each raw probe is retained. The GitHub Actions workflow uploads this directory after
 success or failure and runs for relevant `codex/**` pushes and pull requests to `main`.

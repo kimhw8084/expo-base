@@ -141,11 +141,11 @@
     },
     {
       "id": "server-state-refresh",
-      "kind": "visible-action-and-changing-service-counter",
-      "value": "Refresh tasks -> server-state-load-count changes",
+      "kind": "visible-fault-injected-refresh-error-with-retained-content",
+      "value": "Fail next refresh -> Update failed while previously loaded task content remains visible",
       "owner": "apps/reference/app/server-state.tsx",
       "positiveControl": "testDataServerStateAndGoldenPlusRoutes",
-      "negativeControl": "the current service counter is captured before refreshing and must change afterward"
+      "negativeControl": "the refresh error is absent before activation; the error presentation and retained task content are observed after the injected refresh failure"
     },
     {
       "id": "flagship-route-landmarks",
@@ -159,9 +159,9 @@
   "scenarios": [
     { "id": "cold-launch", "test": "testColdLaunchFindsHomeAndCapturesEvidence", "evidence": ["summary", "junit", "home-screenshot", "logcat"] },
     { "id": "navigation-scroll-orientation", "test": "testPrimaryNavigationAndOrdinaryScrolling", "evidence": ["summary", "junit", "logcat"] },
-    { "id": "forms-ime-validation", "test": "testTextInputKeyboardValidationAndReachability", "evidence": ["summary", "junit", "logcat"] },
+    { "id": "forms-ime-validation", "test": "testTextInputKeyboardValidationAndReachability", "evidence": ["summary", "junit", "form-invalid-screenshot", "logcat"] },
     { "id": "menu-dialog-sheet-back", "test": "testMenuDialogSheetAndSystemBackLifecycle", "evidence": ["summary", "junit", "modal-screenshot", "logcat"] },
-    { "id": "data-server-state-golden-plus", "test": "testDataServerStateAndGoldenPlusRoutes", "evidence": ["summary", "junit", "logcat"] },
+    { "id": "data-server-state-golden-plus", "test": "testDataServerStateAndGoldenPlusRoutes", "evidence": ["summary", "junit", "server-state-error-screenshot", "logcat"] },
     { "id": "flagship-routes", "test": "testFlagshipRoutesRender", "evidence": ["summary", "junit", "logcat"] },
     { "id": "runtime-settings", "test": "testRuntimeThemeDensityLocaleRtlAndMotionControls", "evidence": ["summary", "junit", "logcat"] },
     { "id": "orientation-round-trip", "test": "testOrientationRoundTrip", "evidence": ["summary", "junit", "logcat"] },
@@ -173,6 +173,8 @@
     "logcat": { "kind": "raw-device-logcat-and-crash-disposition", "path": "test-results/android-native-certification/logcat.txt" },
     "home-screenshot": { "kind": "emulator-screenshot", "path": "test-results/android-native-certification/screenshots/home.png" },
     "modal-screenshot": { "kind": "emulator-screenshot", "path": "test-results/android-native-certification/screenshots/dialog-open.png" },
+    "form-invalid-screenshot": { "kind": "emulator-screenshot-of-validation-summary-and-reachable-error-action", "path": "test-results/android-native-certification/screenshots/form-invalid.png" },
+    "server-state-error-screenshot": { "kind": "emulator-screenshot-of-refresh-error-with-retained-content", "path": "test-results/android-native-certification/screenshots/server-state-refresh-error.png" },
     "release-apk": { "kind": "release-like-bundled-javascript-apk", "path": "test-results/android-native-certification/app-release.apk" },
     "native-identity": { "kind": "fresh-generated-android-source-and-config-identity", "path": "test-results/android-native-certification/generated-native-identity.json" },
     "avd-profile-config": { "kind": "raw-emulator-profile-config-with-sha256-in-summary", "path": "test-results/android-native-certification/avd-config.ini" },

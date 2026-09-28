@@ -90,8 +90,13 @@ public final class ExpoBaseAndroidNativeTest {
         BySelector emailSummaryAction = id("form-error-summary-action-form-error-email");
         assertNull("The email validation action must be absent before invalid form submission", device.findObject(emailSummaryAction));
         scrollUntilVisible("text-pressure-form-submit").click();
-        UiObject2 emailErrorAction = waitFor(emailSummaryAction, SCREEN_TIMEOUT_MS);
+        requireText("Review the highlighted fields", SCREEN_TIMEOUT_MS);
+        String validationImePackage = assertImeVisible();
+        device.pressBack();
+        assertTrue("Android system Back did not dismiss the validation-focused input method", device.wait(Until.gone(By.pkg(validationImePackage)), DISMISS_TIMEOUT_MS));
+        UiObject2 emailErrorAction = scrollTowardTopUntilVisible(emailSummaryAction, "email validation action");
         assertFalse("The email validation action has no visible native bounds", emailErrorAction.getVisibleBounds().isEmpty());
+        device.executeShellCommand("screencap -p /sdcard/Download/expo-base-android-form-invalid.png");
         emailErrorAction.click();
         assertTrue("Validation did not focus the first invalid native field", waitForFocused("demo-email", 5_000));
     }
@@ -153,12 +158,16 @@ public final class ExpoBaseAndroidNativeTest {
 
         tapId("navigation-item-home");
         openHomeRoute("server-state");
-        UiObject2 requestCount = requireId("server-state-load-count");
-        String before = requestCount.getText();
-        UiObject2 refresh = scrollUntilVisible(By.desc("Refresh tasks"), "Refresh tasks");
-        assertFalse("Server-state refresh action has no visible native bounds", refresh.getVisibleBounds().isEmpty());
-        refresh.click();
-        assertTrue("The server-state refresh did not produce a new service result", waitForDifferentText("server-state-load-count", before, SCREEN_TIMEOUT_MS));
+        BySelector refreshFailure = By.text("Showing previously loaded data because the latest refresh failed.");
+        assertNull("The refresh failure presentation must be absent before a refresh", device.findObject(refreshFailure));
+        UiObject2 failNextRefresh = scrollUntilVisible(By.desc("Fail next refresh"), "Fail next refresh");
+        assertFalse("Server-state refresh action has no visible native bounds", failNextRefresh.getVisibleBounds().isEmpty());
+        failNextRefresh.click();
+        UiObject2 retainedDataFailure = waitFor(refreshFailure, SCREEN_TIMEOUT_MS);
+        assertFalse("The server-state refresh result has no visible native bounds", retainedDataFailure.getVisibleBounds().isEmpty());
+        UiObject2 retainedTask = scrollTowardTopUntilVisible(By.text("Publish Golden Catalog"), "retained server-state task");
+        assertFalse("The refresh failure did not keep prior task content reachable", retainedTask.getVisibleBounds().isEmpty());
+        device.executeShellCommand("screencap -p /sdcard/Download/expo-base-android-server-state-refresh-error.png");
 
         tapId("navigation-item-home");
         openHomeRoute("golden-plus");
@@ -262,6 +271,21 @@ public final class ExpoBaseAndroidNativeTest {
         return target;
     }
 
+    private UiObject2 scrollTowardTopUntilVisible(BySelector selector, String description) {
+        UiObject2 target = device.findObject(selector);
+        for (int swipe = 0; (target == null || target.getVisibleBounds().isEmpty()) && swipe < 16; swipe++) {
+            int width = device.getDisplayWidth();
+            int height = device.getDisplayHeight();
+            assertTrue("The upward content gesture was rejected while moving toward " + description, device.swipe(width / 2, height / 3, width / 2, height * 4 / 5, 24));
+            device.waitForIdle(3_000);
+            target = device.findObject(selector);
+        }
+        assertNotNull("Could not scroll toward the top and observe native target " + description, target);
+        Rect bounds = target.getVisibleBounds();
+        assertFalse("Native target " + description + " remained outside the viewport after scrolling toward the top", bounds.isEmpty());
+        return target;
+    }
+
     private UiObject2 tapId(String testId) {
         UiObject2 target = requireId(testId);
         assertFalse("Native target " + testId + " is not visible", target.getVisibleBounds().isEmpty());
@@ -319,16 +343,6 @@ public final class ExpoBaseAndroidNativeTest {
             UiObject2 target = device.findObject(id(testId));
             if (target != null && target.getText() != null && target.getText().contains(substring)) return true;
             SystemClock.sleep(200);
-        }
-        return false;
-    }
-
-    private boolean waitForDifferentText(String testId, String previous, long timeoutMs) {
-        long deadline = SystemClock.uptimeMillis() + timeoutMs;
-        while (SystemClock.uptimeMillis() < deadline) {
-            UiObject2 target = device.findObject(id(testId));
-            if (target != null && target.getText() != null && !target.getText().equals(previous)) return true;
-            SystemClock.sleep(250);
         }
         return false;
     }

@@ -19,7 +19,7 @@ if (manifest.claim?.releaseVersionClaim !== null) failures.push('The Android can
 if (manifest.app?.applicationId !== 'com.expobase.reference' || manifest.app?.workspace !== 'apps/reference') failures.push('Android certification app identity is not the first-party reference application.');
 if (manifest.app?.nativeProject !== 'fresh-clean-expo-cng' || manifest.app?.buildVariant !== 'release' || manifest.app?.javascript !== 'bundled-in-release-apk') failures.push('Android certification must build a fresh CNG release APK with bundled JavaScript.');
 if (referencePackage.dependencies?.expo !== manifest.app.expoVersion || referencePackage.dependencies?.['react-native'] !== manifest.app.reactNativeVersion) failures.push('Android manifest Expo/RN versions do not match the current reference app.');
-for (const evidenceId of ['summary', 'junit', 'logcat', 'home-screenshot', 'modal-screenshot', 'release-apk', 'native-identity', 'avd-profile-config', 'gradle-config']) {
+for (const evidenceId of ['summary', 'junit', 'logcat', 'home-screenshot', 'modal-screenshot', 'form-invalid-screenshot', 'server-state-error-screenshot', 'release-apk', 'native-identity', 'avd-profile-config', 'gradle-config']) {
   if (!manifest.evidenceRegistry?.[evidenceId]) failures.push(`Android evidence registry is missing required evidence ${evidenceId}.`);
 }
 

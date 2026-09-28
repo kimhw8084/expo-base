@@ -112,6 +112,8 @@ try {
   const screenshots = [
     ['/sdcard/Download/expo-base-android-home.png', join(outputDir, 'screenshots', 'home.png')],
     ['/sdcard/Download/expo-base-android-dialog-open.png', join(outputDir, 'screenshots', 'dialog-open.png')],
+    ['/sdcard/Download/expo-base-android-form-invalid.png', join(outputDir, 'screenshots', 'form-invalid.png')],
+    ['/sdcard/Download/expo-base-android-server-state-refresh-error.png', join(outputDir, 'screenshots', 'server-state-refresh-error.png')],
   ];
   for (const [devicePath, localPath] of screenshots) {
     const pull = run('adb', ['-e', 'pull', devicePath, localPath], { cwd: root, log: `${localPath}.pull.log`, env: process.env });
