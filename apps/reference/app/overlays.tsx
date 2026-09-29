@@ -60,9 +60,9 @@ export default function OverlayReferenceScreen() {
             <VStack gap="lg">
               <Text variant="h3">{copy('Dialog / alert / sheet hierarchy')}</Text>
               <HStack gap="sm">
-                <Button label={copy('Open dialog')} onPress={() => setDialogOpen(true)} />
+                <Button testID="overlay-dialog-open" label={copy('Open dialog')} onPress={() => setDialogOpen(true)} />
                 <Button label={copy('Open destructive alert')} variant="danger" onPress={() => setAlertOpen(true)} />
-                <Button label={copy('Open bottom sheet')} variant="secondary" onPress={() => setSheetOpen(true)} />
+                <Button testID="overlay-sheet-open" label={copy('Open bottom sheet')} variant="secondary" onPress={() => setSheetOpen(true)} />
                 <Button testID="text-pressure-sheet-open" label={copy('Open long sheet')} variant="outline" onPress={() => setLongSheetOpen(true)} />
                 <Button label={copy('Show toast')} variant="outline" onPress={() => manager.showToast(copy('Saved successfully'))} />
               </HStack>
@@ -71,9 +71,9 @@ export default function OverlayReferenceScreen() {
         </Section>
       </Page>
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen} title={copy('Review this recommendation')} description={copy('Standard dialogs may dismiss through the backdrop or Escape/back.')} restoreFocusFallbackId="overlay-focus-fallback" actions={<HStack gap="sm"><Button label={copy('Cancel')} variant="ghost" onPress={() => setDialogOpen(false)} /><Button label={copy('Review')} onPress={() => { setDialogOpen(false); manager.showToast(copy('Review opened')); }} /></HStack>} />
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen} title={copy('Review this recommendation')} description={copy('Standard dialogs may dismiss through the backdrop or Escape/back.')} restoreFocusFallbackId="overlay-focus-fallback" actions={<HStack gap="sm"><Button label={copy('Cancel')} variant="ghost" onPress={() => setDialogOpen(false)} /><Button testID="overlay-dialog-review" label={copy('Review')} onPress={() => { setDialogOpen(false); manager.showToast(copy('Review opened')); }} /></HStack>} />
       <Dialog open={alertOpen} onOpenChange={setAlertOpen} title="Remove this configuration?" description="Alert dialogs require explicit action and do not dismiss on backdrop." kind="alert" dismissOnBackdrop={false} actions={<HStack gap="sm"><Button label="Cancel" variant="secondary" onPress={() => setAlertOpen(false)} /><Button label="Remove" variant="danger" onPress={() => { setAlertOpen(false); manager.showToast('Configuration removed'); }} /></HStack>} />
-      <BottomSheet open={sheetOpen} onOpenChange={setSheetOpen} title="Quick actions"><Button label="Compare cards" fullWidth variant="secondary" onPress={() => { setSheetOpen(false); manager.showToast('Compare selected'); }} /><Button label="Plan bonus" fullWidth variant="secondary" onPress={() => { setSheetOpen(false); manager.showToast('Plan selected'); }} /><Button label="Close" fullWidth variant="ghost" onPress={() => setSheetOpen(false)} /></BottomSheet>
+      <BottomSheet open={sheetOpen} onOpenChange={setSheetOpen} title="Quick actions"><Button testID="overlay-sheet-compare" label="Compare cards" fullWidth variant="secondary" onPress={() => { setSheetOpen(false); manager.showToast('Compare selected'); }} /><Button label="Plan bonus" fullWidth variant="secondary" onPress={() => { setSheetOpen(false); manager.showToast('Plan selected'); }} /><Button label="Close" fullWidth variant="ghost" onPress={() => setSheetOpen(false)} /></BottomSheet>
       <BottomSheet open={longSheetOpen} onOpenChange={setLongSheetOpen} title="Scrollable sheet acceptance">
         {Array.from({ length: 14 }, (_, index) => (
           <Card key={index}>

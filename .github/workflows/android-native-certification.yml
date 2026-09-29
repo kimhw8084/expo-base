@@ -1,0 +1,238 @@
+name: Expo Base Android Native Certification
+
+on:
+  push:
+    branches: [main, 'codex/**']
+    paths:
+      - android.certification.json
+      - package.json
+      - package-lock.json
+      - docs/ANDROID_NATIVE_ACCEPTANCE.md
+      - docs/CERTIFICATION.md
+      - apps/reference/**
+      - packages/accessibility/**
+      - packages/adapters/**
+      - packages/auth/**
+      - packages/authorization/**
+      - packages/capabilities/**
+      - packages/components/**
+      - packages/data-display/**
+      - packages/device/**
+      - packages/feedback/**
+      - packages/form-rhf/**
+      - packages/forms/**
+      - packages/haptics/**
+      - packages/i18n/**
+      - packages/icons/**
+      - packages/layouts/**
+      - packages/linking/**
+      - packages/linking-expo/**
+      - packages/lists/**
+      - packages/local-auth/**
+      - packages/media/**
+      - packages/media-presentation/**
+      - packages/motion/**
+      - packages/navigation/**
+      - packages/navigation-router/**
+      - packages/notifications/**
+      - packages/observability/**
+      - packages/overlays/**
+      - packages/patterns/**
+      - packages/platform/**
+      - packages/preferences/**
+      - packages/primitives/**
+      - packages/runtime/**
+      - packages/runtime-capabilities/**
+      - packages/secure-storage/**
+      - packages/server-state/**
+      - packages/session-security/**
+      - packages/sharing/**
+      - packages/tokens/**
+      - packages/ui/**
+      - packages/updates/**
+      - packages/visualization/**
+      - packages/visualization-advanced/**
+      - scripts/android-certification-lib.mjs
+      - scripts/check-android-certification.mjs
+      - scripts/check-node-version.mjs
+      - scripts/generate-android-native-tests.mjs
+      - scripts/run-android-native-certification.mjs
+      - scripts/test-android-certification.mjs
+      - tests/native/android/**
+      - plugins/**
+      - patches/**
+      - babel.config.js
+      - metro.config.js
+      - tsconfig.json
+      - tsconfig.*.json
+      - .github/workflows/android-native-certification.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - android.certification.json
+      - package.json
+      - package-lock.json
+      - docs/ANDROID_NATIVE_ACCEPTANCE.md
+      - docs/CERTIFICATION.md
+      - apps/reference/**
+      - packages/accessibility/**
+      - packages/adapters/**
+      - packages/auth/**
+      - packages/authorization/**
+      - packages/capabilities/**
+      - packages/components/**
+      - packages/data-display/**
+      - packages/device/**
+      - packages/feedback/**
+      - packages/form-rhf/**
+      - packages/forms/**
+      - packages/haptics/**
+      - packages/i18n/**
+      - packages/icons/**
+      - packages/layouts/**
+      - packages/linking/**
+      - packages/linking-expo/**
+      - packages/lists/**
+      - packages/local-auth/**
+      - packages/media/**
+      - packages/media-presentation/**
+      - packages/motion/**
+      - packages/navigation/**
+      - packages/navigation-router/**
+      - packages/notifications/**
+      - packages/observability/**
+      - packages/overlays/**
+      - packages/patterns/**
+      - packages/platform/**
+      - packages/preferences/**
+      - packages/primitives/**
+      - packages/runtime/**
+      - packages/runtime-capabilities/**
+      - packages/secure-storage/**
+      - packages/server-state/**
+      - packages/session-security/**
+      - packages/sharing/**
+      - packages/tokens/**
+      - packages/ui/**
+      - packages/updates/**
+      - packages/visualization/**
+      - packages/visualization-advanced/**
+      - scripts/android-certification-lib.mjs
+      - scripts/check-android-certification.mjs
+      - scripts/check-node-version.mjs
+      - scripts/generate-android-native-tests.mjs
+      - scripts/run-android-native-certification.mjs
+      - scripts/test-android-certification.mjs
+      - tests/native/android/**
+      - plugins/**
+      - patches/**
+      - babel.config.js
+      - metro.config.js
+      - tsconfig.json
+      - tsconfig.*.json
+      - .github/workflows/android-native-certification.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: expo-base-android-native-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  android-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+
+      - name: Install pinned emulator and CNG build platforms
+        run: sdkmanager "platform-tools" "emulator" "platforms;android-35" "build-tools;35.0.0" "system-images;android-35;google_apis;x86_64" "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Create Pixel 6 API 35 profile
+        env:
+          ANDROID_AVD_HOME: ${{ runner.temp }}/android-avd
+        run: |
+          mkdir -p "$ANDROID_AVD_HOME"
+          printf 'no\n' | avdmanager create avd --force --name Pixel_6_API_35 --package "system-images;android-35;google_apis;x86_64" --device pixel_6
+
+      - name: Enable hardware acceleration for the job user
+        run: |
+          if [ ! -e /dev/kvm ]; then
+            echo 'GitHub runner does not expose /dev/kvm for the x86_64 Android emulator profile.'
+            exit 1
+          fi
+          sudo chown "$USER" /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Start and qualify emulator
+        shell: bash
+        env:
+          ANDROID_AVD_HOME: ${{ runner.temp }}/android-avd
+        run: |
+          set -euo pipefail
+          emulator_log="$RUNNER_TEMP/android-emulator.log"
+          emulator_binary="$ANDROID_SDK_ROOT/emulator/emulator"
+          if [ ! -x "$emulator_binary" ]; then
+            echo "Android emulator executable is missing at $emulator_binary"
+            exit 1
+          fi
+          nohup "$emulator_binary" -avd Pixel_6_API_35 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -accel on > "$emulator_log" 2>&1 &
+          if ! timeout 120s adb -e wait-for-device; then
+            cat "$emulator_log"
+            adb devices -l
+            exit 1
+          fi
+          booted=""
+          deadline=$((SECONDS + 360))
+          while [ "$booted" != "1" ] && [ "$SECONDS" -lt "$deadline" ]; do
+            booted="$(timeout 10s adb -e shell getprop sys.boot_completed 2>/dev/null | tr -d '\r' || true)"
+            if [ "$booted" != "1" ]; then sleep 3; fi
+          done
+          if [ "$booted" != "1" ]; then
+            cat "$emulator_log"
+            adb devices -l
+            exit 1
+          fi
+          adb -e shell wm dismiss-keyguard
+          adb -e shell input keyevent 82
+
+      - name: Install workspace
+        run: npm ci
+
+      - name: Build release APK and run Android native instrumentation
+        env:
+          ANDROID_AVD_HOME: ${{ runner.temp }}/android-avd
+        run: npm run android:verify
+
+      - name: Upload Android certification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-native-certification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            test-results/android-native-certification
+            ${{ runner.temp }}/android-emulator.log
+          if-no-files-found: warn
+          retention-days: 30
