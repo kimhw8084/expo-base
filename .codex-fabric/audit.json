@@ -1,0 +1,364 @@
+{
+  "accepted_at": "2026-09-29T02:29:06Z",
+  "changed_files": [],
+  "checks": [
+    {
+      "command": "/bin/zsh -lc \"rtk jq '{apk:.build.apk, generatedNative:.evidence.generatedNative, gradleConfiguration:.evidence.gradleConfiguration, logcatDisposition:.evidence.logcatDisposition, missing:.failures}' /tmp/chg298-fail/expo-base/expo-base/test-results/android-native-certification/summary.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk jq '{apk:.build.apk, generatedNative:.evidence.generatedNative, gradleConfiguration:.evidence.gradleConfiguration, logcatDisposition:.evidence.logcatDisposition, missing:.failures}' /tmp/chg298-pass/expo-base/expo-base/test-results/android-native-certification/summary.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import zipfile,hashlib,sys; a,b=sys.argv[1:]; x,y=zipfile.ZipFile(a),zipfile.ZipFile(b); A={n:hashlib.sha256(x.read(n)).hexdigest() for n in x.namelist()}; B={n:hashlib.sha256(y.read(n)).hexdigest() for n in y.namelist()}; print(\\\"entries\\\",len(A),len(B),\\\"missing\\\",sorted(A.keys()-B.keys()),\\\"extra\\\",sorted(B.keys()-A.keys())); dif=[n for n in A.keys()&B.keys() if A[n]\"'!=B[n]]; print(\"entry_differences\",len(dif),dif[:30]); print(\"manifest\",A.get(\"AndroidManifest.xml\"),B.get(\"AndroidManifest.xml\")); print(\"resources\",A.get(\"resources.arsc\"),B.get(\"resources.arsc\"))'\"' /tmp/chg298-pass/expo-base/expo-base/test-results/android-native-certification/app-release.apk /tmp/chg298-fail/expo-base/expo-base/test-results/android-native-certification/app-release.apk\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,220p' apps/reference/services.ts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,200p' apps/reference/ReferenceCopy.ts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,180p' apps/reference/auth.ts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,140p' apps/reference/sessionSecurity.ts\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy unzip -p /tmp/chg298-pass/expo-base/expo-base/test-results/android-native-certification/app-release.apk assets/app.manifest | rtk jq .'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy unzip -p /tmp/chg298-fail/expo-base/expo-base/test-results/android-native-certification/app-release.apk assets/app.manifest | rtk jq .'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'resource|resValue|generate.*resource|versionCode|versionName|aapt|AndroidGradlePlugin|gradlePlugin|com.android.tools.build|compileSdk|expo.*version' apps/reference/android packages scripts android.certification.json package.json package-lock.json\"",
+      "exit_code": 2,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import zipfile,json,sys; a,b=sys.argv[1:]; x=json.loads(zipfile.ZipFile(a).read(\\\"assets/app.manifest\\\")); y=json.loads(zipfile.ZipFile(b).read(\\\"assets/app.manifest\\\")); diff=[]\nfor key in sorted(x.keys()|y.keys()):\n if x.get(key)\"'!=y.get(key): diff.append((key,x.get(key),y.get(key)))\nprint(\"app.manifest differing top-level fields:\",diff)\nprint(\"assets lists equal after those metadata fields:\",x.get(\"assets\")==y.get(\"assets\"))'\"' /tmp/chg298-pass/expo-base/expo-base/test-results/android-native-certification/app-release.apk /tmp/chg298-fail/expo-base/expo-base/test-results/android-native-certification/app-release.apk\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '1,120p' scripts/check-android-certification.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '130,240p' tests/native/android/ExpoBaseAndroidNativeTest.java\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk sed -n '200,360p' scripts/run-android-native-certification.mjs\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk cat scripts/android-certification-lib.mjs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'Killing .*com\\\\.expobase\\\\.reference|Force stopping .*com\\\\.expobase\\\\.reference|am_crash|ANR in com\\\\.expobase\\\\.reference|Not Responding: com\\\\.expobase\\\\.reference|com\\\\.expobase\\\\.reference/.MainActivity' /tmp/chg298-fail/expo-base/expo-base/test-results/android-native-certification/logcat.txt\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run view 36508617194 --repo kimhw8084/expo-base --json status,conclusion,attempt,headSha,headBranch,jobs'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk gh run download 36508617194 --repo kimhw8084/expo-base --name android-native-certification-36508617194-2 --dir /tmp/chg298-retry'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg --files /tmp/chg298-retry; rtk jq '{status,candidate,workflow,profile,device,app,build,instrumentation:{runner:.instrumentation.runner,expectedTests:.instrumentation.expectedTests,tests:.instrumentation.tests,failures:.instrumentation.failures,errors:.instrumentation.errors,skipped:.instrumentation.skipped,crashDisposition:.instrumentation.crashDisposition},evidence:{generatedNative:.evidence.generatedNative,gradleConfiguration:.evidence.gradleConfiguration,missing:.evidence.missing,files:.evidence.files}}' /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/summary.json; rtk cat /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/generated-native-identity.json; rtk rg -n 'testsuite|testcase|failure|error|skipped' /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/junit/report-01.xml; rtk proxy shasum -a 256 /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/app-release.apk; rtk proxy unzip -p /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/app-release.apk assets/index.android.bundle | rtk proxy shasum -a 256; rtk proxy shasum -a 256 /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/generated-native-identity.json /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/avd-config.ini\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk diff -u /tmp/chg298-pass/expo-base/expo-base/test-results/android-native-certification/apk-badging.log /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/apk-badging.log'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk diff -u /tmp/chg298-fail/expo-base/expo-base/test-results/android-native-certification/apk-badging.log /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/apk-badging.log'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk jq '{status,candidate,workflow,profile,device,app,build:{variant:.build.variant,javascript:.build.javascript,configuredMetaspaceMb:.build.configuredMetaspaceMb,apk:.build.apk},instrumentation:{runner:.instrumentation.runner,tests:.instrumentation.junit.tests,failures:.instrumentation.junit.failures,errors:.instrumentation.junit.errors,skipped:.instrumentation.junit.skipped,crashDisposition:.instrumentation.crashDisposition},evidence:{generatedNative:.evidence.generatedNative,gradleConfiguration:.evidence.gradleConfiguration,files:.evidence.files}}' /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/summary.json\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'Unable to connect to adb daemon|No adb private key|Android emulator version|ERROR|WARNING' /tmp/chg298-retry/_temp/android-emulator.log\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import zipfile,json,sys; xs=[json.loads(zipfile.ZipFile(p).read(\\\"assets/app.manifest\\\")) for p in sys.argv[1:]]; print(\\\"app.manifest\\\",[(x.get(\\\"id\\\"),x.get(\\\"commitTime\\\")) for x in xs]); print(\\\"asset lists equal\\\",xs[0].get(\\\"assets\\\")==xs[1].get(\\\"assets\\\")==xs[2].get(\\\"assets\\\"))' /tmp/chg298-pass/expo-base/expo-base/test-results/android-native-certification/app-release.apk /tmp/chg298-fail/expo-base/expo-base/test-results/android-native-certification/app-release.apk /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/app-release.apk\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk rg -n 'ActivityTaskManager: START u0.*com\\\\.expobase\\\\.reference|ActivityTaskManager: Displayed com\\\\.expobase\\\\.reference|ReactNativeJS: Running \\\"main\\\"|FATAL EXCEPTION|ANR in |ReactNativeJS: Unhandled JS Exception' /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/logcat.txt\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc 'rtk proxy shasum -a 256 /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/screenshots/home.png /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/screenshots/dialog-open.png /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/screenshots/form-invalid.png /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/screenshots/server-state-refresh-error.png'",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk proxy python3 -c 'import zipfile,hashlib,sys; paths=sys.argv[1:]; zs=[zipfile.ZipFile(x) for x in paths]; maps=[{n:hashlib.sha256(z.read(n)).hexdigest() for n in z.namelist()} for z in zs]; names=sorted(set.intersection(*(set(m) for m in maps))); print(\\\"entry sets\\\",[len(m) for m in maps]); print(\\\"entries differing from first\\\",[[n for n in names if maps[i][n]\"'!=maps[0][n]][:20] for i in range(1,len(maps))]); print(\"AndroidManifest.xml hashes\",[m[\"AndroidManifest.xml\"] for m in maps]); print(\"bundle hashes\",[m[\"assets/index.android.bundle\"] for m in maps]); print(\"resources.arsc hashes\",[m[\"resources.arsc\"] for m in maps])'\"' /tmp/chg298-pass/expo-base/expo-base/test-results/android-native-certification/app-release.apk /tmp/chg298-fail/expo-base/expo-base/test-results/android-native-certification/app-release.apk /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/app-release.apk\"",
+      "exit_code": 0,
+      "type": "command_execution"
+    },
+    {
+      "command": "/bin/zsh -lc \"rtk jq '{status,candidate,workflow,profile,device:{apiLevel:.device.apiLevel,model:.device.model,manufacturer:.device.manufacturer,cpuAbi:.device.cpuAbi,isEmulator:.device.isEmulator,avdName:.device.avdName,configuredDeviceProfile:.device.configuredDeviceProfile,configuredSystemImage:.device.configuredSystemImage,avdConfigSha256:.device.avdConfigSha256,locale:.device.locale},app,build:{variant:.build.variant,javascript:.build.javascript,configuredMetaspaceMb:.build.configuredMetaspaceMb,apk:.build.apk},instrumentation:{expectedTests:.instrumentation.expectedTests,tests:.instrumentation.junit.tests,failures:.instrumentation.junit.failures,errors:.instrumentation.junit.errors,skipped:.instrumentation.junit.skipped,crashDisposition:.instrumentation.crashDisposition},generatedNative:.evidence.generatedNative,gradleConfiguration:.evidence.gradleConfiguration,failures,files:.evidence.files}' /tmp/chg298-retry/expo-base/expo-base/test-results/android-native-certification/summary.json; rtk git status --short --branch; rtk git rev-parse HEAD; rtk git rev-parse HEAD\"'^{tree}'",
+      "exit_code": 0,
+      "type": "command_execution"
+    }
+  ],
+  "codex": {
+    "cli_version": "codex-cli 0.157.0",
+    "configured_model": "gpt-6-luna",
+    "event_count": 301,
+    "provider_reported_model": null,
+    "reasoning_effort": "xhigh",
+    "terminal_type": "turn.completed",
+    "usage": {
+      "cache_hit_percent": 97.83,
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 11618688,
+      "fresh_input_tokens": 257807,
+      "input_tokens": 11876495,
+      "non_reasoning_output_tokens": 15140,
+      "output_tokens": 53623,
+      "reasoning_output_tokens": 38483,
+      "total_processed_tokens": 11930118
+    },
+    "warnings": []
+  },
+  "commits": [],
+  "diff": {
+    "additions": 0,
+    "changed_files": 0,
+    "commit_count": 0,
+    "deletions": 0
+  },
+  "error_code": null,
+  "evidence_manifest": {
+    "count": 0,
+    "items": [],
+    "version": 1
+  },
+  "evidence_publisher_release": "1.2.5-dashboard-controls-candidate",
+  "fabric_capture": {
+    "applied": false,
+    "paths_before": 0,
+    "transient_untracked_removed": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "fabric_release": "1.2.5-dashboard-controls-candidate",
+  "failure_class": null,
+  "finished_at": "2026-09-29T03:03:36Z",
+  "git": {
+    "base_is_ancestor": true,
+    "base_sha": "272a575b5ff9ddb44abb8047f432b1b269fbb81c",
+    "branch": "codex/expo-base-chg298-android-main-repeatability-r1",
+    "detached_verify": false,
+    "head_sha": "272a575b5ff9ddb44abb8047f432b1b269fbb81c",
+    "remote_exact_head": true,
+    "remote_head_sha": "272a575b5ff9ddb44abb8047f432b1b269fbb81c",
+    "target_branch": "main",
+    "target_drifted_since_acceptance": false,
+    "target_head_observed_after_execution": "272a575b5ff9ddb44abb8047f432b1b269fbb81c",
+    "work_branch": "codex/expo-base-chg298-android-main-repeatability-r1",
+    "worktree_clean": true
+  },
+  "instructions": {
+    "files": [
+      {
+        "bytes": 14569,
+        "path": "AGENTS.md",
+        "sha256": "6fe12eea1f4fcafa2f01be4a38af0874fd91d3e62c621bd46a58d89a7529362e"
+      }
+    ],
+    "total_bytes": 14569,
+    "warning": null
+  },
+  "job_id": "CF-d149c3ede52fc1eceee84fa0",
+  "kind": "codex-fabric-audit-evidence",
+  "locator": {
+    "branch": "codex-fabric/evidence/expo-base/chg298-android-main-repeatability-r1",
+    "path": ".codex-fabric/audit.json",
+    "ref": "refs/heads/codex-fabric/evidence/expo-base/chg298-android-main-repeatability-r1"
+  },
+  "operation": "VERIFY",
+  "policy": {
+    "environment_policy_sha256": "e077daca74297b3c30bee8989f00f8ca5338f7610b4d016a6c48db524205d064",
+    "fabric_release": "1.2.5-dashboard-controls-candidate",
+    "policy_sha256": "123615bf2f6e57dcac197e49ca98ceac59ada86a55e2c84445ea5d00812c0833",
+    "registry_sha256": "af81b8552f9d6a33847310e3c6bcd2d48401782b963a58efd2993e93570cb4aa"
+  },
+  "project_id": "expo-base",
+  "recovery": {
+    "model_rerun_safe": false,
+    "recovery_required": false,
+    "retry_safe": false,
+    "retry_scope": null,
+    "worktree_retained": true
+  },
+  "request": "chg298-android-main-repeatability-r1",
+  "schema_version": 1,
+  "started_at": "2026-09-29T02:29:07Z",
+  "status": "EXECUTED_NO_CHANGE",
+  "timing": {
+    "execution_seconds": 2069,
+    "queue_seconds": 1,
+    "total_seconds": 2070
+  },
+  "transport": {
+    "bytes": 6014,
+    "envelope": "FABRIC/2",
+    "prompt_bytes": 5674,
+    "prompt_sha256": "507e9d885a248aecabeaadc13db6384ee2b96760ecdd24fe06f063cc86c546de",
+    "sha256": "d149c3ede52fc1eceee84fa00dca836e0c34e45ebc7e74189c1943906ad38c76"
+  }
+}
